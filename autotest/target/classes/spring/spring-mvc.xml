@@ -32,12 +32,6 @@
             </list>
         </property>
     </bean>
-    
-     <bean id="viewResolver"  
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
-        <property name="prefix" value="/WEB-INF/"/>  
-        <property name="suffix" value=".html"/>  
-    </bean> 
 
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
     <mvc:default-servlet-handler />
