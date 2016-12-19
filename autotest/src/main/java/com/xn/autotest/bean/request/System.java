@@ -18,6 +18,6 @@ public class System {
     /**
      *系统的类型,0表示http,1表示dubbo
      */
-    private int type;
+    private typeEnum type;
 
 }
