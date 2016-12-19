@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xn.front.interaction.dao.PlaneDao">
+	
+	
+	
+ 	<sql id="stubItem">
+		id as id,
+		response_str responseStr,
+		update_time updateTime,
+		zx_num ZXnum,
+		interface_name interfaceName
+	</sql> 
+
+	<!--<select id="getResponse"  parameterType="Stub" resultType="Stub">-->
+		<!--select <include refid="stubItem" />-->
+		<!--from stub-->
+		<!--<where>-->
+			<!--<if test="ZXnum != null">-->
+				<!--and zx_num = #{ZXnum}-->
+			<!--</if>-->
+		<!--&lt;!&ndash; 	<if interaction="updateTime != null">-->
+				<!--and update_time = #{updateTime}-->
+			<!--</if> &ndash;&gt;-->
+			<!--<if test="interfaceName != null">-->
+				<!--and interface_name = #{interfaceName}-->
+			<!--</if>-->
+			<!--<if test="type == 1 and value != null">-->
+				<!--and mobile = #{value}-->
+			<!--</if>-->
+			<!--<if test="type == 2 and value != null">-->
+				<!--and sequence_id = #{value}-->
+			<!--</if>-->
+			<!--<if test="type == 0 and value != null">-->
+				<!--and id_card = #{value}-->
+			<!--</if>-->
+		<!--</where>-->
+		<!--limit 1-->
+	<!--</select>-->
+	
+	<!--<select id="getStubWithZxCompany"  parameterType="Stub" resultType="StubWithZxCompany">-->
+		<!--select s.id as id,-->
+			<!--s.response_str responseStr,-->
+			<!--s.update_time updateTime,-->
+			<!--s.zx_num ZXnum,-->
+			<!--s.interface_name interfaceName,-->
+			<!--c.name companyName-->
+			<!--from stub s-->
+			<!--left join zx_company c on c.zx_num = s.zx_num-->
+		<!--<where>-->
+			<!--<if test="ZXnum != null">-->
+				<!--and s.zx_num = #{ZXnum}-->
+			<!--</if>-->
+		<!--&lt;!&ndash; 	<if interaction="updateTime != null">-->
+				<!--and update_time = #{updateTime}-->
+			<!--</if> &ndash;&gt;-->
+			<!--<if test="interfaceName != null">-->
+				<!--and s.interface_name = #{interfaceName} -->
+			<!--</if>-->
+		<!--</where>-->
+		<!--order by s.zx_num-->
+	<!--</select>-->
+	
+	<!--<select id="getAllZxCompanies"  resultType="ZxCompany">-->
+		<!--select id, zx_num ZXnum,-->
+			<!--name companyName-->
+			<!--from zx_company -->
+		<!--<where>-->
+			<!--<if test="id != null">-->
+				<!--and id = #{id}-->
+			<!--</if>-->
+		<!--&lt;!&ndash; 	<if interaction="updateTime != null">-->
+				<!--and update_time = #{updateTime}-->
+			<!--</if> &ndash;&gt;-->
+			<!--<if test="name != null">-->
+				<!--and name = #{name} -->
+			<!--</if>-->
+		<!--</where>-->
+		<!--order by id-->
+	<!--</select>-->
+	<select id="checkPlaneName" parameterType="string" resultType="Integer">
+		select count(1)  from plane where plane_status=1 and plane_name=#{planeName}
+	</select>
+	<!--<insert id="createServiceDesc" parameterType="ServiceDesc" >-->
+		<!--insert into dubbo_service_properties (app_name,interface_name,method_name,url,group_name,version,timeout,use_zk,zk) values(#{appName},#{interfaceName},#{methodName},#{url},#{group},#{version},#{timeout},#{useZk},#{zk})-->
+	<!--</insert>-->
+
+	<!--<select id="getServiceDesc" resultType="ServiceDesc">-->
+		<!--select interface_name as interfaceName , method_name as methodName ,use_zk as useZk from dubbo_service_properties where group_name = #{group}-->
+	<!--</select>-->
+</mapper>
