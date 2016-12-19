@@ -1,7 +1,7 @@
 package com.xn.autotest.objectfactory;
 
 import com.alibaba.fastjson.JSON;
-import com.xn.autotest.bean.KeyValueStore;
+import com.xn.autotest.bean.request.KeyValueStore;
 import com.xn.autotest.utils.MapUtils;
 import com.xn.autotest.utils.ReflectionUtils;
 import org.apache.commons.lang.StringUtils;

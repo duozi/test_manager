@@ -1,7 +1,7 @@
 package com.xn.autotest.objectfactory;
 
 
-import com.xn.autotest.bean.KeyValueStore;
+import com.xn.autotest.bean.request.KeyValueStore;
 import com.xn.autotest.utils.ReflectionUtils;
 import com.xn.autotest.utils.SignUtil;
 import com.xn.autotest.utils.StringUtil;

@@ -1,4 +1,4 @@
-package com.xn.autotest.bean;
+package com.xn.autotest.bean.request;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import com.google.common.collect.Lists;

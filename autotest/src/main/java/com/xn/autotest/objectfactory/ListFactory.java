@@ -2,7 +2,7 @@ package com.xn.autotest.objectfactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.xn.autotest.bean.KeyValueStore;
+import com.xn.autotest.bean.request.KeyValueStore;
 import com.xn.autotest.utils.CollectionUtils;
 
 import java.lang.reflect.ParameterizedType;

@@ -1,4 +1,4 @@
-package com.xn.autotest.bean;
+package com.xn.autotest.bean.request;
 
 public class KeyValueStore {
     String name;
