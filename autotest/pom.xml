@@ -151,17 +151,23 @@
         <dependency>
         	<groupId>org.sitemesh</groupId>
         	<artifactId>sitemesh</artifactId>
-        	<version>3.0.1</version>
         </dependency>
         <dependency>
         	<groupId>org.apache.httpcomponents</groupId>
         	<artifactId>httpcore</artifactId>
-        	<version>4.4.5</version>
         </dependency>
          <dependency>
         	<groupId>javax.servlet</groupId>
         	<artifactId>javax.servlet-api</artifactId>
         	<version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
     <build>
