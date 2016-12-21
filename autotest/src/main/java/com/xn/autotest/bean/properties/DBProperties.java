@@ -7,28 +7,34 @@ import org.slf4j.LoggerFactory;
 
 public class DBProperties {
     private static final Logger logger = LoggerFactory.getLogger(DBProperties.class);
-    private String DBName;
+    /**
+     * 数据库名不能重复
+     */
+    private String dbName;
     private String url;
-    private  String databaseName;
+
     private  String userName;
     private String pwd;
-    private String DBType;
+    private String dbDriver;
 
-    public DBProperties(String DBName, String url, String databaseName, String userName, String pwd, String DBType) {
-        this.DBName = DBName;
+    public DBProperties() {
+    }
+
+    public DBProperties(String dbName, String url, String userName, String pwd, String dbDriver) {
+        this.dbName = dbName;
         this.url = url;
-        this.databaseName = databaseName;
+
         this.userName = userName;
         this.pwd = pwd;
-        this.DBType = DBType;
+        this.dbDriver = dbDriver;
     }
 
-    public String getDBName() {
-        return DBName;
+    public String getDbName() {
+        return dbName;
     }
 
-    public void setDBName(String DBName) {
-        this.DBName = DBName;
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 
     public String getUrl() {
@@ -39,13 +45,6 @@ public class DBProperties {
         this.url = url;
     }
 
-    public String getDatabaseName() {
-        return databaseName;
-    }
-
-    public void setDatabaseName(String databaseName) {
-        this.databaseName = databaseName;
-    }
 
     public String getUserName() {
         return userName;
@@ -63,11 +62,11 @@ public class DBProperties {
         this.pwd = pwd;
     }
 
-    public String getDBType() {
-        return DBType;
+    public String getDbDriver() {
+        return dbDriver;
     }
 
-    public void setDBType(String DBType) {
-        this.DBType = DBType;
+    public void setDbDriver(String DBType) {
+        this.dbDriver = DBType;
     }
 }
