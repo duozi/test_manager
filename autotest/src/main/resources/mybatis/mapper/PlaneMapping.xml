@@ -81,11 +81,11 @@
 	<select id="checkPlaneName" parameterType="string" resultType="Integer">
 		select count(1)  from plane where plane_status=1 and plane_name=#{planeName}
 	</select>
-	<!--<insert id="createServiceDesc" parameterType="DubboProperties" >-->
+	<!--<insert id="createServiceDesc" parameterType="ServiceDesc" >-->
 		<!--insert into dubbo_service_properties (app_name,interface_name,method_name,url,group_name,version,timeout,use_zk,zk) values(#{appName},#{interfaceName},#{methodName},#{url},#{group},#{version},#{timeout},#{useZk},#{zk})-->
 	<!--</insert>-->
 
-	<!--<select id="getServiceDesc" resultType="DubboProperties">-->
+	<!--<select id="getServiceDesc" resultType="ServiceDesc">-->
 		<!--select interface_name as interfaceName , method_name as methodName ,use_zk as useZk from dubbo_service_properties where group_name = #{group}-->
 	<!--</select>-->
 </mapper>

@@ -1,4 +1,4 @@
-package com.xn.autotest.bean.request;
+package com.xn.autotest.bean.properties;
 
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import com.google.common.collect.Lists;
@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class DubboProperties {
+public class ServiceDesc {
     private String interfaceName;
 
     private String methodName;
@@ -36,10 +36,10 @@ public class DubboProperties {
         return zk;
     }
 
-    public DubboProperties() {
+    public ServiceDesc() {
     }
 
-    public DubboProperties(String interfaceName, String methodName, String url, String zk, String version, String group, String timeout, String appName, Boolean useZK) {
+    public ServiceDesc(String interfaceName, String methodName, String url, String zk, String version, String group, String timeout, String appName, Boolean useZK) {
         this.interfaceName = interfaceName;
         this.methodName = methodName;
         this.url = url;

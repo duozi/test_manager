@@ -5,8 +5,8 @@ package com.xn.autotest.bean.request;/**
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Plan {
-    private static final Logger logger = LoggerFactory.getLogger(Plan.class);
+public class PlanBean {
+    private static final Logger logger = LoggerFactory.getLogger(PlanBean.class);
     /**
      * 计划的名字
      */
@@ -20,7 +20,7 @@ public class Plan {
      */
     private int planType;
 
-    public Plan(String planName, int executeType, int planType) {
+    public PlanBean(String planName, int executeType, int planType) {
         this.planName = planName;
         this.executeType = executeType;
         this.planType = planType;
