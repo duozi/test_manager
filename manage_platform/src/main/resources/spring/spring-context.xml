@@ -15,12 +15,12 @@
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:annotation-config />
 <!-- 自动扫描且只扫描@Controller -->
-    <context:component-scan base-package="com.xn.autotest" >
+    <context:component-scan base-package="com.xn.manage" >
     <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
     <!--<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />-->
     </context:component-scan>
 
-    <bean id="propertyConfigurer" class="com.xn.autotest.utils.PropertyUtil">
+    <bean id="propertyConfigurer" class="com.xn.manage.utils.PropertyUtil">
         <property name="locations">
             <list>
                 <value>classpath:properties/*.properties</value>
@@ -67,7 +67,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.xn.autotest.dao"/>
+        <property name="basePackage" value="com.xn.manage.dao"/>
     </bean>
 
     <mvc:default-servlet-handler/>

@@ -29,6 +29,14 @@
         <filter-name>Encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    	<filter>
+      <filter-name>sitemesh</filter-name>
+      <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+    </filter>
+    <filter-mapping>
+     <filter-name>sitemesh</filter-name>
+     <url-pattern>/*</url-pattern>
+   </filter-mapping>
 
     <!-- Spring ApplicationContext配置文件的路径,可使用通配符，用于后面的Spring Context Loader -->
     <context-param>
@@ -58,8 +66,8 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <welcome-file-list>
+   <!--  <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list> -->
 </web-app>
