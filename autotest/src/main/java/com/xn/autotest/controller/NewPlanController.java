@@ -22,7 +22,7 @@ public class NewPlanController {
 
     @RequestMapping(value = "check_plane_name", method = RequestMethod.GET)
     @ResponseBody
-    public String checkPlaneName( @RequestParam(value = "planName", defaultValue = "World") String planName) {
+    public String checkPlaneName( @RequestParam(value = "planName") String planName) {
         logger.info("request parameter is :{}", planName);
         JSONObject result = new JSONObject();
         boolean planeNameUsable=planService.checkPlanName(planName);

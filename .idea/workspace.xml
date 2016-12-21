@@ -2,40 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01df5072-ae29-4463-8deb-25ed9d4f8286" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_29.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_jdbc_7_0_42.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_7_0_42.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DBPropertiesDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/test/com/xn/PooledDataSourceTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/WEB-INF/classes/com/xn/autotest/bean/KeyValueStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/WEB-INF/classes/com/xn/autotest/bean/ServiceDesc.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/WEB-INF/classes/com/xn/autotest/dao/PlaneDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/WEB-INF/classes/mybatis/mapper/PlaneMapping.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/WEB-INF/classes/mybatis/mapper/PropertiesMapping.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/case/case.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/autotest/case/newPlane.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/classes/com/xn/autotest/dao/PlaneDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/classes/mybatis/mapper/PlaneMapping.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/target/classes/mybatis/mapper/PropertiesMapping.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/autotest_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/autotest_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/autotest.iml" afterPath="$PROJECT_DIR$/autotest/autotest.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/pom.xml" afterPath="$PROJECT_DIR$/autotest/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/target/classes/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/autotest/target/classes/mybatis/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/manage_platform.iml" afterPath="$PROJECT_DIR$/manage_platform/manage_platform.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlaneDao.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlaneMapping.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PropertiesMapping.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DBPropertiesMapping.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,21 +32,20 @@
       <file leaf-file-name="ReflectiveCallable.java" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="286">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PooledDataSource.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PooledDataSource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
               <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#936#956#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewPlanController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NewPlanController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="418">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -113,7 +80,7 @@
       <file leaf-file-name="PlanService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="286">
               <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -135,11 +102,9 @@
       <file leaf-file-name="PlanMapping.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1012">
+            <state relative-caret-position="726">
               <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-              <folding>
-                <marker date="1482308492921" expanded="true" signature="2530:2602" ph="select count... plane" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,7 +112,7 @@
       <file leaf-file-name="DBProperties.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
+            <state relative-caret-position="616">
               <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
               <folding />
             </state>
@@ -229,9 +194,9 @@
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlaneDao.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanDao.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
       </list>
     </option>
   </component>
@@ -316,6 +281,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -648,6 +614,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="bean" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -655,7 +655,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1350,6 +1349,7 @@
       <workItem from="1482115964122" duration="14393000" />
       <workItem from="1482200700918" duration="15401000" />
       <workItem from="1482286244715" duration="17658000" />
+      <workItem from="1482310386455" duration="60000" />
     </task>
     <servers />
   </component>
@@ -1377,25 +1377,24 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64619000" />
+    <option name="totallyTimeSpent" value="64679000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43012047" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34096387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35903615" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34096387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.110843375" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2807229" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49293286" order="0" side_tool="false" content_ui="combo" />
@@ -1404,12 +1403,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19770116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19879518" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43012047" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45421687" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1465,9 +1465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="682">
           <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1475,32 +1472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="14" column="29" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#590#591#0" expanded="false" />
-            <element signature="e#618#619#0" expanded="false" />
-            <element signature="e#661#662#0" expanded="false" />
-            <element signature="e#695#696#0" expanded="false" />
-            <element signature="e#724#725#0" expanded="false" />
-            <element signature="e#749#750#0" expanded="false" />
-            <element signature="e#1458#1459#0" expanded="false" />
-            <element signature="e#1488#1489#0" expanded="false" />
-            <element signature="e#1534#1535#0" expanded="false" />
-            <element signature="e#1572#1573#0" expanded="false" />
-            <element signature="e#1609#1610#0" expanded="false" />
-            <element signature="e#1642#1643#0" expanded="false" />
-            <element signature="e#1847#1848#0" expanded="false" />
-            <element signature="e#1873#1874#0" expanded="false" />
-            <element signature="e#1905#1906#0" expanded="false" />
-            <element signature="e#1941#1942#0" expanded="false" />
-            <element signature="e#1979#1980#0" expanded="false" />
-            <element signature="e#2047#2048#0" expanded="false" />
-            <element signature="e#2079#2080#0" expanded="false" />
-            <element signature="e#2112#2113#0" expanded="false" />
-            <element signature="e#2146#2147#0" expanded="false" />
-            <element signature="e#2176#2177#0" expanded="false" />
-            <element signature="e#2222#2223#0" expanded="false" />
-            <element signature="e#2260#2261#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1523,9 +1494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1695,13 +1663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding>
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#535#536#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1774,14 +1735,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database.java" />
     <entry file="file://$PROJECT_DIR$/.git/info/exclude">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1794,10 +1748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-110">
           <caret line="486" column="0" selection-start-line="486" selection-start-column="0" selection-end-line="486" selection-end-column="0" />
-          <folding>
-            <element signature="e#48420#48421#0" expanded="false" />
-            <element signature="e#48449#48450#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1805,10 +1755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="266" column="19" selection-start-line="266" selection-start-column="19" selection-end-line="266" selection-end-column="19" />
-          <folding>
-            <element signature="e#9585#9586#0" expanded="false" />
-            <element signature="e#9617#9618#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1816,7 +1762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1842,10 +1787,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <marker date="1482303315473" expanded="true" signature="410:488" ph="select from db_properties" />
-            <marker date="1482303315473" expanded="true" signature="579:676" ph="select from db_properties" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1869,7 +1811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1877,7 +1818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1885,14 +1825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-          <folding>
-            <element signature="e#2542#2543#0" expanded="false" />
-            <element signature="e#2586#2587#0" expanded="false" />
-            <element signature="e#9008#9147#0" expanded="false" />
-            <element signature="e#9146#9147#0" expanded="false" />
-            <element signature="e#9300#9448#0" expanded="false" />
-            <element signature="e#9447#9448#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1900,7 +1832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1908,7 +1839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1916,7 +1846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1938,7 +1867,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state relative-caret-position="616">
           <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
@@ -1968,18 +1897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1012">
+        <state relative-caret-position="726">
           <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding>
-            <marker date="1482308492921" expanded="true" signature="2530:2602" ph="select count... plane" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1994,7 +1913,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
+        <state relative-caret-position="286">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2014,7 +1933,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="286">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
@@ -2034,8 +1953,15 @@
           <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#936#956#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
