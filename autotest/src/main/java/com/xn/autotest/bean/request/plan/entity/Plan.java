@@ -40,13 +40,13 @@ public class Plan extends BaseEntity {
      * 
      * 计划的类型,0表示单接口,1表示串行接口 
      */
-    private Boolean executeType;
+    private Integer executeType;
 
     /**
      * 
      * 计划是否可用,1表示可用,0表示不可以用 
      */
-    private Boolean planStatus;
+    private Integer planStatus;
 
     /**
      * 
@@ -58,7 +58,7 @@ public class Plan extends BaseEntity {
      * 
      * 计划是否发布的类型，0表示未发布，可以修改，1表示已发布不能修改 
      */
-    private Boolean planType;
+    private Integer planType;
 
     /**
      * 
@@ -98,19 +98,19 @@ public class Plan extends BaseEntity {
         return this.planName;
     }
     
-    public void setExecuteType(Boolean executeType) {
+    public void setExecuteType(Integer executeType) {
         this.executeType = executeType;
     }
     
-    public Boolean getExecuteType() {
+    public Integer getExecuteType() {
         return this.executeType;
     }
     
-    public void setPlanStatus(Boolean planStatus) {
+    public void setPlanStatus(Integer planStatus) {
         this.planStatus = planStatus;
     }
     
-    public Boolean getPlanStatus() {
+    public Integer getPlanStatus() {
         return this.planStatus;
     }
     
@@ -122,11 +122,11 @@ public class Plan extends BaseEntity {
         return this.changeTime;
     }
     
-    public void setPlanType(Boolean planType) {
+    public void setPlanType(Integer planType) {
         this.planType = planType;
     }
     
-    public Boolean getPlanType() {
+    public Integer getPlanType() {
         return this.planType;
     }
     

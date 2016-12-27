@@ -3,8 +3,9 @@
  */
 package com.xn.autotest.bean.request.system.dto;
 
-import java.util.Date;
 import com.xn.autotest.bean.BaseDto;
+
+import java.util.Date;
 
 
 /**
@@ -42,13 +43,13 @@ public class SystemDto extends BaseDto{
      * 
      * 系统的类型,0表示http,1表示dubbo 
      */
-    private Boolean type;
+    private Integer type;
 
     /**
      * 
      * 系统是否可用,1表示可用,0表示不可以用 
      */
-    private Boolean systemStatus;
+    private Integer systemStatus;
 
     /**
      * 
@@ -60,7 +61,7 @@ public class SystemDto extends BaseDto{
      * 
      * 是否上传jar包，1表示上传，0表示没有上传 
      */
-    private Boolean jarStatus;
+    private Integer jarStatus;
 
     
     /**
@@ -99,19 +100,19 @@ public class SystemDto extends BaseDto{
         return this.systemName;
     }
 
-    public void setType(Boolean type) {
+    public void setType(Integer type) {
         this.type = type;
     }
     
-    public Boolean getType() {
+    public Integer getType() {
         return this.type;
     }
 
-    public void setSystemStatus(Boolean systemStatus) {
+    public void setSystemStatus(Integer systemStatus) {
         this.systemStatus = systemStatus;
     }
     
-    public Boolean getSystemStatus() {
+    public Integer getSystemStatus() {
         return this.systemStatus;
     }
 
@@ -123,11 +124,11 @@ public class SystemDto extends BaseDto{
         return this.changeTime;
     }
 
-    public void setJarStatus(Boolean jarStatus) {
+    public void setJarStatus(Integer jarStatus) {
         this.jarStatus = jarStatus;
     }
     
-    public Boolean getJarStatus() {
+    public Integer getJarStatus() {
         return this.jarStatus;
     }
 
