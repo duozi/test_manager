@@ -1030,7 +1030,7 @@ if (!document.createElement('canvas').getContext) {
           angle += 360;
         }
 
-        // Very small angles produce an unexpected result because they are
+        // Very small angles produce an unexpected resultBean because they are
         // converted to a scientific notation string.
         if (angle < 1e-6) {
           angle = 0;

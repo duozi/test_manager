@@ -13,13 +13,13 @@
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <import resource="classpath:dubbo/dubbo-provider.xml"/>
     <context:annotation-config />
-<!-- 自动扫描且只扫描@Controller -->
-    <context:component-scan base-package="com.xn.autotest" >
-    <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
-    <!--<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />-->
-    </context:component-scan>
 
+    <context:component-scan base-package="com.xn.autotest" />
+
+
+    <mvc:annotation-driven/>
     <bean id="propertyConfigurer" class="com.xn.autotest.utils.PropertyUtil">
         <property name="locations">
             <list>
@@ -95,6 +95,6 @@
         <property name="cache" value="true"/>
     </bean>
 
-    <task:annotation-driven/>
+
 
 </beans>	

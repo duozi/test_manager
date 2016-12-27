@@ -6,10 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -252,6 +249,26 @@ public abstract class ReflectionUtils {
         parameter = StringUtils.trim(parameter);
         if (actualName.equalsIgnoreCase(parameter)) return true;
         return actualName.endsWith(parameter);
+    }
+    public static Class<?> getArgumentType(Class<?> cls) {
+
+        Type[] types = ((ParameterizedType) cls.getGenericSuperclass())
+                .getActualTypeArguments();
+
+        return (Class<?>) types[0];
+    }
+
+    public static Class<?> getMatcherMapper(Class<?> cls) {
+        Class<?>[] classes = cls.getInterfaces();
+        Pattern pattern = Pattern.compile(getArgumentType(cls).getSimpleName()
+                + "Mapper");
+        for (Class<?> c : classes) {
+            Matcher matcher = pattern.matcher(c.getSimpleName());
+            if (matcher.find()) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public static boolean isConstant(Field field) {

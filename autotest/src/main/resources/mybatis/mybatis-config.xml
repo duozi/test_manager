@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<typeAliases>
 		<typeAlias type="com.xn.autotest.bean.properties.DBProperties" alias="DBProperties"/>
+		<typeAlias type="com.xn.autotest.bean.request.PlanBean" alias="PlanBean"/>
 		<!--<typeAlias type="com.xiaoniu.stub.model.StubWithZxCompany" alias="StubWithZxCompany"/>-->
 		<!--<typeAlias type="com.xiaoniu.stub.model.ZxCompany" alias="ZxCompany"/>-->
 	</typeAliases>

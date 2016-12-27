@@ -2126,7 +2126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
 	                p[i] && (pfirst = p[i][0]); // save current path command
 
-	                if (pfirst != "C") // C is not saved yet, because it may be result of conversion
+	                if (pfirst != "C") // C is not saved yet, because it may be resultBean of conversion
 	                {
 	                    pcoms1[i] = pfirst; // Save current path command
 	                    i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
@@ -5142,7 +5142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Adds given font to the registered set of fonts for Raphaël. Should be used as an internal call from within Cufón’s font file.
-	     * Returns original parameter, so it could be used with chaining.
+	     * Returns original parameterAssert, so it could be used with chaining.
 	     # <a href="http://wiki.github.com/sorccu/cufon/about">More about Cufón and how to convert your font form TTF, OTF, etc to JavaScript file.</a>
 	     **
 	     > Parameters
@@ -5651,7 +5651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
 	     - f (function) event handler function
 	     **
-	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
+	     = (function) returned function accepts a single numeric parameterAssert that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment.
 	     > Example:
 	     | eve.on("mouse", eatIt)(2);
 	     | eve.on("mouse", scream);
@@ -5688,7 +5688,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Returns function that will fire given event with optional arguments.
-		 * Arguments that will be passed to the result function will be also
+		 * Arguments that will be passed to the resultBean function will be also
 		 * concated to the list of final arguments.
 	 	 | el.onclick = eve.f("click", 1, 2);
 	 	 | eve.on("click", function (a, b, c) {

@@ -2,9 +2,159 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01df5072-ae29-4463-8deb-25ed9d4f8286" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_4_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_9_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/Ognl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/BaseDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/BaseEntity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/BeanUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/dbAssert/dto/DbAssertDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/dbAssert/entity/DbAssert.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/dbAssert/service/DbAssertService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/dbAssert/service/impl/DbAssertServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/parameterAssert/dto/ParameterAssertDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/parameterAssert/entity/ParameterAssert.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/parameterAssert/service/ParameterAssertService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/parameterAssert/service/impl/ParameterAssertServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/redisAssert/dto/RedisAssertDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/redisAssert/entity/RedisAssert.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/redisAssert/service/RedisAssertService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/redisAssert/service/impl/RedisAssertServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/dbOperation/dto/DbOperationDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/dbOperation/entity/DbOperation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/dbOperation/service/DbOperationService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/dbOperation/service/impl/DbOperationServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/redisOperation/dto/RedisOperationDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/redisOperation/entity/RedisOperation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/redisOperation/service/RedisOperationService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/redisOperation/service/impl/RedisOperationServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/dto/DbPropertiesDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/entity/DbProperties.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/DbPropertiesService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/impl/DbPropertiesServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dubbo/dto/DubboServicePropertiesDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dubbo/entity/DubboServiceProperties.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dubbo/service/DubboServicePropertiesService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dubbo/service/impl/DubboServicePropertiesServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/http/dto/HttpServicePropertiesDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/http/entity/HttpServiceProperties.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/http/service/HttpServicePropertiesService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/http/service/impl/HttpServicePropertiesServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/dto/RedisPropertiesDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/entity/RedisProperties.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/RedisPropertiesService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/impl/RedisPropertiesServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/cases/dto/CasesDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/cases/entity/Cases.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/cases/service/CasesService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/cases/service/impl/CasesServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/interfacesBean/dto/InterfaceDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/interfacesBean/entity/Interface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/interfacesBean/service/InterfaceService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/interfacesBean/service/impl/InterfaceServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/method/dto/MethodDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/method/entity/Method.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/method/service/MethodService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/method/service/impl/MethodServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/dto/PlanDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/entity/Plan.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/PlanService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/impl/PlanServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/system/dto/SystemDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/system/entity/System.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/system/service/SystemService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/system/service/impl/SystemServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/dto/ResultDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/entity/Result.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/service/ResultService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/service/impl/ResultServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/CasesMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbAssertMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbOperationMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbPropertiesMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DubboServicePropertiesMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/HttpServicePropertiesMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/InterfaceMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/MethodMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ParameterAssertMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisAssertMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisOperationMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisPropertiesMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ResultMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/SystemMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/PlanDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/RedisPropertiesDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/mybatis/BaseMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/mybatis/PageInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/mybatis/PageResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/redis/PooledRedisSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanListService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/serviceImpl/PlanListServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/DateUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/CasesMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/DbAssertMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/DbOperationMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/DubboServicePropertiesMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/HttpServicePropertiesMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/InterfaceMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/MethodMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/ParameterAssertMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/RedisAssertMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/RedisOperationMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/RedisPropertiesMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/ResultMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/conf/SystemMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/dubbo/dubbo-provider.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DbPropertiesMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/ago/PlanMapping.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/test/com/xn/Dbtest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/autotest/src/main/test/com/xn/PooledDataSourceTest.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/autotest_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/autotest_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/autotest.iml" afterPath="$PROJECT_DIR$/autotest/autotest.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/pom.xml" afterPath="$PROJECT_DIR$/autotest/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/objectfactory/BeanUtils.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/objectfactory/BeanUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/CollectionUtils.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/CollectionUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/MapUtils.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/MapUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/ReflectionUtils.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/ReflectionUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/application.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/application.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-mvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables-responsive/dataTables.responsive.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables-responsive/dataTables.responsive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables/js/jquery.dataTables.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables/js/jquery.dataTables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables/js/jquery.dataTables.min.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/datatables/js/jquery.dataTables.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/excanvas.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/excanvas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/jquery.flot.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/jquery.flot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/jquery.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/flot/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/raphael/raphael.js" afterPath="$PROJECT_DIR$/autotest/src/main/webapp/vendor/raphael/raphael.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/objectfactory/BeanUtils.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/objectfactory/BeanUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables-responsive/dataTables.responsive.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables-responsive/dataTables.responsive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables/js/jquery.dataTables.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables/js/jquery.dataTables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables/js/jquery.dataTables.min.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/datatables/js/jquery.dataTables.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/flot/jquery.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/flot/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/raphael/raphael.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/vendor/raphael/raphael.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/AssertDiff.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/AssertDiff.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/CaseResult.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/CaseResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/InterfaceResult.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/InterfaceResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/MethodResult.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/MethodResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/PlanResult.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/PlanResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/Result.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/Result.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/ResultModle.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/ResultModle.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DBPropertiesDao.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/DBPropertiesDao.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java" afterPath="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DBPropertiesMapping.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/ago/DBPropertiesMapping.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,21 +180,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="ReflectiveCallable.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <file leaf-file-name="PlanTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PooledDataSource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="320">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,82 +192,100 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DbPropertiesMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbPropertiesMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-context.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PooledRedisSource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/redis/PooledRedisSource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PooledDbSource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlanListService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanListService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbPropertiesService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/DbPropertiesService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="NewPlanController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-              <folding />
+            <state relative-caret-position="220">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="intf_report.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/intf_report.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="right_bar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1254">
-              <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="planlist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/planlist.html">
+      <file leaf-file-name="DbPropertiesServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/impl/DbPropertiesServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
-              <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="69" column="42" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlanService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlanMapping.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-              <folding />
+              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +295,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -159,57 +317,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/SignUtil.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/FileUtil.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/DubboProperties.java" />
-        <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/platform/dao/PlaneDao.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/DubboProperties.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/KeyValueStore.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/Plan.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/System.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/Systems.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/InterfaceBean.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/CaseBean.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/ServiceDesc.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DubboProperties.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/RedisProperties.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/DBOperation.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/RedisOperation.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/DBAssert.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/RedisAssert.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/ParameterAssert.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/AssertResult.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/AssertDiff.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/response/Response.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/MethodBean.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/Result.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/CaseResult.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/MethodResult.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/InterfaceResult.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/PlanResult.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/ResultModle.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/.git/info/exclude" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DBDao.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DBPropertiesDao.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DBPropertiesMapping.xml" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSourceTest.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/PooledDataSourceTest.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/dao/DbPropertiesMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/mapper/DbPropertiesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/DBPropertiesDao.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/PlanDao.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ago/RedisPropertiesDao.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbAssertMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisOperationMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/MethodMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/SystemMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ResultMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/test/com/xn/Dbtest.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/CasesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DbAssertMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DbOperationMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DubboServicePropertiesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/HttpServicePropertiesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/InterfaceMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/MethodMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/ParameterAssertMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/RedisAssertMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/RedisOperationMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/RedisPropertiesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/ResultMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/SystemMapper.xml" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/test/com/xn/PooledDataSourceTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/autotest/pom.xml" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlaneService.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlaneDao.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanDao.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/MapUtils.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/Ognl.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/entity/DbProperties.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DbPropertiesMapper.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/mybatis/BaseMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/DbPropertiesService.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/RedisPropertiesService.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/impl/RedisPropertiesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisPropertiesMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/dto/RedisPropertiesDto.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/entity/RedisProperties.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbPropertiesMapper.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/serviceImpl/ShowPlanServiceImpl.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/PlanService.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/impl/PlanServiceImpl.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/database/PooledDbSource.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/impl/DbPropertiesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/redis/PooledRedisSource.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/ShowPlanService.java" />
+        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanListService.java" />
       </list>
     </option>
   </component>
@@ -238,9 +396,19 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-15" />
-    <option name="y" value="-2" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -294,7 +462,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -323,7 +491,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
+              <option name="myItemId" value="autotest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -337,97 +505,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="case" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
+              <option name="myItemId" value="autotest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -452,6 +530,22 @@
               <option name="myItemId" value="autotest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -472,6 +566,130 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,9 +723,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autotest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -533,11 +819,11 @@
       <recent name="com.xn" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\test_manager\manage_platform\src\main\resources" />
-      <recent name="E:\test_manager\manage_platform\src\main\java\com\xn\platform" />
-      <recent name="E:\test_manager\manage_platform\src\main\webapp" />
-      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\utils" />
-      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\objectfactory" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean\request\interfaces" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean\request" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean\operation" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean\assertBean" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xn.autotest.service" />
@@ -546,51 +832,15 @@
       <recent name="com.xn.autotest.dao" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\test_manager\autotest\src\main\resources\log" />
+      <recent name="E:\test_manager\autotest\src\main\resources\mybatis\mapper" />
+      <recent name="E:\test_manager\autotest\src\main\resources\conf" />
+      <recent name="E:\test_manager\autotest\src\main\resources\mybatis\mapper\ago" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\mybatis" />
+      <recent name="E:\test_manager\autotest\src\main\java\com\xn\autotest\bean\db\dbOperation\mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.platform">
-    <configuration default="false" name="SystemBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.xn.autotest.bean.properties.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.xn.autotest.bean.request.SystemBean" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="autotest" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="PooledDataSource" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.xn.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.xn.autotest.database.PooledDataSource" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="autotest" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="PooledDataSourceTest.testDB" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Tomcat Server.autotest">
+    <configuration default="false" name="PlanTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.xn.*" />
@@ -601,8 +851,34 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.xn" />
-      <option name="MAIN_CLASS_NAME" value="com.xn.PooledDataSourceTest" />
-      <option name="METHOD_NAME" value="testDB" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.PlanTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="PlanTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xn.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="autotest" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.xn" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.PlanTest" />
+      <option name="METHOD_NAME" value="test2" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -616,7 +892,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="PooledDataSourceTest.DBtest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="PlanTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.xn.*" />
@@ -627,8 +903,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.xn" />
-      <option name="MAIN_CLASS_NAME" value="com.xn.PooledDataSourceTest" />
-      <option name="METHOD_NAME" value="DBtest" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.PlanTest" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -642,7 +918,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="PooledDataSourceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Dbtest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.xn.*" />
@@ -653,7 +929,33 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.xn" />
-      <option name="MAIN_CLASS_NAME" value="com.xn.PooledDataSourceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.Dbtest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="Dbtest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xn.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="autotest" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.xn" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.Dbtest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -1001,6 +1303,28 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -1240,19 +1564,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.platform" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.autotest" />
-      <item index="2" class="java.lang.String" itemvalue="Application.SystemBean" />
-      <item index="3" class="java.lang.String" itemvalue="Application.PooledDataSource" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest.testDB" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest.DBtest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.PlanTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PlanTest.test2" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PlanTest.test" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.Dbtest.test" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.Dbtest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest.DBtest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.PooledDataSourceTest.testDB" />
-        <item index="3" class="java.lang.String" itemvalue="Application.PooledDataSource" />
-        <item index="4" class="java.lang.String" itemvalue="Application.SystemBean" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PlanTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.Dbtest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.Dbtest.test" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.PlanTest.test" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.PlanTest.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -1276,68 +1600,83 @@
       <workItem from="1482200700918" duration="15401000" />
       <workItem from="1482286244715" duration="17658000" />
       <workItem from="1482310386455" duration="1775000" />
+      <workItem from="1482312560534" duration="5886000" />
+      <workItem from="1482375084383" duration="11931000" />
+      <workItem from="1482460079749" duration="12556000" />
+      <workItem from="1482491998605" duration="451000" />
+      <workItem from="1482718844363" duration="12976000" />
+      <workItem from="1482735075212" duration="21505000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PooledDataSourceTest - 2016.12.21 at 15h 42m 05s.xml">
-      <configuration name="PooledDataSourceTest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 10h 55m 37s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest - 2016.12.21 at 15h 43m 20s.xml">
-      <configuration name="PooledDataSourceTest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 10h 56m 00s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest - 2016.12.21 at 15h 43m 38s.xml">
-      <configuration name="PooledDataSourceTest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 10h 56m 17s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest_DBtest - 2016.12.21 at 15h 24m 12s.xml">
-      <configuration name="PooledDataSourceTest.DBtest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 10h 57m 09s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest_DBtest - 2016.12.21 at 15h 26m 39s.xml">
-      <configuration name="PooledDataSourceTest.DBtest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 11h 07m 03s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest_DBtest - 2016.12.21 at 15h 37m 43s.xml">
-      <configuration name="PooledDataSourceTest.DBtest" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 11h 12m 18s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PooledDataSourceTest_testDB - 2016.12.21 at 15h 21m 02s.xml">
-      <configuration name="PooledDataSourceTest.testDB" configurationId="JUnit" />
+    <history-entry file="PlanTest - 2016.12.27 at 11h 14m 02s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PlanTest - 2016.12.27 at 11h 16m 40s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PlanTest - 2016.12.27 at 11h 19m 35s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PlanTest - 2016.12.27 at 11h 24m 11s.xml">
+      <configuration name="PlanTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66394000" />
+    <option name="totallyTimeSpent" value="131699000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-15" y="-2" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43012047" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19879518" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5337349" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17694806" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48192772" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34096387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2807229" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.49293286" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2819264" sideWeight="0.49293286" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50706714" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2879518" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19770116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.112048194" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45421687" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1373,30 +1712,54 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java</url>
-          <line>177</line>
+          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java</url>
+          <line>190</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java</url>
-          <line>32</line>
+          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java</url>
+          <line>47</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PooledDataSourceTest.java</url>
-          <line>23</line>
+          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java</url>
+          <line>33</line>
           <properties />
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java</url>
-          <line>25</line>
+          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java</url>
+          <line>52</line>
           <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1405,429 +1768,296 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/DBOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/operation/RedisOperation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
-          <folding>
-            <element signature="e#1074#1075#0" expanded="false" />
-            <element signature="e#1106#1107#0" expanded="false" />
-            <element signature="e#1156#1157#0" expanded="false" />
-            <element signature="e#1198#1199#0" expanded="false" />
-            <element signature="e#1226#1227#0" expanded="false" />
-            <element signature="e#1253#1254#0" expanded="false" />
-            <element signature="e#1290#1291#0" expanded="false" />
-            <element signature="e#1322#1323#0" expanded="false" />
-            <element signature="e#1360#1361#0" expanded="false" />
-            <element signature="e#1397#1398#0" expanded="false" />
-            <element signature="e#1454#1455#0" expanded="false" />
-            <element signature="e#1506#1507#0" expanded="false" />
-            <element signature="e#1541#1542#0" expanded="false" />
-            <element signature="e#1572#1573#0" expanded="false" />
-            <element signature="e#1620#1621#0" expanded="false" />
-            <element signature="e#1660#1661#0" expanded="false" />
-            <element signature="e#1697#1698#0" expanded="false" />
-            <element signature="e#1730#1731#0" expanded="false" />
-            <element signature="e#1782#1783#0" expanded="false" />
-            <element signature="e#1826#1827#0" expanded="false" />
-            <element signature="e#1862#1863#0" expanded="false" />
-            <element signature="e#1894#1895#0" expanded="false" />
-            <element signature="e#1944#1945#0" expanded="false" />
-            <element signature="e#1986#1987#0" expanded="false" />
-            <element signature="e#2020#2021#0" expanded="false" />
-            <element signature="e#2053#2054#0" expanded="false" />
-            <element signature="e#2102#2103#0" expanded="false" />
-            <element signature="e#2146#2147#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/DBAssert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-          <folding>
-            <element signature="e#619#620#0" expanded="false" />
-            <element signature="e#663#664#0" expanded="false" />
-            <element signature="e#699#700#0" expanded="false" />
-            <element signature="e#729#730#0" expanded="false" />
-            <element signature="e#755#756#0" expanded="false" />
-            <element signature="e#793#794#0" expanded="false" />
-            <element signature="e#823#824#0" expanded="false" />
-            <element signature="e#865#866#0" expanded="false" />
-            <element signature="e#903#904#0" expanded="false" />
-            <element signature="e#965#966#0" expanded="false" />
-            <element signature="e#1019#1020#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/RedisAssert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#676#677#0" expanded="false" />
-            <element signature="e#726#727#0" expanded="false" />
-            <element signature="e#768#769#0" expanded="false" />
-            <element signature="e#803#804#0" expanded="false" />
-            <element signature="e#834#835#0" expanded="false" />
-            <element signature="e#882#883#0" expanded="false" />
-            <element signature="e#922#923#0" expanded="false" />
-            <element signature="e#966#967#0" expanded="false" />
-            <element signature="e#1006#1007#0" expanded="false" />
-            <element signature="e#1072#1073#0" expanded="false" />
-            <element signature="e#1130#1131#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/ParameterAssert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-          <folding>
-            <element signature="e#367#368#0" expanded="false" />
-            <element signature="e#435#436#0" expanded="false" />
-            <element signature="e#529#530#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/AssertDiff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <element signature="e#871#872#0" expanded="false" />
-            <element signature="e#920#921#0" expanded="false" />
-            <element signature="e#964#965#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="false" />
-            <element signature="e#1022#1023#0" expanded="false" />
-            <element signature="e#1062#1063#0" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1130#1131#0" expanded="false" />
-            <element signature="e#1162#1163#0" expanded="false" />
-            <element signature="e#1212#1213#0" expanded="false" />
-            <element signature="e#1254#1255#0" expanded="false" />
-            <element signature="e#1292#1293#0" expanded="false" />
-            <element signature="e#1326#1327#0" expanded="false" />
-            <element signature="e#1380#1381#0" expanded="false" />
-            <element signature="e#1426#1427#0" expanded="false" />
-            <element signature="e#1463#1464#0" expanded="false" />
-            <element signature="e#1496#1497#0" expanded="false" />
-            <element signature="e#1548#1549#0" expanded="false" />
-            <element signature="e#1592#1593#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/assertBean/ExceptionAssert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/SystemBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#533#534#0" expanded="false" />
-            <element signature="e#566#567#0" expanded="false" />
-            <element signature="e#618#619#0" expanded="false" />
-            <element signature="e#662#663#0" expanded="false" />
-            <element signature="e#690#691#0" expanded="false" />
-            <element signature="e#717#718#0" expanded="false" />
-            <element signature="e#754#755#0" expanded="false" />
-            <element signature="e#786#787#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/response/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/MethodBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/CaseResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="19" column="97" selection-start-line="19" selection-start-column="97" selection-end-line="19" selection-end-column="97" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/MethodResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/InterfaceResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/PlanResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/result/ResultModle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#660#661#0" expanded="false" />
-            <element signature="e#692#693#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database.java" />
-    <entry file="file://$PROJECT_DIR$/.git/info/exclude">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/net/URI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="486" column="0" selection-start-line="486" selection-start-column="0" selection-end-line="486" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="266" column="19" selection-start-line="266" selection-start-column="19" selection-end-line="266" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="92" selection-start-line="14" selection-start-column="92" selection-end-line="14" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DBPropertiesDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DBPropertiesMapping.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/spring/spring-mvc.xml">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/CasesMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/InterfaceMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="0">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.1.4.RELEASE/spring-test-4.1.4.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunBeforeTestClassCallbacks.class">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/MethodMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.1.4.RELEASE/spring-test-4.1.4.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestClassCallbacks.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/runners/ParentRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.1.4.RELEASE/spring-test-4.1.4.RELEASE.jar!/org/springframework/test/context/junit4/SpringJUnit4ClassRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/runner/JUnitCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.1.4.RELEASE/spring-test-4.1.4.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestMethodCallbacks.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="310" column="25" selection-start-line="310" selection-start-column="25" selection-end-line="310" selection-end-column="25" />
+        <state relative-caret-position="242">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/DBProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanDao.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/SystemMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/ResultMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="242">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapping.xml">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/BaseDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+        <state relative-caret-position="198">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.4.RELEASE/spring-web-4.1.4.RELEASE.jar!/org/springframework/web/bind/annotation/support/HandlerMethodInvoker.class">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/BeanUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="154">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanService.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/CasesMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PooledDataSourceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1482738090224" expanded="true" signature="1689:1826" ph="SELECT FROM cases" />
+            <marker date="1482738090224" expanded="true" signature="1911:1988" ph="SELECT FROM cases" />
+            <marker date="1482738090224" expanded="true" signature="2118:2188" ph="SELECT count... cases" />
+            <marker date="1482738090224" expanded="true" signature="2343:2721" ph="INSERT INTO cases... " />
+            <marker date="1482738090224" expanded="true" signature="3273:3999" ph="UPDATE cases... " />
+            <marker date="1482738090224" expanded="true" signature="4079:4169" ph="DELETE FROM " />
+            <marker date="1482738090224" expanded="true" signature="4257:4302" ph="DELETE FROM " />
+            <marker date="1482738090224" expanded="true" signature="4431:4629" ph="DELETE FROM " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/DbAssertMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738090138" expanded="true" signature="2004:2145" ph="SELECT FROM db_assert" />
+            <marker date="1482738090138" expanded="true" signature="2233:2314" ph="SELECT FROM db_assert" />
+            <marker date="1482738090138" expanded="true" signature="2444:2518" ph="SELECT count... db_assert" />
+            <marker date="1482738090138" expanded="true" signature="2673:3150" ph="INSERT INTO db_assert... " />
+            <marker date="1482738090138" expanded="true" signature="3789:4699" ph="UPDATE db_as... " />
+            <marker date="1482738090138" expanded="true" signature="4779:4873" ph="DELETE FROM " />
+            <marker date="1482738090138" expanded="true" signature="4961:5010" ph="DELETE FROM " />
+            <marker date="1482738090138" expanded="true" signature="5139:5341" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/DbOperationMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089757" expanded="true" signature="2081:2225" ph="SELECT FROM db_operation" />
+            <marker date="1482738089757" expanded="true" signature="2316:2400" ph="SELECT FROM db_operation" />
+            <marker date="1482738089757" expanded="true" signature="2530:2607" ph="SELECT count... db_operation" />
+            <marker date="1482738089757" expanded="true" signature="2762:3259" ph="INSERT INTO db_operation... " />
+            <marker date="1482738089757" expanded="true" signature="3906:4885" ph="UPDATE db_op... " />
+            <marker date="1482738089757" expanded="true" signature="4965:5062" ph="DELETE FROM " />
+            <marker date="1482738089757" expanded="true" signature="5150:5202" ph="DELETE FROM " />
+            <marker date="1482738089757" expanded="true" signature="5331:5536" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/HttpServicePropertiesMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089558" expanded="true" signature="2499:2654" ph="SELECT FROM http_service_properties" />
+            <marker date="1482738089558" expanded="true" signature="2755:2850" ph="SELECT FROM http_service_properties" />
+            <marker date="1482738089558" expanded="true" signature="2980:3068" ph="SELECT count... http_service_properties" />
+            <marker date="1482738089558" expanded="true" signature="3223:3851" ph="INSERT INTO http_service_properties... " />
+            <marker date="1482738089558" expanded="true" signature="4605:5854" ph="UPDATE http_... " />
+            <marker date="1482738089558" expanded="true" signature="5934:6042" ph="DELETE FROM " />
+            <marker date="1482738089558" expanded="true" signature="6130:6193" ph="DELETE FROM " />
+            <marker date="1482738089558" expanded="true" signature="6322:6538" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/InterfaceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089799" expanded="true" signature="1827:1968" ph="SELECT FROM interface" />
+            <marker date="1482738089799" expanded="true" signature="2057:2138" ph="SELECT FROM interface" />
+            <marker date="1482738089799" expanded="true" signature="2268:2342" ph="SELECT count... interface" />
+            <marker date="1482738089799" expanded="true" signature="2497:2916" ph="INSERT INTO interface... " />
+            <marker date="1482738089799" expanded="true" signature="3509:4294" ph="UPDATE inter... " />
+            <marker date="1482738089799" expanded="true" signature="4374:4468" ph="DELETE FROM " />
+            <marker date="1482738089799" expanded="true" signature="4556:4605" ph="DELETE FROM " />
+            <marker date="1482738089799" expanded="true" signature="4734:4936" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/MethodMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089655" expanded="true" signature="1577:1715" ph="SELECT FROM method" />
+            <marker date="1482738089655" expanded="true" signature="1801:1879" ph="SELECT FROM method" />
+            <marker date="1482738089655" expanded="true" signature="2009:2080" ph="SELECT count... method" />
+            <marker date="1482738089655" expanded="true" signature="2235:2579" ph="INSERT INTO method... " />
+            <marker date="1482738089655" expanded="true" signature="3109:3744" ph="UPDATE metho... " />
+            <marker date="1482738089655" expanded="true" signature="3824:3915" ph="DELETE FROM " />
+            <marker date="1482738089655" expanded="true" signature="4003:4049" ph="DELETE FROM " />
+            <marker date="1482738089655" expanded="true" signature="4178:4377" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/ParameterAssertMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738090034" expanded="true" signature="1727:1875" ph="SELECT FROM parameter_assert" />
+            <marker date="1482738090034" expanded="true" signature="1970:2058" ph="SELECT FROM parameter_assert" />
+            <marker date="1482738090034" expanded="true" signature="2188:2269" ph="SELECT count... parameter_assert" />
+            <marker date="1482738090034" expanded="true" signature="2424:2812" ph="INSERT INTO parameter_assert... " />
+            <marker date="1482738090034" expanded="true" signature="3386:4081" ph="UPDATE param... " />
+            <marker date="1482738090034" expanded="true" signature="4161:4262" ph="DELETE FROM " />
+            <marker date="1482738090034" expanded="true" signature="4350:4406" ph="DELETE FROM " />
+            <marker date="1482738090034" expanded="true" signature="4535:4744" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/PlanMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089977" expanded="true" signature="1915:2051" ph="SELECT FROM plan" />
+            <marker date="1482738089977" expanded="true" signature="2135:2211" ph="SELECT FROM plan" />
+            <marker date="1482738089977" expanded="true" signature="2341:2410" ph="SELECT count... plan" />
+            <marker date="1482738089977" expanded="true" signature="2565:3015" ph="INSERT INTO plan... " />
+            <marker date="1482738089977" expanded="true" signature="3627:4500" ph="UPDATE plan " />
+            <marker date="1482738089977" expanded="true" signature="4580:4669" ph="DELETE FROM " />
+            <marker date="1482738089977" expanded="true" signature="4757:4801" ph="DELETE FROM " />
+            <marker date="1482738089977" expanded="true" signature="4930:5127" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/RedisAssertMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089352" expanded="true" signature="2061:2205" ph="SELECT FROM redis_assert" />
+            <marker date="1482738089352" expanded="true" signature="2296:2380" ph="SELECT FROM redis_assert" />
+            <marker date="1482738089352" expanded="true" signature="2510:2587" ph="SELECT count... redis_assert" />
+            <marker date="1482738089352" expanded="true" signature="2742:3224" ph="INSERT INTO redis_assert... " />
+            <marker date="1482738089352" expanded="true" signature="3868:4784" ph="UPDATE redis... " />
+            <marker date="1482738089352" expanded="true" signature="4864:4961" ph="DELETE FROM " />
+            <marker date="1482738089352" expanded="true" signature="5049:5101" ph="DELETE FROM " />
+            <marker date="1482738089352" expanded="true" signature="5230:5435" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/RedisOperationMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738090094" expanded="true" signature="2730:2877" ph="SELECT FROM redis_operation" />
+            <marker date="1482738090094" expanded="true" signature="2971:3058" ph="SELECT FROM redis_operation" />
+            <marker date="1482738090094" expanded="true" signature="3188:3268" ph="SELECT count... redis_operation" />
+            <marker date="1482738090094" expanded="true" signature="3423:4111" ph="INSERT INTO redis_operation... " />
+            <marker date="1482738090094" expanded="true" signature="4913:6294" ph="UPDATE redis... " />
+            <marker date="1482738090094" expanded="true" signature="6374:6474" ph="DELETE FROM " />
+            <marker date="1482738090094" expanded="true" signature="6562:6617" ph="DELETE FROM " />
+            <marker date="1482738090094" expanded="true" signature="6746:6954" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/ResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089922" expanded="true" signature="1393:1531" ph="SELECT FROM result" />
+            <marker date="1482738089922" expanded="true" signature="1617:1695" ph="SELECT FROM result" />
+            <marker date="1482738089922" expanded="true" signature="1825:1896" ph="SELECT count... result" />
+            <marker date="1482738089922" expanded="true" signature="2051:2382" ph="INSERT INTO result... " />
+            <marker date="1482738089922" expanded="true" signature="2899:3515" ph="UPDATE resul... " />
+            <marker date="1482738089922" expanded="true" signature="3595:3686" ph="DELETE FROM " />
+            <marker date="1482738089922" expanded="true" signature="3774:3820" ph="DELETE FROM " />
+            <marker date="1482738089922" expanded="true" signature="3949:4148" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/SystemMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089442" expanded="true" signature="1886:2024" ph="SELECT FROM system" />
+            <marker date="1482738089442" expanded="true" signature="2110:2188" ph="SELECT FROM system" />
+            <marker date="1482738089442" expanded="true" signature="2318:2389" ph="SELECT count... system" />
+            <marker date="1482738089442" expanded="true" signature="2544:2983" ph="INSERT INTO system... " />
+            <marker date="1482738089442" expanded="true" signature="3584:4440" ph="UPDATE syste... " />
+            <marker date="1482738089442" expanded="true" signature="4520:4611" ph="DELETE FROM " />
+            <marker date="1482738089442" expanded="true" signature="4699:4745" ph="DELETE FROM " />
+            <marker date="1482738089442" expanded="true" signature="4874:5073" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-291">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/DubboServicePropertiesMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
+          <folding>
+            <marker date="1482738089499" expanded="true" signature="2807:2963" ph="SELECT FROM dubbo_service_properties" />
+            <marker date="1482738089499" expanded="true" signature="3065:3161" ph="SELECT FROM dubbo_service_properties" />
+            <marker date="1482738089499" expanded="true" signature="3291:3380" ph="SELECT count... dubbo_service_properties" />
+            <marker date="1482738089499" expanded="true" signature="3535:4257" ph="INSERT INTO dubbo_service_properties... " />
+            <marker date="1482738089499" expanded="true" signature="5081:6549" ph="UPDATE dubbo... " />
+            <marker date="1482738089499" expanded="true" signature="6629:6738" ph="DELETE FROM " />
+            <marker date="1482738089499" expanded="true" signature="6826:6890" ph="DELETE FROM " />
+            <marker date="1482738089499" expanded="true" signature="7019:7236" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/utils/MapUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1839,68 +2069,274 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/PlanBean.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/entity/DbProperties.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        <state relative-caret-position="1126">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDataSource.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/mybatis/mapper/DbPropertiesMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="176">
+          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+          <folding>
+            <marker date="1482742002893" expanded="false" signature="1981:1985" ph="..." />
+            <marker date="1482742002893" expanded="true" signature="2234:2379" ph="SELECT FROM db_properties" />
+            <marker date="1482742002893" expanded="true" signature="2471:2556" ph="SELECT FROM db_properties" />
+            <marker date="1482742002893" expanded="true" signature="2668:2745" ph="SELECT FROM db_properties" />
+            <marker date="1482742002893" expanded="true" signature="2842:2920" ph="SELECT count... db_properties" />
+            <marker date="1482742002893" expanded="true" signature="3075:3604" ph="INSERT INTO db_properties... " />
+            <marker date="1482742002893" expanded="true" signature="4271:5337" ph="UPDATE db_pr... " />
+            <marker date="1482742002893" expanded="true" signature="5417:5515" ph="DELETE FROM " />
+            <marker date="1482742002893" expanded="true" signature="5603:5656" ph="DELETE FROM " />
+            <marker date="1482742002893" expanded="true" signature="5785:5991" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/utils/MapUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/Ognl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#615#645#0" expanded="false" />
+            <element signature="e#1717#1718#0" expanded="false" />
+            <element signature="e#1751#1752#0" expanded="false" />
+            <element signature="e#2079#2080#0" expanded="false" />
+            <element signature="e#2113#2114#0" expanded="false" />
+            <element signature="e#2422#2423#0" expanded="false" />
+            <element signature="e#2476#2477#0" expanded="false" />
+            <element signature="e#2527#2528#0" expanded="false" />
+            <element signature="e#2574#2575#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/JedisCluster.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2112">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0.jar!/redis/clients/jedis/HostAndPort.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/dto/RedisPropertiesDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2266">
+          <caret line="129" column="5" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
+          <folding>
+            <element signature="e#2197#2198#0" expanded="false" />
+            <element signature="e#2232#2233#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/entity/RedisProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="136" column="18" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/RedisPropertiesService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="47" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/redisProperties/service/impl/RedisPropertiesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisPropertiesMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/mybatis/BaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-381">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1482743607804" expanded="true" signature="80:104" ph="/**...*/" />
+            <marker date="1482743607804" expanded="true" signature="1075:1079" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/conf/RedisPropertiesMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding>
+            <marker date="1482738090181" expanded="true" signature="2174:2322" ph="SELECT FROM redis_properties" />
+            <marker date="1482738090181" expanded="true" signature="2417:2505" ph="SELECT FROM redis_properties" />
+            <marker date="1482738090181" expanded="true" signature="2635:2716" ph="SELECT count... redis_properties" />
+            <marker date="1482738090181" expanded="true" signature="2871:3396" ph="INSERT INTO redis_properties... " />
+            <marker date="1482738090181" expanded="true" signature="4071:5090" ph="UPDATE redis... " />
+            <marker date="1482738090181" expanded="true" signature="5170:5271" ph="DELETE FROM " />
+            <marker date="1482738090181" expanded="true" signature="5359:5415" ph="DELETE FROM " />
+            <marker date="1482738090181" expanded="true" signature="5544:5753" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/Dbtest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/serviceImpl/PlanListServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/PlanService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/request/plan/service/impl/PlanServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/PlanMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/WebController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+        <state relative-caret-position="320">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/intf_report.html">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/DbPropertiesMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="286">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/DbPropertiesService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1254">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/planlist.html">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/properties/dbProperties/service/impl/DbPropertiesServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/database/PooledDbSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/redis/PooledRedisSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="195">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanListService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="69" column="42" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+        <state relative-caret-position="176">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
           <folding />
         </state>
       </provider>
