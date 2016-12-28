@@ -21,4 +21,5 @@ public class MapUtils {
         if (type.isInterface()) return new HashMap();
         return (Map) ReflectionUtils.newInstance(type);
     }
+
 }

@@ -43,7 +43,7 @@ public class BeanUtils {
 //   按顺序匹配参数
 //    */
 //    public static Object[] getParameters(List<KeyValueStore> params, Type[] parameterTypes) {
-//        Object[] result = new Object[parameterTypes.length];
+//        Object[] resultBean = new Object[parameterTypes.length];
 //        for (int i = 0; i < parameterTypes.length; ++i) {
 //
 //                try {
@@ -53,7 +53,7 @@ public class BeanUtils {
 //                        ReflectionUtils.setFieldValue(obj,keyValueStore.getName(),keyValueStore.getValue());
 //                    }
 //
-//                    result[i] = create(parameterTypes[i], obj);
+//                    resultBean[i] = create(parameterTypes[i], obj);
 //                } catch (ClassNotFoundException e) {
 //                    e.printStackTrace();
 //                } catch (IllegalAccessException e) {
@@ -63,10 +63,10 @@ public class BeanUtils {
 //                }
 //
 ////            KeyValueStore keyValuePair = params.get(i);
-////            result[i] = create(parameterTypes[i], keyValuePair.getValue());
+////            resultBean[i] = create(parameterTypes[i], keyValuePair.getValue());
 //        }
 //
-//        return result;
+//        return resultBean;
 //    }
     public static Object[] getParameters(List<KeyValueStore> params, Type[] parameterTypes, String useSign, String signType) {
 //        if (parameterTypes.length != params.size()) {

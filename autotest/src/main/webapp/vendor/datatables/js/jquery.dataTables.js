@@ -266,7 +266,7 @@
 		/**
 		 * This function will make DataTables recalculate the column sizes, based on the data
 		 * contained in the table and the sizes applied to the columns (in the DOM, CSS or
-		 * through the sWidth parameter). This can be useful when the width of the table's
+		 * through the sWidth parameterAssert). This can be useful when the width of the table's
 		 * parent element changes (for example a window resize).
 		 *  @param {boolean} [bRedraw=true] Redraw the table or not, you will typically want to
 		 *  @dtopt API
@@ -637,7 +637,7 @@
 		 *  @param {string|node|jQuery} mHtml The HTML to put into the row
 		 *  @param {string} sClass Class to give the new TD cell
 		 *  @returns {node} The row opened. Note that if the table row passed in as the
-		 *    first parameter, is not found in the table, this method will silently
+		 *    first parameterAssert, is not found in the table, this method will silently
 		 *    return.
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
@@ -732,7 +732,7 @@
 		 *      var oTable = $('#example').dataTable();
 		 *      var oSettings = oTable.fnSettings();
 		 *
-		 *      // Show an example parameter from the settings
+		 *      // Show an example parameterAssert from the settings
 		 *      alert( oSettings._iDisplayStart );
 		 *    } );
 		 */
@@ -1643,7 +1643,7 @@
 	/**
 	 * Create a mapping object that allows camel case parameters to be looked up
 	 * for their Hungarian counterparts. The mapping is stored in a private
-	 * parameter called `_hungarianMap` which can be accessed on the source object.
+	 * parameterAssert called `_hungarianMap` which can be accessed on the source object.
 	 *  @param {object} o
 	 *  @memberof DataTable#oApi
 	 */
@@ -1745,7 +1745,7 @@
 			_fnMap( lang, lang, 'sZeroRecords', 'sLoadingRecords' );
 		}
 	
-		// Old parameter name of the thousands separator mapped onto the new
+		// Old parameterAssert name of the thousands separator mapped onto the new
 		if ( lang.sInfoThousands ) {
 			lang.sThousands = lang.sInfoThousands;
 		}
@@ -1758,10 +1758,10 @@
 	
 	
 	/**
-	 * Map one parameter onto another
+	 * Map one parameterAssert onto another
 	 *  @param {object} o Object to map
-	 *  @param {*} knew The new parameter name
-	 *  @param {*} old The old parameter name
+	 *  @param {*} knew The new parameterAssert name
+	 *  @param {*} old The old parameterAssert name
 	 */
 	var _fnCompatMap = function ( o, knew, old ) {
 		if ( o[ knew ] !== undefined ) {
@@ -2485,7 +2485,7 @@
 	
 		if ( cellData === undefined ) {
 			if ( settings.iDrawError != draw && defaultContent === null ) {
-				_fnLog( settings, 0, "Requested unknown parameter "+
+				_fnLog( settings, 0, "Requested unknown parameterAssert "+
 					(typeof col.mData=='function' ? '{function}' : "'"+col.mData+"'")+
 					" for row "+rowIdx+", column "+colIdx, 4 );
 				settings.iDrawError = draw;
@@ -2775,7 +2775,7 @@
 				else
 				{
 					// If array notation is used, we just want to strip it and use the property name
-					// and assign the value. If it isn't used, then we get the result we want anyway
+					// and assign the value. If it isn't used, then we get the resultBean we want anyway
 					data[ aLast.replace(__reArray, '') ] = val;
 				}
 			};
@@ -2936,7 +2936,7 @@
 	 *   object from which to re-read the data from the cells
 	 * @param {int} [colIdx] Optional column index
 	 * @param {array|object} [d] Data source object. If `colIdx` is given then this
-	 *   parameter should also be given and will be used to write the data into.
+	 *   parameterAssert should also be given and will be used to write the data into.
 	 *   Only the column in question will be written
 	 * @returns {object} Object with two parameters: `data` the data read, in
 	 *   document order, and `cells` and array of nodes (they can be useful to the
@@ -4056,7 +4056,7 @@
 			param( 'iSortingCols', sort.length );
 		}
 	
-		// If the legacy.ajax parameter is null, then we automatically decide which
+		// If the legacy.ajax parameterAssert is null, then we automatically decide which
 		// form to use, based on sAjaxSource
 		var legacy = DataTable.ext.legacy.ajax;
 		if ( legacy === null ) {
@@ -6682,7 +6682,7 @@
 	 *       {
 	 *         name:      'data'                -- string   - Property name
 	 *         val:       function () {},       -- function - Api method (or undefined if just an object
-	 *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
+	 *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method resultBean
 	 *         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
 	 *       },
 	 *       {
@@ -6717,10 +6717,10 @@
 	
 	
 	/**
-	 * Abstraction for `context` parameter of the `Api` constructor to allow it to
+	 * Abstraction for `context` parameterAssert of the `Api` constructor to allow it to
 	 * take several different forms for ease of use.
 	 *
-	 * Each of the input parameter types will be converted to a DataTables settings
+	 * Each of the input parameterAssert types will be converted to a DataTables settings
 	 * object where possible.
 	 *
 	 * @param  {string|node|jQuery|object} mixed DataTable identifier. Can be one
@@ -7178,7 +7178,7 @@
 	//       {
 	//         name:      'data'                -- string   - Property name
 	//         val:       function () {},       -- function - Api method (or undefined if just an object
-	//         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
+	//         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method resultBean
 	//         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
 	//       },
 	//       {
@@ -7262,7 +7262,7 @@
 			}
 			else if ( ret instanceof _Api ) {
 				// New API instance returned, want the value from the first item
-				// in the returned array for the singular result.
+				// in the returned array for the singular resultBean.
 				return ret.length ?
 					$.isArray( ret[0] ) ?
 						new _Api( ret.context, ret[0] ) : // Array results are 'enhanced'
@@ -8695,12 +8695,12 @@
 		if ( $.isPlainObject( rowSelector ) ) {
 			// Indexes
 			if ( rowSelector.row === undefined ) {
-				// Selector options in first parameter
+				// Selector options in first parameterAssert
 				opts = rowSelector;
 				rowSelector = null;
 			}
 			else {
-				// Cell index objects in first parameter
+				// Cell index objects in first parameterAssert
 				opts = columnSelector;
 				columnSelector = null;
 			}
@@ -9666,7 +9666,7 @@
 		/**
 		 * Partner property to mData which is used (only when defined) to get
 		 * the data - i.e. it is basically the same as mData, but without the
-		 * 'set' option, and also the data fed to it is the result from mData.
+		 * 'set' option, and also the data fed to it is the resultBean from mData.
 		 * This is the rendering method to match the data method of mData.
 		 *  @type function|int|string|null
 		 *  @default null
@@ -9945,7 +9945,7 @@
 		 *
 		 * * `data` - As with jQuery, `data` can be provided as an object, but it
 		 *   can also be used as a function to manipulate the data DataTables sends
-		 *   to the server. The function takes a single parameter, an object of
+		 *   to the server. The function takes a single parameterAssert, an object of
 		 *   parameters with the values that DataTables has readied for sending. An
 		 *   object may be returned which will be merged into the DataTables
 		 *   defaults, or you can add the items to the object that was passed in and
@@ -9954,10 +9954,10 @@
 		 *
 		 * * `dataSrc` - By default DataTables will look for the property `data` (or
 		 *   `aaData` for compatibility with DataTables 1.9-) when obtaining data
-		 *   from an Ajax source or for server-side processing - this parameter
+		 *   from an Ajax source or for server-side processing - this parameterAssert
 		 *   allows that property to be changed. You can use Javascript dotted
 		 *   object notation to get a data source for multiple levels of nesting, or
-		 *   it my be used as a function. As a function it takes a single parameter,
+		 *   it my be used as a function. As a function it takes a single parameterAssert,
 		 *   the JSON returned from the server, which can be manipulated as
 		 *   required, with the returned value being that used by DataTables as the
 		 *   data source for the table. This supersedes `sAjaxDataProp` from
@@ -9981,7 +9981,7 @@
 		 * 1. _object_ - Data to send to the server
 		 * 2. _function_ - Callback function that must be executed when the required
 		 *    data has been obtained. That data should be passed into the callback
-		 *    as the only parameter
+		 *    as the only parameterAssert
 		 * 3. _object_ - DataTables settings object for the table
 		 *
 		 * Note that this supersedes `fnServerData` from DataTables 1.9-.
@@ -12885,7 +12885,7 @@
 			/**
 			 * Flag to say if DataTables should automatically try to calculate the
 			 * optimum table and columns widths (true) or not (false).
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12896,7 +12896,7 @@
 			 * needed by a driven page draw. This can give a significant speed
 			 * increase for Ajax source and Javascript source data, but makes no
 			 * difference at all fro DOM and server-side processing tables.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12906,7 +12906,7 @@
 			 * Enable filtering on the table or not. Note that if this is disabled
 			 * then there is no filtering at all on the table, including fnFilter.
 			 * To just remove the filtering input use sDom and remove the 'f' option.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12915,7 +12915,7 @@
 			/**
 			 * Table information element (the 'Showing x of y records' div) enable
 			 * flag.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12924,7 +12924,7 @@
 			/**
 			 * Present a user control allowing the end user to change the page size
 			 * when pagination is enabled.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12933,7 +12933,7 @@
 			/**
 			 * Pagination enabled or not. Note that if this is disabled then length
 			 * changing must also be disabled.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12942,7 +12942,7 @@
 			/**
 			 * Processing indicator enable flag whenever DataTables is enacting a
 			 * user request - typically an Ajax request for server-side processing.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12952,7 +12952,7 @@
 			 * Server-side processing enabled flag - when enabled DataTables will
 			 * get all data from the server for every draw - there is no filtering,
 			 * sorting or paging done on the client-side.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12960,7 +12960,7 @@
 	
 			/**
 			 * Sorting enablement flag.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12968,7 +12968,7 @@
 	
 			/**
 			 * Multi-column sorting
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12978,7 +12978,7 @@
 			 * Apply a class to the columns which are being sorted to provide a
 			 * visual highlight or not. This can slow things down when enabled since
 			 * there is a lot of DOM interaction.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -12986,7 +12986,7 @@
 	
 			/**
 			 * State saving enablement flag.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -13002,7 +13002,7 @@
 			/**
 			 * When the table is shorter in height than sScrollY, collapse the
 			 * table container down to the height of the table (when true).
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
 			 */
@@ -13019,7 +13019,7 @@
 			/**
 			 * Viewport width for horizontal scrolling. Horizontal scrolling is
 			 * disabled if an empty string.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type string
 			 */
@@ -13028,7 +13028,7 @@
 			/**
 			 * Width to expand the table to when using x-scrolling. Typically you
 			 * should not need to use this.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type string
 			 *  @deprecated
@@ -13038,7 +13038,7 @@
 			/**
 			 * Viewport height for vertical scrolling. Vertical scrolling is disabled
 			 * if an empty string.
-			 * Note that this parameter will be set by the initialisation routine. To
+			 * Note that this parameterAssert will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type string
 			 */
@@ -13170,7 +13170,7 @@
 		/**
 		 * Store the applied global search information in case we want to force a
 		 * research or compare the old search to a new one.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @namespace
 		 *  @extends DataTable.models.oSearch
@@ -13193,7 +13193,7 @@
 		 *   <li>Index 0 - column number</li>
 		 *   <li>Index 1 - current sorting direction</li>
 		 * </ul>
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
 		 *  @todo These inner arrays should really be objects
@@ -13203,7 +13203,7 @@
 		/**
 		 * Sorting that is always applied to the table (i.e. prefixed in front of
 		 * aaSorting).
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
 		 *  @default []
@@ -13212,7 +13212,7 @@
 	
 		/**
 		 * Classes to use for the striping of a table.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
 		 *  @default []
@@ -13353,7 +13353,7 @@
 		/**
 		 * Indicate if when using server-side processing the loading of data
 		 * should be deferred until the second draw.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type boolean
 		 *  @default false
@@ -13378,7 +13378,7 @@
 		/**
 		 * Dictate the positioning of DataTables' control elements - see
 		 * {@link DataTable.model.oInit.sDom}.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
 		 *  @default null
@@ -13394,7 +13394,7 @@
 	
 		/**
 		 * Which type of pagination should be used.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
 		 *  @default two_button
@@ -13403,7 +13403,7 @@
 	
 		/**
 		 * The state duration (for `stateSave`) in seconds.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type int
 		 *  @default 0
@@ -13454,7 +13454,7 @@
 	
 		/**
 		 * Source url for AJAX data for the table.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
 		 *  @default null
@@ -13465,7 +13465,7 @@
 		 * Property from a given object from which to read the table data from. This
 		 * can be an empty string (when not server-side processing), in which case
 		 * it is  assumed an an array is given directly.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
 		 */
@@ -13503,7 +13503,7 @@
 	
 		/**
 		 * Function to get the server-side data.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type function
 		 */
@@ -13520,7 +13520,7 @@
 		/**
 		 * Send the XHR HTTP method - GET or POST (could be PUT or DELETE if
 		 * required).
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
 		 */
@@ -13528,7 +13528,7 @@
 	
 		/**
 		 * Format numbers for display.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type function
 		 */
@@ -13536,7 +13536,7 @@
 	
 		/**
 		 * List of options that can be used for the user selectable length menu.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
 		 *  @default []
@@ -13580,7 +13580,7 @@
 		"_iDisplayStart": 0,
 	
 		/**
-		 * Server-side processing - number of records in the result set
+		 * Server-side processing - number of records in the resultBean set
 		 * (i.e. before filtering), Use fnRecordsTotal rather than
 		 * this property to get the value of the number of records, regardless of
 		 * the server-side processing setting.
@@ -13603,7 +13603,7 @@
 	
 		/**
 		 * Flag to indicate if jQuery UI marking and classes should be used.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type boolean
 		 */
@@ -13640,7 +13640,7 @@
 		 * Indicate that if multiple rows are in the header and there is more than
 		 * one unique cell per column, if the top one (true) or bottom one (false)
 		 * should be used for sorting / title by DataTables.
-		 * Note that this parameter will be set by the initialisation routine. To
+		 * Note that this parameterAssert will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type boolean
 		 */
@@ -13899,7 +13899,7 @@
 		 *
 		 * And the following return is expected:
 		 *
-		 * * {boolean} Include the row in the searched result set (true) or not
+		 * * {boolean} Include the row in the searched resultBean set (true) or not
 		 *   (false)
 		 *
 		 * Note that as with the main search ability in DataTables, technically this
@@ -14012,7 +14012,7 @@
 		 *
 		 * Pagination types (the four built in options and any additional plug-in
 		 * options defined here) can be used through the `paginationType`
-		 * initialisation parameter.
+		 * initialisation parameterAssert.
 		 *
 		 * The functions defined take two parameters:
 		 *
@@ -14071,7 +14071,7 @@
 		 * array. The data in the array much be in the index order of the rows in
 		 * the table (not the currently ordering order!). Which order data gathering
 		 * function is run here depends on the `dt-init columns.orderDataType`
-		 * parameter that is used for the column (if any).
+		 * parameterAssert that is used for the column (if any).
 		 *
 		 * The functions defined take two parameters:
 		 *
@@ -14167,11 +14167,11 @@
 			 * custom sorting, but it can also be used to provide custom searching
 			 * by allowing you to pre-processing the data and returning the data in
 			 * the format that should be searched upon. This is done by adding
-			 * functions this object with a parameter name which matches the sType
+			 * functions this object with a parameterAssert name which matches the sType
 			 * for that target column. This is the corollary of <i>afnSortData</i>
 			 * for searching data.
 			 *
-			 * The functions defined take a single parameter:
+			 * The functions defined take a single parameterAssert:
 			 *
 		     *  1. `{*}` Data from the column cell to be prepared for searching
 			 *
@@ -14210,7 +14210,7 @@
 			 * implementation in terms of speed, although the others are provided
 			 * for compatibility with existing Javascript sort functions.
 			 *
-			 * `{type}-pre`: Functions defined take a single parameter:
+			 * `{type}-pre`: Functions defined take a single parameterAssert:
 			 *
 		     *  1. `{*}` Data from the column cell to be prepared for ordering
 			 *
@@ -14221,15 +14221,15 @@
 			 * `{type}-asc` and `{type}-desc`: Functions are typical Javascript sort
 			 * functions, taking two parameters:
 			 *
-		     *  1. `{*}` Data to compare to the second parameter
-		     *  2. `{*}` Data to compare to the first parameter
+		     *  1. `{*}` Data to compare to the second parameterAssert
+		     *  2. `{*}` Data to compare to the first parameterAssert
 			 *
 			 * And returning:
 			 *
-			 * * `{*}` Ordering match: <0 if first parameter should be sorted lower
-			 *   than the second parameter, ===0 if the two parameters are equal and
-			 *   >0 if the first parameter should be sorted height than the second
-			 *   parameter.
+			 * * `{*}` Ordering match: <0 if first parameterAssert should be sorted lower
+			 *   than the second parameterAssert, ===0 if the two parameters are equal and
+			 *   >0 if the first parameterAssert should be sorted height than the second
+			 *   parameterAssert.
 			 * 
 			 *  @type object
 			 *  @default {}
