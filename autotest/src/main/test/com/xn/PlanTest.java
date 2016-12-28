@@ -39,8 +39,10 @@ public class PlanTest {
 
     @Test
     public void plantest() {
-pooledDbSource.getDataBaseType("abc");
-       List<PlanDto> planDto =planService.list();
+//pooledDbSource.getDataBaseType("abc");
+        PlanDto planDto=new PlanDto();
+        planDto.setId(5);
+       List<PlanDto> planDtos =planService.list(planDto);
     }
 //
 //    @Test

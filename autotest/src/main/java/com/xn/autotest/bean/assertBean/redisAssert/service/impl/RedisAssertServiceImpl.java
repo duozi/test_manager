@@ -12,7 +12,9 @@ import com.xn.autotest.mybatis.PageInfo;
 import com.xn.autotest.mybatis.PageResult;
 import com.xn.autotest.utils.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -24,13 +26,13 @@ import java.util.Map;
  * @author xn056839
  * @date 2016-12-22
  */
-
+@Service
 public class RedisAssertServiceImpl implements RedisAssertService {
 
     /**
      *  Dao
      */
-    @Autowired
+    @Resource
     RedisAssertMapper redisAssertMapper;
 
     @Override

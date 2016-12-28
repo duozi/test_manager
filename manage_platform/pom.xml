@@ -79,10 +79,6 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
         <!-- log end -->
@@ -163,7 +159,27 @@
         	<artifactId>javax.servlet-api</artifactId>
         	<version>3.1.0</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>com.xiaoniu.dataplatform.utils</groupId>
+            <artifactId>toolbox</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoniu.dataplatform.manage</groupId>
+            <artifactId>manage-skeleton</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.slf4j</groupId>
+        	<artifactId>slf4j-api</artifactId>
+        	<version>1.7.0</version>
+        </dependency>
+      </dependencies>
     <build>
         <finalName>manage_platform</finalName>
     </build>

@@ -5,6 +5,7 @@ package com.xn.autotest.dao;
 
 import com.xn.autotest.bean.request.system.entity.System;
 import com.xn.autotest.mybatis.BaseMapper;
+import org.springframework.stereotype.Service;
 
 /**
  * System Dao 接口
@@ -12,6 +13,7 @@ import com.xn.autotest.mybatis.BaseMapper;
  * @author xn056839
  * @date 2016-12-22
  */
+@Service
 public interface SystemMapper extends BaseMapper<System, Integer> {
 
 }

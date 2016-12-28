@@ -7483,7 +7483,7 @@ jQuery.fn.load = function( url, params, callback ) {
 				// Locate the specified elements
 				.find( selector ) :
 
-			// If not, just inject the full resultBean
+			// If not, just inject the full result
 			responseText );
 
 	});
@@ -7850,7 +7850,7 @@ jQuery.extend({
 
 		// Remove hash character (#7531: and string promotion)
 		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
-		// We also use the url parameterAssert if available
+		// We also use the url parameter if available
 		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
 
 		// Extract dataTypes list
@@ -7903,7 +7903,7 @@ jQuery.extend({
 				delete s.data;
 			}
 
-			// Get ifModifiedKey before adding the anti-cache parameterAssert
+			// Get ifModifiedKey before adding the anti-cache parameter
 			ifModifiedKey = s.url;
 
 			// Add anti-cache in url if needed
@@ -8185,7 +8185,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			!( s.contentType || "" ).indexOf("application/x-www-form-urlencoded") &&
 			rjsonp.test( data );
 
-	// Handle iff the expected data type is "jsonp" or we have a parameterAssert to set
+	// Handle iff the expected data type is "jsonp" or we have a parameter to set
 	if ( s.dataTypes[ 0 ] === "jsonp" || replaceInUrl || replaceInData ) {
 
 		// Get callback name, remembering preexisting value associated with it
@@ -8973,7 +8973,7 @@ Tween.propHooks = {
 				return tween.elem[ tween.prop ];
 			}
 
-			// passing any value as a 4th parameterAssert to .css will automatically
+			// passing any value as a 4th parameter to .css will automatically
 			// attempt a parseFloat and fallback to a string if the parse fails
 			// so, simple values such as "10px" are parsed to Float.
 			// complex values such as "rotate(1rad)" are returned as is.

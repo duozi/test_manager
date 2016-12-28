@@ -1,6 +1,8 @@
 package com.xn.autotest.service;
 
+import com.xn.autotest.bean.CommonResult;
 import com.xn.autotest.bean.request.plan.dto.PlanDto;
+import com.xn.autotest.bean.request.system.dto.SystemDto;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +12,18 @@ import java.util.Map;
  */
 
 public interface PlanListService {
-    public List<PlanDto> getPlanByParams(Map<String ,Object> map);
-    public List<PlanDto> getSystemByParams();
+    CommonResult<List<PlanDto>> getPlanByParams(Map<String, Object> map);
+
+    CommonResult<SystemDto> getSystemByParam(SystemDto systemDto);
+
+    CommonResult<PlanDto> getPlanById(PlanDto planDto);
+
+    CommonResult<PlanDto> savePlan(PlanDto planDto);
+
+    CommonResult<Integer> updatePlanById(PlanDto planDto);
+
+    CommonResult<Integer> deletePlanById(PlanDto planDto);
+
+
 
 }

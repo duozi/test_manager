@@ -4,6 +4,7 @@ package com.xn.autotest.controller;/**
 
 import com.alibaba.fastjson.JSONObject;
 import com.xn.autotest.database.PooledDbSource;
+import com.xn.autotest.service.serviceImpl.PlanListServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,8 @@ import javax.annotation.Resource;
 @RequestMapping("/new_plane")
 public class NewPlanController {
     private static final Logger logger = LoggerFactory.getLogger(NewPlanController.class);
-//    @Resource
-//    PlanListServiceImpl planServiceImpl;
+    @Resource
+    PlanListServiceImpl planServiceImpl;
     @Resource
     PooledDbSource pooledDbSource;
 

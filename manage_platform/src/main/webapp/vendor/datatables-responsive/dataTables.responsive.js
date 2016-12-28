@@ -31,7 +31,7 @@ var factory = function( $, DataTable ) {
  * Responsive is a plug-in for the DataTables library that makes use of
  * DataTables' ability to change the visibility of columns, changing the
  * visibility of columns so the displayed columns fit into the table container.
- * The end resultBean is that complex tables will be dynamically adjusted to fit
+ * The end result is that complex tables will be dynamically adjusted to fit
  * into the viewport, be it on a desktop, tablet or mobile browser.
  *
  * Responsive for DataTables has two modes of operation, which can used
@@ -177,7 +177,7 @@ Responsive.prototype = {
 
 	/**
 	 * Calculate the visibility for the columns in a table for a given
-	 * breakpoint. The resultBean is pre-determined based on the class logic if
+	 * breakpoint. The result is pre-determined based on the class logic if
 	 * class names are used to control all columns, but the width of the table
 	 * is also used if there are columns which are to be automatically shown
 	 * and hidden.
