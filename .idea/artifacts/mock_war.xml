@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mock:war">
+    <output-path>$PROJECT_DIR$/mock/target</output-path>
+    <root id="archive" name="mock.war">
+      <element id="artifact" artifact-name="mock:war exploded" />
+    </root>
+  </artifact>
+</component>
