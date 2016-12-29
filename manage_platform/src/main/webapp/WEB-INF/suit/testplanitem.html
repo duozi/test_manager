@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+
+<body>
+	<div class="panel-heading">
+		<ol class="breadcrumb">
+		  	<li><a href="#">接口自动化</a></li>
+		  	<li><a href="#">测试集管理</a></li>
+		  	<li class="active">新增测试集</li>
+		</ol>
+    </div>
+    <div class="col-lg-14">
+        <div class="panel panel-default">
+		    <div class="panel-heading">
+		        	新增计划
+		    </div>
+			<div class="panel-body">
+				<!-- 计划基本配置 -->
+			 	<div class="col-lg-6 panel panel-default">
+			 		<form role="form">
+			 		<div class="">
+				 		<div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="name" >计划名称</label>
+				             <input type="text" class="form-control" id="planName" name="name" placeholder="请输入测试计划名称">
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">计划执行类型</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="0">单接口</option>
+                                   <option values="1">串行接口</option>
+                               </select>
+				         </div>
+				          <div class="form-group col-lg-7">
+		                      <label class="control-label col-lg-4" for="systemId">选择系统</label>
+		                      <div class="choose-sys">
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">牛贷系统
+			                      </label>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">支付平台
+			                      </label>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">管理平台
+			                      </label>
+		                      </div>
+		                  </div>
+		                  <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="createPerson" >创建人</label>
+				             <input type="text" class="form-control" id="createPerson" name="createPerson" placeholder="请输入您的姓名">
+				         </div>
+				          <div class="form-group col-lg-7">
+		                      <label class="control-label col-lg-4" for="systemId">被测接口类型</label>
+		                      <div class="choose-sys">
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">dubbo接口
+			                      </label>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">http接口
+			                      </label>
+		                      </div>
+		                  </div>
+			 		</div>
+	  		      </form>
+                  </div>
+                  <!-- 接口配置，http-dubbo -->
+                  <div class="col-lg-6 panel panel-default">
+                  <!-- http接口 -->
+			 		<form role="http-form" >
+			 		<div class="">
+			 		<div class="form-group col-lg-7">
+			 		 <label class="control-label col-lg-4" for="systemId">http接口配置</label>
+			 		 </div>
+				 		<div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="name" >接口名称</label>
+				             <input type="text" class="form-control" id="planName" name="name" placeholder="请输入http接口名称">
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="name" >ip地址</label>
+				             <input type="text" class="form-control" id="ip" name="ip" placeholder="ip地址会从环境配置获取" readonly>
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="name" >端口号</label>
+				             <input type="text" class="form-control" id="port" name="port" placeholder="端口号会从环境配置获取" readonly>
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">协议类型</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="1">http</option>
+                                   <option values="2">https</option>
+                               </select>
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">请求方式</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="1">GET</option>
+                                   <option values="2">POST</option>
+                               </select>
+				         </div>
+				          <div class="form-group col-lg-7">
+		                      <label class="control-label col-lg-4" for="systemId">Content-Type</label>
+		                      <div class="choose-sys">
+		                      <#if contentTypeList ??>
+		                      	<#list contentTypeList as item>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">${item.getName()}
+			                      </label>
+			                    </#list>
+			                   </#if>
+		                      </div>
+		                  </div>
+		                   <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">被测接口类型</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="0">dubbo</option>
+                                   <option values="1">http</option>
+                               </select>
+				         </div>
+			 		</div>
+	  		      </form>
+	  		      
+	  		      <form role="dubbo-form">
+			 		<div class="">
+				 		<div class="form-group col-lg-7">
+				             <label class="control-label col-lg-6" for="name" >计划名称</label>
+				             <input type="text" class="form-control" id="planName" name="name" placeholder="请输入测试计划名称">
+				         </div>
+				         <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">计划执行类型</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="0">单接口</option>
+                                   <option values="1">串行接口</option>
+                               </select>
+				         </div>
+				          <div class="form-group col-lg-7">
+		                      <label class="control-label col-lg-4" for="systemId">选择系统</label>
+		                      <div class="choose-sys">
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">牛贷系统
+			                      </label>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">支付平台
+			                      </label>
+			                      <label class="checkbox-inline">
+			                          <input type="checkbox">管理平台
+			                      </label>
+		                      </div>
+		                  </div>
+		                   <div class="form-group col-lg-7">
+				             <label class="control-label col-lg-7" for="executeType">被测接口类型</label>
+                               <select class="form-control" id="planExecuteType" name="executeType">
+                                   <option values="0">dubbo</option>
+                                   <option values="1">http</option>
+                               </select>
+				         </div>
+			 		</div>
+	  		      </form>
+                  </div>
+			</div>
+		</div>
+	</div>
+   
+   <!-- /.container-fluid -->
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+<script type="text/javascript">
+
+    $('#btn').on('click',function(){
+        var value = $('#interface').val();
+        console.log('value',value);
+        var appendDiv = '<div>frae</div>';
+        $('#formGroup').append(appendDiv);
+
+        $.ajax({
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
+            data: {'RID':value},//参数，这里是一个json语句
+            success: function (data) {
+                var result = data;
+                alert(result);
+                $('#getData').html(result);
+
+            },
+            error: function (err) {
+                alert("err:" + err);
+            }
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

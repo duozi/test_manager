@@ -82,7 +82,6 @@
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
         <!-- log end -->
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -159,16 +158,7 @@
         	<artifactId>javax.servlet-api</artifactId>
         	<version>3.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.xiaoniu.dataplatform.utils</groupId>
-            <artifactId>toolbox</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xiaoniu.dataplatform.manage</groupId>
-            <artifactId>manage-skeleton</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -182,5 +172,15 @@
       </dependencies>
     <build>
         <finalName>manage_platform</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
