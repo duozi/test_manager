@@ -4,6 +4,7 @@
 package com.xn.autotest.bean.operation.dbOperation.dto;
 
 import com.xn.autotest.bean.BaseDto;
+import com.xn.autotest.enums.RedisOperationEnum;
 
 import java.util.Date;
 
@@ -49,7 +50,7 @@ public class DbOperationDto extends BaseDto{
      * 
      * 数据库操作类型，1 beforeclass 2 afterclass 3 before ,4 after 
      */
-    private Boolean type;
+    private RedisOperationEnum type;
 
     /**
      * 
@@ -114,11 +115,11 @@ public class DbOperationDto extends BaseDto{
         return this.dbStatus;
     }
 
-    public void setType(Boolean type) {
+    public void setType(RedisOperationEnum type) {
         this.type = type;
     }
     
-    public Boolean getType() {
+    public RedisOperationEnum getType() {
         return this.type;
     }
 
@@ -135,7 +136,7 @@ public class DbOperationDto extends BaseDto{
     }
     
     public String getSqlString() {
-        return this.sqlString;
+        return this.sqlString.trim();
     }
 
     public void setChangeTime(Date changeTime) {

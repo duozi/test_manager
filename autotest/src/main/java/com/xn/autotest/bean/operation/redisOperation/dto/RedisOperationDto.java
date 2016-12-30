@@ -4,6 +4,7 @@
 package com.xn.autotest.bean.operation.redisOperation.dto;
 
 import com.xn.autotest.bean.BaseDto;
+import com.xn.autotest.enums.RedisOperationEnum;
 
 import java.util.Date;
 
@@ -49,7 +50,7 @@ public class RedisOperationDto extends BaseDto{
      * 
      * redis操作类型，1 beforeclass 2 afterclass 3 before ,4 after 
      */
-    private Boolean type;
+    private RedisOperationEnum type;
 
     /**
      * 
@@ -73,13 +74,13 @@ public class RedisOperationDto extends BaseDto{
      * 
      * redisProperties 缓存时间
      */
-    private String redisTime;
+    private Integer redisTime;
 
     /**
      * 
      * 执行redis 操作类型，1 set，2 del 3 settime 
      */
-    private Boolean actionType;
+    private RedisOperationEnum actionType;
 
     /**
      * 
@@ -132,11 +133,11 @@ public class RedisOperationDto extends BaseDto{
         return this.redisStatus;
     }
 
-    public void setType(Boolean type) {
+    public void setType(RedisOperationEnum type) {
         this.type = type;
     }
     
-    public Boolean getType() {
+    public RedisOperationEnum getType() {
         return this.type;
     }
 
@@ -164,19 +165,19 @@ public class RedisOperationDto extends BaseDto{
         return this.redisValue;
     }
 
-    public void setRedisTime(String redisTime) {
+    public void setRedisTime(Integer redisTime) {
         this.redisTime = redisTime;
     }
     
-    public String getRedisTime() {
+    public Integer getRedisTime() {
         return this.redisTime;
     }
 
-    public void setActionType(Boolean actionType) {
+    public void setActionType(RedisOperationEnum actionType) {
         this.actionType = actionType;
     }
     
-    public Boolean getActionType() {
+    public RedisOperationEnum getActionType() {
         return this.actionType;
     }
 

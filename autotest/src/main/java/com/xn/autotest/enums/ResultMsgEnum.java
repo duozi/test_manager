@@ -11,7 +11,8 @@ public enum ResultMsgEnum {
     PARAMS_ERROR(3, "参数错误"),
     UPDATE_FAILED(4, "更新失败"),
     SAVE_FAILED(5, "保存失败"),
-    DEL_FAILED(6,"删除失败");
+    DEL_FAILED(6,"删除失败"),
+    EXECUTE_FAILED(7,"执行失败");
 
     private Integer returnCode;
 

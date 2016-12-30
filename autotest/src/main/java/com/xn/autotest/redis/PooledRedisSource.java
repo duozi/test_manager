@@ -46,7 +46,7 @@ public class PooledRedisSource implements InitializingBean{
         }
     }
 
-    private JedisCluster getJedisCluster(String RedisName) {
+    public JedisCluster getJedisCluster(String RedisName) {
         JedisCluster jedisCluster = REDISSOURCEWRAPPERS.get(RedisName);
         if (jedisCluster == null) {
 

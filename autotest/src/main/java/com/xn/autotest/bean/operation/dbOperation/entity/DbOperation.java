@@ -5,6 +5,7 @@ package com.xn.autotest.bean.operation.dbOperation.entity;
 
 import com.xn.autotest.bean.BaseEntity;
 import com.xn.autotest.bean.request.cases.entity.Cases;
+import com.xn.autotest.enums.RedisOperationEnum;
 
 import java.util.Date;
 
@@ -49,7 +50,7 @@ public class DbOperation extends BaseEntity {
      * 
      * 数据库操作类型，1 beforeclass 2 afterclass 3 before ,4 after 
      */
-    private Boolean type;
+    private RedisOperationEnum type;
 
     /**
      * 
@@ -114,11 +115,11 @@ public class DbOperation extends BaseEntity {
         return this.dbStatus;
     }
     
-    public void setType(Boolean type) {
+    public void setType(RedisOperationEnum type) {
         this.type = type;
     }
     
-    public Boolean getType() {
+    public RedisOperationEnum getType() {
         return this.type;
     }
     
