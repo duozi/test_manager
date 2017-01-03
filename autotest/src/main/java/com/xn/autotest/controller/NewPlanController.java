@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 public class NewPlanController {
     private static final Logger logger = LoggerFactory.getLogger(NewPlanController.class);
     @Resource
-    PlanListServiceImpl planServiceImpl;
+    PlanListServiceImpl planListService;
     @Resource
     PooledDbSource pooledDbSource;
 

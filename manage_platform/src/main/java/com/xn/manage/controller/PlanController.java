@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/plan")
 public class PlanController {
 	
-	@RequestMapping(value="/getPlanList")
-	public String getPlanList(@PathVariable String  path) {
-		return "decorators/" + path;
+	@RequestMapping(value="/{path}", method = RequestMethod.GET)
+	public String getPlanPage(@PathVariable String  path) {
+		return "plan/" + path;
 	}
+	
 
 }

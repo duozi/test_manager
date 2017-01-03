@@ -14,13 +14,4 @@ public class WebController {
 		return "decorators/" + path;
 	}
 	
-	@RequestMapping(value="/case/{path}", method = RequestMethod.GET)
-	public String getCasePage(@PathVariable String  path) {
-		return "case/" + path;
-	}
-	
-	@RequestMapping(value="/report/{path}", method = RequestMethod.GET)
-	public String getRrportPage(@PathVariable String  path) {
-		return "report/" + path;
-	}
 }

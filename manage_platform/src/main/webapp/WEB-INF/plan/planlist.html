@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- DataTables JavaScript -->
+    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+	    $('#dataTables-example').DataTable({
+	        responsive: true
+	    });
+	});
+	</script>
+</head>
+
+<body>
+	<div class="panel-heading">
+		<ol class="breadcrumb">
+		  	<li><a href="#">接口自动化</a></li>
+		  	<li><a href="#">测试计划</a></li>
+		  	<li class="active">计划列表</li>
+		</ol>
+    </div>
+    
+	  <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default ">
+                        <!-- /.panel-heading -->
+                         <div class="panel-body">
+                          	<form role="form">
+                        	<div class="col-lg-12">
+                        		<div class="form-group col-lg-2">
+                                       <select class="form-control">
+                                           <option value="" disabled selected >选择系统名称</option>
+                                           <option value="">2</option>
+                                           <option value="">3</option>
+                                           <option value="">4</option>
+                                           <option value="">5</option>
+                                       </select>
+                                 </div>
+                                <div class="form-group col-lg-2">
+                                       <select class="form-control">
+                                           <option value="" disabled selected >选择计划名称</option>
+                                           <option value="">2</option>
+                                           <option value="">3</option>
+                                           <option value="">4</option>
+                                           <option value="">5</option>
+                                       </select>
+                                 </div>
+                                 <div class="form-group col-lg-2">
+                                       <select class="form-control">
+                                           <option value="" disabled selected >选择计划执行类型</option>
+                                           <option value="">2</option>
+                                           <option value="">3</option>
+                                           <option value="">4</option>
+                                           <option value="">5</option>
+                                       </select>
+                                 </div>
+                                  <div class="form-group col-lg-2">
+                                       <select class="form-control">
+                                           <option value="" disabled selected >计划是否发布</option>
+                                           <option value="">已发布</option>
+                                           <option value="">未发布</option>
+                                       </select>
+                                 </div>
+                                 <div class="form-group col-lg-3">
+	                                 <button type="submit" class="btn btn-default">查询</button>
+	                                 <button type="reset" class="btn btn-default">导出</button>
+	                                 <a href="planitem.html" class="btn btn-outline btn-success"><i class=" fa-plus-circle fa"></i>新增计划</a>
+                                 </div>
+                        	</div>
+                            </form>
+                            <div class="table-responsive col-lg-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>计划ID</th>
+                                            <th>计划名称</th>
+                                            <th>包含系统</th>
+                                            <th>计划类型</th>
+                                            <th>计划发布状态</th>
+                                            <th>创建人</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>牛贷系统查询联系人测试计划</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>@mdo</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                            	<a href="planitem.html" type="button" class="btn btn-success">查看详情</a>
+                                            	<a type="button" class="btn btn-warning">发布</a>
+				                                <a type="button" class="btn btn-primary">执行</a>
+				                                <a type="button" class="btn btn-danger">删除</a>
+				                                <a href="../report/intf_report.html" type="button" class="btn btn-info">查看测试报告</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            <td>@mdo</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                            	<a href="planitem.html" type="button" class="btn btn-success">查看详情</a>
+                                            	<a type="button" class="btn btn-warning">发布</a>
+				                                <a type="button" class="btn btn-primary">执行</a>
+				                                <a type="button" class="btn btn-danger">删除</a>
+				                                <a type="button" class="btn btn-info">查看测试报告</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                            <td>@mdo</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                            	<a href="planitem.html" type="button" class="btn btn-success">查看详情</a>
+                                            	<a type="button" class="btn btn-warning">发布</a>
+				                                <a type="button" class="btn btn-primary">执行</a>
+				                                <a type="button" class="btn btn-danger">删除</a>
+				                                <a type="button" class="btn btn-info">查看测试报告</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+   
+   <!-- /.container-fluid -->
+</body>
+</html>

@@ -1,7 +1,7 @@
 
 .user_pic {
 	margin-bottom: 2em;
-    margin-top: 1em;
+	margin-top: 1em;
 }
 
 .sidebar {
@@ -21,8 +21,8 @@
 
 #wrapper {
 	margin-left: 1em;
-    margin-right: 1em;
-    width:auto !important;
+	margin-right: 1em;
+	width:auto !important;
 }
 
 .navigation {
@@ -30,13 +30,71 @@
 }
 
 .panel-footer{
-    text-align: -webkit-center;
+	text-align: -webkit-center;
 }
 
 #plan-list-panel {
 	border: none;
 }
 
+.form-group label {
+	margin-top: auto;
+	font-weight: 500;
+}
+
 .form-group {
 	display: inline-flex;
+}
+
+.first-level {
+	font-weight: bolder;
+	font-size: large;
+}
+
+.panel form {
+	margin-top: 20px;
+}
+
+.second-level {
+	font-weight: 600;
+}
+
+.choose-sys {
+	padding-left: initial;
+}
+
+.sidebar-nav {
+	height: 100%;
+}
+
+.navigation {
+	height: 100%;
+	background-color: white;
+
+}
+
+.edit-form .form-group{
+	width: 80%;
+}
+
+.form-group label{
+	width: 20%;
+}
+
+form .choose-sys {
+	width: inherit;
+}
+
+.edit-form {
+	margin-left: 10%;
+}
+
+#http-form ,#dubbo-form{
+	margin-left: 11%;
+}
+
+.title-label {
+	margin-top: inherit;
+	margin-left: -1em;
+	margin-bottom: inherit;
 }

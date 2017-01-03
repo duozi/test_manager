@@ -15,7 +15,7 @@
     <dubbo:protocol name="dubbo" port="20880" accesslog="true" threads="500"/>
 
 
-    <dubbo:service interface="com.xn.autotest.service.PlanListService" ref="planListService" version="1.0.0" timeout="60000" registry="autotestZk"/>
+    <!--<dubbo:service interface="com.xn.autotest.service.PlanListService" ref="planListService" version="1.0.0" timeout="60000" registry="autotestZk"/>-->
 
 
 </beans>
