@@ -63,6 +63,38 @@
 	padding-left: initial;
 }
 
-.body-row {
-	margin-left: 0.5em !important;
+.sidebar-nav {
+	height: 100%;
+}
+
+.navigation {
+	height: 100%;
+	background-color: white;
+
+}
+
+.edit-form .form-group{
+	width: 80%;
+}
+
+.form-group label{
+	width: 20%;
+}
+
+form .choose-sys {
+	width: inherit;
+}
+
+.edit-form {
+	margin-left: 10%;
+}
+
+#http-form ,#dubbo-form{
+	margin-left: 11%;
+}
+
+.title-label {
+	margin-top: inherit;
+	margin-left: -1em;
+	margin-bottom: inherit;
 }

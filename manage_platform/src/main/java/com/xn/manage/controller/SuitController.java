@@ -1,18 +1,16 @@
 package com.xn.manage.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.xn.manage.Enum.ContentTypeEnum;
+import com.xn.manage.Enum.HttpTypeEnum;
+import com.xn.manage.Enum.RequestTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.xn.manage.Enum.ContentTypeEnum;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -25,7 +23,19 @@ public class SuitController {
 		for(ContentTypeEnum item : ContentTypeEnum.values()){
 			contentTypeList.add(item);
 		}
-		map.put("contentTypeList",contentTypeList);  
+
+		List<HttpTypeEnum> httpTypeList = new ArrayList<HttpTypeEnum>();
+		for(HttpTypeEnum item : HttpTypeEnum.values()){
+			httpTypeList.add(item);
+		}
+
+		List<RequestTypeEnum> requestTypeList = new ArrayList<RequestTypeEnum>();
+		for(RequestTypeEnum item : RequestTypeEnum.values()){
+			requestTypeList.add(item);
+		}
+		map.put("requestTypeList",requestTypeList);
+		map.put("contentTypeList",contentTypeList);
+		map.put("httpTypeList",httpTypeList);
 		return "suit/" + path;  
 	}
 
