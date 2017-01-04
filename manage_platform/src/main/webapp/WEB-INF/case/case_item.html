@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+</head>
+
+<body>
+<!-- 	 -->
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">接口自动化</a></li>
+        <li><a href="#">测试用例管理</a></li>
+        <li class="active">新增测试用例</li>
+    </ol>
+</div>
+<form role="form" class="case-form">
+    <div class="form-group">
+        <label>用例名</label>
+        <input class="form-control">
+    </div>
+    <div class="case-form">
+            <label>数据准备</label>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">数据库操作</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">redis操作</a></li>
+                </ul>
+            </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>数据库操作</label>
+        <div class="form-group">
+            <label>数据库名</label>
+            <div class="dropdown from-group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                    a
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">a</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">b</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">c</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">d</a></li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label>sql</label>
+                <input class="form-control">
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
+
+<!-- jQuery -->
+<script type="text/javascript">
+
+    $('#add').on('click', function () {
+
+        var appendDiv = '<div>frae</div>';
+        $('#formGroup').append(appendDiv);
+
+        $.ajax({
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
+            data: {'RID': value},//参数，这里是一个json语句
+            success: function (data) {
+                var result = data;
+                alert(result);
+                $('#getData').html(result);
+
+            },
+            error: function (err) {
+                alert("err:" + err);
+            }
+        });
+    });
+
+</script>
+</body>
+
+</html>
