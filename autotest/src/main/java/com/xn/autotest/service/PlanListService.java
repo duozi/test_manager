@@ -24,6 +24,8 @@ public interface PlanListService {
 
     CommonResult<Integer> deletePlanById(PlanDto planDto);
 
+    CommonResult<Integer> excutePlanById(PlanDto planDto);
+
 
 
 }

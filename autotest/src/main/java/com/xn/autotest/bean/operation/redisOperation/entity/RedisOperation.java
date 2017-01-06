@@ -5,6 +5,7 @@ package com.xn.autotest.bean.operation.redisOperation.entity;
 
 import com.xn.autotest.bean.BaseEntity;
 import com.xn.autotest.bean.request.cases.entity.Cases;
+import com.xn.autotest.enums.RedisOperationEnum;
 
 import java.util.Date;
 
@@ -47,9 +48,9 @@ public class RedisOperation extends BaseEntity {
 
     /**
      * 
-     * redis操作类型，1 beforeclass 2 afterclass 3 before ,4 after 
+     * redis操作类型，1 beforeclass 2 afterclass 3 before ,4 after
      */
-    private Boolean type;
+    private RedisOperationEnum type;
 
     /**
      * 
@@ -77,9 +78,9 @@ public class RedisOperation extends BaseEntity {
 
     /**
      * 
-     * 执行redis 操作类型，1 set，2 del 3 settime 
+     * 执行redis 操作类型，1 set，2 get 3del  4 settime
      */
-    private Boolean actionType;
+    private RedisOperationEnum actionType;
 
     /**
      * 
@@ -132,11 +133,11 @@ public class RedisOperation extends BaseEntity {
         return this.redisStatus;
     }
     
-    public void setType(Boolean type) {
+    public void setType(RedisOperationEnum type) {
         this.type = type;
     }
     
-    public Boolean getType() {
+    public RedisOperationEnum getType() {
         return this.type;
     }
     
@@ -172,11 +173,11 @@ public class RedisOperation extends BaseEntity {
         return this.redisTime;
     }
     
-    public void setActionType(Boolean actionType) {
+    public void setActionType(RedisOperationEnum actionType) {
         this.actionType = actionType;
     }
     
-    public Boolean getActionType() {
+    public RedisOperationEnum getActionType() {
         return this.actionType;
     }
     
