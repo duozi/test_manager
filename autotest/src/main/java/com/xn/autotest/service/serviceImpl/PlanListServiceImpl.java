@@ -20,10 +20,13 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class PlanListServiceImpl implements PlanListService {
     private static final Logger logger = LoggerFactory.getLogger(PlanListServiceImpl.class);
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PlanService planService;
     @Resource
@@ -50,6 +53,7 @@ public class PlanListServiceImpl implements PlanListService {
                 result.setData(planDtoResult);
                 return result;
             } catch (Exception e) {
+                e.printStackTrace();
                 result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
                 result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
 
@@ -85,7 +89,7 @@ public class PlanListServiceImpl implements PlanListService {
                 return result;
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
             result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
             result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
             return result;
@@ -108,6 +112,7 @@ public class PlanListServiceImpl implements PlanListService {
                 return result;
             }
         } catch (Exception e) {
+            e.printStackTrace();
             result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
             result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
             return result;
@@ -132,10 +137,40 @@ public class PlanListServiceImpl implements PlanListService {
                 return result;
             }
         } catch (Exception e) {
+            e.printStackTrace();
             result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
             result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
             return result;
         }
+    }
+
+    @Override
+    public CommonResult<Integer> excutePlanById(PlanDto planDto) {
+        CommonResult<Integer> result = new CommonResult();
+        result.setCode(ResultMsgEnum.SUCCESS.getReturnCode());
+        result.setMessage(ResultMsgEnum.SUCCESS.getReturnMsg());
+        try{
+            if(planDto.getId()==0){
+                result.setCode(ResultMsgEnum.EXECUTE_FAILED.getReturnCode());
+                result.setMessage(ResultMsgEnum.EXECUTE_FAILED.getReturnMsg());
+            return  result;
+            }else {
+                executePlan(planDto);
+                return  result;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return  result;
+        }
+    }
+
+    private void executePlan(PlanDto planDto) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 
     /**
@@ -182,6 +217,7 @@ public class PlanListServiceImpl implements PlanListService {
             result.setData(returnList);
             return result;
         } catch (Exception e) {
+            e.printStackTrace();
             result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
             result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
             return result;
@@ -212,6 +248,7 @@ public class PlanListServiceImpl implements PlanListService {
 
             }
         } catch (Exception e) {
+            e.printStackTrace();
             result.setCode(ResultMsgEnum.FAILURE_DATABASE.getReturnCode());
             result.setMessage(ResultMsgEnum.FAILURE_DATABASE.getReturnMsg());
             return result;

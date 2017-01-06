@@ -21,51 +21,62 @@
         <li class="active">新增测试用例</li>
     </ol>
 </div>
-<form role="form" class="case-form">
-    <div class="form-group">
-        <label>用例名</label>
-        <input class="form-control">
-    </div>
-    <div class="case-form">
-            <label>数据准备</label>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">数据库操作</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">redis操作</a></li>
-                </ul>
+<div class="col-lg-14">
+    <div class="panel panel-default">
+
+        <form id="case-form" role="form" class="case-form">
+            <div id="case-form-div">
+                <div class="form-group ">
+                    <label>用例名</label>
+                    <input class="form-control col-lg-5">
+                </div>
+                <div class="form-group ">
+                    <label>用例ID</label>
+                    <input class="form-control col-lg-5">
+                </div>
+                <div id="prepare">
+                    <div class="form-group ">
+                        <label>数据准备</label>
+                        <div class="dropdown  col-lg-5 plus">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="1" name="operationType">数据库操作</a>
+                                </li>
+                                <li role="presentation"><a role="menuitem" tabindex="2"
+                                                           name="operationType">redis操作</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group param-text">
+                    <label>请求参数</label>
+                    <textarea class=" form-control  text-control "></textarea>
+                </div>
+                <div id="clear">
+                    <div class="form-group ">
+                        <label>数据清除</label>
+                        <div class="dropdown  col-lg-5 plus">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="3" name="operationType">数据库操作</a>
+                                </li>
+                                <li role="presentation"><a role="menuitem" tabindex="4"
+                                                           name="operationType">redis操作</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
+        </form>
     </div>
-
-    <div class="form-group">
-        <label>数据库操作</label>
-        <div class="form-group">
-            <label>数据库名</label>
-            <div class="dropdown from-group">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
-                    a
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">a</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">b</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">c</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">d</a></li>
-                </ul>
-            </div>
-            <div class="form-group">
-                <label>sql</label>
-                <input class="form-control">
-            </div>
-        </div>
-
-    </div>
-
-
-</form>
+</div>
 
 
 <!-- jQuery -->
@@ -93,6 +104,137 @@
             }
         });
     });
+
+</script>
+
+
+<script type="text/javascript">
+    var dbId = 0;
+    var redisId = 0;
+
+
+    $("a[name='operationType']").click(function () {
+        dbId += 1;
+        redisId += 1;
+        var appendDb = '<div class="form-group">';
+        appendDb += '<div id="db-operation-div-' + dbId + '" class="panel panel-default db-operation-div">';
+        appendDb += '<label class="control-label col-lg-6 title-label case-label">数据库操作</label>';
+        appendDb += '<div class="case-div">';
+        appendDb += '<div class="form-group">';
+        appendDb += '<label>数据库名</label>';
+        appendDb += '<select class="form-control col-lg-5 case-select" id="dbName" name="dbName">';
+        appendDb += '<option values="true">a</option>';
+        appendDb += '<option values="false">b</option>';
+        appendDb += '<option values="false">c</option>';
+        appendDb += '</select>';
+        appendDb += '</div>';
+        appendDb += '<div class="form-group">';
+        appendDb += '<label>sql</label>';
+        appendDb += '<textarea class="form-control  text-control"></textarea>';
+        appendDb += '</div>';
+        appendDb += '</div>';
+        appendDb += '</div>';
+        appendDb += '<button class="btn btn-default dropdown-toggle minus" type="button" name="minus" data-toggle = "dropdown" >';
+        appendDb += '<span class="glyphicon glyphicon-minus"></span>';
+        appendDb += '</button>';
+        appendDb += '</div>';
+
+        var appendRedis = '<div class="form-group">';
+        appendRedis += '<div id="redis-operation-div-' + redisId + '" class="panel panel-default redis-operation-div">';
+
+        appendRedis += '<label class="control-label col-lg-6 title-label case-label">redis操作</label>';
+        appendRedis += '<div class="case-div">';
+        appendRedis += '<div class="form-group">';
+        appendRedis += '<label class="control-label">redis名</label>';
+        appendRedis += '<select class="form-control case-select" id="redisOperationType" name="redisOperationType">';
+        appendRedis += '<option values="true" tabindex="1">set</option>';
+        appendRedis += '<option values="false" tabindex="2">del</option>';
+        appendRedis += '<option values="false" tabindex="3">expire</option>';
+        appendRedis += '</select>';
+        appendRedis += '</div>';
+        appendRedis += '<div id="key-' + redisId + '" class="form-group ">';
+        appendRedis += '<label>key</label>';
+        appendRedis += '<input class="form-control">';
+        appendRedis += '</div>';
+        appendRedis += '<div id="value-' + redisId + '" class="form-group ">';
+        appendRedis += '<label>value</label>';
+        appendRedis += '<input class="form-control">';
+        appendRedis += '</div>';
+        appendRedis += '<div id="time-' + redisId + '" class="form-group ">';
+        appendRedis += '<label>time</label>';
+        appendRedis += '<input class="form-control">';
+        appendRedis += '</div>';
+        appendRedis += '</div>';
+        appendRedis += '</div>';
+        appendRedis += '<button  class="btn btn-default dropdown-toggle minus" type="button" name="minus" data-toggle="dropdown">';
+        appendRedis += '<span class="glyphicon glyphicon-minus"></span>';
+        appendRedis += '</button>';
+        appendRedis += '</div>';
+
+        var value = $(this).attr("tabindex");
+        if (value == 1) {
+            $("#prepare").append(appendDb);
+
+        } else if (value == 2) {
+            $("#prepare").append(appendRedis);
+
+        } else if (value == 3) {
+            $("#clear").append(appendDb);
+        } else if (value == 4) {
+            $("#clear").append(appendRedis);
+        }
+
+
+        $("button[name='minus']").click(function () {
+            $(this).parent().remove();
+        });
+
+        $("select[name='redisOperationType']").change(function () {
+            var value = $(this).val();
+            var keyId = 'key-' + redisId;
+            var valueId = 'value-' + redisId;
+            var timeId = 'time-' + redisId;
+            var keyClass = $("#" + keyId).hasClass("case-not-show");
+            var valueClass = $("#" + valueId).hasClass("case-not-show");
+            var timeClass = $("#" + timeId).hasClass("case-not-show");
+            if (value == 'del') {
+                if (keyClass) {
+                    $("#" + keyId).removeClass("case-not-show");
+                }
+
+                if (!valueClass) {
+                    $("#" + valueId).addClass("case-not-show");
+                }
+
+                if (!timeClass) {
+                    $("#" + timeId).addClass("case-not-show");
+                }
+
+            } else if (value == 'set') {
+                if (keyClass) {
+                    $("#" + keyId).removeClass("case-not-show");
+                }
+                if (valueClass) {
+                    $("#" + valueId).removeClass("case-not-show");
+                }
+                if (timeClass) {
+                    $("#" + timeId).removeClass("case-not-show");
+                }
+            } else if (value == 'expire') {
+                if (keyClass) {
+                    $("#" + keyId).removeClass("case-not-show");
+                }
+                if (!valueClass) {
+                    $("#" + valueId).addClass("case-not-show");
+                }
+                if (timeClass) {
+                    $("#" + timeId).removeClass("case-not-show");
+                }
+            }
+
+        });
+    });
+
 
 </script>
 </body>
