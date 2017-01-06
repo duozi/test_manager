@@ -233,7 +233,7 @@
 											</tr>
 
 											<tr>
-												<td><i class="icon icon-plus-sign"></i></td>
+												<td style=" border: none"><span  id="addHttpInterface" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加接口</span></td>
 											</tr>
 										</tbody>
 									</table>
@@ -302,6 +302,25 @@
 				} else if(value == "http"  && !$(this).is(':checked')){
 					$("#http-form-div").removeClass("in");
 				}
+			}
+	);
+
+	$("#addHttpInterface").click(
+			function(){
+				var html = "<tr><div class='row'><form id='http-request-form'><div class='col-xs-3'><td>";
+				html += "<input type='text' class='form-control' placeholder='接口名称'></td>";
+				html += '</div> <div class="col-xs-5"><td>';
+				html += '<input type="text" class="form-control" placeholder="请求路径"></td>';
+				html += '</div> <div class="col-xs-3"> <td> ';
+				html += '<select class="form-control" id="httpType" name="httpType"> <#if httpTypeList ??>';
+				html += '<#list httpTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list>';
+				html += '</#if></select> </td> </div>';
+				html += '<div class="col-xs-4"> <td> <select class="form-control" id="requestType" name="requestType"> <#if requestTypeList ??>';
+				html += '<#list requestTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
+				html += '</td> </div> <div class="col-xs-5"> <td> <select class="form-control" id="contentType" name="contentType">';
+				html += '<#if contentTypeList ??><#list contentTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
+				html += '</td> </div><div class="col-xs-5"><td><button type="submit" class="btn btn-info">保存</button></td></div></form></div> </tr>';
+				$(this).parent().parent().before(html);
 			}
 	);
 
