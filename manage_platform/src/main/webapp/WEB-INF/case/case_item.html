@@ -9,48 +9,70 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
 <body>
 <!-- 	 -->
-	<div class="panel-heading">
-		<ol class="breadcrumb">
-		  	<li><a href="#">接口自动化</a></li>
-		  	<li><a href="#">测试计划</a></li>
-		  	<li class="active">用例列表</li>
-		</ol>
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">接口自动化</a></li>
+        <li><a href="#">测试用例管理</a></li>
+        <li class="active">新增测试用例</li>
+    </ol>
+</div>
+<form role="form" class="case-form">
+    <div class="form-group">
+        <label>用例名</label>
+        <input class="form-control">
     </div>
-    <form action="">
-    </form>
-	<div class="panel-body">
-	    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-	</div>
+    <div class="case-form">
+            <label>数据准备</label>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">数据库操作</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">redis操作</a></li>
+                </ul>
+            </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>数据库操作</label>
+        <div class="form-group">
+            <label>数据库名</label>
+            <div class="dropdown from-group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                    a
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">a</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">b</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">c</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">d</a></li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label>sql</label>
+                <input class="form-control">
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
 
 <!-- jQuery -->
 <script type="text/javascript">
 
-    $('#btn').on('click',function(){
-        var value = $('#interface').val();
-        console.log('value',value);
+    $('#add').on('click', function () {
+
         var appendDiv = '<div>frae</div>';
         $('#formGroup').append(appendDiv);
 
@@ -59,7 +81,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
-            data: {'RID':value},//参数，这里是一个json语句
+            data: {'RID': value},//参数，这里是一个json语句
             success: function (data) {
                 var result = data;
                 alert(result);
