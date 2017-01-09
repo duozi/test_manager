@@ -31,7 +31,7 @@ public class PooledDbSource implements DataSource,InitializingBean {
     DbPropertiesService dbPropertiesService;
 
     private final static Map<String, DataSource> DATASOURCEWRAPPERS = new HashMap<String, DataSource>();
-    private List<DbPropertiesDto> dbPropertiesList = new ArrayList<>();
+    private List<DbPropertiesDto> dbPropertiesList = new ArrayList();
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -40,7 +40,7 @@ public class PlanListServiceImpl implements PlanListService {
      */
     @Override
     public CommonResult<PlanDto> getPlanById(PlanDto planDto) {
-        CommonResult<PlanDto> result = new CommonResult<>();
+        CommonResult<PlanDto> result = new CommonResult();
         if (planDto.getId() == 0) {
             result.setCode(ResultMsgEnum.PARAMS_ERROR.getReturnCode());
             result.setMessage(ResultMsgEnum.PARAMS_ERROR.getReturnMsg());
@@ -232,7 +232,7 @@ public class PlanListServiceImpl implements PlanListService {
      */
     @Override
     public CommonResult<SystemDto> getSystemByParam(SystemDto systemDto) {
-        CommonResult<SystemDto> result = new CommonResult<>();
+        CommonResult<SystemDto> result = new CommonResult();
         result.setCode(ResultMsgEnum.SUCCESS.getReturnCode());
         result.setMessage(ResultMsgEnum.SUCCESS.getReturnMsg());
         try {
