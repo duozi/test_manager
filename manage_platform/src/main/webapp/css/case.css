@@ -79,7 +79,7 @@
 
 .form-group label {
     width: 20%;
-    margin-top: 2%;
+
 }
 
 form .choose-sys {
@@ -124,7 +124,7 @@ form .choose-sys {
 }
 
 .case-form .form-control {
-    width: auto;
+    width: 50%;
 }
 
 .case-form .text-control {
@@ -175,4 +175,17 @@ form .choose-sys {
 .case-not-show {
     display: none;
 
+}
+
+.case-choose{
+    width: 50% !important;
+
+}
+
+.operation{
+    margin-top: 5%;
+}
+
+.operation-width{
+    width: 180%;
 }

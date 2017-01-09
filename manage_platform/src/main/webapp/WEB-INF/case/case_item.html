@@ -34,23 +34,130 @@
                     <label>用例ID</label>
                     <input class="form-control col-lg-5">
                 </div>
-                <div id="prepare">
-                    <div class="form-group ">
-                        <label>数据准备</label>
-                        <div class="dropdown  col-lg-5 plus">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                    data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation"><a role="menuitem" tabindex="1" name="operationType">数据库操作</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="2"
-                                                           name="operationType">redis操作</a></li>
-                            </ul>
-                        </div>
+                <div class="form-group ">
+                    <label>所属测试集</label>
+                    <select class="form-control col-lg-5">
+                        <option value="" disabled selected>选择测试集名称</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label>所属系统</label>
+                    <select class="form-control col-lg-5">
+                        <option value="" disabled selected>选择系统名称</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label>所属接口</label>
+                    <select class="form-control col-lg-5">
+                        <option value="" disabled selected>选择接口名称</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">数据准备/数据清除</label>
+                    <div class="choose-sys case-choose">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="prepare" name="operationType">数据准备
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="clear" name="operationType">数据清除
+                        </label>
                     </div>
                 </div>
+                <div id="prepare-form-div" class="panel panel-default panel-collapse collapse operation-width">
+                    <form id="prepare-form" class="edit-form  panel panel-default col-lg-10">
+                        <!-- 数据准备 -->
+                        <label class="control-label col-lg-4 title-label">数据准备</label>
+
+
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                数据库操作
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>数据库名</th>
+                                            <th>sql语句</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        <tr>
+                                            <td style=" border: none"><span id="addDbOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                redis操作
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>redis名</th>
+                                            <th>redis操作类型</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        <tr>
+                                            <td style=" border: none"><span id="addRedisOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </form>
+                </div>
+
+
+                <!--<div id="prepare">-->
+                <!--<div class="form-group ">-->
+                <!--<label>数据准备</label>-->
+                <!--<div class="dropdown  col-lg-5 plus">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"-->
+                <!--data-toggle="dropdown">-->
+                <!--<span class="glyphicon glyphicon-plus"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
+                <!--<li role="presentation"><a role="menuitem" tabindex="1" name="operationType">数据库操作</a>-->
+                <!--</li>-->
+                <!--<li role="presentation"><a role="menuitem" tabindex="2"-->
+                <!--name="operationType">redis操作</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
                 <div class="form-group param-text">
                     <label>请求参数</label>
                     <textarea class=" form-control  text-control "></textarea>
@@ -79,41 +186,69 @@
 </div>
 
 
-<!-- jQuery -->
-<script type="text/javascript">
-
-    $('#add').on('click', function () {
-
-        var appendDiv = '<div>frae</div>';
-        $('#formGroup').append(appendDiv);
-
-        $.ajax({
-            type: "get",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
-            data: {'RID': value},//参数，这里是一个json语句
-            success: function (data) {
-                var result = data;
-                alert(result);
-                $('#getData').html(result);
-
-            },
-            error: function (err) {
-                alert("err:" + err);
-            }
-        });
-    });
-
-</script>
-
-
 <script type="text/javascript">
     var dbId = 0;
     var redisId = 0;
 
+    $("input[name='operationType']").click(
+            function () {
+                var value = $(this).val();
+                if (value == "prepare" && $(this).is(':checked')) {
+                    $("#prepare-form-div").addClass("in");
+                } else if (value == "prepare" && !$(this).is(':checked')) {
+                    $("#prepare-form-div").removeClass("in");
+                }
+                if (value == "clear" && $(this).is(':checked')) {
+                    $("#http-form-div").addClass("in");
+                } else if (value == "http" && !$(this).is(':checked')) {
+                    $("#http-form-div").removeClass("in");
+                }
+            }
+    );
+    $("#addDbOperation").click(function () {
+        var html = '<tr>';
+        html += '<div class="row">';
+        html += '<form id="http-request-form" class="">';
+        html += '<div>';
+        html += '<div class="col-xs-2">';
+        html += '<td>';
+        html += '<select class="form-control" id="dbName" name="dbName">';
+        html += '<#if contentTypeList ??>';
+        html += '<#list contentTypeList as item>';
+        html += '<option values="${item.getId()}">${item.getName()} </option>';
+        html += '</#list>';
+        html += '</#if>';
+        html += '</select>';
+        html += '</td>';
+        html += '</div>';
+        html += '<div class="col-xs-9">';
+        html += '<td><input type="text" class="form-control" placeholder="sql语句"></td>';
+        html += '</div>';
 
-    $("a[name='operationType']").click(function () {
+        html += '<div class="col-xs-2">';
+        html += '<td>';
+        html += '<button type="submit" class="btn btn-info">保存</button>';
+        html += '</td>';
+
+        html += '</div>';
+        html += '<div class="col-xs-2">';
+        html += '<td>';
+        html += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+        html += '</td>';
+        html += '</div>';
+        html += '</div>';
+        html += '</form>';
+        html += '</div>';
+        html += '</tr>';
+        $(this).parent().parent().before(html);
+
+
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        })
+    })
+
+    $("a[name='aoperationType']").click(function () {
         dbId += 1;
         redisId += 1;
         var appendDb = '<div class="form-group">';
