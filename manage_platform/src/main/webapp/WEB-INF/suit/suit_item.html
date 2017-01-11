@@ -2,18 +2,8 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <script type="text/javascript" src="../js/bootstrap-select.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.css">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-select/bootstrap-select.css">
 
 </head>
 
@@ -55,7 +45,7 @@
 				</form>
 				<!-- 接口配置，dubbo -->
 				<div id="dubbo-form-div" class="panel-collapse collapse">
-					<form id="dubbo-form" class="edit-form panel panel-default col-lg-10">
+					<form id="dubbo-form" class="edit-form panel panel-default col-lg-11">
 						<label class="control-label col-lg-6 title-label" >dubbo接口属性配置</label>
 						<div class="form-group">
 							<label class="control-label" for="zkOrNot">调用方式</label>
@@ -154,7 +144,7 @@
 
 				<!-- 接口配置，http -->
 				<div id="http-form-div" class="panel-collapse collapse">
-					<form id="http-form"  class="edit-form col-lg-10 panel panel-default">
+					<form id="http-form"  class="edit-form col-lg-11 panel panel-default">
 						<!-- http接口 -->
 						<label class="control-label col-lg-4 title-label" >http接口属性配置</label>
 						<div class="form-group">
@@ -172,6 +162,8 @@
 										<thead>
 										<tr>
 											<th>接口名称</th>
+                                            <th>接口描述</th>
+                                            <th>选择系统</th>
 											<th>请求路径</th>
 											<th>协议类型</th>
 											<th>请求方式</th>
@@ -182,6 +174,14 @@
 										<tbody>
 											<tr>
 												<td>例如：queryRiskService</td>
+                                                <td>接口1</td>
+                                                <td>
+                                                    <select class="form-control" id="systemId" name="httpType">
+                                                        <option values="1">汇法</option>
+                                                        <option values="2">华征征信</option>
+                                                        <option values="3">车行易</option>
+                                                    </select>
+                                                </td>
 												<td>tongduncredit-service/tongduncredit/queryRiskService</td>
 												<td>http</td>
 												<td>post</td>
@@ -193,7 +193,19 @@
 														<div class="col-xs-3">
 															<td><input type="text" class="form-control" placeholder="接口名称"></td>
 														</div>
-														<div class="col-xs-5">
+                                                        <div class="col-xs-3">
+                                                            <td><input type="text" class="form-control" placeholder="接口描述"></td>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <td>
+                                                            <select class="form-control" id="" name="httpType">
+                                                                <option values="1">汇法</option>
+                                                                <option values="2">华征征信</option>
+                                                                <option values="3">车行易</option>
+                                                            </select>
+                                                            </td>
+                                                        </div>
+														<div class="col-xs-3">
 															<td><input type="text" class="form-control" placeholder="请求路径"></td>
 														</div>
 														<div class="col-xs-3">
@@ -207,7 +219,7 @@
 																</select>
 															</td>
 														</div>
-														<div class="col-xs-4">
+														<div class="col-xs-3">
 															<td>
 																<select class="form-control" id="requestType" name="requestType">
 																	<#if requestTypeList ??>
@@ -218,7 +230,7 @@
 																</select>
 															</td>
 														</div>
-														<div class="col-xs-5">
+														<div class="col-xs-3">
 															<td>
 																<select class="form-control" id="contentType" name="contentType">
 																	<#if contentTypeList ??>
@@ -255,91 +267,83 @@
 	</div>
 
    <!-- /.container-fluid -->
+    <script type="text/javascript">
 
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
+        $('#btn').on('click',function(){
+            var value = $('#interface').val();
+            console.log('value',value);
+            var appendDiv = '<div>frae</div>';
+            $('#formGroup').append(appendDiv);
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+            $.ajax({
+                type: "get",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
+                data: {'RID':value},//参数，这里是一个json语句
+                success: function (data) {
+                    var result = data;
+                    alert(result);
+                    $('#getData').html(result);
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
-<script type="text/javascript">
-
-    $('#btn').on('click',function(){
-        var value = $('#interface').val();
-        console.log('value',value);
-        var appendDiv = '<div>frae</div>';
-        $('#formGroup').append(appendDiv);
-
-        $.ajax({
-            type: "get",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
-            data: {'RID':value},//参数，这里是一个json语句
-            success: function (data) {
-                var result = data;
-                alert(result);
-                $('#getData').html(result);
-
-            },
-            error: function (err) {
-                alert("err:" + err);
-            }
-        });
-    });
-
-	$("input[name='interfaceType']").click(
-			function(){
-				var value = $(this).val();
-				if(value == "dubbo" && $(this).is(':checked')){
-					$("#dubbo-form-div").addClass("in");
-				} else if(value == "dubbo" && !$(this).is(':checked')){
-					$("#dubbo-form-div").removeClass("in");
-				}
-				if(value == "http"  && $(this).is(':checked')){
-					$("#http-form-div").addClass("in");
-				} else if(value == "http"  && !$(this).is(':checked')){
-					$("#http-form-div").removeClass("in");
-				}
-			}
-	);
-
-	$("#addHttpInterface").click(
-			function(){
-				var html = "<tr><div class='row'><form id='http-request-form'><div class='col-xs-3'><td>";
-				html += "<input type='text' class='form-control' placeholder='接口名称'></td>";
-				html += '</div> <div class="col-xs-5"><td>';
-				html += '<input type="text" class="form-control" placeholder="请求路径"></td>';
-				html += '</div> <div class="col-xs-3"> <td> ';
-				html += '<select class="form-control" id="httpType" name="httpType"> <#if httpTypeList ??>';
-				html += '<#list httpTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list>';
-				html += '</#if></select> </td> </div>';
-				html += '<div class="col-xs-4"> <td> <select class="form-control" id="requestType" name="requestType"> <#if requestTypeList ??>';
-				html += '<#list requestTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
-				html += '</td> </div> <div class="col-xs-5"> <td> <select class="form-control" id="contentType" name="contentType">';
-				html += '<#if contentTypeList ??><#list contentTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
-				html += '</td> </div><div class="col-xs-5"><td><button type="submit" class="btn btn-info">保存</button></td></div></form></div> </tr>';
-				$(this).parent().parent().before(html);
-			}
-	);
-
-    $(window).on('load', function () {
-
-
-        $('.selectpicker').selectpicker({
-            'selectedText': 'cat'
+                },
+                error: function (err) {
+                    alert("err:" + err);
+                }
+            });
         });
 
+        $("input[name='interfaceType']").click(
+                function(){
+                    var value = $(this).val();
+                    if(value == "dubbo" && $(this).is(':checked')){
+                        $("#dubbo-form-div").addClass("in");
+                    } else if(value == "dubbo" && !$(this).is(':checked')){
+                        $("#dubbo-form-div").removeClass("in");
+                    }
+                    if(value == "http"  && $(this).is(':checked')){
+                        $("#http-form-div").addClass("in");
+                    } else if(value == "http"  && !$(this).is(':checked')){
+                        $("#http-form-div").removeClass("in");
+                    }
+                }
+        );
 
-        // $('.selectpicker').selectpicker('hide');
-    });
+        $("#addHttpInterface").click(
+                function(){
+                    var html = "<tr><div class='row'><form id='http-request-form'><div class='col-xs-3'><td>";
+                    html += "<input type='text' class='form-control' placeholder='接口名称'></td>";
+                    html += '</div> <div class="col-xs-5"><td>';
+                    html += '<input type="text" class="form-control" placeholder="请求路径"></td>';
+                    html += '</div> <div class="col-xs-3"> <td> ';
+                    html += '<select class="form-control" id="httpType" name="httpType"> <#if httpTypeList ??>';
+                    html += '<#list httpTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list>';
+                    html += '</#if></select> </td> </div>';
+                    html += '<div class="col-xs-4"> <td> <select class="form-control" id="requestType" name="requestType"> <#if requestTypeList ??>';
+                    html += '<#list requestTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
+                    html += '</td> </div> <div class="col-xs-5"> <td> <select class="form-control" id="contentType" name="contentType">';
+                    html += '<#if contentTypeList ??><#list contentTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
+                    html += '</td> </div><div class="col-xs-5"><td><button type="submit" class="btn btn-info">保存</button></td></div></form></div> </tr>';
+                    $(this).parent().parent().before(html);
+                }
+        );
 
-</script>
+        $(document).ready(function() {
+
+
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+
+            /*  $('.selectpicker option').click(
+             function(){
+             alert($('.selectpicker').val());
+             }
+             );*/
+        });
+
+    </script>
+
 
 </body>
 

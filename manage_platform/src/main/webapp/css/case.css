@@ -85,12 +85,8 @@ form .choose-sys {
     width: inherit;
 }
 
-.edit-form {
-    margin-left: 10%;
-}
-
 #http-form, #dubbo-form {
-    margin-left: 11%;
+    margin-left: 1%;
 }
 
 .title-label {
@@ -182,4 +178,9 @@ form .choose-sys {
 
 .modal-add {
     min-height: 400px;
+}
+
+#dubbo-form-div .bootstrap-select {
+    margin-left: -2% !important;
+    width: 90% !important;
 }
