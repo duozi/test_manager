@@ -9,6 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <script type="text/javascript" src="../js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -34,20 +40,6 @@
 				             <label class="control-label" for="name" >测试集名称</label>
 				             <input type="text" class="form-control" id="suitName" name="name" placeholder="请输入测试集名称">
 				         </div>
-				         <div class="form-group">
-		                      <label class="control-label" for="systemId">选择系统</label>
-		                      <div class="choose-sys">
-			                      <label class="checkbox-inline">
-			                          <input type="checkbox">牛贷系统
-			                      </label>
-			                      <label class="checkbox-inline">
-			                          <input type="checkbox">支付平台
-			                      </label>
-			                      <label class="checkbox-inline">
-			                          <input type="checkbox">管理平台
-			                      </label>
-		                      </div>
-		                  </div>
 						<div class="form-group">
 		                      <label class="control-label" for="interfaceType">被测接口类型</label>
 		                      <div class="choose-sys">
@@ -59,19 +51,12 @@
 			                      </label>
 		                      </div>
 						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-info">保存</button>
-						</div>
 					</div>
 				</form>
 				<!-- 接口配置，dubbo -->
 				<div id="dubbo-form-div" class="panel-collapse collapse">
 					<form id="dubbo-form" class="edit-form panel panel-default col-lg-10">
 						<label class="control-label col-lg-6 title-label" >dubbo接口属性配置</label>
-						<div class="form-group ">
-							<label class="control-label" for="name" >接口名称</label>
-							<input type="text" class="form-control" id="planName" name="name" placeholder="请输入dubbo接口名称">
-						</div>
 						<div class="form-group">
 							<label class="control-label" for="zkOrNot">调用方式</label>
 							<select class="form-control" id="zkOrNot" name="zkOrNot">
@@ -82,6 +67,22 @@
 						<div class="form-group">
 							<label class="control-label" for="zkIP" >zookeeper地址</label>
 							<input type="text" class="form-control" id="zkIP" name="zkIP" placeholder="请输入注册中心地址，多个地址以分号隔开">
+						</div>
+						<div class="form-group">
+							<label class="control-label">选择系统</label>
+                            <select id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true">
+                                <option value="1">系统1</option>
+
+                                <option value="2">系统2</option>
+
+                                <option value="3">系统3</option>
+
+                                <option selected value="4">系统4</option>
+
+                                <option value="5">系统5</option>
+
+                                </optgroup>
+                            </select>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -132,7 +133,10 @@
 															<td><input type="text" class="form-control" placeholder="超时"></td>
 														</div>
 														<div class="col-xs-5">
-															<td><button type="submit" class="btn btn-info">保存</button></td>
+															<td>
+																<button type="submit" class="btn btn-info">保存</button>
+																<a href="../case/case_item" class="btn btn-info">点击这里去创建用例</a>
+															</td>
 														</div>
 													</form>
 												</div>
@@ -323,6 +327,17 @@
 				$(this).parent().parent().before(html);
 			}
 	);
+
+    $(window).on('load', function () {
+
+
+        $('.selectpicker').selectpicker({
+            'selectedText': 'cat'
+        });
+
+
+        // $('.selectpicker').selectpicker('hide');
+    });
 
 </script>
 

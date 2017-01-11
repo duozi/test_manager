@@ -79,7 +79,6 @@
 
 .form-group label {
     width: 20%;
-    margin-top: 2%;
 }
 
 form .choose-sys {
@@ -165,7 +164,7 @@ form .choose-sys {
 }
 
 .modal-time {
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .time-form label {
@@ -175,4 +174,12 @@ form .choose-sys {
 .case-not-show {
     display: none;
 
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-add {
+    min-height: 400px;
 }
