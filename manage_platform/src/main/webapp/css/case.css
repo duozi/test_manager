@@ -128,14 +128,12 @@ form .choose-sys {
 }
 
 .case-form .text-control {
-    width: 80%;
-    height: auto;
+    width: 100%;
+    height: 200px;
     resize: none;
 }
 
-.param-text {
-    height: 150px;
-}
+
 
 .db-operation-div {
     height: 200px;
@@ -172,11 +170,6 @@ form .choose-sys {
     width: 200px;
 }
 
-.case-not-show {
-    display: none;
-
-}
-
 .case-choose{
     width: 50% !important;
 
@@ -188,4 +181,11 @@ form .choose-sys {
 
 .operation-width{
     width: 180%;
+}
+.case-select{
+    width: 70% !important;
+}
+
+.case-table select ,.case-table input{
+    width: 100% !important;
 }
