@@ -79,7 +79,7 @@
 
 .form-group label {
     width: 20%;
-
+    margin-top: 2%;
 }
 
 form .choose-sys {
@@ -133,7 +133,9 @@ form .choose-sys {
     resize: none;
 }
 
-
+.param-text {
+    height: 150px;
+}
 
 .db-operation-div {
     height: 200px;
@@ -163,7 +165,7 @@ form .choose-sys {
 }
 
 .modal-time {
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .time-form label {
@@ -188,4 +190,13 @@ form .choose-sys {
 
 .case-table select ,.case-table input{
     width: 100% !important;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.modal-add {
+    min-height: 400px;
 }
