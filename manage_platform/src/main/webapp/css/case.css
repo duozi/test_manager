@@ -79,6 +79,7 @@
 
 .form-group label {
     width: 20%;
+    margin-top: 2%;
 }
 
 form .choose-sys {
@@ -119,12 +120,12 @@ form .choose-sys {
 }
 
 .case-form .form-control {
-    width: auto;
+    width: 50%;
 }
 
 .case-form .text-control {
-    width: 80%;
-    height: auto;
+    width: 100%;
+    height: 200px;
     resize: none;
 }
 
@@ -167,10 +168,26 @@ form .choose-sys {
     width: 200px;
 }
 
-.case-not-show {
-    display: none;
+.case-choose{
+    width: 50% !important;
 
 }
+
+.operation{
+    margin-top: 5%;
+}
+
+.operation-width{
+    width: 180%;
+}
+.case-select{
+    width: 70% !important;
+}
+
+.case-table select ,.case-table input{
+    width: 100% !important;
+}
+
 
 .hidden {
     display: none;
