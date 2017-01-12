@@ -305,10 +305,10 @@
                            <div class="form-group once-modal">
                                <label class="control-label" >执行时间</label>
                                <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
+                               <button class="btn btn-default once-modal" type="button" id="addTime">
+                                   <span class="glyphicon glyphicon-plus"></span>
+                               </button>
                            </div>
-                           <button class="btn btn-default once-modal" type="button" id="addTime">
-                               <span class="glyphicon glyphicon-plus"></span>
-                           </button>
                            <div class="form-group circulation-modal hidden">
                                <label class="control-label" >循环执行表达式</label>
                                <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
@@ -361,10 +361,10 @@
                             <div class="form-group once">
                                 <label class="control-label" >执行时间</label>
                                 <input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
+                                <button class="btn btn-default once" type="button" id="add-time">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
                             </div>
-                            <button class="btn btn-default once" type="button" id="add-time">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
                             <div class="form-group circulation hidden">
                                 <label class="control-label" >循环执行表达式</label>
                                 <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
@@ -394,14 +394,14 @@
     var countNum = 1;
     $("#addTime").click(function(){
         countNum += 1;
-        var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
-            html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> </div>';
+        var html = ' <div class="add-time-div once-modal"><div class="form-group"><label class="control-label" ></label>';
+            html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
             html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
-            html += '<span class="glyphicon glyphicon-minus"></span></button></div>';
-        $(this).after(html);
+            html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+        $(this).parent().after(html);
 
         $("#deleteTime" +countNum).click(function(){
-            $(this).parent().remove();
+            $(this).parent().parent().remove();
         });
 
     });
@@ -422,13 +422,13 @@
     $("#add-time").click(function(){
         countNum += 1;
         var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
-        html += '<input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> </div>';
+        html += '<input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">';
         html += '  <button class="btn btn-default " type="button" id="delete-time'+ countNum +'" >';
-        html += '<span class="glyphicon glyphicon-minus"></span></button></div>';
-        $(this).after(html);
+        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+        $(this).parent().after(html);
 
         $("#delete-time" +countNum).click(function(){
-            $(this).parent().remove();
+            $(this).parent().parent().remove();
         });
 
     });
