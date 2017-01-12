@@ -79,7 +79,7 @@
 
 .form-group label {
     width: 20%;
-    margin-top: 2%;
+    /*margin-top: 2%;*/
 }
 
 form .choose-sys {
@@ -199,4 +199,15 @@ form .choose-sys {
 
 .modal-add {
     min-height: 400px;
+}
+
+.top-label{
+    margin-top: 1%;
+}
+
+#leave{
+    margin-left: 5%;
+}
+#mb_msg{
+    text-align: center;
 }
