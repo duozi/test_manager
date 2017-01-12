@@ -37,11 +37,6 @@
     border: none;
 }
 
-.form-group label {
-    margin-top: auto;
-    font-weight: 500;
-}
-
 .form-group {
     display: inline-flex;
 }
@@ -79,7 +74,7 @@
 
 .form-group label {
     width: 20%;
-    margin-top: 2%;
+    font-weight: 500;
 }
 
 form .choose-sys {
@@ -200,4 +195,38 @@ form .choose-sys {
 #dubbo-form-div .bootstrap-select {
     margin-left: -2% !important;
     width: 90% !important;
+}
+
+.add-service-form , .add-project-form{
+    margin-left: 10%;
+}
+
+.modal-add-project {
+    min-height: 200px;
+}
+
+.modal-add-service {
+    min-height: 300px;
+}
+
+.modal-add .form-group ,.modal-time .form-group {
+    margin-left: 10%;
+}
+
+.modal .form-group label {
+    width: 30%;
+}
+
+.modal-time .once-modal input,.modal-add .once input{
+    margin-left: 3%;
+}
+
+.company-panel,.department-panel {
+    min-height: 300px;
+    width: 40%;
+}
+
+.company-manage-panel {
+    display: -webkit-box;
+    padding-left: 2%;
 }
