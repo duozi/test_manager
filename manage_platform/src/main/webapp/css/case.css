@@ -131,7 +131,7 @@ form .choose-sys {
 .case-form .text-control {
     width: 100%;
     height: 200px;
-    resize: none;
+    resize: vertical;
 }
 
 .param-text {
@@ -180,6 +180,7 @@ form .choose-sys {
 
 .operation{
     margin-top: 5%;
+    margin-bottom: 0 !important;
 }
 
 .operation-width{
