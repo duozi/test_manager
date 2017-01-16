@@ -2,17 +2,9 @@
 <html lang="en">
 
 <head>
-
-    <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
+
 
             $('#chooseSuit').click (function () {
                 //alert("chooseSuit");
@@ -23,11 +15,11 @@
             });
 
             $('#chooseTime').click (function () {
-               // alert("chooseTime");
+                // alert("chooseTime");
             });
 
             $('#excutePlan').click (function () {
-               // alert("excutePlan");
+                // alert("excutePlan");
             });
 
             $('#deletePlan').click (function () {
@@ -290,26 +282,26 @@
                     <h4 class="modal-title" id="timeListLabel">执行时间配置</h4>
                 </div>
                 <div class="modal-body modal-time">
-                   <form class="col-lg-14 edit-form time-form">
-                           <div class="form-group">
-                               <label class="control-label" >执行时间类型</label>
-                               <select class="form-control" id="excuteTimeType">
-                                   <option value="once-modal">单次执行</option>
-                                   <option value="circulation-modal">循环执行</option>
-                               </select>
-                           </div>
-                           <div class="form-group once-modal">
-                               <label class="control-label" >执行时间</label>
-                               <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
-                               <button class="btn btn-default once-modal" type="button" id="addTime">
-                                   <span class="glyphicon glyphicon-plus"></span>
-                               </button>
-                           </div>
-                           <div class="form-group circulation-modal hidden">
-                               <label class="control-label" >循环执行表达式</label>
-                               <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
-                           </div>
-                   </form>
+                    <form class="col-lg-14 edit-form time-form">
+                        <div class="form-group">
+                            <label class="control-label" >执行时间类型</label>
+                            <select class="form-control" id="excuteTimeType">
+                                <option value="once-modal">单次执行</option>
+                                <option value="circulation-modal">循环执行</option>
+                            </select>
+                        </div>
+                        <div class="form-group once-modal">
+                            <label class="control-label" >执行时间</label>
+                            <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
+                            <button class="btn btn-default once-modal" type="button" id="addTime">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                        <div class="form-group circulation-modal hidden">
+                            <label class="control-label" >循环执行表达式</label>
+                            <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">保存</button>
@@ -391,9 +383,9 @@
     $("#addTime").click(function(){
         countNum += 1;
         var html = ' <div class="add-time-div once-modal"><div class="form-group"><label class="control-label" ></label>';
-            html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
-            html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
-            html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+        html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
+        html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
+        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
         $(this).parent().after(html);
 
         $("#deleteTime" +countNum).click(function(){
