@@ -2,141 +2,167 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-	 <!-- Bootstrap Core CSS -->
-	    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
-	    <!-- MetisMenu CSS -->
-	    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-	
-	    <!-- Custom CSS -->
-	    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-	
-	    <!-- Morris Charts CSS -->
-	    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-	
 	    <!-- Custom Fonts -->
 	    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!--datetimepicker-->
+        <link href="../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
+        <link href="../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+        <script src="../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script src="../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // 选择时间和日期
+                $(".form-datetime").datetimepicker(
+                        {
+                            weekStart: 1,
+                            todayBtn:  1,
+                            autoclose: 1,
+                            todayHighlight: 1,
+                            startView: 2,
+                            forceParse: 0,
+                            showMeridian: 1,
+                            format: "yyyy-mm-dd hh:ii",
+                            language: "zh-CN"
+                        });
+            });
+
+        </script>
 	</head>
-	<body>
-	
+    <body>
+    <div class="panel-heading">
+        <ol class="breadcrumb">
+            <li><a href="#">接口自动化</a></li>
+            <li><a href="#">测试报告管理</a></li>
+            <li><a href="active">测试结果管理</a></li>
+        </ol>
+    </div>
+
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Flot</h1>
+        <div class="col-lg-12">
+            <div class="panel panel-default ">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form role="form " class="select-form">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">系统</label>
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择系统名称</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">计划</label>
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择计划名称</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">环境</label>
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择环境名称</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">执行时间</label>
+                                <input type="text" class="form-control form-datetime" placeholder="如：2017-01-01 12:12">
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <input type="text" class="form-control form-datetime" placeholder="如：2017-09-01 12:12">
+                            </div>
+                            <div class="form-group col-lg-1">
+                                <button type="submit" class="btn btn-default">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive col-lg-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>报告编号</th>
+                                <th>测试系统</th>
+                                <th>测试计划</th>
+                                <th>执行环境</th>
+                                <th>测试集</th>
+                                <th>执行人</th>
+                                <th>执行时间</th>
+                                <th>执行持续时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>123123</th>
+                                <th>
+                                    牛贷系统
+                                </th>
+                                <th>
+                                    <a href="../plan/plan_item">牛贷测试计划</a>
+                                </th>
+                                <th>
+                                    测试环境1
+                                </th>
+                                <td>
+                                    <a href="../suit/suit_item">测试集1</a>，
+                                    <a href="../suit/suit_item">测试集2</a>
+                                </td>
+                                <th>小茜茜</th>
+                                <th>2016-12-09 23:23:23</th>
+                                <th>24s</th>
+                                <td>
+                                    <a type="button"   href="#" class="btn btn-warning">查看详情</a>
+                                    <a type="button"  class="btn btn-info">下载</a>
+                                    <a type="button" data-toggle="modal" data-target="#email" class="btn btn-default">发送结果</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
             </div>
-            <!-- /.col-lg-12 -->
+            <!-- /.panel -->
         </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-lg-12">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Line Chart Example
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <div class="flot-chart">
-                              <div class="flot-chart-content" id="flot-line-chart"></div>
-                          </div>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-12 -->
-              <div class="col-lg-6">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Pie Chart Example
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <div class="flot-chart">
-                              <div class="flot-chart-content" id="flot-pie-chart"></div>
-                          </div>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-6 -->
-              <div class="col-lg-6">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Multiple Axes Line Chart Example
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <div class="flot-chart">
-                              <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                          </div>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-6 -->
-              <div class="col-lg-6">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Moving Line Chart Example
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <div class="flot-chart">
-                              <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                          </div>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-6 -->
-              <div class="col-lg-6">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Bar Chart Example
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <div class="flot-chart">
-                              <div class="flot-chart-content" id="flot-bar-chart"></div>
-                          </div>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-6 -->
-              <div class="col-lg-12">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          Flot Charts Usage
-                      </div>
-                      <!-- /.panel-heading -->
-                      <div class="panel-body">
-                          <p>Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks, and interactive features. In SB Admin, we are using the most recent version of Flot along with a few plugins to enhance the user experience. The Flot plugins being used are the tooltip plugin for hoverable tooltips, and the resize plugin for fully responsive charts. The documentation for Flot Charts is available on their website, <a target="_blank" href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
-                          <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://www.flotcharts.org/">View Flot Charts Documentation</a>
-                      </div>
-                      <!-- /.panel-body -->
-                  </div>
-                  <!-- /.panel -->
-              </div>
-              <!-- /.col-lg-6 -->
-          </div>
-          <!-- /.row -->
-</body>
+        <!-- /.col-lg-12 -->
+        <!-- 新增测试计划弹框 -->
+        <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="emailLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="emailLabel">配置邮件收件人</h4>
+                    </div>
+                    <div class="modal-body modal-email">
+                        <form role="form " class="col-lg-12 ">
+                           <textarea type="text" name="emailAddress" placeholder="请输入邮箱地址，以分号隔开。例如：1234567@qq.com;xiaoming@sina.com"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">发送</button>
+                        <button type="button" class="btn btn-info">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    </body>
   <!-- jQuery -->
-    <!-- Flot Charts JavaScript -->
-    <script src="../vendor/flot/excanvas.min.js"></script>
-    <script src="../vendor/flot/jquery.flot.js"></script>
-    <script src="../vendor/flot/jquery.flot.pie.js"></script>
-    <script src="../vendor/flot/jquery.flot.resize.js"></script>
-    <script src="../vendor/flot/jquery.flot.time.js"></script>
-    <script src="../vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-    <script src="../data/flot-data.js"></script>
 </html>
