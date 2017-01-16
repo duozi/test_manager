@@ -2,17 +2,9 @@
 <html lang="en">
 
 <head>
-
-    <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
+
 
             $('#chooseSuit').click (function () {
                 //alert("chooseSuit");
@@ -23,11 +15,11 @@
             });
 
             $('#chooseTime').click (function () {
-               // alert("chooseTime");
+                // alert("chooseTime");
             });
 
             $('#excutePlan').click (function () {
-               // alert("excutePlan");
+                // alert("excutePlan");
             });
 
             $('#deletePlan').click (function () {
@@ -127,7 +119,7 @@
                                 <a type="button" id="chooseTime"  data-toggle="modal" data-target="#timeList" class="btn btn-default">配置执行时间</a>
                                 <a type="button" id="excutePlan" class="btn btn-primary">执行</a>
                                 <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
-                                <a href="../report/intf_report" type="button" class="btn btn-info">查看测试报告</a>
+                                <a href="../report/report_list" type="button" class="btn btn-info">查看测试报告</a>
                             </td>
                         </tr>
                         </tbody>
@@ -229,8 +221,7 @@
                         <tr >
                             <th>环境ID</th>
                             <th>环境描述</th>
-                            <th>环境ip</th>
-                            <th>端口号</th>
+                            <th>环境名称</th>
                             <th>创建人</th>
                             <th>选择</th>
                         </tr>
@@ -239,8 +230,7 @@
                         <tr>
                             <td>1</td>
                             <td>风控规则测试环境</td>
-                            <td>10.17.2.155</td>
-                            <td>10280</td>
+                            <td>测试环境1</td>
                             <td>高高</td>
                             <td>
                                 <label>
@@ -251,8 +241,7 @@
                         <tr>
                             <td>1</td>
                             <td>风控规则测试环境</td>
-                            <td>10.17.2.155</td>
-                            <td>10280</td>
+                            <td>测试环境2</td>
                             <td>高高</td>
                             <td>
                                 <label>
@@ -263,8 +252,7 @@
                         <tr>
                             <td>1</td>
                             <td>风控规则测试环境</td>
-                            <td>10.17.2.155</td>
-                            <td>10280</td>
+                            <td>测试环境3</td>
                             <td>高高</td>
                             <td>
                                 <label>
@@ -294,26 +282,26 @@
                     <h4 class="modal-title" id="timeListLabel">执行时间配置</h4>
                 </div>
                 <div class="modal-body modal-time">
-                   <form class="col-lg-14 edit-form time-form">
-                           <div class="form-group">
-                               <label class="control-label" >执行时间类型</label>
-                               <select class="form-control" id="excuteTimeType">
-                                   <option value="once-modal">单次执行</option>
-                                   <option value="circulation-modal">循环执行</option>
-                               </select>
-                           </div>
-                           <div class="form-group once-modal">
-                               <label class="control-label" >执行时间</label>
-                               <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
-                               <button class="btn btn-default once-modal" type="button" id="addTime">
-                                   <span class="glyphicon glyphicon-plus"></span>
-                               </button>
-                           </div>
-                           <div class="form-group circulation-modal hidden">
-                               <label class="control-label" >循环执行表达式</label>
-                               <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
-                           </div>
-                   </form>
+                    <form class="col-lg-14 edit-form time-form">
+                        <div class="form-group">
+                            <label class="control-label" >执行时间类型</label>
+                            <select class="form-control" id="excuteTimeType">
+                                <option value="once-modal">单次执行</option>
+                                <option value="circulation-modal">循环执行</option>
+                            </select>
+                        </div>
+                        <div class="form-group once-modal">
+                            <label class="control-label" >执行时间</label>
+                            <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
+                            <button class="btn btn-default once-modal" type="button" id="addTime">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                        <div class="form-group circulation-modal hidden">
+                            <label class="control-label" >循环执行表达式</label>
+                            <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">保存</button>
@@ -372,8 +360,8 @@
                             <div class="form-group">
                                 <label class="control-label" >执行环境</label>
                                 <select class="form-control" id="excute-environment">
-                                    <option value="1">10.17.2.168</option>
-                                    <option value="2">10.17.2.169</option>
+                                    <option value="1">测试环境1</option>
+                                    <option value="2">测试环境2</option>
                                 </select>
                             </div>
                         </div>
@@ -395,9 +383,9 @@
     $("#addTime").click(function(){
         countNum += 1;
         var html = ' <div class="add-time-div once-modal"><div class="form-group"><label class="control-label" ></label>';
-            html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
-            html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
-            html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+        html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
+        html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
+        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
         $(this).parent().after(html);
 
         $("#deleteTime" +countNum).click(function(){

@@ -86,19 +86,16 @@
 form .choose-sys {
     width: inherit;
 }
-
-.edit-form {
-    margin-left: 10%;
-}
-
+/*
 #http-form, #dubbo-form {
     margin-left: 1%;
-}
+}*/
 
 .title-label {
     margin-top: inherit;
     margin-left: -1em;
     margin-bottom: inherit;
+    font-weight: 700 !important;
 }
 
 .case-form {
@@ -234,7 +231,9 @@ form .choose-sys {
 
 .company-panel,.department-panel {
     min-height: 300px;
-    width: 40%;
+    max-height: 500px;
+    overflow: scroll;
+    width: 43%;
 }
 
 .company-manage-panel {
@@ -251,4 +250,34 @@ form .choose-sys {
 }
 #mb_msg{
     text-align: center;
+}
+
+.operation-panel {
+    width: 20%;
+}
+
+.modal-add-department{
+    min-height: 150px;
+}
+
+.modal-add-company {
+    min-height: 100px;
+}
+
+.add-company-form,.add-department-form {
+margin-left: 10%;
+}
+
+.modal-email {
+  min-height: 200px;
+}
+
+.modal-email form textarea {
+    width: 540px;
+    height: 134px;
+    border-radius: 4px;
+}
+
+.select-form label{
+    width:40%;
 }

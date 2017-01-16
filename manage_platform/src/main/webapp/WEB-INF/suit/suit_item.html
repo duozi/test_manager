@@ -45,7 +45,7 @@
 				</form>
 				<!-- 接口配置，dubbo -->
 				<div id="dubbo-form-div" class="panel-collapse collapse">
-					<form id="dubbo-form" class="edit-form panel panel-default col-lg-11">
+					<form id="dubbo-form" class="edit-form panel panel-default col-lg-12">
 						<label class="control-label col-lg-6 title-label" >dubbo接口属性配置</label>
 						<div class="form-group">
 							<label class="control-label" for="zkOrNot">调用方式</label>
@@ -76,7 +76,7 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								服务列表
+								系统1-服务列表
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
@@ -125,7 +125,7 @@
 														<div class="col-xs-5">
 															<td>
 																<button type="submit" class="btn btn-info">保存</button>
-																<a href="../case/case_item" class="btn btn-info">点击这里去创建用例</a>
+																<a href="../case/case_item">去创建用例</a>
 															</td>
 														</div>
 													</form>
@@ -144,14 +144,9 @@
 
 				<!-- 接口配置，http -->
 				<div id="http-form-div" class="panel-collapse collapse">
-					<form id="http-form"  class="edit-form col-lg-11 panel panel-default">
+					<form id="http-form"  class="edit-form col-lg-12 panel panel-default">
 						<!-- http接口 -->
-						<label class="control-label col-lg-4 title-label" >http接口属性配置</label>
-						<div class="form-group">
-							<label class="control-label" for="requestIP" >服务器地址</label>
-							<input type="text" class="form-control" id="requestIP" name="requestIP" placeholder="请求服务器地址，会从环境配置获取" readonly>
-						</div>
-
+						<span class="form-group" style="margin-top: 1em;"><label class="control-label col-lg-4 title-label" >http接口属性配置</label></span>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								接口列表
@@ -242,7 +237,10 @@
 															</td>
 														</div>
 														<div class="col-xs-5">
-															<td><button type="submit" class="btn btn-info">保存</button></td>
+															<td>
+																<button type="submit" class="btn btn-info">保存</button>
+																<a href="../case/case_item">去创建用例</a>
+															</td>
 														</div>
 													</form>
 												</div>
@@ -314,8 +312,10 @@
                     var html = "<tr><div class='row'><form id='http-request-form'><div class='col-xs-3'><td>";
                     html += "<input type='text' class='form-control' placeholder='接口名称'></td>";
                     html += '</div> <div class="col-xs-5"><td>';
-                    html += '<input type="text" class="form-control" placeholder="请求路径"></td>';
+                    html += '<input type="text" class="form-control" placeholder="接口描述"></td>';
+					html += '<div class="col-xs-3"> <td> <select class="form-control" id="" name="serviceName"> <option values="1">汇法</option> <option values="2">华征征信</option> <option values="3">车行易</option> </select> </td>';
                     html += '</div> <div class="col-xs-3"> <td> ';
+					html += '<input type="text" class="form-control" placeholder="请求路径"></td><div class="col-xs-3"> <td> ';
                     html += '<select class="form-control" id="httpType" name="httpType"> <#if httpTypeList ??>';
                     html += '<#list httpTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list>';
                     html += '</#if></select> </td> </div>';
