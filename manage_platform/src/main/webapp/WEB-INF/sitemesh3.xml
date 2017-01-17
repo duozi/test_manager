@@ -39,6 +39,10 @@
     <path>/environment/*</path>
     <decorator>/decorators/right_bar.ftl</decorator>
   </mapping>
+    <mapping>
+        <path>/project/*</path>
+        <decorator>/decorators/right_bar.ftl</decorator>
+    </mapping>
 
   <!-- 排除，不进行装饰的路径 -->
   <mapping path="/decorators/*" exclue="true"/>

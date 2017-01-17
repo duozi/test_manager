@@ -5,7 +5,6 @@
 }
 
 .sidebar {
-    height: 100%;
     margin-top: 0px !important;
 }
 
@@ -61,10 +60,6 @@
 
 .choose-sys {
     padding-left: initial;
-}
-
-.sidebar-nav {
-    height: 100%;
 }
 
 .navigation {
@@ -284,4 +279,16 @@ margin-left: 10%;
 
 .report_detail_table em{
     color: #00dd1c;
+}
+
+#addService .modal-add-service {
+    height:340px;
+}
+
+.suit-panel {
+    margin-left: 6.4%;
+}
+
+.suit-submit {
+    margin-left: 75%;
 }
