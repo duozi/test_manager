@@ -57,6 +57,7 @@
                     <input class="form-control col-lg-5">
                 </div>
                 <!--所属接口-->
+                <#if caseType != 2>
                 <div class="form-group ">
                     <label>所属接口</label>
                     <select class="form-control col-lg-5">
@@ -67,6 +68,7 @@
                         <option value="">5</option>
                     </select>
                 </div>
+                </#if>
                 <!--数据准备/数据清除-->
                 <div class="form-group">
                     <label class="control-label">数据准备/数据清除</label>
@@ -156,7 +158,7 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">参数配置</a>
+                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">参数设置</a>
                                 </li>
                                 <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">自定义参数</a>
                                 </li>
@@ -221,34 +223,22 @@
                 <!--集成用例-->
                 <div class="form-group <#if caseType==1 || caseType==null>hidden</#if>" id='integration'
                      style="width: 140%">
-                    <label style="margin-top:1%">调用case</label>
+                    <label style="margin-top:1%">选择用例</label>
                     <div class="panel panel-default " style="width: 125%">
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table case-table">
                                     <thead>
                                     <tr>
-                                        <th style="width: 22%">用例集</th>
-                                        <th style="width: 22%">系统名</th>
-                                        <th style="width: 22%">接口名</th>
-                                        <th style="width: 22%">case名</th>
+                                        <th style="width: 30%">系统名</th>
+                                        <th style="width: 30%">接口名</th>
+                                        <th style="width: 30%">用例名</th>
                                         <th>操作</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>
-                                            <select class="form-control">
-                                                <#if contentTypeList ??>
-                                                    <#list contentTypeList as item>
-                                                        <option values="${item.getId()}">
-                                                            ${item.getName()}
-                                                        </option>
-                                                    </#list>
-                                                </#if>
-                                            </select>
-                                        </td>
                                         <td>
                                             <select class="form-control">
                                                 <#if contentTypeList ??>
@@ -294,7 +284,7 @@
                                     <tr>
                                         <td style=" border: none">
                                                 <span id="addCase" class="btn btn-info">
-                                                    <i class="icon icon-plus-sign"></i>添加case</span>
+                                                    <i class="icon icon-plus-sign"></i>添加用例</span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -878,15 +868,6 @@
     })
 
     var choseCaseHtml = '<tr>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<select class="form-control">';
-    choseCaseHtml += '<#if contentTypeList ??>';
-    choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item.getId()}">${item.getName()} </option>';
-    choseCaseHtml += '</#list>';
-    choseCaseHtml += '</#if>';
-    choseCaseHtml += '</select>';
-    choseCaseHtml += '</td>';
     choseCaseHtml += '<td>';
     choseCaseHtml += '<select class="form-control">';
     choseCaseHtml += '<#if contentTypeList ??>';
