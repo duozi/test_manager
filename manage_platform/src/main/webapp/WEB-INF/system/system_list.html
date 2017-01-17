@@ -19,10 +19,6 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-     <!-- fileinput -->
-    <script src="../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
     <!--[endif]-->
 
 </head>
@@ -35,7 +31,7 @@
                  <div class="panel-heading">
                     <ol class="breadcrumb">
                         <li><a href="#">系统设置</a></li>
-					    <li class="active">service管理</li>
+					    <li class="active">产品线管理</li>
 					</ol>
                  </div>
 
@@ -60,19 +56,10 @@
                                        <option value="">平台部</option>
                                    </select>
                                </div>
-                               <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择项目</option>
-                                       <option value="">牛贷</option>
-                                       <option value="">风控</option>
-                                       <option value="">支付</option>
-                                       <option value="">征信公司</option>
-                                   </select>
-                               </div>
                                <div class="form-group col-lg-3">
                                    <button type="submit" class="btn btn-default">查询</button>
-                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增项目</a>
-                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addSystem"><i class=" fa-plus-circle fa"></i>新增service</a>
+                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增产品线</a>
+                                 <!--  <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addSystem"><i class=" fa-plus-circle fa"></i>新增service</a>-->
                                </div>
                            </div>
                        </form>
@@ -84,8 +71,7 @@
                                    <th>服务描述</th>
                                    <th>公司</th>
                                    <th>部门</th>
-                                   <th>项目名称</th>
-                                   <th>service</th>
+                                   <th>产品线名称</th>
                                    <th>创建人</th>
                                    <th>操作</th>
                                </tr>
@@ -97,7 +83,6 @@
                                    <td>牛鼎丰</td>
                                    <td>测试部</td>
                                    <td>征信公司</td>
-                                   <td>service</td>
                                    <td>小珊珊</td>
                                    <td>
                                    <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
@@ -112,79 +97,39 @@
            </div>
            <!-- /.panel -->
       	</div>
-        <!-- 新增系统弹框 -->
-        <div class="modal fade" id="addSystem" tabindex="-1" role="dialog" aria-labelledby="addSystemLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="addSystemLabel">新增service</h4>
-                    </div>
-                    <div class="modal-body modal-add-service">
-                        <form role="form " class="col-lg-12 edit-form add-service-form">
-                            <div class="col-lg-14 form-div">
-                                <div class="form-group">
-                                    <label class="control-label" >选择公司</label>
-                                    <select class="form-control" id="">
-                                        <option value="once">小牛在线</option>
-                                        <option value="circulation">牛鼎丰</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" >选择部门</label>
-                                    <select class="form-control" id="excute-time-type">
-                                        <option value="once">测试部</option>
-                                        <option value="circulation">开发部</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" >创建人</label>
-                                    <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" >选择项目</label>
-                                    <select class="form-control" id="projectId">
-                                        <option value="once">测试部</option>
-                                        <option value="circulation">开发部</option>
-                                    </select>
-                                  <!--  <button class="btn btn-default" type="button" id="addProject">
-                                        <span class="glyphicon glyphicon-plus" ></span>
-                                    </button>-->
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" >service名称</label>
-                                    <input type="text" class="form-control" id="planName" name="planName" placeholder="请输入service名称">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
+
         <!-- 新增项目弹框 -->
         <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="addProjectLabel">新增项目</h4>
+                        <h4 class="modal-title" id="addProjectLabel">新增产品线</h4>
                     </div>
-                    <div class="modal-body modal-add-project">
-                        <form role="form " class="col-lg-12 edit-form add-project-form">
-                                <div class="form-group">
-                                    <label class="control-label" >项目名称</label>
-                                    <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入项目名称">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" >上传jar包</label>
-                                        <input id="file-Portrait1" type="file">
-                                </div>
+                    <div class="modal-body modal-add-service">
+                        <form role="form " class="col-lg-12 edit-form add-service-form">
+                            <div class="form-group">
+                                <label class="control-label" >选择公司</label>
+                                <select class="form-control" id="">
+                                    <option value="once">小牛在线</option>
+                                    <option value="circulation">牛鼎丰</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >选择部门</label>
+                                <select class="form-control" id="excute-time-type">
+                                    <option value="once">测试部</option>
+                                    <option value="circulation">开发部</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >创建人</label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >产品线名称</label>
+                                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入产品线名称">
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -200,20 +145,6 @@
      </div>
    <!-- /.container-fluid -->
 <script type="text/javascript">
-    //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
-        var control = $('#' + ctrlName);
-        control.fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-            showUpload: false, //是否显示上传按钮
-            showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        });
-    }
-
 
 </script>
 

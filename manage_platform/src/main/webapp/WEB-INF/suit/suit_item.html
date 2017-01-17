@@ -20,243 +20,156 @@
 
 			<div class="panel-body">
 				<!-- 计划基本配置 -->
-				<form role="form " class="col-lg-12 edit-form">
-			 		<div class="col-lg-6 form-div">
+				<form role="form " class="edit-form">
+					<div class="col-lg-6">
 						<div class="form-group">
 							<label class="control-label" for="createPerson" >创建人</label>
 							<input type="text" class="form-control" id="createPerson" name="createPerson" placeholder="请输入您的姓名">
 						</div>
 				 		<div class="form-group">
-				             <label class="control-label" for="name" >测试集名称</label>
+				             <label class="control-label">测试集名称</label>
 				             <input type="text" class="form-control" id="suitName" name="name" placeholder="请输入测试集名称">
 				         </div>
-						<div class="form-group">
-		                      <label class="control-label" for="interfaceType">被测接口类型</label>
-		                      <div class="choose-sys">
-			                      <label class="checkbox-inline" >
-			                          <input type="checkbox" value="dubbo" name="interfaceType">dubbo接口
-			                      </label>
-			                      <label class="checkbox-inline">
-			                          <input type="checkbox" value="http"  name="interfaceType">http接口
-			                      </label>
-		                      </div>
-						</div>
+					</div>
+					<div class="col-lg-7 suit-panel">
+						<div class="panel panel-default">
+								<div class="panel-heading">
+									接口列表
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<table class="table">
+											<thead>
+											<tr>
+												<th>接口名称</th>
+												<th>接口描述</th>
+												<th>所属服务</th>
+												<th>所属系统</th>
+												<th>接口类型</th>
+												<th>操作</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td>login</td>
+												<td>登录接口</td>
+												<td>payService</td>
+												<td>支付中心</td>
+												<td>http</td>
+												<td>
+													<label>
+														<input type="checkbox" value="">
+													</label>
+													<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success">选择用例</button>
+												</td>
+											</tr>
+											<tr>
+												<td>getData</td>
+												<td>或许支付信息接口</td>
+												<td>payService</td>
+												<td>支付中心</td>
+												<td>dubbo</td>
+												<td>
+													<label>
+														<input type="checkbox" value="">
+													</label>
+													<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success">选择用例</button>
+												</td>
+											</tr>
+
+											<tr>
+												<td>getStatistic</td>
+												<td>获取统计信息接口</td>
+												<td>statisticService</td>
+												<td>支付中心</td>
+												<td>http</td>
+												<td>
+													<label>
+														<input type="checkbox" value="">
+													</label>
+													<button type="button" data-toggle="modal" data-target="#caseList" class="btn btn-success">选择用例</button>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- /.table-responsive -->
+								</div>
+								<!-- /.panel-body -->
+							</div>
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-primary suit-submit">保存</button>
 					</div>
 				</form>
-				<!-- 接口配置，dubbo -->
-				<div id="dubbo-form-div" class="panel-collapse collapse">
-					<form id="dubbo-form" class="edit-form panel panel-default col-lg-12">
-						<label class="control-label col-lg-6 title-label" >dubbo接口属性配置</label>
-						<div class="form-group">
-							<label class="control-label" for="zkOrNot">调用方式</label>
-							<select class="form-control" id="zkOrNot" name="zkOrNot">
-								<option values="true">通过zookeeper注册中心</option>
-								<option values="false">不通过zookeeper注册中心</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="control-label" for="zkIP" >zookeeper地址</label>
-							<input type="text" class="form-control" id="zkIP" name="zkIP" placeholder="请输入注册中心地址，多个地址以分号隔开">
-						</div>
-						<div class="form-group">
-							<label class="control-label">选择系统</label>
-                            <select id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true">
-                                <option value="1">系统1</option>
 
-                                <option value="2">系统2</option>
-
-                                <option value="3">系统3</option>
-
-                                <option selected value="4">系统4</option>
-
-                                <option value="5">系统5</option>
-
-                                </optgroup>
-                            </select>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								系统1-服务列表
+				<!-- 选择测试用例弹框 -->
+				<div class="modal fade" id="caseList" tabindex="-1" role="dialog" aria-labelledby="caseListLabel" aria-hidden="true">
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="caseListLabel">选择测试用例</h4>
 							</div>
-							<div class="panel-body">
+							<div class="modal-body">
 								<div class="table-responsive">
 									<table class="table">
 										<thead>
 										<tr>
-											<th>服务名称</th>
-											<th>主机名</th>
-											<th>应用名</th>
-											<th>版本</th>
-											<th>分组</th>
-											<th>超时</th>
+											<th>用例编号</th>
+											<th>用例描述</th>
+											<th>用例类型</th>
+											<th>所属接口名</th>
 											<th>操作</th>
 										</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>例如：rrx360credit</td>
-												<td>10.17.2.190:25229</td>
-												<td>rrx360credit-front-service</td>
-												<td>3.0</td>
-												<td>creditcompany</td>
-												<td>30000</td>
-											</tr>
-											<tr>
-												<div class="row">
-													<form id="service-form" class="">
-														<div class="col-xs-3">
-															<td><input type="text" class="form-control" placeholder="服务名称" readonly></td>
-														</div>
-														<div class="col-xs-4">
-															<td><input type="text" class="form-control" placeholder="主机名" readonly></td>
-														</div>
-														<div class="col-xs-5">
-															<td><input type="text" class="form-control" placeholder="应用名"></td>
-														</div>
-														<div class="col-xs-3">
-															<td><input type="text" class="form-control" placeholder="版本"></td>
-														</div>
-														<div class="col-xs-4">
-															<td><input type="text" class="form-control" placeholder="分组"></td>
-														</div>
-														<div class="col-xs-5">
-															<td><input type="text" class="form-control" placeholder="超时"></td>
-														</div>
-														<div class="col-xs-5">
-															<td>
-																<button type="submit" class="btn btn-info">保存</button>
-																<a href="../case/case_item">去创建用例</a>
-															</td>
-														</div>
-													</form>
-												</div>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<!-- /.table-responsive -->
-							</div>
-							<!-- /.panel-body -->
-						</div>
-						<!-- /.panel -->
-					</form>
-				</div>
-
-				<!-- 接口配置，http -->
-				<div id="http-form-div" class="panel-collapse collapse">
-					<form id="http-form"  class="edit-form col-lg-12 panel panel-default">
-						<!-- http接口 -->
-						<span class="form-group" style="margin-top: 1em;"><label class="control-label col-lg-4 title-label" >http接口属性配置</label></span>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								接口列表
-							</div>
-							<div class="panel-body">
-								<div class="table-responsive">
-									<table class="table">
-										<thead>
 										<tr>
-											<th>接口名称</th>
-                                            <th>接口描述</th>
-                                            <th>选择服务</th>
-											<th>请求路径</th>
-											<th>协议类型</th>
-											<th>请求方式</th>
-											<th>Content-Type</th>
-											<th>操作</th>
+											<td>123123</td>
+											<td>必填字段校验</td>
+											<td>单接口</td>
+											<td>pay</td>
+											<td>
+												<label>
+													<input type="checkbox" value="">
+												</label>
+											</td>
 										</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>例如：queryRiskService</td>
-                                                <td>接口1</td>
-                                                <td>
-                                                    <select class="form-control" id="systemId" name="serviceName">
-                                                        <option values="1">汇法</option>
-                                                        <option values="2">华征征信</option>
-                                                        <option values="3">车行易</option>
-                                                    </select>
-                                                </td>
-												<td>tongduncredit-service/tongduncredit/queryRiskService</td>
-												<td>http</td>
-												<td>post</td>
-												<td>application/json</td>
-											</tr>
-											<tr>
-												<div class="row">
-													<form id="http-request-form" class="">
-														<div class="col-xs-3">
-															<td><input type="text" class="form-control" placeholder="接口名称"></td>
-														</div>
-                                                        <div class="col-xs-3">
-                                                            <td><input type="text" class="form-control" placeholder="接口描述"></td>
-                                                        </div>
-                                                        <div class="col-xs-3">
-                                                            <td>
-                                                            <select class="form-control" id="" name="serviceName">
-                                                                <option values="1">汇法</option>
-                                                                <option values="2">华征征信</option>
-                                                                <option values="3">车行易</option>
-                                                            </select>
-                                                            </td>
-                                                        </div>
-														<div class="col-xs-3">
-															<td><input type="text" class="form-control" placeholder="请求路径"></td>
-														</div>
-														<div class="col-xs-3">
-															<td>
-																<select class="form-control" id="httpType" name="httpType">
-																	<#if httpTypeList ??>
-																		<#list httpTypeList as item>
-																			<option values="${item.getId()}">${item.getName()}</option>
-																		</#list>
-																	</#if>
-																</select>
-															</td>
-														</div>
-														<div class="col-xs-3">
-															<td>
-																<select class="form-control" id="requestType" name="requestType">
-																	<#if requestTypeList ??>
-																		<#list requestTypeList as item>
-																			<option values="${item.getId()}">${item.getName()}</option>
-																		</#list>
-																	</#if>
-																</select>
-															</td>
-														</div>
-														<div class="col-xs-3">
-															<td>
-																<select class="form-control" id="contentType" name="contentType">
-																	<#if contentTypeList ??>
-																		<#list contentTypeList as item>
-																			<option values="${item.getId()}">${item.getName()}</option>
-																		</#list>
-																	</#if>
-																</select>
-															</td>
-														</div>
-														<div class="col-xs-5">
-															<td>
-																<button type="submit" class="btn btn-info">保存</button>
-																<a href="../case/case_item">去创建用例</a>
-															</td>
-														</div>
-													</form>
-												</div>
-											</tr>
+										<tr>
+											<td>123123</td>
+											<td>必填字段校验</td>
+											<td>单接口</td>
+											<td>pay</td>
+											<td>
+												<label>
+													<input type="checkbox" value="">
+												</label>
+											</td>
+										</tr>
 
-											<tr>
-												<td style=" border: none"><span  id="addHttpInterface" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加接口</span></td>
-											</tr>
+										<tr>
+											<td>123123</td>
+											<td>必填字段校验</td>
+											<td>单接口</td>
+											<td>pay</td>
+											<td>
+												<label>
+													<input type="checkbox" value="">
+												</label>
+											</td>
+										</tr>
 										</tbody>
 									</table>
 								</div>
-								<!-- /.table-responsive -->
 							</div>
-							<!-- /.panel-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary">保存</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							</div>
 						</div>
-					</form>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
 				</div>
 
 			</div>
@@ -266,81 +179,6 @@
 
    <!-- /.container-fluid -->
     <script type="text/javascript">
-
-        $('#btn').on('click',function(){
-            var value = $('#interface').val();
-            console.log('value',value);
-            var appendDiv = '<div>frae</div>';
-            $('#formGroup').append(appendDiv);
-
-            $.ajax({
-                type: "get",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                url: "http://localhost:8080/get/queryIndex",//传入后台的地址http:/方法
-                data: {'RID':value},//参数，这里是一个json语句
-                success: function (data) {
-                    var result = data;
-                    alert(result);
-                    $('#getData').html(result);
-
-                },
-                error: function (err) {
-                    alert("err:" + err);
-                }
-            });
-        });
-
-        $("input[name='interfaceType']").click(
-                function(){
-                    var value = $(this).val();
-                    if(value == "dubbo" && $(this).is(':checked')){
-                        $("#dubbo-form-div").addClass("in");
-                    } else if(value == "dubbo" && !$(this).is(':checked')){
-                        $("#dubbo-form-div").removeClass("in");
-                    }
-                    if(value == "http"  && $(this).is(':checked')){
-                        $("#http-form-div").addClass("in");
-                    } else if(value == "http"  && !$(this).is(':checked')){
-                        $("#http-form-div").removeClass("in");
-                    }
-                }
-        );
-
-        $("#addHttpInterface").click(
-                function(){
-                    var html = "<tr><div class='row'><form id='http-request-form'><div class='col-xs-3'><td>";
-                    html += "<input type='text' class='form-control' placeholder='接口名称'></td>";
-                    html += '</div> <div class="col-xs-5"><td>';
-                    html += '<input type="text" class="form-control" placeholder="接口描述"></td>';
-					html += '<div class="col-xs-3"> <td> <select class="form-control" id="" name="serviceName"> <option values="1">汇法</option> <option values="2">华征征信</option> <option values="3">车行易</option> </select> </td>';
-                    html += '</div> <div class="col-xs-3"> <td> ';
-					html += '<input type="text" class="form-control" placeholder="请求路径"></td><div class="col-xs-3"> <td> ';
-                    html += '<select class="form-control" id="httpType" name="httpType"> <#if httpTypeList ??>';
-                    html += '<#list httpTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list>';
-                    html += '</#if></select> </td> </div>';
-                    html += '<div class="col-xs-4"> <td> <select class="form-control" id="requestType" name="requestType"> <#if requestTypeList ??>';
-                    html += '<#list requestTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
-                    html += '</td> </div> <div class="col-xs-5"> <td> <select class="form-control" id="contentType" name="contentType">';
-                    html += '<#if contentTypeList ??><#list contentTypeList as item> <option values="${item.getId()}">${item.getName()}</option> </#list> </#if></select>';
-                    html += '</td> </div><div class="col-xs-5"><td><button type="submit" class="btn btn-info">保存</button></td></div></form></div> </tr>';
-                    $(this).parent().parent().before(html);
-                }
-        );
-
-        $(document).ready(function() {
-
-
-            $('.selectpicker').selectpicker({
-                'selectedText': 'cat'
-            });
-
-            /*  $('.selectpicker option').click(
-             function(){
-             alert($('.selectpicker').val());
-             }
-             );*/
-        });
 
     </script>
 
