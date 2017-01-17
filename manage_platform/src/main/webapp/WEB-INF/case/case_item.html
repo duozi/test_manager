@@ -56,28 +56,6 @@
                     <label>用例ID</label>
                     <input class="form-control col-lg-5">
                 </div>
-                <!--所属测试集-->
-                <div class="form-group ">
-                    <label>所属测试集</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择测试集名称</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <!--所属系统-->
-                <div class="form-group ">
-                    <label>所属系统</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择系统名称</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
                 <!--所属接口-->
                 <div class="form-group ">
                     <label>所属接口</label>
@@ -876,12 +854,12 @@
     });
 
 
-    $(".radio-inline").click(function () {
+    $(".radio-inline").change(function () {
         $.MsgBox.Alert("温馨提示", "离开本页内容将不会保存");
         var caseType = $("input[name='caseType']:checked").val();
         if (caseType == "单接口用例") {
             $("#leave").click(function () {
-                window.location = "http://localhost:8080/case/case_item?caseType=1";
+                window.location = "case_item?caseType=1";
             });
             $("#stay").click(function () {
                 $("input[name='caseType']:eq(0)").prop("checked", false);
@@ -890,7 +868,7 @@
 
         } else if (caseType == "集成用例") {
             $("#leave").click(function () {
-                window.location = "http://localhost:8080/case/case_item?caseType=2";
+                window.location = "case_item?caseType=2";
             });
             $("#stay").click(function () {
                 $("input[name='caseType']:eq(0)").prop("checked", true);

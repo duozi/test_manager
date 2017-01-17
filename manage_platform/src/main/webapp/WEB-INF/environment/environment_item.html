@@ -49,40 +49,15 @@
                         <option value="">5</option>
                     </select>
                 </div>
-                <!--所属service-->
                 <div class="form-group ">
-                    <label>所属service</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择service</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-
-
-                <!--service配置-->
-                <div class="form-group "
-                     style="width: 80%">
-                    <label style="margin-top:1%">service配置</label>
-                    <div class="panel panel-default " style="width: 56% ;margin-left: 4%">
-                        <div class="panel-body">
-                            <div class="form-group " style="width: 100%">
-                                <label>服务器ip</label>
-                                <input class="form-control col-lg-5" style="width: 100%">
-                            </div>
-                            <div class="form-group " style="width: 100%">
-                                <label>端口号</label>
-                                <input class="form-control col-lg-5" style="width: 100%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--数据库/redis配置-->
-                <div class="form-group ">
-                    <label>数据库/redis配置</label>
-                    <div class="choose-sys case-choose">
+                    <label>新增配置</label>
+                    <div class="choose-sys case-choose" style="display: inline-flex">
+                        <label class="checkbox-inline" style="margin-top: 0">
+                            <input type="checkbox" value="serviceProperties" name="properties">service配置
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="zkProperties" name="properties">zk配置
+                        </label>
                         <label class="checkbox-inline">
                             <input type="checkbox" value="dbProperties" name="properties">数据库配置
                         </label>
@@ -91,7 +66,110 @@
                         </label>
                     </div>
                 </div>
+                <!--service配置-->
+                <div id="service-form-div" class="panel panel-default panel-collapse collapse operation-width">
+                    <!-- service配置 -->
+                    <label class="control-label col-lg-4 top-label">service配置</label>
 
+                    <div class="panel panel-default operation">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 20%">service名</th>
+                                        <th style="width: 30%">ip</th>
+                                        <th style="width: 20%">http端口号</th>
+                                        <th style="width: 20%">dubbo端口号</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <td>
+                                                <select class="form-control">
+                                                    <#if contentTypeList ??>
+                                                        <#list contentTypeList as item>
+                                                            <option values="${item.getId()}"> ${item.getName()}</option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-info">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td style=" border: none"><span id="addServiceProperties"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加Service配置</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--zk配置-->
+                <div id="zk-form-div" class="panel panel-default panel-collapse collapse operation-width">
+                    <!-- zk配置 -->
+                    <label class="control-label col-lg-4 top-label">zk配置</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 30%">service名</th>
+                                        <th style="width: 60%">ip和端口号</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <td>
+                                                <select class="form-control">
+                                                    <#if contentTypeList ??>
+                                                        <#list contentTypeList as item>
+                                                            <option values="${item.getId()}"> ${item.getName()}</option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
+                                            </td>
+                                            <td><textarea type="text" class="form-control"
+                                                          style="width: 100% ;height: 34px;resize: vertical"></textarea></td>
+
+                                            <td>
+                                                <button type="submit" class="btn btn-info">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td style=" border: none"><span id="addZkProperties"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加Zk配置</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--数据库配置-->
                 <div id="db-form-div" class="panel panel-default panel-collapse collapse operation-width">
                     <!-- 数据库配置 -->
@@ -178,7 +256,7 @@
                                             <td><input type="text" class="form-control"></td>
                                             <td>
 
-                                                <textarea  class="form-control"
+                                                <textarea class="form-control"
                                                           style="height:34px;width: 100%;
                                                           resize:vertical"></textarea>
                                             </td>
@@ -212,6 +290,50 @@
 
 <script type="text/javascript">
 
+    var servicePropertiesHtml = '<tr>';
+    servicePropertiesHtml += '<div class="row">';
+    servicePropertiesHtml += '<td>';
+    servicePropertiesHtml += '<select class="form-control">';
+    servicePropertiesHtml += '<#if contentTypeList ??>';
+    servicePropertiesHtml += '<#list contentTypeList as item>';
+    servicePropertiesHtml += '<option values="${item.getId()}"> ${item.getName()}</option>';
+    servicePropertiesHtml += '</#list>';
+    servicePropertiesHtml += '</#if>';
+    servicePropertiesHtml += '</select>';
+    servicePropertiesHtml += '</td>';
+    servicePropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    servicePropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    servicePropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    servicePropertiesHtml += '<td>';
+    servicePropertiesHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    servicePropertiesHtml += '</td>';
+    servicePropertiesHtml += '<td>';
+    servicePropertiesHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    servicePropertiesHtml += '</td>';
+    servicePropertiesHtml += '</div>';
+    servicePropertiesHtml += '</tr>';
+
+
+    var zkPropertiesHtml='<tr>';
+    zkPropertiesHtml+='<div class="row">';
+    zkPropertiesHtml+='<td>';
+    zkPropertiesHtml+='<select class="form-control">';
+    zkPropertiesHtml+='<#if contentTypeList ??>';
+    zkPropertiesHtml+='<#list contentTypeList as item>';
+    zkPropertiesHtml+='<option values="${item.getId()}"> ${item.getName()}</option>';
+    zkPropertiesHtml+='</#list>';
+    zkPropertiesHtml+='</#if>';
+    zkPropertiesHtml+='</select>';
+    zkPropertiesHtml+='</td>';
+    zkPropertiesHtml+='<td><textarea type="text" class="form-control" style="width: 100% ;height: 34px;resize: vertical"></textarea></td>';
+    zkPropertiesHtml+='<td>';
+    zkPropertiesHtml+='<button type="submit" class="btn btn-info">保存</button>';
+    zkPropertiesHtml+='</td>';
+    zkPropertiesHtml+='<td>';
+    zkPropertiesHtml+='<button type="button" name="delete" class="btn btn-info">删除</button>';
+    zkPropertiesHtml+='</td>';
+    zkPropertiesHtml+='</div>';
+    zkPropertiesHtml+='</tr>';
 
     var dbPropertiesHtml = '<tr>';
     dbPropertiesHtml += '<div class="row">';
@@ -257,18 +379,42 @@
     redisPropertiesHtml += '</tr>';
 
     $("input[name='properties']").click(function () {
-        var assertType = $(this).val();
-        if (assertType == 'dbProperties' && $(this).is(':checked')) {
+        var type = $(this).val();
+        if (type == 'serviceProperties' && $(this).is(':checked')) {
+            $("#service-form-div").addClass("in");
+        } else if (type == 'serviceProperties' && !$(this).is(':checked')) {
+            $("#service-form-div").removeClass("in");
+        }
+        if (type == 'zkProperties' && $(this).is(':checked')) {
+            $("#zk-form-div").addClass("in");
+        } else if (type == 'zkProperties' && !$(this).is(':checked')) {
+            $("#zk-form-div").removeClass("in");
+        }
+        if (type == 'dbProperties' && $(this).is(':checked')) {
             $("#db-form-div").addClass("in");
-        } else if (assertType == 'dbProperties' && !$(this).is(':checked')) {
+        } else if (type == 'dbProperties' && !$(this).is(':checked')) {
             $("#db-form-div").removeClass("in");
         }
-        if (assertType == 'redisProperties' && $(this).is(':checked')) {
+        if (type == 'redisProperties' && $(this).is(':checked')) {
             $("#redis-form-div").addClass("in");
-        } else if (assertType == 'redisProperties' && !$(this).is(':checked')) {
+        } else if (type == 'redisProperties' && !$(this).is(':checked')) {
             $("#redis-form-div").removeClass("in");
         }
 
+
+    });
+    $("#addServiceProperties").click(function () {
+        $(this).parent().parent().before(servicePropertiesHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+
+    });
+    $("#addZkProperties").click(function () {
+        $(this).parent().parent().before(zkPropertiesHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
 
     });
     $("#addRedisProperties").click(function () {
@@ -287,7 +433,6 @@
     $("button[name='delete']").click(function () {
         $(this).parent().parent().remove();
     });
-
 
 
 </script>
