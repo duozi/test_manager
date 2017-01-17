@@ -56,29 +56,8 @@
                     <label>用例ID</label>
                     <input class="form-control col-lg-5">
                 </div>
-                <!--所属测试集-->
-                <div class="form-group ">
-                    <label>所属测试集</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择测试集名称</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <!--所属系统-->
-                <div class="form-group ">
-                    <label>所属系统</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择系统名称</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
                 <!--所属接口-->
+                <#if caseType != 2>
                 <div class="form-group ">
                     <label>所属接口</label>
                     <select class="form-control col-lg-5">
@@ -89,6 +68,7 @@
                         <option value="">5</option>
                     </select>
                 </div>
+                </#if>
                 <!--数据准备/数据清除-->
                 <div class="form-group">
                     <label class="control-label">数据准备/数据清除</label>
@@ -178,9 +158,9 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">GUI</a>
+                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">参数设置</a>
                                 </li>
-                                <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">SOURCE</a>
+                                <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">自定义参数</a>
                                 </li>
 
                             </ul>
@@ -243,7 +223,7 @@
                 <!--集成用例-->
                 <div class="form-group <#if caseType==1 || caseType==null>hidden</#if>" id='integration'
                      style="width: 140%">
-                    <label style="margin-top:1%">调用case</label>
+                    <label style="margin-top:1%">选择用例</label>
                     <div class="panel panel-default " style="width: 125%">
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -253,7 +233,7 @@
                                         <th style="width: 22%">用例集</th>
                                         <th style="width: 22%">系统名</th>
                                         <th style="width: 22%">接口名</th>
-                                        <th style="width: 22%">case名</th>
+                                        <th style="width: 22%">用例名</th>
                                         <th>操作</th>
                                         <th></th>
                                     </tr>
@@ -876,12 +856,12 @@
     });
 
 
-    $(".radio-inline").click(function () {
+    $(".radio-inline").change(function () {
         $.MsgBox.Alert("温馨提示", "离开本页内容将不会保存");
         var caseType = $("input[name='caseType']:checked").val();
         if (caseType == "单接口用例") {
             $("#leave").click(function () {
-                window.location = "http://localhost:8080/case/case_item?caseType=1";
+                window.location = "case_item?caseType=1";
             });
             $("#stay").click(function () {
                 $("input[name='caseType']:eq(0)").prop("checked", false);
@@ -890,7 +870,7 @@
 
         } else if (caseType == "集成用例") {
             $("#leave").click(function () {
-                window.location = "http://localhost:8080/case/case_item?caseType=2";
+                window.location = "case_item?caseType=2";
             });
             $("#stay").click(function () {
                 $("input[name='caseType']:eq(0)").prop("checked", true);

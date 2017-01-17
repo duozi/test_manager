@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-select/bootstrap-select.css">
+
+</head>
+
+<body>
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">接口自动化</a></li>
+        <li><a href="#">接口管理</a></li>
+        <li class="active">新增测试集</li>
+    </ol>
+</div>
+<div class="col-lg-14">
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <!-- 计划基本配置 -->
+            <form role="form " class="col-lg-12 edit-form">
+                <div class="col-lg-6 form-div">
+                    <div class="form-group">
+                        <label class="control-label">接口名</label>
+                        <input type="text" class="form-control" id="interfaceName" name="interfaceName">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">接口ID</label>
+                        <input type="text" class="form-control" id="interfaceId" name="interfaceId">
+                    </div>
+                    <!--所属service-->
+                    <div class="form-group ">
+                        <label>所属service</label>
+                        <select class="form-control col-lg-5">
+                            <option value="" disabled selected>选择service名称</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </div>
+                    <!--用例类型-->
+                    <div class="form-group">
+                        <label>接口类型</label>
+
+                        <label class="radio-inline" style="margin-top: 0">
+
+                            <input type="radio" name="interfaceType" value="dubbo接口" checked="true">dubbo接口
+
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="interfaceType" value="http接口">http接口
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <!-- 接口配置，dubbo -->
+            <div id="dubbo-form-div" class="panel-collapse collapse in">
+                <form id="dubbo-form" class="edit-form panel panel-default col-lg-12">
+                    <label class="control-label col-lg-6 title-label">dubbo接口属性配置</label>
+                    <div class="form-group">
+                        <label class="control-label" for="zkOrNot">调用方式</label>
+                        <select class="form-control" id="zkOrNot" name="zkOrNot">
+                            <option values="true">通过zookeeper注册中心</option>
+                            <option values="false">不通过zookeeper注册中心</option>
+                        </select>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>服务名称</th>
+                                        <th>主机名</th>
+                                        <th>应用名</th>
+                                        <th>版本</th>
+                                        <th>分组</th>
+                                        <th>超时</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <form id="service-form" class="">
+                                                <div class="col-xs-3">
+                                                    <td><input type="text" class="form-control" placeholder="rrx360credit"
+                                                               readonly></td>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <td><input type="text" class="form-control" placeholder="10.17.2.190:25229"
+                                                               readonly></td>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <td><input type="text" class="form-control" placeholder="rrx360credit-front-service"></td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td><input type="text" class="form-control" placeholder="3.0"></td>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <td><input type="text" class="form-control" placeholder="creditcompany"></td>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <td><input type="text" class="form-control" placeholder="30000"></td>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <td>
+                                                        <button type="submit" class="btn btn-info">保存</button>
+                                                        <a href="../case/case_item" type="button" class="btn btn-success">创建用例</a>
+                                                    </td>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </form>
+            </div>
+
+            <!-- 接口配置，http -->
+            <div id="http-form-div" class="panel-collapse collapse">
+                <form id="http-form" class="edit-form col-lg-12 panel panel-default">
+                    <!-- http接口 -->
+                    <span class="form-group" style="margin-top: 1em;"><label class="control-label col-lg-4 title-label">http接口属性配置</label></span>
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>接口名称</th>
+                                        <th>接口描述</th>
+                                        <th>选择服务</th>
+                                        <th>请求路径</th>
+                                        <th>协议类型</th>
+                                        <th>请求方式</th>
+                                        <th>Content-Type</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <form id="http-request-form" class="">
+                                                <div class="col-xs-3">
+                                                    <td><input type="text" class="form-control" placeholder="queryRiskService"></td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td><input type="text" class="form-control" placeholder="接口描述"></td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td>
+                                                        <select class="form-control" id="" name="serviceName">
+                                                            <option values="1">汇法</option>
+                                                            <option values="2">华征征信</option>
+                                                            <option values="3">车行易</option>
+                                                        </select>
+                                                    </td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td><input type="text" class="form-control" placeholder="tongduncredit-service/tongduncredit/queryRiskService"></td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td>
+                                                        <select class="form-control" id="httpType" name="httpType">
+                                                            <#if httpTypeList ??>
+                                                                <#list httpTypeList as item>
+                                                                    <option values="${item.getId()}">${item.getName()}
+                                                                    </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td>
+                                                        <select class="form-control" id="requestType"
+                                                                name="requestType">
+                                                            <#if requestTypeList ??>
+                                                                <#list requestTypeList as item>
+                                                                    <option values="${item.getId()}">${item.getName()}
+                                                                    </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </td>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <td>
+                                                        <select class="form-control" id="contentType"
+                                                                name="contentType">
+                                                            <#if contentTypeList ??>
+                                                                <#list contentTypeList as item>
+                                                                    <option values="${item.getId()}">${item.getName()}
+                                                                    </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </td>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <td>
+                                                        <button type="submit" class="btn btn-info">保存</button>
+                                                        <a href="../case/case_item" type="button" class="btn btn-success">创建用例</a>
+                                                    </td>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- /.container-fluid -->
+<script type="text/javascript">
+
+    $(".radio-inline").change(
+            function () {
+                var value = $("input[name='interfaceType']:checked").val();
+                if (value == "dubbo接口" ) {
+                    $("#dubbo-form-div").addClass("in");
+                    $("#http-form-div").removeClass("in");
+                }
+                else if (value == "http接口" ) {
+                    $("#http-form-div").addClass("in");
+                    $("#dubbo-form-div").removeClass("in");
+                }
+            }
+    );
+
+
+
+    $(document).ready(function () {
+
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
