@@ -55,6 +55,7 @@
                 <div class="form-group ">
                     <label>用例ID</label>
                     <input class="form-control col-lg-5">
+                    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList" >查看所属测试集</a>
                 </div>
                 <!--所属接口-->
                 <#if caseType != 2>
@@ -67,6 +68,7 @@
                         <option value="">4</option>
                         <option value="">5</option>
                     </select>
+
                 </div>
                 </#if>
                 <!--数据准备/数据清除-->
@@ -536,7 +538,59 @@
         </form>
     </div>
 </div>
-
+<!--测试集弹框-->
+<div class="modal fade" id="suitList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="suitListLabel">选择测试集</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr >
+                        <th>测试集ID</th>
+                        <th>测试集名称</th>
+                        <th>测试集描述</th>
+                        <th>产品线</th>
+                        <th>测试集类型</th>
+                        <th>创建人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>牛贷系统查询联系人测试</td>
+                        <th>测试集名称</th>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 <script type="text/javascript">
     var dbhtml = '<tr>';
