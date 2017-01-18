@@ -230,8 +230,7 @@
                                 <table class="table case-table">
                                     <thead>
                                     <tr>
-                                        <th style="width: 22%">用例集</th>
-                                        <th style="width: 22%">系统名</th>
+                                        <th style="width: 22%">产品线</th>
                                         <th style="width: 22%">接口名</th>
                                         <th style="width: 22%">用例名</th>
                                         <th>操作</th>
@@ -240,17 +239,6 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>
-                                            <select class="form-control">
-                                                <#if contentTypeList ??>
-                                                    <#list contentTypeList as item>
-                                                        <option values="${item.getId()}">
-                                                            ${item.getName()}
-                                                        </option>
-                                                    </#list>
-                                                </#if>
-                                            </select>
-                                        </td>
                                         <td>
                                             <select class="form-control">
                                                 <#if contentTypeList ??>
