@@ -224,8 +224,8 @@
                 <div class="form-group <#if caseType==1 || caseType==null>hidden</#if>" id='integration'
                      style="width: 200%">
                     <label style="margin-top:1%">填写用例</label>
-                    <div>
-                        <div class="panel panel-default" style="width: 80%;margin-left: -14%">
+                    <div style="width: 3000px">
+                        <div class="panel panel-default" style="width: 80%;margin-left: -0.5%">
                             <div class="panel-body table-responsive">
                                 <!--产品线-->
                                 <div class="form-group">
@@ -332,7 +332,7 @@
                                 <!--参数校验-->
                                 <div class="form-group ">
                                     <label>期望</label>
-                                    <div class="choose-sys" style="margin-left: 3%">
+                                    <div class="choose-sys" style="margin-left: 1%">
                                         <label class="checkbox-inline select-first">
                                             <input type="checkbox" value="paramAssert" name="assertType">返回参数校验
                                         </label>
@@ -345,7 +345,7 @@
                                     </div>
                                 </div>
                                 <!--返回校验-->
-                                <div class="panel panel-default panel-collapse collapse ">
+                                <div class="panel panel-default panel-collapse collapse">
                                     <!-- 返回参数校验 -->
                                     <label class="control-label col-lg-4 top-label">返回参数校验</label>
 
@@ -463,9 +463,9 @@
                                                     <thead>
                                                     <tr>
                                                         <th style="width: 10%">redis名</th>
-                                                        <th style="width: 10%">校验类型</th>
+                                                        <th style="width: 15%">校验类型</th>
                                                         <th style="width: 40%">key</th>
-                                                        <th style="width: 15%">校验字段</th>
+                                                        <th style="width: 10%">校验字段</th>
                                                         <th style="width: 15%">期望值</th>
                                                         <th>操作</th>
                                                         <th></th>
@@ -655,7 +655,7 @@
                                 <table class="table case-table">
                                     <thead>
                                     <tr>
-                                        <th style="width:10%">redis名</th>
+                                        <th style="width: 10%">redis名</th>
                                         <th style="width: 10%">校验类型</th>
                                         <th style="width: 50%">key</th>
                                         <th style="width: 10%">校验字段</th>
@@ -1163,10 +1163,10 @@
     $("button[name='integration-delete']").click(function () {
         $(this).parent().parent().parent().remove();
     });
-    var count=1;
+    var count = 1;
 
     $("button[name='integration-add']").click(function () {
-        var stepAddHtml = '<div class="panel panel-default " style="width: 80%;margin-left: -14%">';
+        var stepAddHtml = '<div class="panel panel-default " style="width: 80%;margin-left: -0.5%">';
         stepAddHtml += '<div class="panel-body table-responsive">';
         stepAddHtml += '<!--产品线-->';
         stepAddHtml += '<div class="form-group">';
@@ -1199,14 +1199,14 @@
         stepAddHtml += '<div class="panel-body">';
         stepAddHtml += '<!-- Nav tabs -->';
         stepAddHtml += '<ul class="nav nav-tabs">';
-        stepAddHtml += '<li class="active"><a href="#integration-gui-'+count+'" data-toggle="tab" aria-expanded="true">参数设置</a>';
+        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + '" data-toggle="tab" aria-expanded="true">参数设置</a>';
         stepAddHtml += '</li>';
-        stepAddHtml += '<li class=""><a href="#integration-source-'+count+'" data-toggle="tab" aria-expanded="false">自定义参数</a>';
+        stepAddHtml += '<li class=""><a href="#integration-source-' + count + '" data-toggle="tab" aria-expanded="false">自定义参数</a>';
         stepAddHtml += '</li>';
         stepAddHtml += ' </ul>';
         stepAddHtml += '<!-- Tab panes -->';
         stepAddHtml += '<div class="tab-content">';
-        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-'+count+'">';
+        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-' + count + '">';
         stepAddHtml += '<div class="table-responsive">';
         stepAddHtml += '<table class="table case-table">';
         stepAddHtml += '<thead>';
@@ -1245,7 +1245,7 @@
         stepAddHtml += '</table>';
         stepAddHtml += '</div>';
         stepAddHtml += '</div>';
-        stepAddHtml += '<div class="tab-pane fade" id="integration-source-'+count+'">';
+        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + '">';
         stepAddHtml += '<h4>填写参数</h4>';
         stepAddHtml += '<textarea class=" form-control  text-control"></textarea>';
         stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
@@ -1258,7 +1258,7 @@
         stepAddHtml += '<!--参数校验-->';
         stepAddHtml += '<div class="form-group ">';
         stepAddHtml += '<label>期望</label>';
-        stepAddHtml += '<div class="choose-sys" style="margin-left: 3%">';
+        stepAddHtml += '<div class="choose-sys" style="margin-left: 1%">';
         stepAddHtml += '<label class="checkbox-inline select-first">';
         stepAddHtml += '<input type="checkbox" value="paramAssert" name="assertType">返回参数校验';
         stepAddHtml += '</label>';
@@ -1370,9 +1370,9 @@
         stepAddHtml += '<thead>';
         stepAddHtml += '<tr>';
         stepAddHtml += '<th style="width: 10%">redis名</th>';
-        stepAddHtml += '<th style="width: 10%">校验类型</th>';
+        stepAddHtml += '<th style="width: 15%">校验类型</th>';
         stepAddHtml += '<th style="width: 40%">key</th>';
-        stepAddHtml += '<th style="width: 15%">校验字段</th>';
+        stepAddHtml += '<th style="width: 10%">校验字段</th>';
         stepAddHtml += '<th style="width: 15%">期望值</th>';
         stepAddHtml += '<th>操作</th>';
         stepAddHtml += '<th></th>';
@@ -1432,6 +1432,70 @@
             $("button[name='delete']").click(function () {
                 $(this).parent().parent().remove();
             });
+        });
+        $("input[name='assertType']").click(function () {
+            var assertType = $(this).val();
+            if (assertType == 'paramAssert' && $(this).is(':checked')) {
+                $(this).parent().parent().parent().next().addClass("in");
+//            $("#param-form-div").addClass("in");
+            } else if (assertType == 'paramAssert' && !$(this).is(':checked')) {
+                $(this).parent().parent().parent().next().removeClass("in");
+//            $("#param-form-div").removeClass("in");
+            }
+            if (assertType == 'dbAssert' && $(this).is(':checked')) {
+                $(this).parent().parent().parent().next().next().addClass("in");
+//            $("#db-form-div").addClass("in");
+            } else if (assertType == 'dbAssert' && !$(this).is(':checked')) {
+                $(this).parent().parent().parent().next().next().removeClass("in");
+//            $("#db-form-div").removeClass("in");
+            }
+
+            if (assertType == 'redisAssert' && $(this).is(':checked')) {
+                $(this).parent().parent().parent().next().next().next().addClass("in");
+//            $("#redis-form-div").addClass("in");
+
+            } else if (assertType == 'redisAssert' && !$(this).is(':checked')) {
+                $(this).parent().parent().parent().next().next().next().removeClass("in");
+//            $("#redis-form-div").removeClass("in");
+
+            }
+
+
+        });
+        $("span[name='addParamAssert']").click(function () {
+            $(this).parent().parent().before(paramAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+
+        });
+        $("span[name='addDbAssert']").click(function () {
+            $(this).parent().parent().before(dbAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+        });
+        $("span[name='addRedisAssert']").click(function () {
+            $(this).parent().parent().before(redisAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+            $("select[name='redisAssertType']").change(function () {
+                var content = $(this).val();
+                var value = $(this).parent().next().next().children()[0];
+                if (content == '缓存值') {
+
+                    value.removeAttribute("readOnly");
+                    value.removeAttribute("placeholder");
+
+                } else if (content == '缓存时间') {
+                    value.setAttribute("readOnly", "true");
+                    value.setAttribute("placeholder", "time");
+                }
+            });
+        });
+        $("button[name='integration-delete']").click(function () {
+            $(this).parent().parent().parent().remove();
         });
     });
 </script>
