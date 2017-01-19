@@ -2,8 +2,19 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="../vendor/bootstrap-select/bootstrap-select.js"></script>
-    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-select/bootstrap-select.css">
+    <!-- fileinput -->
+    <link href="../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+     <!-- fileinput -->
+    <script src="../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+
 
 </head>
 
@@ -19,16 +30,20 @@
     <div class="panel panel-default">
 
         <div class="panel-body">
-            <!-- 接口基本配置 -->
+            <!-- 计划基本配置 -->
             <form role="form " class="col-lg-12 edit-form">
                 <div class="col-lg-6 form-div">
                     <div class="form-group">
                         <label class="control-label">接口名</label>
-                        <input type="text" class="form-control" id="interfaceName" name="interfaceName">
+                        <input type="text" class="form-control" id="interfaceName" name="interfaceName" placeholder="请填写接口名称">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">接口描述</label>
+                        <input type="text" class="form-control" id="interfaceDesc" name="interfaceDesc" placeholder="描述接口功能或业务特性">
                     </div>
                     <div class="form-group">
                         <label class="control-label">接口ID</label>
-                        <input type="text" class="form-control" id="interfaceId" name="interfaceId">
+                        <input type="text" class="form-control" id="interfaceId" name="interfaceId"　placeholder="请填写接口唯一ID">
                     </div>
                     <!--所属service-->
                     <div class="form-group ">
@@ -41,354 +56,253 @@
                             <option value="">5</option>
                         </select>
                     </div>
-                    <!--用例类型-->
+                    <!--接口类型-->
                     <div class="form-group">
                         <label>接口类型</label>
 
                         <label class="radio-inline" style="margin-top: 0">
 
-                            <input type="radio" name="interfaceType" value="dubbo接口" checked="true">dubbo接口
+                            <input type="radio" name="interfaceType" value="dubbo接口" >dubbo接口
 
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="interfaceType" value="http接口">http接口
+                            <input type="radio" name="interfaceType" value="http接口" checked="true">http接口
                         </label>
                     </div>
-                </div>
-            </form>
-            <!-- 接口配置，dubbo -->
-            <div id="dubbo-form-div" class="panel-collapse collapse  interface-left in">
-                <form id="dubbo-form" class="edit-form panel panel-default col-lg-12">
-                    <label class="control-label col-lg-6 title-label">dubbo接口属性配置</label>
-                    <div class="form-group">
+
+                    <!--dubbo接口-->
+                    <div class="form-group dubbo-interface hidden">
                         <label class="control-label" for="zkOrNot">调用方式</label>
                         <select class="form-control" id="zkOrNot" name="zkOrNot">
                             <option values="true">通过zookeeper注册中心</option>
                             <option values="false">不通过zookeeper注册中心</option>
                         </select>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>服务名称</th>
-                                        <th>主机名</th>
-                                        <th>应用名</th>
-                                        <th>版本</th>
-                                        <th>分组</th>
-                                        <th>超时</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <div class="row">
-                                            <form id="service-form" class="">
-                                                <div class="col-xs-3">
-                                                    <td><input type="text" class="form-control" placeholder="rrx360credit"
-                                                               readonly></td>
-                                                </div>
-                                                <div class="col-xs-4">
-                                                    <td><input type="text" class="form-control" placeholder="10.17.2.190:25229"
-                                                               readonly></td>
-                                                </div>
-                                                <div class="col-xs-5">
-                                                    <td><input type="text" class="form-control" placeholder="rrx360credit-front-service"></td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td><input type="text" class="form-control" placeholder="3.0"></td>
-                                                </div>
-                                                <div class="col-xs-4">
-                                                    <td><input type="text" class="form-control" placeholder="creditcompany"></td>
-                                                </div>
-                                                <div class="col-xs-5">
-                                                    <td><input type="text" class="form-control" placeholder="30000"></td>
-                                                </div>
-                                                <div class="col-xs-5">
-                                                    <td>
-                                                        <button type="submit" class="btn btn-info">保存</button>
-                                                        <a href="../case/case_item" type="button" class="btn btn-success">创建用例</a>
-                                                    </td>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <div class="form-group dubbo-interface hidden">
+                        <label class="control-label">版本</label>
+                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion">
+                    </div>
+                    <div class="form-group dubbo-interface hidden">
+                        <label class="control-label">分组</label>
+                        <input type="text" class="form-control" id="group" name="group">
+                    </div>
+                    <div class="form-group dubbo-interface hidden">
+                        <label class="control-label">超时</label>
+                        <input type="text" class="form-control" id="timeout" name="timeout">
+                    </div>
+
+                    <!--http接口-->
+                    <div class="form-group http-interface ">
+                        <label class="control-label">请求路径</label>
+                        <input type="text" class="form-control" id="urlPath" name="urlPath">
+                    </div>
+                    <div class="form-group http-interface ">
+                        <label class="control-label">协议类型</label>
+                        <select class="form-control" id="httpType" name="httpType">
+                            <#if httpTypeList ??>
+                                <#list httpTypeList as item>
+                                    <option values="${item.getId()}">${item.getName()}
+                                    </option>
+                                </#list>
+                            </#if>
+                        </select>
+                    </div>
+                    <div class="form-group http-interface ">
+                        <label class="control-label">请求方式</label>
+                        <select class="form-control" id="requestType"
+                                name="requestType">
+                            <#if requestTypeList ??>
+                                <#list requestTypeList as item>
+                                    <option values="${item.getId()}">${item.getName()}
+                                    </option>
+                                </#list>
+                            </#if>
+                        </select>
+                    </div>
+                    <div class="form-group http-interface ">
+                        <label class="control-label">Content-Type</label>
+                        <select class="form-control" id="contentType"
+                                name="contentType">
+                            <#if contentTypeList ??>
+                                <#list contentTypeList as item>
+                                    <option values="${item.getId()}">${item.getName()}
+                                    </option>
+                                </#list>
+                            </#if>
+                        </select>
+                    </div>
+
+                    <!--接口数据准备/数据清除-->
+                    <div class="form-group interface-left" style="width: 70%">
+                        <label class="control-label">接口数据准备/接口数据清除</label>
+                        <div class="choose-sys case-choose" style="display: inline-flex">
+                            <label class="checkbox-inline" style="margin-top: 0">
+                                <input type="checkbox" value="prepare" name="operationType" >接口数据清除
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="clear" name="operationType">接口数据清除
+                            </label>
+                        </div>
+                    </div>
+                    <!--数据准备-->
+                    <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
+                        <!-- 数据准备 -->
+                        <label class="control-label col-lg-4 top-label">数据准备</label>
+
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                数据库操作
                             </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </form>
-            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 15%">数据库配置名</th>
+                                            <th style="width: 75%">sql语句</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-            <!-- 接口配置，http -->
-            <div id="http-form-div" class="panel-collapse collapse interface-left">
-                <form id="http-form" class="edit-form col-lg-12 panel panel-default">
-                    <!-- http接口 -->
-                    <span class="form-group" style="margin-top: 1em;"><label class="control-label col-lg-4 title-label">http接口属性配置</label></span>
+
+                                        <tr>
+                                            <td style=" border: none"><span id="prepareAddDbOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                redis操作
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%">redis名</th>
+                                            <th style="width: 10%">redis操作类型</th>
+                                            <th style="width: 30%">key</th>
+                                            <th style="width: 30%">value</th>
+                                            <th style="width: 10%">time</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                    <!--数据清除-->
+                    <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
+                        <!-- 数据清除 -->
+                        <label class="control-label col-lg-4 top-label">数据清除</label>
+
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                数据库操作
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 15%">数据库配置名</th>
+                                            <th style="width: 75%">sql语句</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style=" border: none"><span id="clearAddDbOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <div class="panel panel-default operation">
+                            <div class="panel-heading">
+                                redis操作
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%">redis名</th>
+                                            <th style="width: 10%">redis操作类型</th>
+                                            <th style="width: 30%">key</th>
+                                            <th style="width: 30%">value</th>
+                                            <th style="width: 10%">time</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        <tr>
+                                            <td style=" border: none"><span id="clearAddRedisOperation"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                </div>
+
+                <!--参数加密设置-->
+                <div class="col-lg-6 encrypt-panel-div">
                     <div class="panel panel-default">
 
+                        <div class="panel-heading">
+                            加密配置
+                        </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>接口名称</th>
-                                        <th>接口描述</th>
-                                        <th>选择服务</th>
-                                        <th>请求路径</th>
-                                        <th>协议类型</th>
-                                        <th>请求方式</th>
-                                        <th>Content-Type</th>
-                                        <th>参数类型</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <div class="row">
-                                            <form id="http-request-form" class="">
-                                                <div class="col-xs-3">
-                                                    <td><input type="text" class="form-control" placeholder="queryRiskService"></td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td><input type="text" class="form-control" placeholder="接口描述"></td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td>
-                                                        <select class="form-control" id="" name="serviceName">
-                                                            <option values="1">汇法</option>
-                                                            <option values="2">华征征信</option>
-                                                            <option values="3">车行易</option>
-                                                        </select>
-                                                    </td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td><input type="text" class="form-control" placeholder="tongduncredit-service/tongduncredit/queryRiskService"></td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td>
-                                                        <select class="form-control" id="httpType" name="httpType">
-                                                            <#if httpTypeList ??>
-                                                                <#list httpTypeList as item>
-                                                                    <option values="${item.getId()}">${item.getName()}
-                                                                    </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
-                                                    </td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td>
-                                                        <select class="form-control" id="requestType"
-                                                                name="requestType">
-                                                            <#if requestTypeList ??>
-                                                                <#list requestTypeList as item>
-                                                                    <option values="${item.getId()}">${item.getName()}
-                                                                    </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
-                                                    </td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td>
-                                                        <select class="form-control" id="contentType"
-                                                                name="contentType">
-                                                            <#if contentTypeList ??>
-                                                                <#list contentTypeList as item>
-                                                                    <option values="${item.getId()}">${item.getName()}
-                                                                    </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
-                                                    </td>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <td>
-                                                        <select class="form-control" id="paramType" name="httpType">
-                                                            <#if httpTypeList ??>
-                                                                <#list httpTypeList as item>
-                                                                    <option values="${item.getId()}">${item.getName()}
-                                                                    </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
-                                                    </td>
-                                                </div>
-                                                <div class="col-xs-5">
-                                                    <td>
-                                                        <button type="submit" class="btn btn-info">保存</button>
-                                                        <a href="../case/case_item" type="button" class="btn btn-success">创建用例</a>
-                                                    </td>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
+                            <div class="form-group ">
+                                <label class="control-label">加密jar包</label>
+                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
                             </div>
-                            <!-- /.table-responsive -->
+                            <div class="form-group ">
+                                <label class="control-label">加密代码</label>
+                                <textarea type="text" class="form-control" name="encryptCode"></textarea>
+                            </div>
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                </form>
-            </div>
-
-            <!--接口数据准备/数据清除-->
-            <div class="form-group interface-left" style="width: 70%">
-                <label class="control-label">接口数据准备/接口数据清除</label>
-                <div class="choose-sys case-choose" style="display: inline-flex">
-                    <label class="checkbox-inline" style="margin-top: 0">
-                        <input type="checkbox" value="prepare" name="operationType" >接口数据清除
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="clear" name="operationType">接口数据清除
-                    </label>
                 </div>
-            </div>
-            <!--数据准备-->
-            <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
-                <!-- 数据准备 -->
-                <label class="control-label col-lg-4 top-label">数据准备</label>
-
-                <div class="panel panel-default operation">
-                    <div class="panel-heading">
-                        数据库操作
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table case-table">
-                                <thead>
-                                <tr>
-                                    <th style="width: 15%">数据库配置名</th>
-                                    <th style="width: 75%">sql语句</th>
-                                    <th>操作</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-
-                                <tr>
-                                    <td style=" border: none"><span id="prepareAddDbOperation"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <div class="panel panel-default operation">
-                    <div class="panel-heading">
-                        redis操作
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table case-table">
-                                <thead>
-                                <tr>
-                                    <th style="width: 10%">redis名</th>
-                                    <th style="width: 10%">redis操作类型</th>
-                                    <th style="width: 30%">key</th>
-                                    <th style="width: 30%">value</th>
-                                    <th style="width: 10%">time</th>
-                                    <th>操作</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr>
-                                    <td style=" border: none"><span id="prepareAddRedisOperation"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-            </div>
-            <!--数据清除-->
-            <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
-                <!-- 数据清除 -->
-                <label class="control-label col-lg-4 top-label">数据清除</label>
-
-                <div class="panel panel-default operation">
-                    <div class="panel-heading">
-                        数据库操作
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table case-table">
-                                <thead>
-                                <tr>
-                                    <th style="width: 15%">数据库配置名</th>
-                                    <th style="width: 75%">sql语句</th>
-                                    <th>操作</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td style=" border: none"><span id="clearAddDbOperation"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <div class="panel panel-default operation">
-                    <div class="panel-heading">
-                        redis操作
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table case-table">
-                                <thead>
-                                <tr>
-                                    <th style="width: 10%">redis名</th>
-                                    <th style="width: 10%">redis操作类型</th>
-                                    <th style="width: 30%">key</th>
-                                    <th style="width: 30%">value</th>
-                                    <th style="width: 10%">time</th>
-                                    <th>操作</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-
-                                <tr>
-                                    <td style=" border: none"><span id="clearAddRedisOperation"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-            </div>
+            </form>
         </div>
+
     </div>
 </div>
 
@@ -556,17 +470,29 @@
             function () {
                 var value = $("input[name='interfaceType']:checked").val();
                 if (value == "dubbo接口" ) {
-                    $("#dubbo-form-div").addClass("in");
-                    $("#http-form-div").removeClass("in");
+                    $(".dubbo-interface").removeClass("hidden");
+                    $(".http-interface").addClass("hidden");
                 }
                 else if (value == "http接口" ) {
-                    $("#http-form-div").addClass("in");
-                    $("#dubbo-form-div").removeClass("in");
+                    $(".http-interface").removeClass("hidden");
+                    $(".dubbo-interface").addClass("hidden");
                 }
             }
     );
 
-
+    //初始化fileinput控件（第一次初始化）
+    function initFileInput(ctrlName, uploadUrl) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: uploadUrl, //上传的地址
+            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
+            showUpload: false, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        });
+    }
 
     $(document).ready(function () {
 

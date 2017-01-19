@@ -228,9 +228,9 @@
                     <div style="width: 3000px">
                         <div class="panel panel-default" style="width: 80%;margin-left: -0.5%">
                             <div class="panel-body table-responsive">
-                                <!--产品线-->
+                                <!--系统-->
                                 <div class="form-group">
-                                    <label>所属产品线</label>
+                                    <label>所属系统</label>
                                     <select class="form-control">
                                         <#if contentTypeList ??>
                                             <#list contentTypeList as item>
@@ -794,7 +794,7 @@
                         <th>测试集ID</th>
                         <th>测试集名称</th>
                         <th>测试集描述</th>
-                        <th>产品线</th>
+                        <th>系统</th>
                         <th>测试集类型</th>
                         <th>创建人</th>
                     </tr>
@@ -1221,9 +1221,9 @@
     $("button[name='integration-add']").click(function () {
         var stepAddHtml = '<div class="panel panel-default " style="width: 80%;margin-left: -0.5%">';
         stepAddHtml += '<div class="panel-body table-responsive">';
-        stepAddHtml += '<!--产品线-->';
+        stepAddHtml += '<!--系统-->';
         stepAddHtml += '<div class="form-group">';
-        stepAddHtml += '<label>所属产品线</label>';
+        stepAddHtml += '<label>所属系统</label>';
         stepAddHtml += '<select class="form-control">';
         stepAddHtml += '<#if contentTypeList ??>';
         stepAddHtml += '<#list contentTypeList as item>';
