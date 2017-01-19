@@ -57,7 +57,7 @@
                 </div>
             </form>
             <!-- 接口配置，dubbo -->
-            <div id="dubbo-form-div" class="panel-collapse collapse in">
+            <div id="dubbo-form-div" class="panel-collapse collapse  interface-left in">
                 <form id="dubbo-form" class="edit-form panel panel-default col-lg-12">
                     <label class="control-label col-lg-6 title-label">dubbo接口属性配置</label>
                     <div class="form-group">
@@ -127,7 +127,7 @@
             </div>
 
             <!-- 接口配置，http -->
-            <div id="http-form-div" class="panel-collapse collapse">
+            <div id="http-form-div" class="panel-collapse collapse interface-left">
                 <form id="http-form" class="edit-form col-lg-12 panel panel-default">
                     <!-- http接口 -->
                     <span class="form-group" style="margin-top: 1em;"><label class="control-label col-lg-4 title-label">http接口属性配置</label></span>
@@ -242,11 +242,11 @@
             </div>
 
             <!--接口数据准备/数据清除-->
-            <div class="form-group" style="width: 70%">
+            <div class="form-group interface-left" style="width: 70%">
                 <label class="control-label">接口数据准备/接口数据清除</label>
                 <div class="choose-sys case-choose" style="display: inline-flex">
                     <label class="checkbox-inline" style="margin-top: 0">
-                        <input type="checkbox" value="prepare" name="operationType" >接口数据准备
+                        <input type="checkbox" value="prepare" name="operationType" >接口数据清除
                     </label>
                     <label class="checkbox-inline">
                         <input type="checkbox" value="clear" name="operationType">接口数据清除
@@ -254,7 +254,7 @@
                 </div>
             </div>
             <!--数据准备-->
-            <div id="prepare-form-div" class="panel panel-default panel-collapse collapse ">
+            <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
                 <!-- 数据准备 -->
                 <label class="control-label col-lg-4 top-label">数据准备</label>
 
@@ -267,7 +267,7 @@
                             <table class="table case-table">
                                 <thead>
                                 <tr>
-                                    <th style="width: 15%">数据库名</th>
+                                    <th style="width: 15%">数据库配置名</th>
                                     <th style="width: 75%">sql语句</th>
                                     <th>操作</th>
                                     <th></th>
@@ -322,7 +322,7 @@
                 </div>
             </div>
             <!--数据清除-->
-            <div id="clear-form-div" class="panel panel-default panel-collapse collapse ">
+            <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
                 <!-- 数据清除 -->
                 <label class="control-label col-lg-4 top-label">数据清除</label>
 
@@ -335,7 +335,7 @@
                             <table class="table case-table">
                                 <thead>
                                 <tr>
-                                    <th style="width: 15%">数据库名</th>
+                                    <th style="width: 15%">数据库配置名</th>
                                     <th style="width: 75%">sql语句</th>
                                     <th>操作</th>
                                     <th></th>
@@ -389,7 +389,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
