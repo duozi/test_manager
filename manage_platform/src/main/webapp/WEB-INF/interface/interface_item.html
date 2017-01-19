@@ -132,7 +132,7 @@
                         </select>
                     </div>
 
-                    <!--接口数据准备/数据清除-->
+              <!--      &lt;!&ndash;接口数据准备/数据清除&ndash;&gt;
                     <div class="form-group interface-left" style="width: 70%">
                         <label class="control-label">接口数据准备/接口数据清除</label>
                         <div class="choose-sys case-choose" style="display: inline-flex">
@@ -143,12 +143,124 @@
                                 <input type="checkbox" value="clear" name="operationType">接口数据清除
                             </label>
                         </div>
-                    </div>
-                    <!--数据准备-->
-                    <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
-                        <!-- 数据准备 -->
-                        <label class="control-label col-lg-4 top-label">数据准备</label>
+                    </div>-->
 
+  <!--                  &lt;!&ndash;数据清除&ndash;&gt;
+                    <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
+                        &lt;!&ndash; 数据清除 &ndash;&gt;
+                        <label class="control-label col-lg-4 top-label">数据清除</label>
+
+
+                    </div>-->
+
+                    <!--操作-->
+                    <div class="form-group btn-div">
+                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare">数据准备</button>
+                        <button type="button" data-toggle="modal" data-target="#dataClear" class="btn btn-warning interface-clear">数据清除</button>
+                        <button type="button" class="btn btn-primary interface-submit">保存</button>
+                        <button type="button" class="btn btn-success interface-reset">重置</button>
+                    </div>
+                </div>
+                <!--参数加密设置-->
+                <div class="col-lg-6 encrypt-panel-div">
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            加密配置
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group ">
+                                <label class="control-label">加密jar包</label>
+                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label">加密代码</label>
+                                <textarea type="text" class="form-control" name="encryptCode"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+     <!--   &lt;!&ndash;数据准备&ndash;&gt;
+        <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
+            &lt;!&ndash; 数据准备 &ndash;&gt;
+            <label class="control-label col-lg-4 top-label">数据准备</label>
+
+            <div class="panel panel-default operation">
+                <div class="panel-heading">
+                    数据库操作
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table case-table">
+                            <thead>
+                            <tr>
+                                <th style="width: 15%">数据库配置名</th>
+                                <th style="width: 75%">sql语句</th>
+                                <th>操作</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            <tr>
+                                <td style=" border: none"><span id="prepareAddDbOperation"
+                                                                class="btn btn-info"><i
+                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    &lt;!&ndash; /.table-responsive &ndash;&gt;
+                </div>
+                &lt;!&ndash; /.panel-body &ndash;&gt;
+            </div>
+            <div class="panel panel-default operation">
+                <div class="panel-heading">
+                    redis操作
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table case-table">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">redis名</th>
+                                <th style="width: 10%">redis操作类型</th>
+                                <th style="width: 30%">key</th>
+                                <th style="width: 30%">value</th>
+                                <th style="width: 10%">time</th>
+                                <th>操作</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                class="btn btn-info"><i
+                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    &lt;!&ndash; /.table-responsive &ndash;&gt;
+                </div>
+                &lt;!&ndash; /.panel-body &ndash;&gt;
+            </div>
+        </div>-->
+
+        <!-- 数据准备弹框 -->
+        <div class="modal fade" id="dataPrepare" tabindex="-1" role="dialog" aria-labelledby="dataPrepareLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dataPrepareLabel">数据准备</h4>
+                    </div>
+                    <div class="modal-body">
                         <div class="panel panel-default operation">
                             <div class="panel-heading">
                                 数据库操作
@@ -212,11 +324,24 @@
                             <!-- /.panel-body -->
                         </div>
                     </div>
-                    <!--数据清除-->
-                    <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
-                        <!-- 数据清除 -->
-                        <label class="control-label col-lg-4 top-label">数据清除</label>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- 数据清除弹框 -->
+        <div class="modal fade" id="dataClear" tabindex="-1" role="dialog" aria-labelledby="dataClearLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dataClearLabel">数据准备</h4>
+                    </div>
+                    <div class="modal-body">
                         <div class="panel panel-default operation">
                             <div class="panel-heading">
                                 数据库操作
@@ -279,30 +404,15 @@
                             <!-- /.panel-body -->
                         </div>
                     </div>
-                </div>
-
-                <!--参数加密设置-->
-                <div class="col-lg-6 encrypt-panel-div">
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading">
-                            加密配置
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group ">
-                                <label class="control-label">加密jar包</label>
-                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
-                            </div>
-                            <div class="form-group ">
-                                <label class="control-label">加密代码</label>
-                                <textarea type="text" class="form-control" name="encryptCode"></textarea>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
-            </form>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
-
     </div>
 </div>
 
@@ -361,22 +471,22 @@
     redishtml += '</td>';
     redishtml += '</div>';
     redishtml += '</tr>';
-
-    $("input[name='operationType']").click(
-            function () {
-                var value = $(this).val();
-                if (value == "prepare" && $(this).is(':checked')) {
-                    $("#prepare-form-div").addClass("in");
-                } else if (value == "prepare" && !$(this).is(':checked')) {
-                    $("#prepare-form-div").removeClass("in");
-                }
-                if (value == "clear" && $(this).is(':checked')) {
-                    $("#clear-form-div").addClass("in");
-                } else if (value == "clear" && !$(this).is(':checked')) {
-                    $("#clear-form-div").removeClass("in");
-                }
-            }
-    );
+//
+//    $("input[name='operationType']").click(
+//            function () {
+//                var value = $(this).val();
+//                if (value == "prepare" && $(this).is(':checked')) {
+//                    $("#prepare-form-div").addClass("in");
+//                } else if (value == "prepare" && !$(this).is(':checked')) {
+//                    $("#prepare-form-div").removeClass("in");
+//                }
+//                if (value == "clear" && $(this).is(':checked')) {
+//                    $("#clear-form-div").addClass("in");
+//                } else if (value == "clear" && !$(this).is(':checked')) {
+//                    $("#clear-form-div").removeClass("in");
+//                }
+//            }
+//    );
     $("#clearAddDbOperation").click(function () {
         $(this).parent().parent().before(dbhtml);
         $("button[name='delete']").click(function () {
