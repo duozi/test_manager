@@ -55,20 +55,20 @@
                 <div class="form-group ">
                     <label>用例ID</label>
                     <input class="form-control col-lg-5">
-                    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList" >查看所属测试集</a>
+                    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList">查看所属测试集</a>
                 </div>
                 <!--所属接口-->
                 <#if caseType != 2>
-                <div class="form-group ">
-                    <label>所属接口</label>
-                    <select class="form-control col-lg-5">
-                        <option value="" disabled selected>选择接口名称</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
+                    <div class="form-group ">
+                        <label>所属接口</label>
+                        <select class="form-control col-lg-5">
+                            <option value="" disabled selected>选择接口名称</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </div>
                 </#if>
                 <!--数据准备/数据清除-->
                 <div class="form-group">
@@ -159,16 +159,16 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">参数设置</a>
+                                <li class="active"><a href="#gui-header" data-toggle="tab" aria-expanded="true">参数设置</a>
                                 </li>
-                                <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">自定义参数</a>
+                                <li class=""><a href="#source-header" data-toggle="tab" aria-expanded="false">自定义参数</a>
                                 </li>
 
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade active in" id="gui">
+                                <div class="tab-pane fade active in" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
@@ -210,9 +210,21 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="source">
-                                    <h4>填写参数</h4>
+                                <div class="tab-pane fade" id="source-header">
+                                    <div class="form-group ">
+                                        <label>参数格式</label>
+                                        <select class="form-control">
+                                            <option values="1">
+                                                xml格式
+                                            </option>
+                                            <option values="1">
+                                                json格式
+                                            </option>
+                                         </select>
+                                    </div>
                                     <textarea class=" form-control  text-control"></textarea>
+                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                    <button type="submit" class="btn btn-warning">清空</button>
                                     <button type="submit" class="btn btn-info">保存</button>
                                 </div>
 
@@ -229,16 +241,16 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui" data-toggle="tab" aria-expanded="true">参数设置</a>
+                                <li class="active"><a href="#gui-body" data-toggle="tab" aria-expanded="true">参数设置</a>
                                 </li>
-                                <li class=""><a href="#source" data-toggle="tab" aria-expanded="false">自定义参数</a>
+                                <li class=""><a href="#source-body" data-toggle="tab" aria-expanded="false">自定义参数</a>
                                 </li>
 
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade active in" id="gui">
+                                <div class="tab-pane fade active in" id="gui-body">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
@@ -280,9 +292,21 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="source">
-                                    <h4>填写参数</h4>
+                                <div class="tab-pane fade" id="source-body">
+                                    <div class="form-group ">
+                                        <label>参数格式</label>
+                                        <select class="form-control">
+                                            <option values="1">
+                                                xml格式
+                                            </option>
+                                            <option values="1">
+                                                json格式
+                                            </option>
+                                        </select>
+                                    </div>
                                     <textarea class=" form-control  text-control"></textarea>
+                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                    <button type="submit" class="btn btn-warning">清空</button>
                                     <button type="submit" class="btn btn-info">保存</button>
                                 </div>
 
@@ -333,10 +357,10 @@
                                         <div class="panel-body">
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#integration-gui" data-toggle="tab"
+                                                <li class="active"><a href="#integration-gui-header" data-toggle="tab"
                                                                       aria-expanded="true">参数设置</a>
                                                 </li>
-                                                <li class=""><a href="#integration-source" data-toggle="tab"
+                                                <li class=""><a href="#integration-source-header" data-toggle="tab"
                                                                 aria-expanded="false">自定义参数</a>
                                                 </li>
 
@@ -344,7 +368,7 @@
 
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane fade active in" id="integration-gui">
+                                                <div class="tab-pane fade active in" id="integration-gui-header">
                                                     <div class="table-responsive">
                                                         <table class="table case-table">
                                                             <thead>
@@ -389,12 +413,23 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="integration-source">
-                                                    <h4>填写参数</h4>
+                                                <div class="tab-pane fade" id="integration-source-header">
+                                                    <div class="form-group ">
+                                                        <label>参数格式</label>
+                                                        <select class="form-control">
+                                                            <option values="1">
+                                                                xml格式
+                                                            </option>
+                                                            <option values="1">
+                                                                json格式
+                                                            </option>
+                                                        </select>
+                                                    </div>
                                                     <textarea class=" form-control  text-control"></textarea>
+                                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                                    <button type="submit" class="btn btn-warning">清空</button>
                                                     <button type="submit" class="btn btn-info">保存</button>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <!-- /.panel-body -->
@@ -408,10 +443,10 @@
                                         <div class="panel-body">
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#integration-gui" data-toggle="tab"
+                                                <li class="active"><a href="#integration-gui-body" data-toggle="tab"
                                                                       aria-expanded="true">参数设置</a>
                                                 </li>
-                                                <li class=""><a href="#integration-source" data-toggle="tab"
+                                                <li class=""><a href="#integration-source-body" data-toggle="tab"
                                                                 aria-expanded="false">自定义参数</a>
                                                 </li>
 
@@ -419,7 +454,7 @@
 
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane fade active in" id="integration-gui">
+                                                <div class="tab-pane fade active in" id="integration-gui-body">
                                                     <div class="table-responsive">
                                                         <table class="table case-table">
                                                             <thead>
@@ -464,12 +499,23 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="integration-source">
-                                                    <h4>填写参数</h4>
+                                                <div class="tab-pane fade" id="integration-source-body">
+                                                    <div class="form-group ">
+                                                        <label>参数格式</label>
+                                                        <select class="form-control">
+                                                            <option values="1">
+                                                                xml格式
+                                                            </option>
+                                                            <option values="1">
+                                                                json格式
+                                                            </option>
+                                                        </select>
+                                                    </div>
                                                     <textarea class=" form-control  text-control"></textarea>
+                                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                                    <button type="submit" class="btn btn-warning">清空</button>
                                                     <button type="submit" class="btn btn-info">保存</button>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <!-- /.panel-body -->
@@ -920,25 +966,99 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <button type="button" name="save" class="btn btn-info">保存
+                    </button>
+                    <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal" data-target="#environmentList">联调
+                    </button>
+                </div>
 
             </div>
 
         </form>
     </div>
 </div>
+<!--联调弹框-->
+<div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title" >选择运行环境</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>环境ID</th>
+                        <th>环境名称</th>
+                        <th>环境描述</th>
+                        <th>创建人</th>
+                        <th>选择</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>牛贷系统查询联系人测试</td>
+                        <th>你猜你猜</th>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="../report/report_detail" type="button" class="btn btn-primary" >运行</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <!--测试集弹框-->
 <div class="modal fade" id="suitList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
     <div class="modal-dialog modal-suit-list">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="suitListLabel">选择测试集</h4>
+                <h4 class="modal-title" id="suitListLabel">查看测试集</h4>
             </div>
             <div class="modal-body">
                 <table class="table">
                     <thead>
-                    <tr >
+                    <tr>
                         <th>测试集ID</th>
                         <th>测试集名称</th>
                         <th>测试集描述</th>
@@ -1400,9 +1520,9 @@
         stepAddHtml += '<div class="panel-body">';
         stepAddHtml += '<!-- Nav tabs -->';
         stepAddHtml += '<ul class="nav nav-tabs">';
-        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + '" data-toggle="tab" aria-expanded="true">参数设置</a>';
+        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + 'header" data-toggle="tab" aria-expanded="true">参数设置</a>';
         stepAddHtml += '</li>';
-        stepAddHtml += '<li class=""><a href="#integration-source-' + count + '" data-toggle="tab" aria-expanded="false">自定义参数</a>';
+        stepAddHtml += '<li class=""><a href="#integration-source-' + count + 'header" data-toggle="tab" aria-expanded="false">自定义参数</a>';
         stepAddHtml += '</li>';
         stepAddHtml += ' </ul>';
         stepAddHtml += '<!-- Tab panes -->';
@@ -1446,9 +1566,14 @@
         stepAddHtml += '</table>';
         stepAddHtml += '</div>';
         stepAddHtml += '</div>';
-        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + '">';
-        stepAddHtml += '<h4>填写参数</h4>';
+        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + 'header">';
+        stepAddHtml += '<div class="form-group "> <label>参数格式</label> <select class="form-control">';
+        stepAddHtml += '<option values="1"> xml格式 </option>';
+        stepAddHtml += '<option values="1">json格式 </option>';
+        stepAddHtml += ' </select> </div>';
         stepAddHtml += '<textarea class=" form-control  text-control"></textarea>';
+        stepAddHtml += ' <button type="submit" class="btn btn-success">格式校验</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-warning">清空</button>';
         stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
         stepAddHtml += '</div>';
         stepAddHtml += '</div>';
@@ -1465,14 +1590,14 @@
         stepAddHtml += '<div class="panel-body">';
         stepAddHtml += '<!-- Nav tabs -->';
         stepAddHtml += '<ul class="nav nav-tabs">';
-        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + '" data-toggle="tab" aria-expanded="true">参数设置</a>';
+        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + 'body" data-toggle="tab" aria-expanded="true">参数设置</a>';
         stepAddHtml += '</li>';
-        stepAddHtml += '<li class=""><a href="#integration-source-' + count + '" data-toggle="tab" aria-expanded="false">自定义参数</a>';
+        stepAddHtml += '<li class=""><a href="#integration-source-' + count + 'body" data-toggle="tab" aria-expanded="false">自定义参数</a>';
         stepAddHtml += '</li>';
         stepAddHtml += ' </ul>';
         stepAddHtml += '<!-- Tab panes -->';
         stepAddHtml += '<div class="tab-content">';
-        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-' + count + '">';
+        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-' + count + 'body">';
         stepAddHtml += '<div class="table-responsive">';
         stepAddHtml += '<table class="table case-table">';
         stepAddHtml += '<thead>';
@@ -1511,9 +1636,14 @@
         stepAddHtml += '</table>';
         stepAddHtml += '</div>';
         stepAddHtml += '</div>';
-        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + '">';
-        stepAddHtml += '<h4>填写参数</h4>';
+        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + 'body">';
+        stepAddHtml += '<div class="form-group "> <label>参数格式</label> <select class="form-control">';
+        stepAddHtml += '<option values="1"> xml格式 </option>';
+        stepAddHtml += '<option values="1">json格式 </option>';
+        stepAddHtml += ' </select> </div>';
         stepAddHtml += '<textarea class=" form-control  text-control"></textarea>';
+        stepAddHtml += ' <button type="submit" class="btn btn-success">格式校验</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-warning">清空</button>';
         stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
         stepAddHtml += '</div>';
         stepAddHtml += '</div>';
