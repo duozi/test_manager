@@ -32,8 +32,8 @@
              <div class="panel panel-default">
                  <div class="panel-heading">
                     <ol class="breadcrumb">
-                        <li><a href="#">测试系统管理</a></li>
-					    <li class="active">测试系统</li>
+                        <li><a href="#">服务管理</a></li>
+					    <li class="active">服务列表</li>
 					</ol>
                  </div>
 
@@ -69,7 +69,7 @@
                                </div>
                                <div class="form-group col-lg-3">
                                    <button type="submit" class="btn btn-default">查询</button>
-                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增系统</a>
+                                  <!-- <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增系统</a>-->
                                    <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addService"><i class=" fa-plus-circle fa"></i>新增服务</a>
                                </div>
                            </div>
@@ -82,8 +82,8 @@
                                    <th>服务描述</th>
                                    <th>公司</th>
                                    <th>部门</th>
-                                   <th>系统名称</th>
-                                   <th>service</th>
+                                   <th>系统</th>
+                                   <th>服务</th>
                                    <th>创建人</th>
                                    <th>操作</th>
                                </tr>
@@ -98,13 +98,15 @@
                                    <td>service</td>
                                    <td>小珊珊</td>
                                    <td>
-                                   <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
-                               </td>
+                                       <a type="button" id=""  class="btn btn-success" onclick="editService()">编辑</a>
+                                       <a type="button" id="deleteService"  class="btn btn-danger">删除</a>
+                                   </td>
                                </tr>
                                </tbody>
                            </table>
                        </div>
                        <!-- /.table-responsive -->
+
                    </div>
                <!-- /.panel-body -->
            </div>
@@ -123,13 +125,10 @@
                             <div class="col-lg-14 form-div">
                                 <div class="form-group">
                                     <label class="control-label" >选择系统</label>
-                                    <select class="form-control" id="projectId">
-                                        <option value="once">风控</option>
-                                        <option value="circulation">征信</option>
+                                    <select class="form-control" >
+                                        <option value="once">支付中心</option>
+                                        <option value="circulation">风控规则</option>
                                     </select>
-                                  <!--  <button class="btn btn-default" type="button" id="addProject">
-                                        <span class="glyphicon glyphicon-plus" ></span>
-                                    </button>-->
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" >服务名称</label>
@@ -151,7 +150,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- 新增项目弹框 -->
+      <!--  &lt;!&ndash; 新增项目弹框 &ndash;&gt;
         <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -165,13 +164,7 @@
                                     <label class="control-label" >系统名称</label>
                                     <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入系统名称">
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label" >选择产品线</label>
-                                    <select class="form-control" >
-                                        <option value="once">支付中心</option>
-                                        <option value="circulation">风控规则</option>
-                                    </select>
-                                </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -179,10 +172,10 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
-                <!-- /.modal-content -->
+                &lt;!&ndash; /.modal-content &ndash;&gt;
             </div>
-            <!-- /.modal-dialog -->
-        </div>
+            &lt;!&ndash; /.modal-dialog &ndash;&gt;
+        </div>-->
 
      </div>
    <!-- /.container-fluid -->
@@ -199,6 +192,10 @@
             browseClass: "btn btn-primary", //按钮样式
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
         });
+    }
+
+    function editService(){
+        $("#addService").modal();
     }
 
 

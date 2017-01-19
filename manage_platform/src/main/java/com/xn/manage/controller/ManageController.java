@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/system")
-public class SystemController {
+@RequestMapping("/manage")
+public class ManageController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
 	public String getSystemPage(@PathVariable String  path) {
-		return "system/" + path;
+		return "manage/" + path;
 	}
 
 }
