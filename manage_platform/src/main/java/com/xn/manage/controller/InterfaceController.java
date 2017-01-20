@@ -2,6 +2,7 @@ package com.xn.manage.controller;
 
 import com.xn.manage.Enum.ContentTypeEnum;
 import com.xn.manage.Enum.HttpTypeEnum;
+import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.Enum.RequestTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,9 +37,19 @@ public class InterfaceController {
 		for(RequestTypeEnum item : RequestTypeEnum.values()){
 			requestTypeList.add(item);
 		}
+		List<RedisOperationTypeEnum> redisOperationTypeEnumList=new ArrayList<RedisOperationTypeEnum>();
+		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
+			redisOperationTypeEnumList.add(item);
+		}
+
+		List<String> dbNameList=new ArrayList<String>();
+		List<String> redisNameList=new ArrayList<String>();
 		map.put("requestTypeList",requestTypeList);
 		map.put("contentTypeList",contentTypeList);
 		map.put("httpTypeList",httpTypeList);
+		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
+		map.put("dbNameList",dbNameList);
+		map.put("redisNameList",redisNameList);
 		return "interface/" + path;
 	}
 

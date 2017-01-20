@@ -608,8 +608,8 @@
                                                             <td>
                                                                 <select class="form-control" id="dbAssert"
                                                                         name="dbAssert">
-                                                                    <#if contentTypeList ??>
-                                                                        <#list contentTypeList as item>
+                                                                    <#if dbNameList ??>
+                                                                        <#list dbNameList as item>
                                                                             <option values="${item.getId()}">
                                                                                 ${item.getName()}
                                                                             </option>
@@ -668,8 +668,8 @@
                                                         <div class="row">
                                                             <td>
                                                                 <select class="form-control">
-                                                                    <#if contentTypeList ??>
-                                                                        <#list contentTypeList as item>
+                                                                    <#if redisNameList ??>
+                                                                        <#list redisNameList as item>
                                                                             <option values="${item.getId()}">
                                                                                 ${item.getName()}
                                                                             </option>
@@ -1106,8 +1106,8 @@
     dbhtml += '<div class="row">';
     dbhtml += '<td>';
     dbhtml += '<select class="form-control" >';
-    dbhtml += '<#if contentTypeList ??>';
-    dbhtml += '<#list contentTypeList as item>';
+    dbhtml += '<#if dbNameList ??>';
+    dbhtml += '<#list dbNameList as item>';
     dbhtml += '<option values="${item.getId()}">${item.getName()} </option>';
     dbhtml += '</#list>';
     dbhtml += '</#if>';
@@ -1128,8 +1128,8 @@
 
     redishtml += '<td>';
     redishtml += '<select class="form-control"  name="redisName">';
-    redishtml += '<#if contentTypeList ??>';
-    redishtml += '<#list contentTypeList as item>';
+    redishtml += '<#if redisNameList ??>';
+    redishtml += '<#list redisNameList as item>';
     redishtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
@@ -1278,8 +1278,8 @@
     dbAssertHtml += '<div class="row">';
     dbAssertHtml += '<td>';
     dbAssertHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
-    dbAssertHtml += '<#if contentTypeList ??>';
-    dbAssertHtml += '<#list contentTypeList as item>';
+    dbAssertHtml += '<#if dbNameList ??>';
+    dbAssertHtml += '<#list dbNameList as item>';
     dbAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     dbAssertHtml += '</#list>';
     dbAssertHtml += '</#if>';
@@ -1301,8 +1301,8 @@
     redisAssertHtml += '<div class="row">';
     redisAssertHtml += '<td>';
     redisAssertHtml += '<select class="form-control" >';
-    redisAssertHtml += '<#if contentTypeList ??>';
-    redisAssertHtml += '<#list contentTypeList as item>';
+    redisAssertHtml += '<#if redisNameList ??>';
+    redisAssertHtml += '<#list redisNameList as item>';
     redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
@@ -1392,8 +1392,8 @@
     paramAddHtml += '<td><input type="text" class="form-control"></td>';
     paramAddHtml += '<td>';
     paramAddHtml += '<select class="form-control">';
-    paramAddHtml += '<#if contentTypeList ??>';
-    paramAddHtml += '<#list contentTypeList as item>';
+    paramAddHtml += '<#if paramTypeList ??>';
+    paramAddHtml += '<#list paramTypeList as item>';
     paramAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';

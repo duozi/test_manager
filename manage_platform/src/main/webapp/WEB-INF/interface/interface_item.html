@@ -422,8 +422,8 @@
     dbhtml += '<div class="row">';
     dbhtml += '<td>';
     dbhtml += '<select class="form-control" >';
-    dbhtml += '<#if contentTypeList ??>';
-    dbhtml += '<#list contentTypeList as item>';
+    dbhtml += '<#if dbNameList ??>';
+    dbhtml += '<#list dbNameList as item>';
     dbhtml += '<option values="${item.getId()}">${item.getName()} </option>';
     dbhtml += '</#list>';
     dbhtml += '</#if>';
@@ -444,8 +444,8 @@
 
     redishtml += '<td>';
     redishtml += '<select class="form-control"  name="redisName">';
-    redishtml += '<#if contentTypeList ??>';
-    redishtml += '<#list contentTypeList as item>';
+    redishtml += '<#if redisNameList ??>';
+    redishtml += '<#list redisNameList as item>';
     redishtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
@@ -453,9 +453,11 @@
     redishtml += '</td>';
     redishtml += '<td>';
     redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
-    redishtml += '<option values="set">set</option>';
-    redishtml += '<option values="del">del</option>';
-    redishtml += '<option values="expire">expire</option>';
+    redishtml += '<#if redisOperationTypeEnumList ??>';
+    redishtml += '<#list redisOperationTypeEnumList as item>';
+    redishtml += '<option value="${item.getId()}"> ${item.getName()} </option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td><input type="text" class="form-control" name="key"></td>';

@@ -26,7 +26,11 @@ public class CaseController {
 		for(ParamTypeEnum item : ParamTypeEnum.values()){
 			paramTypeList.add(item);
 		}
+		List<String> dbNameList=new ArrayList<String>();
+		List<String> redisNameList=new ArrayList<String>();
 		map.put("paramTypeList",paramTypeList);
+		map.put("dbNameList",dbNameList);
+		map.put("redisNameList",redisNameList);
 		return "case/" + path;
 	}
 
