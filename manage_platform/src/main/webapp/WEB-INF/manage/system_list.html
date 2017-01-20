@@ -31,7 +31,7 @@
                  <div class="panel-heading">
                     <ol class="breadcrumb">
                         <li><a href="#">系统设置</a></li>
-					    <li class="active">产品线管理</li>
+					    <li class="active">系统管理</li>
 					</ol>
                  </div>
 
@@ -42,9 +42,10 @@
                                    <select class="form-control">
                                        <option value="" disabled selected >选择公司名称</option>
                                        <option value="">小牛在线</option>
-                                       <option value="">小牛分期</option>
+                                       <option value="">小牛集团</option>
                                        <option value="">小牛普惠</option>
                                        <option value="">牛鼎丰</option>
+                                       <option value="">钱罐子</option>
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
@@ -58,7 +59,7 @@
                                </div>
                                <div class="form-group col-lg-3">
                                    <button type="submit" class="btn btn-default">查询</button>
-                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增产品线</a>
+                                   <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增系统</a>
                                  <!--  <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addSystem"><i class=" fa-plus-circle fa"></i>新增service</a>-->
                                </div>
                            </div>
@@ -70,7 +71,7 @@
                                    <th>ID</th>
                                    <th>公司</th>
                                    <th>部门</th>
-                                   <th>产品线名称</th>
+                                   <th>系统名称</th>
                                    <th>描述</th>
                                    <th>创建人</th>
                                    <th>操作</th>
@@ -83,7 +84,7 @@
                                    <td>平台部</td>
                                    <td>支付中心</td>
                                    <td>test</td>
-                                   <td>小珊珊</td>
+                                   <td>无敌的老大</td>
                                    <td>
                                    <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
                                </td>
@@ -104,7 +105,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="addProjectLabel">新增产品线</h4>
+                        <h4 class="modal-title" id="addProjectLabel">新增系统</h4>
                     </div>
                     <div class="modal-body modal-add-service">
                         <form role="form " class="col-lg-12 edit-form add-service-form">
@@ -127,8 +128,8 @@
                                 <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" >产品线名称</label>
-                                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入产品线名称">
+                                <label class="control-label" >系统名称</label>
+                                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入系统名称">
                             </div>
                         </form>
                     </div>
