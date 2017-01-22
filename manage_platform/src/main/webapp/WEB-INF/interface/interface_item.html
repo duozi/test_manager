@@ -174,8 +174,8 @@
                                 <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
                             </div>
                             <div class="form-group ">
-                                <label class="control-label">加密代码</label>
-                                <textarea type="text" class="form-control" name="encryptCode"></textarea>
+                                <label class="control-label">编写调用代码</label>
+                                <textarea type="text" class="form-control" name="encryptCode" placeholder="调用jar包内加密算法的demo"></textarea>
                             </div>
                         </div>
                     </div>
@@ -455,7 +455,7 @@
     redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
     redishtml += '<#if redisOperationTypeEnumList ??>';
     redishtml += '<#list redisOperationTypeEnumList as item>';
-    redishtml += '<option value="${item.getId()}"> ${item.getName()} </option>';
+    redishtml += '<option value="${item.getName()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
     redishtml += '</select>';

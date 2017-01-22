@@ -1,6 +1,8 @@
 package com.xn.manage.controller;
 
 import com.xn.manage.Enum.ParamTypeEnum;
+import com.xn.manage.Enum.RedisAssertTypeEnum;
+import com.xn.manage.Enum.RedisOperationTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +28,22 @@ public class CaseController {
 		for(ParamTypeEnum item : ParamTypeEnum.values()){
 			paramTypeList.add(item);
 		}
+
+		List<RedisAssertTypeEnum> redisAssertTypeEnumList=new ArrayList<RedisAssertTypeEnum>();
+		for(RedisAssertTypeEnum item:RedisAssertTypeEnum.values()){
+			redisAssertTypeEnumList.add(item);
+		}
+		List<RedisOperationTypeEnum> redisOperationTypeEnumList=new ArrayList<RedisOperationTypeEnum>();
+		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
+			redisOperationTypeEnumList.add(item);
+		}
 		List<String> dbNameList=new ArrayList<String>();
 		List<String> redisNameList=new ArrayList<String>();
 		map.put("paramTypeList",paramTypeList);
 		map.put("dbNameList",dbNameList);
 		map.put("redisNameList",redisNameList);
+		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
+		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
 		return "case/" + path;
 	}
 

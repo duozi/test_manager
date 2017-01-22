@@ -332,5 +332,10 @@ margin-left: 10%;
 }
 
 #dataPrepare .modal-content,#dataClear .modal-content {
-    width: 800px;
+    width: 1000px;
+    margin-left: -10%;
+}
+
+#dataClear .panel，#dataPrepare .panel{
+    margin-left: -10%;
 }

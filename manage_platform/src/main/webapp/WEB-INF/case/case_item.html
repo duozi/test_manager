@@ -670,7 +670,7 @@
                                                                 <select class="form-control">
                                                                     <#if redisNameList ??>
                                                                         <#list redisNameList as item>
-                                                                            <option values="${item.getId()}">
+                                                                            <option values="${item.getName()}">
                                                                                 ${item.getName()}
                                                                             </option>
                                                                         </#list>
@@ -680,8 +680,14 @@
                                                             <td>
                                                                 <select class="form-control case-select"
                                                                         name="redisAssertType">
-                                                                    <option values="valueAssert">缓存值</option>
-                                                                    <option values="timeAssert">缓存时间</option>
+                                                                    <#if redisAssertTypeEnumList??>
+                                                                        <#list redisAssertTypeEnumList as item>
+                                                                            <option values="${item.getId()}">
+                                                                                ${item.getName()}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+
                                                                 </select>
                                                             </td>
                                                             <td><input type="text" class="form-control"></td>
@@ -1137,9 +1143,11 @@
     redishtml += '</td>';
     redishtml += '<td>';
     redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
-    redishtml += '<option values="set">set</option>';
-    redishtml += '<option values="del">del</option>';
-    redishtml += '<option values="expire">expire</option>';
+    redishtml += '<#if redisOperationTypeEnumList ??>';
+    redishtml += '<#list redisOperationTypeEnumList as item>';
+    redishtml += '<option values="${item.getName()} "> ${item.getName()} </option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td><input type="text" class="form-control" name="key"></td>';
@@ -1310,8 +1318,11 @@
     redisAssertHtml += '</td>';
     redisAssertHtml += '<td>';
     redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
-    redisAssertHtml += '<option values="valueAssert">缓存值</option>';
-    redisAssertHtml += '<option values="timeAssert">缓存时间</option>';
+    redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
+    redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
+    redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
     redisAssertHtml += '</td>';
     redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
@@ -1788,8 +1799,11 @@
         stepAddHtml += '</td>';
         stepAddHtml += '<td>';
         stepAddHtml += '<select class="form-control case-select" name="redisAssertType">';
-        stepAddHtml += '<option values="valueAssert">缓存值</option>';
-        stepAddHtml += '<option values="timeAssert">缓存时间</option>';
+        stepAddHtml += '<#if redisAssertTypeEnumList ??>';
+        stepAddHtml += '<#list redisAssertTypeEnumList as item>';
+        stepAddHtml += '<option values="${item.getName()}">${item.getName()} </option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
         stepAddHtml += '</td>';
         stepAddHtml += '<td><input type="text" class="form-control"></td>';
