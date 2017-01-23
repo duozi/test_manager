@@ -51,6 +51,10 @@
                     <label>用例名</label>
                     <input class="form-control col-lg-5">
                 </div>
+                <div class="form-group ">
+                    <label>用例描述</label>
+                    <input class="form-control col-lg-5">
+                </div>
                 <!--用例id-->
                 <div class="form-group ">
                     <label>用例ID</label>
@@ -63,10 +67,10 @@
                         <label>所属接口</label>
                         <select class="form-control col-lg-5">
                             <option value="" disabled selected>选择接口名称</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
+                            <option value="">风控规则-反欺诈规则接口</option>
+                            <option value="">风控规则-贷后规则接口</option>
+                            <option value="">风控规则-黑名单规则接口</option>
+                            <option value="">华征征信-查询个人房产信息接口</option>
                         </select>
                     </div>
                 </#if>
@@ -326,11 +330,9 @@
                                 <div class="form-group">
                                     <label>所属系统</label>
                                     <select class="form-control">
-                                        <#if contentTypeList ??>
-                                            <#list contentTypeList as item>
-                                                <option values="${item.getId()}">
-                                                    ${item.getName()}
-                                                </option>
+                                        <#if systemList ??>
+                                            <#list systemList as item>
+                                                <option value="${item.id}">${item.name}</option>
                                             </#list>
                                         </#if>
                                     </select>
@@ -1063,34 +1065,30 @@
                         <th>测试集名称</th>
                         <th>测试集描述</th>
                         <th>系统</th>
-                        <th>测试集类型</th>
                         <th>创建人</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>牛贷系统查询联系人测试</td>
-                        <th>测试集名称</th>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>风控规则测试集</td>
+                        <td>风控规则测试集描述</td>
+                        <td>风控规则</td>
+                        <td>高珊</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>风控规则贷后规则测试集</td>
+                        <td>风控规则测试集描述</td>
+                        <td>风控规则</td>
+                        <td>高珊</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>风控规则反欺诈测试集</td>
+                        <td>风控规则</td>
+                        <td>风控规则测试集描述</td>
+                        <td>高珊</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1493,9 +1491,9 @@
         stepAddHtml += '<div class="form-group">';
         stepAddHtml += '<label>所属系统</label>';
         stepAddHtml += '<select class="form-control">';
-        stepAddHtml += '<#if contentTypeList ??>';
-        stepAddHtml += '<#list contentTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<#if sytemList ??>';
+        stepAddHtml += '<#list systemList as item>';
+        stepAddHtml += '<option values="${item.id}">${item.name} </option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
