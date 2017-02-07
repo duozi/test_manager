@@ -67,18 +67,19 @@
                                 <option value="" disabled selected >选择计划名称</option>
                                 <#if planList ??>
                                     <#list planList as item>
-                                        <option value="${item.id}">${item.name}</option>
+                                        <option value="${item.id}">${item.planName}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control">
-                                <option value="" disabled selected >选择计划执行类型</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
+                                <option value="" disabled selected >选择计划状态</option>
+                                <#if planStatusList ??>
+                                    <#list planStatusList as item>
+                                        <option value="${item.getId()}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-3">
@@ -110,9 +111,9 @@
                                 <a href="../suit/suit_item">风控规则测试集</a>，
                                 <a href="../suit/suit_item">风控规则反欺诈规则测试集</a>
                             </td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                            <td>测试环境1</td>
+                            <td>未发布</td>
+                            <td>单次执行</td>
                             <td>小珊珊</td>
                             <td>
                                 <a type="button" id="chooseSuit"   data-toggle="modal" data-target="#suitList"  class="btn btn-warning">选择测试集</a>

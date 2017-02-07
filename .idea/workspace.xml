@@ -2,42 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/BaseEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/Company.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/Department.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/Service.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/System.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/DepartmentController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/SystemController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/filter/BasePathInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/filter/MyFreeMarkerView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/InterfaceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/InterfaceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ManageController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ManageController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/SuitController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/SuitController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/WebController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/WebController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/filter/FreemarkerFilter.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/filter/FreemarkerFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/spring/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/manage/company_manage.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/manage/company_manage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/manage/system_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/manage/system_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/entity/Plan.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/entity/Plan.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/service/service_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/service/service_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,31 +33,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="case_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_list.html">
+      <file leaf-file-name="KeyValueStore.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/KeyValueStore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1143">
-              <caret line="125" column="41" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
+            <state relative-caret-position="225">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="suit_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_list.html">
+      <file leaf-file-name="plan_list.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="76" column="62" selection-start-line="76" selection-start-column="62" selection-end-line="76" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="suit_item.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="168" column="66" selection-start-line="168" selection-start-column="66" selection-end-line="168" selection-end-column="66" />
+            <state relative-caret-position="427">
+              <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -95,8 +56,8 @@
       <file leaf-file-name="case_item.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_item.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="1091" column="0" selection-start-line="1091" selection-start-column="0" selection-end-line="1091" selection-end-column="0" />
+            <state relative-caret-position="227">
+              <caret line="1108" column="43" selection-start-line="1108" selection-start-column="38" selection-end-line="1108" selection-end-column="43" />
               <folding>
                 <element signature="n#div#3;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#5;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -106,53 +67,76 @@
                 <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#10;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#11;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#12;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#13;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1485161324759" expanded="true" signature="66689:66730" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="82558:82587" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="83775:83786" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="83829:83842" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="84021:84031" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="85022:85031" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="85079:85088" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="85137:85146" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="86179:86192" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="87604:87615" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="87658:87671" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="87848:87858" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="88849:88858" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="88906:88915" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="88964:88973" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="90006:90019" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="91526:91541" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="92774:92783" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="92832:92842" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="93707:93720" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="94654:94664" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="94715:94725" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="94773:94783" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="94832:94842" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="96243:96256" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="97192:97202" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="97253:97263" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="97312:97322" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="97370:97380" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="97429:97439" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="99109:99122" ph="..." />
-                <marker date="1485161324759" expanded="true" signature="99775:99790" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="66689:66730" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="82558:82587" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="83775:83786" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="83829:83842" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="84021:84031" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="85022:85031" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="85079:85088" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="85137:85146" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="86179:86192" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="87604:87615" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="87658:87671" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="87848:87858" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="88849:88858" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="88906:88915" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="88964:88973" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="90006:90019" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="91526:91541" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="92774:92783" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="92832:92842" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="93707:93720" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="94654:94664" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="94715:94725" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="94773:94783" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="94832:94842" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="96243:96256" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="97192:97202" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="97253:97263" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="97312:97322" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="97370:97380" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="97429:97439" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="98375:103176" ph="{...}" />
+                <marker date="1486349331654" expanded="true" signature="99109:99122" ph="..." />
+                <marker date="1486349331654" expanded="true" signature="99775:99790" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plan_list.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html">
+      <file leaf-file-name="report_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="78" column="46" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
+            <state relative-caret-position="193">
+              <caret line="115" column="77" selection-start-line="115" selection-start-column="77" selection-end-line="115" selection-end-column="77" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlanController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+              <folding>
+                <element signature="e#1160#1168#0" expanded="true" />
+                <element signature="e#1717#1733#0" expanded="true" />
+                <element signature="e#1871#1877#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="39" />
+              <folding>
+                <element signature="e#902#908#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,56 +144,32 @@
       <file leaf-file-name="environment_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="51" column="38" selection-start-line="47" selection-start-column="31" selection-end-line="51" selection-end-column="38" />
+            <state relative-caret-position="2">
+              <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="63" selection-end-column="85" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="environment_item.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_item.html">
+      <file leaf-file-name="Plan.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/entity/Plan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="297" column="42" selection-start-line="297" selection-start-column="35" selection-end-line="297" selection-end-column="42" />
+            <state relative-caret-position="359">
+              <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
               <folding>
-                <marker date="1485160432972" expanded="true" signature="17346:17388" ph="..." />
-                <marker date="1485160432972" expanded="true" signature="19556:19596" ph="..." />
+                <element signature="e#2464#2465#0" expanded="false" />
+                <element signature="e#2503#2504#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interface_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_list.html">
+      <file leaf-file-name="PlanStatusEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="40" column="73" selection-start-line="37" selection-start-column="31" selection-end-line="40" selection-end-column="73" />
+            <state relative-caret-position="75">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnvironmentController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="27" column="46" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="46" />
-              <folding>
-                <element signature="e#916#925#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="47" column="46" selection-start-line="42" selection-start-column="8" selection-end-line="47" selection-end-column="46" />
-              <folding>
-                <element signature="e#1596#1605#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -240,9 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/dao/RedisAssertMapper.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/enums/ResultMsgEnum.java" />
-        <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/bean/resultBean/AssertDiff.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/PlanListService.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/service/serviceImpl/PlanListServiceImpl.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/java/com/xn/autotest/controller/NewPlanController.java" />
@@ -270,18 +227,14 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/manage/system_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/WebController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ManageController.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/SystemController.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/service/service_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/Service.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/InterfaceController.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/SuitController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_item.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html" />
@@ -290,6 +243,13 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_item.html" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanExcuteTypeEnum.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/entity/Plan.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html" />
       </list>
     </option>
@@ -361,6 +321,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -381,9 +342,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -398,16 +358,16 @@
     <property name="SearchEverywhereHistoryKey" value="right&#9;FILE&#9;file://E:/test_manager/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\test_manager\autotest\src\main\resources\mybatis\mapper" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.xn.manage.controller" />
-      <recent name="com.xn.manage.bean" />
-      <recent name="com.xn.manage.Enum" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\workspace\test_manager\manage_platform\src\main\java\com\xn\manage\bean" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xn.manage.Enum" />
+      <recent name="com.xn.manage.controller" />
+      <recent name="com.xn.manage.bean" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\test_manager\autotest\src\main\resources\mybatis\mapper" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.platform">
@@ -1086,6 +1046,8 @@
       <workItem from="1484879105599" duration="6579000" />
       <workItem from="1485053303409" duration="17021000" />
       <workItem from="1485137801996" duration="10336000" />
+      <workItem from="1486347872728" duration="2161000" />
+      <workItem from="1486433675532" duration="2395000" />
     </task>
     <task id="LOCAL-00001" summary="1.4&#10;">
       <created>1483496820689</created>
@@ -1153,7 +1115,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244222000" />
+    <option name="totallyTimeSpent" value="248778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-2" width="1938" height="1050" extended-state="0" />
@@ -1168,8 +1130,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21533258" sideWeight="0.3578326" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33620688" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3427283" sideWeight="0.6421674" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48590755" sideWeight="0.6137339" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3416009" sideWeight="0.6421674" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22604422" sideWeight="0.4978166" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1240,7 +1202,8 @@
     <MESSAGE value="接口用例区分body和header" />
     <MESSAGE value="更新" />
     <MESSAGE value="优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化" />
+    <MESSAGE value="优化数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化数据" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1273,34 +1236,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3225">
-          <caret line="129" column="44" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/KeyValueStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/js/alert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2134">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/system/system_list.html" />
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/sitemesh3.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1330,13 +1265,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/ParamTypeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="93" selection-start-line="4" selection-start-column="93" selection-end-line="4" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
@@ -1344,38 +1272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/BaseEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/RequestTypeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/Company.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="62" column="25" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#1302#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#590#602#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,16 +1379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-          <folding>
-            <element signature="e#649#657#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ManageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -1517,25 +1407,15 @@
         <state relative-caret-position="392">
           <caret line="109" column="39" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
           <folding>
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1024#1025#0" expanded="true" />
-            <element signature="e#1468#1469#0" expanded="true" />
-            <element signature="e#1502#1503#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1602#1603#0" expanded="true" />
-            <element signature="e#1820#1821#0" expanded="true" />
-            <element signature="e#1879#1880#0" expanded="true" />
-            <element signature="e#1929#1930#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="43" column="44" selection-start-line="38" selection-start-column="8" selection-end-line="43" selection-end-column="44" />
-          <folding>
-            <element signature="e#1283#1292#0" expanded="false" />
+            <element signature="e#996#997#0" expanded="false" />
+            <element signature="e#1024#1025#0" expanded="false" />
+            <element signature="e#1468#1469#0" expanded="false" />
+            <element signature="e#1502#1503#0" expanded="false" />
+            <element signature="e#1556#1557#0" expanded="false" />
+            <element signature="e#1602#1603#0" expanded="false" />
+            <element signature="e#1820#1821#0" expanded="false" />
+            <element signature="e#1879#1880#0" expanded="false" />
+            <element signature="e#1929#1930#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1544,16 +1424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#1557#1566#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="23" column="72" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="72" />
           <folding />
         </state>
       </provider>
@@ -1572,32 +1442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
           <caret line="50" column="62" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
-          <folding>
-            <element signature="n#div#5;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#7;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#8;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#9;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#11;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#12;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1485156568661" expanded="false" signature="6644:6654" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="6799:6819" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="6888:6901" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="9957:9967" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="10024:10034" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="10318:10331" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11249:11259" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11316:11326" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11386:11396" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11450:11460" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11516:11526" ph="..." />
-            <marker date="1485156568661" expanded="false" signature="11808:11821" ph="..." />
-            <marker date="1485156568661" expanded="true" signature="21696:21737" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1605,15 +1449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="64" column="55" selection-start-line="64" selection-start-column="55" selection-end-line="64" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1621,7 +1456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="65" column="51" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1629,68 +1463,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
           <caret line="161" column="46" selection-start-line="157" selection-start-column="39" selection-end-line="161" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="47" column="46" selection-start-line="42" selection-start-column="8" selection-end-line="47" selection-end-column="46" />
-          <folding>
-            <element signature="e#1596#1605#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="27" column="46" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="46" />
-          <folding>
-            <element signature="e#916#925#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="51" column="38" selection-start-line="47" selection-start-column="31" selection-end-line="51" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="297" column="42" selection-start-line="297" selection-start-column="35" selection-end-line="297" selection-end-column="42" />
-          <folding>
-            <marker date="1485160432972" expanded="true" signature="17346:17388" ph="..." />
-            <marker date="1485160432972" expanded="true" signature="19556:19596" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="40" column="73" selection-start-line="37" selection-start-column="31" selection-end-line="40" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
+        <state relative-caret-position="1900">
           <caret line="76" column="62" selection-start-line="76" selection-start-column="62" selection-end-line="76" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/suit/suit_item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
+        <state relative-caret-position="4200">
           <caret line="168" column="66" selection-start-line="168" selection-start-column="66" selection-end-line="168" selection-end-column="66" />
           <folding />
         </state>
@@ -1698,16 +1483,161 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1143">
+        <state relative-caret-position="3125">
           <caret line="125" column="41" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7400">
+          <caret line="297" column="42" selection-start-line="297" selection-start-column="42" selection-end-line="297" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/interface/interface_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="40" column="73" selection-start-line="37" selection-start-column="31" selection-end-line="40" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/EnvironmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ServiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="47" column="46" selection-start-line="42" selection-start-column="8" selection-end-line="47" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/CaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/ParamTypeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="93" selection-start-line="4" selection-start-column="93" selection-end-line="4" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/HttpTypeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/RequestTypeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/bean/KeyValueStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/ReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="39" />
+          <folding>
+            <element signature="e#902#908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/environment/environment_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="63" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/report_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="115" column="77" selection-start-line="115" selection-start-column="77" selection-end-line="115" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/entity/Plan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding>
+            <element signature="e#2464#2465#0" expanded="false" />
+            <element signature="e#2503#2504#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/PlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding>
+            <element signature="e#1160#1168#0" expanded="true" />
+            <element signature="e#1717#1733#0" expanded="true" />
+            <element signature="e#1871#1877#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/case_item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="1091" column="0" selection-start-line="1091" selection-start-column="0" selection-end-line="1091" selection-end-column="0" />
+        <state relative-caret-position="227">
+          <caret line="1108" column="43" selection-start-line="1108" selection-start-column="38" selection-end-line="1108" selection-end-column="43" />
           <folding>
             <element signature="n#div#3;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#5;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1717,50 +1647,47 @@
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#8;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#10;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#11;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#12;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#13;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1485161324759" expanded="true" signature="66689:66730" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="82558:82587" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="83775:83786" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="83829:83842" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="84021:84031" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="85022:85031" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="85079:85088" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="85137:85146" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="86179:86192" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="87604:87615" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="87658:87671" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="87848:87858" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="88849:88858" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="88906:88915" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="88964:88973" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="90006:90019" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="91526:91541" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="92774:92783" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="92832:92842" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="93707:93720" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="94654:94664" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="94715:94725" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="94773:94783" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="94832:94842" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="96243:96256" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="97192:97202" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="97253:97263" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="97312:97322" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="97370:97380" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="97429:97439" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="99109:99122" ph="..." />
-            <marker date="1485161324759" expanded="true" signature="99775:99790" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="66689:66730" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="82558:82587" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="83775:83786" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="83829:83842" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="84021:84031" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="85022:85031" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="85079:85088" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="85137:85146" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="86179:86192" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="87604:87615" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="87658:87671" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="87848:87858" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="88849:88858" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="88906:88915" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="88964:88973" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="90006:90019" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="91526:91541" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="92774:92783" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="92832:92842" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="93707:93720" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="94654:94664" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="94715:94725" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="94773:94783" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="94832:94842" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="96243:96256" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="97192:97202" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="97253:97263" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="97312:97322" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="97370:97380" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="97429:97439" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="98375:103176" ph="{...}" />
+            <marker date="1486349331654" expanded="true" signature="99109:99122" ph="..." />
+            <marker date="1486349331654" expanded="true" signature="99775:99790" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/plan/plan_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="78" column="46" selection-start-line="78" selection-start-column="46" selection-end-line="78" selection-end-column="46" />
+        <state relative-caret-position="427">
+          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
           <folding />
         </state>
       </provider>

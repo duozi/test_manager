@@ -1,6 +1,7 @@
 package com.xn.manage.controller;
 
 import com.xn.manage.bean.System;
+import com.xn.manage.entity.Plan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,11 @@ public class ReportController {
 		systemList.add(new System(3,"征信公司"));
 		systemList.add(new System(4,"商户平台"));
 
+		//测试计划
+		List<Plan> planList = new ArrayList<Plan>();
+		planList.add(new Plan(1,"牛贷系统查询联系人测试计划"));
+
+		model.put("planList",planList);
 		model.put("systemList",systemList);
 		return "report/" + path;
 	}
