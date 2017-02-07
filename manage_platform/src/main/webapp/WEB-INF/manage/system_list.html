@@ -41,20 +41,21 @@
                                <div class="form-group col-lg-2">
                                    <select class="form-control">
                                        <option value="" disabled selected >选择公司名称</option>
-                                       <option value="">小牛在线</option>
-                                       <option value="">小牛集团</option>
-                                       <option value="">小牛普惠</option>
-                                       <option value="">牛鼎丰</option>
-                                       <option value="">钱罐子</option>
+                                           <#if companyList ??>
+                                               <#list companyList as company>
+                                                   <option value="${company.id}">${company.name}</option>
+                                               </#list>
+                                           </#if>
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
                                    <select class="form-control">
                                        <option value="" disabled selected >选择部门名称</option>
-                                       <option value="">大数据部</option>
-                                       <option value="">测试部</option>
-                                       <option value="">运维部</option>
-                                       <option value="">平台部</option>
+                                       <#if departmentList ??>
+                                           <#list departmentList as item>
+                                               <option value="${item.id}">${item.name}</option>
+                                           </#list>
+                                       </#if>
                                    </select>
                                </div>
                                <div class="form-group col-lg-3">
@@ -112,15 +113,21 @@
                             <div class="form-group">
                                 <label class="control-label" >选择公司</label>
                                 <select class="form-control" id="">
-                                    <option value="once">小牛在线</option>
-                                    <option value="circulation">牛鼎丰</option>
+                                    <#if companyList ??>
+                                        <#list companyList as company>
+                                            <option value="${company.id}">${company.name}</option>
+                                        </#list>
+                                    </#if>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >选择部门</label>
-                                <select class="form-control" id="excute-time-type">
-                                    <option value="once">测试部</option>
-                                    <option value="circulation">开发部</option>
+                                <select class="form-control" >
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.id}">${item.name}</option>
+                                        </#list>
+                                    </#if>
                                 </select>
                             </div>
                             <div class="form-group">

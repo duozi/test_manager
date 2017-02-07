@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WebController {
 	
 	@RequestMapping(value="/decorators/{path}", method = RequestMethod.GET)
-	public String getDecoratorsPage(@PathVariable String  path) {
+	public String getDecoratorsPage(@PathVariable String  path ) {
+
+
 		return "decorators/" + path;
 	}
 	

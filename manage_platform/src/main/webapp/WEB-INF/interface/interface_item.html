@@ -49,11 +49,12 @@
                     <div class="form-group ">
                         <label>所属service</label>
                         <select class="form-control col-lg-5">
-                            <option value="" disabled selected>选择service名称</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
+                            <option value="" disabled selected>选择服务名称</option>
+                           <#if serviceList ??>
+                                <#list serviceList as item>
+                                    <option value="${item.id}" disabled selected>${item.serviceName}</option>
+                                </#list>
+                           </#if>
                         </select>
                     </div>
                     <!--接口类型-->

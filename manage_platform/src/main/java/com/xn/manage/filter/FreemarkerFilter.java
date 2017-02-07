@@ -42,8 +42,6 @@ public class FreemarkerFilter implements Filter {
 	            String name = req.getRequestURI();
 	            name = name.substring(1, name.lastIndexOf(".html"));
 	            FreeMarkerViewResolver viewResolver = ctx.getBean(FreeMarkerViewResolver.class);
-	            System.out.println("zzz:"+name);
-	            System.out.println("zzz:"+locale);
 	            View view = viewResolver.resolveViewName(name, locale);
 //	            @SuppressWarnings("unchecked")
 //	            Map<String, Object> model = (Map<String, Object>) request.getAttribute(ViewRendererServlet.MODEL_ATTRIBUTE);

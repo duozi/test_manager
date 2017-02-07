@@ -33,36 +33,11 @@
                                 </button>
                             </span>
                         </div>
-                        <a type="button" class="list-group-item" value="1">小牛集团</a>
-                        <a type="button" class="list-group-item" value="1">牛鼎丰</a>
-                        <a type="button" class="list-group-item" value="1">小牛在线</a>
-                        <a type="button" class="list-group-item" value="1">小牛普惠</a>
-                        <a type="button" class="list-group-item" value="1">新财富</a>
-                        <a type="button" class="list-group-item" value="1">钱罐子</a>
-                        <!--<a type="button" class="list-group-item" value="1">小牛在线</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛普惠</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">新财富</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">钱罐子</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛集团</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">牛鼎丰</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛在线</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛普惠</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">新财富</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">钱罐子</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛在线</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛普惠</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">新财富</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">钱罐子</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛集团</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">牛鼎丰</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛在线</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛普惠</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">新财富</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">钱罐子</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛在线</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">小牛普惠</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">新财富</a>-->
-                        <!--<a type="button" class="list-group-item" value="1">钱罐子</a>-->
+                            <#if companyList ??>
+                                <#list companyList as item>
+                                        <a type="button" onclick="getDepartment(${item.id})" class="list-group-item" value="${item.id}"> ${item.name}</a>
+                                </#list>
+                            </#if>
                     </div>
                 </div>
                 <!--<div class="panel panel-default operation-panel">
@@ -89,16 +64,6 @@
                                 </button>
                             </span>
                         </div>
-                        <a type="button" class="list-group-item" value="1">大数据</a>
-                        <a type="button" class="list-group-item" value="1">测试部</a>
-                        <a type="button" class="list-group-item" value="1">平台开发部</a>
-                        <a type="button" class="list-group-item" value="1">运维部</a>
-                        <a type="button" class="list-group-item" value="1">前端</a>
-                        <a type="button" class="list-group-item" value="1">大数据</a>
-                        <a type="button" class="list-group-item" value="1">测试部</a>
-                        <a type="button" class="list-group-item" value="1">平台开发部</a>
-                        <a type="button" class="list-group-item" value="1">运维部</a>
-                        <a type="button" class="list-group-item" value="1">前端</a>
                     </div>
                 </div>
                 <div class="btn-group btn-group-vertical">
@@ -152,9 +117,12 @@
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
                                 <label class="control-label" >选择公司</label>
-                                <select class="form-control" >
-                                    <option value="once">小牛在线</option>
-                                    <option value="circulation">牛鼎丰</option>
+                                <select class="form-control" id="">
+                                    <#if companyList ??>
+                                        <#list companyList as company>
+                                            <option value="${company.id}">${company.name}</option>
+                                        </#list>
+                                    </#if>
                                 </select>
                             </div>
 
@@ -187,6 +155,18 @@
         }
     });
 
+    function getDepartment(companyId){
+        $(".department-panel").find(".list-group").find("a").remove();
+        $.post("${basePath}/department/getDepartment",{id:companyId},function(result){
+            var departmentHtml = "";
+            for(var i=0;i<result.length;i++){
+                departmentHtml += '<a type="button" class="list-group-item" value="'+ result[i].id + '">'+result[i].name+'</a>';
+            }
+            $(".department-panel").find(".list-group").append(departmentHtml);
+        });
+
+
+    }
 </script>
 
 </body>
