@@ -2,6 +2,7 @@ package com.xn.manage.controller;
 
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
+import com.xn.manage.Enum.DatabaseTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,12 @@ public class EnvironmentController {
 
 		model.put("serviceList", serviceList);
 		model.put("systemList", systemList);
+	public String getEnvironmentPage(@PathVariable String  path,ModelMap map) {
+		List<DatabaseTypeEnum> databaseTypeEnumList=new ArrayList<DatabaseTypeEnum>();
+		for(DatabaseTypeEnum item:DatabaseTypeEnum.values()){
+			databaseTypeEnumList.add(item);
+		}
+		map.put("databaseTypeEnumList",databaseTypeEnumList);
 		return "environment/" + path;
 	}
 

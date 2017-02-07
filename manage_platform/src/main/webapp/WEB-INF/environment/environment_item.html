@@ -199,8 +199,8 @@
                                             <td><input type="text" class="form-control"></td>
                                             <td>
                                                 <select class="form-control">
-                                                    <#if contentTypeList ??>
-                                                        <#list contentTypeList as item>
+                                                    <#if databaseTypeEnumList ??>
+                                                        <#list databaseTypeEnumList as item>
                                                             <option values="${item.getId()}"> ${item.getName()}</option>
                                                         </#list>
                                                     </#if>
@@ -341,8 +341,8 @@
     dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
     dbPropertiesHtml += '<td>';
     dbPropertiesHtml += '<select class="form-control" >';
-    dbPropertiesHtml += '<#if contentTypeList ??>';
-    dbPropertiesHtml += '<#list contentTypeList as item>';
+    dbPropertiesHtml += '<#if databaseTypeEnumList ??>';
+    dbPropertiesHtml += '<#list databaseTypeEnumList as item>';
     dbPropertiesHtml += '<option values="${item.getId()}"> ${item.getName()}</option>';
     dbPropertiesHtml += '</#list>';
     dbPropertiesHtml += '</#if>';

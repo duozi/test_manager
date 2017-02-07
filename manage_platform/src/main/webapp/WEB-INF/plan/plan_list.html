@@ -80,6 +80,12 @@
                                         <option value="${item.getId()}">${item.getName()}</option>
                                     </#list>
                                 </#if>
+                                <option value="" disabled selected >选择计划状态</option>
+                               <#if planStatusList ??>
+                                   <#list planStatusList as item>
+                                       <option value="${item.getId()}">${item.getName()}</option>
+                                   </#list>
+                               </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-3">

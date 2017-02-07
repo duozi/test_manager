@@ -610,8 +610,8 @@
                                                             <td>
                                                                 <select class="form-control" id="dbAssert"
                                                                         name="dbAssert">
-                                                                    <#if contentTypeList ??>
-                                                                        <#list contentTypeList as item>
+                                                                    <#if dbNameList ??>
+                                                                        <#list dbNameList as item>
                                                                             <option values="${item.getId()}">
                                                                                 ${item.getName()}
                                                                             </option>
@@ -670,9 +670,9 @@
                                                         <div class="row">
                                                             <td>
                                                                 <select class="form-control">
-                                                                    <#if contentTypeList ??>
-                                                                        <#list contentTypeList as item>
-                                                                            <option values="${item.getId()}">
+                                                                    <#if redisNameList ??>
+                                                                        <#list redisNameList as item>
+                                                                            <option values="${item.getName()}">
                                                                                 ${item.getName()}
                                                                             </option>
                                                                         </#list>
@@ -682,8 +682,14 @@
                                                             <td>
                                                                 <select class="form-control case-select"
                                                                         name="redisAssertType">
-                                                                    <option values="valueAssert">缓存值</option>
-                                                                    <option values="timeAssert">缓存时间</option>
+                                                                    <#if redisAssertTypeEnumList??>
+                                                                        <#list redisAssertTypeEnumList as item>
+                                                                            <option values="${item.getId()}">
+                                                                                ${item.getName()}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+
                                                                 </select>
                                                             </td>
                                                             <td><input type="text" class="form-control"></td>
@@ -1104,8 +1110,8 @@
     dbhtml += '<div class="row">';
     dbhtml += '<td>';
     dbhtml += '<select class="form-control" >';
-    dbhtml += '<#if contentTypeList ??>';
-    dbhtml += '<#list contentTypeList as item>';
+    dbhtml += '<#if dbNameList ??>';
+    dbhtml += '<#list dbNameList as item>';
     dbhtml += '<option values="${item.getId()}">${item.getName()} </option>';
     dbhtml += '</#list>';
     dbhtml += '</#if>';
@@ -1126,8 +1132,8 @@
 
     redishtml += '<td>';
     redishtml += '<select class="form-control"  name="redisName">';
-    redishtml += '<#if contentTypeList ??>';
-    redishtml += '<#list contentTypeList as item>';
+    redishtml += '<#if redisNameList ??>';
+    redishtml += '<#list redisNameList as item>';
     redishtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
@@ -1135,9 +1141,11 @@
     redishtml += '</td>';
     redishtml += '<td>';
     redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
-    redishtml += '<option values="set">set</option>';
-    redishtml += '<option values="del">del</option>';
-    redishtml += '<option values="expire">expire</option>';
+    redishtml += '<#if redisOperationTypeEnumList ??>';
+    redishtml += '<#list redisOperationTypeEnumList as item>';
+    redishtml += '<option values="${item.getName()} "> ${item.getName()} </option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td><input type="text" class="form-control" name="key"></td>';
@@ -1276,8 +1284,8 @@
     dbAssertHtml += '<div class="row">';
     dbAssertHtml += '<td>';
     dbAssertHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
-    dbAssertHtml += '<#if contentTypeList ??>';
-    dbAssertHtml += '<#list contentTypeList as item>';
+    dbAssertHtml += '<#if dbNameList ??>';
+    dbAssertHtml += '<#list dbNameList as item>';
     dbAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     dbAssertHtml += '</#list>';
     dbAssertHtml += '</#if>';
@@ -1299,8 +1307,8 @@
     redisAssertHtml += '<div class="row">';
     redisAssertHtml += '<td>';
     redisAssertHtml += '<select class="form-control" >';
-    redisAssertHtml += '<#if contentTypeList ??>';
-    redisAssertHtml += '<#list contentTypeList as item>';
+    redisAssertHtml += '<#if redisNameList ??>';
+    redisAssertHtml += '<#list redisNameList as item>';
     redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
@@ -1308,8 +1316,11 @@
     redisAssertHtml += '</td>';
     redisAssertHtml += '<td>';
     redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
-    redisAssertHtml += '<option values="valueAssert">缓存值</option>';
-    redisAssertHtml += '<option values="timeAssert">缓存时间</option>';
+    redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
+    redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
+    redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
     redisAssertHtml += '</td>';
     redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
@@ -1390,8 +1401,8 @@
     paramAddHtml += '<td><input type="text" class="form-control"></td>';
     paramAddHtml += '<td>';
     paramAddHtml += '<select class="form-control">';
-    paramAddHtml += '<#if contentTypeList ??>';
-    paramAddHtml += '<#list contentTypeList as item>';
+    paramAddHtml += '<#if paramTypeList ??>';
+    paramAddHtml += '<#list paramTypeList as item>';
     paramAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';
@@ -1786,8 +1797,11 @@
         stepAddHtml += '</td>';
         stepAddHtml += '<td>';
         stepAddHtml += '<select class="form-control case-select" name="redisAssertType">';
-        stepAddHtml += '<option values="valueAssert">缓存值</option>';
-        stepAddHtml += '<option values="timeAssert">缓存时间</option>';
+        stepAddHtml += '<#if redisAssertTypeEnumList ??>';
+        stepAddHtml += '<#list redisAssertTypeEnumList as item>';
+        stepAddHtml += '<option values="${item.getName()}">${item.getName()} </option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
         stepAddHtml += '</td>';
         stepAddHtml += '<td><input type="text" class="form-control"></td>';
