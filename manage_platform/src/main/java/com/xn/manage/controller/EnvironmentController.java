@@ -29,14 +29,14 @@ public class EnvironmentController {
 		serviceList.add(new Service(2,"riskWeb"));
 		serviceList.add(new Service(3,"huaZhengCreditService"));
 
-		model.put("serviceList", serviceList);
-		model.put("systemList", systemList);
-	public String getEnvironmentPage(@PathVariable String  path,ModelMap map) {
 		List<DatabaseTypeEnum> databaseTypeEnumList=new ArrayList<DatabaseTypeEnum>();
 		for(DatabaseTypeEnum item:DatabaseTypeEnum.values()){
 			databaseTypeEnumList.add(item);
 		}
-		map.put("databaseTypeEnumList",databaseTypeEnumList);
+
+		model.put("serviceList", serviceList);
+		model.put("systemList", systemList);
+		model.put("databaseTypeEnumList",databaseTypeEnumList);
 		return "environment/" + path;
 	}
 
