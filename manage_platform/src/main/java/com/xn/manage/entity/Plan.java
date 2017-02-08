@@ -65,91 +65,94 @@ public class Plan extends BaseEntity {
 	public Plan(){
 	    // default constructor
 	}
-    
+
+    public Plan(Integer id,String planName){
+        this.id = id;
+        this.planName = planName;
+    }
+
     public Plan(Integer id){
         this.id = id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
     
-    public void setPlanName(String planName) {
-        this.planName = planName;
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     public String getPlanName() {
         return this.planName;
     }
     
-    public void setExecuteType(Boolean executeType) {
-        this.executeType = executeType;
+    public void setPlanName(String planName) {
+        this.planName = planName;
     }
     
     public Boolean getExecuteType() {
         return this.executeType;
     }
     
-    public void setPlanStatus(Boolean planStatus) {
-        this.planStatus = planStatus;
+    public void setExecuteType(Boolean executeType) {
+        this.executeType = executeType;
     }
     
     public Boolean getPlanStatus() {
         return this.planStatus;
     }
     
-    public void setChangeTime(Date changeTime) {
-        this.changeTime = changeTime;
+    public void setPlanStatus(Boolean planStatus) {
+        this.planStatus = planStatus;
     }
     
     public Date getChangeTime() {
         return this.changeTime;
     }
     
-    public void setPlanType(Boolean planType) {
-        this.planType = planType;
+    public void setChangeTime(Date changeTime) {
+        this.changeTime = changeTime;
     }
     
     public Boolean getPlanType() {
         return this.planType;
     }
     
-    public void setSystemName(String systemName) {
-        this.systemName = systemName;
+    public void setPlanType(Boolean planType) {
+        this.planType = planType;
     }
     
     public String getSystemName() {
         return this.systemName;
     }
     
-
-    
-    public void setRedisPropertiess(List<RedisProperties> redisPropertiess){
-        this.redisPropertiess = redisPropertiess;
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
     }
     
     public List<RedisProperties> getRedisPropertiess() {
         return redisPropertiess;
     }
     
-    public void setSystems(List<System> systems){
-        this.systems = systems;
+    public void setRedisPropertiess(List<RedisProperties> redisPropertiess){
+        this.redisPropertiess = redisPropertiess;
     }
     
     public List<System> getSystems() {
         return systems;
     }
     
-    public void setDbPropertiess(List<DbProperties> dbPropertiess){
-        this.dbPropertiess = dbPropertiess;
+    public void setSystems(List<System> systems){
+        this.systems = systems;
     }
     
     public List<DbProperties> getDbPropertiess() {
         return dbPropertiess;
+    }
+    
+    public void setDbPropertiess(List<DbProperties> dbPropertiess){
+        this.dbPropertiess = dbPropertiess;
     }
 
 }

@@ -98,6 +98,10 @@
                         <input type="text" class="form-control" id="urlPath" name="urlPath">
                     </div>
                     <div class="form-group http-interface ">
+                        <label class="control-label">参数名</label>
+                        <input type="text" class="form-control" id="param" name="param"  placeholder="多个参数用“，”隔开">
+                    </div>
+                    <div class="form-group http-interface ">
                         <label class="control-label">协议类型</label>
                         <select class="form-control" id="httpType" name="httpType">
                             <#if httpTypeList ??>
@@ -132,6 +136,27 @@
                             </#if>
                         </select>
                     </div>
+                    <!--<div class="form-group http-interface ">-->
+                        <!--<label class="control-label">附加参数</label>-->
+                        <!--<select class="form-control" id="appendParam"-->
+                                <!--name="appendParam">-->
+                            <!--<option value="" disabled selected ></option>-->
+                            <!--<#if appendParamList ??>-->
+                                <!--<#list appendParamList as item>-->
+                                    <!--<option values="${item.getId()}">${item.getName()}-->
+                                    <!--</option>-->
+                                <!--</#list>-->
+                            <!--</#if>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="form-group  hidden" id="addParamString">-->
+                        <!--<label class="control-label"></label>-->
+                        <!--<textarea class=" form-control  text-control"></textarea>-->
+                    <!--</div>-->
+                    <!--<div class="form-group  hidden" id="addParamFile">-->
+                        <!--<label class="control-label"></label>-->
+                        <!--<input id="appendFile" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">-->
+                    <!--</div>-->
 
               <!--      &lt;!&ndash;接口数据准备/数据清除&ndash;&gt;
                     <div class="form-group interface-left" style="width: 70%">
@@ -579,6 +604,9 @@
 
         })
     });
+
+
+
     $(".radio-inline").change(
             function () {
                 var value = $("input[name='interfaceType']:checked").val();
@@ -592,6 +620,7 @@
                 }
             }
     );
+
 
     //初始化fileinput控件（第一次初始化）
     function initFileInput(ctrlName, uploadUrl) {

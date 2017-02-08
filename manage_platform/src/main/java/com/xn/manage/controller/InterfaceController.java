@@ -1,9 +1,6 @@
 package com.xn.manage.controller;
 
-import com.xn.manage.Enum.ContentTypeEnum;
-import com.xn.manage.Enum.HttpTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
-import com.xn.manage.Enum.RequestTypeEnum;
+import com.xn.manage.Enum.*;
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
 import org.springframework.stereotype.Controller;
@@ -66,6 +63,7 @@ public class InterfaceController {
 		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
 		map.put("dbNameList",dbNameList);
 		map.put("redisNameList",redisNameList);
+
 		return "interface/" + path;
 	}
 

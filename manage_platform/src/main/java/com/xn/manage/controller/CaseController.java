@@ -1,5 +1,6 @@
 package com.xn.manage.controller;
 
+import com.xn.manage.Enum.AppendParamEnum;
 import com.xn.manage.Enum.ParamTypeEnum;
 import com.xn.manage.Enum.RedisAssertTypeEnum;
 import com.xn.manage.Enum.RedisOperationTypeEnum;
@@ -39,13 +40,13 @@ public class CaseController {
 		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
 			redisOperationTypeEnumList.add(item);
 		}
+		List<AppendParamEnum> appendParamEnumList=new ArrayList<AppendParamEnum>();
+		for(AppendParamEnum item:AppendParamEnum.values()){
+			appendParamEnumList.add(item);
+		}
 		List<String> dbNameList=new ArrayList<String>();
 		List<String> redisNameList=new ArrayList<String>();
 		map.put("paramTypeList",paramTypeList);
-		map.put("dbNameList",dbNameList);
-		map.put("redisNameList",redisNameList);
-		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
-		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
 
 		List<System> systemList = new ArrayList<System>();
 		systemList.add(new System(1,"风控规则"));
@@ -60,6 +61,11 @@ public class CaseController {
 
 		map.put("serviceList", serviceList);
 		map.put("systemList",systemList);
+		map.put("dbNameList",dbNameList);
+		map.put("redisNameList",redisNameList);
+		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
+		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
+		map.put("appendParamList",appendParamEnumList);
 		return "case/" + path;
 	}
 
