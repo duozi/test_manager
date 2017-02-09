@@ -1,4 +1,4 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.bean.Company;
 import com.xn.manage.bean.Department;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/service")
+@RequestMapping("/autotest/service")
 public class ServiceController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class ServiceController {
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);
-		return "service/" + path;
+		return "autotestService/" + path;
 	}
 
 }

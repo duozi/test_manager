@@ -3,7 +3,7 @@ package com.xn.autotest.utils;/**
  */
 
 //import com.xn.common.Exception.CaseErrorEqualException;
-//import com.xn.common.service.GetPara;
+//import com.xn.common.autotestService.GetPara;
 //import com.xn.common.sign.MessageAddSign;
 //import com.xn.common.sign.PayAddSign;
 //import com.xn.common.sign.UserAddSign;

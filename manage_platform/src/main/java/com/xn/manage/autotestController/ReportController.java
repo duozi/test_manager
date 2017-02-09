@@ -1,4 +1,4 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.bean.System;
 import com.xn.manage.entity.Plan;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/report")
+@RequestMapping("/autotest/report")
 public class ReportController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
@@ -29,7 +29,7 @@ public class ReportController {
 
 		model.put("planList",planList);
 		model.put("systemList",systemList);
-		return "report/" + path;
+		return "/autotest/report/" + path;
 	}
 
 }

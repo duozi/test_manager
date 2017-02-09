@@ -1,4 +1,4 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.Enum.ParamTypeEnum;
 import com.xn.manage.bean.Service;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/case")
+@RequestMapping("/autotest/case")
 public class CaseController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
@@ -60,7 +60,7 @@ public class CaseController {
 		map.put("redisNameList",redisNameList);
 		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
 		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
-		return "case/" + path;
+		return "/autotest/case/" + path;
 	}
 
 }

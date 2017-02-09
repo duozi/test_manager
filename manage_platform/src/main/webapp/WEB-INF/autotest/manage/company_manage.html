@@ -157,7 +157,7 @@
 
     function getDepartment(companyId){
         $(".department-panel").find(".list-group").find("a").remove();
-        $.post("${basePath}/department/getDepartment",{id:companyId},function(result){
+        $.post("${basePath}/autotest/department/getDepartment",{id:companyId},function(result){
             var departmentHtml = "";
             for(var i=0;i<result.length;i++){
                 departmentHtml += '<a type="button" class="list-group-item" value="'+ result[i].id + '">'+result[i].name+'</a>';

@@ -1,4 +1,4 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.bean.System;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/system")
+@RequestMapping("/autotest/system")
 public class SystemController {
 
 	@RequestMapping(value="/getSystem")

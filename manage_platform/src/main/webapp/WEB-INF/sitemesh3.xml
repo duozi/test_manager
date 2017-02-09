@@ -16,15 +16,15 @@
 
     <!-- 对同一路径，启用多个装饰器 -->
     <mapping>
-        <path>/case/*</path>
+        <path>/autotest/*</path>
+        <decorator>/autotest/decorators/right_bar.ftl</decorator>
+    </mapping>
+  <!--  <mapping>
+        <path>/autotest/report/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
-        <path>/report/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/plan/*</path>
+        <path>/autotest/plan/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
@@ -32,21 +32,21 @@
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
-        <path>/suit/*</path>
+        <path>/autotest/suit/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
-        <path>/environment/*</path>
+        <path>/autotest/environment/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
-        <path>/interface/*</path>
+        <path>/autotest/interface/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
     <mapping>
-        <path>/service/*</path>
+        <path>/autotestService/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
+    </mapping>-->
 
     <!-- 排除，不进行装饰的路径 -->
     <mapping path="/decorators/*" exclue="true"/>

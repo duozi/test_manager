@@ -1,4 +1,4 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/environment")
+@RequestMapping("/autotest/environment")
 public class EnvironmentController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class EnvironmentController {
 		model.put("serviceList", serviceList);
 		model.put("systemList", systemList);
 		model.put("databaseTypeEnumList",databaseTypeEnumList);
-		return "environment/" + path;
+		return "/autotest/environment/" + path;
 	}
 
 }

@@ -1,8 +1,7 @@
-package com.xn.manage.controller;
+package com.xn.manage.autotestController;
 
 import com.xn.manage.Enum.ContentTypeEnum;
 import com.xn.manage.Enum.HttpTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.Enum.RequestTypeEnum;
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
@@ -15,16 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
-@RequestMapping("/interface")
-public class InterfaceController {
-
-	public static void main(String[] args) {
-
-	}
-
+@RequestMapping("/autotest/suit")
+public class SuitController {
+	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getPlanPage(@PathVariable String  path ,ModelMap map) {
+	public String getSuitPage(@PathVariable String  path,ModelMap map) {
 		List<ContentTypeEnum> contentTypeList = new ArrayList<ContentTypeEnum>();
 		for(ContentTypeEnum item : ContentTypeEnum.values()){
 			contentTypeList.add(item);
@@ -39,13 +35,6 @@ public class InterfaceController {
 		for(RequestTypeEnum item : RequestTypeEnum.values()){
 			requestTypeList.add(item);
 		}
-		List<RedisOperationTypeEnum> redisOperationTypeEnumList=new ArrayList<RedisOperationTypeEnum>();
-		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
-			redisOperationTypeEnumList.add(item);
-		}
-
-		List<String> dbNameList=new ArrayList<String>();
-		List<String> redisNameList=new ArrayList<String>();
 
 		List<System> systemList = new ArrayList<System>();
 		systemList.add(new System(1,"风控规则"));
@@ -63,10 +52,7 @@ public class InterfaceController {
 		map.put("requestTypeList",requestTypeList);
 		map.put("contentTypeList",contentTypeList);
 		map.put("httpTypeList",httpTypeList);
-		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
-		map.put("dbNameList",dbNameList);
-		map.put("redisNameList",redisNameList);
-		return "interface/" + path;
+		return "/autotest/suit/" + path;
 	}
 
 }
