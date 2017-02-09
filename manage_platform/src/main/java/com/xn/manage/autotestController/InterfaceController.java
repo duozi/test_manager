@@ -1,9 +1,6 @@
 package com.xn.manage.autotestController;
 
-import com.xn.manage.Enum.ContentTypeEnum;
-import com.xn.manage.Enum.HttpTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
-import com.xn.manage.Enum.RequestTypeEnum;
+import com.xn.manage.Enum.*;
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
 import org.springframework.stereotype.Controller;

@@ -12,16 +12,16 @@ import java.util.List;
 @RequestMapping("/autotest/department")
 public class DepartmentController {
 
-	@RequestMapping(value="/getDepartment")
-	@ResponseBody
-	public List<Department> getSystemPage(String id) {
-		List<Department> departmentList = new ArrayList<Department>();
-		departmentList.add(new Department(1,"大数据部"));
-		departmentList.add(new Department(2,"平台开发部"));
-		departmentList.add(new Department(3,"运维质量部"));
-		departmentList.add(new Department(4,"应用开发部"));
-		departmentList.add(new Department(5,"质量管控与信息安全部"));
-		return departmentList;
-	}
+    @RequestMapping(value = "/getDepartment")
+    @ResponseBody
+    public List<Department> getSystemPage(String id) {
+        List<Department> departmentList = new ArrayList<Department>();
+        departmentList.add(new Department(1, "大数据部"));
+        departmentList.add(new Department(2, "平台开发部"));
+        departmentList.add(new Department(3, "运维质量部"));
+        departmentList.add(new Department(4, "应用开发部"));
+        departmentList.add(new Department(5, "质量管控与信息安全部"));
+        return departmentList;
+    }
 
 }

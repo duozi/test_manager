@@ -224,7 +224,7 @@
                                             <option values="1">
                                                 json格式
                                             </option>
-                                         </select>
+                                        </select>
                                     </div>
                                     <textarea class=" form-control  text-control"></textarea>
                                     <button type="submit" class="btn btn-success">格式校验</button>
@@ -294,6 +294,27 @@
                                             </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="form-group http-interface ">
+                                        <label class="control-label">附加参数</label>
+                                        <select class="form-control" name="appendParam">
+                                            <option value="" disabled selected></option>
+                                            <#if appendParamList ??>
+                                                <#list appendParamList as item>
+                                                    <option values="${item.getId()}">${item.getName()}
+                                                    </option>
+                                                </#list>
+                                            </#if>
+                                        </select>
+                                    </div>
+                                    <div class="form-group  hidden" style="margin-left: 2%">
+                                        <label class="control-label"></label>
+                                        <textarea class=" form-control  text-control"></textarea>
+                                    </div>
+                                    <div class="form-group  hidden">
+                                        <label class="control-label"></label>
+                                        <input class="file form-control" type="file" multiple data-min-file-count="1"
+                                               name="encryptJar">
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="source-body">
@@ -499,6 +520,29 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
+                                                    </div>
+                                                    <div class="form-group http-interface ">
+                                                        <label class="control-label">附加参数</label>
+                                                        <select class="form-control" id="appendParam"
+                                                                name="appendParam">
+                                                            <option value="" disabled selected></option>
+                                                            <#if appendParamList ??>
+                                                                <#list appendParamList as item>
+                                                                    <option values="${item.getId()}">${item.getName()}
+                                                                    </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group  hidden">
+                                                        <label class="control-label"></label>
+                                                        <textarea class=" form-control  text-control"
+                                                                  style="margin-left: 2%"></textarea>
+                                                    </div>
+                                                    <div class="form-group  hidden">
+                                                        <label class="control-label"></label>
+                                                        <input id="appendFile" class="file form-control" type="file"
+                                                               multiple data-min-file-count="1" name="encryptJar">
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="integration-source-body">
@@ -733,10 +777,10 @@
                 </div>
 
                 <#if caseType == 2>
-                <div class="form-group ">
-                    <button type="button" name="integration-add" class="btn btn-info" style="margin-left: 29%">添加步骤
-                    </button>
-                </div>
+                    <div class="form-group ">
+                        <button type="button" name="integration-add" class="btn btn-info" style="margin-left: 29%">添加步骤
+                        </button>
+                    </div>
                 </#if>
                 <!--参数校验-->
                 <div id="assert" class="form-group <#if caseType==2>hidden</#if>">
@@ -977,7 +1021,8 @@
                 <div class="form-group">
                     <button type="button" name="save" class="btn btn-info">保存
                     </button>
-                    <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal" data-target="#environmentList">联调
+                    <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal"
+                            data-target="#environmentList">联调
                     </button>
                 </div>
 
@@ -987,12 +1032,13 @@
     </div>
 </div>
 <!--联调弹框-->
-<div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
+<div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-suit-list">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-                <h4 class="modal-title" >选择运行环境</h4>
+                <h4 class="modal-title">选择运行环境</h4>
             </div>
             <div class="modal-body">
                 <table class="table">
@@ -1046,7 +1092,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="../report/report_detail" type="button" class="btn btn-primary" >运行</a>
+                <a href="../report/report_detail" type="button" class="btn btn-primary">运行</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -1644,6 +1690,26 @@
         stepAddHtml += '</tbody>';
         stepAddHtml += '</table>';
         stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group http-interface ">';
+        stepAddHtml += '<label class="control-label">附加参数</label>';
+        stepAddHtml += '<select class="form-control" id="appendParam" name="appendParam">';
+        stepAddHtml += '<option value="" disabled selected ></option>';
+        stepAddHtml += '<#if appendParamList ??>';
+        stepAddHtml += '<#list appendParamList as item>';
+        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group  hidden" >';
+        stepAddHtml += '<label class="control-label"></label>';
+        stepAddHtml += '<textarea class=" form-control  text-control" style="margin-left: 2%"></textarea>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group  hidden" >';
+        stepAddHtml += '<label class="control-label"></label>';
+        stepAddHtml += '<input id="appendFile" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">';
+        stepAddHtml += '</div>';
+
         stepAddHtml += '</div>';
         stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + 'body">';
         stepAddHtml += '<div class="form-group "> <label>参数格式</label> <select class="form-control">';
@@ -1841,6 +1907,19 @@
                 $(this).parent().parent().remove();
             });
         });
+        $("select[name='appendParam']").change(function () {
+            var content = $(this).val();
+
+            if (content == '上传文件') {
+
+                $(this).parent().next().addClass("hidden");
+                $(this).parent().next().next().removeClass("hidden");
+            } else if (content == 'JSON' || content == 'XML') {
+                $(this).parent().next().removeClass("hidden");
+                $(this).parent().next().next().addClass("hidden");
+            }
+
+        });
         $("input[name='assertType']").click(function () {
             var assertType = $(this).val();
             if (assertType == 'paramAssert' && $(this).is(':checked')) {
@@ -1905,6 +1984,20 @@
         $("button[name='integration-delete']").click(function () {
             $(this).parent().parent().parent().remove();
         });
+    });
+
+    $("select[name='appendParam']").change(function () {
+        var content = $(this).val();
+
+        if (content == '上传文件') {
+
+            $(this).parent().next().addClass("hidden");
+            $(this).parent().next().next().removeClass("hidden");
+        } else if (content == 'JSON' || content == 'XML') {
+            $(this).parent().next().removeClass("hidden");
+            $(this).parent().next().next().addClass("hidden");
+        }
+
     });
 </script>
 </body>

@@ -19,7 +19,13 @@ import java.util.List;
 public class PlanController {
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getPlanPage(@PathVariable String  path, ModelMap model) {
+	public String getPlanPage(@PathVariable String  path,ModelMap model) {
+		List<PlanStatusEnum> planStatusEnumList=new ArrayList<PlanStatusEnum>();
+		for(PlanStatusEnum item:PlanStatusEnum.values()){
+			planStatusEnumList.add(item);
+		}
+		model.put("planStatusEnumList",planStatusEnumList);
+
 		//公司名称
 		List<Company> companyList = new ArrayList<Company>();
 		companyList.add(new Company(1,"牛鼎丰"));
