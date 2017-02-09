@@ -23,14 +23,8 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="autotest" />
-        <module name="mock" />
-      </profile>
-      <profile default="false" name="Annotation profile for test_manager" enabled="true">
-        <sourceOutputDir name="../autotest/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../autotest/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
         <module name="manage_platform" />
+        <module name="mock" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

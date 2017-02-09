@@ -43,7 +43,7 @@ public class EnvironmentController {
 		map.put("databaseTypeEnumList",databaseTypeEnumList);
 		map.put("serviceList", serviceList);
 		map.put("systemList", systemList);
-		return "environment/" + path;
+		return "/autotest/environment/" + path;
 	}
 
 }
