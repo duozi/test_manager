@@ -16,9 +16,6 @@ import java.util.List;
 @RequestMapping("/interface")
 public class InterfaceController {
 
-	public static void main(String[] args) {
-
-	}
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
 	public String getPlanPage(@PathVariable String  path ,ModelMap map) {

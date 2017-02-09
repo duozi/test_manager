@@ -17,14 +17,7 @@ import java.util.List;
 public class EnvironmentController {
 	
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-
-	public String getEnvironmentPage(@PathVariable String  path,ModelMap map) {
-		List<DatabaseTypeEnum> databaseTypeEnumList=new ArrayList<DatabaseTypeEnum>();
-		for(DatabaseTypeEnum item:DatabaseTypeEnum.values()){
-			databaseTypeEnumList.add(item);
-		}
-		map.put("databaseTypeEnumList",databaseTypeEnumList);
-
+	public String getEnvironmentmPage(@PathVariable String  path, ModelMap model) {
 		List<System> systemList = new ArrayList<System>();
 		systemList.add(new System(1,"风控规则"));
 		systemList.add(new System(2,"支付中心"));
@@ -36,12 +29,15 @@ public class EnvironmentController {
 		serviceList.add(new Service(2,"riskWeb"));
 		serviceList.add(new Service(3,"huaZhengCreditService"));
 
+		List<DatabaseTypeEnum> databaseTypeEnumList=new ArrayList<DatabaseTypeEnum>();
+		for(DatabaseTypeEnum item:DatabaseTypeEnum.values()){
+			databaseTypeEnumList.add(item);
+		}
 
-		map.put("serviceList", serviceList);
-		map.put("systemList", systemList);
-		map.put("databaseTypeEnumList",databaseTypeEnumList);
-		map.put("serviceList", serviceList);
-		map.put("systemList", systemList);
+		model.put("serviceList", serviceList);
+		model.put("systemList", systemList);
+		model.put("databaseTypeEnumList",databaseTypeEnumList);
+
 		return "environment/" + path;
 	}
 

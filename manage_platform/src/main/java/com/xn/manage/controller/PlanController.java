@@ -19,6 +19,8 @@ import java.util.List;
 public class PlanController {
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
+
+		//公司名称
 	public String getPlanPage(@PathVariable String  path,ModelMap model) {
 		List<PlanStatusEnum> planStatusEnumList=new ArrayList<PlanStatusEnum>();
 		for(PlanStatusEnum item:PlanStatusEnum.values()){
