@@ -2,10 +2,6 @@ package com.xn.manage.autotestController;
 
 import com.xn.manage.Enum.AppendParamEnum;
 import com.xn.manage.Enum.ParamTypeEnum;
-import com.xn.manage.bean.Service;
-import com.xn.manage.bean.System;
-import com.xn.manage.Enum.RedisAssertTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.Enum.RedisAssertTypeEnum;
 import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.bean.Service;
@@ -69,9 +65,8 @@ public class CaseController {
 		map.put("redisNameList",redisNameList);
 		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
 		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
-		return "/autotest/case/" + path;
 		map.put("appendParamList",appendParamEnumList);
-		return "case/" + path;
+		return "/autotest/case/" + path;
 	}
 
 }
