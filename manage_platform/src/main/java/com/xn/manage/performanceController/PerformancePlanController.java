@@ -2,6 +2,7 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
+import com.xn.manage.Enum.PerformancePlanStatusEnum;
 import com.xn.manage.Enum.PlanStatusEnum;
 import com.xn.manage.bean.Company;
 import com.xn.manage.bean.Department;
@@ -22,11 +23,11 @@ public class PerformancePlanController {
 
     @RequestMapping(value="/{path}", method = RequestMethod.GET)
     public String getPlanPage(@PathVariable String  path, ModelMap model) {
-        List<PlanStatusEnum> planStatusEnumList=new ArrayList<PlanStatusEnum>();
-        for(PlanStatusEnum item:PlanStatusEnum.values()){
-            planStatusEnumList.add(item);
+        List<PerformancePlanStatusEnum> performancePlanStatusEnumList=new ArrayList<PerformancePlanStatusEnum>();
+        for(PerformancePlanStatusEnum item:PerformancePlanStatusEnum.values()){
+            performancePlanStatusEnumList.add(item);
         }
-        model.put("planStatusEnumList",planStatusEnumList);
+        model.put("planStatusEnumList",performancePlanStatusEnumList);
 
         //公司名称
         List<Company> companyList = new ArrayList<Company>();
@@ -68,7 +69,7 @@ public class PerformancePlanController {
         model.put("systemList", systemList);
         model.put("departmentList", departmentList);
         model.put("companyList", companyList);
-        return "/autotest/plan/" + path;
+        return "/performance/plan/" + path;
     }
 }
 

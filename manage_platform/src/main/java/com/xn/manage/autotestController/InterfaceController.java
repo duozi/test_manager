@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/autotest/interface")
 public class InterfaceController {
 
+
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
 	public String getPlanPage(@PathVariable String  path ,ModelMap map) {
 		List<ContentTypeEnum> contentTypeList = new ArrayList<ContentTypeEnum>();
