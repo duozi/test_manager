@@ -1,21 +1,21 @@
 package com.xn.manage.Enum;
 
 
-public enum RequestTypeEnum {
-    GET("get", 1), POST("post", 2);
+public enum PerformancePlanStatusEnum {
+	EXECUTED("已执行", 0),UNEXECUTED("未执行",1);
     // 成员变量
     private String name;
     private int id;
 
     // 构造方法
-    private RequestTypeEnum(String name, int id) {
+    private PerformancePlanStatusEnum(String name, int id) {
         this.name = name;
         this.id = id;
     }
 
     // 普通方法
     public static String getName(int id) {
-        for (RequestTypeEnum c : RequestTypeEnum.values()) {
+        for (PerformancePlanStatusEnum c : PerformancePlanStatusEnum.values()) {
             if (c.getId() == id) {
                 return c.name;
             }
@@ -33,7 +33,7 @@ public enum RequestTypeEnum {
     }
 
     public int getId() {
-        return id;
+        return id; 
     }
 
     public void setId(int id) {

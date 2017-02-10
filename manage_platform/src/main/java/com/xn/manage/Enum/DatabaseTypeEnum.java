@@ -2,7 +2,7 @@ package com.xn.manage.Enum;
 
 
 public enum DatabaseTypeEnum {
-	Mysql("Mysql" ,1),Postgres("Postgres", 2),Oracle("Oracle", 3),SqlServer("SqlServer",4),DB2("DB2",5);
+	MYSQL("Mysql" ,1),POSTGRES("Postgres", 2),ORACLE("Oracle", 3),SQLSERVER("SqlServer",4),DB2("DB2",5);
     // 成员变量
     private String name;
     private int id;
