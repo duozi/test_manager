@@ -1,5 +1,8 @@
-package com.xn.manage.autotestController;
+package com.xn.manage.controller;
 
+import com.xn.manage.bean.Service;
+import com.xn.manage.bean.System;
+import com.xn.manage.Enum.DatabaseTypeEnum;
 import com.xn.manage.Enum.DatabaseTypeEnum;
 import com.xn.manage.bean.Service;
 import com.xn.manage.bean.System;
@@ -38,7 +41,7 @@ public class EnvironmentController {
 		model.put("systemList", systemList);
 		model.put("databaseTypeEnumList",databaseTypeEnumList);
 
-		return "environment/" + path;
+		return "/autotest/environment/" + path;
 	}
 
 }

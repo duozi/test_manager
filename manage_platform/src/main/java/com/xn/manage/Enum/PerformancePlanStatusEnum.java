@@ -2,13 +2,13 @@ package com.xn.manage.Enum;
 
 
 public enum PerformancePlanStatusEnum {
-	EXECUTED("已执行", 0),UNEXECUTED("未执行",1);
+	EXECUTED("已执行", 0),EXECUTING("执行中",1),UNEXECUTED("未执行",2);
     // 成员变量
     private String name;
     private int id;
 
     // 构造方法
-    private PerformancePlanStatusEnum(String name, int id) {
+   PerformancePlanStatusEnum(String name, int id) {
         this.name = name;
         this.id = id;
     }

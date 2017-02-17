@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/*")
 public class WebController {
 	
-	@RequestMapping(value="/autotest/decorators/{path}", method = RequestMethod.GET)
+	@RequestMapping(value="/decorators/{path}", method = RequestMethod.GET)
 	public String getDecoratorsPage(@PathVariable String  path ) {
 
 
-		return "autotest/decorators/" + path;
+		return "decorators/" + path;
 	}
 	
 }

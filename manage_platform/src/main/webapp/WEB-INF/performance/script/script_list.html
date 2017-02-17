@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
+    <!-- fileinput -->
+    <link href="../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
+    <!-- fileinput -->
+    <script src="../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+
+
+            $('#chooseSuit').click(function () {
+                //alert("chooseSuit");
+            });
+
+            $('#chooseEnvironment').click(function () {
+                //alert("chooseEnvironment");
+            });
+
+            $('#chooseTime').click(function () {
+                // alert("chooseTime");
+            });
+
+            $('#excutePlan').click(function () {
+                // alert("excutePlan");
+            });
+
+            $('#deletePlan').click(function () {
+                //alert("deletePlan");
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">性能自动化</a></li>
+        <li><a href="active">脚本管理</a></li>
+        <li class="active">脚本列表</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default ">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <form role="form">
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-2">
+                            <select class="form-control">
+                                <option value="" disabled selected>选择脚本名称</option>
+                                <option value="1">性能脚本1</option>
+                                <option value="2">性能脚本2</option>
+                                <option value="3">性能脚本3</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-lg-3">
+                            <button type="submit" class="btn btn-default">查询</button>
+                            <button type="reset" class="btn btn-default">导出</button>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addScript"><i
+                                    class=" fa-plus-circle fa"></i>新增脚本</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive col-lg-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>脚本ID</th>
+                            <th>脚本名称</th>
+                            <th>脚本描述</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>注册脚本</td>
+                            <td>注册接口测试</td>
+                            <td>
+                                <a type="button" name="deleteScript" class="btn btn-danger">删除</a>
+                                <a type="button" name="scriptDetail" class="btn btn-info">详情</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+
+
+
+    <!-- 新增脚本 -->
+    <div class="modal fade" id="addScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addPlanLabel">新增脚本</h4>
+                </div>
+                <div class="modal-body modal-add">
+                    <form role="form " class="col-lg-12 edit-form">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                                <label class="control-label">创建人</label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">脚本名称</label>
+                                <input type="text" class="form-control" id="planName" name="planName"
+                                       placeholder="请输入脚本名称">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">脚本描述</label>
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入脚本描述">
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label">上传脚本</label>
+                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<!-- /.row -->
+<script type="text/javascript">
+    $("select[name='excute-time-type']").change(
+            function () {
+                var value = $(this).val();
+                if (value == 'settime') {
+                    $(".settime").removeClass("hidden");
+                } else if (value == 'now') {
+                    $(".settime").addClass("hidden");
+                }
+            }
+    );
+
+</script>
+<!-- /.container-fluid -->
+</body>
+</html>

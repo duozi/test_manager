@@ -49,7 +49,7 @@ public class ServiceController {
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);
-		return "autotestService/" + path;
+		return "autotest/service/" + path;
 	}
 
 }

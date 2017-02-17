@@ -27,7 +27,7 @@ public class PerformancePlanController {
         for(PerformancePlanStatusEnum item:PerformancePlanStatusEnum.values()){
             performancePlanStatusEnumList.add(item);
         }
-        model.put("planStatusEnumList",performancePlanStatusEnumList);
+        model.put("performancePlanStatusEnumList",performancePlanStatusEnumList);
 
         //公司名称
         List<Company> companyList = new ArrayList<Company>();

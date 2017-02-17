@@ -17,8 +17,12 @@
     <!-- 对同一路径，启用多个装饰器 -->
     <mapping>
         <path>/autotest/*</path>
+        <decorator>/decorators/right_bar.ftl</decorator>
+    </mapping>
+
+    <mapping>
         <path>/performance/*</path>
-        <decorator>/autotest/decorators/right_bar.ftl</decorator>
+        <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
   <!--  <mapping>
         <path>/autotest/report/*</path>

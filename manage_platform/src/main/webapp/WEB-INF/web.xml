@@ -15,7 +15,7 @@
     <!--</context-param>-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value> classpath:/spring/spring-context.xml</param-value>
+        <param-value>classpath:/spring/spring-context.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -71,4 +71,7 @@
         <servlet-name>springServlet</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>autotest/plan/plan_list</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -16,7 +16,7 @@ public abstract class ResultModle {
 
     public synchronized void addResult(Result result) {
         if (resultMap == null) {
-            resultMap = new HashMap<>();
+            resultMap = new HashMap();
         }
         resultMap.put(result.getName(), result);
     }
