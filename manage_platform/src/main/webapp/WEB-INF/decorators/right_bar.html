@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>小牛集团-测试管理平台</title>
+    
+    <link href="../../css/case.css" rel="stylesheet">
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../dist/js/sb-admin-2.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
+
+
+    <sitemesh:write property='head' />
+    
+</head>
+
+<body>
+     <div id="wrapper">
+	    <div class="alert alert-info col-lg-14">
+			<a class="alert-link cm-title" href="#"><i class="fa-bar-chart-o fa"></i>小牛集团-测试管理平台</a>
+	    </div>
+    </div>
+        <!-- Navigation -->
+	 <div class="navigation">
+         <div class="navbar-default sidebar panel-default panel" role="navigation">
+                 <div class="sidebar-nav navbar-collapse alert-success">
+                     <ul class="nav" id="side-menu">
+                         <li>
+                             <div class="">
+                                 <img src="../../picture/flower.JPG" width="100px" height="100px" class="img-circle user_pic" alt="圆形图片">
+                                 <a href="#"> admin</a>
+                             </div>
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-info fa-fw"></i>自动化测试<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa"></i>计划管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <!--<li>
+                                             <a href="../plan/excute_config">执行设置</a>
+
+                                         </li>-->
+                                         <li>
+                                             <a href="../../autotest/plan/plan_list">测试计划</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa"></i>服务管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/service/service_list">服务列表</a>
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa"></i>环境管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/environment/environment_list">测试环境列表</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="../../autotest/environment/environment_item">新增测试环境</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa  "></i>测试集管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/suit/suit_list">测试集列表</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="../../autotest/suit/suit_item">新增测试集</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa  "></i>接口管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/interface/interface_list">接口列表</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="../../autotest/interface/interface_item">新增接口</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa  " ></i>用例管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/case/case_list">测试用例列表</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="../../autotest/case/case_item">新增测试用例</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="#" class="hidden">用例统计</a>
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="second-level"><i class=" fa"></i>报告管理<span class="fa arrow"></span> </a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../autotest/report/report_list">测试结果管理</a>
+                                         </li>
+                                         <li>
+                                             <a href="../../autotest/report/report_statistic">测试结果统计</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                             </ul>
+                             <!-- /.nav-second-level -->
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-table fa-fw"></i>mock</a>
+
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-signal fa-fw"></i>性能测试<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                 <!--计划-->
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa"></i>计划管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+
+                                         <li>
+                                             <a href="../../performance/plan/plan_list">测试计划</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <!--环境-->
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa"></i>机器管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../performance/machine/press_machine_list">压力机列表</a>
+
+                                         </li>
+                                         <li>
+                                             <a href="../../performance/machine/monitored_machine_list">被监控机列表</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <!--脚本-->
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa  " ></i>脚本管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../performance/script/script_list">脚本列表</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                                 <!--场景-->
+                                 <li>
+                                     <a href="#" class="second-level"><i class="fa  " ></i>场景管理<span class="fa arrow"></span></a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../performance/scenario/scenario_list">场景列表</a>
+
+                                         </li>
+
+                                     </ul>
+                                 </li>
+                                 <!--结果-->
+                                 <li>
+                                     <a href="#" class="second-level"><i class=" fa"></i>测试结果管理<span class="fa arrow"></span> </a>
+                                     <ul class="nav nav-third-level">
+                                         <li>
+                                             <a href="../../performance/report/report_list">测试结果列表</a>
+                                         </li>
+                                         <li>
+                                             <a href="../../performance/report/report_statistic">测试报告</a>
+
+                                         </li>
+                                     </ul>
+                                 </li>
+                             </ul>
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-html5 fa-fw"></i>安全测试</a>
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-cogs fa-fw"></i>持续集成</a>
+                         </li>
+                         <li>
+                             <a href="#" class="first-level"><i class="fa fa-group fa-fw"></i>系统设置<span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                 <li>
+                                     <a href="../../autotest/manage/company_manage" class="second-level"><i class="fa "></i>组织结构管理</a>
+                                 </li>
+                                 <li>
+                                     <a href="../../autotest/manage/system_list" class="second-level"><i class="fa "></i>系统管理</a>
+                                 </li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div>
+                 <!-- /.sidebar-collapse -->
+             </div>
+         <!-- /.navbar-static-side -->
+         <!-- /#wrapper -->
+         <div id="page-wrapper">
+             <div class="row body-row">
+                 <!-- /.panel-heading -->
+                 <div class="col-lg-14">
+                     <div class="panel panel-success">
+                         <sitemesh:write property='body' />
+                     </div>
+                     <div class="panel-footer">
+                         ©2016小牛资本-深圳市牛鼎丰科技有限公司
+                     </div>
+                 </div>
+                 <!-- /.panel -->
+             </div>
+         </div>
+     </div>
+
+</body>
+
+</html>

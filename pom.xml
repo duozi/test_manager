@@ -12,6 +12,8 @@
         <module>manage_platform</module>
         <module>autotest</module>
         <module>mock</module>
+        <module>common</module>
+        <module>interface_test</module>
     </modules>
     <dependencies>
         <dependency>
@@ -249,7 +251,7 @@
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.7.2</version>
+                <version>2.9.0</version>
             </dependency>
             <!--mail-->
             <dependency>
@@ -267,7 +269,7 @@
             <dependency>
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
-                <version>3.2</version>
+                <version>3.2.1</version>
             </dependency>
             <dependency>
                 <groupId>org.freemarker</groupId>

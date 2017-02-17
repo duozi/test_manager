@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.ParamsAssertMapper">
+
+    <resultMap id="ParamsAssertMap" type="com.xn.interfacetest.entity.ParamsAssert">
+        <result property="id" column="id"/>
+        <result property="assertParam" column="assert_param"/>
+        <result property="rightValue" column="right_value"/>
+        <result property="caseId" column="case_id"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, assert_param, right_value, case_id
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(assertParam)">
+                AND assert_param = #{assertParam}
+            </if>
+           <if test="@Ognl@isNotEmpty(rightValue)">
+                AND right_value = #{rightValue}
+            </if>
+           <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="ParamsAssertMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                params_assert
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="ParamsAssertMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            params_assert 
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                params_assert
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO params_assert (
+                id,
+                assert_param,
+                right_value,
+                case_id
+            ) VALUES (
+                #{id},
+                #{assertParam},
+                #{rightValue},
+                #{caseId}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO params_assert (
+                id,
+                assert_param,
+                right_value,
+                case_id
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.assertParam},#{item.rightValue},#{item.caseId})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                params_assert
+            <set>
+                <if test="assertParam != null">
+                	<![CDATA[ assert_param = #{assertParam} ]]>,
+                </if>
+                <if test="rightValue != null">
+                	<![CDATA[ right_value = #{rightValue} ]]>,
+                </if>
+                <if test="caseId != null">
+                	<![CDATA[ case_id = #{caseId} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                params_assert
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                params_assert
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                params_assert
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

@@ -42,6 +42,7 @@
     <ol class="breadcrumb">
         <li><a href="#">性能自动化</a></li>
         <li><a href="active">计划管理</a></li>
+        <li class="active">测试计划列表</li>
     </ol>
 </div>
 
@@ -52,17 +53,37 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
-                        <div class="form-group col-lg-2">
-                            <select class="form-control">
-                                <option value="" disabled selected>选择脚本</option>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" >
+                                <option value="" disabled selected>选择公司</option>
                                 <#if systemList ??>
-                                    <#list scriptList as item>
+                                    <#list companyList as item>
                                         <option value="${item.id}">${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if systemList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if systemList ??>
+                                    <#list systemList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%" >
                             <select class="form-control">
                                 <option value="" disabled selected>选择计划名称</option>
                                 <#if planList ??>
@@ -72,7 +93,7 @@
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
+                        <div class="form-group col-xs-2" style="width: 15%">
                             <select class="form-control">
                                 <option value="" disabled selected>选择脚本名称</option>
                                 <option value="1">性能脚本1</option>
@@ -80,26 +101,19 @@
                                 <option value="3">性能脚本3</option>
                             </select>
                         </div>
-
-                        <div class="form-group col-lg-2">
+                        <div class="form-group col-xs-2" style="width: 15%">
                             <select class="form-control">
                                 <option value="" disabled selected>选择计划状态</option>
-                                <#if planStatusList ??>
-                                    <#list planStatusList as item>
+                                <#if performancePlanStatusEnumList ??>
+                                    <#list performancePlanStatusEnumList as item>
                                         <option value="${item.getId()}">${item.getName()}</option>
                                     </#list>
                                 </#if>
-                                <option value="" disabled selected>选择计划状态</option>
-                                <#if planStatusList ??>
-                                    <#list planStatusList as item>
-                                        <option value="${item.getId()}">${item.getName()}</option>
-                                    </#list>
-                                </#if>
+
                             </select>
                         </div>
-                        <div class="form-group col-lg-3">
+                        <div class="form-group col-xs-1" style="width: 10%">
                             <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPlan"><i
                                     class=" fa-plus-circle fa"></i>新增计划</a>
                         </div>
@@ -111,36 +125,47 @@
                         <tr>
                             <th>计划ID</th>
                             <th>计划名称</th>
+                            <th>计划描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
                             <th>脚本</th>
                             <th>场景</th>
-                            <th>执行环境</th>
+                            <th>压力机</th>
+                            <th>监控机</th>
                             <th>计划状态</th>
                             <th>执行时间</th>
                             <th>创建人</th>
+                            <th>执行</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>1</td>
+                            <td>注册接口测试</td>
                             <td>注册接口测试100并发</td>
+                            <td>牛鼎丰</td>
+                            <td>测试部</td>
+                            <td>用户中心</td>
                             <td>
                                 <a href="../script/script_item">注册脚本</a>
                             </td>
-                            <td><a href="../scene/scene_item">注册脚本100并发场景</a></td>
-                            <td>环境1</td>
-                            <td>02-09 22:22:22</td>
-                            <td>已执行</td>
-                            <td>小珊珊</td>
-                            <td>
 
-                                <a type="button" id="chooseEnvironment" data-toggle="modal"
-                                   data-target="#environmentList" class="btn btn-info">选择执行环境</a>
-                                <a type="button" id="chooseTime" data-toggle="modal" data-target="#timeList"
-                                   class="btn btn-default">配置执行时间</a>
-                                <a type="button" id="excutePlan" class="btn btn-primary">加入执行队列</a>
+                            <td><a href="../scenario/scenario_item">注册脚本100并发场景</a></td>
+                            <td><a href="../machine/press_machine_list">压力机1</a></td>
+                            <td><a href="../machine/monitored_machine_list">监控机1</a></td>
+                            <td>已执行</td>
+                            <td>02-09 22:22:22</td>
+                            <td>小珊珊</td>
+                            <td><a type="button" name="execute" data-toggle="modal" data-target="#execute"
+                                   class="btn btn-default">执行</a>
+                                <a type="button" name="stop" class="btn btn-warning">停止执行</a>
+                            </td>
+
+                            <td>
                                 <a type="button" id="deletePlan" class="btn btn-danger">删除</a>
-                                <a href="../report/report_detail" type="button" class="btn btn-info">查看测试报告</a>
+                                <a href="../report/report_detail" type="button" class="btn btn-info">测试报告</a>
                             </td>
                         </tr>
                         </tbody>
@@ -155,103 +180,38 @@
     <!-- /.col-lg-12 -->
 
 
-    <!-- 执行环境弹框 -->
-    <div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="environmentListLabel"
-         aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="environmentListLabel">选择测试计划执行环境</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>环境ID</th>
-                            <th>环境描述</th>
-                            <th>环境名称</th>
-                            <th>创建人</th>
-                            <th>选择</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境1</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="radio" value="" name="environment">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境2</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="radio" value="" name="environment">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境3</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="radio" value="" name="environment">
-                                </label>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-    <!-- 时间选项弹框 -->
-    <div class="modal fade" id="timeList" tabindex="-1" role="dialog" aria-labelledby="timeListLabel"
+    <!-- 执行配置 -->
+    <div class="modal fade" id="execute" tabindex="-1" role="dialog" aria-labelledby="timeListLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="timeListLabel">执行时间配置</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&time</button>
+                    <h4 class="modal-title" id="timeListLabel">执行配置</h4>
                 </div>
                 <div class="modal-body modal-time">
                     <form class="col-lg-14 edit-form time-form">
                         <div class="form-group">
-                            <label class="control-label">执行时间类型</label>
-                            <select class="form-control" id="excuteTimeType">
-                                <option value="once-modal">单次执行</option>
-                                <option value="circulation-modal">循环执行</option>
+                            <label class="control-label">压力机</label>
+                            <select class="form-control" name="excute-computer">
+                                <option value="1">压力机1</option>
+                                <option value="2">压力机2</option>
                             </select>
                         </div>
-                        <div class="form-group once-modal">
+                        <div class="form-group">
+                            <label class="control-label">执行时间类型</label>
+                            <select class="form-control"  name="excute-time-type">
+                                <option value="now">立即加入执行队列</option>
+                                <option value="settime">配置执行时间</option>
+                            </select>
+                        </div>
+                        <div class="form-group settime hidden">
                             <label class="control-label">执行时间</label>
-                            <input type="text" class="form-control" id="excuteTime" name="excuteTime"
+                            <input type="text" class="form-control"  name="excuteTime"
                                    placeholder="请输入时间：2017-01-01 12:23:23">
-                            <button class="btn btn-default once-modal" type="button" id="addTime">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
+
                         </div>
-                        <div class="form-group circulation-modal hidden">
-                            <label class="control-label">循环执行表达式</label>
-                            <input type="text" class="form-control" name="cronExpression" placeholder="请输入定时任务表达式">
-                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -272,7 +232,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPlanLabel">新增测试计划</h4>
                 </div>
-                <div class="modal-body modal-add">
+                <div class="modal-body modal-add" style="min-height: 500px">
                     <form role="form " class="col-lg-12 edit-form">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -285,32 +245,68 @@
                                        placeholder="请输入测试计划名称">
                             </div>
                             <div class="form-group">
+                                <label class="control-label">计划描述</label>
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入计划描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司</label>
+                                <select  class="form-control">
+                                    <option>公司1</option>
+                                    <option>公司2</option>
+                                    <option>公司3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门</label>
+                                <select  class="form-control">
+                                    <option>部门1</option>
+                                    <option>部门2</option>
+                                    <option>部门3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统</label>
+                                <select  class="form-control">
+                                    <option>系统1</option>
+                                    <option>系统2</option>
+                                    <option>系统3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label">脚本</label>
-                                <select id="id_select" class="form-control" >
+                                <select  class="form-control">
                                     <option>脚本1</option>
                                     <option>脚本2</option>
                                     <option>脚本3</option>
-                                    </optgroup>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">执行时间类型</label>
-                                <select class="form-control" id="excute-time-type">
-                                    <option value="now">立即加入执行队列</option>
-                                    <option value="settime">配置执行时间</option>
-                                </select>
-                            </div>
-                            <div class="form-group settime hidden">
-                                <label class="control-label">执行时间</label>
-                                <input type="text" class="form-control" id="excute-time" name="excuteTime"
-                                       placeholder="请输入时间：2017-01-01 12:23:23">
 
+                                </select>
                             </div>
+
                             <div class="form-group">
-                                <label class="control-label">执行环境</label>
-                                <select class="form-control" id="excute-environment">
-                                    <option value="1">测试环境1</option>
-                                    <option value="2">测试环境2</option>
+                                <label class="control-label">场景</label>
+                                <select class="form-control" >
+                                    <option value="1">测试场景1</option>
+                                    <option value="2">测试场景1</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" >监控机</label>
+                                <select     id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true">
+                                    <option>监控机1</option>
+
+                                    <option>监控机2</option>
+
+                                    <option>监控机3</option>
+
+                                    <option selected>监控机4</option>
+
+                                    <option>监控机5</option>
+
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -328,7 +324,7 @@
 </div>
 <!-- /.row -->
 <script type="text/javascript">
-    $("#excute-time-type").change(
+    $("select[name='excute-time-type']").change(
             function () {
                 var value = $(this).val();
                 if (value == 'settime') {

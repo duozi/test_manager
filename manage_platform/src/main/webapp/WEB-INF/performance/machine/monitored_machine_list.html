@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- DataTables JavaScript -->
+    <script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">性能自动化</a></li>
+        <li><a href="#">机器管理</a></li>
+        <li class="active">监控机列表</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default ">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <form role="form">
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-2">
+                            <select class="form-control">
+                                <option value="" disabled selected>选择监控机名称</option>
+                                <option value="1">监控机1</option>
+                                <option value="2">监控机2</option>
+                                <option value="3">监控机3</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <button type="submit" class="btn btn-default">查询</button>
+                            <button type="reset" class="btn btn-default">导出</button>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPressMachine"><i
+                                    class=" fa-plus-circle fa"></i>新增监控机</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive col-lg-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>监控机ID</th>
+                            <th>监控机名称</th>
+                            <th>监控机描述</th>
+                            <th>ip</th>
+                            <th>用户名</th>
+                            <th>创建人</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>注册接口监控机</td>
+                            <td>在测试环境</td>
+                            <td>10.10.10.1</td>
+                            <td>user</td>
+                            <td>小明</td>
+                            <td>
+                                <a type="button" name="deletePressMachine" class="btn btn-danger">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+
+
+
+    <!-- 新增压力机 -->
+    <div class="modal fade" id="addPressMachine" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addPress">新增监控机</h4>
+                </div>
+                <div class="modal-body modal-add">
+                    <form role="form " class="col-lg-12 edit-form">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                                <label class="control-label">创建人</label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">监控机名称</label>
+                                <input type="text" class="form-control" id="planName" name="monitoredMachineName"
+                                       placeholder="请输入压力机名称">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">监控机描述</label>
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入监控机描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">ip</label>
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入ip地址">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">用户名</label>
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入用户名">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">密码</label>
+                                <input type="password" class="form-control" name="createDescription" placeholder="请输入密码">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">测试</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- /.container-fluid -->
+</body>
+</html>

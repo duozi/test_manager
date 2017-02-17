@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Custom Fonts -->
+	    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!--datetimepicker-->
+        <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
+        <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+        <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // 选择时间和日期
+                $(".form-datetime").datetimepicker(
+                        {
+                            weekStart: 1,
+                            todayBtn:  1,
+                            autoclose: 1,
+                            todayHighlight: 1,
+                            startView: 2,
+                            forceParse: 0,
+                            showMeridian: 1,
+                            format: "yyyy-mm-dd hh:ii",
+                            language: "zh-CN"
+                        });
+            });
+
+        </script>
+	</head>
+    <body>
+    <div class="panel-heading">
+        <ol class="breadcrumb">
+            <li><a href="#">接口自动化</a></li>
+            <li><a href="#">测试报告管理</a></li>
+            <li class="active">测试结果管理</li>
+        </ol>
+    </div>
+
+        <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default ">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form role="form " class="select-form">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-2">
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择公司</option>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.id}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择部门</option>
+                                    <#if systemList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.id}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择系统</option>
+                                    <#if systemList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.id}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">计划</label>
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择计划名称</option>
+                                    <#if planList ??>
+                                        <#list planList as item>
+                                            <option value="${item.id}">${item.planName}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">环境</label>
+                                <select class="form-control">
+                                    <option value="" disabled selected >选择环境名称</option>
+                                    <option value="">测试环境1</option>
+                                    <option value="">测试环境2</option>
+                                    <option value="">测试环境3</option>
+                                    <option value="">测试环境4</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label  class="control-label">执行时间</label>
+                                <input type="text" class="form-control form-datetime" placeholder="如：2017-01-01 12:12">
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <input type="text" class="form-control form-datetime" placeholder="如：2017-09-01 12:12">
+                            </div>
+                            <div class="form-group col-lg-1">
+                                <button type="submit" class="btn btn-default">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive col-lg-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>报告编号</th>
+                                <th>测试系统</th>
+                                <th>测试计划</th>
+                                <th>执行环境</th>
+                                <th>测试集</th>
+                                <th>执行人</th>
+                                <th>执行时间</th>
+                                <th>执行持续时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>123123</td>
+                                <td>
+                                    牛贷系统
+                                </td>
+                                <td>
+                                    <a href="../plan/plan_item">牛贷系统查询联系人测试计划</a>
+                                </td>
+                                <td>
+                                    测试环境1
+                                </td>
+                                <td>
+                                    <a href="../suit/suit_item">测试集1</a>，
+                                    <a href="../suit/suit_item">测试集2</a>
+                                </td>
+                                <td>小茜茜</td>
+                                <td>2016-12-09 23:23:23</td>
+                                <td>24s</td>
+                                <td>
+                                    <a type="button"   href="report_detail" class="btn btn-warning">查看详情</a>
+                                    <a type="button"  class="btn btn-info">下载</a>
+                                    <a type="button" data-toggle="modal" data-target="#email" class="btn btn-default">发送结果</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+        <!-- 新增测试计划弹框 -->
+        <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="emailLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="emailLabel">配置邮件收件人</h4>
+                    </div>
+                    <div class="modal-body modal-email">
+                        <form role="form " class="col-lg-12 ">
+                           <textarea type="text" name="emailAddress" placeholder="请输入邮箱地址，以分号隔开。例如：1234567@qq.com;xiaoming@sina.com"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">发送</button>
+                        <button type="button" class="btn btn-info">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    </body>
+  <!-- jQuery -->
+</html>

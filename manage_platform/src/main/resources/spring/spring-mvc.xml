@@ -35,7 +35,7 @@
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" lazy-init="false">
-        <property name="viewClass" value="com.xn.manage.filter.MyFreeMarkerView" />
+        <property name="viewClass" value="com.xn.com.xn.manage.filter.MyFreeMarkerView" />
         <property name="contentType" value="text/html; charset=UTF-8"/>
         <property name="exposeSpringMacroHelpers" value="true" />
         <property name="requestContextAttribute" value="rc" />

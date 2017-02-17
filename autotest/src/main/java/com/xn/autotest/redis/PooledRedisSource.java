@@ -21,8 +21,8 @@ public class PooledRedisSource implements InitializingBean{
     @Autowired
     RedisPropertiesService redisPropertiesService;
 
-    private final static Map<String, JedisCluster> REDISSOURCEWRAPPERS = new HashMap<>();
-    private List<RedisPropertiesDto> redisPropertiesList = new ArrayList<>();
+    private final static Map<String, JedisCluster> REDISSOURCEWRAPPERS = new HashMap();
+    private List<RedisPropertiesDto> redisPropertiesList = new ArrayList();
 
 
     @Override
