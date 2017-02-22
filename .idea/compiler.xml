@@ -23,14 +23,23 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="autotest" />
+        <module name="common-test" />
+        <module name="interfacetest" />
         <module name="manage_platform" />
         <module name="mock" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="autotest" target="1.6" />
+      <module name="commom" target="1.7" />
+      <module name="common" target="1.7" />
+      <module name="common-test" target="1.7" />
+      <module name="interface_autotest" target="1.7" />
+      <module name="interface_test" target="1.7" />
+      <module name="interfacetest" target="1.7" />
       <module name="manage_platform" target="1.6" />
       <module name="mock" target="1.7" />
+      <module name="public_commom" target="1.7" />
       <module name="test_manager" target="1.7" />
     </bytecodeTargetLevel>
   </component>
