@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xn.performance.dao.PerformanceMonitoredMachineResultMapper">
+
+    <resultMap id="PerformanceMonitoredMachineResultMap" type="com.xn.performance.entity.PerformanceMonitoredMachineResult">
+        <result property="id" column="id"/>
+        <result property="samples" column="samples"/>
+        <result property="average" column="average"/>
+        <result property="min" column="min"/>
+        <result property="max" column="max"/>
+        <result property="error" column="error"/>
+        <result property="throughput" column="throughput"/>
+        <result property="kbsec" column="kbsec"/>
+        <result property="load" column="load"/>
+        <result property="qps" column="qps"/>
+        <result property="memory" column="memory"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, samples, average, min, max, error, throughput, kbsec, load, qps, memory
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(samples)">
+                AND samples = #{samples}
+            </if>
+           <if test="@Ognl@isNotEmpty(average)">
+                AND average = #{average}
+            </if>
+           <if test="@Ognl@isNotEmpty(min)">
+                AND min = #{min}
+            </if>
+           <if test="@Ognl@isNotEmpty(max)">
+                AND max = #{max}
+            </if>
+           <if test="@Ognl@isNotEmpty(error)">
+                AND error = #{error}
+            </if>
+           <if test="@Ognl@isNotEmpty(throughput)">
+                AND throughput = #{throughput}
+            </if>
+           <if test="@Ognl@isNotEmpty(kbsec)">
+                AND kbsec = #{kbsec}
+            </if>
+           <if test="@Ognl@isNotEmpty(load)">
+                AND load = #{load}
+            </if>
+           <if test="@Ognl@isNotEmpty(qps)">
+                AND qps = #{qps}
+            </if>
+           <if test="@Ognl@isNotEmpty(memory)">
+                AND memory = #{memory}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="PerformanceMonitoredMachineResultMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                performance_monitored_machine_result
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="PerformanceMonitoredMachineResultMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            performance_monitored_machine_result 
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                performance_monitored_machine_result
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO performance_monitored_machine_result (
+                id,
+                samples,
+                average,
+                min,
+                max,
+                error,
+                throughput,
+                kbsec,
+                load,
+                qps,
+                memory
+            ) VALUES (
+                #{id},
+                #{samples},
+                #{average},
+                #{min},
+                #{max},
+                #{error},
+                #{throughput},
+                #{kbsec},
+                #{load},
+                #{qps},
+                #{memory}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO performance_monitored_machine_result (
+                id,
+                samples,
+                average,
+                min,
+                max,
+                error,
+                throughput,
+                kbsec,
+                load,
+                qps,
+                memory
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.samples},#{item.average},#{item.min},#{item.max},#{item.error},#{item.throughput},#{item.kbsec},#{item.load},#{item.qps},#{item.memory})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                performance_monitored_machine_result
+            <set>
+                <if test="samples != null">
+                	<![CDATA[ samples = #{samples} ]]>,
+                </if>
+                <if test="average != null">
+                	<![CDATA[ average = #{average} ]]>,
+                </if>
+                <if test="min != null">
+                	<![CDATA[ min = #{min} ]]>,
+                </if>
+                <if test="max != null">
+                	<![CDATA[ max = #{max} ]]>,
+                </if>
+                <if test="error != null">
+                	<![CDATA[ error = #{error} ]]>,
+                </if>
+                <if test="throughput != null">
+                	<![CDATA[ throughput = #{throughput} ]]>,
+                </if>
+                <if test="kbsec != null">
+                	<![CDATA[ kbsec = #{kbsec} ]]>,
+                </if>
+                <if test="load != null">
+                	<![CDATA[ load = #{load} ]]>,
+                </if>
+                <if test="qps != null">
+                	<![CDATA[ qps = #{qps} ]]>,
+                </if>
+                <if test="memory != null">
+                	<![CDATA[ memory = #{memory} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_monitored_machine_result
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_monitored_machine_result
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_monitored_machine_result
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+
