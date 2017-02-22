@@ -32,6 +32,36 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control" >
+                                <option value="" disabled selected>选择公司</option>
+                                <#if systemList ??>
+                                    <#list companyList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if systemList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if systemList ??>
+                                    <#list systemList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control">
                                 <option value="" disabled selected>选择监控机名称</option>
@@ -42,7 +72,6 @@
                         </div>
                         <div class="form-group col-lg-3">
                             <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPressMachine"><i
                                     class=" fa-plus-circle fa"></i>新增监控机</a>
                         </div>
@@ -55,6 +84,9 @@
                             <th>监控机ID</th>
                             <th>监控机名称</th>
                             <th>监控机描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
                             <th>ip</th>
                             <th>用户名</th>
                             <th>创建人</th>
@@ -66,6 +98,9 @@
                             <td>1</td>
                             <td>注册接口监控机</td>
                             <td>在测试环境</td>
+                            <td>牛鼎丰</td>
+                            <td>测试部</td>
+                            <td>用户中心</td>
                             <td>10.10.10.1</td>
                             <td>user</td>
                             <td>小明</td>
@@ -94,7 +129,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPress">新增监控机</h4>
                 </div>
-                <div class="modal-body modal-add">
+                <div class="modal-body modal-add" style="min-height: 500px">
                     <form role="form " class="col-lg-12 edit-form">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -109,6 +144,33 @@
                             <div class="form-group">
                                 <label class="control-label">监控机描述</label>
                                 <input type="text" class="form-control" name="createDescription" placeholder="请输入监控机描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司</label>
+                                <select  class="form-control">
+                                    <option>公司1</option>
+                                    <option>公司2</option>
+                                    <option>公司3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门</label>
+                                <select  class="form-control">
+                                    <option>部门1</option>
+                                    <option>部门2</option>
+                                    <option>部门3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统</label>
+                                <select  class="form-control">
+                                    <option>系统1</option>
+                                    <option>系统2</option>
+                                    <option>系统3</option>
+
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">ip</label>

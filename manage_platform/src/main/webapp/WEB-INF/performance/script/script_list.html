@@ -57,6 +57,36 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control" >
+                                <option value="" disabled selected>选择公司</option>
+                                <#if systemList ??>
+                                    <#list companyList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if systemList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if systemList ??>
+                                    <#list systemList as item>
+                                        <option value="${item.id}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control">
                                 <option value="" disabled selected>选择脚本名称</option>
@@ -65,11 +95,19 @@
                                 <option value="3">性能脚本3</option>
                             </select>
                         </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control">
+                                <option value="" disabled selected>选择发布状态</option>
+                                <#if publishList ??>
+                                    <#list publishList as item>
+                                        <option value="${item.id}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
 
-
-                        <div class="form-group col-lg-3">
+                        <div class="form-group col-lg-1">
                             <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addScript"><i
                                     class=" fa-plus-circle fa"></i>新增脚本</a>
                         </div>
@@ -82,6 +120,12 @@
                             <th>脚本ID</th>
                             <th>脚本名称</th>
                             <th>脚本描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
+                            <th>脚本状态</th>
+                            <th>创建人</th>
+
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -90,6 +134,12 @@
                             <td>1</td>
                             <td>注册脚本</td>
                             <td>注册接口测试</td>
+                            <td>牛鼎丰</td>
+                            <td>测试部</td>
+                            <td>用户中心</td>
+                            <td>已发布</td>
+                            <td>小明</td>
+
                             <td>
                                 <a type="button" name="deleteScript" class="btn btn-danger">删除</a>
                                 <a type="button" name="scriptDetail" class="btn btn-info">详情</a>
@@ -131,6 +181,33 @@
                             <div class="form-group">
                                 <label class="control-label">脚本描述</label>
                                 <input type="text" class="form-control" name="createDescription" placeholder="请输入脚本描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司</label>
+                                <select  class="form-control">
+                                    <option>公司1</option>
+                                    <option>公司2</option>
+                                    <option>公司3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门</label>
+                                <select  class="form-control">
+                                    <option>部门1</option>
+                                    <option>部门2</option>
+                                    <option>部门3</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统</label>
+                                <select  class="form-control">
+                                    <option>系统1</option>
+                                    <option>系统2</option>
+                                    <option>系统3</option>
+
+                                </select>
                             </div>
                             <div class="form-group ">
                                 <label class="control-label">上传脚本</label>

@@ -13,9 +13,9 @@
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <context:annotation-config />
+    <context:annotation-config/>
     <!-- 自动扫描 -->
-    <context:component-scan base-package="com.xn.manage" >
+    <context:component-scan base-package="com.xn.manage">
         <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
         <!--<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />-->
     </context:component-scan>
@@ -76,5 +76,5 @@
     <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
 
     <task:annotation-driven/>
-
+    <import resource="dubbo-consumer.xml"></import>
 </beans>	
