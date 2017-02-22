@@ -12,7 +12,27 @@
             $('#dataTables-example').DataTable({
                 responsive: true
             });
+            $("button[name='saveButton']").click(function () {
+                //序列化表单元素，返回json数据
+                var params = $("form[name='stressMachine-save']").serializeArray();
+
+                $.ajax({
+                    type:"POST",
+                    url:"/performance/machine/stress_machine_list/save",
+                    data:params,
+                    success:function(data){
+
+                        if(data.code==2){
+                            alert("参数不正确")
+                        }
+                    },
+                    error:function(e) {
+                        alert("异常："+e);
+                    }
+                });
+            })
         });
+
     </script>
 </head>
 
@@ -131,21 +151,21 @@
                     <h4 class="modal-title" id="addPress">新增压力机</h4>
                 </div>
                 <div class="modal-body modal-add" style="min-height: 500px">
-                    <form role="form " class="col-lg-12 edit-form">
+                    <form role="form " class="col-lg-12 edit-form" name="stressMachine-save">
                         <div class="col-lg-14 form-div">
 
                             <div class="form-group">
-                                <label class="control-label">压力机名称</label>
-                                <input type="text" class="form-control" id="planName" name="planName"
+                                <label class="control-label">压力机名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"  name="stressMachineName"
                                        placeholder="请输入压力机名称">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">压力机描述</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入压力机描述">
+                                <input type="text" class="form-control" name="remark" placeholder="请输入压力机描述">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">公司</label>
-                                <select  class="form-control">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select  class="form-control" name="company">
                                     <option>公司1</option>
                                     <option>公司2</option>
                                     <option>公司3</option>
@@ -153,8 +173,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">部门</label>
-                                <select  class="form-control">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select  class="form-control" name="department">
                                     <option>部门1</option>
                                     <option>部门2</option>
                                     <option>部门3</option>
@@ -162,8 +182,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">系统</label>
-                                <select  class="form-control">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select  class="form-control" name="psystem">
                                     <option>系统1</option>
                                     <option>系统2</option>
                                     <option>系统3</option>
@@ -171,16 +191,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">ip</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入ip地址">
+                                <label class="control-label">ip<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="ip" placeholder="请输入ip地址">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">用户名</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入用户名">
+                                <label class="control-label">用户名<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="username" placeholder="请输入用户名">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">密码</label>
-                                <input type="password" class="form-control" name="createDescription" placeholder="请输入密码">
+                                <label class="control-label">密码<span style="color:red">*</span></label>
+                                <input type="password" class="form-control" name="password" placeholder="请输入密码">
                             </div>
 
                         </div>
@@ -188,7 +208,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">测试</button>
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" name="saveButton" data-dismiss="modal">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>

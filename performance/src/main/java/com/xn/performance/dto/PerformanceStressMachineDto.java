@@ -3,6 +3,7 @@
  */
 package com.xn.performance.dto;
 
+import com.xn.performance.annotation.NotNullField;
 import com.xn.performance.util.BaseDto;
 
 
@@ -29,6 +30,7 @@ public class PerformanceStressMachineDto extends BaseDto{
      * 
      * 压力机名 
      */
+    @NotNullField
     private String stressMachineName;
 
     /**
@@ -41,42 +43,49 @@ public class PerformanceStressMachineDto extends BaseDto{
      * 
      * 公司 
      */
+    @NotNullField
     private String company;
 
     /**
      * 
      * 部门 
      */
+    @NotNullField
     private String department;
 
     /**
      * 
      * 系统 
      */
+    @NotNullField
     private String psystem;
 
     /**
      * 
      * ip 
      */
+    @NotNullField
     private String ip;
 
     /**
      * 
      * 用户名 
      */
+    @NotNullField
     private String username;
 
     /**
      * 
      * 密码 
      */
+    @NotNullField
     private String password;
 
     /**
      * 
      * 创建人 
      */
+    @NotNullField
     private String createPerson;
 
     
