@@ -52,36 +52,6 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
-                        <div class="form-group col-xs-2">
-                            <select class="form-control">
-                                <option value="" disabled selected>选择公司</option>
-                                <#if systemList ??>
-                                    <#list companyList as item>
-                                        <option value="${item.id}">${item.name}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
-                        <div class="form-group col-xs-2">
-                            <select class="form-control">
-                                <option value="" disabled selected>选择部门</option>
-                                <#if systemList ??>
-                                    <#list departmentList as item>
-                                        <option value="${item.id}">${item.name}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
-                        <div class="form-group col-xs-2">
-                            <select class="form-control">
-                                <option value="" disabled selected>选择系统</option>
-                                <#if systemList ??>
-                                    <#list systemList as item>
-                                        <option value="${item.id}">${item.name}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control">
                                 <option value="" disabled selected>选择场景名称</option>
@@ -90,19 +60,11 @@
                                 <option value="3">性能场景3</option>
                             </select>
                         </div>
-                        <div class="form-group col-xs-2" >
-                            <select class="form-control">
-                                <option value="" disabled selected>选择发布状态</option>
-                                <#if publishList ??>
-                                    <#list publishList as item>
-                                        <option value="${item.id}">${item.getName()}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
 
-                        <div class="form-group col-lg-1">
+
+                        <div class="form-group col-lg-3">
                             <button type="submit" class="btn btn-default">查询</button>
+                            <button type="reset" class="btn btn-default">导出</button>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addScenario"><i
                                     class=" fa-plus-circle fa"></i>新增场景</a>
                         </div>
@@ -115,15 +77,9 @@
                             <th>场景ID</th>
                             <th>场景名称</th>
                             <th>场景描述</th>
-                            <th>公司</th>
-                            <th>部门</th>
-                            <th>系统</th>
                             <th>并发数</th>
                             <th>线程启动时间（秒）</th>
                             <th>执行时间（秒）</th>
-                            <th>循环次数</th>
-                            <th>场景状态</th>
-
                             <th>创建人</th>
                             <th>操作</th>
                         </tr>
@@ -133,19 +89,12 @@
                             <td>1</td>
                             <td>注册场景</td>
                             <td>注册接口测试</td>
-                            <td>牛鼎丰</td>
-                            <td>测试部</td>
-                            <td>用户中心</td>
                             <td>100</td>
                             <td>20</td>
                             <td>90</td>
-                            <td>100</td>
-                            <td>已发布</td>
-
                             <td>小珊珊</td>
                             <td>
-                                <a type="button" name="changePlan" class="btn btn-info">编辑</a>
-                                <a type="button" name="deletePlan" class="btn btn-danger">删除</a>
+                                <a type="button" id="deletePlan" class="btn btn-danger">删除</a>
                             </td>
                         </tr>
                         </tbody>
@@ -160,16 +109,16 @@
     <!-- /.col-lg-12 -->
 
 
+
     <!-- 新增场景 -->
-    <div class="modal fade" id="addScenario" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="addScenario" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPlanLabel">新增场景</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 540px">
+                <div class="modal-body modal-add">
                     <form role="form " class="col-lg-12 edit-form">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -186,50 +135,18 @@
                                 <input type="text" class="form-control" name="createDescription" placeholder="请输入场景描述">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">公司</label>
-                                <select class="form-control">
-                                    <option>公司1</option>
-                                    <option>公司2</option>
-                                    <option>公司3</option>
-
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">部门</label>
-                                <select class="form-control">
-                                    <option>部门1</option>
-                                    <option>部门2</option>
-                                    <option>部门3</option>
-
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">系统</label>
-                                <select class="form-control">
-                                    <option>系统1</option>
-                                    <option>系统2</option>
-                                    <option>系统3</option>
-
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label">并发数</label>
                                 <input type="text" class="form-control" name="createDescription" placeholder="请输入并发数">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">线程启动时间（秒）</label>
-                                <input type="text" class="form-control" name="createDescription"
-                                       placeholder="请输入线程启动时间">
+                                <input type="text" class="form-control" name="createDescription" placeholder="请输入线程启动时间">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">执行时间（秒）</label>
                                 <input type="text" class="form-control" name="createDescription" placeholder="请输入执行时间">
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">循环次数</label>
-                                <label class="checkbox-inline" style="margin-top: 2%"><input type="checkbox">永远</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入循环次数">
-                            </div>
+
                         </div>
                     </form>
                 </div>

@@ -37,6 +37,7 @@ public class CaseController {
 
 	@Resource
 	CompanyService companyService;
+
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
 	public String getCasePage(@PathVariable String  path, HttpServletRequest request, ModelMap map) {
 		String type=request.getParameter("caseType");
@@ -65,14 +66,11 @@ public class CaseController {
 		List<String> redisNameList=new ArrayList<String>();
 		map.put("paramTypeList",paramTypeList);
 
-//		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-//		TestSystemDto systemDto = new TestSystemDto();
-//		systemList = testSystemService.list(systemDto);
+//		List<System> systemList = new ArrayList<System>();
 //
 //
-//		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-//		TestServiceDto serviceDto = new TestServiceDto();
-//		serviceList = testServiceService.list(serviceDto);
+//		List<Service> serviceList = new ArrayList<Service>();
+//
 //
 //		map.put("serviceList", serviceList);
 //		map.put("systemList",systemList);

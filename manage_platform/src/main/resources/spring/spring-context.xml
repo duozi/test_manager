@@ -76,5 +76,5 @@
     <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
 
     <task:annotation-driven/>
-    <import resource="classpath:dubbo/dubbo-provider.xml"></import>
+    <import resource="classpath:dubbo/dubbo-consumer.xml"></import>
 </beans>	

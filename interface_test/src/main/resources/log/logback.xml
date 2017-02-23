@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<substitutionProperty name="pro.name" value="autotest" />
+	<substitutionProperty name="log.base" value="logs/${pro.name}" />
+	<substitutionProperty name="max.size" value="100MB" />
+	<jmxConfigurator />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="file.debug" class="ch.qos.logback.core.rolling.RollingFileAppender"><!-- All Log Info -->
+		<File>${log.base}/${pro.name}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/${pro.name}_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	       	 	<maxFileSize>${max.size}</maxFileSize>
+	        </timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="file.info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/${pro.name}_info.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/${pro.name}_info_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	       	 	<maxFileSize>${max.size}</maxFileSize>
+	        </timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="file.warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/${pro.name}_warn.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/${pro.name}_warn_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	       	 	<maxFileSize>${max.size}</maxFileSize>
+	        </timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+	</appender>
+	<appender name="DUBBO-CLIENT-DIGEST-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/dubbo-client-digest.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/dubbo-client-digest_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${max.size}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="DUBBO-SERVICE-DIGEST-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.base}/dubbo-service-digest.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/dubbo-service-digest_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${max.size}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="org.apache.zookeeper.ClientCnxn" level="info">
+		<appender-ref ref="DUBBO-SERVICE-DIGEST-APPENDER" />
+	</logger>
+	
+	<logger name="java.sql.ResultSet" level="INFO" />
+	<logger name="org.mybatis.spring" level="INFO" />
+	
+	<root level="DEBUG">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file.info" />
+		<appender-ref ref="file.debug" />
+		<appender-ref ref="file.warn" />
+	</root>
+</configuration>

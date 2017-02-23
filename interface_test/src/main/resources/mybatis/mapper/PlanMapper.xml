@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xn.autotest.dao.PlanMapper">
+
+    <resultMap id="PlanMap" type="com.xn.autotest.bean.request.plan.entity.Plan">
+        <result property="id" column="id"/>
+        <result property="planName" column="plan_name"/>
+        <result property="executeType" column="execute_type"/>
+        <result property="planStatus" column="plan_status"/>
+        <result property="changeTime" column="change_time"/>
+        <result property="planType" column="plan_type"/>
+        <result property="systemName" column="system_name"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, plan_name, execute_type, plan_status, change_time, plan_type, system_name
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(planName)">
+                AND plan_name = #{planName}
+            </if>
+           <if test="@Ognl@isNotEmpty(executeType)">
+                AND execute_type = #{executeType}
+            </if>
+           <if test="@Ognl@isNotEmpty(planStatus)">
+                AND plan_status = #{planStatus}
+            </if>
+           <if test="@Ognl@isNotEmpty(changeTimeBegin)">
+                AND change_time >= #{changeTimeBegin}
+           </if>
+           <if test="@Ognl@isNotEmpty(changeTimeEnd)">
+                AND change_time &lt;= #{changeTimeEnd}
+           </if>
+           <if test="@Ognl@isNotEmpty(planType)">
+                AND plan_type = #{planType}
+            </if>
+           <if test="@Ognl@isNotEmpty(systemName)">
+                AND system_name = #{systemName}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="PlanMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                plan
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="PlanMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            plan 
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                plan
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO plan (
+                id,
+                plan_name,
+                execute_type,
+                plan_status,
+                change_time,
+                plan_type,
+                system_name
+            ) VALUES (
+                #{id},
+                #{planName},
+                #{executeType},
+                #{planStatus},
+                #{changeTime},
+                #{planType},
+                #{systemName}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO plan (
+                id,
+                plan_name,
+                execute_type,
+                plan_status,
+                change_time,
+                plan_type,
+                system_name
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.planName},#{item.executeType},#{item.planStatus},#{item.changeTime},#{item.planType},#{item.systemName})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                plan
+            <set>
+                <if test="planName != null">
+                	<![CDATA[ plan_name = #{planName} ]]>,
+                </if>
+                <if test="executeType != null">
+                	<![CDATA[ execute_type = #{executeType} ]]>,
+                </if>
+                <if test="planStatus != null">
+                	<![CDATA[ plan_status = #{planStatus} ]]>,
+                </if>
+                <if test="changeTime != null">
+                	<![CDATA[ change_time = #{changeTime} ]]>,
+                </if>
+                <if test="planType != null">
+                	<![CDATA[ plan_type = #{planType} ]]>,
+                </if>
+                <if test="systemName != null">
+                	<![CDATA[ system_name = #{systemName} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                plan
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                plan
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                plan
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

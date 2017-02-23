@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Consumer {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
     public static void main(String[] args) throws Exception {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"/spring/dubbo-consumer.xml"});
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"/dubbo/dubbo-consumer.xml"});
         context.start();
 
         PerformanceStressMachineService demoService = (PerformanceStressMachineService) context.getBean("performanceStressMachineService"); // 获取远程服务代理
