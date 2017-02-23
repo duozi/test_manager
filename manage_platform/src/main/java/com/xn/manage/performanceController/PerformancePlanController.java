@@ -26,17 +26,17 @@ import java.util.List;
 @Controller
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
-    @Autowired
-    private CompanyService companyService;
-
-    @Autowired
-    private TestSystemService systemService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
-    private TestPlanService planService;
+//    @Autowired
+//    private CompanyService companyService;
+//
+//    @Autowired
+//    private TestSystemService systemService;
+//
+//    @Autowired
+//    private DepartmentService departmentService;
+//
+//    @Autowired
+//    private TestPlanService planService;
 
     @RequestMapping(value="/{path}", method = RequestMethod.GET)
     public String getPlanPage(@PathVariable String  path, ModelMap model) {
@@ -46,38 +46,38 @@ public class PerformancePlanController {
         }
         model.put("performancePlanStatusEnumList",performancePlanStatusEnumList);
 
-        //公司名称
-        List<CompanyDto> companyList = new ArrayList<CompanyDto>();
-        CompanyDto dto = new CompanyDto();
-        companyList = companyService.list(dto);
-
-
-        List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-        TestSystemDto systemDto = new TestSystemDto();
-        systemList = systemService.list(systemDto);
-
-
-        List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
-        DepartmentDto departmentDto = new DepartmentDto();
-        departmentList = departmentService.list(departmentDto);
-
+//        //公司名称
+//        List<CompanyDto> companyList = new ArrayList<CompanyDto>();
+//        CompanyDto dto = new CompanyDto();
+//        companyList = companyService.list(dto);
+//
+//
+//        List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
+//        TestSystemDto systemDto = new TestSystemDto();
+//        systemList = systemService.list(systemDto);
+//
+//
+//        List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
+//        DepartmentDto departmentDto = new DepartmentDto();
+//        departmentList = departmentService.list(departmentDto);
+//
 
         //计划状态
         List<PlanStatusEnum> planStatusList = new ArrayList<PlanStatusEnum>();
         for(PlanStatusEnum item : PlanStatusEnum.values()){
             planStatusList.add(item);
         }
-
-        //测试计划
-        List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
-        TestPlanDto planDto = new TestPlanDto();
-        planList = planService.list(planDto);
-
-        model.put("planStatusList",planStatusList);
-        model.put("planList",planList);
-        model.put("systemList", systemList);
-        model.put("departmentList", departmentList);
-        model.put("companyList", companyList);
+//
+//        //测试计划
+//        List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
+//        TestPlanDto planDto = new TestPlanDto();
+//        planList = planService.list(planDto);
+//
+//        model.put("planStatusList",planStatusList);
+//        model.put("planList",planList);
+//        model.put("systemList", systemList);
+//        model.put("departmentList", departmentList);
+//        model.put("companyList", companyList);
         return "/performance/plan/" + path;
     }
 }
