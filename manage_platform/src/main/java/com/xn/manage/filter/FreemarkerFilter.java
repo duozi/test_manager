@@ -29,7 +29,7 @@ public class FreemarkerFilter implements Filter {
 
 	    @Override
 	    public void doFilter(ServletRequest request, ServletResponse response,
-	            FilterChain chain) throws IOException, ServletException {
+                             FilterChain chain) throws IOException, ServletException {
 	        HttpServletRequest req = (HttpServletRequest)request;
 	        HttpServletResponse res = (HttpServletResponse)response;
 	        if(ctx == null){

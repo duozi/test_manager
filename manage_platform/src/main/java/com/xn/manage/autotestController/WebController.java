@@ -11,8 +11,6 @@ public class WebController {
 	
 	@RequestMapping(value="/decorators/{path}", method = RequestMethod.GET)
 	public String getDecoratorsPage(@PathVariable String  path ) {
-
-
 		return "decorators/" + path;
 	}
 	

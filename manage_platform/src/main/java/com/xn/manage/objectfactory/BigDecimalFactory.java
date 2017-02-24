@@ -8,13 +8,6 @@ import java.math.BigDecimal;
 
 
 public class BigDecimalFactory extends InstanceFactory {
-    @Override
-    protected Object create(Type type, Object value) {
-        if (StringUtil.isEmpty(value)) return null;
-
-        return new BigDecimal(value.toString());
-    }
-
     public static Boolean isEmpty(Object value) {
         if (value == null) return true;
         if (StringUtils.isBlank(value.toString())) return true;
@@ -27,6 +20,12 @@ public class BigDecimalFactory extends InstanceFactory {
         return json.startsWith("{") && json.endsWith("}");
     }
 
+    @Override
+    protected Object create(Type type, Object value) {
+        if (StringUtil.isEmpty(value)) return null;
+
+        return new BigDecimal(value.toString());
+    }
 
     @Override
     public boolean support(Type type) {

@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/autotest/target</output-path>
     <root id="archive" name="manage_platform.war">
       <element id="artifact" artifact-name="autotest:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-4.3.4.RELEASE" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
