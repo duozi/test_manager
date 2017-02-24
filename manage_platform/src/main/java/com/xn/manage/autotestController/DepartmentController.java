@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.performance.util.CommonResult;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xn.common.company.dto.DepartmentDto;
@@ -19,6 +27,7 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("/autotest/manage/department")
 public class DepartmentController {
+    private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
     @Resource
     private DepartmentService departmentService;
@@ -31,6 +40,47 @@ public class DepartmentController {
         params.put("companyId",id);
         departmentList = departmentService.list(params);
         return departmentList;
+    }
+
+    @RequestMapping(value="/saveDepartment", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult saveDepartment(DepartmentDto departmentDto) {
+        CommonResult result = new CommonResult();
+        try{
+            departmentService.save(departmentDto);
+        }catch (Exception e){
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message =e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("保存公司异常｛｝",e);
+        }
+        return  result;
+    }
+
+    @RequestMapping(value="/deleteDepartment", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult deleteDepartmentBatch(@RequestParam String ids) {
+        CommonResult result = new CommonResult();
+        List<Long> idList = new ArrayList<Long>();
+        if(StringUtils.isNotBlank(ids)){
+            String[] idArray = ids.split(",");
+            for(String idStr:idArray) {
+                if (StringUtils.isNotBlank(idStr)){
+                    idList.add(Long.parseLong(idStr));
+                }
+            }
+        }
+        try{
+            departmentService.deleteBatchByPK(idList);
+        }catch (Exception e){
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message = e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("删除操作异常｛｝",e);
+        }
+        return  result;
     }
 
 }
