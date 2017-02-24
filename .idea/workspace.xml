@@ -2,71 +2,491 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/Ognl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/common.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/BaseMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BaseDto.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BaseEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BeanUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/CommonResult.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/KeyValueStore.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ArrayFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BeanUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BigDecimalFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BigIntegerFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BooleanFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/CharFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/DateTimeFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/DoubleFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/EnumFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/FloatFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/InstanceFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/IntFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ListFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/LongFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/MapFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ObjectFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/StreamFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/StringFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/CollectionUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/DateUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/FileUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/MapUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PageInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PageResult.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PropertyUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/ReflectionUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/SignUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/StringUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dao/CompanyMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dao/DepartmentMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dto/CompanyDto.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dto/DepartmentDto.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/entity/Company.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/entity/Department.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/mapper/CompanyMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/mapper/DepartmentMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/CompanyService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/DepartmentService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/impl/CompanyServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/impl/DepartmentServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/test/java/TestMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/press_machine_list.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/target/classes/com/xn/performance/util/CommonResult.class" afterPath="$PROJECT_DIR$/performance/target/classes/com/xn/performance/util/CommonResult.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/TestBase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/application.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/base/CommonResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/base/KeyValueStore.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/dao/CompanyMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/dao/DepartmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/dto/CompanyDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/dto/DepartmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/entity/Company.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/entity/Department.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/mapper/CompanyMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/mapper/DepartmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/service/CompanyService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/service/DepartmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/service/impl/CompanyServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/company/service/impl/DepartmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ArrayFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BigDecimalFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BigIntegerFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BooleanFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/CharFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/DateTimeFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/DoubleFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/EnumFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/FloatFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/InstanceFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/IntFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ListFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/LongFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/MapFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ObjectFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/StreamFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/StringFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/CollectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/DateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/FileUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/MapUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/PageInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/PageResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/PropertyUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/ReflectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/SignUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/com/xn/common/utils/StringUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/CasesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/DbAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/DbOperationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/DubboServicePropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/HttpServicePropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/InterfaceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/MethodMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/ParameterAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/RedisAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/RedisOperationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/ResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/SystemMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/conf/freemarker.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/log/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/mybatis/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/properties/common.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/properties/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/properties/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/properties/mail.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/classes/spring/spring-mvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-beanutils-core-1.8.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-codec-1.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-io-1.3.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-lang-2.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/commons-pool2-2.4.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/druid-1.0.14.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/dubbo-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/fastjson-1.1.35.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/freemarker-2.3.23.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/guava-10.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/httpclient-4.5.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/httpcore-4.4.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jackson-annotations-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jackson-core-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jackson-databind-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/javassist-3.15.0-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/javassist-3.18.2-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jedis-2.9.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jline-0.9.94.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/jsr305-1.3.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/log4j-1.2.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/mybatis-3.2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/mybatis-spring-1.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/netty-3.2.5.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/netty-3.7.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/sitemesh-3.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/slf4j-api-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-aop-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-aop-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-aspects-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-beans-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-beans-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-context-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-context-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-context-support-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-context-support-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-core-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-core-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-expression-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-expression-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-instrument-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-instrument-tomcat-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-jdbc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-jdbc-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-jms-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-messaging-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-orm-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-oxm-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-oxm-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-test-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-test-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-tx-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-tx-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-web-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/spring-webmvc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/zkclient-0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/lib/zookeeper-3.4.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_Web_exploded/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/application.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/base/BaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/base/BaseEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/base/BaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/base/CommonResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/base/KeyValueStore.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/dao/CompanyMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/dao/DepartmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/dto/CompanyDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/dto/DepartmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/entity/Company.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/entity/Department.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/service/CompanyService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/service/DepartmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/service/impl/CompanyServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/company/service/impl/DepartmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/ArrayFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/BigDecimalFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/BigIntegerFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/BooleanFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/CharFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/DateTimeFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/DoubleFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/EnumFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/FloatFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/InstanceFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/IntFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/ListFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/LongFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/MapFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/ObjectFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/StreamFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/objectfactory/StringFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/CollectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/DateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/FileUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/MapUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/PageInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/PageResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/PropertyUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/ReflectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/SignUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com.xn.common/utils/StringUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/base/BaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/base/CommonResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/base/KeyValueStore.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/commonMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/dao/CompanyMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/dao/DepartmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/dto/CompanyDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/dto/DepartmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/entity/Company.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/entity/Department.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/mapper/CompanyMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/mapper/DepartmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/service/CompanyService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/service/DepartmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/service/impl/CompanyServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/company/service/impl/DepartmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ArrayFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BigDecimalFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BigIntegerFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/BooleanFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/CharFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/DateTimeFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/DoubleFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/EnumFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/FloatFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/InstanceFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/IntFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ListFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/LongFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/MapFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/ObjectFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/StreamFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/objectfactory/StringFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/CollectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/DateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/FileUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/MapUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/PageInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/PageResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/PropertyUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/ReflectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/SignUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/common/utils/StringUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/InterfaceProvider.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/DataAssertMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/ParamsAssertMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RedisAssertMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationCaseDatabaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationCaseParamsMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationDatabaseEnvironmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationInterfaceResultMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationPlanEnvironmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationPlanResultMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationPlanSuitMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationPlanTimeMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationServiceEnvironmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/RelationSuitCaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestCaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestDatabaseConfigMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestEnvironmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestInterfaceMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestParamsMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestPlanMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestRedisConfigMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestResultMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestServiceMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestSuitMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestSystemMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TimeConfigMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/DataAssertDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/ParamsAssertDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RedisAssertDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationCaseDatabaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationCaseParamsDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationDatabaseEnvironmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationInterfaceResultDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationPlanEnvironmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationPlanResultDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationPlanSuitDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationPlanTimeDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationServiceEnvironmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/RelationSuitCaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestCaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestDatabaseConfigDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestEnvironmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestInterfaceDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestParamsDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestPlanDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestRedisConfigDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestResultDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestServiceDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestSuitDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TestSystemDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dto/TimeConfigDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/DataAssert.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/ParamsAssert.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RedisAssert.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationCaseDatabase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationCaseParams.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationDatabaseEnvironment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationInterfaceResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationPlanEnvironment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationPlanResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationPlanSuit.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationPlanTime.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationServiceEnvironment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/RelationSuitCase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestCase.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestDatabaseConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestEnvironment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestInterface.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestParams.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestPlan.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestRedisConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestSuit.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TestSystem.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/entity/TimeConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/DataAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/ParamsAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RedisAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationCaseDatabaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationCaseParamsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationDatabaseEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationInterfaceResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationPlanEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationPlanResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationPlanSuitMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationPlanTimeMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationServiceEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/RelationSuitCaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestCaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestDatabaseConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestInterfaceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestParamsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestPlanMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestRedisConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestServiceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestSuitMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestSystemMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TimeConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/DataAssertService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/ParamsAssertService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RedisAssertService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationCaseDatabaseService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationCaseParamsService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationDatabaseEnvironmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationInterfaceResultService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationPlanEnvironmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationPlanResultService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationPlanSuitService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationPlanTimeService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationServiceEnvironmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/RelationSuitCaseService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestCaseService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestDatabaseConfigService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestEnvironmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestInterfaceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestParamsService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestPlanService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestRedisConfigService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestResultService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestServiceService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestSuitService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestSystemService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TimeConfigService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/DataAssertServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/ParamsAssertServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RedisAssertServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationCaseDatabaseServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationCaseParamsServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationDatabaseEnvironmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationPlanEnvironmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationPlanResultServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationPlanSuitServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationPlanTimeServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationServiceEnvironmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/RelationSuitCaseServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestCaseServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestDatabaseConfigServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestEnvironmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestParamsServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestPlanServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestRedisConfigServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestResultServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestServiceServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestSuitServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestSystemServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TimeConfigServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/CasesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/DbAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/DbOperationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/DubboServicePropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/HttpServicePropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/InterfaceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/MethodMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/ParameterAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/RedisAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/RedisOperationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/ResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/SystemMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/conf/freemarker.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/java/com/xn/common/company/mapper/CompanyMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/log/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mapper/DbPropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mapper/PlanMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mapper/RedisPropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mapper/ago/DBPropertiesMapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mapper/ago/PlanMapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/properties/common.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/properties/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/properties/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/properties/mail.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/resources/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/spring/spring-mvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/test_manager/App.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-beanutils-core-1.8.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-codec-1.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-io-1.3.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-lang-2.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/commons-pool2-2.4.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/druid-1.0.14.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/dubbo-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/fastjson-1.1.35.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/freemarker-2.3.23.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/guava-10.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/httpclient-4.5.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/httpcore-4.4.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jackson-annotations-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jackson-core-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jackson-databind-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/javassist-3.15.0-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/javassist-3.18.2-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jedis-2.9.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jline-0.9.94.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/jsr305-1.3.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/log4j-1.2.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/mybatis-3.2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/mybatis-spring-1.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/mysql-connector-java-5.1.29.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/netty-3.2.5.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/netty-3.7.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/sitemesh-3.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/slf4j-api-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-aop-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-aop-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-aspects-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-beans-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-beans-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-context-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-context-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-context-support-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-context-support-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-core-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-core-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-expression-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-expression-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-instrument-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-instrument-tomcat-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-jdbc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-jdbc-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-jms-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-messaging-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-orm-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-oxm-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-oxm-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-test-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-test-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-tx-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-tx-4.3.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-web-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/spring-webmvc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/tomcat-jdbc-7.0.42.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/tomcat-juli-7.0.42.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/zkclient-0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/zookeeper-3.4.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/index.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/base/BaseMapper.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/base/BaseMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/CompanyMapper.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/CompanyMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/mapper/CompanyMapper.xml" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/mapper/CompanyMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/company_manage.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/company_manage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/CommonResult.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/CommonResult.java" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,11 +561,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dubbo-provider.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dubbo-provider.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mock_war_exploded.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/artifacts/mock_war_exploded.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1718">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/performance/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -222,6 +672,9 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="hezhouxiyiyangde" target-remote="origin" target-branch="xiaoshanshan" />
+    </push-targets>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -231,7 +684,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/common/src/main/java/com/xn/common/CommonProvider.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/xn/common/company/dao/CompanyMapper.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/xn/common/company/dao/DepartmentMapper.java" />
         <option value="$PROJECT_DIR$/common/src/main/resources/dubbo/dubbo-provider.xml" />
@@ -282,6 +734,7 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/company_manage.html" />
+        <option value="$PROJECT_DIR$/performance/pom.xml" />
       </list>
     </option>
   </component>
@@ -415,210 +868,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="properties" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dubbo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage_platform" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1557,7 +1806,7 @@
       <workItem from="1487746307377" duration="11040000" />
       <workItem from="1487761374858" duration="422000" />
       <workItem from="1487815324737" duration="16857000" />
-      <workItem from="1487901545212" duration="3050000" />
+      <workItem from="1487901545212" duration="3721000" />
     </task>
     <task id="LOCAL-00001" summary="1.4&#10;">
       <created>1483496820689</created>
@@ -1622,7 +1871,21 @@
       <option name="project" value="LOCAL" />
       <updated>1487821899749</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="新增公司，删除公司">
+      <created>1487904671422</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1487904671422</updated>
+    </task>
+    <task id="LOCAL-00011" summary="新增公司，删除公司">
+      <created>1487904875184</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1487904875184</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1658,7 +1921,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="404233000" />
+    <option name="totallyTimeSpent" value="404904000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1683,7 +1946,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33614457" sideWeight="0.4978355" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.105150215" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30101466" sideWeight="0.7945279" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27733934" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46674183" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06877114" sideWeight="0.49570817" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5060241" sideWeight="0.5746753" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1776,7 +2039,8 @@
     <MESSAGE value="优化" />
     <MESSAGE value="提交common模块和intercace模块" />
     <MESSAGE value="合并之后提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并之后提交" />
+    <MESSAGE value="新增公司，删除公司" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增公司，删除公司" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1851,13 +2115,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/properties/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/DepartmentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1903,14 +2160,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/performance/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -1923,14 +2172,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-provider.xml" />
-    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/Provider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -2066,6 +2307,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2345,6 +2587,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/mock_war_exploded.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1718">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
