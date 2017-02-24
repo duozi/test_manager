@@ -21,34 +21,63 @@
             $("#addStressMachine").validate({
                 debug:true
             });
+            $("#stressMachine-save").validate();
 
-            $.validator.setDefaults({
-                submitHandler: function() {
-                    alert("提交事件!");
+        });
+        $.validator.setDefaults({
+            submitHandler: function () {
+//                alert("提交事件!");
+                var params = $("form[name='stressMachine-save']").serializeArray();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/performance/machine/stress_machine_list/save",
+                    data: params,
+                    success: function (data) {
+
+                        if (data.code == 2) {
+                            alert("参数错误");
+
+                        }
+                        $("#addStressMachine").modal("hide");
+                        window.location.reload();
+                    },
+                    error: function (e) {
+                        alert("异常：" + e);
+                    }
+                });
+            }
+        });
+        function deleteStressMachine(id) {
+            $.post("/performance/machine/stress_machine_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    window.location.reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
                 }
             });
 
-//            $("button[name='saveButton']").click(function () {
-//                //序列化表单元素，返回json数据
-//                var params = $("form[name='stressMachine-save']").serializeArray();
+            $("button[name='search']").click(function () {
+                var params = $("form[name='stressMachine-search']").serializeArray();
+            })
+//            $.ajax({
+//                type: "POST",
+//                url: "/performance/machine/stress_machine_list/delete",
+//                data: id,
+//                success: function (data) {
 //
-//                $.ajax({
-//                    type: "POST",
-//                    url: "/performance/machine/stress_machine_list/save",
-//                    data: params,
-//                    success: function (data) {
-//
-//                        if (data.code == 2) {
-//                            alert("参数不正确")
-//                        }
-//                    },
-//                    error: function (e) {
-//                        alert("异常：" + e);
+//                    if (data.code == 1) {
+//                        alert("删除失败");
 //                    }
-//                });
-//            })
-        });
-
+//                    if(data.code==0){
+//                        window.location.reload();
+//                    }
+//                },
+//                error: function (e) {
+//                    alert("异常：" + e);
+//                }
+//            });
+        }
     </script>
 </head>
 
@@ -99,16 +128,19 @@
                             </select>
                         </div>
                         <div class="form-group col-lg-2">
-                            <select class="form-control">
+                            <select class="form-control" name="stressMachineName">
                                 <option value="" disabled selected>选择压力机名称</option>
-                                <option value="1">压力机1</option>
-                                <option value="2">压力机2</option>
-                                <option value="3">压力机3</option>
+                                <#if stress_machine_list ??>
+                                    <#list stress_machine_list as item>
+                                        <option>${item.stressMachineName}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-3">
-                            <button type="submit" class="btn btn-default">查询</button>
-                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addStressMachine"><i
+                            <button type="submit" class="btn btn-default" name="search" >查询</button>
+                            <a class="btn btn-outline btn-success" data-toggle="modal"
+                               data-target="#addStressMachine"><i
                                     class=" fa-plus-circle fa"></i>新增压力机</a>
                         </div>
                     </div>
@@ -130,21 +162,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>注册接口压力机</td>
-                            <td>在测试环境</td>
-                            <td>牛鼎丰</td>
-                            <td>测试部</td>
-                            <td>用户中心</td>
-                            <td>10.10.10.1</td>
-                            <td>user</td>
-                            <td>小明</td>
+                        <#if stress_machine_list ??>
+                            <#list stress_machine_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.stressMachineName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.ip}</td>
+                                    <td>${item.username}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+                                        <a type="button" name="deletePressMachine" class="btn btn-danger"
+                                           onclick="deleteStressMachine(${item.id})">删除</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
 
-                            <td>
-                                <a type="button" name="deletePressMachine" class="btn btn-danger">删除</a>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -166,13 +204,17 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPress">新增压力机</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 500px">
-                    <form role="form " class="col-lg-12 edit-form" name="stressMachine-save">
+                <div class="modal-body modal-add" style="min-height: 550px">
+                    <form role="form " class="col-lg-12 edit-form" id="stressMachine-save" name="stressMachine-save">
                         <div class="col-lg-14 form-div">
-
+                            <div class="form-group">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label ">压力机名称<span style="color:red">*</span></label>
-                                <input type="text" class="form-control easyui-validatebox" name="stressMachineName"
+                                <input type="text" class="form-control " name="stressMachineName"
                                        placeholder="请输入压力机名称" required>
                             </div>
                             <div class="form-group">
@@ -181,7 +223,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">公司<span style="color:red">*</span></label>
-                                <select class="form-control easyui-validatebox" name="company" >
+                                <select class="form-control " name="company">
                                     <option>公司1</option>
                                     <option>公司2</option>
                                     <option>公司3</option>
@@ -190,7 +232,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">部门<span style="color:red">*</span></label>
-                                <select class="form-control easyui-validatebox" name="department" >
+                                <select class="form-control " name="department">
                                     <option>部门1</option>
                                     <option>部门2</option>
                                     <option>部门3</option>
@@ -199,7 +241,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
-                                <select class="form-control easyui-validatebox" name="psystem" >
+                                <select class="form-control " name="psystem">
                                     <option>系统1</option>
                                     <option>系统2</option>
                                     <option>系统3</option>
@@ -208,28 +250,30 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">ip<span style="color:red">*</span></label>
-                                <input type="text" class="form-control easyui-validatebox" name="ip"
+                                <input type="text" class="form-control " name="ip"
                                        placeholder="请输入ip地址" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">用户名<span style="color:red">*</span></label>
-                                <input type="text" class="form-control easyui-validatebox" name="username"
+                                <input type="text" class="form-control " name="username"
                                        placeholder="请输入用户名" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">密码<span style="color:red">*</span></label>
-                                <input type="password" class="form-control easyui-validatebox" name="password"
+                                <input type="password" class="form-control " name="password"
                                        placeholder="请输入密码" required>
                             </div>
 
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">测试</button>
+                            <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">测试</button>
-                    <button type="submit" class="btn btn-primary" name="saveButton">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+
             </div>
             <!-- /.modal-content -->
         </div>
