@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xn.common.utils.StringUtil;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.performance.util.CommonResult;
+import com.xn.performance.util.ValidateUtil;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +28,8 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("/autotest/manage")
 public class ManageController {
+	private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
+
 
 	@Resource
 	private CompanyService companyService;
@@ -32,7 +41,7 @@ public class ManageController {
 	private DepartmentService departmentService;
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getSystemPage(@PathVariable String  path, ModelMap model) {
+	public String getSystemPage(@PathVariable String path, ModelMap model) {
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
 		companyList = companyService.list(dto);
@@ -54,12 +63,44 @@ public class ManageController {
 		return "/autotest/manage/" + path;
 	}
 
-	@RequestMapping(value="/saveCompany")
+	@RequestMapping(value="/saveCompany", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveCompany(@RequestBody CompanyDto companyDto) {
-
-		return "/autotest/manage/" ;
+	public CommonResult saveCompany(CompanyDto companyDto) {
+		CommonResult result = new CommonResult();
+		try{
+			companyService.save(companyDto);
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message =e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("保存公司异常｛｝",e);
+		}
+		return  result;
 	}
 
-
+	@RequestMapping(value="/deleteCompany", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult deleteCompanyBatch(@RequestParam String ids) {
+		CommonResult result = new CommonResult();
+		List<Long> idList = new ArrayList<Long>();
+		if(StringUtils.isNotBlank(ids)){
+			String[] idArray = ids.split(",");
+			for(String idStr:idArray) {
+				if (StringUtils.isNotBlank(idStr)){
+					idList.add(Long.parseLong(idStr));
+				}
+			}
+		}
+		try{
+			companyService.deleteBatchByPK(idList);
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message = e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("删除操作异常｛｝",e);
+		}
+		return  result;
+	}
 }

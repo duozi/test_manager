@@ -8,6 +8,8 @@ import com.xn.common.company.entity.Company;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Company Dao 接口
  * 
@@ -16,5 +18,7 @@ import org.springframework.stereotype.Service;
  */
 
 public interface CompanyMapper extends BaseMapper<Company, Long> {
+    /** 批量删除对象 返回删除的数量 **/
+    int deleteBatchByPK(List<Long> list);
 
 }

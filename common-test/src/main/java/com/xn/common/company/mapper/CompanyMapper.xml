@@ -116,7 +116,7 @@
             WHERE
                 id IN
         ]]>
-        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
     </delete>
 </mapper>
 

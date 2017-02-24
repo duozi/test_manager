@@ -16,6 +16,8 @@ public class CommonResult<T> implements Serializable {
     private T data;
 
    public CommonResult() {
+       this.code = 0;
+       this.message = "操作成功";
     }
 
    public CommonResult(Integer code, String message) {
