@@ -19,7 +19,7 @@
     <dubbo:reference id="testSystemService" interface="com.xn.interfacetest.service.TestSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="companyService" interface="com.xn.common.company.service.CompanyService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="departmentService" interface="com.xn.common.company.service.DepartmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.service.PerformanceStressMachineService" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.service.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <dubbo:monitor protocol="registry" />
 </beans>

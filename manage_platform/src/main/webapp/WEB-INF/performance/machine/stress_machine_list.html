@@ -42,8 +42,8 @@
                         $("#addStressMachine").modal("hide");
                         window.location.reload();
                     },
-                    error: function (e) {
-                        alert("异常：" + e);
+                    error: function (result) {
+                        alert("异常：" + result.data);
                     }
                 });
             }

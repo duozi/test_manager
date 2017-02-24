@@ -3,19 +3,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="performance_provider" owner="zhouxi.zhou" organization="performance"/>
+    <dubbo:application name="performance_provider" />
 
-    <dubbo:registry address="${zookeeper_ip}" group="${dubbo_group}"
-                    protocol="zookeeper" id="performanceZk" default="true"/>
+    <dubbo:registry protocol="zookeeper" address="${zookeeper_ip}" />
 
-    <dubbo:protocol name="dubbo" port="${dubbo_port}" accesslog="true" threads="500"/>
+    <dubbo:protocol name="dubbo" port="${dubbo_port}" />
 
 
-    <dubbo:service interface="com.xn.performance.service.PerformanceStressMachineService"
-                   ref="performanceStressMachineService" version="${dubbo_version}"
-                   timeout="${dubbo_timeout}" registry="performanceZk"/>
+    <dubbo:service interface="com.xn.performance.service.PerformanceStressMachineService" ref="performanceStressMachineService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="performanceStressMachineService"
           class="com.xn.performance.service.impl.PerformanceStressMachineServiceImpl"/>
+
+    <dubbo:monitor protocol="registry" />
 </beans>
