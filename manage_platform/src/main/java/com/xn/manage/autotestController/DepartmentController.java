@@ -79,6 +79,7 @@ public class DepartmentController {
             result.setCode(code);
             result.setMessage(message);
             logger.error("删除操作异常｛｝",e);
+            e.printStackTrace();
         }
         return  result;
     }

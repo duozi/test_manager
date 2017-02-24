@@ -35,7 +35,7 @@
                         </div>
                             <#if companyList ??>
                                 <#list companyList as item>
-                                        <a type="button" onclick="getDepartment(${item.id})" class="list-group-item" value="${item.id}"> ${item.name}</a>
+                                       <a type="button" class="list-group-item"  onclick="getDepartment(${item.id})" value="${item.id}" > ${item.name}</a>
                                 </#list>
                             </#if>
                     </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="btn-group btn-group-vertical">
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addDepartment">新增部门</button>
-                    <button type="button" class="btn btn-warning">删除部门</button>
+                    <button type="button" class="btn btn-warning" onclick="deleteDepartment()">删除部门</button>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">保存</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -149,12 +149,15 @@
 <script type="text/javascript">
     var companyids = "";
     var departmentids = "";
+
+    function  addActive(_this) {
+            $(_this).parent().find("a").removeClass("active");
+            $(_this).addClass("active");
+    }
+
     $(".list-group-item").click(function(){
-        if($(this).hasClass("active")){
-            $(this).removeClass("active");
-        } else {
-            $(this).addClass("active");
-        }
+        $(this).parent().find("a").removeClass("active");
+        $(this).addClass("active");
     });
 
     function getDepartment(companyId){
@@ -162,10 +165,13 @@
         $.post("${basePath}/autotest/manage/department/getDepartment",{id:companyId},function(result){
             var departmentHtml = "";
             for(var i=0;i<result.length;i++){
-                departmentHtml += '<a type="button" class="list-group-item" value="'+ result[i].id + '">'+result[i].name+'</a>';
+                departmentHtml += '<a type="button"  onclick="addActive(this)"  class="list-group-item" value="'+ result[i].id + '">'+result[i].name+'</a>';
             }
             $(".department-panel").find(".list-group").append(departmentHtml);
+
         });
+
+
     }
 
     //ajax提交form表单的方式
@@ -193,7 +199,7 @@
     );
 
     function deleteCompany(){
-        $(".list-group-item").each(function(){
+        $(".company-panel .list-group-item").each(function(){
             if($(this).hasClass("active")){
                 companyids += $(this).attr("value") + ",";
             }
@@ -233,7 +239,7 @@
     );
 
     function deleteDepartment(){
-        $(".list-group-item").each(function(){
+        $(".department-panel .list-group-item").each(function(){
             if($(this).hasClass("active")){
                 departmentids += $(this).attr("value") + ",";
             }
@@ -241,8 +247,9 @@
 
         $.post("${basePath}/autotest/manage/department/deleteDepartment",{ids:departmentids},function(data,status){
             if(0!=data.code){
-                $.MsgBox.Alert(data.message);
+                alert(data.message);
             } else {
+                $.MsgBox.Alert(data.message);
                 reload();
             }
         });
