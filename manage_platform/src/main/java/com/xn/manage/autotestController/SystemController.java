@@ -72,7 +72,8 @@ public class SystemController {
 		}
 
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		systemList = testSystemService.list(params);
+		systemList = testSystemService.list(new TestSystemDto());
+				//testSystemService.listByCompany(params);
 
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);

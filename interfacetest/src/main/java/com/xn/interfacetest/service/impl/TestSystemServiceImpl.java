@@ -79,6 +79,14 @@ public class TestSystemServiceImpl implements TestSystemService {
     public List<TestSystemDto> list(Map<String,Object> condition) {
         List<TestSystem> list = testSystemMapper.list(condition);
         List<TestSystemDto> dtoList = CollectionUtils.transform(list, TestSystemDto.class);
+        return dtoList;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TestSystemDto> listByCompany(Map<String,Object> condition) {
+        List<TestSystem> list = testSystemMapper.list(condition);
+        List<TestSystemDto> dtoList = CollectionUtils.transform(list, TestSystemDto.class);
         for(TestSystemDto systemDto: dtoList){
             DepartmentDto departmentDto = departmentService.get(systemDto.getDepartmentId());
             systemDto.setDepartmentDto(departmentDto);

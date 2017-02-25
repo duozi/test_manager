@@ -78,6 +78,4 @@
     <task:annotation-driven/>
     <import resource="classpath:dubbo/dubbo-consumer.xml"></import>
 
-    <bean id="eagleeye-sdk" class="com.eagleeye.sdk.RemoteBootstrap" init-method="init" destroy-method="destory"/>
-
-</beans>	
+</beans>
