@@ -44,7 +44,7 @@
         ]]>
     </select>
     
-    <select id="list" resultMap="TestSystemMap">
+    <select id="listByCompany" resultMap="TestSystemMap">
         SELECT
             ts.*
         FROM
@@ -67,6 +67,14 @@
                 AND d.company_id = #{companyId}
             </if>
         </where>
+    </select>
+
+    <select id="list" resultMap="TestSystemMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_system
+        <include refid="where"/>
     </select>
         
     <select id="count" resultType="long">

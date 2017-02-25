@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xn.interfacetest.dto.TestSystemDto;
@@ -51,8 +52,8 @@ public class SystemController {
 		DepartmentDto departmentDto = new DepartmentDto();
 		departmentList = departmentService.list(departmentDto);
 
-		String companyId = request.getParameter("companyId");
-		String departmentId = request.getParameter("departmentId");
+		String companyId = request.getParameter("selectCompanyId");
+		String departmentId = request.getParameter("selectDepartmentId");
 		String systenmName = request.getParameter("systenmName");
 
 		Map<String,Object> params = new HashMap<String,Object>();
@@ -72,8 +73,7 @@ public class SystemController {
 		}
 
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		systemList = testSystemService.list(new TestSystemDto());
-				//testSystemService.listByCompany(params);
+		systemList = testSystemService.listByCompany(params);
 
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);
@@ -107,5 +107,22 @@ public class SystemController {
 		return  result;
 	}
 
-
+	@RequestMapping(value="/deleteSystem", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult deleteSystem(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		String id = request.getParameter("id");
+		try{
+			if(StringUtils.isNotBlank(id)){
+				testSystemService.deleteByPK(Long.parseLong(id));
+			}
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message = e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("删除操作异常｛｝",e);
+		}
+		return  result;
+	}
 }

@@ -2,113 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/commontest.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/base/BaseDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/base/BaseEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/base/BaseMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/base/CommonResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/base/KeyValueStore.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/commonMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/dao/CompanyMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/dao/DepartmentMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/dto/CompanyDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/dto/DepartmentDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/entity/Company.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/entity/Department.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/mapper/CompanyMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/mapper/DepartmentMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/service/CompanyService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/service/DepartmentService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/service/impl/CompanyServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/company/service/impl/DepartmentServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/ArrayFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/BeanUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/BigDecimalFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/BigIntegerFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/BooleanFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/CharFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/DateTimeFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/DoubleFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/EnumFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/FloatFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/InstanceFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/IntFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/ListFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/LongFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/MapFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/ObjectFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/StreamFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/objectfactory/StringFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/BeanUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/CollectionUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/DateUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/FileUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/MapUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/PageInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/PageResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/PropertyUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/ReflectionUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/SignUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/java/com/xn/common/utils/StringUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/application.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/dubbo/dubbo-provider.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/logback.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mapper/DbPropertiesMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mapper/PlanMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mapper/RedisPropertiesMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mapper/ago/DBPropertiesMapping.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mapper/ago/PlanMapping.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/mybatis/mybatis-config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/properties/common.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/properties/jdbc.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/properties/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/properties/mail.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/spring/spring-context.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/resources/spring/spring-mvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/webapp/WEB-INF/web.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commontest/src/main/webapp/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/java/com/xn/common/company/mapper/CompanyMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/java/com/xn/common/company/mapper/DepartmentMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/application.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/dubbo/dubbo-provider.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mapper/DbPropertiesMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mapper/PlanMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mapper/RedisPropertiesMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mapper/ago/DBPropertiesMapping.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mapper/ago/PlanMapping.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/mybatis/mybatis-config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/properties/common.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/properties/jdbc.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/properties/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/properties/mail.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/resources/spring/spring-mvc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/webapp/index.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/properties/eagleeye.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/common_test_Web_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/common_test_Web_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/commontest_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/commontest_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/commontest_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/commontest_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/mock_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/mock_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test_manager.iml" afterPath="$PROJECT_DIR$/.idea/test_manager.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/hamcrest-core-1.3.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/junit-4.12.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/lib/logback-ext-spring-0.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/interfacetest_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_7.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/common_Web_exploded.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__test_manager_common_test_1_0_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__test_manager_interfacetest_1_0_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/log/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/properties/eagleeye.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/resources/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/webapp/WEB-INF/web.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestSystemMapper.class" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/dao/TestSystemMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestSystemService.class" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/TestSystemService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestSystemServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/service/impl/TestSystemServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/pom.xml" afterPath="$PROJECT_DIR$/common-test/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/commontest/pom.xml" afterPath="$PROJECT_DIR$/commontest/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/interfacetest.iml" afterPath="$PROJECT_DIR$/interfacetest/interfacetest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/pom.xml" afterPath="$PROJECT_DIR$/interfacetest/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/pom.xml" afterPath="$PROJECT_DIR$/manage_platform/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/spring/spring-context.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/spring/spring-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mock/mock.iml" afterPath="$PROJECT_DIR$/mock/mock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/classes/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/common_test_Web_exploded/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/performance/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.properties" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.xml" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/common-test/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.properties" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.xml" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/META-INF/maven/test_manager/interfacetest/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestSystemMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/com/xn/interfacetest/mapper/TestSystemMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/out/artifacts/interfacetest_Web_exploded/WEB-INF/classes/mybatis/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/artifacts/interfacetest_Web_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/interfacetest_war_exploded.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,104 +77,105 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SystemController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2657#2672#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestSystemService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestSystemMapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="46" column="29" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="29" />
-              <folding>
-                <marker date="1488006296589" expanded="true" signature="1194:1337" ph="SELECT FROM test_system" />
-                <marker date="1488006296589" expanded="true" signature="1436:1496" ph="SELECT FROM test_system" />
-                <marker date="1488006296589" expanded="true" signature="1436:1557" ph="SELECT FROM test_system" />
-                <marker date="1488006296589" expanded="true" signature="2195:2270" ph="SELECT FROM test_system" />
-                <marker date="1488006296589" expanded="true" signature="2399:2475" ph="SELECT count... test_system" />
-                <marker date="1488006296589" expanded="true" signature="2630:2905" ph="INSERT INTO test_system... " />
-                <marker date="1488006296589" expanded="true" signature="3378:3869" ph="UPDATE test_... " />
-                <marker date="1488006296589" expanded="true" signature="3949:4045" ph="DELETE FROM " />
-                <marker date="1488006296589" expanded="true" signature="4133:4184" ph="DELETE FROM " />
-                <marker date="1488006296589" expanded="true" signature="4313:4517" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InterfaceProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/InterfaceProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestSuitMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSuitMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="86" column="29" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
-              <folding>
-                <marker date="1487753518694" expanded="true" signature="1201:1342" ph="SELECT FROM test_suit" />
-                <marker date="1487753518694" expanded="true" signature="1430:1511" ph="SELECT FROM test_suit" />
-                <marker date="1487753518694" expanded="true" signature="1641:1715" ph="SELECT count... test_suit" />
-                <marker date="1487753518694" expanded="true" signature="1870:2143" ph="INSERT INTO test_suit... " />
-                <marker date="1487753518694" expanded="true" signature="2614:3103" ph="UPDATE test_... " />
-                <marker date="1487753518694" expanded="true" signature="3183:3277" ph="DELETE FROM " />
-                <marker date="1487753518694" expanded="true" signature="3365:3414" ph="DELETE FROM " />
-                <marker date="1487753518694" expanded="true" signature="3543:3745" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestSystemServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
+            <state relative-caret-position="166">
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/base/BaseMapper.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="44" column="49" selection-start-line="43" selection-start-column="4" selection-end-line="44" selection-end-column="49" />
+            <state relative-caret-position="25">
+              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSystemMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java">
+      <file leaf-file-name="UTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="325">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="system_list.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="187" column="13" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spring-context.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="55" column="45" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="31" selection-end-column="15" />
+              <folding>
+                <marker date="1488016337713" expanded="true" signature="342:659" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autotest/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -274,9 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/base/BaseMapper.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
-        <option value="$PROJECT_DIR$/performance/pom.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceStressMachineMapper.java" />
@@ -298,7 +231,6 @@
         <option value="$PROJECT_DIR$/common-test/src/main/resources/dubbo/dubbo-provider.xml" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/index.jsp" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" />
         <option value="$PROJECT_DIR$/common-test/src/main/resources/mybatis/mybatis-config.xml" />
         <option value="$PROJECT_DIR$/common-test/src/main/resources/properties/log4j.properties" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/properties/eagleeye.properties" />
@@ -307,24 +239,28 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" />
         <option value="$PROJECT_DIR$/common-test/src/main/resources/spring/spring-context.xml" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/resources/log/logback.xml" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/common-test/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
-        <option value="$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/spring/spring-context.xml" />
         <option value="$PROJECT_DIR$/commontest/src/main/resources/logback.xml" />
         <option value="$PROJECT_DIR$/commontest/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/interfacetest/pom.xml" />
-        <option value="$PROJECT_DIR$/common-test/pom.xml" />
-        <option value="$PROJECT_DIR$/commontest/pom.xml" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml" />
+        <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
+        <option value="$PROJECT_DIR$/common-test/pom.xml" />
+        <option value="$PROJECT_DIR$/commontest/pom.xml" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/js/alert.js" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" />
+        <option value="$PROJECT_DIR$/interfacetest/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" />
       </list>
     </option>
   </component>
@@ -356,38 +292,7 @@
     </option>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="test_manager" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="test_manager" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Lifecycle" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-      </PATH>
-    </treeState>
+    <treeState />
   </component>
   <component name="MavenRunner">
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
@@ -507,7 +412,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="right&#9;FILE&#9;file://E:/test_manager/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/commontest/src/main/webapp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/interfacetest/target" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -538,7 +443,7 @@
       <recent name="E:\test_manager\manage_platform\src\main\webapp\WEB-INF" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.InterfaceProvider">
+  <component name="RunManager" selected="JUnit.UTest.test">
     <configuration default="false" name="InterfaceProvider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -611,6 +516,32 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="UTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xn.interfacetest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="interfacetest" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.xn.interfacetest" />
+      <option name="MAIN_CLASS_NAME" value="com.xn.interfacetest.UTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -1144,7 +1075,7 @@
     <configuration default="false" name="interfacetest" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.68" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.7.0_79\jre">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="interfacetest:Web exploded">
+        <artifact name="interfacetest:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -1211,7 +1142,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="interfacetest:Web exploded" />
+          <artifact name="interfacetest:war exploded" />
         </option>
       </method>
     </configuration>
@@ -1434,12 +1365,10 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="common:Web exploded" />
-        </option>
+        <option name="BuildArtifacts" enabled="true" />
       </method>
     </configuration>
-    <list size="9">
+    <list size="10">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.commontest" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.interfacetest" />
       <item index="2" class="java.lang.String" itemvalue="Tomcat Server.autotest" />
@@ -1449,13 +1378,15 @@
       <item index="6" class="java.lang.String" itemvalue="Application.commonMain" />
       <item index="7" class="java.lang.String" itemvalue="Application.Provider" />
       <item index="8" class="java.lang.String" itemvalue="JUnit.TestBase" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.UTest.test" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.InterfaceProvider" />
-        <item index="1" class="java.lang.String" itemvalue="Application.commonMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Provider" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestBase" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.UTest.test" />
+        <item index="1" class="java.lang.String" itemvalue="Application.InterfaceProvider" />
+        <item index="2" class="java.lang.String" itemvalue="Application.commonMain" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Provider" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestBase" />
       </list>
     </recent_temporary>
   </component>
@@ -1527,7 +1458,7 @@
       <workItem from="1487761374858" duration="422000" />
       <workItem from="1487815324737" duration="16857000" />
       <workItem from="1487901545212" duration="22915000" />
-      <workItem from="1487989445851" duration="16204000" />
+      <workItem from="1487989445851" duration="25173000" />
     </task>
     <task id="LOCAL-00001" summary="1.4&#10;">
       <created>1483496820689</created>
@@ -1655,16 +1586,24 @@
       <option name="project" value="LOCAL" />
       <updated>1488001225050</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="还原">
+      <created>1488006408359</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1488006408359</updated>
+    </task>
+    <task id="LOCAL-00020" summary="新增呢个">
+      <created>1488006509140</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1488006509140</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PlanTest_plantest - 2016.12.28 at 10h 27m 35s.xml">
-      <configuration name="PlanTest.plantest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PlanTest_plantest - 2016.12.28 at 10h 28m 56s.xml">
-      <configuration name="PlanTest.plantest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestBase - 2017.02.21 at 16h 51m 27s.xml">
       <configuration name="TestBase" configurationId="JUnit" />
     </history-entry>
@@ -1689,9 +1628,15 @@
     <history-entry file="TestBase_test - 2017.02.21 at 14h 33m 51s.xml">
       <configuration name="TestBase.test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="UTest_test - 2017.02.25 at 17h 49m 31s.xml">
+      <configuration name="UTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UTest_test - 2017.02.25 at 17h 49m 47s.xml">
+      <configuration name="UTest.test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440302000" />
+    <option name="totallyTimeSpent" value="449271000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1714,22 +1659,22 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990981" sideWeight="0.18347639" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33614457" sideWeight="0.4978355" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14092447" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17812853" sideWeight="0.7945279" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19503947" sideWeight="0.7945279" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06877114" sideWeight="0.49570817" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5060241" sideWeight="0.5746753" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5050733" sideWeight="0.5746753" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26770386" sideWeight="0.49295774" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32694477" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30665162" sideWeight="0.8165236" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6087937" sideWeight="0.8165236" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1744,7 +1689,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990981" sideWeight="0.18347639" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33614457" sideWeight="0.4978355" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.105150215" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1752,20 +1697,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30665162" sideWeight="0.8165236" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48703495" sideWeight="0.8165236" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24577227" sideWeight="0.7848712" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38782412" sideWeight="0.7848712" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.49570817" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14092447" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6832018" sideWeight="0.7945279" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33145434" sideWeight="0.7945279" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39797068" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06877114" sideWeight="0.49570817" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5060241" sideWeight="0.5746753" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26770386" sideWeight="0.49295774" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32694477" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -1815,7 +1760,9 @@
     <MESSAGE value="新增公共js" />
     <MESSAGE value="新增公司部门完成" />
     <MESSAGE value="新增系统" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增系统" />
+    <MESSAGE value="还原" />
+    <MESSAGE value="新增呢个" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增呢个" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1851,25 +1798,19 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java</url>
-          <line>96</line>
+          <url>file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java</url>
+          <line>89</line>
           <properties />
-          <option name="timeStamp" value="36" />
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java</url>
-          <line>98</line>
+          <url>file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java</url>
+          <line>88</line>
           <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java</url>
-          <line>100</line>
-          <properties />
-          <option name="timeStamp" value="38" />
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="50" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1878,98 +1819,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1622#1623#0" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#1711#1712#0" expanded="true" />
-            <element signature="e#1755#1756#0" expanded="true" />
-            <element signature="e#1790#1791#0" expanded="true" />
-            <element signature="e#1820#1821#0" expanded="true" />
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="e#1905#1906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="199" column="26" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/company_manage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="198" column="6" selection-start-line="176" selection-start-column="2" selection-end-line="198" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/CompanyMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dubbo/dubbo-provider.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="80" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/CompanyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="196" selection-start-line="19" selection-start-column="3" selection-end-line="20" selection-end-column="196" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/properties/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -2028,14 +1877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/DataAssertMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -2061,52 +1902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="55" column="45" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/logback.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
-          <folding>
-            <element signature="e#2579#2585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/commonMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2151,14 +1950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="33" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
@@ -2199,68 +1990,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="180" column="23" selection-start-line="177" selection-start-column="8" selection-end-line="180" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="180" column="62" selection-start-line="180" selection-start-column="62" selection-end-line="180" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autotest/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="98" column="21" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="196" selection-end-column="19" />
-          <folding>
-            <element signature="n#dependencies#0;n#project#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commontest/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -2306,21 +2039,351 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://SpringLocalModels/module=manage_platform">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SpringLocalModels</ID>
+          <OriginalElement>module=manage_platform</OriginalElement>
+          <nodes>
+            <node x="0.0" y="256.0">module=manage_platform</node>
+            <node x="264.5" y="256.0">fileset=manage_platform/Spring Application Context</node>
+            <node x="652.5" y="256.0">filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml</node>
+            <node x="639.0" y="384.0">filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-context.xml</node>
+            <node x="892.5" y="384.0">filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/dubbo-provider.xml</node>
+            <node x="639.0" y="512.0">filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-context.xml</node>
+            <node x="892.5" y="448.0">filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/dubbo/dubbo-provider.xml</node>
+            <node x="892.5" y="512.0">filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/dubbo/dubbo-provider.xml</node>
+            <node x="639.0" y="320.0">filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-context.xml</node>
+            <node x="888.0" y="288.0">filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml</node>
+            <node x="639.0" y="448.0">filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-context.xml</node>
+            <node x="652.0" y="192.0">filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-mvc.xml</node>
+            <node x="652.0" y="128.0">filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-mvc.xml</node>
+            <node x="652.0" y="64.0">filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-mvc.xml</node>
+            <node x="652.0" y="0.0">filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-mvc.xml</node>
+            <node x="273.5" y="422.0">fileset=manage_platform/MVC application context</node>
+            <node x="239.0" y="90.0">fileset=manage_platform/MVC springServlet servlet context</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="module=manage_platform" target="fileset=manage_platform/MVC application context">
+              <point x="79.5" y="8.0" />
+              <point x="239.0" y="434.0" />
+              <point x="-105.5" y="-0.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-context.xml">
+              <point x="-71.0" y="6.857142857142833" />
+              <point x="609.0" y="274.85714285714283" />
+              <point x="609.0" y="454.0" />
+              <point x="-84.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-context.xml">
+              <point x="-71.0" y="10.285714285714278" />
+              <point x="619.0" y="278.2857142857143" />
+              <point x="619.0" y="390.0" />
+              <point x="-84.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml">
+              <point x="71.0" y="-0.0" />
+              <point x="808.0" y="268.0" />
+              <point x="-94.0" y="-6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC springServlet servlet context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-mvc.xml">
+              <point x="140.0" y="9.0" />
+              <point x="599.0" y="198.0" />
+              <point x="-71.5" y="-6.0" />
+            </edge>
+            <edge source="module=manage_platform" target="fileset=manage_platform/MVC springServlet servlet context">
+              <point x="79.5" y="-8.0" />
+              <point x="-140.0" y="-0.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC springServlet servlet context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-mvc.xml">
+              <point x="140.0" y="3.0" />
+              <point x="599.0" y="134.0" />
+              <point x="-71.5" y="-6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/Spring Application Context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-context.xml">
+              <point x="114.5" y="8.0" />
+              <point x="519.0" y="276.0" />
+              <point x="599.0" y="326.0" />
+              <point x="-84.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-mvc.xml">
+              <point x="-71.0" y="-10.285714285714278" />
+              <point x="619.0" y="257.7142857142857" />
+              <point x="619.0" y="146.0" />
+              <point x="-71.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC springServlet servlet context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-mvc.xml">
+              <point x="140.0" y="-3.0" />
+              <point x="599.0" y="70.0" />
+              <point x="-71.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-mvc.xml">
+              <point x="0.0" y="-12.0" />
+              <point x="0.0" y="12.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml">
+              <point x="84.5" y="-0.0" />
+              <point x="-94.0" y="6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-mvc.xml">
+              <point x="-71.0" y="-3.428571428571445" />
+              <point x="599.0" y="264.57142857142856" />
+              <point x="599.0" y="18.0" />
+              <point x="-71.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/Spring Application Context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-mvc.xml">
+              <point x="114.5" y="-8.0" />
+              <point x="519.0" y="260.0" />
+              <point x="599.0" y="210.0" />
+              <point x="-71.5" y="6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/dubbo/dubbo-provider.xml">
+              <point x="84.5" y="6.0" />
+              <point x="-89.5" y="6.0" />
+            </edge>
+            <edge source="module=manage_platform" target="fileset=manage_platform/Spring Application Context">
+              <point x="79.5" y="-0.0" />
+              <point x="-114.5" y="-0.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC application context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-context.xml">
+              <point x="105.5" y="-3.0" />
+              <point x="519.0" y="431.0" />
+              <point x="599.0" y="402.0" />
+              <point x="-84.5" y="6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-mvc.xml">
+              <point x="-71.0" y="-6.857142857142833" />
+              <point x="609.0" y="261.14285714285717" />
+              <point x="609.0" y="82.0" />
+              <point x="-71.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC application context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-context.xml">
+              <point x="105.5" y="3.0" />
+              <point x="519.0" y="437.0" />
+              <point x="599.0" y="466.0" />
+              <point x="-84.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC springServlet servlet context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-mvc.xml">
+              <point x="140.0" y="-9.0" />
+              <point x="599.0" y="6.0" />
+              <point x="-71.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/dubbo/dubbo-provider.xml">
+              <point x="84.5" y="6.0" />
+              <point x="-89.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/dubbo/dubbo-provider.xml">
+              <point x="84.5" y="-6.0" />
+              <point x="-89.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC application context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-context.xml">
+              <point x="105.5" y="-9.0" />
+              <point x="519.0" y="425.0" />
+              <point x="599.0" y="338.0" />
+              <point x="-84.5" y="6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/common-test/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/dubbo/dubbo-provider.xml">
+              <point x="84.5" y="-6.0" />
+              <point x="-89.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-context.xml">
+              <point x="-71.0" y="3.428571428571445" />
+              <point x="599.0" y="271.42857142857144" />
+              <point x="599.0" y="518.0" />
+              <point x="-84.5" y="-6.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/spring-context.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/performance/src/main/resources/spring/dubbo-provider.xml">
+              <point x="84.5" y="-0.0" />
+              <point x="-89.5" y="-0.0" />
+            </edge>
+            <edge source="fileset=manage_platform/MVC application context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/interfacetest/src/main/resources/spring/spring-context.xml">
+              <point x="105.5" y="9.0" />
+              <point x="519.0" y="443.0" />
+              <point x="599.0" y="530.0" />
+              <point x="-84.5" y="6.0" />
+            </edge>
+            <edge source="fileset=manage_platform/Spring Application Context" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml">
+              <point x="114.5" y="-0.0" />
+              <point x="-71.0" y="-0.0" />
+            </edge>
+            <edge source="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/application.xml" target="filePath=E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/resources/spring/spring-context.xml">
+              <point x="0.0" y="12.0" />
+              <point x="0.0" y="-12.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.9154676258992805" x="14.161100196463678" y="192.16110019646368" />
+          <SelectedNodes>
+            <node>module=manage_platform</node>
+            <node>fileset=manage_platform/MVC springServlet servlet context</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Show filesets as groups</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/test_manager:commontest:1.0-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>test_manager:commontest:1.0-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">test_manager:commontest:1.0-SNAPSHOT</node>
+            <node x="" y="">junit:junit:jar:4.11</node>
+            <node x="" y="">junit:junit:jar:4.11/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="" y="">commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">org.springframework:spring-core:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-oxm:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-oxm:jar:4.1.4.RELEASE/org.springframework:spring-beans:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-tx:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jdbc:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.1.4.RELEASE/org.springframework:spring-expression:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aop:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aop:jar:4.1.4.RELEASE/aopalliance:aopalliance:jar:1.0</node>
+            <node x="" y="">org.springframework:spring-test:jar:4.1.4.RELEASE</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14/com.alibaba:jconsole:jar:1.8.0</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14/com.alibaba:tools:jar:1.8.0</node>
+            <node x="" y="">log4j:log4j:jar:1.2.12</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.6.6</node>
+            <node x="" y="">mysql:mysql-connector-java:jar:5.1.29</node>
+            <node x="" y="">org.mybatis:mybatis:jar:3.2.4</node>
+            <node x="" y="">org.javassist:javassist:jar:3.18.2-GA</node>
+            <node x="" y="">org.mybatis:mybatis-spring:jar:1.2.2</node>
+            <node x="" y="">commons-lang:commons-lang:jar:2.6</node>
+            <node x="" y="">com.google.guava:guava:jar:10.0.1</node>
+            <node x="" y="">com.google.guava:guava:jar:10.0.1/com.google.code.findbugs:jsr305:jar:1.3.9</node>
+            <node x="" y="">com.alibaba:dubbo:jar:2.5.3</node>
+            <node x="" y="">com.alibaba:dubbo:jar:2.5.3/org.jboss.netty:netty:jar:3.2.5.Final</node>
+            <node x="" y="">com.alibaba:fastjson:jar:1.1.35</node>
+            <node x="" y="">commons-io:commons-io:jar:1.3.2</node>
+            <node x="" y="">commons-beanutils:commons-beanutils-core:jar:1.8.3</node>
+            <node x="" y="">org.freemarker:freemarker:jar:2.3.23</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-core:jar:2.1.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.1.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-annotations:jar:2.1.0</node>
+            <node x="" y="">org.apache.httpcomponents:httpcore:jar:4.4.5</node>
+            <node x="" y="">javax.servlet:javax.servlet-api:jar:3.1.0</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.2</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.2/commons-codec:commons-codec:jar:1.9</node>
+            <node x="" y="">org.slf4j:slf4j-api:jar:1.6.6</node>
+            <node x="" y="">org.springframework:spring-web:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.1.4.RELEASE</node>
+            <node x="" y="">redis.clients:jedis:jar:2.7.2</node>
+            <node x="" y="">redis.clients:jedis:jar:2.7.2/org.apache.commons:commons-pool2:jar:2.3</node>
+            <node x="" y="">commons-collections:commons-collections:jar:3.2.1</node>
+            <node x="" y="">org.apache.tomcat:tomcat-jdbc:jar:7.0.42</node>
+            <node x="" y="">org.apache.tomcat:tomcat-jdbc:jar:7.0.42/org.apache.tomcat:tomcat-juli:jar:7.0.42</node>
+            <node x="" y="">com.github.sgroschupf:zkclient:jar:0.1</node>
+            <node x="" y="">com.github.sgroschupf:zkclient:jar:0.1/org.apache.zookeeper:zookeeper:jar:3.4.6</node>
+            <node x="" y="">com.github.sgroschupf:zkclient:jar:0.1/org.apache.zookeeper:zookeeper:jar:3.4.6/jline:jline:jar:0.9.94</node>
+            <node x="" y="">com.github.sgroschupf:zkclient:jar:0.1/org.apache.zookeeper:zookeeper:jar:3.4.6/io.netty:netty:jar:3.7.0.Final</node>
+            <node x="" y="">ch.qos.logback:logback-classic:jar:1.1.3</node>
+            <node x="" y="">ch.qos.logback:logback-classic:jar:1.1.3/ch.qos.logback:logback-core:jar:1.1.3</node>
+            <node x="" y="">org.slf4j:log4j-over-slf4j:jar:1.7.7</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.9655208884188261" x="1652.9076021470041" y="1088.7310220177455" />
+          <SelectedNodes />
+          <Categories />
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/commonMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commontest/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="195" column="26" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="201" column="30" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/js/alert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+          <folding>
+            <element signature="e#2579#2585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/CompanyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/company_manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="255" column="5" selection-start-line="240" selection-start-column="3" selection-end-line="255" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/CommonResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="143">
+          <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2657#2672#0" expanded="true" />
+            <element signature="e#2197#2212#0" expanded="true" />
+            <element signature="e#2730#2745#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="46" column="29" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="29" />
+        <state relative-caret-position="236">
+          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
           <folding>
             <marker date="1488006296589" expanded="true" signature="1194:1337" ph="SELECT FROM test_system" />
             <marker date="1488006296589" expanded="true" signature="1436:1496" ph="SELECT FROM test_system" />
@@ -2333,6 +2396,181 @@
             <marker date="1488006296589" expanded="true" signature="4133:4184" ph="DELETE FROM " />
             <marker date="1488006296589" expanded="true" signature="4313:4517" ph="DELETE FROM " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/test_manager:manage_platform:1.0-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>test_manager:manage_platform:1.0-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">test_manager:manage_platform:1.0-SNAPSHOT</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/mysql:mysql-connector-java:jar:5.1.29</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/redis.clients:jedis:jar:2.7.2</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/redis.clients:jedis:jar:2.7.2/org.apache.commons:commons-pool2:jar:2.3</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/commons-collections:commons-collections:jar:3.2.1</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/org.apache.tomcat:tomcat-jdbc:jar:7.0.42</node>
+            <node x="" y="">test_manager:performance:jar:1.0-SNAPSHOT/org.apache.tomcat:tomcat-jdbc:jar:7.0.42/org.apache.tomcat:tomcat-juli:jar:7.0.42</node>
+            <node x="" y="">junit:junit:jar:4.11</node>
+            <node x="" y="">junit:junit:jar:4.11/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="" y="">commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">org.springframework:spring-core:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-web:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-web:jar:4.1.4.RELEASE/org.springframework:spring-beans:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-oxm:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-tx:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jdbc:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.1.4.RELEASE/org.springframework:spring-expression:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aop:jar:4.1.4.RELEASE</node>
+            <node x="" y="">org.springframework:spring-aop:jar:4.1.4.RELEASE/aopalliance:aopalliance:jar:1.0</node>
+            <node x="" y="">org.springframework:spring-test:jar:4.1.4.RELEASE</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14/com.alibaba:jconsole:jar:1.8.0</node>
+            <node x="" y="">com.alibaba:druid:jar:1.0.14/com.alibaba:tools:jar:1.8.0</node>
+            <node x="" y="">log4j:log4j:jar:1.2.12</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.6.6</node>
+            <node x="" y="">org.mybatis:mybatis:jar:3.2.4</node>
+            <node x="" y="">org.mybatis:mybatis-spring:jar:1.2.2</node>
+            <node x="" y="">commons-lang:commons-lang:jar:2.6</node>
+            <node x="" y="">com.google.guava:guava:jar:10.0.1</node>
+            <node x="" y="">com.google.guava:guava:jar:10.0.1/com.google.code.findbugs:jsr305:jar:1.3.9</node>
+            <node x="" y="">com.alibaba:dubbo:jar:2.5.3</node>
+            <node x="" y="">com.alibaba:dubbo:jar:2.5.3/org.jboss.netty:netty:jar:3.2.5.Final</node>
+            <node x="" y="">com.alibaba:fastjson:jar:1.1.35</node>
+            <node x="" y="">commons-io:commons-io:jar:1.3.2</node>
+            <node x="" y="">commons-beanutils:commons-beanutils-core:jar:1.8.3</node>
+            <node x="" y="">org.freemarker:freemarker:jar:2.3.23</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-core:jar:2.1.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.1.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-annotations:jar:2.1.0</node>
+            <node x="" y="">org.sitemesh:sitemesh:jar:3.0.1</node>
+            <node x="" y="">org.apache.httpcomponents:httpcore:jar:4.4.5</node>
+            <node x="" y="">javax.servlet:javax.servlet-api:jar:3.1.0</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.2</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.2/commons-codec:commons-codec:jar:1.9</node>
+            <node x="" y="">org.slf4j:slf4j-api:jar:1.6.6</node>
+            <node x="" y="">com.github.sgroschupf:zkclient:jar:0.1</node>
+            <node x="" y="">org.javassist:javassist:jar:3.18.2-GA</node>
+            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.6</node>
+            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.6/jline:jline:jar:0.9.94</node>
+            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.6/io.netty:netty:jar:3.7.0.Final</node>
+            <node x="" y="">test_manager:common-test:jar:1.0-SNAPSHOT</node>
+            <node x="" y="">test_manager:interfacetest:jar:1.0-SNAPSHOT</node>
+            <node x="" y="">ch.qos.logback:logback-classic:jar:1.1.3</node>
+            <node x="" y="">ch.qos.logback:logback-classic:jar:1.1.3/ch.qos.logback:logback-core:jar:1.1.3</node>
+            <node x="" y="">org.slf4j:log4j-over-slf4j:jar:1.7.7</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.1633850020946794" x="839.1105509542673" y="1128.737846597047" />
+          <SelectedNodes />
+          <Categories />
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="202" column="23" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="55" column="45" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <marker date="1488016337713" expanded="true" signature="342:659" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="187" column="13" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2390,7 +2628,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>commontest</last-edited>
+          <last-edited>interfacetest</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2414,7 +2652,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: test_manager:interfacetest:1.0-SNAPSHOT</last-edited>
+          <last-edited>Maven: redis.clients:jedis:2.9.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
