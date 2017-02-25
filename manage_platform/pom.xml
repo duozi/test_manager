@@ -193,20 +193,6 @@
               <artifactId>interfacetest</artifactId>
               <version>1.0-SNAPSHOT</version>
           </dependency>
-          <dependency>
-              <groupId>com.eagleeye</groupId>
-              <artifactId>ch.qos.slf4j.appender</artifactId>
-          </dependency>
-
-          <dependency>
-              <groupId>com.eagleeye</groupId>
-              <artifactId>eagle.dubbo.filter</artifactId>
-          </dependency>
-
-          <dependency>
-              <groupId>com.eagleeye</groupId>
-              <artifactId>serverlet.filter</artifactId>
-          </dependency>
       </dependencies>
     <build>
         <finalName>manage_platform</finalName>
