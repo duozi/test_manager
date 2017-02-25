@@ -9,6 +9,8 @@ import com.xn.common.company.entity.Department;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Department Dao 接口
  * 
@@ -17,5 +19,5 @@ import org.springframework.stereotype.Service;
  */
 
 public interface DepartmentMapper extends BaseMapper<Department, Long> {
-
+    int deleteBatchByPK(List<Long> list);
 }

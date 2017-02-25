@@ -6,6 +6,14 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.company.dao.CompanyMapper;
+import com.xn.common.company.dao.DepartmentMapper;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
+import com.xn.common.company.service.impl.CompanyServiceImpl;
+import com.xn.common.company.service.impl.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +45,12 @@ public class TestSystemServiceImpl implements TestSystemService {
     @Autowired
     private TestSystemMapper testSystemMapper;
 
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private DepartmentService departmentService;
+
     @Override
     @Transactional(readOnly = true)
     public TestSystemDto get(Object condition)
@@ -65,6 +79,14 @@ public class TestSystemServiceImpl implements TestSystemService {
     public List<TestSystemDto> list(Map<String,Object> condition) {
         List<TestSystem> list = testSystemMapper.list(condition);
         List<TestSystemDto> dtoList = CollectionUtils.transform(list, TestSystemDto.class);
+        for(TestSystemDto systemDto: dtoList){
+            DepartmentDto departmentDto = departmentService.get(systemDto.getDepartmentId());
+            systemDto.setDepartmentDto(departmentDto);
+            if(null != departmentDto){
+                CompanyDto companyDto = companyService.get(departmentDto.getCompanyId());
+                systemDto.setCompanyDto(companyDto);
+            }
+        }
         return dtoList;
     }
     

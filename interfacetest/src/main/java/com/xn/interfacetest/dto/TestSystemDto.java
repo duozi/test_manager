@@ -5,6 +5,10 @@ package com.xn.interfacetest.dto;
 
 
 import com.xn.common.base.BaseDto;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import com.xn.common.company.entity.Company;
+import com.xn.common.company.entity.Department;
 
 /**
  * TestSystem Dto 对象
@@ -43,6 +47,10 @@ public class TestSystemDto extends BaseDto {
      */
     private Long departmentId;
 
+    private DepartmentDto departmentDto;
+
+    private CompanyDto companyDto;
+
     public Long getId() {
         return this.id;
     }
@@ -75,7 +83,20 @@ public class TestSystemDto extends BaseDto {
         this.departmentId = departmentId;
     }
 
+    public DepartmentDto getDepartmentDto() {
+        return departmentDto;
+    }
 
+    public void setDepartmentDto(DepartmentDto departmentDto) {
+        this.departmentDto = departmentDto;
+    }
 
+    public CompanyDto getCompanyDto() {
+        return companyDto;
+    }
+
+    public void setCompanyDto(CompanyDto companyDto) {
+        this.companyDto = companyDto;
+    }
 }
 

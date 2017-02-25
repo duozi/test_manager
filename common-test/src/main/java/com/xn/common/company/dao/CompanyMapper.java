@@ -5,8 +5,6 @@ package com.xn.common.company.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.common.company.entity.Company;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

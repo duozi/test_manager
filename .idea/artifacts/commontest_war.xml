@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="commontest:war">
+    <output-path>$PROJECT_DIR$/commontest/target</output-path>
+    <root id="archive" name="commontest.war">
+      <element id="artifact" artifact-name="commontest:war exploded" />
+    </root>
+  </artifact>
+</component>

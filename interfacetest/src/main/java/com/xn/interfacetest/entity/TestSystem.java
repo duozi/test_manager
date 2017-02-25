@@ -4,6 +4,8 @@
 package com.xn.interfacetest.entity;
 
 import com.xn.common.base.BaseEntity;
+import com.xn.common.company.entity.Company;
+import com.xn.common.company.entity.Department;
 
 /**
  * TestSystem 实体类
@@ -43,6 +45,9 @@ public class TestSystem extends BaseEntity {
     private Long departmentId;
 
 
+    private Department department;
+
+    private Company company;
 	
 	public TestSystem(){
 	    // default constructor
@@ -83,7 +88,21 @@ public class TestSystem extends BaseEntity {
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
-    
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
 }

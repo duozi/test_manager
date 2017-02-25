@@ -40,27 +40,19 @@ public class ManageController {
 	@Resource
 	private DepartmentService departmentService;
 
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getSystemPage(@PathVariable String path, ModelMap model) {
+	@RequestMapping(value="/company_manage", method = RequestMethod.GET)
+	public String getCompanyPage(ModelMap model) {
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
 		companyList = companyService.list(dto);
 
-
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = testSystemService.list(systemDto);
-
-
-		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
-		DepartmentDto departmentDto = new DepartmentDto();
-		departmentList = departmentService.list(departmentDto);
-
-
-		model.put("systemList", systemList);
-		model.put("departmentList", departmentList);
+//		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
+//		DepartmentDto departmentDto = new DepartmentDto();
+//		departmentList = departmentService.list(departmentDto);
+//
+//		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);
-		return "/autotest/manage/" + path;
+		return "/autotest/manage/company_manage";
 	}
 
 	@RequestMapping(value="/saveCompany", method = RequestMethod.POST)
