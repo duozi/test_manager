@@ -114,4 +114,18 @@ public interface TestEnvironmentService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestEnvironmentDto> testEnvironments);
+
+    /**
+     * 查询环境（含系统信息）
+     * @param params
+     * @return
+     */
+    List<TestEnvironmentDto> listWithSystem(Map<String, Object> params);
+
+    /**
+     *查询环境（含系统信息）
+     * @param id
+     * @return
+     */
+    TestEnvironmentDto getWithSystem(Long id);
 }

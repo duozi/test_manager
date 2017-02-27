@@ -22,16 +22,16 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(planId)">
+           <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-           <if test="@isNotEmpty(reportId)">
+           <if test="@Ognl@isNotEmpty(reportId)">
                 AND report_id = #{reportId}
             </if>
-           <if test="@isNotEmpty(createTimeBegin)">
+           <if test="@Ognl@isNotEmpty(createTimeBegin)">
                 AND create_time >= #{createTimeBegin}
            </if>
-           <if test="@isNotEmpty(createTimeEnd)">
+           <if test="@Ognl@isNotEmpty(createTimeEnd)">
                 AND create_time &lt;= #{createTimeEnd}
            </if>
         </where>

@@ -24,19 +24,19 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(databaseConfigId)">
+           <if test="@Ognl@isNotEmpty(databaseConfigId)">
                 AND database_config_id = #{databaseConfigId}
             </if>
-           <if test="@isNotEmpty(sqlStr)">
+           <if test="@Ognl@isNotEmpty(sqlStr)">
                 AND sql_str = #{sqlStr}
             </if>
-           <if test="@isNotEmpty(assertParam)">
+           <if test="@Ognl@isNotEmpty(assertParam)">
                 AND assert_param = #{assertParam}
             </if>
-           <if test="@isNotEmpty(rightValue)">
+           <if test="@Ognl@isNotEmpty(rightValue)">
                 AND right_value = #{rightValue}
             </if>
-           <if test="@isNotEmpty(caseId)">
+           <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
         </where>

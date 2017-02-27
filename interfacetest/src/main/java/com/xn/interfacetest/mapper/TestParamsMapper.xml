@@ -24,19 +24,19 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(formatType)">
+           <if test="@Ognl@isNotEmpty(formatType)">
                 AND format_type = #{formatType}
             </if>
-           <if test="@isNotEmpty(interfaceId)">
+           <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
-           <if test="@isNotEmpty(dataType)">
+           <if test="@Ognl@isNotEmpty(dataType)">
                 AND data_type = #{dataType}
             </if>
-           <if test="@isNotEmpty(type)">
+           <if test="@Ognl@isNotEmpty(type)">
                 AND type = #{type}
             </if>
         </where>

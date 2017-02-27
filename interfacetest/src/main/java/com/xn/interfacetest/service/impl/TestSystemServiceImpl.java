@@ -85,15 +85,10 @@ public class TestSystemServiceImpl implements TestSystemService {
     @Override
     @Transactional(readOnly = true)
     public List<TestSystemDto> listByCompany(Map<String,Object> condition) {
-        List<TestSystem> list = testSystemMapper.list(condition);
+        List<TestSystem> list = testSystemMapper.listByCompany(condition);
         List<TestSystemDto> dtoList = CollectionUtils.transform(list, TestSystemDto.class);
         for(TestSystemDto systemDto: dtoList){
-            DepartmentDto departmentDto = departmentService.get(systemDto.getDepartmentId());
-            systemDto.setDepartmentDto(departmentDto);
-            if(null != departmentDto){
-                CompanyDto companyDto = companyService.get(departmentDto.getCompanyId());
-                systemDto.setCompanyDto(companyDto);
-            }
+            selectFromCompany(systemDto);
         }
         return dtoList;
     }
@@ -146,6 +141,25 @@ public class TestSystemServiceImpl implements TestSystemService {
     @Override
     public int deleteBatch(List<TestSystemDto> testSystems) {
         return 0;
+    }
+
+    @Override
+    public TestSystemDto getWithCompanyInfo(Long systemId) {
+        TestSystem testSystem = testSystemMapper.get(systemId);
+        TestSystemDto testSystemDto = BeanUtils.toBean(testSystem,TestSystemDto.class);
+        selectFromCompany(testSystemDto);
+        return testSystemDto;
+    }
+
+    private void selectFromCompany( TestSystemDto testSystemDto){
+        //查询部门
+        DepartmentDto departmentDto = departmentService.get(testSystemDto.getDepartmentId());
+        testSystemDto.setDepartmentDto(departmentDto);
+        //查询公司
+        if(null != departmentDto){
+            CompanyDto companyDto = companyService.get(departmentDto.getCompanyId());
+            testSystemDto.setCompanyDto(companyDto);
+        }
     }
 
 }

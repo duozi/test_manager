@@ -29,34 +29,34 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(caseIds)">
+           <if test="@Ognl@isNotEmpty(caseIds)">
                 AND case_ids = #{caseIds}
             </if>
-           <if test="@isNotEmpty(systemId)">
+           <if test="@Ognl@isNotEmpty(systemId)">
                 AND system_id = #{systemId}
             </if>
-           <if test="@isNotEmpty(planId)">
+           <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-           <if test="@isNotEmpty(interfaceIds)">
+           <if test="@Ognl@isNotEmpty(interfaceIds)">
                 AND interface_ids = #{interfaceIds}
             </if>
-           <if test="@isNotEmpty(caseCount)">
+           <if test="@Ognl@isNotEmpty(caseCount)">
                 AND case_count = #{caseCount}
             </if>
-           <if test="@isNotEmpty(passCaseCount)">
+           <if test="@Ognl@isNotEmpty(passCaseCount)">
                 AND pass_case_count = #{passCaseCount}
             </if>
-           <if test="@isNotEmpty(failCaseCout)">
+           <if test="@Ognl@isNotEmpty(failCaseCout)">
                 AND fail_case_cout = #{failCaseCout}
             </if>
-           <if test="@isNotEmpty(errorCaseCout)">
+           <if test="@Ognl@isNotEmpty(errorCaseCout)">
                 AND error_case_cout = #{errorCaseCout}
             </if>
-           <if test="@isNotEmpty(result)">
+           <if test="@Ognl@isNotEmpty(result)">
                 AND result = #{result}
             </if>
         </where>

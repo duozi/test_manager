@@ -25,28 +25,28 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(redisName)">
+           <if test="@Ognl@isNotEmpty(redisName)">
                 AND redis_name = #{redisName}
             </if>
-           <if test="@isNotEmpty(planeId)">
+           <if test="@Ognl@isNotEmpty(planeId)">
                 AND plane_id = #{planeId}
             </if>
-           <if test="@isNotEmpty(redisStatus)">
+           <if test="@Ognl@isNotEmpty(redisStatus)">
                 AND redis_status = #{redisStatus}
             </if>
-           <if test="@isNotEmpty(redisHostPort)">
+           <if test="@Ognl@isNotEmpty(redisHostPort)">
                 AND redis_host_port = #{redisHostPort}
             </if>
-           <if test="@isNotEmpty(timeout)">
+           <if test="@Ognl@isNotEmpty(timeout)">
                 AND timeout = #{timeout}
             </if>
-           <if test="@isNotEmpty(redirections)">
+           <if test="@Ognl@isNotEmpty(redirections)">
                 AND redirections = #{redirections}
             </if>
-           <if test="@isNotEmpty(changeTimeBegin)">
+           <if test="@Ognl@isNotEmpty(changeTimeBegin)">
                 AND change_time >= #{changeTimeBegin}
            </if>
-           <if test="@isNotEmpty(changeTimeEnd)">
+           <if test="@Ognl@isNotEmpty(changeTimeEnd)">
                 AND change_time &lt;= #{changeTimeEnd}
            </if>
         </where>

@@ -199,18 +199,20 @@
     );
 
     function deleteCompany(){
-        $(".company-panel .list-group-item").each(function(){
-            if($(this).hasClass("active")){
-                companyids += $(this).attr("value") + ",";
-            }
-        });
+        $.MsgBox.Confirm("删除提示", "确定要删除该部门吗", function (){
+            $(".company-panel .list-group-item").each(function(){
+                if($(this).hasClass("active")){
+                    companyids += $(this).attr("value") + ",";
+                }
+            });
 
-        $.post("${basePath}/autotest/manage/deleteCompany",{ids:companyids},function(data,status){
-            if(0!=data.code){
-                $.MsgBox.Alert(data.message);
-            } else {
-                reload();
-            }
+            $.post("${basePath}/autotest/manage/deleteCompany",{ids:companyids},function(data,status){
+                if(0!=data.code){
+                    $.MsgBox.Alert(data.message);
+                } else {
+                    reload();
+                }
+            });
         });
     }
 
@@ -239,20 +241,23 @@
     );
 
     function deleteDepartment(){
-        $(".department-panel .list-group-item").each(function(){
-            if($(this).hasClass("active")){
-                departmentids += $(this).attr("value") + ",";
-            }
+        $.MsgBox.Confirm("删除提示", "确定要删除该部门吗", function (){
+            $(".department-panel .list-group-item").each(function(){
+                if($(this).hasClass("active")){
+                    departmentids += $(this).attr("value") + ",";
+                }
+            });
+
+            $.post("${basePath}/autotest/manage/department/deleteDepartment",{ids:departmentids},function(data,status){
+                if(0!=data.code){
+                    alert(data.message);
+                } else {
+                    $.MsgBox.Alert(data.message);
+                    reload();
+                }
+            });
         });
 
-        $.post("${basePath}/autotest/manage/department/deleteDepartment",{ids:departmentids},function(data,status){
-            if(0!=data.code){
-                alert(data.message);
-            } else {
-                $.MsgBox.Alert(data.message);
-                reload();
-            }
-        });
     }
 </script>
 

@@ -7,6 +7,9 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * TestService Dao 接口
  * 
@@ -16,4 +19,5 @@ import com.xn.interfacetest.entity.TestService;
 
 public interface TestServiceMapper extends BaseMapper<TestService, Long> {
 
+    List<TestService> listByParams(Map<String, Object> params);
 }

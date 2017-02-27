@@ -54,7 +54,7 @@ public class SystemController {
 
 		String companyId = request.getParameter("selectCompanyId");
 		String departmentId = request.getParameter("selectDepartmentId");
-		String systenmName = request.getParameter("systenmName");
+		String systenmName = request.getParameter("systemName");
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		if(StringUtils.isNotBlank(companyId) && !"null".equals(companyId)){

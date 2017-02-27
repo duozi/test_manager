@@ -21,10 +21,10 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(planId)">
+           <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-           <if test="@isNotEmpty(suitId)">
+           <if test="@Ognl@isNotEmpty(suitId)">
                 AND suit_id = #{suitId}
             </if>
         </where>

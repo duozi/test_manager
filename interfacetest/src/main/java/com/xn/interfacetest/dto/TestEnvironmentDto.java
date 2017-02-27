@@ -43,6 +43,11 @@ public class TestEnvironmentDto extends BaseDto {
      */
     private Long systemId;
 
+    /**
+     * 系统
+     */
+    private  TestSystemDto systemDto;
+
     public Long getId() {
         return this.id;
     }
@@ -75,7 +80,12 @@ public class TestEnvironmentDto extends BaseDto {
         this.systemId = systemId;
     }
 
+    public TestSystemDto getSystemDto() {
+        return systemDto;
+    }
 
-
+    public void setSystemDto(TestSystemDto systemDto) {
+        this.systemDto = systemDto;
+    }
 }
 

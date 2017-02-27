@@ -23,16 +23,16 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(caseId)">
+           <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-           <if test="@isNotEmpty(databaseId)">
+           <if test="@Ognl@isNotEmpty(databaseId)">
                 AND database_id = #{databaseId}
             </if>
-           <if test="@isNotEmpty(operateType)">
+           <if test="@Ognl@isNotEmpty(operateType)">
                 AND operate_type = #{operateType}
             </if>
-           <if test="@isNotEmpty(sqlStr)">
+           <if test="@Ognl@isNotEmpty(sqlStr)">
                 AND sql_str = #{sqlStr}
             </if>
         </where>

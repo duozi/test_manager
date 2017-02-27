@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="interfacetest:war exploded">
-    <output-path>$PROJECT_DIR$/interfacetest/target/classes</output-path>
+    <output-path>$PROJECT_DIR$/interfacetest/target/interfacetest</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -57,6 +57,7 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:7.0.42" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.15.0-GA" />
           <element id="library" level="project" name="Maven: org.logback-extensions:logback-ext-spring:0.1.2" />
+          <element id="library" level="project" name="Maven: junit:junit:4.11" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="interfacetest/web/Web" />

@@ -7,7 +7,7 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         ">
 
-    <dubbo:application name="interface_test" />
+    <dubbo:application name="interfacetest" />
 
     <dubbo:registry protocol="zookeeper" address="${zookeeper_ip}" />
 
@@ -30,12 +30,16 @@
     <!--<dubbo:service interface="com.xn.interfacetest.service.TestDatabaseConfigService" ref="testDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <dubbo:service interface="com.xn.interfacetest.service.TestServiceService" ref="testServiceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.TestSystemService" ref="testSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.service.TestEnvironmentService" ref="testEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="testSystemService" class="com.xn.interfacetest.service.impl.TestSystemServiceImpl"/>
     <bean id="testServiceService" class="com.xn.interfacetest.service.impl.TestServiceServiceImpl"/>
     <bean id="testCaseService" class="com.xn.interfacetest.service.impl.TestCaseServiceImpl"/>
+    <bean id="testEnvironmentService" class="com.xn.interfacetest.service.impl.TestEnvironmentServiceImpl"/>
 
+    <!--调用的服务-->
     <dubbo:reference id="companyService" interface="com.xn.common.company.service.CompanyService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="departmentService" interface="com.xn.common.company.service.DepartmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 

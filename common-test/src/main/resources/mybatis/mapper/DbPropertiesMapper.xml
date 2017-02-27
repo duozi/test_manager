@@ -26,31 +26,31 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(dbName)">
+           <if test="@Ognl@isNotEmpty(dbName)">
                 AND db_name = #{dbName}
             </if>
-           <if test="@isNotEmpty(planeId)">
+           <if test="@Ognl@isNotEmpty(planeId)">
                 AND plane_id = #{planeId}
             </if>
-           <if test="@isNotEmpty(dbStatus)">
+           <if test="@Ognl@isNotEmpty(dbStatus)">
                 AND db_status = #{dbStatus}
             </if>
-           <if test="@isNotEmpty(url)">
+           <if test="@Ognl@isNotEmpty(url)">
                 AND url = #{url}
             </if>
-           <if test="@isNotEmpty(userName)">
+           <if test="@Ognl@isNotEmpty(userName)">
                 AND user_name = #{userName}
             </if>
-           <if test="@isNotEmpty(pwd)">
+           <if test="@Ognl@isNotEmpty(pwd)">
                 AND pwd = #{pwd}
             </if>
-           <!--<if test="@isNotEmpty(changeTimeBegin)">-->
+           <!--<if test="@Ognl@isNotEmpty(changeTimeBegin)">-->
                 <!--AND change_time >= #{changeTimeBegin}-->
            <!--</if>-->
-           <!--<if test="@isNotEmpty(changeTimeEnd)">-->
+           <!--<if test="@Ognl@isNotEmpty(changeTimeEnd)">-->
                 <!--AND change_time &lt;= #{changeTimeEnd}-->
            <!--</if>-->
-           <if test="@isNotEmpty(dbDriver)">
+           <if test="@Ognl@isNotEmpty(dbDriver)">
                 AND db_driver = #{dbDriver}
             </if>
         </where>
