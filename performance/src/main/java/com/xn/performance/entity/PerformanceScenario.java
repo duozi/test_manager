@@ -55,7 +55,7 @@ public class PerformanceScenario extends BaseEntity {
      * 
      * 公司 
      */
-    private String comany;
+    private String company;
 
     /**
      * 
@@ -145,12 +145,12 @@ public class PerformanceScenario extends BaseEntity {
         return this.department;
     }
     
-    public void setComany(String comany) {
-        this.comany = comany;
+    public void setCompany(String company) {
+        this.company = company;
     }
     
-    public String getComany() {
-        return this.comany;
+    public String getCompany() {
+        return this.company;
     }
     
     public void setConcurrency(Integer concurrency) {

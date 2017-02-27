@@ -41,8 +41,8 @@ public class PerformanceMachineController {
         CommonResult commonResult = new CommonResult();
         if (!ValidateUtil.validate(performanceStressMachineDto)) {
             logger.warn(String.format("参数有误", performanceStressMachineDto));
-            commonResult.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
-            commonResult.setMessage(CommonResultEnum.PARAM_ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
+            commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
             return commonResult;
         }
         performanceStressMachineService.save(performanceStressMachineDto);

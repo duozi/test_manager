@@ -10,7 +10,7 @@
         <result property="remark" column="remark"/>
         <result property="psystem" column="psystem"/>
         <result property="department" column="department"/>
-        <result property="comany" column="comany"/>
+        <result property="company" column="company"/>
         <result property="concurrency" column="concurrency"/>
         <result property="startup" column="startup"/>
         <result property="executeTime" column="execute_time"/>
@@ -21,7 +21,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, scenario_name, remark, psystem, department, comany, concurrency, startup, execute_time, cycle, scenario_status, create_person
+        id, scenario_name, remark, psystem, department, company, concurrency, startup, execute_time, cycle, scenario_status, create_person
         ]]>
     </sql>
     
@@ -42,8 +42,8 @@
            <if test="@Ognl@isNotEmpty(department)">
                 AND department = #{department}
             </if>
-           <if test="@Ognl@isNotEmpty(comany)">
-                AND comany = #{comany}
+           <if test="@Ognl@isNotEmpty(company)">
+                AND company = #{company}
             </if>
            <if test="@Ognl@isNotEmpty(concurrency)">
                 AND concurrency = #{concurrency}
@@ -102,7 +102,7 @@
                 remark,
                 psystem,
                 department,
-                comany,
+                company,
                 concurrency,
                 startup,
                 execute_time,
@@ -115,7 +115,7 @@
                 #{remark},
                 #{psystem},
                 #{department},
-                #{comany},
+                #{company},
                 #{concurrency},
                 #{startup},
                 #{executeTime},
@@ -134,7 +134,7 @@
                 remark,
                 psystem,
                 department,
-                comany,
+                company,
                 concurrency,
                 startup,
                 execute_time,
@@ -144,7 +144,7 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.scenarioName},#{item.remark},#{item.psystem},#{item.department},#{item.comany},#{item.concurrency},#{item.startup},#{item.executeTime},#{item.cycle},#{item.scenarioStatus},#{item.createPerson})
+            (#{item.id},#{item.scenarioName},#{item.remark},#{item.psystem},#{item.department},#{item.company},#{item.concurrency},#{item.startup},#{item.executeTime},#{item.cycle},#{item.scenarioStatus},#{item.createPerson})
         </foreach>
     </insert>
     
@@ -164,8 +164,8 @@
                 <if test="department != null">
                 	<![CDATA[ department = #{department} ]]>,
                 </if>
-                <if test="comany != null">
-                	<![CDATA[ comany = #{comany} ]]>,
+                <if test="company != null">
+                	<![CDATA[ company = #{company} ]]>,
                 </if>
                 <if test="concurrency != null">
                 	<![CDATA[ concurrency = #{concurrency} ]]>,

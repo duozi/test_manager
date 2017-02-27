@@ -6,8 +6,8 @@ package com.xn.manage.Enum;
 
 public enum CommonResultEnum {
     SUCCESS(0, "成功"),
-    ERROR(1, "失败"),
-    PARAM_ERROR(2, "参数异常");
+    ERROR(1, "异常"),
+    FAILED(2, "失败");
     private Integer returnCode;
 
     private String returnMsg;
