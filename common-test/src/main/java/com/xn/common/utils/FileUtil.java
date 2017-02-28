@@ -4,10 +4,11 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -33,7 +34,7 @@ public class FileUtil {
         makeDirs(folder);
         final File newFile = new File(fileName);
         try {
-            Files.write(contents.getBytes(StandardCharsets.UTF_8), newFile);
+            Files.write(contents.getBytes("utf-8"), newFile);
         } catch (IOException fileIoEx) {
             logger.error("ERROR trying to write to file '" + fileName + "' - "
                     + fileIoEx.toString());
@@ -79,4 +80,31 @@ public class FileUtil {
         }
         path.delete();
     }
+
+    /***
+     * 保存文件
+     *
+     * @param file
+     * @return
+     */
+    public static boolean saveFile(HttpServletRequest request, MultipartFile file) {
+        // 判断文件是否为空
+        if (!file.isEmpty()) {
+            try {
+                // 保存的文件路径(如果用的是Tomcat服务器，文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\upload\\文件夹中  )
+                String filePath = "E:\\upload\\"+ file.getOriginalFilename();
+                File saveDir = new File(filePath);
+                if (!saveDir.getParentFile().exists())
+                    saveDir.getParentFile().mkdirs();
+
+                // 转存文件
+                file.transferTo(saveDir);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
 }

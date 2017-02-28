@@ -14,7 +14,23 @@
     <script src="../../../vendor/jquery/messages_zh.js"></script>
     <script src="../../../js/common.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
+//            $("#sub").click(function (){
+//                $("script-save").preventDefault();
+//                $.ajax({
+//                    type: "get",
+//                    url: "/performance/script/script_list/save",
+//                    data: {},
+//                    success: function (data) {
+//                        alert(data);
+//                        if (!data) {
+//
+//                        }
+//                    }
+//                })
+//            })
+            
 
             $("#script-save").validate({
                 submitHandler: function () {
@@ -250,8 +266,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" >新增脚本</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 550px">
-                    <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save">
+                <div class="modal-body modal-add" style="min-height: 480px">
+                    <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save" enctype="multipart/form-data">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
                                 <label class="control-label">创建人<span style="color:red">*</span></label>
@@ -301,12 +317,13 @@
                             </div>
                             <div class="form-group ">
                                 <label class="control-label">上传脚本<span style="color:red">*</span></label>
-                                <input  class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar" id="uploadScript" required>
+                                <input id="uploadScript" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="uploadScript" required>
+                                <input class="hidden"  name="path" value="" >
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary submit">保存</button>
+                            <button type="submit" id="sub" class="btn btn-primary submit">保存</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -396,6 +413,20 @@
 </div>
 <!-- /.row -->
 <script type="text/javascript">
+    $("#uploadScript").fileinput({
+        uploadUrl: '${basePath}/performance/script/script_list/upload_script', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jmx'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFileSize: 1000,
+        maxFilesNum: 1,
+        showPreview:false,
+        slugCallback: function(filename) {
+            $("input[name='path']").val(filename);
+                return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+
     $("select[name='excute-time-type']").change(
             function () {
                 var value = $(this).val();

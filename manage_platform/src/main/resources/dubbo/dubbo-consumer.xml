@@ -21,8 +21,6 @@
     <dubbo:reference id="departmentService" interface="com.xn.common.company.service.DepartmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--interfacetest的服务-->
-    <dubbo:reference id="testCaseService" interface="com.xn.interfacetest.service.TestServiceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="testSystemService" interface="com.xn.interfacetest.service.TestSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="testEnvironmentService" interface="com.xn.interfacetest.service.TestEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="relationServiceEnvironmentService" interface="com.xn.interfacetest.service.RelationServiceEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <!--performance的服务-->

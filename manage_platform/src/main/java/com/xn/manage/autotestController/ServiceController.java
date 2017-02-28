@@ -1,12 +1,14 @@
 package com.xn.manage.autotestController;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.xn.common.utils.PropertyUtil;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.FileUtil;
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.performance.util.CommonResult;
 import org.apache.commons.lang.StringUtils;
@@ -15,20 +17,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/autotest/service")
@@ -112,7 +111,7 @@ public class ServiceController {
 			if(StringUtils.isNotBlank(testServiceDto.getName()) && !"null".equals(testServiceDto.getName())){
 				testServiceService.save(testServiceDto);
 			} else {
-				int code = CommonResultEnum.PARAM_ERROR.getReturnCode();
+				int code = CommonResultEnum.ERROR.getReturnCode();
 				String message ="name不能为空！";
 				result.setCode(code);
 				result.setMessage(message);
@@ -162,7 +161,7 @@ public class ServiceController {
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
 				// 保存文件
-				saveFile(request, file);
+				FileUtil.saveFile(request, file);
 			}
 		}
 
@@ -170,31 +169,6 @@ public class ServiceController {
 		return result;
 	}
 
-	/***
-	 * 保存文件
-	 *
-	 * @param file
-	 * @return
-	 */
-	private boolean saveFile(HttpServletRequest request, MultipartFile file) {
-		// 判断文件是否为空
-		if (!file.isEmpty()) {
-			try {
-				// 保存的文件路径(如果用的是Tomcat服务器，文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\upload\\文件夹中  )
-				String filePath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
-				File saveDir = new File(filePath);
-				if (!saveDir.getParentFile().exists())
-					saveDir.getParentFile().mkdirs();
-
-				// 转存文件
-				file.transferTo(saveDir);
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
 
 
 }

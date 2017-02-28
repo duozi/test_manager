@@ -6,6 +6,7 @@ import com.xn.common.company.dto.CompanyDto;
 import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.FileUtil;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -93,6 +95,8 @@ public class PerformanceScriptController {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
+            String fileName="e:\\upload\\"+performanceScriptDto.getPath();
+            performanceScriptDto.setPath(fileName);
             performanceScriptDto.setPath("d://test.jmx");
             if (!ValidateUtil.validate(performanceScriptDto)) {
                 logger.warn(String.format("参数有误", performanceScriptDto));
@@ -162,5 +166,26 @@ public class PerformanceScriptController {
         } finally {
             return commonResult;
         }
-    }}
+    }
+
+    @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request, ModelMap model) {
+        CommonResult result = new CommonResult();
+        String fileName = "";
+        if (files != null && files.length > 0) {
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file = files[i];
+                // 保存文件
+                FileUtil.saveFile(request, file);
+                fileName = file.getName();
+            }
+        }
+        String path="E:\\upload\\"+fileName;
+        model.put("path",path);
+        // 重定向
+        return "/performance/script/script_list" ;
+
+    }
+}
 

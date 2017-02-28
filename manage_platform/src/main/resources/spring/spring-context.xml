@@ -20,7 +20,7 @@
         <!--<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />-->
     </context:component-scan>
 
-    <bean id="propertyConfigurer" class="com.xn.manage.utils.PropertyUtil">
+    <bean id="propertyConfigurer" class="com.xn.common.utils.PropertyUtil">
         <property name="locations">
             <list>
                 <value>classpath:properties/*.properties</value>

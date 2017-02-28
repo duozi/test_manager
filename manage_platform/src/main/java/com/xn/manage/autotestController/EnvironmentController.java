@@ -1,17 +1,16 @@
 package com.xn.manage.autotestController;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
-import com.xn.interfacetest.entity.RelationServiceEnvironment;
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.RelationServiceEnvironmentService;
 import com.xn.interfacetest.service.TestEnvironmentService;
+import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.DatabaseTypeEnum;
 import com.xn.performance.util.CommonResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -22,16 +21,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.DatabaseTypeEnum;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/autotest/environment")
@@ -111,7 +107,7 @@ public class EnvironmentController {
 			if(StringUtils.isNotBlank(testEnvironmentDto.getName()) && !"null".equals(testEnvironmentDto.getName())){
 				testEnvironmentService.save(testEnvironmentDto);
 			} else {
-				int code = CommonResultEnum.PARAM_ERROR.getReturnCode();
+				int code = CommonResultEnum.ERROR.getReturnCode();
 				String message ="name不能为空！";
 				result.setCode(code);
 				result.setMessage(message);
@@ -152,33 +148,33 @@ public class EnvironmentController {
 		try{
 
 			if(null == relationServiceEnvironmentDto.getEnvironmentId()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请先保存环境基础信息！");
 				return  result;
 			}
 
 			if(null == relationServiceEnvironmentDto.getServiceId()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("服务不能为空！");
 				return  result;
 			}
 
 			if(null == relationServiceEnvironmentDto.getIpAddress()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("ip地址不能为空！");
 				return  result;
 			}
 
 			String httpPort = relationServiceEnvironmentDto.getHttpPort();
 			if(null != httpPort && !StringUtils.isNumeric(httpPort)){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("端口号应该为数字！");
 				return  result;
 			}
 
 			String dubboPort = relationServiceEnvironmentDto.getDubboPort();
 			if(null != dubboPort && !StringUtils.isNumeric(dubboPort)){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("端口号应该为数字！");
 				return  result;
 			}
