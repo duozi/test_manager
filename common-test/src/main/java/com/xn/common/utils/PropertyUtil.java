@@ -26,8 +26,12 @@ public class PropertyUtil extends PropertyPlaceholderConfigurer {
         ctxPropertiesMap = new HashMap<String, Object>();
         for (Object key : props.keySet()) {
             String keyStr = key.toString();
+            if("upload_path".equals(keyStr)){
+                System.out.print(props.getProperty(keyStr));
+            }
             String value = props.getProperty(keyStr);
             ctxPropertiesMap.put(keyStr, value);
         }
     }
 }
+

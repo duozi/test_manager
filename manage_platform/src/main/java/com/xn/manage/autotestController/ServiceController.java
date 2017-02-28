@@ -156,7 +156,7 @@ public class ServiceController {
 	 */
 	@RequestMapping("/uploadJar")
 	@ResponseBody
-	public String filesUpload(@RequestParam("jarAddress") MultipartFile[] files,
+	public String filesUpload(@RequestParam("jarPath") MultipartFile[] files,
 							  HttpServletRequest request) {
 		String jarPath = "";
 		CommonResult result = new CommonResult();

@@ -1,6 +1,6 @@
-package com.xn.interfacetest;
+package com.xn.test;
 
-
+import com.xn.common.utils.PropertyUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -10,16 +10,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration({"classpath:application.xml"}) 
+@ContextConfiguration({"classpath:spring/spring-context.xml"})
 public class UTest {
     private static final Logger logger = LoggerFactory.getLogger(UTest.class);
 
     @Test
     public void test(){
-
-        logger.info("gaoshan..........." +
-                "");
-        System.out.println(System.currentTimeMillis());
+        String filePath = PropertyUtil.getProperty("upload_path") + "ddd";
+        System.out.println(filePath);
     }
 }
 
