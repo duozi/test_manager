@@ -156,22 +156,30 @@ public class ServiceController {
 	 */
 	@RequestMapping("/uploadJar")
 	@ResponseBody
-	public String filesUpload(@RequestParam("jarPath") MultipartFile[] files,
+	public CommonResult filesUpload(@RequestParam("file") MultipartFile[] files,
 							  HttpServletRequest request) {
-		String jarPath = "";
 		CommonResult result = new CommonResult();
-		if (files != null && files.length > 0) {
-			for (int i = 0; i < files.length; i++) {
-				MultipartFile file = files[i];
-				// 保存文件
-				FileUtil.saveFile(request, file);
-				jarPath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+		result.setMessage("上传成功！");
+		String jarPath = "";
+		try{
+			if (files != null && files.length > 0) {
+				for (int i = 0; i < files.length; i++) {
+					MultipartFile file = files[i];
+					// 保存文件
+					FileUtil.saveFile(request, file);
+					jarPath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+					result.setData(jarPath);
+				}
 			}
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message = e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("删除操作异常｛｝",e);
 		}
-		// 重定向
-		return jarPath;
+		return result;
 	}
-
 
 
 }
