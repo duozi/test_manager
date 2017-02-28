@@ -130,7 +130,7 @@
                         <h4 class="modal-title" id="addServiceLabel">新增服务</h4>
                     </div>
                     <div class="modal-body modal-add-service">
-                        <form role="form " class="col-lg-12 edit-form add-service-form" id="add-service">
+                        <form role="form " class="col-lg-12 edit-form add-service-form" id="add-service"  enctype="multipart/form-data">
                             <div class="col-lg-14 form-div">
                                 <input type="hidden" value="" name="id">
                                 <div class="form-group">
@@ -151,10 +151,11 @@
                                     <label class="control-label" >服务描述</label>
                                     <input type="text" class="form-control" id="serviceDescription" name="description" placeholder="请输入服务描述">
                                 </div>
-                                <!--<div class="form-group">-->
-                                    <!--<label class="control-label" >上传jar包</label>-->
-                                    <!--<input id="file-0" class="file form-control" type="file" multiple data-min-file-count="0" name="">-->
-                                <!--</div>-->
+                                <div class="form-group">
+                                    <label class="control-label" >上传jar包</label>
+                                    <!--<input id="file-0" class="file form-control" type="file" data-min-file-count="0" >-->
+                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="jarAddress">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <a type="button" class="btn btn-primary" onclick="saveService()">保存</a>
@@ -198,18 +199,20 @@
    <!-- /.container-fluid -->
 <script type="text/javascript">
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
-        var control = $('#' + ctrlName);
-        control.fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-            showUpload: false, //是否显示上传按钮
-            showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        });
-    }
+    $("#file-1").fileinput({
+        uploadUrl: '${basePath}/autotest/service/uploadJar', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jar'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function(filename) {
+            $("input['jarAddress']")
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+
 
     function editService(id,name,description,systemId){
         $("#addService").modal();

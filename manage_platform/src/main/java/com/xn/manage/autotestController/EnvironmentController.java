@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.entity.RelationServiceEnvironment;
+import com.xn.interfacetest.service.RelationServiceEnvironmentService;
 import com.xn.interfacetest.service.TestEnvironmentService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.performance.util.CommonResult;
@@ -43,6 +46,9 @@ public class EnvironmentController {
 
 	@Autowired
 	private TestEnvironmentService testEnvironmentService;
+
+	@Autowired
+	private RelationServiceEnvironmentService relationServiceEnvironmentService;
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
 	public String getEnvironmentmPage(@PathVariable String  path, HttpServletRequest request, ModelMap model) {
@@ -138,27 +144,52 @@ public class EnvironmentController {
 		}
 		return  result;
 	}
-//
-//	@RequestMapping(value="/saveServiceProperties", method = RequestMethod.POST)
-//	@ResponseBody
-//	public CommonResult saveServiceProperties( testEnvironmentDto) {
-//		CommonResult result = new CommonResult();
-//		try{
-//			if(StringUtils.isNotBlank(testEnvironmentDto.getName()) && !"null".equals(testEnvironmentDto.getName())){
-//				testEnvironmentService.save(testEnvironmentDto);
-//			} else {
-//				int code = CommonResultEnum.PARAM_ERROR.getReturnCode();
-//				String message ="name不能为空！";
-//				result.setCode(code);
-//				result.setMessage(message);
-//			}
-//		}catch (Exception e){
-//			int code = CommonResultEnum.ERROR.getReturnCode();
-//			String message =e.getMessage();
-//			result.setCode(code);
-//			result.setMessage(message);
-//			logger.error("保存环境异常｛｝",e);
-//		}
-//		return  result;
-//	}
+
+	@RequestMapping(value="/saveServiceProperties", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult saveServiceProperties(RelationServiceEnvironmentDto relationServiceEnvironmentDto) {
+		CommonResult result = new CommonResult();
+		try{
+
+			if(null == relationServiceEnvironmentDto.getEnvironmentId()){
+				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setMessage("请先保存环境基础信息！");
+				return  result;
+			}
+
+			if(null == relationServiceEnvironmentDto.getServiceId()){
+				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setMessage("服务不能为空！");
+				return  result;
+			}
+
+			if(null == relationServiceEnvironmentDto.getIpAddress()){
+				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setMessage("ip地址不能为空！");
+				return  result;
+			}
+
+			String httpPort = relationServiceEnvironmentDto.getHttpPort();
+			if(null != httpPort && !StringUtils.isNumeric(httpPort)){
+				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setMessage("端口号应该为数字！");
+				return  result;
+			}
+
+			String dubboPort = relationServiceEnvironmentDto.getDubboPort();
+			if(null != dubboPort && !StringUtils.isNumeric(dubboPort)){
+				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setMessage("端口号应该为数字！");
+				return  result;
+			}
+			relationServiceEnvironmentService.save(relationServiceEnvironmentDto);
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message =e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("保存服务环境异常｛｝",e);
+		}
+		return  result;
+	}
 }

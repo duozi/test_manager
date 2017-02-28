@@ -55,9 +55,6 @@
                             <input type="checkbox" value="serviceProperties" name="serviceProperties">服务配置
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" value="zkProperties" name="zkProperties">zk配置
-                        </label>
-                        <label class="checkbox-inline">
                             <input type="checkbox" value="dbProperties" name="dbProperties">数据库配置
                         </label>
                         <label class="checkbox-inline">
@@ -84,6 +81,7 @@
                                     <th style="width: 30%">ip</th>
                                     <th style="width: 20%">http端口号</th>
                                     <th style="width: 20%">dubbo端口号</th>
+                                    <th style="width: 20%">zk地址</th>
                                     <th>操作</th>
                                     <th></th>
                                 </tr>
@@ -103,6 +101,7 @@
                                         <td><input type="text" class="form-control" name="ipAddress"></td>
                                         <td><input type="text" class="form-control" name="httpPort"></td>
                                         <td><input type="text" class="form-control" name="dubboPort"></td>
+                                        <td><input type="text" class="form-control" name="zkAddress"></td>
                                         <td>
                                             <button type="submit" class="btn btn-info"  onclick="saveServiceProperties(this)">保存</button>
                                         </td>
@@ -122,57 +121,57 @@
                     </div>
                 </div>
             </div>
-            <!--zk配置-->
-            <div id="zk-form-div" class="panel panel-default panel-collapse collapse operation-width">
-                <!-- zk配置 -->
-                <label class="control-label col-lg-4 top-label">zk配置</label>
+            <!--&lt;!&ndash;zk配置&ndash;&gt;-->
+            <!--<div id="zk-form-div" class="panel panel-default panel-collapse collapse operation-width">-->
+                <!--&lt;!&ndash; zk配置 &ndash;&gt;-->
+                <!--<label class="control-label col-lg-4 top-label">zk配置</label>-->
 
-                <div class="panel panel-default operation">
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table case-table">
-                                <thead>
-                                <tr>
-                                    <th style="width: 30%">服务名</th>
-                                    <th style="width: 60%">ip和端口号</th>
-                                    <th>操作</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <div class="row">
-                                        <td>
-                                            <select class="form-control">
-                                                <#if serviceList ??>
-                                                    <#list serviceList as item>
-                                                        <option value="${item.id}">${item.name}</option>
-                                                    </#list>
-                                                </#if>
-                                            </select>
-                                        </td>
-                                        <td><textarea type="text" class="form-control"
-                                                      style="width: 100% ;height: 34px;resize: vertical" name="httpAddress"></textarea></td>
+                <!--<div class="panel panel-default operation">-->
+                    <!--<div class="panel-body">-->
+                        <!--<div class="table-responsive">-->
+                            <!--<table class="table case-table">-->
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th style="width: 30%">服务名</th>-->
+                                    <!--<th style="width: 60%">ip和端口号</th>-->
+                                    <!--<th>操作</th>-->
+                                    <!--<th></th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--<tbody>-->
+                                <!--<tr>-->
+                                    <!--<div class="row">-->
+                                        <!--<td>-->
+                                            <!--<select class="form-control">-->
+                                                <!--<#if serviceList ??>-->
+                                                    <!--<#list serviceList as item>-->
+                                                        <!--<option value="${item.id}">${item.name}</option>-->
+                                                    <!--</#list>-->
+                                                <!--</#if>-->
+                                            <!--</select>-->
+                                        <!--</td>-->
+                                        <!--<td><textarea type="text" class="form-control"-->
+                                                      <!--style="width: 100% ;height: 34px;resize: vertical" name="httpAddress"></textarea></td>-->
 
-                                        <td>
-                                            <button type="submit" class="btn btn-info">保存</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" name="delete" class="btn btn-info">删除</button>
-                                        </td>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <td style=" border: none"><span id="addZkProperties"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加Zk配置</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                        <!--<td>-->
+                                            <!--<button type="submit" class="btn btn-info">保存</button>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<button type="button" name="delete" class="btn btn-info">删除</button>-->
+                                        <!--</td>-->
+                                    <!--</div>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td style=" border: none"><span id="addZkProperties"-->
+                                                                    <!--class="btn btn-info"><i-->
+                                            <!--class="icon icon-plus-sign"></i>添加Zk配置</span></td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <!--数据库配置-->
             <div id="db-form-div" class="panel panel-default panel-collapse collapse operation-width">
                 <!-- 数据库配置 -->
@@ -304,6 +303,7 @@
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="ipAddress"></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="httpPort"></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="dubboPort"></td>';
+    servicePropertiesHtml += '<td><input type="text" class="form-control" name="zkAddress"></td>';
     servicePropertiesHtml += '<td>';
     servicePropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</button>';
     servicePropertiesHtml += '</td>';
@@ -314,26 +314,26 @@
     servicePropertiesHtml += '</tr>';
 
 
-    var zkPropertiesHtml='<tr>';
-    zkPropertiesHtml+='<div class="row">';
-    zkPropertiesHtml+='<td>';
-    zkPropertiesHtml+='<select class="form-control">';
-    zkPropertiesHtml+='<#if serviceList ??>';
-    zkPropertiesHtml+='<#list serviceList as item>';
-    zkPropertiesHtml+='<option values="${item.id}"> ${item.name}</option>';
-    zkPropertiesHtml+='</#list>';
-    zkPropertiesHtml+='</#if>';
-    zkPropertiesHtml+='</select>';
-    zkPropertiesHtml+='</td>';
-    zkPropertiesHtml+='<td><textarea type="text" class="form-control" style="width: 100% ;height: 34px;resize: vertical"></textarea></td>';
-    zkPropertiesHtml+='<td>';
-    zkPropertiesHtml+='<button type="submit" class="btn btn-info" onclick="saveZKProperties(this)">保存</button>';
-    zkPropertiesHtml+='</td>';
-    zkPropertiesHtml+='<td>';
-    zkPropertiesHtml+='<button type="button" name="delete" class="btn btn-info">删除</button>';
-    zkPropertiesHtml+='</td>';
-    zkPropertiesHtml+='</div>';
-    zkPropertiesHtml+='</tr>';
+//    var zkPropertiesHtml='<tr>';
+//    zkPropertiesHtml+='<div class="row">';
+//    zkPropertiesHtml+='<td>';
+//    zkPropertiesHtml+='<select class="form-control">';
+//    zkPropertiesHtml+='<#if serviceList ??>';
+//    zkPropertiesHtml+='<#list serviceList as item>';
+//    zkPropertiesHtml+='<option values="${item.id}"> ${item.name}</option>';
+//    zkPropertiesHtml+='</#list>';
+//    zkPropertiesHtml+='</#if>';
+//    zkPropertiesHtml+='</select>';
+//    zkPropertiesHtml+='</td>';
+//    zkPropertiesHtml+='<td><textarea type="text" class="form-control" style="width: 100% ;height: 34px;resize: vertical"></textarea></td>';
+//    zkPropertiesHtml+='<td>';
+//    zkPropertiesHtml+='<button type="submit" class="btn btn-info" onclick="saveZKProperties(this)">保存</button>';
+//    zkPropertiesHtml+='</td>';
+//    zkPropertiesHtml+='<td>';
+//    zkPropertiesHtml+='<button type="button" name="delete" class="btn btn-info">删除</button>';
+//    zkPropertiesHtml+='</td>';
+//    zkPropertiesHtml+='</div>';
+//    zkPropertiesHtml+='</tr>';
 
     var dbPropertiesHtml = '<tr>';
     dbPropertiesHtml += '<div class="row">';
@@ -422,13 +422,13 @@
         });
 
     });
-    $("#addZkProperties").click(function () {
-        $(this).parent().parent().before(zkPropertiesHtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        });
-
-    });
+//    $("#addZkProperties").click(function () {
+//        $(this).parent().parent().before(zkPropertiesHtml);
+//        $("button[name='delete']").click(function () {
+//            $(this).parent().parent().remove();
+//        });
+//
+//    });
     $("#addRedisProperties").click(function () {
         $(this).parent().parent().before(redisPropertiesHtml);
         $("button[name='delete']").click(function () {
@@ -474,17 +474,19 @@
         var ipAddress = $(_this).parent().parent().find("input[name='ipAddress']").val();
         var httpPort = $(_this).parent().parent().find("input[name='httpPort']").val();
         var dubboPort = $(_this).parent().parent().find("input[name='dubboPort']").val();
+        var zkIpAddress = $(_this).parent().parent().find("input[name='zkAddress']").val();
+        var environmentId = $("#add-environment").find("input[name='id']").val();
         var AjaxURL= "${basePath}/autotest/environment/saveServiceProperties";
         $.ajax({
             type: "POST",
             dataType: "html",
             url: AjaxURL,
-            data: $('#add-environment').serialize(),
+            data: {"serviceId":serviceId,"ipAddress":ipAddress,"httpPort":httpPort,"dubboPort":dubboPort,"zkIpAddress":zkIpAddress,"environmentId":environmentId},
             success: function (result) {
                 data = eval("(" + result + ")");
                 if (data.code == 0) {
-                    // $("#addService").modal("hide");
-                    reload();
+                    alert("保存成功")
+                    //reload();
                 } else {
                     alert("保存失败："+data.message);
                 }
@@ -493,7 +495,6 @@
                 alert(eval("(" + result + ")").message);
             }
         });
-        alert();
     }
 
     function saveDbProperties(_this){
