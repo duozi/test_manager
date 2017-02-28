@@ -274,7 +274,7 @@ form .choose-sys {
 }
 
 #addService .modal-add-service {
-    height:340px;
+    min-height: 700px;
 }
 
 .suit-panel {
@@ -348,3 +348,8 @@ form .choose-sys {
 .upto-left {
     margin-left: 70%;
 }
+
+#addService .modal-dialog ,#addScript .modal-dialog{
+    width: 700px;
+}
+

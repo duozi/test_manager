@@ -42,7 +42,10 @@ public class TestService extends BaseEntity {
      */
     private Long systemId;
 
-
+    /**
+     * jar包路径
+     */
+    private String jarPath;
 	
 	public TestService(){
 	    // default constructor
@@ -83,7 +86,12 @@ public class TestService extends BaseEntity {
     public void setSystemId(Long systemId) {
         this.systemId = systemId;
     }
-    
 
+    public String getJarPath() {
+        return jarPath;
+    }
 
+    public void setJarPath(String jarPath) {
+        this.jarPath = jarPath;
+    }
 }

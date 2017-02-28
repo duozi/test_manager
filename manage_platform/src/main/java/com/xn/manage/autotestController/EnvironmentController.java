@@ -111,7 +111,7 @@ public class EnvironmentController {
 			if(StringUtils.isNotBlank(testEnvironmentDto.getName()) && !"null".equals(testEnvironmentDto.getName())){
 				testEnvironmentService.save(testEnvironmentDto);
 			} else {
-				int code = CommonResultEnum.PARAM_ERROR.getReturnCode();
+				int code = CommonResultEnum.ERROR.getReturnCode();
 				String message ="name不能为空！";
 				result.setCode(code);
 				result.setMessage(message);
@@ -152,33 +152,33 @@ public class EnvironmentController {
 		try{
 
 			if(null == relationServiceEnvironmentDto.getEnvironmentId()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请先保存环境基础信息！");
 				return  result;
 			}
 
 			if(null == relationServiceEnvironmentDto.getServiceId()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("服务不能为空！");
 				return  result;
 			}
 
 			if(null == relationServiceEnvironmentDto.getIpAddress()){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("ip地址不能为空！");
 				return  result;
 			}
 
 			String httpPort = relationServiceEnvironmentDto.getHttpPort();
 			if(null != httpPort && !StringUtils.isNumeric(httpPort)){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("端口号应该为数字！");
 				return  result;
 			}
 
 			String dubboPort = relationServiceEnvironmentDto.getDubboPort();
 			if(null != dubboPort && !StringUtils.isNumeric(dubboPort)){
-				result.setCode(CommonResultEnum.PARAM_ERROR.getReturnCode());
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("端口号应该为数字！");
 				return  result;
 			}
