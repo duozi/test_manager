@@ -5,6 +5,7 @@ import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
 import com.xn.common.utils.FileUtil;
+import com.xn.common.utils.PropertyUtil;
 import com.xn.interfacetest.dto.TestServiceDto;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestServiceService;
@@ -154,19 +155,20 @@ public class ServiceController {
 	 */
 	@RequestMapping("/uploadJar")
 	@ResponseBody
-	public CommonResult filesUpload(@RequestParam("jarAddress") MultipartFile[] files,
+	public String filesUpload(@RequestParam("jarPath") MultipartFile[] files,
 							  HttpServletRequest request) {
+		String jarPath = "";
 		CommonResult result = new CommonResult();
 		if (files != null && files.length > 0) {
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
 				// 保存文件
 				FileUtil.saveFile(request, file);
+				jarPath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
 			}
 		}
-
 		// 重定向
-		return result;
+		return jarPath;
 	}
 
 

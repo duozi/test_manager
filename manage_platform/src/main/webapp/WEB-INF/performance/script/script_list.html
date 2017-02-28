@@ -16,21 +16,6 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-//            $("#sub").click(function (){
-//                $("script-save").preventDefault();
-//                $.ajax({
-//                    type: "get",
-//                    url: "/performance/script/script_list/save",
-//                    data: {},
-//                    success: function (data) {
-//                        alert(data);
-//                        if (!data) {
-//
-//                        }
-//                    }
-//                })
-//            })
-            
 
             $("#script-save").validate({
                 submitHandler: function () {
@@ -102,7 +87,7 @@
             window.location.href = "script_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&scriptStatus=" + scriptStatus
         }
 
-        function showScript(item){
+        function showScript(item) {
             $("#scriptId").val(item.id);
             $("#createPerson").val(item.createPerson);
             $("#scriptName").val(item.scriptName);
@@ -112,11 +97,18 @@
             $("#psystem").val(item.psystem);
             $('#editScript').modal('show');
         }
-        function showScriptDetail(item) {
-
+        function showScriptDetail(path) {
+            $.post("/performance/script/script_list/show_script?path="+path,  function (data) {
+                if (data.code == 0) {
+                    $("#content").val()
+                    $("#showScript").modal('show')
+                } else if (data.code == 1) {
+                    alert("查看失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
         }
-
-
 
     </script>
 </head>
@@ -137,8 +129,8 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
-                        <div class="form-group col-xs-2" >
-                            <select class="form-control"  id="search-company">
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" id="search-company">
                                 <option value="" disabled selected> 选择公司</option>
                                 <#if companyList ??>
                                     <#list companyList as item>
@@ -147,7 +139,7 @@
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-xs-2" >
+                        <div class="form-group col-xs-2">
                             <select class="form-control" id="search-department">
                                 <option value="" disabled selected>选择部门</option>
                                 <#if departmentList ??>
@@ -157,7 +149,7 @@
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-xs-2" >
+                        <div class="form-group col-xs-2">
                             <select class="form-control" id="search-psystem">
                                 <option value="" disabled selected>选择系统</option>
                                 <#if psystemList ??>
@@ -177,7 +169,7 @@
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-xs-2" >
+                        <div class="form-group col-xs-2">
                             <select class="form-control" id="search-scriptStatus">
                                 <option value="" disabled selected>选择发布状态</option>
                                 <#if publish_list ??>
@@ -226,19 +218,14 @@
                                     <td>
 
                                         <a type="button" name="editScript" class="btn btn-info"
-                                        <#if item.scriptStatus="未发布">
-
-                                            onclick='showScript(${item})'
-                                        </#if>
+                                        <#if item.scriptStatus="未发布"> onclick="showScript(${item})"</#if>
                                         <#if item.scriptStatus="已发布">
                                             disabled
                                         </#if>
-
-
                                         >编辑</a>
-                                        <a type="button" name="deleteScript" class="btn btn-warning"
-                                           onclick="showScriptDetail(${item.id})">查看脚本内容</a>
-                                        <a type="button" name="deleteScript" class="btn btn-danger"
+                                        <a type="button" class="btn btn-warning"
+                                           onclick="showScriptDetail('${item.path}')">查看脚本内容</a>
+                                        <a type="button" class="btn btn-danger"
                                            onclick="deleteScript(${item.id})">删除</a>
                                     </td>
                                 </tr>
@@ -255,36 +242,66 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
-
-
-
-    <!-- 新增脚本 -->
-    <div class="modal fade" id="addScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+    <!-- 查看脚本具体内容 -->
+    <div class="modal fade" id="showScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >新增脚本</h4>
                 </div>
                 <div class="modal-body modal-add" style="min-height: 480px">
-                    <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save" enctype="multipart/form-data">
+                    <form role="form " class="col-lg-12 edit-form" id="script-show" name="script-save"
+                          enctype="multipart/form-data">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                               <textarea id="content"></textarea>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- 新增脚本 -->
+    <div class="modal fade" id="addScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">新增脚本</h4>
+                </div>
+                <div class="modal-body modal-add" style="min-height: 480px">
+                    <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save"
+                          enctype="multipart/form-data">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
                                 <label class="control-label">创建人<span style="color:red">*</span></label>
-                                <input type="text" class="form-control"   name="createPerson" placeholder="请输入您的姓名" required>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">脚本名称<span style="color:red">*</span></label>
-                                <input type="text" class="form-control"  name="scriptName"
+                                <input type="text" class="form-control" name="scriptName"
                                        placeholder="请输入脚本名称" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">脚本描述</label>
-                                <input type="text" class="form-control"  name="remark" placeholder="请输入脚本描述">
+                                <input type="text" class="form-control" name="remark" placeholder="请输入脚本描述">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">公司<span style="color:red">*</span></label>
-                                <select  class="form-control" name="company" required>
+                                <select class="form-control" name="company" required>
                                     <#if companyList ??>
                                         <#list companyList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -295,7 +312,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">部门<span style="color:red">*</span></label>
-                                <select  class="form-control" name="department" required>
+                                <select class="form-control" name="department" required>
                                     <#if departmentList ??>
                                         <#list departmentList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -306,7 +323,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
-                                <select  class="form-control" name="psystem" required>
+                                <select class="form-control" name="psystem" required>
                                     <#if psystemList ??>
                                         <#list psystemList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -317,13 +334,14 @@
                             </div>
                             <div class="form-group ">
                                 <label class="control-label">上传脚本<span style="color:red">*</span></label>
-                                <input id="uploadScript" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="uploadScript" required>
-                                <input class="hidden"  name="path" value="" >
+                                <input id="uploadScript" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="1" name="uploadScript">
+                                <input class="hidden" name="path" value="" required>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" id="sub" class="btn btn-primary submit">保存</button>
+                            <button type="submit"  class="btn btn-primary submit">保存</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -336,23 +354,23 @@
     </div>
 
     <!-- 编辑脚本 -->
-    <div class="modal fade" id="editScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+    <div class="modal fade" id="editScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >新增脚本</h4>
+                    <h4 class="modal-title">编辑脚本</h4>
                 </div>
                 <div class="modal-body modal-add" style="min-height: 450px">
                     <form role="form " class="col-lg-12 edit-form" id="script-edit" name="script-edit">
                         <div class="col-lg-14 form-div">
-                            <div class="form-group">
-                                <label class="control-label">创建人<span style="color:red">*</span></label>
-                                <input type="text" class="form-control"   id="createPerson" name="createPerson" placeholder="请输入您的姓名">
-                            </div>
+
                             <div class="form-group">
                                 <label class="control-label">脚本名称<span style="color:red">*</span></label>
-                                <input type="text" class="form-control"  id="scriptName" name="scriptName"
+                                <input type="text" class="hidden" id="scriptId" name="id" value="">
+                                <input type="text" class="hidden" id="createPerson" name="createPerson" value="">
+                                <input type="text" class="form-control" id="scriptName" name="scriptName"
                                        placeholder="请输入脚本名称">
                             </div>
                             <div class="form-group">
@@ -361,7 +379,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">公司<span style="color:red">*</span></label>
-                                <select  class="form-control" id="company" name="company" required>
+                                <select class="form-control" id="company" name="company" required>
                                     <#if companyList ??>
                                         <#list companyList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -372,7 +390,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">部门<span style="color:red">*</span></label>
-                                <select  class="form-control" id="department" name="department" required>
+                                <select class="form-control" id="department" name="department" required>
                                     <#if departmentList ??>
                                         <#list departmentList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -383,7 +401,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
-                                <select  class="form-control"  id="psystem"name="psystem" required>
+                                <select class="form-control" id="psystem" name="psystem" required>
                                     <#if psystemList ??>
                                         <#list psystemList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -393,7 +411,6 @@
                                 </select>
                             </div>
                             <div class="form-group ">
-                                <!--<label class="control-label"></label>-->
                                 <a type="button" class="btn btn-warning" style="margin-left: auto">修改脚本内容</a>
                             </div>
 
@@ -415,28 +432,22 @@
 <script type="text/javascript">
     $("#uploadScript").fileinput({
         uploadUrl: '${basePath}/performance/script/script_list/upload_script', // you must set a valid URL here else you will get an error
-        allowedFileExtensions : ['jmx'],
+        allowedFileExtensions: ['jmx'],
         overwriteInitial: false,
         language: 'zh', //设置语言
-        maxFileSize: 1000,
+        maxFileSize: 1,
         maxFilesNum: 1,
-        showPreview:false,
-        slugCallback: function(filename) {
-            $("input[name='path']").val(filename);
-                return filename.replace('(', '_').replace(']', '_');
+        showPreview: false,
+        slugCallback: function (filename) {
+
+            var pos = filename.lastIndexOf("\\");
+            var name = filename.substring(pos + 1);
+
+            $("input[name='path']").val(name);
+            return filename.replace('(', '_').replace(']', '_');
         }
     });
 
-    $("select[name='excute-time-type']").change(
-            function () {
-                var value = $(this).val();
-                if (value == 'settime') {
-                    $(".settime").removeClass("hidden");
-                } else if (value == 'now') {
-                    $(".settime").addClass("hidden");
-                }
-            }
-    );
 
 </script>
 <!-- /.container-fluid -->

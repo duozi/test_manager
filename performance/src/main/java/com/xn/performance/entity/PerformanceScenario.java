@@ -105,110 +105,108 @@ public class PerformanceScenario extends BaseEntity {
         this.id = id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
     
-    public void setScenarioName(String scenarioName) {
-        this.scenarioName = scenarioName;
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     public String getScenarioName() {
         return this.scenarioName;
     }
     
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setScenarioName(String scenarioName) {
+        this.scenarioName = scenarioName;
     }
     
     public String getRemark() {
         return this.remark;
     }
     
-    public void setPsystem(String psystem) {
-        this.psystem = psystem;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     
     public String getPsystem() {
         return this.psystem;
     }
     
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setPsystem(String psystem) {
+        this.psystem = psystem;
     }
     
     public String getDepartment() {
         return this.department;
     }
     
-    public void setCompany(String company) {
-        this.company = company;
+    public void setDepartment(String department) {
+        this.department = department;
     }
     
     public String getCompany() {
         return this.company;
     }
     
-    public void setConcurrency(Integer concurrency) {
-        this.concurrency = concurrency;
+    public void setCompany(String company) {
+        this.company = company;
     }
     
     public Integer getConcurrency() {
         return this.concurrency;
     }
     
-    public void setStartup(Integer startup) {
-        this.startup = startup;
+    public void setConcurrency(Integer concurrency) {
+        this.concurrency = concurrency;
     }
     
     public Integer getStartup() {
         return this.startup;
     }
     
-    public void setExecuteTime(Integer executeTime) {
-        this.executeTime = executeTime;
+    public void setStartup(Integer startup) {
+        this.startup = startup;
     }
     
     public Integer getExecuteTime() {
         return this.executeTime;
     }
     
-    public void setCycle(Integer cycle) {
-        this.cycle = cycle;
+    public void setExecuteTime(Integer executeTime) {
+        this.executeTime = executeTime;
     }
     
     public Integer getCycle() {
         return this.cycle;
     }
     
-    public void setScenarioStatus(String scenarioStatus) {
-        this.scenarioStatus = scenarioStatus;
+    public void setCycle(Integer cycle) {
+        this.cycle = cycle;
     }
     
     public String getScenarioStatus() {
         return this.scenarioStatus;
     }
     
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
+    public void setScenarioStatus(String scenarioStatus) {
+        this.scenarioStatus = scenarioStatus;
     }
     
     public String getCreatePerson() {
         return this.createPerson;
     }
     
-
-    
-    public void setPerformancePlans(List<PerformancePlan> performancePlans){
-        this.performancePlans = performancePlans;
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
     }
     
     public List<PerformancePlan> getPerformancePlans() {
         return performancePlans;
+    }
+    
+    public void setPerformancePlans(List<PerformancePlan> performancePlans){
+        this.performancePlans = performancePlans;
     }
 
 }

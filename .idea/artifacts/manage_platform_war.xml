@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/manage_platform/target</output-path>
     <root id="archive" name="manage_platform.war">
       <element id="artifact" artifact-name="manage_platform:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: junit:junit:4.11" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

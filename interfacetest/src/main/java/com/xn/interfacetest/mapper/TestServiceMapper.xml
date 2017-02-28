@@ -9,11 +9,12 @@
         <result property="name" column="name"/>
         <result property="description" column="description"/>
         <result property="systemId" column="system_id"/>
+        <result property="jarPth" column="jar_path"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, system_id
+        id, name, description, system_id,jar_path
         ]]>
     </sql>
     
@@ -30,6 +31,9 @@
             </if>
            <if test="null != systemId">
                 AND system_id = #{systemId}
+            </if>
+            <if test="null != jarPth">
+                AND jar_path = #{jarPth}
             </if>
         </where>
     </sql>
@@ -98,12 +102,14 @@
                 id,
                 name,
                 description,
-                system_id
+                system_id,
+                jar_path
             ) VALUES (
                 #{id},
                 #{name},
                 #{description},
-                #{systemId}
+                #{systemId},
+                #{jarPth}
             )
         ]]>
     </insert>
@@ -114,11 +120,12 @@
                 id,
                 name,
                 description,
-                system_id
+                system_id,
+                jar_path
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.systemId})
+            (#{item.id},#{item.name},#{item.description},#{item.systemId}),#{item.jarPth}
         </foreach>
     </insert>
     
@@ -134,6 +141,9 @@
                 </if>
                 <if test="systemId != null">
                 	<![CDATA[ system_id = #{systemId} ]]>
+                </if>
+                <if test="jarPth != null">
+                    <![CDATA[ jar_path = #{jarPth} ]]>
                 </if>
             </set>
             WHERE

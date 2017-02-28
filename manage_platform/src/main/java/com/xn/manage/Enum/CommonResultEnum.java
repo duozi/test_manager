@@ -17,14 +17,6 @@ public enum CommonResultEnum {
         this.returnMsg = returnMsg;
     }
 
-    public Integer getReturnCode() {
-        return returnCode;
-    }
-
-    public String getReturnMsg() {
-        return returnMsg;
-    }
-
     public static CommonResultEnum getEnum(Integer errorCode) {
         CommonResultEnum[] arr = CommonResultEnum.values();
         for (CommonResultEnum tmp : arr) {
@@ -33,5 +25,13 @@ public enum CommonResultEnum {
             }
         }
         return SUCCESS;
+    }
+
+    public Integer getReturnCode() {
+        return returnCode;
+    }
+
+    public String getReturnMsg() {
+        return returnMsg;
     }
 }

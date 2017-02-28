@@ -47,6 +47,11 @@ public class TestServiceDto extends BaseDto {
      */
     private Long systemId;
 
+    /**
+     * jar包路径
+     */
+    private String jarPath;
+
     /*
      * 系统(包含公司信息)
     */
@@ -90,6 +95,14 @@ public class TestServiceDto extends BaseDto {
 
     public void setSystemDto(TestSystemDto systemDto) {
         this.systemDto = systemDto;
+    }
+
+    public String getJarPath() {
+        return jarPath;
+    }
+
+    public void setJarPath(String jarPath) {
+        this.jarPath = jarPath;
     }
 }
 

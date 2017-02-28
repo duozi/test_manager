@@ -63,10 +63,11 @@ public class FileUtil {
             e.printStackTrace();
         }
         for (String line : lines) {
-            result += "\t\t"+line + "\n";
+            result += "\t\t" + line + "\n";
         }
         return result;
     }
+
     public static void deleteAllFilesOfDir(File path) {
         if (!path.exists())
             return;
@@ -106,5 +107,12 @@ public class FileUtil {
         }
         return false;
     }
+
+    
+    public static void main(String[] args) {
+        String filePath = PropertyUtil.getProperty("upload_path") + "dddd.jar";
+        System.out.print(filePath);
+	}
+    
 
 }

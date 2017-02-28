@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" >上传jar包</label>
-                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="jarAddress">
+                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="jarPath">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -203,11 +203,13 @@
         allowedFileExtensions : ['jar'],
         overwriteInitial: false,
         language: 'zh', //设置语言
-        maxFileSize: 1000,
-        maxFilesNum: 10,
+        maxFileSize: 200000,
+        maxFilesNum: 1,
+        showUpload:false,
+        showPreview:false,
         //allowedFileTypes: ['image', 'video', 'flash'],
         slugCallback: function(filename) {
-            return filename.replace('(', '_').replace(']', '_');
+            return filename;
         }
     });
 
@@ -246,6 +248,7 @@
                     data = eval("(" + result + ")");
                     if (data.code == 0) {
                         // $("#addService").modal("hide");
+                        $('#file-1').fileinput('upload');
                         reload();
                     } else {
                         alert("保存失败："+data.message);
