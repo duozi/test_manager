@@ -24,19 +24,19 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(timeout)">
+           <if test="@Ognl@isNotEmpty(timeout)">
                 AND timeout = #{timeout}
             </if>
-           <if test="@isNotEmpty(tryTime)">
+           <if test="@Ognl@isNotEmpty(tryTime)">
                 AND try_time = #{tryTime}
             </if>
-           <if test="@isNotEmpty(ipAddress)">
+           <if test="@Ognl@isNotEmpty(ipAddress)">
                 AND ip_address = #{ipAddress}
             </if>
-           <if test="@isNotEmpty(environmentId)">
+           <if test="@Ognl@isNotEmpty(environmentId)">
                 AND environment_id = #{environmentId}
             </if>
         </where>

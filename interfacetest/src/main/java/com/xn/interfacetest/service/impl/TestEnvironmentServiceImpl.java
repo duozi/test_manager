@@ -6,6 +6,9 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.service.TestSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +37,9 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
      */
     @Autowired
     private TestEnvironmentMapper testEnvironmentMapper;
+
+    @Autowired
+    private TestSystemService systemService;
 
     @Override
     @Transactional(readOnly = true)
@@ -75,7 +81,11 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
     @Override
     public TestEnvironmentDto save(TestEnvironmentDto testEnvironmentDto) {
         TestEnvironment testEnvironment = BeanUtils.toBean(testEnvironmentDto,TestEnvironment.class);
-        testEnvironmentMapper.save(testEnvironment);
+        if(null == testEnvironmentDto.getId()){
+            testEnvironmentMapper.save(testEnvironment);
+        } else {
+            testEnvironmentMapper.update(testEnvironment);
+        }
         testEnvironmentDto.setId(testEnvironment.getId());
         return testEnvironmentDto;
     }
@@ -114,6 +124,33 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
     @Override
     public int deleteBatch(List<TestEnvironmentDto> testEnvironments) {
         return 0;
+    }
+
+    @Override
+    public List<TestEnvironmentDto> listWithSystem(Map<String, Object> params) {
+        List<TestEnvironment> list = testEnvironmentMapper.list(params);
+        List<TestEnvironmentDto> dtoList = CollectionUtils.transform(list, TestEnvironmentDto.class);
+        //查询对应的系统，保存在dto中
+        if(null != dtoList && dtoList.size() > 0){
+            for(TestEnvironmentDto dto:dtoList){
+                TestSystemDto systemDto = systemService.get(dto.getSystemId());
+                dto.setSystemDto(systemDto);
+            }
+        }
+        return dtoList;
+    }
+
+    @Override
+    public TestEnvironmentDto getWithSystem(Long id) {
+        TestEnvironment testEnvironment = testEnvironmentMapper.get(id);
+        TestEnvironmentDto testEnvironmentDto = BeanUtils.toBean(testEnvironment,TestEnvironmentDto.class);
+        //查询 系统信息
+        if(null != testEnvironmentDto){
+            TestSystemDto systemDto = systemService.get(testEnvironmentDto.getSystemId());
+            testEnvironmentDto.setSystemDto(systemDto);
+        }
+
+        return testEnvironmentDto;
     }
 
 }

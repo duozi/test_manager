@@ -24,25 +24,25 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(planName)">
+           <if test="@Ognl@isNotEmpty(planName)">
                 AND plan_name = #{planName}
             </if>
-           <if test="@isNotEmpty(executeType)">
+           <if test="@Ognl@isNotEmpty(executeType)">
                 AND execute_type = #{executeType}
             </if>
-           <if test="@isNotEmpty(planStatus)">
+           <if test="@Ognl@isNotEmpty(planStatus)">
                 AND plan_status = #{planStatus}
             </if>
-           <if test="@isNotEmpty(changeTimeBegin)">
+           <if test="@Ognl@isNotEmpty(changeTimeBegin)">
                 AND change_time >= #{changeTimeBegin}
            </if>
-           <if test="@isNotEmpty(changeTimeEnd)">
+           <if test="@Ognl@isNotEmpty(changeTimeEnd)">
                 AND change_time &lt;= #{changeTimeEnd}
            </if>
-           <if test="@isNotEmpty(planType)">
+           <if test="@Ognl@isNotEmpty(planType)">
                 AND plan_type = #{planType}
             </if>
-           <if test="@isNotEmpty(systemName)">
+           <if test="@Ognl@isNotEmpty(systemName)">
                 AND system_name = #{systemName}
             </if>
         </where>

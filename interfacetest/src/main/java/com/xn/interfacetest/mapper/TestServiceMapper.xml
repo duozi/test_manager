@@ -48,10 +48,40 @@
         SELECT
             <include refid="columns" />
         FROM
-            test_service 
+            test_service
         <include refid="where"/>
     </select>
-        
+
+    <select id="listByParams" resultMap="TestServiceMap">
+        SELECT
+          ts.*
+        FROM
+        test_service ts
+        left join test_system sy on ts.system_id = sy.id
+        left join department dd on dd.id = sy.department_id
+        <where>
+            <if test="id != null and id != 0">
+                AND ts.id = #{id}
+            </if>
+            <if test="null != name">
+                AND ts.name = #{name}
+            </if>
+            <if test="null != description">
+                AND ts.description = #{description}
+            </if>
+            <if test="null != systemId">
+                AND ts.system_id = #{systemId}
+            </if>
+            <if test="null != departmentId">
+                AND sy.department_id = #{departmentId}
+            </if>
+            <if test="null != companyId">
+                AND dd.company_id = #{companyId}
+            </if>
+        </where>
+
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT

@@ -117,4 +117,8 @@ public interface TestServiceService {
     int deleteBatch(List<TestServiceDto> testServices);
 
 
+    /*
+    根据公司信息、系统信息查询服务
+     */
+    List<TestServiceDto> listByParams(Map<String, Object> params);
 }

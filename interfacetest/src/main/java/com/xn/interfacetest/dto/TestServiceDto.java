@@ -5,6 +5,9 @@ package com.xn.interfacetest.dto;
 
 
 import com.xn.common.base.BaseDto;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * TestService Dto 对象
@@ -29,6 +32,7 @@ public class TestServiceDto extends BaseDto {
      * 
      * 服务名称 
      */
+    @NotEmpty
     private String name;
 
     /**
@@ -42,6 +46,11 @@ public class TestServiceDto extends BaseDto {
      * 系统id 
      */
     private Long systemId;
+
+    /*
+     * 系统(包含公司信息)
+    */
+    private TestSystemDto systemDto;
 
     public Long getId() {
         return this.id;
@@ -75,7 +84,12 @@ public class TestServiceDto extends BaseDto {
         this.systemId = systemId;
     }
 
+    public TestSystemDto getSystemDto() {
+        return systemDto;
+    }
 
-
+    public void setSystemDto(TestSystemDto systemDto) {
+        this.systemDto = systemDto;
+    }
 }
 

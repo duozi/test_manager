@@ -27,28 +27,28 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(type)">
+           <if test="@Ognl@isNotEmpty(type)">
                 AND type = #{type}
             </if>
-           <if test="@isNotEmpty(ipAddress)">
+           <if test="@Ognl@isNotEmpty(ipAddress)">
                 AND ip_address = #{ipAddress}
             </if>
-           <if test="@isNotEmpty(portAddress)">
+           <if test="@Ognl@isNotEmpty(portAddress)">
                 AND port_address = #{portAddress}
             </if>
-           <if test="@isNotEmpty(databaseName)">
+           <if test="@Ognl@isNotEmpty(databaseName)">
                 AND database_name = #{databaseName}
             </if>
-           <if test="@isNotEmpty(userName)">
+           <if test="@Ognl@isNotEmpty(userName)">
                 AND user_name = #{userName}
             </if>
-           <if test="@isNotEmpty(password)">
+           <if test="@Ognl@isNotEmpty(password)">
                 AND password = #{password}
             </if>
-           <if test="@isNotEmpty(environmentId)">
+           <if test="@Ognl@isNotEmpty(environmentId)">
                 AND environment_id = #{environmentId}
             </if>
         </where>

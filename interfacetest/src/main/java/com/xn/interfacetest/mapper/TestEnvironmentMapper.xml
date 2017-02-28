@@ -19,16 +19,16 @@
     
     <sql id="where">
         <where>
-           <if test="id != null and id != 0">
+           <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(description)">
+           <if test="@Ognl@isNotEmpty(description)">
                 AND description = #{description}
             </if>
-           <if test="@isNotEmpty(systemId)">
+           <if test="@Ognl@isNotEmpty(systemId)">
                 AND system_id = #{systemId}
             </if>
         </where>

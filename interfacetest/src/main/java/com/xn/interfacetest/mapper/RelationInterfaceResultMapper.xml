@@ -27,28 +27,28 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(suitId)">
+           <if test="@Ognl@isNotEmpty(suitId)">
                 AND suit_id = #{suitId}
             </if>
-           <if test="@isNotEmpty(interfaceId)">
+           <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
-           <if test="@isNotEmpty(caseId)">
+           <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-           <if test="@isNotEmpty(planId)">
+           <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-           <if test="@isNotEmpty(reportId)">
+           <if test="@Ognl@isNotEmpty(reportId)">
                 AND report_id = #{reportId}
             </if>
-           <if test="@isNotEmpty(requestData)">
+           <if test="@Ognl@isNotEmpty(requestData)">
                 AND request_data = #{requestData}
             </if>
-           <if test="@isNotEmpty(responseData)">
+           <if test="@Ognl@isNotEmpty(responseData)">
                 AND response_data = #{responseData}
             </if>
-           <if test="@isNotEmpty(result)">
+           <if test="@Ognl@isNotEmpty(result)">
                 AND result = #{result}
             </if>
         </where>

@@ -32,43 +32,43 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(name)">
+           <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="@isNotEmpty(description)">
+           <if test="@Ognl@isNotEmpty(description)">
                 AND description = #{description}
             </if>
-           <if test="@isNotEmpty(serviceId)">
+           <if test="@Ognl@isNotEmpty(serviceId)">
                 AND service_id = #{serviceId}
             </if>
-           <if test="@isNotEmpty(type)">
+           <if test="@Ognl@isNotEmpty(type)">
                 AND type = #{type}
             </if>
-           <if test="@isNotEmpty(url)">
+           <if test="@Ognl@isNotEmpty(url)">
                 AND url = #{url}
             </if>
-           <if test="@isNotEmpty(codeText)">
+           <if test="@Ognl@isNotEmpty(codeText)">
                 AND code_text = #{codeText}
             </if>
-           <if test="@isNotEmpty(jarPath)">
+           <if test="@Ognl@isNotEmpty(jarPath)">
                 AND jar_path = #{jarPath}
             </if>
-           <if test="@isNotEmpty(requestType)">
+           <if test="@Ognl@isNotEmpty(requestType)">
                 AND request_type = #{requestType}
             </if>
-           <if test="@isNotEmpty(protocolType)">
+           <if test="@Ognl@isNotEmpty(protocolType)">
                 AND protocol_type = #{protocolType}
             </if>
-           <if test="@isNotEmpty(params)">
+           <if test="@Ognl@isNotEmpty(params)">
                 AND params = #{params}
             </if>
-           <if test="@isNotEmpty(dubboVersion)">
+           <if test="@Ognl@isNotEmpty(dubboVersion)">
                 AND dubbo_version = #{dubboVersion}
             </if>
-           <if test="@isNotEmpty(dubboGroup)">
+           <if test="@Ognl@isNotEmpty(dubboGroup)">
                 AND dubbo_group = #{dubboGroup}
             </if>
-           <if test="@isNotEmpty(dubboTimeout)">
+           <if test="@Ognl@isNotEmpty(dubboTimeout)">
                 AND dubbo_timeout = #{dubboTimeout}
             </if>
         </where>

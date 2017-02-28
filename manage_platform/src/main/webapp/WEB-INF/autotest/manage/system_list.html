@@ -50,7 +50,7 @@
                                </div>
                                <div class="form-group col-lg-2">
                                    <select class="form-control" name="selectDepartmentId">
-                                       <option value="" disabled selected >选择部门名称</option>
+                                       <option value=""  <#if departmentId = null>disabled selected</#if> >选择部门名称</option>
                                        <#if departmentList ??>
                                            <#list departmentList as item>
                                                <option value="${item.id}" <#if departmentId = item.id>selected</#if>>${item.name}</option>
@@ -59,7 +59,7 @@
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
-                                  <input placeholder="请输入系统名称" class="form-control" name="systemName" <#if name??>value="${systemName}"</#if>/>
+                                  <input placeholder="请输入系统名称" class="form-control" name="systemName" <#if name??>value="${name}"</#if>/>
                                </div>
                                <div class="form-group col-lg-3">
                                    <a type="button" class="btn btn-default" onclick="reloadSystem()">查询</a>
@@ -141,7 +141,7 @@
                                 <input type="text" class="form-control" id="name" name="name" placeholder="请输入系统名称">
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">保存</button>
+                                <a type="submit" class="btn btn-primary" onclick="saveSystem()">保存</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             </div>
                         </form>
@@ -165,36 +165,37 @@
     }
 
     //ajax提交form表单的方式
-    $('#add-system').submit(function() {
-                var AjaxURL= "${basePath}/autotest/manage/saveSystem";
-                $.ajax({
-                    type: "POST",
-                    dataType: "html",
-                    url: AjaxURL,
-                    data: $('#add-system').serialize(),
-                    success: function (result) {
-                        data = eval("(" + result + ")");
-                        if (data.code == 0) {
-                            $("#addProject").modal("hide");
-                            reload();
-                        } else {
-                            $.MsgBox.Alert("保存失败："+data.message);
-                        }
-                    },
-                    error: function(result) {
-                        $.MsgBox.Alert(eval("(" + result + ")").message);
-                    }
-                });
+    function saveSystem(){
+        var AjaxURL= "${basePath}/autotest/manage/saveSystem";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: AjaxURL,
+            data: $('#add-system').serialize(),
+            success: function (result) {
+                data = eval("(" + result + ")");
+                if (data.code == 0) {
+                    $("#addProject").modal("hide");
+                    reload();
+                } else {
+                    alert("保存失败："+data.message);
+                }
+            },
+            error: function(result) {
+                alert(eval("(" + result + ")").message);
             }
-    );
+        });
+    }
 
-    function deleteSystem(id){
-        $.post("${basePath}/autotest/manage/deleteSystem",{id:id},function(data,status){
-            if(0!=data.code){
-                $.MsgBox.Alert(data.message);
-            } else {
-                reload();
-            }
+    function deleteSystem(id) {
+        $.MsgBox.Confirm("删除提示", "确定要删除该系统吗", function () {
+            $.post("${basePath}/autotest/manage/deleteSystem", {id: id}, function (data, status) {
+                if (0 != data.code) {
+                    $.MsgBox.Alert(data.message);
+                } else {
+                    reload();
+                }
+            });
         });
     }
 

@@ -25,22 +25,22 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(serviceId)">
+           <if test="@Ognl@isNotEmpty(serviceId)">
                 AND service_id = #{serviceId}
             </if>
-           <if test="@isNotEmpty(environmentId)">
+           <if test="@Ognl@isNotEmpty(environmentId)">
                 AND environment_id = #{environmentId}
             </if>
-           <if test="@isNotEmpty(zkIpAddress)">
+           <if test="@Ognl@isNotEmpty(zkIpAddress)">
                 AND zk_ip_address = #{zkIpAddress}
             </if>
-           <if test="@isNotEmpty(ipAddress)">
+           <if test="@Ognl@isNotEmpty(ipAddress)">
                 AND ip_address = #{ipAddress}
             </if>
-           <if test="@isNotEmpty(httpPort)">
+           <if test="@Ognl@isNotEmpty(httpPort)">
                 AND http_port = #{httpPort}
             </if>
-           <if test="@isNotEmpty(dubboPort)">
+           <if test="@Ognl@isNotEmpty(dubboPort)">
                 AND dubbo_port = #{dubboPort}
             </if>
         </where>

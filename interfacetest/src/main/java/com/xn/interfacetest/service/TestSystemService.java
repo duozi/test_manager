@@ -123,4 +123,6 @@ public interface TestSystemService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestSystemDto> testSystems);
+
+    TestSystemDto getWithCompanyInfo(Long systemId);
 }

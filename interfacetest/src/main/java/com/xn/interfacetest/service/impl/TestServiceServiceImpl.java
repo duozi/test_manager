@@ -6,6 +6,10 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.service.TestSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +40,9 @@ public class TestServiceServiceImpl implements TestServiceService {
      */
     @Autowired
     private TestServiceMapper testServiceMapper;
+
+    @Autowired
+    private TestSystemService testSystemService;
 
     @Override
     @Transactional(readOnly = true)
@@ -77,7 +84,13 @@ public class TestServiceServiceImpl implements TestServiceService {
     @Override
     public TestServiceDto save(TestServiceDto testServiceDto) {
         TestService testService = BeanUtils.toBean(testServiceDto,TestService.class);
-        testServiceMapper.save(testService);
+        if(null != testServiceDto.getId()){
+            //不为空就说明是更新操作
+            testServiceMapper.update(testService);
+        } else {
+            //为空就是新增操作
+            testServiceMapper.save(testService);
+        }
         testServiceDto.setId(testService.getId());
         return testServiceDto;
     }
@@ -116,6 +129,17 @@ public class TestServiceServiceImpl implements TestServiceService {
     @Override
     public int deleteBatch(List<TestServiceDto> testServices) {
         return 0;
+    }
+
+    @Override
+    public List<TestServiceDto> listByParams(Map<String, Object> params) {
+        List<TestService> list = testServiceMapper.listByParams(params);
+        List<TestServiceDto> dtoList = CollectionUtils.transform(list, TestServiceDto.class);
+        for(TestServiceDto serviceDto: dtoList){
+            TestSystemDto systemDto = testSystemService.getWithCompanyInfo(serviceDto.getSystemId());
+            serviceDto.setSystemDto(systemDto);
+        }
+        return dtoList;
     }
 
 }

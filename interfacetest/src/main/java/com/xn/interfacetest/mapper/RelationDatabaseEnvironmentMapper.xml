@@ -22,13 +22,13 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@isNotEmpty(databaseId)">
+           <if test="@Ognl@isNotEmpty(databaseId)">
                 AND database_id = #{databaseId}
             </if>
-           <if test="@isNotEmpty(environmentId)">
+           <if test="@Ognl@isNotEmpty(environmentId)">
                 AND environment_id = #{environmentId}
             </if>
-           <if test="@isNotEmpty(serviceId)">
+           <if test="@Ognl@isNotEmpty(serviceId)">
                 AND service_id = #{serviceId}
             </if>
         </where>
