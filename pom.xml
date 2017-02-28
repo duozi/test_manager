@@ -15,7 +15,6 @@
         <module>interfacetest</module>
         <module>common-test</module>
         <module>performance</module>
-        <module>commontest</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -349,6 +348,7 @@
                 <artifactId>log4j-over-slf4j</artifactId>
                 <version>1.7.7</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

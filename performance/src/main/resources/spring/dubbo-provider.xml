@@ -13,11 +13,13 @@
     <dubbo:service interface="com.xn.performance.service.PerformanceStressMachineService" ref="performanceStressMachineService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
     <dubbo:service interface="com.xn.performance.service.PerformanceMonitoredMachineService" ref="performanceMonitoredMachineService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
     <dubbo:service interface="com.xn.performance.service.PerformanceScenarioService" ref="performanceScenarioService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
+    <dubbo:service interface="com.xn.performance.service.PerformanceScriptService" ref="performanceScriptService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="performanceStressMachineService" class="com.xn.performance.service.impl.PerformanceStressMachineServiceImpl"/>
     <bean id="performanceMonitoredMachineService" class="com.xn.performance.service.impl.PerformanceMonitoredMachineServiceImpl"/>
     <bean id="performanceScenarioService" class="com.xn.performance.service.impl.PerformanceScenarioServiceImpl"/>
+    <bean id="performanceScriptService" class="com.xn.performance.service.impl.PerformanceScriptServiceImpl"/>
 
     <dubbo:monitor protocol="registry" />
 </beans>

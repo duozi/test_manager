@@ -112,6 +112,30 @@ public class PerformanceScenarioController {
     }
 
 
+    @RequestMapping(value = "/scenario_list/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult editScenario(PerformanceScenarioDto performanceScenarioDto) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            if (!ValidateUtil.validate(performanceScenarioDto)) {
+                logger.warn(String.format("参数有误", performanceScenarioDto));
+                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
+                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
+                return commonResult;
+            }
+
+            performanceScenarioService.update(performanceScenarioDto);
+            commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
+            commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+        } finally {
+            return commonResult;
+        }
+
+    }
+
     @RequestMapping(value = "/scenario_list/delete", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult deleteScenario(@RequestParam Integer id) {
