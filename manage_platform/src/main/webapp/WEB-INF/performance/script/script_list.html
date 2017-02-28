@@ -5,38 +5,102 @@
     <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
     <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
     <!-- fileinput -->
-    <link href="../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
-    <!-- fileinput -->
-    <script src="../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+    <!--<link href="../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">-->
+    <!--&lt;!&ndash; fileinput &ndash;&gt;-->
+    <!--<script src="../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>-->
+    <!--<script src="../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>-->
+
+    <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../../../vendor/jquery/messages_zh.js"></script>
+    <script src="../../../js/common.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.selectpicker').selectpicker({
-                'selectedText': 'cat'
+
+            $("#script-save").validate({
+                submitHandler: function () {
+                    var params = $("#script-save").serializeArray();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/script/script_list/save",
+                        data: params,
+                        success: function (data) {
+
+                            if (data.code != 0) {
+                                alert(data.message);
+
+                            }
+                            $("#addScript").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
             });
+            $("#script-edit").validate({
+                submitHandler: function () {
+                    var params = $("#script-edit").serializeArray();
 
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/script/script_list/edit",
+                        data: params,
+                        success: function (data) {
 
-            $('#chooseSuit').click(function () {
-                //alert("chooseSuit");
-            });
+                            if (data.code != 0) {
+                                alert(data.message);
 
-            $('#chooseEnvironment').click(function () {
-                //alert("chooseEnvironment");
-            });
-
-            $('#chooseTime').click(function () {
-                // alert("chooseTime");
-            });
-
-            $('#excutePlan').click(function () {
-                // alert("excutePlan");
-            });
-
-            $('#deletePlan').click(function () {
-                //alert("deletePlan");
+                            }
+                            $("#editScript").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
             });
 
         });
+        function deleteScript(id) {
+            $.post("/performance/script/script_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function searchScript() {
+            var company = $("#search-company").val();
+            var department = $("#search-department").val();
+            var psystem = $("#search-psystem").val();
+            var scriptName = $("#search-scriptName").val();
+            var scriptStatus = $("#search-scriptStatus").val();
+
+            window.location.href = "script_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&scriptStatus=" + scriptStatus
+        }
+
+        function showScript(item){
+            $("#scriptId").val(item.id);
+            $("#createPerson").val(item.createPerson);
+            $("#scriptName").val(item.scriptName);
+            $("#remark").val(item.remark);
+            $("#company").val(item.company);
+            $("#department").val(item.department);
+            $("#psystem").val(item.psystem);
+            $('#editScript').modal('show');
+        }
+        function showScriptDetail(item) {
+
+        }
+
+
 
     </script>
 </head>
@@ -57,19 +121,59 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control"  id="search-company">
+                                <option value="" disabled selected> 选择公司</option>
+                                <#if companyList ??>
+                                    <#list companyList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control" id="search-department">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if departmentList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control" id="search-psystem">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if psystemList ??>
+                                    <#list psystemList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-2">
-                            <select class="form-control">
+                            <select class="form-control" id="search-scriptName">
                                 <option value="" disabled selected>选择脚本名称</option>
-                                <option value="1">性能脚本1</option>
-                                <option value="2">性能脚本2</option>
-                                <option value="3">性能脚本3</option>
+                                <#if script_list_all ??>
+                                    <#list script_list_all as item>
+                                        <option value="${item.scriptName}">${item.scriptName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" >
+                            <select class="form-control" id="search-scriptStatus">
+                                <option value="" disabled selected>选择发布状态</option>
+                                <#if publish_list ??>
+                                    <#list publish_list as item>
+                                        <option value="${item.getName()}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
 
-
-                        <div class="form-group col-lg-3">
-                            <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
+                        <div class="form-group col-lg-1">
+                            <a type="submit" class="btn btn-default" onclick="searchScript()">查询</a>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addScript"><i
                                     class=" fa-plus-circle fa"></i>新增脚本</a>
                         </div>
@@ -82,19 +186,49 @@
                             <th>脚本ID</th>
                             <th>脚本名称</th>
                             <th>脚本描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
+                            <th>脚本状态</th>
+                            <th>创建人</th>
+
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>注册脚本</td>
-                            <td>注册接口测试</td>
-                            <td>
-                                <a type="button" name="deleteScript" class="btn btn-danger">删除</a>
-                                <a type="button" name="scriptDetail" class="btn btn-info">详情</a>
-                            </td>
-                        </tr>
+                        <#if script_list ??>
+                            <#list script_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.scriptName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.scriptStatus}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+
+                                        <a type="button" name="editScript" class="btn btn-info"
+                                        <#if item.scriptStatus="未发布">
+
+                                            onclick='showScript(${item})'
+                                        </#if>
+                                        <#if item.scriptStatus="已发布">
+                                            disabled
+                                        </#if>
+
+
+                                        >编辑</a>
+                                        <a type="button" name="deleteScript" class="btn btn-warning"
+                                           onclick="showScriptDetail(${item.id})">查看脚本内容</a>
+                                        <a type="button" name="deleteScript" class="btn btn-danger"
+                                           onclick="deleteScript(${item.id})">删除</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
                         </tbody>
                     </table>
                 </div>
@@ -114,36 +248,146 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="addPlanLabel">新增脚本</h4>
+                    <h4 class="modal-title" >新增脚本</h4>
                 </div>
-                <div class="modal-body modal-add">
-                    <form role="form " class="col-lg-12 edit-form">
+                <div class="modal-body modal-add" style="min-height: 550px">
+                    <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
-                                <label class="control-label">创建人</label>
-                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"   name="createPerson" placeholder="请输入您的姓名" required>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">脚本名称</label>
-                                <input type="text" class="form-control" id="planName" name="planName"
+                                <label class="control-label">脚本名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"  name="scriptName"
+                                       placeholder="请输入脚本名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">脚本描述</label>
+                                <input type="text" class="form-control"  name="remark" placeholder="请输入脚本描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select  class="form-control" name="company" required>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select  class="form-control" name="department" required>
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select  class="form-control" name="psystem" required>
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label">上传脚本<span style="color:red">*</span></label>
+                                <input  class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar" id="uploadScript" required>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary submit">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- 编辑脚本 -->
+    <div class="modal fade" id="editScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" >新增脚本</h4>
+                </div>
+                <div class="modal-body modal-add" style="min-height: 450px">
+                    <form role="form " class="col-lg-12 edit-form" id="script-edit" name="script-edit">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"   id="createPerson" name="createPerson" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">脚本名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control"  id="scriptName" name="scriptName"
                                        placeholder="请输入脚本名称">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">脚本描述</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入脚本描述">
+                                <input type="text" class="form-control" id="remark" name="remark" placeholder="请输入脚本描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select  class="form-control" id="company" name="company" required>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select  class="form-control" id="department" name="department" required>
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select  class="form-control"  id="psystem"name="psystem" required>
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
                             </div>
                             <div class="form-group ">
-                                <label class="control-label">上传脚本</label>
-                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
+                                <label class="control-label"></label>
+                                <button type="button" class="btn btn-default">修改脚本内容</button>
                             </div>
 
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-warning submit">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+
             </div>
             <!-- /.modal-content -->
         </div>

@@ -4,7 +4,12 @@
 <head>
     <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
     <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
-
+    <!--datetimepicker-->
+    <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.selectpicker').selectpicker({
@@ -32,7 +37,22 @@
                 //alert("deletePlan");
             });
 
+            // 选择时间和日期
+            $(".form-datetime").datetimepicker(
+                    {
+                        weekStart: 1,
+                        todayBtn: 1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        forceParse: 0,
+                        showMeridian: 1,
+                        format: "yyyy-mm-dd hh:ii",
+                        language: "zh-CN"
+                    });
+
         });
+
 
     </script>
 </head>
@@ -54,7 +74,7 @@
                 <form role="form">
                     <div class="col-lg-12">
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" >
+                            <select class="form-control">
                                 <option value="" disabled selected>选择公司</option>
                                 <#if systemList ??>
                                     <#list companyList as item>
@@ -83,7 +103,7 @@
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-xs-2" style="width: 15%" >
+                        <div class="form-group col-xs-2" style="width: 15%">
                             <select class="form-control">
                                 <option value="" disabled selected>选择计划名称</option>
                                 <#if planList ??>
@@ -186,7 +206,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&time</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="timeListLabel">执行配置</h4>
                 </div>
                 <div class="modal-body modal-time">
@@ -200,16 +220,14 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">执行时间类型</label>
-                            <select class="form-control"  name="excute-time-type">
+                            <select class="form-control" name="excute-time-type">
                                 <option value="now">立即加入执行队列</option>
                                 <option value="settime">配置执行时间</option>
                             </select>
                         </div>
                         <div class="form-group settime hidden">
                             <label class="control-label">执行时间</label>
-                            <input type="text" class="form-control"  name="excuteTime"
-                                   placeholder="请输入时间：2017-01-01 12:23:23">
-
+                            <input type="text" class="form-control form-datetime">
                         </div>
 
                     </form>
@@ -250,7 +268,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">公司</label>
-                                <select  class="form-control">
+                                <select class="form-control">
                                     <option>公司1</option>
                                     <option>公司2</option>
                                     <option>公司3</option>
@@ -259,7 +277,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">部门</label>
-                                <select  class="form-control">
+                                <select class="form-control">
                                     <option>部门1</option>
                                     <option>部门2</option>
                                     <option>部门3</option>
@@ -268,7 +286,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">系统</label>
-                                <select  class="form-control">
+                                <select class="form-control">
                                     <option>系统1</option>
                                     <option>系统2</option>
                                     <option>系统3</option>
@@ -277,7 +295,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">脚本</label>
-                                <select  class="form-control">
+                                <select class="form-control">
                                     <option>脚本1</option>
                                     <option>脚本2</option>
                                     <option>脚本3</option>
@@ -287,15 +305,16 @@
 
                             <div class="form-group">
                                 <label class="control-label">场景</label>
-                                <select class="form-control" >
+                                <select class="form-control">
                                     <option value="1">测试场景1</option>
                                     <option value="2">测试场景1</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label" >监控机</label>
-                                <select     id="id_select" class="selectpicker bla bla bli" multiple data-live-search="true">
+                                <label class="control-label">监控机</label>
+                                <select id="id_select" class="selectpicker bla bla bli" multiple
+                                        data-live-search="true">
                                     <option>监控机1</option>
 
                                     <option>监控机2</option>
@@ -333,6 +352,7 @@
                     $(".settime").addClass("hidden");
                 }
             }
+
     );
 
 </script>

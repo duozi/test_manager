@@ -26,5 +26,9 @@
     <dubbo:reference id="relationServiceEnvironmentService" interface="com.xn.interfacetest.service.RelationServiceEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <!--performance的服务-->
     <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.service.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceMonitoredMachineService" interface="com.xn.performance.service.PerformanceMonitoredMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScenarioService" interface="com.xn.performance.service.PerformanceScenarioService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScriptService" interface="com.xn.performance.service.PerformanceScriptService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
     <dubbo:monitor protocol="registry" />
 </beans>

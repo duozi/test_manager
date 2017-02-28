@@ -2,37 +2,122 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
+    <!--<script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">-->
+
+    <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../../../vendor/jquery/messages_zh.js"></script>
+    <script src="../../../js/common.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.selectpicker').selectpicker({
-                'selectedText': 'cat'
+
+            $("#scenario-save").validate({
+                submitHandler: function () {
+                    var params = $("#scenario-save").serializeArray();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/scenario/scenario_list/save",
+                        data: params,
+                        success: function (data) {
+
+                            if (data.code != 0) {
+                                alert(data.message);
+
+                            }
+                            $("#addScenario").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
             });
+            $("#scenario-edit").validate({
+                submitHandler: function () {
+                    var params = $("#scenario-edit").serializeArray();
 
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/scenario/scenario_list/edit",
+                        data: params,
+                        success: function (data) {
 
-            $('#chooseSuit').click(function () {
-                //alert("chooseSuit");
+                            if (data.code != 0) {
+                                alert(data.message);
+
+                            }
+                            $("#editScenario").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
             });
-
-            $('#chooseEnvironment').click(function () {
-                //alert("chooseEnvironment");
-            });
-
-            $('#chooseTime').click(function () {
-                // alert("chooseTime");
-            });
-
-            $('#excutePlan').click(function () {
-                // alert("excutePlan");
-            });
-
-            $('#deletePlan').click(function () {
-                //alert("deletePlan");
-            });
-
         });
+        $.validator.setDefaults({
+//            submitHandler: function () {
+//                var params = $("#scenario-save").serializeArray();
+//
+//                $.ajax({
+//                    type: "POST",
+//                    url: "/performance/scenario/scenario_list/save",
+//                    data: params,
+//                    success: function (data) {
+//
+//                        if (data.code != 0) {
+//                            alert(data.message);
+//
+//                        }
+//                        $("#addScenario").modal("hide");
+//                        reload();
+//                    },
+//                    error: function (data) {
+//                        alert("异常：" + data.message);
+//                    }
+//                });
+//            }
+        });
+        function deleteScenario(id) {
+            $.post("/performance/scenario/scenario_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
 
+        function searchScenario() {
+            var company = $("select[name='search-company']").val();
+            var department = $("select[name='search-department']").val();
+            var psystem = $("select[name='search-psystem']").val();
+            var scenarioName = $("select[name='search-scenarioName']").val();
+            var scenarioStatus = $("select[name='search-scenarioStatus']").val();
+
+            window.location.href = "scenario_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scenarioName=" + scenarioName + "&scenarioStatus=" + scenarioStatus
+        }
+
+        function showScenario(item){
+            $("#scenarioId").val(item.id);
+            $("#createPerson").val(item.createPerson);
+            $("#scenarioName").val(item.scenarioName);
+            $("#remark").val(item.remark);
+            $("#company").val(item.company);
+            $("#department").val(item.department);
+            $("#psystem").val(item.psystem);
+            $("#concurrency").val(item.concurrency);
+            $("#startup").val(item.startup);
+            $("#executeTime").val(item.executeTime);
+            $("#cycle").val(item.cycle);
+            $('#editScenario').modal('show');
+        }
     </script>
 </head>
 
@@ -52,19 +137,59 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-company">
+                                <option value="" disabled selected>选择公司</option>
+                                <#if companyList ??>
+                                    <#list companyList as item>
+                                        <option value="${item.id}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-department">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if departmentList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-psystem">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if psystemList ??>
+                                    <#list psystemList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-2">
-                            <select class="form-control">
+                            <select class="form-control" name="search-scenarioName">
                                 <option value="" disabled selected>选择场景名称</option>
-                                <option value="1">性能场景1</option>
-                                <option value="2">性能场景2</option>
-                                <option value="3">性能场景3</option>
+                                <#if scenario_list_all ??>
+                                    <#list scenario_list_all as item>
+                                        <option value="${item.scenarioName}">${item.scenarioName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-scenarioStatus">
+                                <option value="" disabled selected>选择发布状态</option>
+                                <#if publish_list ??>
+                                    <#list publish_list as item>
+                                        <option value="${item.getName()}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
 
-
-                        <div class="form-group col-lg-3">
-                            <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
+                        <div class="form-group col-lg-1">
+                            <a type="submit" class="btn btn-default" onclick="searchScenario()">查询</a>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addScenario"><i
                                     class=" fa-plus-circle fa"></i>新增场景</a>
                         </div>
@@ -77,26 +202,54 @@
                             <th>场景ID</th>
                             <th>场景名称</th>
                             <th>场景描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
                             <th>并发数</th>
                             <th>线程启动时间（秒）</th>
                             <th>执行时间（秒）</th>
+                            <th>循环次数</th>
+                            <th>场景状态</th>
                             <th>创建人</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>注册场景</td>
-                            <td>注册接口测试</td>
-                            <td>100</td>
-                            <td>20</td>
-                            <td>90</td>
-                            <td>小珊珊</td>
-                            <td>
-                                <a type="button" id="deletePlan" class="btn btn-danger">删除</a>
-                            </td>
-                        </tr>
+                        <#if scenario_list ??>
+                            <#list scenario_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.scenarioName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.concurrency}</td>
+                                    <td>${item.startup}</td>
+                                    <td>${item.executeTime}</td>
+                                    <td>${item.cycle}</td>
+                                    <td>${item.scenarioStatus}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+
+                                        <a type="button" name="editScenario" class="btn btn-info"
+                                        <#if item.scenarioStatus="未发布">
+
+                                            onclick='showScenario(${item})'
+                                        </#if>
+                                        <#if item.scenarioStatus="已发布">
+                                            disabled
+                                        </#if>
+
+
+                                        >编辑</a>
+                                        <a type="button" name="deleteScenario" class="btn btn-danger"
+                                           onclick="deleteScenario(${item.id})">删除</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
                         </tbody>
                     </table>
                 </div>
@@ -109,51 +262,184 @@
     <!-- /.col-lg-12 -->
 
 
-
     <!-- 新增场景 -->
-    <div class="modal fade" id="addScenario" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+    <div class="modal fade" id="addScenario" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="addPlanLabel">新增场景</h4>
+                    <h4 class="modal-title">新增场景</h4>
                 </div>
-                <div class="modal-body modal-add">
-                    <form role="form " class="col-lg-12 edit-form">
+                <div class="modal-body modal-add" style="min-height: 600px">
+                    <form role="form " class="col-lg-12 edit-form" id="scenario-save" name="scenario-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
-                                <label class="control-label">创建人</label>
-                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">场景名称</label>
-                                <input type="text" class="form-control" id="planName" name="ScenarioName"
-                                       placeholder="请输入场景名称">
+                                <label class="control-label">场景名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="scenarioName"
+                                       placeholder="请输入场景名称" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">场景描述</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入场景描述">
+                                <input type="text" class="form-control" name="remark" placeholder="请输入场景描述">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">并发数</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入并发数">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select class="form-control" name="company" required>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">线程启动时间（秒）</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入线程启动时间">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select class="form-control" name="department" required>
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select class="form-control" name="psystem" required>
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">并发数<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="concurrency" placeholder="请输入并发数"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">线程启动时间（秒）<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="startup"
+                                       placeholder="请输入线程启动时间" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">执行时间（秒）</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入执行时间">
+                                <input type="text" class="form-control" name="executeTime" placeholder="请输入执行时间">
                             </div>
-
+                            <div class="form-group">
+                                <label class="control-label">循环次数</label>
+                                <!--<label class="checkbox-inline" style="margin-top: 2%"><input type="checkbox"-->
+                                <!--id="forever">永远</label>-->
+                                <input type="text" class="form-control" name="cycle" placeholder="请输入循环次数,-1表示永远">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+    <!-- 编辑场景 -->
+    <div class="modal fade" id="editScenario" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">编辑场景</h4>
                 </div>
+                <div class="modal-body modal-add" style="min-height: 600px">
+                    <form role="form " class="col-lg-12 edit-form" id="scenario-edit" name="scenario-edit">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                                <label class="control-label">场景名称<span style="color:red">*</span></label>
+                                <input type="text" class="hidden" id="scenarioId" name="id" value="">
+                                <input type="text" class="hidden" id="createPerson" name="createPerson" value="">
+                                <input type="text" class="form-control" id="scenarioName" name="scenarioName"
+                                       placeholder="请输入场景名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">场景描述</label>
+                                <input type="text" class="form-control" id="remark" name="remark" placeholder="请输入场景描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select class="form-control" id="company" name="company" required>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select class="form-control" id="department" name="department" required>
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select class="form-control"  id="psystem" name="psystem" required>
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">并发数<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="concurrency" name="concurrency" placeholder="请输入并发数"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">线程启动时间（秒）<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="startup" name="startup"
+                                       placeholder="请输入线程启动时间" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">执行时间（秒）</label>
+                                <input type="text" class="form-control" id="executeTime" name="executeTime" placeholder="请输入执行时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">循环次数</label>
+                                <!--<label class="checkbox-inline" style="margin-top: 2%"><input type="checkbox"-->
+                                <!--id="forever">永远</label>-->
+                                <input type="text" class="form-control" id="cycle" name="cycle" placeholder="请输入循环次数,-1表示永远">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
             <!-- /.modal-content -->
         </div>
