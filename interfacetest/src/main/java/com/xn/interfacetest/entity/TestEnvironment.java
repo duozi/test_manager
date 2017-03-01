@@ -46,6 +46,21 @@ public class TestEnvironment extends BaseEntity {
      */
     private Long systemId;
 
+    /**
+     * 是否有service配置
+     */
+    private Integer serviceProperty;
+
+    /**
+     * 是否有db配置
+     */
+    private Integer dbProperty;
+
+    /**
+     * 是否有redis配置
+     */
+    private Integer redisProperty;
+
     
     private List<TestRedisConfig> testRedisConfigs = new ArrayList<TestRedisConfig>();
 
@@ -98,4 +113,27 @@ public class TestEnvironment extends BaseEntity {
         this.testRedisConfigs = testRedisConfigs;
     }
 
+    public Integer getServiceProperty() {
+        return serviceProperty;
+    }
+
+    public void setServiceProperty(Integer serviceProperty) {
+        this.serviceProperty = serviceProperty;
+    }
+
+    public Integer getDbProperty() {
+        return dbProperty;
+    }
+
+    public void setDbProperty(Integer dbProperty) {
+        this.dbProperty = dbProperty;
+    }
+
+    public Integer getRedisProperty() {
+        return redisProperty;
+    }
+
+    public void setRedisProperty(Integer redisProperty) {
+        this.redisProperty = redisProperty;
+    }
 }

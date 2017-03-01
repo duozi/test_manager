@@ -18,7 +18,7 @@
     <!--<dubbo:service interface="com.xn.interfacetest.service.ParamsAssertService" ref="paramsAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <!--<dubbo:service interface="com.xn.interfacetest.service.RedisAssertService" ref="redisAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <!--<dubbo:service interface="com.xn.interfacetest.service.RelationCaseDatabaseService" ref="relationCaseDatabaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
-    <!--<dubbo:service interface="com.xn.interfacetest.service.RelationDatabaseEnvironmentService" ref="relationDatabaseEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
+    <dubbo:service interface="com.xn.interfacetest.service.RelationDatabaseEnvironmentService" ref="relationDatabaseEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <!--<dubbo:service interface="com.xn.interfacetest.service.RelationInterfaceResultService" ref="relationInterfaceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <!--<dubbo:service interface="com.xn.interfacetest.service.RelationPlanEnvironmentService" ref="relationPlanEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <!--<dubbo:service interface="com.xn.interfacetest.service.RelationPlanResultService" ref="relationPlanResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
@@ -27,10 +27,11 @@
     <dubbo:service interface="com.xn.interfacetest.service.RelationServiceEnvironmentService" ref="relationServiceEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <!--<dubbo:service interface="com.xn.interfacetest.service.RelationSuitCaseService" ref="relationSuitCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
     <dubbo:service interface="com.xn.interfacetest.service.TestCaseService" ref="testCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
-    <!--<dubbo:service interface="com.xn.interfacetest.service.TestDatabaseConfigService" ref="testDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>-->
+    <dubbo:service interface="com.xn.interfacetest.service.TestDatabaseConfigService" ref="testDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.TestServiceService" ref="testServiceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.TestSystemService" ref="testSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.TestEnvironmentService" ref="testEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.service.TestRedisConfigService" ref="testRedisConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
 
 
     <!-- 和本地bean一样实现服务 -->
@@ -39,6 +40,9 @@
     <bean id="testCaseService" class="com.xn.interfacetest.service.impl.TestCaseServiceImpl"/>
     <bean id="testEnvironmentService" class="com.xn.interfacetest.service.impl.TestEnvironmentServiceImpl"/>
     <bean id="relationServiceEnvironmentService" class="com.xn.interfacetest.service.impl.RelationServiceEnvironmentServiceImpl"/>
+    <bean id="testRedisConfigService" class="com.xn.interfacetest.service.impl.TestRedisConfigServiceImpl"/>
+    <bean id="testDatabaseConfigService" class="com.xn.interfacetest.service.impl.TestDatabaseConfigServiceImpl"/>
+    <bean id="relationDatabaseEnvironmentService" class="com.xn.interfacetest.service.impl.RelationDatabaseEnvironmentServiceImpl"/>
 
     <!--调用的服务-->
     <dubbo:reference id="companyService" interface="com.xn.common.company.service.CompanyService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
