@@ -153,7 +153,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" >上传jar包</label>
-                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="jarPath">
+                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
+                                    <input type="hidden" name="jarPath" value="">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -199,20 +200,30 @@
 <script type="text/javascript">
     //初始化fileinput控件（第一次初始化）
     $("#file-1").fileinput({
+        showUpload: false,
+        uploadAsync:true,
+//        dropZoneEnabled:false,
         uploadUrl: '${basePath}/autotest/service/uploadJar', // you must set a valid URL here else you will get an error
         allowedFileExtensions : ['jar'],
         overwriteInitial: false,
         language: 'zh', //设置语言
         maxFileSize: 200000,
         maxFilesNum: 1,
-        showUpload:false,
-        showPreview:false,
-        //allowedFileTypes: ['image', 'video', 'flash'],
+        showPreview:true,
+        previewFileIcon: "",
         slugCallback: function(filename) {
-            return filename;
+            return filename.replace('(', '_').replace(']', '_');
         }
-    });
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+            if(data.response.code==0){
+                $("input[name='jarPath']").val(data.response.data);
+            } else {
+                alert("上传失败，请查看日志！");
+            }
 
+        });
+    });
 
     function editService(id,name,description,systemId){
         $("#addService").modal();
@@ -248,7 +259,6 @@
                     data = eval("(" + result + ")");
                     if (data.code == 0) {
                         // $("#addService").modal("hide");
-                        $('#file-1').fileinput('upload');
                         reload();
                     } else {
                         alert("保存失败："+data.message);

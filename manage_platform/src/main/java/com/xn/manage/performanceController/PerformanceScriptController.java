@@ -172,7 +172,7 @@ public class PerformanceScriptController {
 
     @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request, ModelMap model) {
+    public String uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
         String path = "";
         if (files != null && files.length > 0) {
             for (int i = 0; i < files.length; i++) {
@@ -189,13 +189,29 @@ public class PerformanceScriptController {
 
     @RequestMapping(value = "/script_list/show_script", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult showScript(ModelMap model, HttpServletRequest request) {
+    public CommonResult showScript( HttpServletRequest request) {
         CommonResult commonResult = new CommonResult();
         try {
             String path = request.getParameter("path");
             File file = new File(path);
             String content = FileUtil.fileReadeForStr(file);
             commonResult.setData(content);
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+        } finally {
+            return commonResult;
+        }
+    }
+
+    @RequestMapping(value = "/script_list/script_detail_save", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult saveScriptDetail(@RequestParam String content,@RequestParam String path) {
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            FileUtil.fileWrite(path, content);
+
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());

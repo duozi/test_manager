@@ -64,6 +64,7 @@
                 }
             });
 
+
         });
         function deleteScript(id) {
             $.post("/performance/script/script_list/delete", {id: id}, function (data) {
@@ -95,15 +96,42 @@
             $("#company").val(item.company);
             $("#department").val(item.department);
             $("#psystem").val(item.psystem);
+            $("#editScript-path").val(item.path);
             $('#editScript').modal('show');
         }
-        function showScriptDetail(path) {
-            $.post("/performance/script/script_list/show_script?path="+path,  function (data) {
+        function showScriptDetail(path, type) {
+
+            $.get("/performance/script/script_list/show_script?path=" + path, function (data) {
                 if (data.code == 0) {
-                    $("#content").val()
+                    $("#content").val(data.data);
+                    $("#path").val(path);
+                    if (type == 1) {
+                        $("#scriptDetailSave").addClass("hidden");
+                        $("#content").attr("disabled", true);
+                    } else if (type == 2) {
+                        $("#scriptDetailSave").removeClass("hidden");
+                        $("#content").removeAttr("disabled");
+
+                    }
                     $("#showScript").modal('show')
                 } else if (data.code == 1) {
                     alert("查看失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+        function scriptDetailSave() {
+            var content = $("#content").val()
+            var path = $("#path").val();
+            $.post("/performance/script/script_list/script_detail_save", {
+                content: content,
+                path: path
+            }, function (data) {
+                if (data.code == 0) {
+//                    reload();
+                } else if (data.code == 1) {
+                    alert("保存失败");
                 } else if (data.code == 2) {
                     alert(data.message);
                 }
@@ -218,13 +246,15 @@
                                     <td>
 
                                         <a type="button" name="editScript" class="btn btn-info"
-                                        <#if item.scriptStatus="未发布"> onclick="showScript(${item})"</#if>
+                                        <#if item.scriptStatus="未发布"> onclick='showScript(${item})'</#if>
                                         <#if item.scriptStatus="已发布">
                                             disabled
                                         </#if>
                                         >编辑</a>
                                         <a type="button" class="btn btn-warning"
-                                           onclick="showScriptDetail('${item.path}')">查看脚本内容</a>
+                                        <#if item.scriptStatus="未发布"> onclick="showScriptDetail('${item.path}',2)"</#if>
+                                        <#if item.scriptStatus="已发布">onclick="showScriptDetail('${item.path}',1)"</#if>
+                                        >查看脚本内容</a>
                                         <a type="button" class="btn btn-danger"
                                            onclick="deleteScript(${item.id})">删除</a>
                                     </td>
@@ -244,26 +274,28 @@
     <!-- /.col-lg-12 -->
     <!-- 查看脚本具体内容 -->
     <div class="modal fade" id="showScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
-         aria-hidden="true">
+         aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 480px">
-                    <form role="form " class="col-lg-12 edit-form" id="script-show" name="script-save"
-                          enctype="multipart/form-data">
-                        <div class="col-lg-14 form-div">
-                            <div class="form-group">
-                               <textarea id="content"></textarea>
-                            </div>
-
-
+                <div class="modal-body modal-add" style="min-height: 450px">
+                    <!--<form role="form " class="col-lg-12 edit-form" id="script-show" name="script-save"-->
+                    <!--enctype="multipart/form-data">-->
+                    <div class="col-lg-14 form-div">
+                        <div class="form-group" style="margin-left:0px;width: 100%; height: 400px;">
+                            <input type="text" class="hidden" id="path">
+                            <textarea id="content" class=" form-control  text-control"></textarea>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" id="scriptDetailSave" class="btn btn-info" data-dismiss="modal"
+                           onclick="scriptDetailSave()">保存
+                        </a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                    <!--</form>-->
                 </div>
 
             </div>
@@ -274,7 +306,7 @@
 
     <!-- 新增脚本 -->
     <div class="modal fade" id="addScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
-         aria-hidden="true">
+         aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -341,7 +373,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit"  class="btn btn-primary submit">保存</button>
+                            <button type="submit" class="btn btn-primary submit">保存</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -355,14 +387,14 @@
 
     <!-- 编辑脚本 -->
     <div class="modal fade" id="editScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
-         aria-hidden="true">
+         aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">编辑脚本</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 450px">
+                <div class="modal-body modal-add" style="min-height: 400px">
                     <form role="form " class="col-lg-12 edit-form" id="script-edit" name="script-edit">
                         <div class="col-lg-14 form-div">
 
@@ -370,6 +402,8 @@
                                 <label class="control-label">脚本名称<span style="color:red">*</span></label>
                                 <input type="text" class="hidden" id="scriptId" name="id" value="">
                                 <input type="text" class="hidden" id="createPerson" name="createPerson" value="">
+                                <input type="text" class="hidden" id="editScript-path" name="path" value="">
+
                                 <input type="text" class="form-control" id="scriptName" name="scriptName"
                                        placeholder="请输入脚本名称">
                             </div>
@@ -409,9 +443,6 @@
                                     </#if>
 
                                 </select>
-                            </div>
-                            <div class="form-group ">
-                                <a type="button" class="btn btn-warning" style="margin-left: auto">修改脚本内容</a>
                             </div>
 
                         </div>

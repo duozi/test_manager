@@ -29,7 +29,7 @@ public class FileUtil {
     public static void fileWrite(String fileName, String contents) {
         checkNotNull(fileName, "Provided file name for writing must NOT be null.");
         checkNotNull(contents, "Unable to write null contents.");
-        int i = fileName.lastIndexOf("/");
+        int i = fileName.lastIndexOf(File.separator);
         String folder = fileName.substring(0, i);
         makeDirs(folder);
         final File newFile = new File(fileName);
