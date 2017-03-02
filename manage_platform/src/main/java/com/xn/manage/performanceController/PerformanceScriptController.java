@@ -97,8 +97,8 @@ public class PerformanceScriptController {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
-            String fileName = "e:\\\\upload\\\\" + performanceScriptDto.getPath();
-            performanceScriptDto.setPath(fileName);
+//            String fileName = "e:\\\\upload\\\\" + performanceScriptDto.getPath();
+            performanceScriptDto.setPath(performanceScriptDto.getPath());
 
             if (!ValidateUtil.validate(performanceScriptDto)) {
                 logger.warn(String.format("参数有误", performanceScriptDto));
@@ -113,6 +113,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("保存操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -138,6 +139,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("编辑操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -165,6 +167,7 @@ public class PerformanceScriptController {
 
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -172,33 +175,50 @@ public class PerformanceScriptController {
 
     @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
+    public CommonResult uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
+        CommonResult result = new CommonResult();
+        result.setMessage("上传成功！");
         String path = "";
-        if (files != null && files.length > 0) {
-            for (int i = 0; i < files.length; i++) {
-                MultipartFile file = files[i];
-                // 保存文件
-                FileUtil.saveFile(request, file);
-                path = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+        try {
+            if (files != null && files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    MultipartFile file = files[i];
+                    // 保存文件
+                    FileUtil.saveFile(request, file);
+                    path = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+                    result.setData(path);
+                }
             }
+        } catch (Exception e) {
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message = e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("上传文件操作异常｛｝", e);
+        }finally {
+            return  result;
         }
-        // 重定向
-        return path;
+
+
     }
 
 
     @RequestMapping(value = "/script_list/show_script", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult showScript( HttpServletRequest request) {
+    public CommonResult showScript(HttpServletRequest request) {
+
         CommonResult commonResult = new CommonResult();
         try {
+
             String path = request.getParameter("path");
+            path.replace("/",File.separator);
             File file = new File(path);
             String content = FileUtil.fileReadeForStr(file);
             commonResult.setData(content);
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -206,7 +226,7 @@ public class PerformanceScriptController {
 
     @RequestMapping(value = "/script_list/script_detail_save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult saveScriptDetail(@RequestParam String content,@RequestParam String path) {
+    public CommonResult saveScriptDetail(@RequestParam String content, @RequestParam String path) {
         CommonResult commonResult = new CommonResult();
         try {
 
@@ -215,6 +235,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
         } finally {
             return commonResult;
         }

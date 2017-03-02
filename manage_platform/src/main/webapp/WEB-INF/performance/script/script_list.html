@@ -275,16 +275,16 @@
     <!-- 查看脚本具体内容 -->
     <div class="modal fade" id="showScript" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
          aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog" style="width:100%">
+            <div class="modal-content" style="height: 1000px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 450px">
+                <div class="modal-body modal-add" >
                     <!--<form role="form " class="col-lg-12 edit-form" id="script-show" name="script-save"-->
                     <!--enctype="multipart/form-data">-->
                     <div class="col-lg-14 form-div">
-                        <div class="form-group" style="margin-left:0px;width: 100%; height: 400px;">
+                        <div class="form-group" style="margin-left:0px;width: 100%; height: 850px;">
                             <input type="text" class="hidden" id="path">
                             <textarea id="content" class=" form-control  text-control"></textarea>
                         </div>
@@ -313,7 +313,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">新增脚本</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 480px">
+                <div class="modal-body modal-add" style="min-height: 800px">
                     <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save"
                           enctype="multipart/form-data">
                         <div class="col-lg-14 form-div">
@@ -462,13 +462,15 @@
 <!-- /.row -->
 <script type="text/javascript">
     $("#uploadScript").fileinput({
-        uploadUrl: '${basePath}/performance/script/script_list/upload_script', // you must set a valid URL here else you will get an error
+        showUpload: false,
+        uploadAsync:true,
+        uploadUrl: '${basePath}/performance/script/script_list/upload_script',
         allowedFileExtensions: ['jmx'],
         overwriteInitial: false,
         language: 'zh', //设置语言
-        maxFileSize: 1,
         maxFilesNum: 1,
-        showPreview: false,
+        showPreview: true,
+        previewFileIcon: "",
         slugCallback: function (filename) {
 
             var pos = filename.lastIndexOf("\\");
@@ -477,6 +479,15 @@
             $("input[name='path']").val(name);
             return filename.replace('(', '_').replace(']', '_');
         }
+    }).on("filebatchselected", function (event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function (event, data) {
+            if (data.response.code == 0) {
+                $("input[name='path']").val(data.response.data);
+            } else {
+                alert("上传失败，请查看日志！");
+            }
+
+        });
     });
 
 

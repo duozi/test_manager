@@ -60,16 +60,42 @@ public class PerformancePlanDto extends BaseDto{
      * 脚本id 
      */
     private Integer scriptId;
-
+    /**
+     *
+     * 脚本名称
+     */
+    private String scriptName;
     /**
      * 
      * 场景id 
      */
     private Integer scenarioId;
+    /**
+     *
+     * 场景名称
+     */
+    private String scenarioName;
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
+    }
+
+    public String getScenarioName() {
+        return scenarioName;
+    }
+
+    public void setScenarioName(String scenarioName) {
+        this.scenarioName = scenarioName;
+    }
 
     /**
      * 
-     * 计划状态 
+     * 计划状态
+
      */
     private String planStatus;
 
