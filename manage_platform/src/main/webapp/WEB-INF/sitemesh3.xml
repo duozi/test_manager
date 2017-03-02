@@ -24,34 +24,6 @@
         <path>/performance/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
-  <!--  <mapping>
-        <path>/autotest/report/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/autotest/plan/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/manage/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/autotest/suit/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/autotest/environment/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/autotest/interface/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>
-    <mapping>
-        <path>/autotestService/*</path>
-        <decorator>/decorators/right_bar.ftl</decorator>
-    </mapping>-->
 
     <!-- 排除，不进行装饰的路径 -->
     <mapping path="/decorators/*" exclue="true"/>

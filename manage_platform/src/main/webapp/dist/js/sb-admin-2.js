@@ -30,11 +30,14 @@ $(function() {
     });
 
     var url = window.location;
+    var originurl = url.origin;
+    var path = url.pathname;
+    var pathurl = originurl + path;
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
-        return this.href == url;
+        return this.href == pathurl;
     }).addClass('active').parent();
 
     while (true) {
