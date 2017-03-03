@@ -9,6 +9,7 @@ import java.util.Map;
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
 import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.utils.FileUpload;
 import com.xn.performance.util.CommonResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -145,40 +146,6 @@ public class ServiceController {
 			logger.error("删除操作异常｛｝",e);
 		}
 		return  result;
-	}
-
-	/**
-	 * 上传图片
-	 *
-	 * @param files
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/uploadJar")
-	@ResponseBody
-	public CommonResult filesUpload(@RequestParam("file") MultipartFile[] files,
-							  HttpServletRequest request) {
-		CommonResult result = new CommonResult();
-		result.setMessage("上传成功！");
-		String jarPath = "";
-		try{
-			if (files != null && files.length > 0) {
-				for (int i = 0; i < files.length; i++) {
-					MultipartFile file = files[i];
-					// 保存文件
-					FileUtil.saveFile(request, file);
-					jarPath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
-					result.setData(jarPath);
-				}
-			}
-		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message = e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
-			logger.error("删除操作异常｛｝",e);
-		}
-		return result;
 	}
 
 

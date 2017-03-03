@@ -86,14 +86,14 @@ public class FileUtil {
      * 保存文件
      *
      * @param file
+     * @param filePath
      * @return
      */
-    public static boolean saveFile(HttpServletRequest request, MultipartFile file) {
+    public static boolean saveFile(HttpServletRequest request, MultipartFile file, String filePath) {
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
                 // 保存的文件路径(如果用的是Tomcat服务器，文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\upload\\文件夹中  )
-                String filePath = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
                 File saveDir = new File(filePath);
                 if (!saveDir.getParentFile().exists())
                     saveDir.getParentFile().mkdirs();

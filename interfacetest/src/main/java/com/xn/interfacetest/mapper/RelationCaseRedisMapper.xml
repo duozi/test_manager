@@ -2,21 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.xn.interfacetest.dao.RelationCaseDatabaseMapper">
+<mapper namespace="com.xn.interfacetest.dao.RelationCaseRedisMapper">
 
-    <resultMap id="RelationCaseDatabaseMap" type="com.xn.interfacetest.entity.RelationCaseDatabase">
+    <resultMap id="RelationCaseRedisMap" type="com.xn.interfacetest.entity.RelationCaseRedis">
         <result property="id" column="id"/>
         <result property="caseId" column="case_id"/>
-        <result property="databaseId" column="database_id"/>
+        <result property="redisId" column="redis_id"/>
         <result property="operateType" column="operate_type"/>
-        <result property="sqlStr" column="sql_str"/>
-        <result property="type" column="type"/>
+        <result property="redisOperateType" column="redis_operate_type"/>
+        <result property="key" column="key"/>
+        <result property="value" column="value"/>
+        <result property="time" column="time"/>
         <result property="interfaceId" column="interface_id"/>
+        <result property="type" column="type"/>
     </resultMap>
 
     <sql id="columns">
         <![CDATA[
-        id, case_id, database_id, operate_type, sql_str, type, interface_id
+        id, case_id, redis_id, operate_type, redis_operate_type, key, value, time, interface_id, type
         ]]>
     </sql>
 
@@ -28,39 +31,48 @@
             <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-            <if test="@Ognl@isNotEmpty(databaseId)">
-                AND database_id = #{databaseId}
+            <if test="@Ognl@isNotEmpty(redisId)">
+                AND redis_id = #{redisId}
             </if>
             <if test="@Ognl@isNotEmpty(operateType)">
                 AND operate_type = #{operateType}
             </if>
-            <if test="@Ognl@isNotEmpty(sqlStr)">
-                AND sql_str = #{sqlStr}
+            <if test="@Ognl@isNotEmpty(redisOperateType)">
+                AND redis_operate_type = #{redisOperateType}
             </if>
-            <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
+            <if test="@Ognl@isNotEmpty(key)">
+                AND key = #{key}
+            </if>
+            <if test="@Ognl@isNotEmpty(value)">
+                AND value = #{value}
+            </if>
+            <if test="@Ognl@isNotEmpty(time)">
+                AND time = #{time}
             </if>
             <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
         </where>
     </sql>
 
-    <select id="get" resultMap="RelationCaseDatabaseMap">
+    <select id="get" resultMap="RelationCaseRedisMap">
         SELECT <include refid="columns" />
         <![CDATA[
             FROM
-                relation_case_database
+                relation_case_redis
             WHERE
                 id = #{id}
         ]]>
     </select>
 
-    <select id="list" resultMap="RelationCaseDatabaseMap">
+    <select id="list" resultMap="RelationCaseRedisMap">
         SELECT
         <include refid="columns" />
         FROM
-        relation_case_database
+        relation_case_redis
         <include refid="where"/>
     </select>
 
@@ -69,71 +81,89 @@
             SELECT
                 count(1)
             FROM
-                relation_case_database
+                relation_case_redis
         ]]>
         <include refid="where"/>
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
-            INSERT INTO relation_case_database (
+            INSERT INTO relation_case_redis (
                 id,
                 case_id,
-                database_id,
+                redis_id,
                 operate_type,
-                sql_str,
-                type,
-                interface_id
+                redis_operate_type,
+                key,
+                value,
+                time,
+                interface_id,
+                type
             ) VALUES (
                 #{id},
                 #{caseId},
-                #{databaseId},
+                #{redisId},
                 #{operateType},
-                #{sqlStr},
-                #{type},
-                #{interfaceId}
+                #{redisOperateType},
+                #{key},
+                #{value},
+                #{time},
+                #{interfaceId},
+                #{type}
             )
         ]]>
     </insert>
 
     <insert id="saveBatch">
         <![CDATA[
-            INSERT INTO relation_case_database (
+            INSERT INTO relation_case_redis (
                 id,
                 case_id,
-                database_id,
+                redis_id,
                 operate_type,
-                sql_str,
-                type,
-                interface_id
+                redis_operate_type,
+                key,
+                value,
+                time,
+                interface_id,
+                type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.caseId},#{item.databaseId},#{item.operateType},#{item.sqlStr},#{item.type},#{item.interfaceId})
+            (#{item.id},#{item.caseId},#{item.redisId},#{item.operateType},#{item.redisOperateType},#{item.key},#{item.value},#{item.time},#{item.interfaceId},#{item.type})
         </foreach>
     </insert>
 
     <update id="update">
         UPDATE
-        relation_case_database
+        relation_case_redis
         <set>
             <if test="caseId != null">
                 <![CDATA[ case_id = #{caseId} ]]>,
             </if>
-            <if test="databaseId != null">
-                <![CDATA[ database_id = #{databaseId} ]]>,
+            <if test="redisId != null">
+                <![CDATA[ redis_id = #{redisId} ]]>,
             </if>
             <if test="operateType != null">
                 <![CDATA[ operate_type = #{operateType} ]]>,
             </if>
-            <if test="sqlStr != null">
-                <![CDATA[ sql_str = #{sqlStr} ]]>,
+            <if test="redisOperateType != null">
+                <![CDATA[ redis_operate_type = #{redisOperateType} ]]>,
             </if>
-            <if test="type != null">
-                <![CDATA[ type = #{type} ]]>,
+            <if test="key != null">
+                <![CDATA[ key = #{key} ]]>,
+            </if>
+            <if test="value != null">
+                <![CDATA[ value = #{value} ]]>,
+            </if>
+            <if test="time != null">
+                <![CDATA[ time = #{time} ]]>,
             </if>
             <if test="interfaceId != null">
-                <![CDATA[ interface_id = #{interfaceId} ]]>
+                <![CDATA[ interface_id = #{interfaceId} ]]>,
+            </if>
+            <if test="type != null">
+                <![CDATA[ type = #{type} ]]>
             </if>
         </set>
         WHERE
@@ -144,7 +174,7 @@
         <![CDATA[
             DELETE
             FROM
-                relation_case_database
+                relation_case_redis
             WHERE
                 id = #{id} 
         ]]>
@@ -154,7 +184,7 @@
         <![CDATA[
             DELETE
             FROM
-                relation_case_database
+                relation_case_redis
         ]]>
         <include refid="where"/>
     </delete>
@@ -163,7 +193,7 @@
         <![CDATA[
             DELETE
             FROM
-                relation_case_database
+                relation_case_redis
             WHERE
                 id IN
         ]]>

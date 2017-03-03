@@ -1,9 +1,12 @@
 package com.xn.manage.autotestController;
 
+import com.xn.manage.utils.FileUpload;
+import com.xn.performance.util.CommonResult;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/*")
@@ -13,5 +16,18 @@ public class WebController {
 	public String getDecoratorsPage(@PathVariable String  path ) {
 		return "decorators/" + path;
 	}
-	
+
+	/**
+	 * 上传图片
+	 *
+	 * @param files
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/autotest/{folderName}/uploadJar")
+	@ResponseBody
+	public CommonResult filesUpload(@RequestParam("file") MultipartFile[] files,@PathVariable String  folderName,
+									HttpServletRequest request) {
+		return FileUpload.upload(files,folderName,request);
+	}
 }

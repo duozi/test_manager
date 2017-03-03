@@ -31,28 +31,28 @@
 
         <div class="panel-body">
             <!-- 计划基本配置 -->
-            <form role="form " class="col-lg-12 edit-form">
+            <form role="form " class="col-lg-12 edit-form" id="interface-form" enctype="multipart/form-data">
                 <div class="col-lg-6 form-div">
                     <div class="form-group">
+                        <label class="control-label">接口ID</label>
+                        <input type="text" class="form-control" id="interfaceId" name="id"　placeholder="保存之后自动填充" value="${interfaceDto.id}">
+                    </div>
+                    <div class="form-group">
                         <label class="control-label">接口名</label>
-                        <input type="text" class="form-control" id="interfaceName" name="interfaceName" placeholder="请填写接口名称">
+                        <input type="text" class="form-control" id="interfaceName" name="name" placeholder="请填写接口名称"  value="${interfaceDto.name}">
                     </div>
                     <div class="form-group">
                         <label class="control-label">接口描述</label>
-                        <input type="text" class="form-control" id="interfaceDesc" name="interfaceDesc" placeholder="描述接口功能或业务特性">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">接口ID</label>
-                        <input type="text" class="form-control" id="interfaceId" name="interfaceId"　placeholder="请填写接口唯一ID">
+                        <input type="text" class="form-control" id="interfaceDesc" name="description" placeholder="描述接口功能或业务特性"  value="${interfaceDto.description}">
                     </div>
                     <!--所属service-->
                     <div class="form-group ">
                         <label>所属service</label>
-                        <select class="form-control col-lg-5">
-                            <option value="" disabled selected>选择服务名称</option>
+                        <select class="form-control col-lg-5" name="serviceId">
+                            <option value="" <#if interfaceDto.serviceId=null>disabled selected</#if>>选择服务名称</option>
                            <#if serviceList ??>
                                 <#list serviceList as item>
-                                    <option value="${item.id}" disabled selected>${item.serviceName}</option>
+                                    <option value="${item.id}" <#if interfaceDto.serviceId=item.id>selected</#if> >${item.serviceName}</option>
                                 </#list>
                            </#if>
                         </select>
@@ -60,42 +60,40 @@
                     <!--接口类型-->
                     <div class="form-group">
                         <label>接口类型</label>
-
-                        <label class="radio-inline" style="margin-top: 0">
-
-                            <input type="radio" name="interfaceType" value="dubbo接口" >dubbo接口
-
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="interfaceType" value="http接口" checked="true">http接口
-                        </label>
+                        <#if interfaceTypeEnumList??>
+                            <#list interfaceTypeEnumList as item>
+                                <label class="radio-inline" style="margin-top: 0">
+                                    <input type="radio" name="type" value="${item.getName()}"  value="${item.getId()}" <#if interfaceDto.type=item.getId() || (interfaceDto.type=null && item.getId()=1)>checked="true"</#if>>${item.getName()}
+                                </label>
+                            </#list>
+                        </#if>
                     </div>
 
                     <!--dubbo接口-->
                     <div class="form-group dubbo-interface hidden">
                         <label class="control-label" for="zkOrNot">调用方式</label>
                         <select class="form-control" id="zkOrNot" name="zkOrNot">
-                            <option values="true">通过zookeeper注册中心</option>
-                            <option values="false">不通过zookeeper注册中心</option>
+                            <option value="1" <#if interfaceDto.zkOrNot=1>selected</#if>>通过zookeeper注册中心</option>
+                            <option value="0" <#if interfaceDto.zkOrNot=0>selected</#if>>不通过zookeeper注册中心</option>
                         </select>
                     </div>
                     <div class="form-group dubbo-interface hidden">
                         <label class="control-label">版本</label>
-                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion">
+                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion" value="${interfaceDto.dubboVersion}">
                     </div>
                     <div class="form-group dubbo-interface hidden">
                         <label class="control-label">分组</label>
-                        <input type="text" class="form-control" id="group" name="group">
+                        <input type="text" class="form-control" id="dubboGroup" name="dubboGroup">
                     </div>
                     <div class="form-group dubbo-interface hidden">
                         <label class="control-label">超时</label>
-                        <input type="text" class="form-control" id="timeout" name="timeout">
+                        <input type="text" class="form-control" id="dubboTimeout" name="dubboTimeout">
                     </div>
 
                     <!--http接口-->
                     <div class="form-group http-interface ">
                         <label class="control-label">请求路径</label>
-                        <input type="text" class="form-control" id="urlPath" name="urlPath">
+                        <input type="text" class="form-control" id="urlPath" name="url">
                     </div>
                     <div class="form-group http-interface ">
                         <label class="control-label">参数名</label>
@@ -103,10 +101,10 @@
                     </div>
                     <div class="form-group http-interface ">
                         <label class="control-label">协议类型</label>
-                        <select class="form-control" id="httpType" name="httpType">
+                        <select class="form-control" id="protocolType" name="protocolType">
                             <#if httpTypeList ??>
                                 <#list httpTypeList as item>
-                                    <option values="${item.getId()}">${item.getName()}
+                                    <option value="${item.getId()}" <#if interfaceDto.protocolType = item.getId()></#if>>${item.getName()}
                                     </option>
                                 </#list>
                             </#if>
@@ -118,7 +116,7 @@
                                 name="requestType">
                             <#if requestTypeList ??>
                                 <#list requestTypeList as item>
-                                    <option values="${item.getId()}">${item.getName()}
+                                    <option values="${item.getId()}" <#if interfaceDto.requestType = item.getId()></#if>>${item.getName()}
                                     </option>
                                 </#list>
                             </#if>
@@ -183,7 +181,7 @@
                     <div class="form-group btn-div">
                         <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare">数据准备</button>
                         <button type="button" data-toggle="modal" data-target="#dataClear" class="btn btn-warning interface-clear">数据清除</button>
-                        <button type="button" class="btn btn-primary interface-submit">保存</button>
+                        <button type="submit" class="btn btn-primary interface-submit">保存</button>
                         <button type="button" class="btn btn-success interface-reset">重置</button>
                     </div>
                 </div>
@@ -197,86 +195,19 @@
                         <div class="panel-body">
                             <div class="form-group ">
                                 <label class="control-label">加密jar包</label>
-                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
+                                <!--<input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="file">-->
+                                <input id="file-0" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
+                                <input type="hidden" name="jarPath">
                             </div>
                             <div class="form-group ">
                                 <label class="control-label">编写调用代码</label>
-                                <textarea type="text" class="form-control" name="encryptCode" placeholder="调用jar包内加密算法的demo"></textarea>
+                                <textarea type="text" class="form-control" name="codeText" placeholder="调用jar包内加密算法的demo"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-
-     <!--   &lt;!&ndash;数据准备&ndash;&gt;
-        <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
-            &lt;!&ndash; 数据准备 &ndash;&gt;
-            <label class="control-label col-lg-4 top-label">数据准备</label>
-
-            <div class="panel panel-default operation">
-                <div class="panel-heading">
-                    数据库操作
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table case-table">
-                            <thead>
-                            <tr>
-                                <th style="width: 15%">数据库配置名</th>
-                                <th style="width: 75%">sql语句</th>
-                                <th>操作</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-
-                            <tr>
-                                <td style=" border: none"><span id="prepareAddDbOperation"
-                                                                class="btn btn-info"><i
-                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    &lt;!&ndash; /.table-responsive &ndash;&gt;
-                </div>
-                &lt;!&ndash; /.panel-body &ndash;&gt;
-            </div>
-            <div class="panel panel-default operation">
-                <div class="panel-heading">
-                    redis操作
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table case-table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10%">redis名</th>
-                                <th style="width: 10%">redis操作类型</th>
-                                <th style="width: 30%">key</th>
-                                <th style="width: 30%">value</th>
-                                <th style="width: 10%">time</th>
-                                <th>操作</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td style=" border: none"><span id="prepareAddRedisOperation"
-                                                                class="btn btn-info"><i
-                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    &lt;!&ndash; /.table-responsive &ndash;&gt;
-                </div>
-                &lt;!&ndash; /.panel-body &ndash;&gt;
-            </div>
-        </div>-->
 
         <!-- 数据准备弹框 -->
         <div class="modal fade" id="dataPrepare" tabindex="-1" role="dialog" aria-labelledby="dataPrepareLabel" aria-hidden="true">
@@ -606,7 +537,6 @@
     });
 
 
-
     $(".radio-inline").change(
             function () {
                 var value = $("input[name='interfaceType']:checked").val();
@@ -621,24 +551,110 @@
             }
     );
 
-
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
-        var control = $('#' + ctrlName);
-        control.fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-            showUpload: false, //是否显示上传按钮
-            showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+    $("#file-0").fileinput({
+        showUpload: false,
+        uploadAsync:true,
+        uploadUrl: '${basePath}/autotest/interface-jar/uploadJar', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jar','war'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFileSize: 200000,
+        maxFilesNum: 1,
+        showPreview:true,
+        previewFileIcon: "",
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+            if(data.response.code==0){
+                $("input[name='jarPath']").val(data.response.data);
+            } else {
+                alert("上传失败:" + data.response.message);
+            }
+
         });
-    }
+    });
 
     $(document).ready(function () {
+        $("#interface-form").validate({
+                submitHandler : function(form) {  //验证通过后的执行方法
+                    //当前的form通过ajax方式提交（用到jQuery.Form文件）
+                    $(form).ajaxSubmit({
+                        type: "POST",
+                        dataType: "html",
+                        url: "${basePath}/autotest/interface/saveInterface",
+                        data: $('#add-service').serialize(),
+                        success: function(result) {
+                            data = eval("(" + result + ")");
+                            if (data.code == 0) {
+                                // $("#addService").modal("hide");
+                                reload();
+                            } else {
+                                alert("保存失败："+data.message);
+                            }
+                        },
+                        error: function(result) {
+                            alert(eval("(" + result + ")").message);
+                        }
+                    });
+                },
+                focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+                rules: {
+                    name: {
+                        required:true,
+                        maxlength:30
+                    },
+                    description:  {
+                        maxlength:300
+                    },
+                    serviceId: {
+                        required: true
+                    },
+                    type: {
+                        required: true
+                    },
+                    url: {
+                        required: true,
+                        maxlength:300
+                    }
+                },
+                messages: {
+                    name: {
+                        required:"请输入接口名称",
+                        maxlength:"接口名称不超过30个字符"
+                    },
+                    description:  {
+                        maxlength:"接口描述不超过300个字符"
+                    },
+                    serviceId: {
+                        required: "请选择接口所属服务"
+                    },
+                    type: {
+                        required: "请选择接口类型"
+                    },
+                    url: {
+                        required: "请输入接口路径",
+                        maxlength:"接口路径不超过300个字符"
+                    }
+                },
+                errorElement : "div",
+                errorClass : "error_info",
+                highlight : function(element, errorClass,
+                                     validClass) {
+                    $(element).closest('.form-control').addClass(
+                            'highlight_red');
+                },
+                success : function(element) {
+                    $(element).siblings('.form-control')
+                            .removeClass('highlight_red');
+                    $(element).siblings('.form-control').addClass(
+                            'highlight_green');
+                    $(element).remove();
+                }
 
-
+            });
     });
 
 </script>

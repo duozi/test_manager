@@ -106,6 +106,10 @@ public class TestInterface extends BaseEntity {
      */
     private Long dubboTimeout;
 
+    /**
+     * 是否通过zk注册中心调用
+     */
+    private Integer zkOrNot;
     
     private List<TestParams> testParamss = new ArrayList<TestParams>();
 
@@ -238,4 +242,11 @@ public class TestInterface extends BaseEntity {
         this.testParamss = testParamss;
     }
 
+    public Integer getZkOrNot() {
+        return zkOrNot;
+    }
+
+    public void setZkOrNot(Integer zkOrNot) {
+        this.zkOrNot = zkOrNot;
+    }
 }

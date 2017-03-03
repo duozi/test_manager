@@ -27,6 +27,7 @@
     <dubbo:reference id="relationDatabaseEnvironmentService" interface="com.xn.interfacetest.service.RelationDatabaseEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="testRedisConfigService" interface="com.xn.interfacetest.service.TestRedisConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="testDatabaseConfigService" interface="com.xn.interfacetest.service.TestDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testInterfaceService" interface="com.xn.interfacetest.service.TestInterfaceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--performance的服务-->
     <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.service.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>

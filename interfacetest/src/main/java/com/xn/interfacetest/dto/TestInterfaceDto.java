@@ -103,6 +103,11 @@ public class TestInterfaceDto extends BaseDto {
      */
     private Long dubboTimeout;
 
+    /**
+     * 是否通过zk注册中心调用
+     */
+    private Integer zkOrNot;
+
     public Long getId() {
         return this.id;
     }
@@ -215,7 +220,12 @@ public class TestInterfaceDto extends BaseDto {
         this.dubboTimeout = dubboTimeout;
     }
 
+    public Integer getZkOrNot() {
+        return zkOrNot;
+    }
 
-
+    public void setZkOrNot(Integer zkOrNot) {
+        this.zkOrNot = zkOrNot;
+    }
 }
 
