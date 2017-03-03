@@ -1,13 +1,15 @@
 package com.xn.manage.autotestController;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.utils.FileUpload;
 import com.xn.performance.util.CommonResult;
@@ -17,20 +19,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/autotest/service")

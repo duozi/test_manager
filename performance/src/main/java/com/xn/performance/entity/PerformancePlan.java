@@ -62,12 +62,40 @@ public class PerformancePlan extends BaseEntity {
      * 脚本id 
      */
     private Integer scriptId;
+    /**
+     *
+     * 脚本名称
+     */
+    private String scriptName;
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
+    }
+
+    public String getScenarioName() {
+        return scenarioName;
+    }
+
+    public void setScenarioName(String scenarioName) {
+        this.scenarioName = scenarioName;
+    }
 
     /**
      * 
      * 场景id 
      */
+
     private Integer scenarioId;
+    /**
+     *
+     * 场景名称
+     */
+    private String scenarioName;
+
 
     /**
      * 

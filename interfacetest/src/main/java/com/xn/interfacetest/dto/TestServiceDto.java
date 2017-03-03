@@ -5,9 +5,9 @@ package com.xn.interfacetest.dto;
 
 
 import com.xn.common.base.BaseDto;
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import org.hibernate.validator.constraints.NotEmpty;
+
+
+
 
 /**
  * TestService Dto 对象
@@ -32,7 +32,7 @@ public class TestServiceDto extends BaseDto {
      * 
      * 服务名称 
      */
-    @NotEmpty
+
     private String name;
 
     /**

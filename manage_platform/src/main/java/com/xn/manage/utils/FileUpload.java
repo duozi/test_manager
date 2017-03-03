@@ -17,6 +17,8 @@ import java.io.File;
 public class FileUpload {
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
+    private static final String file_separator = "/";
+
     public static CommonResult upload(MultipartFile[] files,String folderName,HttpServletRequest request){
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
@@ -32,7 +34,7 @@ public class FileUpload {
                         return result;
                     }
                     // 保存文件
-                    jarPath = PropertyUtil.getProperty("upload_path") + folderName + "/"+ file.getOriginalFilename();
+                    jarPath = PropertyUtil.getProperty("upload_path") + file_separator + "/"+ file.getOriginalFilename();
                     FileUtil.saveFile(request, file,jarPath);
                     result.setData(jarPath);
                 }

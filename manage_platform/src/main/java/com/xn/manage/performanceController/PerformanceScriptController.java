@@ -6,6 +6,8 @@ import com.xn.common.company.dto.CompanyDto;
 import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.FileUtil;
+import com.xn.common.utils.PropertyUtil;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
@@ -19,9 +21,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +97,9 @@ public class PerformanceScriptController {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
-            performanceScriptDto.setPath("d://test.jmx");
+//            String fileName = "e:\\\\upload\\\\" + performanceScriptDto.getPath();
+            performanceScriptDto.setPath(performanceScriptDto.getPath());
+
             if (!ValidateUtil.validate(performanceScriptDto)) {
                 logger.warn(String.format("参数有误", performanceScriptDto));
                 commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
@@ -107,6 +113,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("保存操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -132,6 +139,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("编辑操作异常｛｝", e);
         } finally {
             return commonResult;
         }
@@ -159,8 +167,79 @@ public class PerformanceScriptController {
 
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
         } finally {
             return commonResult;
         }
-    }}
+    }
+
+    @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
+        CommonResult result = new CommonResult();
+        result.setMessage("上传成功！");
+        String path = "";
+        try {
+            if (files != null && files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    MultipartFile file = files[i];
+                    // 保存文件
+                    path = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+                    FileUtil.saveFile(request, file,path);
+
+                    result.setData(path);
+                }
+            }
+        } catch (Exception e) {
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message = e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("上传文件操作异常｛｝", e);
+        }finally {
+            return  result;
+        }
+
+
+    }
+
+
+    @RequestMapping(value = "/script_list/show_script", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult showScript(HttpServletRequest request) {
+
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            String path = request.getParameter("path");
+            path.replace("/",File.separator);
+            File file = new File(path);
+            String content = FileUtil.fileReadeForStr(file);
+            commonResult.setData(content);
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+    }
+
+    @RequestMapping(value = "/script_list/script_detail_save", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult saveScriptDetail(@RequestParam String content, @RequestParam String path) {
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            FileUtil.fileWrite(path, content);
+
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("删除操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+    }
+}
 
