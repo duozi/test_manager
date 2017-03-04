@@ -76,7 +76,12 @@ public class TestDatabaseConfigServiceImpl implements TestDatabaseConfigService 
     @Override
     public TestDatabaseConfigDto save(TestDatabaseConfigDto testDatabaseConfigDto) {
         TestDatabaseConfig testDatabaseConfig = BeanUtils.toBean(testDatabaseConfigDto,TestDatabaseConfig.class);
-        testDatabaseConfigMapper.save(testDatabaseConfig);
+        if(null != testDatabaseConfigDto.getId()){
+            testDatabaseConfigMapper.update(testDatabaseConfig);
+        } else{
+            testDatabaseConfigMapper.save(testDatabaseConfig);
+        }
+
         testDatabaseConfigDto.setId(testDatabaseConfig.getId());
         return testDatabaseConfigDto;
     }

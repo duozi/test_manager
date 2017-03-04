@@ -52,13 +52,13 @@
                     <label>新增配置</label>
                     <div class="choose-sys case-choose" style="display: inline-flex">
                         <label class="checkbox-inline" style="margin-top: 0">
-                            <input type="checkbox" value="serviceProperties" name="serviceProperties">服务配置
+                            <input type="checkbox" value="1" name="serviceProperty" <#if environmentDto.serviceProperty=1>checked</#if>>服务配置
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" value="dbProperties" name="dbProperties">数据库配置
+                            <input type="checkbox" value="1" name="dbProperty" <#if environmentDto.dbProperty=1>checked</#if>>数据库配置
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" value="redisProperties" name="redisProperties">redis配置
+                            <input type="checkbox" value="1" name="redisProperty" <#if environmentDto.redisProperty=1>checked</#if>>redis配置
                         </label>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 </div>
         </form>
             <!--service配置-->
-            <div id="service-form-div" class="panel panel-default panel-collapse collapse operation-width">
+            <div id="service-form-div" class="panel panel-default panel-collapse collapse operation-width <#if environmentDto.serviceProperty=1>in</#if>">
                 <!-- service配置 -->
                 <label class="control-label col-lg-4 top-label">服务配置</label>
 
@@ -78,7 +78,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 20%">服务名</th>
-                                    <th style="width: 30%">ip</th>
+                                    <th style="width: 20%">ip</th>
                                     <th style="width: 20%">http端口号</th>
                                     <th style="width: 20%">dubbo端口号</th>
                                     <th style="width: 20%">zk地址</th>
@@ -87,29 +87,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <div class="row">
-                                        <td>
-                                            <select class="form-control" name="serviceId">
-                                                <#if serviceList ??>
-                                                    <#list serviceList as item>
-                                                        <option value="${item.id}">${item.name}</option>
-                                                    </#list>
-                                                </#if>
-                                            </select>
-                                        </td>
-                                        <td><input type="text" class="form-control" name="ipAddress"></td>
-                                        <td><input type="text" class="form-control" name="httpPort"></td>
-                                        <td><input type="text" class="form-control" name="dubboPort"></td>
-                                        <td><input type="text" class="form-control" name="zkAddress"></td>
-                                        <td>
-                                            <button type="submit" class="btn btn-info"  onclick="saveServiceProperties(this)">保存</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" name="delete" class="btn btn-info">删除</button>
-                                        </td>
-                                    </div>
-                                </tr>
+                                <#if relationServiceEnvironmentDtoList??>
+                                    <#list relationServiceEnvironmentDtoList as relationItem>
+                                        <tr>
+                                            <div class="row">
+                                                <td>
+                                                    <select class="form-control" name="serviceId">
+                                                        <#if serviceList ??>
+                                                            <#list serviceList as item>
+                                                                <option value="${item.id}" <#if relationItem.serviceId = item.id>selected</#if>>${item.name}</option>
+                                                            </#list>
+                                                        </#if>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="id" value="${relationItem.id}">
+                                                    <input type="text" class="form-control" name="ipAddress" value="${relationItem.ipAddress}">
+                                                </td>
+                                                <td><input type="text" class="form-control" name="httpPort" value="${relationItem.httpPort}"></td>
+                                                <td><input type="text" class="form-control" name="dubboPort" value="${relationItem.dubboPort}"></td>
+                                                <td><input type="text" class="form-control" name="zkIpAddress" value="${relationItem.zkIpAddress}"></td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-info"  onclick="saveServiceProperties(this)">保存</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" name="deleteService" onclick="deleteService(this)" class="btn btn-info">删除</button>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    </#list>
+                                </#if>
                                 <tr>
                                     <td style=" border: none"><span id="addServiceProperties"
                                                                     class="btn btn-info"><i
@@ -120,60 +127,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--&lt;!&ndash;zk配置&ndash;&gt;-->
-            <!--<div id="zk-form-div" class="panel panel-default panel-collapse collapse operation-width">-->
-                <!--&lt;!&ndash; zk配置 &ndash;&gt;-->
-                <!--<label class="control-label col-lg-4 top-label">zk配置</label>-->
-
-                <!--<div class="panel panel-default operation">-->
-                    <!--<div class="panel-body">-->
-                        <!--<div class="table-responsive">-->
-                            <!--<table class="table case-table">-->
-                                <!--<thead>-->
-                                <!--<tr>-->
-                                    <!--<th style="width: 30%">服务名</th>-->
-                                    <!--<th style="width: 60%">ip和端口号</th>-->
-                                    <!--<th>操作</th>-->
-                                    <!--<th></th>-->
-                                <!--</tr>-->
-                                <!--</thead>-->
-                                <!--<tbody>-->
-                                <!--<tr>-->
-                                    <!--<div class="row">-->
-                                        <!--<td>-->
-                                            <!--<select class="form-control">-->
-                                                <!--<#if serviceList ??>-->
-                                                    <!--<#list serviceList as item>-->
-                                                        <!--<option value="${item.id}">${item.name}</option>-->
-                                                    <!--</#list>-->
-                                                <!--</#if>-->
-                                            <!--</select>-->
-                                        <!--</td>-->
-                                        <!--<td><textarea type="text" class="form-control"-->
-                                                      <!--style="width: 100% ;height: 34px;resize: vertical" name="httpAddress"></textarea></td>-->
-
-                                        <!--<td>-->
-                                            <!--<button type="submit" class="btn btn-info">保存</button>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<button type="button" name="delete" class="btn btn-info">删除</button>-->
-                                        <!--</td>-->
-                                    <!--</div>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td style=" border: none"><span id="addZkProperties"-->
-                                                                    <!--class="btn btn-info"><i-->
-                                            <!--class="icon icon-plus-sign"></i>添加Zk配置</span></td>-->
-                                <!--</tr>-->
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+         </div>
             <!--数据库配置-->
-            <div id="db-form-div" class="panel panel-default panel-collapse collapse operation-width">
+             <div id="db-form-div" class="panel panel-default panel-collapse collapse operation-width <#if environmentDto.dbProperty=1>in</#if>">
                 <!-- 数据库配置 -->
                 <label class="control-label col-lg-4 top-label">数据库配置</label>
 
@@ -195,31 +151,38 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <div class="row">
-                                        <td><input type="text" class="form-control"></td>
-                                        <td>
-                                            <select class="form-control">
-                                                <#if databaseTypeEnumList ??>
-                                                    <#list databaseTypeEnumList as item>
-                                                        <option values="${item.getId()}"> ${item.getName()}</option>
-                                                    </#list>
-                                                </#if>
-                                            </select>
-                                        </td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td>
-                                            <button type="submit" class="btn btn-info">保存</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" name="delete" class="btn btn-info">删除</button>
-                                        </td>
-                                    </div>
-                                </tr>
+                                <#if testDatabaseConfigDtoList??>
+                                    <#list testDatabaseConfigDtoList as relationItem>
+                                        <tr>
+                                        <div class="row">
+                                            <td>
+                                                <input type="hidden" name="id" value="${relationItem.id}">
+                                                <input type="text" class="form-control" name="name" value="${relationItem.name}">
+                                            </td>
+                                            <td>
+                                                <select class="form-control" name="type">
+                                                    <#if databaseTypeEnumList ??>
+                                                        <#list databaseTypeEnumList as item>
+                                                            <option value="${item.getId()}"<#if relationItem.type = item.getId()>selected</#if>> ${item.getName()}</option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control"  name="ipAddress" value="${relationItem.ipAddress}"></td>
+                                            <td><input type="text" class="form-control"  name="portAddress" value="${relationItem.portAddress}"></td>
+                                            <td><input type="text" class="form-control"  name="databaseName" value="${relationItem.databaseName}"></td>
+                                            <td><input type="text" class="form-control"  name="userName" value="${relationItem.userName}"></td>
+                                            <td><input type="password" class="form-control"  name="password" value="${relationItem.password}"></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-info" onclick="saveDbProperties(this)">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="deleteDB" onclick="deleteDB(this)" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                     </tr>
+                                    </#list>
+                                </#if>
                                 <tr>
                                     <td style=" border: none"><span id="addDbProperties"
                                                                     class="btn btn-info"><i
@@ -232,7 +195,7 @@
                 </div>
             </div>
             <!--redis配置-->
-            <div id="redis-form-div" class="panel panel-default panel-collapse collapse operation-width">
+            <div id="redis-form-div" class="panel panel-default panel-collapse collapse operation-width <#if environmentDto.redisProperty=1>in</#if>">
                 <!-- redis配置 -->
                 <label class="control-label col-lg-4 top-label">redis配置</label>
 
@@ -251,25 +214,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <div class="row">
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td><input type="text" class="form-control"></td>
-                                        <td>
+                                <#if testRedisConfigDtoList??>
+                                    <#list testRedisConfigDtoList as relationItem>
+                                        <tr>
+                                            <div class="row">
+                                                <td>
+                                                    <input type="hidden" name="id" value="${relationItem.id}">
+                                                    <input type="text" class="form-control" name="name" value="${relationItem.name}">
+                                                </td>
+                                                <td><input type="text" class="form-control" name="timeout" value="${relationItem.timeout}"></td>
+                                                <td><input type="text" class="form-control" name="tryTime" value="${relationItem.tryTime}"></td>
+                                                <td>
+                                                    <input class="form-control"  name="ipAddress" value="${relationItem.ipAddress}">
+                                                </td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" name="deleteRedis" onclick="deleteRedis(this)" class="btn btn-info">删除</button>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    </#list>
+                                </#if>
 
-                                                    <textarea class="form-control"
-                                                              style="height:34px;width: 100%;
-                                                              resize:vertical"></textarea>
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn btn-info">保存</button>
-                                        </td>
-                                        <td>
-                                            <button type="button" name="delete" class="btn btn-info">删除</button>
-                                        </td>
-                                    </div>
-                                </tr>
                                 <tr>
                                     <td style=" border: none"><span id="addRedisProperties"
                                                                     class="btn btn-info"><i
@@ -294,91 +262,69 @@
     servicePropertiesHtml += '<select class="form-control" name="serviceId">';
     servicePropertiesHtml += '<#if serviceList ??>';
     servicePropertiesHtml += '<#list serviceList as item>';
-    servicePropertiesHtml += '<option values="${item.id}"> ${item.name}';
+    servicePropertiesHtml += '<option value="${item.id}"> ${item.name}';
     servicePropertiesHtml += '</option>';
     servicePropertiesHtml += '</#list>';
     servicePropertiesHtml += '</#if>';
     servicePropertiesHtml += '</select>';
     servicePropertiesHtml += '</td>';
-    servicePropertiesHtml += '<td><input type="text" class="form-control" name="ipAddress"></td>';
+    servicePropertiesHtml += '<td><input type="hidden" name="id"><input type="text" class="form-control" name="ipAddress"></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="httpPort"></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="dubboPort"></td>';
-    servicePropertiesHtml += '<td><input type="text" class="form-control" name="zkAddress"></td>';
+    servicePropertiesHtml += '<td><input type="text" class="form-control" name="zkIpAddress"></td>';
     servicePropertiesHtml += '<td>';
     servicePropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</button>';
     servicePropertiesHtml += '</td>';
     servicePropertiesHtml += '<td>';
-    servicePropertiesHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    servicePropertiesHtml += '<button type="button" name="deleteService" onclick="deleteService(this)" class="btn btn-info">删除</button>';
     servicePropertiesHtml += '</td>';
     servicePropertiesHtml += '</div>';
     servicePropertiesHtml += '</tr>';
 
-
-//    var zkPropertiesHtml='<tr>';
-//    zkPropertiesHtml+='<div class="row">';
-//    zkPropertiesHtml+='<td>';
-//    zkPropertiesHtml+='<select class="form-control">';
-//    zkPropertiesHtml+='<#if serviceList ??>';
-//    zkPropertiesHtml+='<#list serviceList as item>';
-//    zkPropertiesHtml+='<option values="${item.id}"> ${item.name}</option>';
-//    zkPropertiesHtml+='</#list>';
-//    zkPropertiesHtml+='</#if>';
-//    zkPropertiesHtml+='</select>';
-//    zkPropertiesHtml+='</td>';
-//    zkPropertiesHtml+='<td><textarea type="text" class="form-control" style="width: 100% ;height: 34px;resize: vertical"></textarea></td>';
-//    zkPropertiesHtml+='<td>';
-//    zkPropertiesHtml+='<button type="submit" class="btn btn-info" onclick="saveZKProperties(this)">保存</button>';
-//    zkPropertiesHtml+='</td>';
-//    zkPropertiesHtml+='<td>';
-//    zkPropertiesHtml+='<button type="button" name="delete" class="btn btn-info">删除</button>';
-//    zkPropertiesHtml+='</td>';
-//    zkPropertiesHtml+='</div>';
-//    zkPropertiesHtml+='</tr>';
-
     var dbPropertiesHtml = '<tr>';
     dbPropertiesHtml += '<div class="row">';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    dbPropertiesHtml += '<td><input type="text" class="form-control" name="name"></td>';
     dbPropertiesHtml += '<td>';
-    dbPropertiesHtml += '<select class="form-control" >';
+    dbPropertiesHtml += '<select class="form-control" name="type">';
     dbPropertiesHtml += '<#if databaseTypeEnumList ??>';
     dbPropertiesHtml += '<#list databaseTypeEnumList as item>';
-    dbPropertiesHtml += '<option values="${item.getId()}"> ${item.getName()}</option>';
+    dbPropertiesHtml += '<option value="${item.getId()}"> ${item.getName()}</option>';
     dbPropertiesHtml += '</#list>';
     dbPropertiesHtml += '</#if>';
     dbPropertiesHtml += '</select>';
     dbPropertiesHtml += '</td>';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    dbPropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    dbPropertiesHtml += '<td><input type="hidden" name="id"><input type="text" class="form-control"  name="ipAddress"></td>';
+    dbPropertiesHtml += '<td><input type="text" class="form-control"  name="portAddress" ></td>';
+    dbPropertiesHtml += '<td><input type="text" class="form-control"  name="databaseName" ></td>';
+    dbPropertiesHtml += '<td><input type="text" class="form-control"  name="userName" ></td>';
+    dbPropertiesHtml += '<td><input type="password" class="form-control"  name="password" ></td>';
     dbPropertiesHtml += '<td>';
     dbPropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveDbProperties(this)">保存</button>';
     dbPropertiesHtml += '</td>';
     dbPropertiesHtml += '<td>';
-    dbPropertiesHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    dbPropertiesHtml += '<button type="button" name="deleteDB" onclick="deleteDB(this)" class="btn btn-info">删除</button>';
     dbPropertiesHtml += '</td>';
     dbPropertiesHtml += '</div>';
     dbPropertiesHtml += '</tr>';
 
     var redisPropertiesHtml = '<tr>';
     redisPropertiesHtml += '<div class="row">';
-    redisPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    redisPropertiesHtml += '<td><input type="text" class="form-control"></td>';
-    redisPropertiesHtml += '<td><input type="text" class="form-control"></td>';
+    redisPropertiesHtml += '<td><input type="hidden" name="id"><input type="text" class="form-control" name="name"></td>';
+    redisPropertiesHtml += '<td><input type="text" class="form-control" name="timeout"></td>';
+    redisPropertiesHtml += '<td><input type="text" class="form-control" name="tryTime"></td>';
     redisPropertiesHtml += '<td >';
-    redisPropertiesHtml += '<textarea type="text" class="form-control" style="height: 34px;width: 100%;resize:vertical" ></textarea>';
+    redisPropertiesHtml += '<input type="text" class="form-control" name="ipAddress" >';
     redisPropertiesHtml += '</td>';
     redisPropertiesHtml += '<td>';
     redisPropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>';
     redisPropertiesHtml += '</td>';
     redisPropertiesHtml += '<td>';
-    redisPropertiesHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    redisPropertiesHtml += '<button type="button" name="deleteRedis" onclick="deleteRedis(this)"  class="btn btn-info">删除</button>';
     redisPropertiesHtml += '</td>';
     redisPropertiesHtml += '</div>';
     redisPropertiesHtml += '</tr>';
 
-    $("input[name='serviceProperties']").click(function () {
+    $("input[name='serviceProperty']").click(function () {
         var type = $(this).val();
         if ( $(this).is(':checked')) {
             $("#service-form-div").addClass("in");
@@ -387,16 +333,7 @@
         }
     });
 
-    $("input[name='zkProperties']").click(function () {
-        var type = $(this).val();
-        if ( $(this).is(':checked')) {
-            $("#zk-form-div").addClass("in");
-        } else {
-            $("#zk-form-div").removeClass("in");
-        }
-    });
-
-    $("input[name='dbProperties']").click(function () {
+    $("input[name='dbProperty']").click(function () {
         var type = $(this).val();
         if ( $(this).is(':checked')) {
             $("#db-form-div").addClass("in");
@@ -405,7 +342,7 @@
         }
     });
 
-    $("input[name='redisProperties']").click(function () {
+    $("input[name='redisProperty']").click(function () {
         var type = $(this).val();
         if ( $(this).is(':checked')) {
             $("#redis-form-div").addClass("in");
@@ -414,7 +351,6 @@
         }
     });
 
-
     $("#addServiceProperties").click(function () {
         $(this).parent().parent().before(servicePropertiesHtml);
         $("button[name='delete']").click(function () {
@@ -422,13 +358,6 @@
         });
 
     });
-//    $("#addZkProperties").click(function () {
-//        $(this).parent().parent().before(zkPropertiesHtml);
-//        $("button[name='delete']").click(function () {
-//            $(this).parent().parent().remove();
-//        });
-//
-//    });
     $("#addRedisProperties").click(function () {
         $(this).parent().parent().before(redisPropertiesHtml);
         $("button[name='delete']").click(function () {
@@ -442,10 +371,57 @@
             $(this).parent().parent().remove();
         });
     });
-    $("button[name='delete']").click(function () {
-        $(this).parent().parent().remove();
-    });
+    //删除service配置
+    function deleteService(_this) {
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        $.MsgBox.Confirm("删除提示","确定要删除该服务配置吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post("${basePath}/autotest/environment/deleteServiceEnvironmentProperties",{id:id},function(data,status){
+                    if(0!=data.code){
+                        $.MsgBox.Alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        })
+    }
+    //删除db配置
+    function deleteDB(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        $.MsgBox.Confirm("删除提示","确定要删除该服务配置吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post("${basePath}/autotest/environment/deleteDBProperties",{id:id},function(data,status){
+                    if(0!=data.code){
+                        $.MsgBox.Alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        })
+    }
 
+    //删除配置
+    function deleteRedis(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        $.MsgBox.Confirm("删除提示","确定要删除该服务配置吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post("${basePath}/autotest/environment/deleteRedisProperties",{id:id},function(data,status){
+                    if(0!=data.code){
+                        $.MsgBox.Alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        })
+    }
+
+    //保存环境基本信息
     function saveEnvironment(){
         //ajax提交form表单的方式
         var AjaxURL= "${basePath}/autotest/environment/saveEnvironment";
@@ -455,10 +431,13 @@
             url: AjaxURL,
             data: $('#add-environment').serialize(),
             success: function (result) {
-                data = eval("(" + result + ")");
+               var data = eval("(" + result + ")");
                 if (data.code == 0) {
-                    // $("#addService").modal("hide");
-                    reload();
+                    alert("保存成功");
+                    var environment = data.data;
+                    $("#add-environment input[name='id']").val(environment.id);
+                    $("#add-environment a[type='button']").attr("disabled",true);
+                    $("#add-environment a[type='button']").attr('onclick', '');
                 } else {
                     alert("保存失败："+data.message);
                 }
@@ -468,24 +447,26 @@
             }
         });
     }
-
+    //保存service配置
     function saveServiceProperties(_this){
         var serviceId = $(_this).parent().parent().find("select[name='serviceId']").val();
         var ipAddress = $(_this).parent().parent().find("input[name='ipAddress']").val();
         var httpPort = $(_this).parent().parent().find("input[name='httpPort']").val();
         var dubboPort = $(_this).parent().parent().find("input[name='dubboPort']").val();
-        var zkIpAddress = $(_this).parent().parent().find("input[name='zkAddress']").val();
+        var zkIpAddress = $(_this).parent().parent().find("input[name='zkIpAddress']").val();
         var environmentId = $("#add-environment").find("input[name='id']").val();
+        var id = $(_this).parent().parent().find("input[name='id']").val();
         var AjaxURL= "${basePath}/autotest/environment/saveServiceProperties";
         $.ajax({
             type: "POST",
             dataType: "html",
             url: AjaxURL,
-            data: {"serviceId":serviceId,"ipAddress":ipAddress,"httpPort":httpPort,"dubboPort":dubboPort,"zkIpAddress":zkIpAddress,"environmentId":environmentId},
+            data: {"id":id,"serviceId":serviceId,"ipAddress":ipAddress,"httpPort":httpPort,"dubboPort":dubboPort,"zkIpAddress":zkIpAddress,"environmentId":environmentId},
             success: function (result) {
                 data = eval("(" + result + ")");
                 if (data.code == 0) {
                     alert("保存成功")
+                    $(_this).parent().parent().find("input[name='id']").val(data.data.id);
                     //reload();
                 } else {
                     alert("保存失败："+data.message);
@@ -496,17 +477,66 @@
             }
         });
     }
-
+    //保存DB配置
     function saveDbProperties(_this){
-
+        var type = $(_this).parent().parent().find("select[name='type']").val();
+        var ipAddress = $(_this).parent().parent().find("input[name='ipAddress']").val();
+        var portAddress = $(_this).parent().parent().find("input[name='portAddress']").val();
+        var databaseName = $(_this).parent().parent().find("input[name='databaseName']").val();
+        var userName = $(_this).parent().parent().find("input[name='userName']").val();
+        var password = $(_this).parent().parent().find("input[name='password']").val();
+        var name = $(_this).parent().parent().find("input[name='name']").val();
+        var environmentId = $("#add-environment").find("input[name='id']").val();
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var AjaxURL= "${basePath}/autotest/environment/saveDBProperties";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: AjaxURL,
+            data: {"type":type,"id":id,"environmentId":environmentId,"ipAddress":ipAddress,"portAddress":portAddress,"databaseName":databaseName,"userName":userName,"password":password,"name":name},
+            success: function (result) {
+                data = eval("(" + result + ")");
+                if (data.code == 0) {
+                    alert("保存成功")
+                    $(_this).parent().parent().find("input[name='id']").val(data.data.id);
+                    //reload();
+                } else {
+                    alert("保存失败："+data.message);
+                }
+            },
+            error: function(result) {
+                alert(eval("(" + result + ")").message);
+            }
+        });
     }
-
-    function saveZKProperties(_this){
-
-    }
-
+    //保存redis配置
     function saveRedisProperties(_this){
-
+        var ipAddress = $(_this).parent().parent().find("input[name='ipAddress']").val();
+        var name = $(_this).parent().parent().find("input[name='name']").val();
+        var timeout = $(_this).parent().parent().find("input[name='timeout']").val();
+        var tryTime = $(_this).parent().parent().find("input[name='tryTime']").val();
+        var environmentId = $("#add-environment").find("input[name='id']").val();
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var AjaxURL= "${basePath}/autotest/environment/saveRedisProperties";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: AjaxURL,
+            data: {"id":id,"environmentId":environmentId,"ipAddress":ipAddress,"tryTime":tryTime,"timeout":timeout,"name":name},
+            success: function (result) {
+                data = eval("(" + result + ")");
+                if (data.code == 0) {
+                    alert("保存成功")
+                    $(_this).parent().parent().find("input[name='id']").val(data.data.id);
+                    //reload();
+                } else {
+                    alert("保存失败："+data.message);
+                }
+            },
+            error: function(result) {
+                alert(eval("(" + result + ")").message);
+            }
+        });
     }
 
 </script>

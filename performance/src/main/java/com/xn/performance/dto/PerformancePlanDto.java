@@ -105,9 +105,23 @@ public class PerformancePlanDto extends BaseDto{
      */
     private String createPerson;
 
-    
 
-    
+
+
+    /**
+     * 是否已删除
+     */
+
+    private String isDelete;
+
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

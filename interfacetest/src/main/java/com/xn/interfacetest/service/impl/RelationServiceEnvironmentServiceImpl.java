@@ -77,7 +77,12 @@ public class RelationServiceEnvironmentServiceImpl implements RelationServiceEnv
     @Override
     public RelationServiceEnvironmentDto save(RelationServiceEnvironmentDto relationServiceEnvironmentDto) {
         RelationServiceEnvironment relationServiceEnvironment = BeanUtils.toBean(relationServiceEnvironmentDto,RelationServiceEnvironment.class);
-        relationServiceEnvironmentMapper.save(relationServiceEnvironment);
+        if(null == relationServiceEnvironment.getId()){
+            relationServiceEnvironmentMapper.save(relationServiceEnvironment);
+        } else {
+            relationServiceEnvironmentMapper.update(relationServiceEnvironment);
+        }
+
         relationServiceEnvironmentDto.setId(relationServiceEnvironment.getId());
         return relationServiceEnvironmentDto;
     }

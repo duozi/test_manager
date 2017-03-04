@@ -3,8 +3,9 @@
  */
 package com.xn.performance.entity;
 
-import java.util.Date;
 import com.xn.performance.util.BaseEntity;
+
+import java.util.Date;
 
 /**
  * PerformanceResult 实体类
@@ -49,17 +50,7 @@ public class PerformanceResult extends BaseEntity {
      */
     private Integer executeTime;
 
-    /**
-     * 
-     * 监控机id 
-     */
-    private Integer monitoredMachineId;
 
-    /**
-     * 
-     * 监控机结果id 
-     */
-    private Integer monitoredMachineResultId;
 
     /**
      * 
@@ -125,22 +116,7 @@ public class PerformanceResult extends BaseEntity {
     public Integer getExecuteTime() {
         return this.executeTime;
     }
-    
-    public void setMonitoredMachineId(Integer monitoredMachineId) {
-        this.monitoredMachineId = monitoredMachineId;
-    }
-    
-    public Integer getMonitoredMachineId() {
-        return this.monitoredMachineId;
-    }
-    
-    public void setMonitoredMachineResultId(Integer monitoredMachineResultId) {
-        this.monitoredMachineResultId = monitoredMachineResultId;
-    }
-    
-    public Integer getMonitoredMachineResultId() {
-        return this.monitoredMachineResultId;
-    }
+
     
     public void setExecutePerson(String executePerson) {
         this.executePerson = executePerson;
@@ -149,10 +125,8 @@ public class PerformanceResult extends BaseEntity {
     public String getExecutePerson() {
         return this.executePerson;
     }
-    
 
 
-    
     public void setPerformancePlan(PerformancePlan performancePlan){
         this.performancePlan = performancePlan;
     }

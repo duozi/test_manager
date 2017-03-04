@@ -10,14 +10,14 @@
         <result property="setStartTime" column="set_start_time"/>
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeTime" column="execute_time"/>
-        <result property="monitoredMachineId" column="monitored_machine_id"/>
-        <result property="monitoredMachineResultId" column="monitored_machine_result_id"/>
+        <result property="stressMachineId" column="stress_machine_id"/>
+        <result property="stressMachineResultId" column="stress_machine_result_id"/>
         <result property="executePerson" column="execute_person"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, plan_id, set_start_time, actual_start_time, execute_time, monitored_machine_id, monitored_machine_result_id, execute_person
+        id, plan_id, set_start_time, actual_start_time, execute_time, stress_machine_id,stress_machine_result_id, execute_person
         ]]>
     </sql>
     

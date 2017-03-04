@@ -4,8 +4,11 @@
 package com.xn.performance.dao;
 
 import com.xn.performance.entity.PerformancePlan;
+import com.xn.performance.entity.PerformancePlanShow;
 import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -16,5 +19,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface PerformancePlanMapper extends BaseMapper<PerformancePlan, Integer> {
+    List<PerformancePlanShow> show(Object condition);
 
 }

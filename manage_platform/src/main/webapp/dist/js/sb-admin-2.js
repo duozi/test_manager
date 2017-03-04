@@ -30,11 +30,22 @@ $(function() {
     });
 
     var url = window.location;
+    var originurl = url.origin;
+    var path = url.pathname;
+    var pathurl = originurl + path;
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
-        return this.href == url;
+        var herfurl = this.href;
+        if(path=="/autotest/report/report_detail" && herfurl==originurl +"/autotest/report/report_list"){
+                return true;
+        }
+        if(path=="/performance/report/report_detail" && herfurl==originurl +"/performance/report/report_list"){
+            return true;
+        }
+         return herfurl == pathurl;
+
     }).addClass('active').parent();
 
     while (true) {

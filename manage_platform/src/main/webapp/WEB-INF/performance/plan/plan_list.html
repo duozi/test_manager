@@ -37,8 +37,32 @@
 
             $("#plan-save").validate({
                 submitHandler: function () {
-                    var params = $("#plan-save").serializeArray();
+                    var scriptId = $("select[name='scriptName'] option:selected").val();
+                    var scriptName = $("select[name='scriptName'] option:selected").text();
 
+                    var scenarioId = $("select[name='scenarioName'] option:selected").val();
+                    var scenarioName = $("select[name='scenarioName'] option:selected").text();
+
+                    var monitoredMachineId = "";
+                    var monitoredMachineName = "";
+                    var monitoredMachine = "";
+                    var monitoredMachineList = "";
+                    var data = $("#id_select").find("option:selected").selectpicker("val");
+                    for (var i = 0; i < data.length; i++) {
+                        monitoredMachineId = data[i].value;
+                        monitoredMachineName = data[i].text;
+                        monitoredMachine = '{"monitoredMachineId":' + monitoredMachineId + ',"monitoredMachineName":"' + monitoredMachineName + '"},';
+                        monitoredMachineList += monitoredMachine;
+                    }
+                    monitoredMachineList = '[' + monitoredMachineList + ']';
+
+                    var params = $("#plan-save").serializeArray();
+                    params.push({"name": "scriptId", "value": scriptId},
+                            {"name": "scenarioId", "value": scenarioId});
+                    params[6].value = scriptName;
+                    params[7].value = scenarioName;
+
+                    params.push({"name": "list", "value": monitoredMachineList});
                     $.ajax({
                         type: "POST",
                         url: "/performance/plan/plan_list/save",
@@ -124,8 +148,8 @@
                         <div class="form-group col-xs-2" style="width: 15%">
                             <select class="form-control" id="search-scriptName">
                                 <option value="" disabled selected>选择脚本名称</option>
-                                <#if plan_list_all ??>
-                                    <#list plan_list_all as item>
+                                <#if script_list_all ??>
+                                    <#list script_list_all as item>
                                         <option value="${item.scriptName}">${item.scriptName}</option>
                                     </#list>
                                 </#if>
@@ -134,8 +158,8 @@
                         <div class="form-group col-xs-2" style="width: 15%">
                             <select class="form-control" id="search-planStatus">
                                 <option value="" disabled selected>选择计划状态</option>
-                                <#if performancePlanStatusEnumList ??>
-                                    <#list performancePlanStatusEnumList as item>
+                                <#if publish_list ??>
+                                    <#list publish_list as item>
                                         <option value="${item.getName()}">${item.getName()}</option>
                                     </#list>
                                 </#if>
@@ -171,33 +195,30 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>注册接口测试</td>
-                            <td>注册接口测试100并发</td>
-                            <td>牛鼎丰</td>
-                            <td>测试部</td>
-                            <td>用户中心</td>
-                            <td>
-                                <a href="../script/script_list?">注册脚本</a>
-                            </td>
-
-                            <td><a href="../scenario/scenario_list">注册脚本100并发场景</a></td>
-                            <td><a href="../machine/sress_machine_list">压力机1</a></td>
-                            <td><a href="../machine/monitored_machine_list">监控机1</a></td>
-                            <td>已执行</td>
-                            <td>02-09 22:22:22</td>
-                            <td>小珊珊</td>
-                            <td><a type="button" name="execute" data-toggle="modal" data-target="#execute"
-                                   class="btn btn-default">执行</a>
-                                <a type="button" name="stop" class="btn btn-warning">停止执行</a>
-                            </td>
-
-                            <td>
-                                <a type="button" id="deletePlan" class="btn btn-danger">删除</a>
-                                <a href="../report/report_detail" type="button" class="btn btn-info">测试报告</a>
-                            </td>
-                        </tr>
+                        <#if plan_list ??>
+                            <#list plan_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.planName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.scriptName}</td>
+                                    <td>${item.scenarioName}</td>
+                                    <td>${item.stressMachineName}</td>
+                                    <td>${item.monitoredMachineName}</td>
+                                    <td>${item.planStatus}</td>
+                                    <td>${item.actualStartTime}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+                                        <a type="button" name="deletePlan" class="btn btn-danger"
+                                           onclick="deletePlan(${item.id})">删除</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
                         </tbody>
                     </table>
                 </div>
@@ -260,17 +281,18 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPlanLabel">新增测试计划</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 500px">
+                <div class="modal-body modal-add" style="min-height: 550px">
                     <form role="form " class="col-lg-12 edit-form" id="plan-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
                                 <label class="control-label">创建人<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">计划名称<span style="color:red">*</span></label>
                                 <input type="text" class="form-control" id="planName" name="planName"
-                                       placeholder="请输入测试计划名称">
+                                       placeholder="请输入测试计划名称" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">计划描述</label>
@@ -279,6 +301,7 @@
                             <div class="form-group">
                                 <label class="control-label">公司<span style="color:red">*</span></label>
                                 <select class="form-control" name="company" required>
+                                    <option disabled selected>请选择公司</option>
                                     <#if companyList ??>
                                         <#list companyList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -290,6 +313,7 @@
                             <div class="form-group">
                                 <label class="control-label">部门<span style="color:red">*</span></label>
                                 <select class="form-control" name="department" required>
+                                    <option disabled selected>请选择部门</option>
                                     <#if departmentList ??>
                                         <#list departmentList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -300,6 +324,7 @@
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
                                 <select class="form-control" name="psystem" required>
+                                    <option disabled selected>请选择系统</option>
                                     <#if psystemList ??>
                                         <#list psystemList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -311,34 +336,25 @@
                             <div class="form-group">
                                 <label class="control-label">脚本<span style="color:red">*</span></label>
                                 <select class="form-control" name="scriptName" required>
-
+                                    <option disabled selected>请选择脚本</option>
 
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">场景<span style="color:red">*</span></label>
-                                <select class="form-control" name="scenarioName">
-                                    <#if plan_list_all ??>
-                                        <#list plan_list_all as item>
-                                            <option value="${item.scenarioName}">${item.scenarioName}</option>
-                                        </#list>
-                                    </#if>
+                                <select class="form-control" name="scenarioName" required>
+                                    <option disabled selected>请选择场景</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label" style="margin-bottom: 4%">监控机<span
                                         style="color:red">*</span></label>
-                                <select id="id_select" class="selectpicker bla bli" multiple
-                                        data-live-search="true">
-                                    <#if monitored_machine_list_all ??>
-                                        <#list monitored_machine_all as item>
-                                            <option value="${item.scenarioName}">${item.scenarioName}</option>
-                                        </#list>
-                                    </#if>
 
-                                    </optgroup>
+                                <select id="id_select" class="selectpicker bla bli" multiple
+                                        data-live-search="true" name="monitoredMachineName" required>
+
                                 </select>
                             </div>
                         </div>
@@ -373,15 +389,33 @@
         var department = $("select[name='department']").val();
         var psystem = $("select[name='psystem']").val();
 
-        $.get("/performance/plan/plan_list/show_script?company=" + company + "&department=" + department + "&psystem" + psystem, function (data) {
+        $.get("/performance/plan/plan_list/show_script?company=" + company + "&department=" + department + "&psystem=" + psystem, function (data) {
             if (data.code == 0) {
-                var list = data.data;
-                var choose = "";
-                for (var i = 0; i < list.length; i++) {
-                    choose += "<option>" + list[i].scriptName + "</option>";
+                var script_list = data.data[0];
+                var scenario_list = data.data[1];
+                var monitored_machine_list = data.data[2];
+                var script_choose = " <option disabled selected>请选择脚本</option>";
+                for (var i = 0; i < script_list.length; i++) {
+                    script_choose += "<option value='" + script_list[i].id + "'>" + script_list[i].scriptName + "</option>";
                 }
-                $("select[name='scriptName']").append(choose);
+                $("select[name='scriptName']").empty();
+                $("select[name='scriptName']").append(script_choose);
 
+                var scenario_choose = "<option disabled selected>请选择场景</option>";
+                for (var i = 0; i < scenario_list.length; i++) {
+                    scenario_choose += "<option value='" + scenario_list[i].id + "'>" + scenario_list[i].scenarioName + "</option>";
+                }
+                $("select[name='scenarioName']").empty();
+                $("select[name='scenarioName']").append(scenario_choose);
+
+                var monitored_machine_choose = "";
+                for (var i = 0; i < monitored_machine_list.length; i++) {
+                    monitored_machine_choose += "<option value='"+monitored_machine_list[i].id+"'>" + monitored_machine_list[i].monitoredMachineName + "</option>";
+                }
+
+                $("#id_select").empty();
+                $("#id_select").append(monitored_machine_choose);
+                $("#id_select").selectpicker('refresh');
 
             } else if (data.code == 1) {
                 alert("保存失败");

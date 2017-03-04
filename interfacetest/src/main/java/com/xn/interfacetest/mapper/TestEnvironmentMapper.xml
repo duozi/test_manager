@@ -9,11 +9,14 @@
         <result property="name" column="name"/>
         <result property="description" column="description"/>
         <result property="systemId" column="system_id"/>
+        <result property="serviceProperty" column="service_property"/>
+        <result property="dbProperty" column="db_property"/>
+        <result property="redisProperty" column="redis_property"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, system_id
+        id, name, description, system_id,service_property,db_property,redis_property
         ]]>
     </sql>
     
@@ -30,6 +33,15 @@
             </if>
            <if test="@Ognl@isNotEmpty(systemId)">
                 AND system_id = #{systemId}
+            </if>
+            <if test="@Ognl@isNotEmpty(serviceProperty)">
+                AND service_property = #{serviceProperty}
+            </if>
+            <if test="@Ognl@isNotEmpty(dbProperty)">
+                AND db_property = #{dbProperty}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisProperty)">
+                AND redis_property = #{redisProperty}
             </if>
         </where>
     </sql>
@@ -68,12 +80,18 @@
                 id,
                 name,
                 description,
-                system_id
+                system_id,
+                service_property,
+                db_property,
+                redis_property
             ) VALUES (
                 #{id},
                 #{name},
                 #{description},
-                #{systemId}
+                #{systemId},
+                #{serviceProperty},
+                #{dbProperty},
+                #{redisProperty}
             )
         ]]>
     </insert>
@@ -84,11 +102,14 @@
                 id,
                 name,
                 description,
-                system_id
+                system_id,
+                service_property,
+                db_property,
+                redis_property
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.systemId})
+            (#{item.id},#{item.name},#{item.description},#{item.systemId},#{item.serviceProperty},#{item.dbProperty},#{item.redisProperty})
         </foreach>
     </insert>
     
@@ -103,7 +124,16 @@
                 	<![CDATA[ description = #{description} ]]>,
                 </if>
                 <if test="systemId != null">
-                	<![CDATA[ system_id = #{systemId} ]]>
+                	<![CDATA[ system_id = #{systemId} ]]>,
+                </if>
+                <if test="serviceProperty != null">
+                    <![CDATA[ service_property = #{serviceProperty} ]]>,
+                </if>
+                <if test="dbProperty != null">
+                    <![CDATA[ db_property = #{dbProperty} ]]>,
+                </if>
+                <if test="redisProperty != null">
+                    <![CDATA[ redis_property = #{redisProperty} ]]>
                 </if>
             </set>
             WHERE
