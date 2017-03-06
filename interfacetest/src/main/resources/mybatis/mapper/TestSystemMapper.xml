@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.TestSystemMapper">
+
+    <resultMap id="TestSystemMap" type="com.xn.interfacetest.entity.TestSystem">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="departmentId" column="department_id"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, name, description, department_id
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+           <if test="null != name">
+                AND name = #{name}
+            </if>
+           <if test="null != description">
+                AND description = #{description}
+            </if>
+           <if test="null != departmentId">
+                AND department_id = #{departmentId}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="TestSystemMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_system
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="listByCompany" resultMap="TestSystemMap">
+        SELECT
+            ts.*
+        FROM
+            test_system ts
+        left join department d on ts.department_id = d.id
+        <where>
+            <if test="id != null and id != 0">
+                AND ts.id = #{id}
+            </if>
+            <if test="null != name">
+                AND ts.name = #{name}
+            </if>
+            <if test="null != description">
+                AND ts.description = #{description}
+            </if>
+            <if test="null != departmentId">
+                AND ts.department_id = #{departmentId}
+            </if>
+            <if test="null != companyId">
+                AND d.company_id = #{companyId}
+            </if>
+        </where>
+    </select>
+
+    <select id="list" resultMap="TestSystemMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_system
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                test_system
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO test_system (
+                id,
+                name,
+                description,
+                department_id
+            ) VALUES (
+                #{id},
+                #{name},
+                #{description},
+                #{departmentId}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO test_system (
+                id,
+                name,
+                description,
+                department_id
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.name},#{item.description},#{item.departmentId})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                test_system
+            <set>
+                <if test="name != null">
+                	<![CDATA[ name = #{name} ]]>,
+                </if>
+                <if test="description != null">
+                	<![CDATA[ description = #{description} ]]>,
+                </if>
+                <if test="departmentId != null">
+                	<![CDATA[ department_id = #{departmentId} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_system
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                test_system
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_system
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

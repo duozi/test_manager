@@ -11,13 +11,13 @@
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeTime" column="execute_time"/>
         <result property="stressMachineId" column="stress_machine_id"/>
-        <result property="stressMachineResultId" column="stress_machine_result_id"/>
+        <result property="stressMachineName" column="stress_machine_name"/>
         <result property="executePerson" column="execute_person"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, plan_id, set_start_time, actual_start_time, execute_time, stress_machine_id,stress_machine_result_id, execute_person
+        id, plan_id, set_start_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person
         ]]>
     </sql>
     
@@ -44,11 +44,11 @@
            <if test="@Ognl@isNotEmpty(executeTime)">
                 AND execute_time = #{executeTime}
             </if>
-           <if test="@Ognl@isNotEmpty(monitoredMachineId)">
-                AND monitored_machine_id = #{monitoredMachineId}
+           <if test="@Ognl@isNotEmpty(stressMachineId)">
+                AND stress_machine_id = #{stressMachineId}
             </if>
-           <if test="@Ognl@isNotEmpty(monitoredMachineResultId)">
-                AND monitored_machine_result_id = #{monitoredMachineResultId}
+           <if test="@Ognl@isNotEmpty(stressMachineName)">
+                AND stress_machine_name = #{stressMachineName}
             </if>
            <if test="@Ognl@isNotEmpty(executePerson)">
                 AND execute_person = #{executePerson}
@@ -92,8 +92,8 @@
                 set_start_time,
                 actual_start_time,
                 execute_time,
-                monitored_machine_id,
-                monitored_machine_result_id,
+                stress_machine_id,
+                stress_machine_name,
                 execute_person
             ) VALUES (
                 #{id},
@@ -101,8 +101,8 @@
                 #{setStartTime},
                 #{actualStartTime},
                 #{executeTime},
-                #{monitoredMachineId},
-                #{monitoredMachineResultId},
+                #{stressMachineId},
+                #{stressMachineName},
                 #{executePerson}
             )
         ]]>
@@ -116,13 +116,13 @@
                 set_start_time,
                 actual_start_time,
                 execute_time,
-                monitored_machine_id,
-                monitored_machine_result_id,
+                stress_machine_id,
+                stress_machine_name,
                 execute_person
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planId},#{item.setStartTime},#{item.actualStartTime},#{item.executeTime},#{item.monitoredMachineId},#{item.monitoredMachineResultId},#{item.executePerson})
+            (#{item.id},#{item.planId},#{item.setStartTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson})
         </foreach>
     </insert>
     
@@ -142,11 +142,11 @@
                 <if test="executeTime != null">
                 	<![CDATA[ execute_time = #{executeTime} ]]>,
                 </if>
-                <if test="monitoredMachineId != null">
-                	<![CDATA[ monitored_machine_id = #{monitoredMachineId} ]]>,
+                <if test="stressMachineId != null">
+                	<![CDATA[ stress_machine_id = #{stressMachineId} ]]>,
                 </if>
-                <if test="monitoredMachineResultId != null">
-                	<![CDATA[ monitored_machine_result_id = #{monitoredMachineResultId} ]]>,
+                <if test="stressMachineName != null">
+                	<![CDATA[ stress_machine_name = #{stressMachineName} ]]>,
                 </if>
                 <if test="executePerson != null">
                 	<![CDATA[ execute_person = #{executePerson} ]]>

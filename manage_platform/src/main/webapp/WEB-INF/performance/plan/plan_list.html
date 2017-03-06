@@ -82,9 +82,95 @@
                     });
                 }
             });
+            $("#execute-plan").validate({
+                submitHandler: function () {
+                    var scriptId = $("select[name='scriptName'] option:selected").val();
+                    var scriptName = $("select[name='scriptName'] option:selected").text();
+
+                    var scenarioId = $("select[name='scenarioName'] option:selected").val();
+                    var scenarioName = $("select[name='scenarioName'] option:selected").text();
+
+                    var monitoredMachineId = "";
+                    var monitoredMachineName = "";
+                    var monitoredMachine = "";
+                    var monitoredMachineList = "";
+                    var data = $("#id_select").find("option:selected").selectpicker("val");
+                    for (var i = 0; i < data.length; i++) {
+                        monitoredMachineId = data[i].value;
+                        monitoredMachineName = data[i].text;
+                        monitoredMachine = '{"monitoredMachineId":' + monitoredMachineId + ',"monitoredMachineName":"' + monitoredMachineName + '"},';
+                        monitoredMachineList += monitoredMachine;
+                    }
+                    monitoredMachineList = '[' + monitoredMachineList + ']';
+
+                    var params = $("#plan-save").serializeArray();
+                    params.push({"name": "scriptId", "value": scriptId},
+                            {"name": "scenarioId", "value": scenarioId});
+                    params[6].value = scriptName;
+                    params[7].value = scenarioName;
+
+                    params.push({"name": "list", "value": monitoredMachineList});
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/plan/plan_list/save",
+                        data: params,
+                        success: function (data) {
+
+                            if (data.code != 0) {
+                                alert(data.message);
+
+                            }
+                            $("#addPlan").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
+            });
 
         });
+        function deletePlan(id) {
+            $.post("/performance/plan/plan_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+        function execute(id, company, department, psystem) {
+            $.post("/performance/plan/plan_list/show_stress_machine", {
+                company: company,
+                department: department,
+                psystem: psystem
+            }, function (data) {
+                if (data.code == 0) {
+                    var stress_machine_list = data.data;
+                    var stress_machine = "";
+                    if (stress_machine_list.length == 0) {
+                        stress_machine += "<option disabled selected>没有可选的压力机</option>";
+                    } else {
+                        for (var i = 0; i < stress_machine_list.length; i++) {
+                            stress_machine += "<option value='" + stress_machine_list[i] + "'>" + stress_machine_list[i].stressMachineName + "</option>";
+                        }
+                    }
 
+
+                    $("#stress_machine_name").empty();
+                    $("#stress_machine_name").append(stress_machine);
+
+                    $("#execute").modal('show')
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
 
     </script>
 </head>
@@ -207,13 +293,27 @@
                                     <td>${item.scriptName}</td>
                                     <td>${item.scenarioName}</td>
                                     <td>${item.stressMachineName}</td>
-                                    <td>${item.monitoredMachineName}</td>
-                                    <td>${item.planStatus}</td>
-                                    <td>${item.actualStartTime}</td>
-                                    <td>${item.createPerson}</td>
                                     <td>
-                                        <a type="button" name="deletePlan" class="btn btn-danger"
+                                        <#list item.performancePlanMonitoredDtoList as monitored_item>
+                                            ${monitored_item.monitoredMachineName}
+                                        </#list>
+                                    </td>
+                                    <td>${item.planStatus}</td>
+                                    <td>${(item.actualStartTime)?string("yyyy-MM-dd hh:mm:ss")}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
+                                           onclick="execute(${item.id},'${item.company}','${item.department}','${item.psystem}')">执行</a>
+                                        <a type="button" name="stop" class="btn btn-warning"
+                                        <#if item.planStatus=="执行中"> onclick="stop(${item.id})"
+                                            <#else> disabled
+                                        </#if>
+                                        >停止执行</a>
+                                    </td>
+
+                                    <td>
+                                        <a type="button" id="deletePlan" class="btn btn-danger"
                                            onclick="deletePlan(${item.id})">删除</a>
+                                        <a href="../report/report_detail" type="button" class="btn btn-info">测试报告</a>
                                     </td>
                                 </tr>
                                 <!--<option value="${item.id}">${item.name}</option>-->
@@ -241,12 +341,11 @@
                     <h4 class="modal-title" id="timeListLabel">执行配置</h4>
                 </div>
                 <div class="modal-body modal-time">
-                    <form class="col-lg-14 edit-form time-form">
+                    <form class="col-lg-14 edit-form time-form" id="execute-plan">
                         <div class="form-group">
                             <label class="control-label">压力机</label>
-                            <select class="form-control" name="excute-computer">
-                                <option value="1">压力机1</option>
-                                <option value="2">压力机2</option>
+                            <select class="form-control" id="stress_machine_name" required>
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -410,7 +509,7 @@
 
                 var monitored_machine_choose = "";
                 for (var i = 0; i < monitored_machine_list.length; i++) {
-                    monitored_machine_choose += "<option value='"+monitored_machine_list[i].id+"'>" + monitored_machine_list[i].monitoredMachineName + "</option>";
+                    monitored_machine_choose += "<option value='" + monitored_machine_list[i].id + "'>" + monitored_machine_list[i].monitoredMachineName + "</option>";
                 }
 
                 $("#id_select").empty();

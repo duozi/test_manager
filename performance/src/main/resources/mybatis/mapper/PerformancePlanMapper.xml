@@ -43,7 +43,15 @@
     <sql id="columns">
         <![CDATA[
 
+
+
+
+
         id, plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete
+
+
+
+
 
         ]]>
     </sql>
@@ -51,7 +59,15 @@
     <sql id="show_columns">
         <![CDATA[
 
+
+
+
+
         id, plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time
+
+
+
+
 
         ]]>
     </sql>
@@ -79,8 +95,14 @@
             <if test="@Ognl@isNotEmpty(scriptId)">
                 AND script_id = #{scriptId}
             </if>
+            <if test="@Ognl@isNotEmpty(scriptName)">
+                AND script_name = #{scriptName}
+            </if>
             <if test="@Ognl@isNotEmpty(scenarioId)">
                 AND scenario_id = #{scenarioId}
+            </if>
+            <if test="@Ognl@isNotEmpty(scenarioName)">
+                AND scenario_name = #{scenarioName}
             </if>
             <if test="@Ognl@isNotEmpty(planStatus)">
                 AND plan_status = #{planStatus}
@@ -88,12 +110,17 @@
             <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
             </if>
+            <if test="@Ognl@isNotEmpty(isDelete)">
+                AND is_delete = #{isDelete}
+            </if>
         </where>
     </sql>
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        P.id, P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id, P.scenario_name,P.plan_status, P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time
+        P.id, P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time
         FROM
         performance_plan P LEFT JOIN performance_result R ON P.id=R.plan_id
 
@@ -133,6 +160,10 @@
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
 
+
+
+
+
             INSERT INTO performance_plan (
                 id,
                 plan_name,
@@ -141,9 +172,12 @@
                 department,
                 psystem,
                 script_id,
+                script_name,
                 scenario_id,
+                scenario_name,
                 plan_status,
-                create_person
+                create_person,
+                is_delete
             ) VALUES (
                 #{id},
                 #{planName},
@@ -152,10 +186,17 @@
                 #{department},
                 #{psystem},
                 #{scriptId},
+                #{scriptName},
                 #{scenarioId},
+                #{scenarioName},
                 #{planStatus},
-                #{createPerson}
+                #{createPerson},
+                #{isDelete}
             )
+
+
+
+
 
         ]]>
     </insert>
@@ -170,13 +211,16 @@
                 department,
                 psystem,
                 script_id,
+                script_name,
                 scenario_id,
+                scenario_name,
                 plan_status,
-                create_person
+                create_person,
+                is_delete
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.scriptId},#{item.scenarioId},#{item.planStatus},#{item.createPerson})
+            (#{item.id},#{item.planName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.scriptId},#{item.scriptName},#{item.scenarioId},#{item.scenarioName},#{item.planStatus},#{item.createPerson}),#{item.isDelete}
         </foreach>
     </insert>
 
@@ -202,14 +246,23 @@
             <if test="scriptId != null">
                 <![CDATA[ script_id = #{scriptId} ]]>,
             </if>
+            <if test="scriptName != null">
+                <![CDATA[ script_name = #{scriptName} ]]>,
+            </if>
             <if test="scenarioId != null">
                 <![CDATA[ scenario_id = #{scenarioId} ]]>,
+            </if>
+            <if test="scenarioName != null">
+                <![CDATA[ scenario_name= #{scenarioName} ]]>,
             </if>
             <if test="planStatus != null">
                 <![CDATA[ plan_status = #{planStatus} ]]>,
             </if>
             <if test="createPerson != null">
                 <![CDATA[ create_person = #{createPerson} ]]>
+            </if>
+            <if test="isDelete != null">
+                <![CDATA[ is_delete = #{isDelete} ]]>
             </if>
         </set>
         WHERE
@@ -218,7 +271,6 @@
 
     <delete id="deleteByPK">
         <![CDATA[
-
             DELETE
             FROM
                 performance_plan
