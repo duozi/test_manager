@@ -126,7 +126,7 @@ public class PerformancePlanController {
         List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanDto);
         for (PerformancePlanShowDto performancePlanShowDto : performancePlanShowDtoList) {
             Map<String, Object> map = new HashMap<>();
-            map.put("plan_id", performancePlanShowDto.getId());
+            map.put("planId", performancePlanShowDto.getId());
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
             performancePlanShowDto.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
         }
@@ -140,7 +140,7 @@ public class PerformancePlanController {
         CommonResult commonResult = new CommonResult();
         try {
 
-            JSONArray jsonArray = JSONArray.fromObject(list);d
+            JSONArray jsonArray = JSONArray.fromObject(list);
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = (List) JSONArray.toCollection(jsonArray, PerformancePlanMonitoredDto.class);
 
 
@@ -223,7 +223,25 @@ public class PerformancePlanController {
             return commonResult;
         }
     }
+    //保存执行配置
+    @RequestMapping(value = "/plan_list/execute_save", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult executeSave(@RequestParam Integer planId,@RequestParam Integer stressMachineId,@RequestParam String executeType,@RequestParam String executeTime) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            // TODO: 2017/3/6 具体执行实现
 
+
+            commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
+        } catch (Exception e) {
+
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("保存执行配置操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+    }
 //    新增计划，根据公司，部门，系统，展示可选的脚本，场景和监控机
     @RequestMapping(value = "/plan_list/show_script", method = RequestMethod.GET)
     @ResponseBody

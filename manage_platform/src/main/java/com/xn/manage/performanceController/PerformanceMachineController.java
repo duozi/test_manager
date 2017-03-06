@@ -193,5 +193,34 @@ public class PerformanceMachineController {
         }
     }
 
+    @RequestMapping(value = "/{path}/test", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult testLink(@PathVariable String path, @RequestParam String ip, @RequestParam String username, @RequestParam String password) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            if (isNotEmpty(ip) && isNotEmpty(username) && isNotEmpty(password)) {
 
+                if (path.equals("stress_machine_list")) {
+                    commonResult.setData(performanceStressMachineService.testLink(ip, username, password));
+                } else if (path.equals("monitored_machine_list")) {
+                    PerformanceMonitoredMachineDto performanceMonitoredMachineDto=new PerformanceMonitoredMachineDto();
+                    performanceMonitoredMachineDto.setIp(ip);
+                    performanceMonitoredMachineDto.setUsername(username);
+                    performanceMonitoredMachineDto.setPassword(password);
+                    boolean canLink = performanceMonitoredMachineService.testLink(performanceMonitoredMachineDto);
+                    commonResult.setData(canLink);
+                }
+            } else {
+                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
+                commonResult.setMessage("有参数为空");
+            }
+
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+        } finally {
+            return commonResult;
+        }
+    }
 }

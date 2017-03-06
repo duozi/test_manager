@@ -219,6 +219,11 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
+        <!--机器连接测试-->
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>performance</finalName>

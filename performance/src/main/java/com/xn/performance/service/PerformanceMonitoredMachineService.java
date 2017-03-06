@@ -114,4 +114,6 @@ public interface PerformanceMonitoredMachineService {
      * @return 操作影响行数
      */
     int deleteBatch(List<PerformanceMonitoredMachineDto> performanceMonitoredMachines);
+
+    boolean testLink(PerformanceMonitoredMachineDto performanceMonitoredMachineDto);
 }

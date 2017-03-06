@@ -353,6 +353,12 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.3.2</version>
             </dependency>
+            <!--机器连接测试-->
+            <dependency>
+                <groupId>ch.ethz.ganymed</groupId>
+                <artifactId>ganymed-ssh2</artifactId>
+                <version>build209</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

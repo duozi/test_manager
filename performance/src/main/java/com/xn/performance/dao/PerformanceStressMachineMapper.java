@@ -5,7 +5,6 @@ package com.xn.performance.dao;
 
 import com.xn.performance.entity.PerformanceStressMachine;
 import com.xn.performance.mybatis.BaseMapper;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
  * @author zhouxi
  * @date 2017-02-21
  */
+@Service
 public interface PerformanceStressMachineMapper extends BaseMapper<PerformanceStressMachine, Integer> {
 
 }
