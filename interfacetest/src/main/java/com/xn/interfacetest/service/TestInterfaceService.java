@@ -114,4 +114,11 @@ public interface TestInterfaceService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestInterfaceDto> testInterfaces);
+
+    /**
+     * 查询接口（含服务信息）
+     * @param params
+     * @return
+     */
+    List<TestInterfaceDto> listByParams(Map<String, Object> params);
 }

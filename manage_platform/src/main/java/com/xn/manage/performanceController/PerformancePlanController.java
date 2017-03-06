@@ -39,18 +39,14 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
     private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
-    @Autowired
-    private CompanyService companyService;
-
-    @Autowired
-    private TestSystemService systemService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
     @Resource
     PerformanceScriptService performanceScriptService;
-
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private TestSystemService systemService;
+    @Autowired
+    private DepartmentService departmentService;
     @Autowired
     private PerformancePlanService performancePlanService;
 

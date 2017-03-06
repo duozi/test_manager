@@ -140,7 +140,7 @@
                 	<![CDATA[ description = #{description} ]]>,
                 </if>
                 <if test="systemId != null">
-                	<![CDATA[ system_id = #{systemId} ]]>
+                	<![CDATA[ system_id = #{systemId} ]]>,
                 </if>
                 <if test="jarPath != null">
                     <![CDATA[ jar_path = #{jarPath} ]]>

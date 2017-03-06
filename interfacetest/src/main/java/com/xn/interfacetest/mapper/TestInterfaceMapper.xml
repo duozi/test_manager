@@ -95,7 +95,7 @@
             test_interface 
         <include refid="where"/>
     </select>
-        
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT

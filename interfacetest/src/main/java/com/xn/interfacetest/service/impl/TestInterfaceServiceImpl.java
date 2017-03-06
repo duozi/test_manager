@@ -6,6 +6,11 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.entity.TestService;
+import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.service.TestSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +39,9 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
      */
     @Autowired
     private TestInterfaceMapper testInterfaceMapper;
+
+    @Autowired
+    private TestServiceService testServiceService;
 
     @Override
     @Transactional(readOnly = true)
@@ -116,4 +124,14 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         return 0;
     }
 
+    @Override
+    public List<TestInterfaceDto> listByParams(Map<String, Object> params) {
+        List<TestInterface> list = testInterfaceMapper.list(params);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        for(TestInterfaceDto testInterfaceDto: dtoList){
+            TestServiceDto serviceDto = testServiceService.get(testInterfaceDto.getServiceId());
+            testInterfaceDto.setTestServiceDto(serviceDto);
+        }
+        return dtoList;
+    }
 }

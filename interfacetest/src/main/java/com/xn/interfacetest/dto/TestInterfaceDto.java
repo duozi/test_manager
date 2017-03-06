@@ -45,7 +45,7 @@ public class TestInterfaceDto extends BaseDto {
 
     /**
      * 
-     * 接口类型（1-http，2-dubbo） 
+     * 接口类型（1-http，2-dubbo）
      */
     private Integer type;
 
@@ -107,6 +107,11 @@ public class TestInterfaceDto extends BaseDto {
      * 是否通过zk注册中心调用
      */
     private Integer zkOrNot;
+
+    /**
+     * 系统
+     */
+    private TestServiceDto TestServiceDto;
 
     public Long getId() {
         return this.id;
@@ -226,6 +231,14 @@ public class TestInterfaceDto extends BaseDto {
 
     public void setZkOrNot(Integer zkOrNot) {
         this.zkOrNot = zkOrNot;
+    }
+
+    public TestServiceDto getTestServiceDto() {
+        return TestServiceDto;
+    }
+
+    public void setTestServiceDto(TestServiceDto testServiceDto) {
+        TestServiceDto = testServiceDto;
     }
 }
 
