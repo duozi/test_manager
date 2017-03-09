@@ -49,14 +49,7 @@ public class PerformancePlanController {
 
     @Autowired
     private PerformanceScenarioService performanceScenarioService;
-    @Autowired
-    private PerformanceMonitoredMachineService performanceMonitoredMachineService;
 
-    @Autowired
-    private PerformancePlanMonitoredService performancePlanMonitoredService;
-
-    @Autowired
-    private PerformanceStressMachineService performanceStressMachineService;
 
     @Autowired
     private JmeterService jmeterService;
