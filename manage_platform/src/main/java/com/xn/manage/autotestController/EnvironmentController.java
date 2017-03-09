@@ -1,18 +1,11 @@
 package com.xn.manage.autotestController;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.RelationServiceEnvironment;
-import com.xn.interfacetest.entity.TestEnvironment;
 import com.xn.interfacetest.service.*;
 import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.DatabaseTypeEnum;
 import com.xn.performance.util.CommonResult;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +15,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.xn.manage.Enum.DatabaseTypeEnum;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/autotest/environment")

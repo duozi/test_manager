@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.*;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
@@ -61,6 +62,14 @@ public class PerformancePlanController {
     private JmeterService jmeterService;
     @Autowired
     private  PerformanceResultService performanceResultService;
+    @Autowired
+    private PerformanceMonitoredMachineService performanceMonitoredMachineService;
+
+    @Autowired
+    private PerformancePlanMonitoredService performancePlanMonitoredService;
+
+    @Autowired
+    private PerformanceStressMachineService performanceStressMachineService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {

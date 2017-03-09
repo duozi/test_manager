@@ -3,6 +3,9 @@
  */
 package com.xn.performance.service.impl;
 
+import ch.ethz.ssh2.Connection;
+import ch.ethz.ssh2.Session;
+import ch.ethz.ssh2.StreamGobbler;
 import com.xn.performance.dao.PerformanceMonitoredMachineMapper;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;
 import com.xn.performance.entity.PerformanceMonitoredMachine;
@@ -17,6 +20,10 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 

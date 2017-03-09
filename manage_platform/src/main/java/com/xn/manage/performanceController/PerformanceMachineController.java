@@ -33,7 +33,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @RequestMapping("/performance/machine")
 public class PerformanceMachineController {
     private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
-    private ExecutorService threadPool = Executors.newFixedThreadPool(10);
+
     @Resource
     PerformanceStressMachineService performanceStressMachineService;
     @Resource

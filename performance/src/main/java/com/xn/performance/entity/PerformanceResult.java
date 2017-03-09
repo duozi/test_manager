@@ -126,7 +126,7 @@ public class PerformanceResult extends BaseEntity {
         return this.executeTime;
     }
 
-    
+
     public void setExecutePerson(String executePerson) {
         this.executePerson = executePerson;
     }
