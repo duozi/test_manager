@@ -5,6 +5,9 @@ package com.xn.performance.service;
 
 import java.util.List;
 import java.util.Map;
+
+import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.entity.PerformancePlanShow;
 import com.xn.performance.mybatis.PageResult;
 
 import com.xn.performance.dto.PerformancePlanDto;
@@ -17,6 +20,13 @@ import com.xn.performance.dto.PerformancePlanDto;
  */
 public interface PerformancePlanService {
 
+    /**
+     * 查询计划记录
+     * 主键：id
+     * @param condition 主键/Map/查询对象
+     * @return
+     */
+    List<PerformancePlanShowDto>  show(Object condition);
     /**
      * 查询单个记录
      * 主键：id 

@@ -89,6 +89,11 @@ public class InterfaceController {
 		TestRedisConfigDto redisConfigDto = new TestRedisConfigDto();
 		List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(redisConfigDto);
 
+		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
+		TestServiceDto serviceDto = new TestServiceDto();
+		serviceList = serviceService.list(serviceDto);
+
+		map.put("serviceList", serviceList);
 		map.put("requestTypeList",requestTypeList);
 		map.put("contentTypeList",contentTypeList);
 		map.put("httpTypeList",httpTypeList);
@@ -119,6 +124,7 @@ public class InterfaceController {
 		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
 		TestServiceDto serviceDto = new TestServiceDto();
 		serviceList = serviceService.list(serviceDto);
+		map.put("serviceList", serviceList);
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		String interfaceName = request.getParameter("name");
@@ -139,7 +145,7 @@ public class InterfaceController {
 		List<TestInterfaceDto> testInterfaceDtoList = testInterfaceService.listByParams(params);
 
 		map.put("testInterfaceDtoList",testInterfaceDtoList);
-		map.put("serviceList", serviceList);
+
 
 		//接口类型--http，dubbo
 		List<InterfaceTypeEnum> interfaceTypeEnumList=new ArrayList<InterfaceTypeEnum>();

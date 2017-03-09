@@ -3,8 +3,9 @@
  */
 package com.xn.performance.dto;
 
-import java.util.Date;
 import com.xn.performance.util.BaseDto;
+
+import java.util.Date;
 
 
 /**
@@ -50,17 +51,7 @@ public class PerformanceResultDto extends BaseDto{
      */
     private Integer executeTime;
 
-    /**
-     * 
-     * 监控机id 
-     */
-    private Integer monitoredMachineId;
 
-    /**
-     * 
-     * 监控机结果id 
-     */
-    private Integer monitoredMachineResultId;
 
     /**
      * 
@@ -89,8 +80,27 @@ public class PerformanceResultDto extends BaseDto{
      */
     private Date actualStartTimeEnd;
 
+    private Integer stressMachineId;
 
-    
+    private Integer stressMachineName;
+
+
+    public Integer getStressMachineId() {
+        return stressMachineId;
+    }
+
+    public void setStressMachineId(Integer stressMachineId) {
+        this.stressMachineId = stressMachineId;
+    }
+
+    public Integer getStressMachineName() {
+        return stressMachineName;
+    }
+
+    public void setStressMachineName(Integer stressMachineName) {
+        this.stressMachineName = stressMachineName;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -129,22 +139,6 @@ public class PerformanceResultDto extends BaseDto{
     
     public Integer getExecuteTime() {
         return this.executeTime;
-    }
-
-    public void setMonitoredMachineId(Integer monitoredMachineId) {
-        this.monitoredMachineId = monitoredMachineId;
-    }
-    
-    public Integer getMonitoredMachineId() {
-        return this.monitoredMachineId;
-    }
-
-    public void setMonitoredMachineResultId(Integer monitoredMachineResultId) {
-        this.monitoredMachineResultId = monitoredMachineResultId;
-    }
-    
-    public Integer getMonitoredMachineResultId() {
-        return this.monitoredMachineResultId;
     }
 
     public void setExecutePerson(String executePerson) {

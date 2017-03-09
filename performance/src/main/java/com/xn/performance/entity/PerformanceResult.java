@@ -3,8 +3,9 @@
  */
 package com.xn.performance.entity;
 
-import java.util.Date;
 import com.xn.performance.util.BaseEntity;
+
+import java.util.Date;
 
 /**
  * PerformanceResult 实体类
@@ -49,17 +50,7 @@ public class PerformanceResult extends BaseEntity {
      */
     private Integer executeTime;
 
-    /**
-     * 
-     * 监控机id 
-     */
-    private Integer monitoredMachineId;
 
-    /**
-     * 
-     * 监控机结果id 
-     */
-    private Integer monitoredMachineResultId;
 
     /**
      * 
@@ -68,17 +59,26 @@ public class PerformanceResult extends BaseEntity {
     private String executePerson;
 
 
-    
-    private PerformancePlan performancePlan;
-   
-    
-    private PerformanceMonitoredMachineResult performanceMonitoredMachineResult;
-   
-    
-    private PerformanceMonitoredMachine performanceMonitoredMachine;
-   
-	
-	public PerformanceResult(){
+    private Integer stressMachineId;
+    private  String stressMachineName;
+
+    public Integer getStressMachineId() {
+        return stressMachineId;
+    }
+
+    public void setStressMachineId(Integer stressMachineId) {
+        this.stressMachineId = stressMachineId;
+    }
+
+    public String getStressMachineName() {
+        return stressMachineName;
+    }
+
+    public void setStressMachineName(String stressMachineName) {
+        this.stressMachineName = stressMachineName;
+    }
+
+    public PerformanceResult(){
 	    // default constructor
 	}
     
@@ -125,22 +125,7 @@ public class PerformanceResult extends BaseEntity {
     public Integer getExecuteTime() {
         return this.executeTime;
     }
-    
-    public void setMonitoredMachineId(Integer monitoredMachineId) {
-        this.monitoredMachineId = monitoredMachineId;
-    }
-    
-    public Integer getMonitoredMachineId() {
-        return this.monitoredMachineId;
-    }
-    
-    public void setMonitoredMachineResultId(Integer monitoredMachineResultId) {
-        this.monitoredMachineResultId = monitoredMachineResultId;
-    }
-    
-    public Integer getMonitoredMachineResultId() {
-        return this.monitoredMachineResultId;
-    }
+
     
     public void setExecutePerson(String executePerson) {
         this.executePerson = executePerson;
@@ -149,31 +134,5 @@ public class PerformanceResult extends BaseEntity {
     public String getExecutePerson() {
         return this.executePerson;
     }
-    
 
-
-    
-    public void setPerformancePlan(PerformancePlan performancePlan){
-        this.performancePlan = performancePlan;
-    }
-    
-    public PerformancePlan getPerformancePlan() {
-        return performancePlan;
-    }
-    
-    public void setPerformanceMonitoredMachineResult(PerformanceMonitoredMachineResult performanceMonitoredMachineResult){
-        this.performanceMonitoredMachineResult = performanceMonitoredMachineResult;
-    }
-    
-    public PerformanceMonitoredMachineResult getPerformanceMonitoredMachineResult() {
-        return performanceMonitoredMachineResult;
-    }
-    
-    public void setPerformanceMonitoredMachine(PerformanceMonitoredMachine performanceMonitoredMachine){
-        this.performanceMonitoredMachine = performanceMonitoredMachine;
-    }
-    
-    public PerformanceMonitoredMachine getPerformanceMonitoredMachine() {
-        return performanceMonitoredMachine;
-    }
 }

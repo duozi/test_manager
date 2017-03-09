@@ -14,6 +14,9 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
@@ -112,5 +115,18 @@ public class PerformanceStressMachineServiceImpl implements PerformanceStressMac
     @Override
     public String sayHello(String name) {
         return "Hello " + name;
+    }
+
+    @Override
+    public boolean testLink(String ip,String username,String password) {
+
+        try {
+            return InetAddress.getByName(ip).isReachable(2000);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

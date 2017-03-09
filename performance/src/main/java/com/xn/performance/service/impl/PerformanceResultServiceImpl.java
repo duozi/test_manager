@@ -3,20 +3,21 @@
  */
 package com.xn.performance.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
+import com.xn.performance.dao.PerformanceResultMapper;
+import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.dto.PerformanceResultDto;
+import com.xn.performance.entity.PerformancePlanShow;
+import com.xn.performance.entity.PerformanceResult;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
+import com.xn.performance.service.PerformanceResultService;
+import com.xn.performance.util.BeanUtils;
+import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xn.performance.util.BeanUtils;
-import com.xn.performance.util.CollectionUtils;
-import com.xn.performance.mybatis.PageInfo;
-import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.entity.PerformanceResult;
-import com.xn.performance.dto.PerformanceResultDto;
-import com.xn.performance.service.PerformanceResultService;
-import com.xn.performance.dao.PerformanceResultMapper;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -108,6 +109,13 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
     @Override
     public int deleteBatch(List<PerformanceResultDto> performanceResults) {
         return 0;
+    }
+
+    @Override
+    public List<PerformancePlanShowDto> getTask() {
+        List<PerformancePlanShow> list=performanceResultMapper.getTask();
+        List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
+        return dtoList;
     }
 
 }

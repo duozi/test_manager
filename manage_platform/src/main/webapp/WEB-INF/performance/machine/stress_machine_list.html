@@ -62,6 +62,38 @@
             var stressMachineName=$("select[name='search-stressMachineName']").val();
             window.location.href="stress_machine_list?company="+company+"&department="+department+"&psystem="+psystem+"&stressMachineName="+stressMachineName
         }
+        function test() {
+            var ip = $("input[name='ip']").val();
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+            if (ip == '') {
+                alert("ip为空");
+            } else if (username == '') {
+                alert("用户名为空");
+            } else if (password == '') {
+                alert('密码为空');
+            } else {
+                $.post("/performance/machine/stress_machine_list/test", {
+                    ip: ip,
+                    username: username,
+                    password: password
+                }, function (data) {
+                    if (data.code == 0) {
+                        $("input[name=islink]").val(data.data);
+                        if (data.data == true) {
+                            alert("连接成功");
+                        } else if (data.data == false) {
+                            alert("连接失败");
+                        }
+                    } else if (data.code == 1) {
+                        alert(data.message);
+                    } else if (data.code == 2) {
+                        alert("测试失败");
+                    }
+                });
+            }
+
+        }
     </script>
 </head>
 
@@ -256,7 +288,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">测试</button>
+                            <a type="button" class="btn btn-primary" id="test" onclick="test()">测试</a>
                             <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>

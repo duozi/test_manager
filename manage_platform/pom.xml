@@ -205,6 +205,18 @@
               <groupId>commons-fileupload</groupId>
               <artifactId>commons-fileupload</artifactId>
           </dependency>
+          <dependency>
+              <groupId>net.sf.jexample</groupId>
+              <artifactId>jexample</artifactId>
+          </dependency>
+          <dependency>
+              <groupId>net.sf.json</groupId>
+              <artifactId>json-lib</artifactId>
+          </dependency>
+          <dependency>
+              <groupId>net.sf.ezmorph</groupId>
+              <artifactId>ezmorph</artifactId>
+          </dependency>
       </dependencies>
     <build>
         <finalName>manage_platform</finalName>

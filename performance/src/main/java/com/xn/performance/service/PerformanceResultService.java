@@ -5,6 +5,8 @@ package com.xn.performance.service;
 
 import java.util.List;
 import java.util.Map;
+
+import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.mybatis.PageResult;
 
 import com.xn.performance.dto.PerformanceResultDto;
@@ -114,4 +116,11 @@ public interface PerformanceResultService {
      * @return 操作影响行数
      */
     int deleteBatch(List<PerformanceResultDto> performanceResults);
+    /**
+     * 获得为执行的立即执行的任务
+     * 主键：id
+     * @param condition 主键/Map/查询对象
+     * @return
+     */
+    List<PerformancePlanShowDto>  getTask();
 }
