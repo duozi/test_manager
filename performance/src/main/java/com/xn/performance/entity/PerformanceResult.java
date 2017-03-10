@@ -59,6 +59,20 @@ public class PerformanceResult extends BaseEntity {
     private String executePerson;
 
 
+    /**
+     *
+     * 执行状态
+     */
+    private String executeStatus;
+
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
+
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
+    }
+
     private Integer stressMachineId;
     private  String stressMachineName;
 

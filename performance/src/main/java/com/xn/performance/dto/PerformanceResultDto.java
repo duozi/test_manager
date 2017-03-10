@@ -84,6 +84,19 @@ public class PerformanceResultDto extends BaseDto{
 
     private Integer stressMachineName;
 
+    /**
+     *
+     * 执行状态
+     */
+    private String executeStatus;
+
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
+
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
+    }
 
     public Integer getStressMachineId() {
         return stressMachineId;

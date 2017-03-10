@@ -23,6 +23,15 @@ public class PerformancePlanShow {
      * id
      */
     private Integer id;
+    private Integer planId;
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
 
     /**
      * 计划名
@@ -97,10 +106,18 @@ public class PerformancePlanShow {
      */
     private List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList;
     /**
-     *
      * 实际开始时间
      */
     private Date actualStartTime;
+    private String executeStatus;
+
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
+
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
+    }
 
     public String getScriptName() {
         return scriptName;
@@ -157,7 +174,6 @@ public class PerformancePlanShow {
     public void setPerformancePlanMonitoredDtoList(List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList) {
         this.performancePlanMonitoredDtoList = performancePlanMonitoredDtoList;
     }
-
 
 
     public void setId(Integer id) {

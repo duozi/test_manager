@@ -89,7 +89,7 @@
                     var stressMachineId = $("#stress_machine_name").val();
                     var stressMachineName= $("#stress_machine_name").find("option:selected").text();
                     var executeType = $("#execute-time-type").val();
-                    var executeTime = $("#execute-time").val();
+                    var setStartTime = $("#set-start-time").val();
                     var executePerson=$("#execute-person").val();
 
                     $.post("/performance/plan/plan_list/execute_save", {
@@ -97,7 +97,7 @@
                         stressMachineId: stressMachineId,
                         stressMachineName:stressMachineName,
                         executeType: executeType,
-                        executeTime: executeTime,
+                        setStartTime: setStartTime,
                         executePerson:executePerson,
                     }, function (data) {
                         if (data.code == 0) {
@@ -285,7 +285,7 @@
                                             ${monitored_item.monitoredMachineName}
                                         </#list>
                                     </td>
-                                    <td>${item.planStatus}</td>
+                                    <td>${item.executeStatus}</td>
                                     <td>
                                         <#if item.actualStartTime ??>
                                             ${(item.actualStartTime)?string("yyyy-MM-dd hh:mm:ss")}
@@ -296,7 +296,7 @@
                                     <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
                                            onclick="execute(${item.id},'${item.company}','${item.department}','${item.psystem}')">执行</a>
                                         <a type="button" name="stop" class="btn btn-warning"
-                                        <#if item.planStatus=="执行中"> onclick="stop(${item.id})"
+                                        <#if item.executeStatus=="执行中"> onclick="stop(${item.id})"
                                             <#else> disabled
                                         </#if>
                                         >停止执行</a>
@@ -356,7 +356,7 @@
                         </div>
                         <div class="form-group settime hidden">
                             <label class="control-label">执行时间<span style="color:red">*</span></label>
-                            <input type="text" class="form-control form-datetime" id="execute-time" >
+                            <input type="text" class="form-control form-datetime" id="set-start-time" >
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary submit">保存</button>
@@ -476,7 +476,7 @@
                 var value = $(this).val();
                 if (value == 'settime') {
                     $(".settime").removeClass("hidden");
-                    $("#execute-time").empty();
+                    $("#set-start-time").empty();
                 } else if (value == 'now') {
                     $(".settime").addClass("hidden");
 

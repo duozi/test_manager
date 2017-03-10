@@ -24,10 +24,20 @@ public class PerformancePlanShowDto extends BaseDto {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键列
-     * id
+     * 结果id
+     *
      */
     private Integer id;
+
+    private Integer planId;
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
 
     /**
      * 计划名
@@ -106,6 +116,16 @@ public class PerformancePlanShowDto extends BaseDto {
      * 实际开始时间
      */
     private Date actualStartTime;
+
+    private String executeStatus;
+
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
+
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
+    }
 
     public String getScriptName() {
         return scriptName;

@@ -231,7 +231,7 @@ public class PerformancePlanController {
     //保存执行配置
     @RequestMapping(value = "/plan_list/execute_save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam Integer stressMachineName, @RequestParam String executeType, @RequestParam String executeTime,@RequestParam String executePerson) {
+    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam Integer stressMachineName, @RequestParam String executeType, @RequestParam String setStartTime,@RequestParam String executePerson) {
         CommonResult commonResult = new CommonResult();
         try {
             PerformanceResultDto performanceResultDto = new PerformanceResultDto();
@@ -239,16 +239,18 @@ public class PerformancePlanController {
             performanceResultDto.setStressMachineId(stressMachineId);
             performanceResultDto.setStressMachineName(stressMachineName);
             performanceResultDto.setExecutePerson(executePerson);
+            performanceResultDto.setExecuteStatus(PlanStatusEnum.UN_EXECUTE.getName());
 
             if (executeType.equals("settime")) {
-                Date time = DateUtil.getStandardStringDate(executeTime);
+                Date time = DateUtil.getStandardStringDate(setStartTime);
                 performanceResultDto.setSetStartTime(time);
             }else if(executeType.equals("now")){
-                Date time = DateUtil.getStandardStringDate(executeTime);
+                Date time = DateUtil.getStandardStringDate(setStartTime);
                 performanceResultDto.setSetStartTime(time);
             }
-            performanceResultService.save(performanceResultDto);
-            jmeterService.executePlan(performanceResultDto);
+            //先保存到执行结果
+           PerformanceResultDto performanceResultDto1= performanceResultService.save(performanceResultDto);
+            jmeterService.executePlan(executeType,performanceResultDto1);
 
         } catch (Exception e) {
 

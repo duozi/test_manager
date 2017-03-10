@@ -112,8 +112,8 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
     }
 
     @Override
-    public List<PerformancePlanShowDto> getTask() {
-        List<PerformancePlanShow> list=performanceResultMapper.getTask();
+    public List<PerformancePlanShowDto> getTask(PerformanceResultDto performanceResultDto) {
+        List<PerformancePlanShow> list=performanceResultMapper.getTask(performanceResultDto);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
         return dtoList;
     }

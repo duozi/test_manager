@@ -23,6 +23,7 @@
 
     <resultMap id="PerformancePlanShowMap" type="com.xn.performance.entity.PerformancePlanShow">
         <result property="id" column="id"/>
+        <result property="planId" column="plan_id"/>
         <result property="planName" column="plan_name"/>
         <result property="remark" column="remark"/>
         <result property="company" column="company"/>
@@ -58,7 +59,7 @@
 
     <sql id="show_columns">
         <![CDATA[
-        id, plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time
+        id, plan_id,plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time
 
         ]]>
     </sql>
@@ -109,7 +110,7 @@
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        P.id, P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, P.paln_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time
         FROM

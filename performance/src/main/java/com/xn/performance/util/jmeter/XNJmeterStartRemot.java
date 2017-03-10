@@ -157,12 +157,12 @@ public class XNJmeterStartRemot {
             //obj.exit(hosts);
 
             //testTree.add(testTree.getArray()[0], new RemoteThreadsListenerTestElement());
-            List<JMeterEngine> engines = new LinkedList<>();
+            List<JMeterEngine> engines = new LinkedList<JMeterEngine>();
             agentlisten = new ListenToTest(this, engines, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);
 
             StringTokenizer st = new StringTokenizer(remote_hosts_string, ",");
-            List<String> hosts = new LinkedList<>();
+            List<String> hosts = new LinkedList<String>();
             while (st.hasMoreElements()) {
                 hosts.add((String) st.nextElement());
             }
