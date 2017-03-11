@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.RelationSuitCaseDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -115,4 +118,13 @@ public interface RelationSuitCaseService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationSuitCaseDto> relationSuitCases);
+
+    /**
+     * 查询关联的接口
+     * @param paramsMap
+     * @return
+     */
+    List<TestInterfaceDto> listGroupByInterface(Map<String, Object> paramsMap);
+
+    void saveRelation(Long interfaceId, Long suitId, String caseIds);
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationSuitCaseMapper">
 
@@ -9,11 +9,12 @@
         <result property="suitId" column="suit_id"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="serviceId" column="service_id"/>
+        <result property="caseId" column="case_id"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, suit_id, interface_id, service_id
+        id, suit_id, interface_id, service_id,case_id
         ]]>
     </sql>
     
@@ -31,6 +32,9 @@
            <if test="@Ognl@isNotEmpty(serviceId)">
                 AND service_id = #{serviceId}
             </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
         </where>
     </sql>
     
@@ -43,15 +47,35 @@
                 id = #{id} 
         ]]>
     </select>
+
+    <select id="selectBySuitAndCase" resultMap="RelationSuitCaseMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                relation_suit_case
+            WHERE
+                suit_id = #{suitId} and case_id=#{caseId}
+        ]]>
+    </select>
+
     
     <select id="list" resultMap="RelationSuitCaseMap">
         SELECT
             <include refid="columns" />
         FROM
-            relation_suit_case 
+            relation_suit_case
         <include refid="where"/>
     </select>
-        
+
+    <select id="listGroupByInterface" resultType="Long">
+        SELECT
+        interface_id
+        FROM
+        relation_suit_case
+        <include refid="where"/>
+        group by interface_id
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -68,12 +92,14 @@
                 id,
                 suit_id,
                 interface_id,
-                service_id
+                service_id,
+                case_id
             ) VALUES (
                 #{id},
                 #{suitId},
                 #{interfaceId},
-                #{serviceId}
+                #{serviceId},
+                #{caseId}
             )
         ]]>
     </insert>
@@ -84,11 +110,12 @@
                 id,
                 suit_id,
                 interface_id,
-                service_id
+                service_id,
+                case_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.suitId},#{item.interfaceId},#{item.serviceId})
+            (#{item.id},#{item.suitId},#{item.interfaceId},#{item.serviceId},#{item.caseId})
         </foreach>
     </insert>
     
@@ -103,7 +130,10 @@
                 	<![CDATA[ interface_id = #{interfaceId} ]]>,
                 </if>
                 <if test="serviceId != null">
-                	<![CDATA[ service_id = #{serviceId} ]]>
+                	<![CDATA[ service_id = #{serviceId} ]]>,
+                </if>
+                <if test="caseId != null">
+                    <![CDATA[ case_id = #{caseId} ]]>
                 </if>
             </set>
             WHERE
@@ -119,7 +149,17 @@
                 id = #{id} 
         ]]>
     </delete>
-    
+
+    <delete id="deleteByInterfaceAndSuit">
+        <![CDATA[
+            DELETE
+            FROM
+                relation_suit_case
+            WHERE
+                interface_id = #{interfaceId} and suit_id = #{suitId}
+        ]]>
+    </delete>
+
     <delete id="delete">
         <![CDATA[
             DELETE

@@ -89,6 +89,11 @@ public class InterfaceController {
 		TestRedisConfigDto redisConfigDto = new TestRedisConfigDto();
 		List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(redisConfigDto);
 
+		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
+		TestServiceDto serviceDto = new TestServiceDto();
+		serviceList = serviceService.list(serviceDto);
+
+		map.put("serviceList", serviceList);
 		map.put("requestTypeList",requestTypeList);
 		map.put("contentTypeList",contentTypeList);
 		map.put("httpTypeList",httpTypeList);
@@ -119,6 +124,7 @@ public class InterfaceController {
 		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
 		TestServiceDto serviceDto = new TestServiceDto();
 		serviceList = serviceService.list(serviceDto);
+		map.put("serviceList", serviceList);
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		String interfaceName = request.getParameter("name");
@@ -139,7 +145,7 @@ public class InterfaceController {
 		List<TestInterfaceDto> testInterfaceDtoList = testInterfaceService.listByParams(params);
 
 		map.put("testInterfaceDtoList",testInterfaceDtoList);
-		map.put("serviceList", serviceList);
+
 
 		//接口类型--http，dubbo
 		List<InterfaceTypeEnum> interfaceTypeEnumList=new ArrayList<InterfaceTypeEnum>();
@@ -253,6 +259,105 @@ public class InterfaceController {
 			result.setCode(code);
 			result.setMessage(message);
 			logger.error("保存redis操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+
+	@RequestMapping(value="/getDataBaseDataByOperateType", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult getDataBaseDataByOperateType(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		Map<String,Object> params = new HashMap<String,Object>();
+		try{
+			String interfaceId = request.getParameter("interfaceId");
+			if(StringUtils.isNotBlank(interfaceId)){
+				params.put("interfaceId",interfaceId);
+			}
+
+			String operateType = request.getParameter("operateType");
+			if(StringUtils.isNotBlank(operateType)){
+				params.put("operateType",operateType);
+			}
+			List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.list(params);
+			result.setData(relationCaseDatabaseDtoList);
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("数据库查询异常");
+			logger.error("操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/getRedisDataByOperateType", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult getRedisDataByOperateType(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		Map<String,Object> params = new HashMap<String,Object>();
+		try{
+			String interfaceId = request.getParameter("interfaceId");
+			if(StringUtils.isNotBlank(interfaceId)){
+				params.put("interfaceId",interfaceId);
+			}
+
+			String operateType = request.getParameter("operateType");
+			if(StringUtils.isNotBlank(operateType)){
+				params.put("operateType",operateType);
+			}
+			List<RelationCaseRedisDto> relationCaseRedisDtoList = relationCaseRedisService.list(params);
+			result.setData(relationCaseRedisDtoList);
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("redis查询异常");
+			logger.error("操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+	/**
+	 * 删除db配置信息，单条删除
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/deleteDatabaseData", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult deleteDatabaseData(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		String id = request.getParameter("id");
+		try{
+			if(StringUtils.isNotBlank(id)){
+				relationCaseDatabaseService.deleteByPK(Long.parseLong(id));
+			}
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message = e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("删除操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+	/**
+	 * 删除redis配置信息，单条删除
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/deleteRedisData", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult deleteRedisData(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		String id = request.getParameter("id");
+		try{
+			if(StringUtils.isNotBlank(id)){
+				relationCaseRedisService.deleteByPK(Long.parseLong(id));
+			}
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message = e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("删除操作异常｛｝",e);
 		}
 		return  result;
 	}

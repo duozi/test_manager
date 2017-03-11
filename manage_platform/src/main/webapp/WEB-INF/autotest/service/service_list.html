@@ -211,9 +211,36 @@
         $("#addService input[name='name']").val(name);
         $("#addService input[name='description']").val(description);
         $("#addService input[name='id']").val(id);
-        if(null != jarPath && "undefined" != jarPath &&  "" != jarPath){
-            $(".jar-notice").text("已上传jar包");
-        }
+        $("#addService input[name='jarPath']").val(jarPath);
+        //再次初始化文件信息
+        $("#file-1").fileinput('refresh', {
+            initialPreviewAsData: true,
+            initialPreviewFileType: 'other',
+            initialPreview: jarPath,
+            showUpload: false,
+            uploadAsync:true,
+//        dropZoneEnabled:false,
+            uploadUrl: '${basePath}/autotest/service/uploadJar', // you must set a valid URL here else you will get an error
+            allowedFileExtensions : ['jar'],
+            overwriteInitial: false,
+            language: 'zh', //设置语言
+            maxFileSize: 200000,
+            maxFilesNum: 1,
+            showPreview:true,
+            previewFileIcon: "",
+            slugCallback: function(filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        }).on("filebatchselected", function(event, files) {
+            $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+                if(data.response.code==0){
+                    $("input[name='jarPath']").val(data.response.data);
+                } else {
+                    alert("上传失败，请查看日志！");
+                }
+
+            });
+        });
     }
 
 
@@ -243,7 +270,8 @@
                         data = eval("(" + result + ")");
                         if (data.code == 0) {
                             // $("#addService").modal("hide");
-                            //reload();
+                            alert("保存成功");
+                            reload();
                         } else {
                             alert("保存失败："+data.message);
                         }

@@ -5,6 +5,10 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationSuitCase;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * RelationSuitCase Dao 接口
@@ -14,4 +18,9 @@ import com.xn.interfacetest.entity.RelationSuitCase;
  */
 public interface RelationSuitCaseMapper extends BaseMapper<RelationSuitCase, Long> {
 
+    List<Long> listGroupByInterface(Map<String, Object> paramsMap);
+
+    void deleteByInterfaceAndSuit(@Param("suitId") Long suitId, @Param("interfaceId")Long interfaceId);
+
+    RelationSuitCase selectBySuitAndCase(@Param("caseId")Long caseId,@Param("suitId") Long suitId);
 }

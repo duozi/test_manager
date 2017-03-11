@@ -109,4 +109,9 @@ public class PerformanceMonitoredMachineServiceImpl implements PerformanceMonito
         return 0;
     }
 
+    @Override
+    public boolean testLink(String s1, String s2, String s3) {
+        return true;
+    }
+
 }

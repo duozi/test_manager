@@ -35,57 +35,65 @@
                     <label class="radio-inline" style="margin-top: 0">
 
                         <input type="radio" name="caseType" value="单接口用例"
-                        <#if caseType==1||caseType==null>checked="true"</#if>
-                        >单接口用例
+                        <#if caseType==1||caseType==null>checked="true"</#if>>单接口用例
 
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="caseType" value="集成用例"
-                        <#if caseType==2>checked="true"</#if>
-                        >集成用例
+                        <#if caseType==2>checked="true"</#if>>集成用例
                     </label>
                 </div>
 
                 <!--用例名-->
                 <div class="form-group ">
                     <label>用例名</label>
-                    <input class="form-control col-lg-5">
+                    <input name="id" value="${testCaseDto.id}" type="hidden">
+                    <input class="form-control col-lg-5" name="name" value="${testCaseDto.name}">
                 </div>
                 <div class="form-group ">
                     <label>用例描述</label>
-                    <input class="form-control col-lg-5">
+                    <input class="form-control col-lg-5" name="description" value="${testCaseDto.description}">
                 </div>
                 <!--用例id-->
                 <div class="form-group ">
                     <label>用例编号</label>
-                    <input class="form-control col-lg-5">
-                    <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList">查看所属测试集</a>
+                    <input class="form-control col-lg-5" name="number" value="${testCaseDto.number}">
+                    <#if testCaseDto.id??>
+                        <!--id不为空表示是修改测试用例，则查询出所属测试集，作为显示-->
+                        <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList">查看所属测试集</a>
+                    </#if>
+
                 </div>
                 <!--所属接口-->
                 <#if caseType != 2>
                     <div class="form-group ">
                         <label>所属接口</label>
-                        <select class="form-control col-lg-5">
-                            <option value="" disabled selected>选择接口名称</option>
-                            <option value="">风控规则-反欺诈规则接口</option>
-                            <option value="">风控规则-贷后规则接口</option>
-                            <option value="">风控规则-黑名单规则接口</option>
-                            <option value="">华征征信-查询个人房产信息接口</option>
+                        <select class="form-control col-lg-5" name="interfaceId">
+                            <option value=""  <#if testCaseDto.interfaceId = null>disabled selected</#if>>选择接口名称</option>
+                            <#if interfaceList??>
+                                <#list interfaceList as item>
+                                    <option value="${item.id}" <#if testCaseDto.interfaceId = item.id>selected</#if>>${item.name}</option>
+                                </#list>
+                            </#if>
                         </select>
                     </div>
                 </#if>
                 <!--数据准备/数据清除-->
-                <div class="form-group">
-                    <label class="control-label">数据准备/数据清除</label>
-                    <div class="choose-sys case-choose">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="prepare" name="operationType">数据准备
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="clear" name="operationType">数据清除
-                        </label>
+                <#if testCaseDto.id = null>
+                    <!--id为空表示新增测试用例，需要选择数据清除和数据准备，否则是直接显示数据清除或者数据准备就可以了-->
+                    <div class="form-group">
+                        <label class="control-label">数据准备/数据清除</label>
+                        <div class="choose-sys case-choose">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="prepare" name="operationType">数据准备
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="clear" name="operationType">数据清除
+                            </label>
+                        </div>
                     </div>
-                </div>
+                </#if>
+
                 <!--数据准备-->
                 <div id="prepare-form-div" class="panel panel-default panel-collapse collapse operation-width">
                     <!-- 数据准备 -->
@@ -190,7 +198,7 @@
                                                     <select class="form-control">
                                                         <#if paramTypeList ??>
                                                             <#list paramTypeList as item>
-                                                                <option values="${item.getId()}">
+                                                                <option values="${item}">
                                                                     ${item.getName()}
                                                                 </option>
                                                             </#list>
@@ -272,7 +280,7 @@
                                                     <select class="form-control">
                                                         <#if paramTypeList ??>
                                                             <#list paramTypeList as item>
-                                                                <option values="${item.getId()}">
+                                                                <option values="${item}">
                                                                     ${item.getName()}
                                                                 </option>
                                                             </#list>
@@ -301,7 +309,8 @@
                                             <option value="" disabled selected></option>
                                             <#if appendParamList ??>
                                                 <#list appendParamList as item>
-                                                    <option values="${item.getId()}">${item.getName()}
+                                                    <option values="${item}">
+                                                        ${item.getName()}
                                                     </option>
                                                 </#list>
                                             </#if>
@@ -364,7 +373,7 @@
                                     <select class="form-control">
                                         <#if contentTypeList ??>
                                             <#list contentTypeList as item>
-                                                <option values="${item.getId()}">
+                                                <option values="${item}">
                                                     ${item.getName()}
                                                 </option>
                                             </#list>
@@ -409,7 +418,7 @@
                                                                     <select class="form-control">
                                                                         <#if paramTypeList ??>
                                                                             <#list paramTypeList as item>
-                                                                                <option values="${item.getId()}">
+                                                                                <option values="${item}">
                                                                                     ${item.getName()}
                                                                                 </option>
                                                                             </#list>
@@ -495,7 +504,7 @@
                                                                     <select class="form-control">
                                                                         <#if paramTypeList ??>
                                                                             <#list paramTypeList as item>
-                                                                                <option values="${item.getId()}">
+                                                                                <option values="${item}">
                                                                                     ${item.getName()}
                                                                                 </option>
                                                                             </#list>
@@ -528,7 +537,8 @@
                                                             <option value="" disabled selected></option>
                                                             <#if appendParamList ??>
                                                                 <#list appendParamList as item>
-                                                                    <option values="${item.getId()}">${item.getName()}
+                                                                    <option values="${item}">
+                                                                        ${item.getName()}
                                                                     </option>
                                                                 </#list>
                                                             </#if>
@@ -656,7 +666,7 @@
                                                                         name="dbAssert">
                                                                     <#if dbNameList ??>
                                                                         <#list dbNameList as item>
-                                                                            <option values="${item.getId()}">
+                                                                            <option values="${item}">
                                                                                 ${item.getName()}
                                                                             </option>
                                                                         </#list>
@@ -716,7 +726,7 @@
                                                                 <select class="form-control">
                                                                     <#if redisNameList ??>
                                                                         <#list redisNameList as item>
-                                                                            <option values="${item.getName()}">
+                                                                            <option values="${item}">
                                                                                 ${item.getName()}
                                                                             </option>
                                                                         </#list>
@@ -728,7 +738,7 @@
                                                                         name="redisAssertType">
                                                                     <#if redisAssertTypeEnumList??>
                                                                         <#list redisAssertTypeEnumList as item>
-                                                                            <option values="${item.getId()}">
+                                                                            <option values="${item}">
                                                                                 ${item.getName()}
                                                                             </option>
                                                                         </#list>
@@ -864,7 +874,9 @@
                                                 <select class="form-control" name="dbAssert">
                                                     <#if contentTypeList ??>
                                                         <#list contentTypeList as item>
-                                                            <option values="${item.getId()}"> ${item.getName()}</option>
+                                                            <option values="${item}">
+                                                                ${item.getName()}
+                                                            </option>
                                                         </#list>
                                                     </#if>
                                                 </select>
@@ -918,7 +930,9 @@
                                                 <select class="form-control">
                                                     <#if contentTypeList ??>
                                                         <#list contentTypeList as item>
-                                                            <option values="${item.getId()}"> ${item.getName()}</option>
+                                                            <option values="${item}">
+                                                                ${item.getName()}
+                                                            </option>
                                                         </#list>
                                                     </#if>
                                                 </select>
@@ -1116,32 +1130,20 @@
                         <th>测试集ID</th>
                         <th>测试集名称</th>
                         <th>测试集描述</th>
-                        <th>系统</th>
                         <th>创建人</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>风控规则测试集</td>
-                        <td>风控规则测试集描述</td>
-                        <td>风控规则</td>
-                        <td>高珊</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>风控规则贷后规则测试集</td>
-                        <td>风控规则测试集描述</td>
-                        <td>风控规则</td>
-                        <td>高珊</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>风控规则反欺诈测试集</td>
-                        <td>风控规则</td>
-                        <td>风控规则测试集描述</td>
-                        <td>高珊</td>
-                    </tr>
+                    <#if testSuitDtoList??>
+                        <#list testSuitDtoList as suitItem>
+                            <tr>
+                                <td>${suitItem.id}</td>
+                                <td>${suitItem.name}</td>
+                                <td>${suitItem.description}</td>
+                                <td>${suitItem.createPerson}</td>
+                            </tr>
+                        </#list>
+                    </#if>
                     </tbody>
                 </table>
             </div>
@@ -1158,7 +1160,7 @@
     dbhtml += '<select class="form-control" >';
     dbhtml += '<#if dbNameList ??>';
     dbhtml += '<#list dbNameList as item>';
-    dbhtml += '<option values="${item.getId()}">${item.getName()} </option>';
+    dbhtml += ' <option values="${item}">${item.getName()}</option>';
     dbhtml += '</#list>';
     dbhtml += '</#if>';
     dbhtml += '</select>';
@@ -1180,7 +1182,7 @@
     redishtml += '<select class="form-control"  name="redisName">';
     redishtml += '<#if redisNameList ??>';
     redishtml += '<#list redisNameList as item>';
-    redishtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    redishtml += '<option values="${item}">${item.getName()}</option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
     redishtml += '</select>';
@@ -1332,7 +1334,7 @@
     dbAssertHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
     dbAssertHtml += '<#if dbNameList ??>';
     dbAssertHtml += '<#list dbNameList as item>';
-    dbAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    dbAssertHtml += '<option values="${item}">${item.getName()}</option>';
     dbAssertHtml += '</#list>';
     dbAssertHtml += '</#if>';
     dbAssertHtml += '</select>';
@@ -1355,7 +1357,7 @@
     redisAssertHtml += '<select class="form-control" >';
     redisAssertHtml += '<#if redisNameList ??>';
     redisAssertHtml += '<#list redisNameList as item>';
-    redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
@@ -1364,7 +1366,7 @@
     redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
     redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
     redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
-    redisAssertHtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
+    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
@@ -1449,7 +1451,7 @@
     paramAddHtml += '<select class="form-control">';
     paramAddHtml += '<#if paramTypeList ??>';
     paramAddHtml += '<#list paramTypeList as item>';
-    paramAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+    paramAddHtml += '<option values="${item}">${item.getName()}</option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';
     paramAddHtml += '</select>';
@@ -1497,7 +1499,7 @@
     choseCaseHtml += '<select class="form-control">';
     choseCaseHtml += '<#if contentTypeList ??>';
     choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
     choseCaseHtml += ' </#list>';
     choseCaseHtml += '</#if>';
     choseCaseHtml += ' </select>';
@@ -1506,7 +1508,7 @@
     choseCaseHtml += '<select class="form-control">';
     choseCaseHtml += '<#if contentTypeList ??>';
     choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
     choseCaseHtml += '</#list>';
     choseCaseHtml += '</#if>';
     choseCaseHtml += '</select>';
@@ -1515,7 +1517,7 @@
     choseCaseHtml += '<select class="form-control">';
     choseCaseHtml += '<#if contentTypeList ??>';
     choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
     choseCaseHtml += '</#list>';
     choseCaseHtml += '</#if>';
     choseCaseHtml += '</select>';
@@ -1561,7 +1563,7 @@
         stepAddHtml += '<select class="form-control">';
         stepAddHtml += '<#if contentTypeList ??>';
         stepAddHtml += '<#list contentTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1600,7 +1602,7 @@
         stepAddHtml += '<select class="form-control">';
         stepAddHtml += '<#if paramTypeList ??>';
         stepAddHtml += '<#list paramTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1670,7 +1672,7 @@
         stepAddHtml += '<select class="form-control">';
         stepAddHtml += '<#if paramTypeList ??>';
         stepAddHtml += '<#list paramTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1696,7 +1698,7 @@
         stepAddHtml += '<option value="" disabled selected ></option>';
         stepAddHtml += '<#if appendParamList ??>';
         stepAddHtml += '<#list appendParamList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1804,7 +1806,7 @@
         stepAddHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
         stepAddHtml += '<#if contentTypeList ??>';
         stepAddHtml += '<#list contentTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1856,7 +1858,7 @@
         stepAddHtml += '<select class="form-control">';
         stepAddHtml += '<#if contentTypeList ??>';
         stepAddHtml += '<#list contentTypeList as item>';
-        stepAddHtml += '<option values="${item.getId()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';
@@ -1865,7 +1867,7 @@
         stepAddHtml += '<select class="form-control case-select" name="redisAssertType">';
         stepAddHtml += '<#if redisAssertTypeEnumList ??>';
         stepAddHtml += '<#list redisAssertTypeEnumList as item>';
-        stepAddHtml += '<option values="${item.getName()}">${item.getName()} </option>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
         stepAddHtml += '</#list>';
         stepAddHtml += '</#if>';
         stepAddHtml += '</select>';

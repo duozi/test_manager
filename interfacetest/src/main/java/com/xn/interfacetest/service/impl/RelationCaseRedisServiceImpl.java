@@ -75,7 +75,12 @@ public class RelationCaseRedisServiceImpl implements RelationCaseRedisService {
     @Override
     public RelationCaseRedisDto save(RelationCaseRedisDto relationCaseRedisDto) {
         RelationCaseRedis relationCaseRedis = BeanUtils.toBean(relationCaseRedisDto,RelationCaseRedis.class);
-        relationCaseRedisMapper.save(relationCaseRedis);
+        if(null == relationCaseRedisDto.getId()){
+            relationCaseRedisMapper.save(relationCaseRedis);
+        } else {
+            relationCaseRedisMapper.update(relationCaseRedis);
+        }
+
         relationCaseRedisDto.setId(relationCaseRedis.getId());
         return relationCaseRedisDto;
     }

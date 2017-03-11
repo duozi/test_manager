@@ -51,9 +51,9 @@ public class TestCaseDto extends BaseDto {
 
     /**
      * 
-     * 用例类型（1-单接口，2-集成接口） 
+         * 用例类型（SINGLE-单接口，MULTIPLE-集成接口）
      */
-    private Integer type;
+    private String type;
 
     /**
      * 
@@ -131,11 +131,11 @@ public class TestCaseDto extends BaseDto {
         this.interfaceId = interfaceId;
     }
 
-    public Integer getType() {
+    public String getType() {
         return this.type;
     }
     
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

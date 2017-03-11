@@ -83,7 +83,11 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     @Override
     public TestInterfaceDto save(TestInterfaceDto testInterfaceDto) {
         TestInterface testInterface = BeanUtils.toBean(testInterfaceDto,TestInterface.class);
-        testInterfaceMapper.save(testInterface);
+        if(null != testInterfaceDto.getId()){
+            testInterfaceMapper.update(testInterface);
+        }else{
+            testInterfaceMapper.save(testInterface);
+        }
         testInterfaceDto.setId(testInterface.getId());
         return testInterfaceDto;
     }
@@ -130,6 +134,23 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
         for(TestInterfaceDto testInterfaceDto: dtoList){
             TestServiceDto serviceDto = testServiceService.get(testInterfaceDto.getServiceId());
+            testInterfaceDto.setTestServiceDto(serviceDto);
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<TestInterfaceDto> listAllBySuitId(Object o) {
+
+        return null;
+    }
+
+    @Override
+    public List<TestInterfaceDto> listAll() {
+        List<TestInterface> list = testInterfaceMapper.list(null);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        for(TestInterfaceDto testInterfaceDto: dtoList){
+            TestServiceDto serviceDto = testServiceService.getWithSystem(testInterfaceDto.getServiceId());
             testInterfaceDto.setTestServiceDto(serviceDto);
         }
         return dtoList;

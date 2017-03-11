@@ -46,7 +46,7 @@ public class RelationCaseRedisDto extends BaseDto {
      * 
      * Redis操作类型 
      */
-    private Boolean redisOperateType;
+    private Integer redisOperateType;
 
     /**
      * 
@@ -110,11 +110,11 @@ public class RelationCaseRedisDto extends BaseDto {
         this.operateType = operateType;
     }
 
-    public Boolean getRedisOperateType() {
+    public Integer getRedisOperateType() {
         return this.redisOperateType;
     }
     
-    public void setRedisOperateType(Boolean redisOperateType) {
+    public void setRedisOperateType(Integer redisOperateType) {
         this.redisOperateType = redisOperateType;
     }
 

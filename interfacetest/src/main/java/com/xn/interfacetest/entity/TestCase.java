@@ -56,7 +56,7 @@ public class TestCase extends BaseEntity {
      * 
      * 用例类型（1-单接口，2-集成接口） 
      */
-    private Integer type;
+    private String type;
 
     /**
      * 
@@ -150,11 +150,11 @@ public class TestCase extends BaseEntity {
         this.interfaceId = interfaceId;
     }
     
-    public Integer getType() {
+    public String getType() {
         return this.type;
     }
     
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
     

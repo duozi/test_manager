@@ -4,6 +4,9 @@
 package com.xn.interfacetest.dto;
 
 import com.xn.common.base.BaseDto;
+import com.xn.interfacetest.entity.TestInterface;
+
+import java.util.List;
 
 /**
  * TestSuit Dto 对象
@@ -42,6 +45,12 @@ public class TestSuitDto extends BaseDto {
      */
     private String createPerson;
 
+    private Long systemId;
+
+    private TestSystemDto testSystemDto;
+
+    private List<TestInterfaceDto> interfaceList;
+
     public Long getId() {
         return this.id;
     }
@@ -74,7 +83,28 @@ public class TestSuitDto extends BaseDto {
         this.createPerson = createPerson;
     }
 
+    public TestSystemDto getTestSystemDto() {
+        return testSystemDto;
+    }
 
+    public void setTestSystemDto(TestSystemDto testSystemDto) {
+        this.testSystemDto = testSystemDto;
+    }
 
+    public List<TestInterfaceDto> getInterfaceList() {
+        return interfaceList;
+    }
+
+    public void setInterfaceList(List<TestInterfaceDto> interfaceList) {
+        this.interfaceList = interfaceList;
+    }
+
+    public Long getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
+    }
 }
 
