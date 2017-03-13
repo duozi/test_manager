@@ -75,7 +75,12 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Override
     public TestCaseDto save(TestCaseDto testCaseDto) {
         TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
-        testCaseMapper.save(testCase);
+        if(null == testCaseDto.getId()){
+            testCaseMapper.save(testCase);
+        } else {
+            testCaseMapper.update(testCase);
+        }
+
         testCaseDto.setId(testCase.getId());
         return testCaseDto;
     }

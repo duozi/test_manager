@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xn.interfacetest.dao.TestCaseMapper">
+<mapper namespace="com.xn.interfacetest.mapper">
 
     <resultMap id="TestCaseMap" type="com.xn.interfacetest.entity.TestCase">
         <result property="id" column="id"/>
@@ -17,73 +17,89 @@
         <result property="paramsAssert" column="params_assert"/>
         <result property="databaseAssert" column="database_assert"/>
         <result property="redisAssert" column="redis_assert"/>
+        <result property="customParamsHeader" column="custom_params_header"/>
+        <result property="customParamsBody" column="custom_params_body"/>
+        <result property="customParamsHeaderType" column="custom_params_header_type"/>
+        <result property="customParamsBodyType" column="custom_params_body_type"/>
     </resultMap>
-    
+
     <sql id="columns">
         <![CDATA[
-        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear, params_assert, database_assert, redis_assert
+        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear, params_assert, database_assert, redis_assert, custom_params_header, custom_params_body, custom_params_header_type, custom_params_body_type
         ]]>
     </sql>
-    
+
     <sql id="where">
         <where>
-           <if test="id != null and id != 0">
+            <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
-           <if test="null != name">
+            <if test="@Ognl@isNotEmpty(name)">
                 AND name = #{name}
             </if>
-           <if test="null != number">
+            <if test="@Ognl@isNotEmpty(number)">
                 AND number = #{number}
             </if>
-           <if test="null != description">
+            <if test="@Ognl@isNotEmpty(description)">
                 AND description = #{description}
             </if>
-           <if test="null != interfaceId">
+            <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
-           <if test="null != type">
+            <if test="@Ognl@isNotEmpty(type)">
                 AND type = #{type}
             </if>
-           <if test="null != createPerson">
+            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
             </if>
-           <if test="null != dataPrepare">
+            <if test="@Ognl@isNotEmpty(dataPrepare)">
                 AND data_prepare = #{dataPrepare}
             </if>
-           <if test="null != dataClear">
+            <if test="@Ognl@isNotEmpty(dataClear)">
                 AND data_clear = #{dataClear}
             </if>
-           <if test="null != paramsAssert">
+            <if test="@Ognl@isNotEmpty(paramsAssert)">
                 AND params_assert = #{paramsAssert}
             </if>
-           <if test="null != databaseAssert">
+            <if test="@Ognl@isNotEmpty(databaseAssert)">
                 AND database_assert = #{databaseAssert}
             </if>
-           <if test="null != redisAssert">
+            <if test="@Ognl@isNotEmpty(redisAssert)">
                 AND redis_assert = #{redisAssert}
+            </if>
+            <if test="@Ognl@isNotEmpty(customParamsHeader)">
+                AND custom_params_header = #{customParamsHeader}
+            </if>
+            <if test="@Ognl@isNotEmpty(customParamsBody)">
+                AND custom_params_body = #{customParamsBody}
+            </if>
+            <if test="@Ognl@isNotEmpty(customParamsHeaderType)">
+                AND custom_params_header_type = #{customParamsHeaderType}
+            </if>
+            <if test="@Ognl@isNotEmpty(customParamsBodyType)">
+                AND custom_params_body_type = #{customParamsBodyType}
             </if>
         </where>
     </sql>
-    
+
     <select id="get" resultMap="TestCaseMap">
         SELECT <include refid="columns" />
         <![CDATA[
             FROM
                 test_case
-            WHERE 
-                id = #{id} 
+            WHERE
+                id = #{id}
         ]]>
     </select>
-    
+
     <select id="list" resultMap="TestCaseMap">
         SELECT
-            <include refid="columns" />
+        <include refid="columns" />
         FROM
-            test_case 
+        test_case
         <include refid="where"/>
     </select>
-        
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -108,7 +124,11 @@
                 data_clear,
                 params_assert,
                 database_assert,
-                redis_assert
+                redis_assert,
+                custom_params_header,
+                custom_params_body,
+                custom_params_header_type,
+                custom_params_body_type
             ) VALUES (
                 #{id},
                 #{name},
@@ -121,7 +141,11 @@
                 #{dataClear},
                 #{paramsAssert},
                 #{databaseAssert},
-                #{redisAssert}
+                #{redisAssert},
+                #{customParamsHeader},
+                #{customParamsBody},
+                #{customParamsHeaderType},
+                #{customParamsBodyType}
             )
         ]]>
     </insert>
@@ -140,56 +164,72 @@
                 data_clear,
                 params_assert,
                 database_assert,
-                redis_assert
+                redis_assert,
+                custom_params_header,
+                custom_params_body,
+                custom_params_header_type,
+                custom_params_body_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.number},#{item.description},#{item.interfaceId},#{item.type},#{item.createPerson},#{item.dataPrepare},#{item.dataClear},#{item.paramsAssert},#{item.databaseAssert},#{item.redisAssert})
+            (#{item.id},#{item.name},#{item.number},#{item.description},#{item.interfaceId},#{item.type},#{item.createPerson},#{item.dataPrepare},#{item.dataClear},#{item.paramsAssert},#{item.databaseAssert},#{item.redisAssert},#{item.customParamsHeader},#{item.customParamsBody},#{item.customParamsHeaderType},#{item.customParamsBodyType})
         </foreach>
     </insert>
-    
+
     <update id="update">
-        	UPDATE
-                test_case
-            <set>
-                <if test="name != null">
-                	<![CDATA[ name = #{name} ]]>,
-                </if>
-                <if test="number != null">
-                	<![CDATA[ number = #{number} ]]>,
-                </if>
-                <if test="description != null">
-                	<![CDATA[ description = #{description} ]]>,
-                </if>
-                <if test="interfaceId != null">
-                	<![CDATA[ interface_id = #{interfaceId} ]]>,
-                </if>
-                <if test="type != null">
-                	<![CDATA[ type = #{type} ]]>,
-                </if>
-                <if test="createPerson != null">
-                	<![CDATA[ create_person = #{createPerson} ]]>,
-                </if>
-                <if test="dataPrepare != null">
-                	<![CDATA[ data_prepare = #{dataPrepare} ]]>,
-                </if>
-                <if test="dataClear != null">
-                	<![CDATA[ data_clear = #{dataClear} ]]>,
-                </if>
-                <if test="paramsAssert != null">
-                	<![CDATA[ params_assert = #{paramsAssert} ]]>,
-                </if>
-                <if test="databaseAssert != null">
-                	<![CDATA[ database_assert = #{databaseAssert} ]]>,
-                </if>
-                <if test="redisAssert != null">
-                	<![CDATA[ redis_assert = #{redisAssert} ]]>
-                </if>
-            </set>
-            WHERE
-                id = #{id} 
+        UPDATE
+        test_case
+        <set>
+            <if test="name != null">
+                <![CDATA[ name = #{name} ]]>,
+            </if>
+            <if test="number != null">
+                <![CDATA[ number = #{number} ]]>,
+            </if>
+            <if test="description != null">
+                <![CDATA[ description = #{description} ]]>,
+            </if>
+            <if test="interfaceId != null">
+                <![CDATA[ interface_id = #{interfaceId} ]]>,
+            </if>
+            <if test="type != null">
+                <![CDATA[ type = #{type} ]]>,
+            </if>
+            <if test="createPerson != null">
+                <![CDATA[ create_person = #{createPerson} ]]>,
+            </if>
+            <if test="dataPrepare != null">
+                <![CDATA[ data_prepare = #{dataPrepare} ]]>,
+            </if>
+            <if test="dataClear != null">
+                <![CDATA[ data_clear = #{dataClear} ]]>,
+            </if>
+            <if test="paramsAssert != null">
+                <![CDATA[ params_assert = #{paramsAssert} ]]>,
+            </if>
+            <if test="databaseAssert != null">
+                <![CDATA[ database_assert = #{databaseAssert} ]]>,
+            </if>
+            <if test="redisAssert != null">
+                <![CDATA[ redis_assert = #{redisAssert} ]]>,
+            </if>
+            <if test="customParamsHeader != null">
+                <![CDATA[ custom_params_header = #{customParamsHeader} ]]>,
+            </if>
+            <if test="customParamsBody != null">
+                <![CDATA[ custom_params_body = #{customParamsBody} ]]>,
+            </if>
+            <if test="customParamsHeaderType != null">
+                <![CDATA[ custom_params_header_type = #{customParamsHeaderType} ]]>,
+            </if>
+            <if test="customParamsBodyType != null">
+                <![CDATA[ custom_params_body_type = #{customParamsBodyType} ]]>
+            </if>
+        </set>
+        WHERE
+        id = #{id}
     </update>
-    
+
     <delete id="deleteByPK">
         <![CDATA[
             DELETE
@@ -199,7 +239,7 @@
                 id = #{id} 
         ]]>
     </delete>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE
@@ -208,7 +248,7 @@
         ]]>
         <include refid="where"/>
     </delete>
-    
+
     <delete id="deleteBatchByPK">
         <![CDATA[
             DELETE
