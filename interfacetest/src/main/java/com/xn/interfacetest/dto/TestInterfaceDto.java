@@ -111,7 +111,7 @@ public class TestInterfaceDto extends BaseDto {
     /**
      * 系统
      */
-    private TestServiceDto TestServiceDto;
+    private TestServiceDto testServiceDto;
 
     public Long getId() {
         return this.id;
@@ -234,11 +234,11 @@ public class TestInterfaceDto extends BaseDto {
     }
 
     public TestServiceDto getTestServiceDto() {
-        return TestServiceDto;
+        return testServiceDto;
     }
 
     public void setTestServiceDto(TestServiceDto testServiceDto) {
-        TestServiceDto = testServiceDto;
+        this.testServiceDto = testServiceDto;
     }
 }
 

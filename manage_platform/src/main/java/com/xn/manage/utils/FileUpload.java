@@ -34,7 +34,7 @@ public class FileUpload {
                         return result;
                     }
                     // 保存文件
-                    jarPath = PropertyUtil.getProperty("upload_path") + file_separator + "/"+ file.getOriginalFilename();
+                    jarPath = PropertyUtil.getProperty("upload_path") + file_separator + folderName + file_separator + file.getOriginalFilename();
                     FileUtil.saveFile(request, file,jarPath);
                     result.setData(jarPath);
                 }

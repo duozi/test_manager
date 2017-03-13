@@ -20,25 +20,29 @@
 
 			<div class="panel-body">
 				<!-- 计划基本配置 -->
-				<form role="form " class="edit-form">
+				<form role="form " class="edit-form" id="suit-form">
 					<div class="col-lg-8">
+						<input type="hidden" name="id" value="${testSuitDto.id}">
 						<div class="form-group">
 							<label class="control-label" for="createPerson" >创建人</label>
-							<input type="text" class="form-control" id="createPerson" name="createPerson" placeholder="请输入您的姓名">
+							<input type="text" class="form-control" id="createPerson" value="${testSuitDto.createPerson}" name="createPerson" placeholder="请输入您的姓名">
 						</div>
 				 		<div class="form-group">
 				             <label class="control-label">测试集名称</label>
-				             <input type="text" class="form-control" id="suitName" name="name" placeholder="请输入测试集名称">
+				             <input type="text" class="form-control" id="suitName" name="name"  value="${testSuitDto.name}" placeholder="请输入测试集名称">
 				         </div>
 						<div class="form-group">
 							<label class="control-label">测试集描述</label>
-							<input type="text" class="form-control" id="" name="name" placeholder="请输入测试集描述">
+							<input type="text" class="form-control" id="" name="description"  value="${testSuitDto.description}" placeholder="请输入测试集描述">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary suit-submit">保存</button>
 						</div>
 					</div>
-					<div class="col-lg-7 suit-panel">
+					<div class="col-lg-7 suit-panel <#if testSuitDto.id=null>hidden</#if>">
 						<div class="panel panel-default">
 								<div class="panel-heading">
-									接口列表
+									选择接口用例
 								</div>
 								<div class="panel-body">
 									<div class="table-responsive">
@@ -61,52 +65,32 @@
 												<td>--</td>
 												<td>--</td>
 												<td>
-													<label>
-														<input type="checkbox" value="">
-													</label>
-													<button type="button" data-toggle="modal" data-target="#caseList" class="btn btn-success">选择集成测试用例</button>
+													<button type="button" data-toggle="modal" data-target="#caseList" class="btn btn-success" onclick="showCaseList(null,'MULTIPLE')">选择集成测试用例</button>
 												</td>
 											</tr>
-											<tr>
-												<td>风控规则-反欺诈规则接口</td>
-												<td>反欺诈规则接口</td>
-												<td>http</td>
-												<td>ruleengineService</td>
-												<td>风控规则</td>
-												<td>
-													<label>
-														<input type="checkbox" value="">
-													</label>
-													<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success">选择单接口用例</button>
-												</td>
-											</tr>
-											<tr>
-												<td>风控规则-贷后规则接口</td>
-												<td>贷后规则接口</td>
-												<td>http</td>
-												<td>ruleengineService</td>
-												<td>风控规则</td>
-												<td>
-													<label>
-														<input type="checkbox" value="">
-													</label>
-													<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success">选择单接口用例</button>
-												</td>
-											</tr>
-
-											<tr>
-												<td>风控规则-黑名单规则接口</td>
-												<td>黑名单规则接口</td>
-												<td>http</td>
-												<td>ruleengineService</td>
-												<td>风控规则</td>
-												<td>
-													<label>
-														<input type="checkbox" value="">
-													</label>
-													<button type="button" data-toggle="modal" data-target="#caseList" class="btn btn-success">选择单接口用例</button>
-												</td>
-											</tr>
+											<#if testInterfaceDtoList??>
+												<#list testInterfaceDtoList as item>
+													<tr>
+														<td>${item.name}</td>
+														<td>${item.description}</td>
+														<td>
+															<#if interfaceTypeList??>
+															<#list interfaceTypeList as httpType>
+																<#if httpType.getId()=item.type>
+																	${httpType.getName()}
+																</#if>
+															</#list>
+															</#if>
+														</td>
+														<td>${item.testServiceDto.name}</td>
+														<td>${item.testServiceDto.systemDto.name}</td>
+														<td>
+                                                            <input type="hidden" value="${item.id}" name="interfaceId">
+															<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success" onclick="showCaseList(${item.id},'SINGLE')">选择单接口用例</button>
+														</td>
+													</tr>
+												</#list>
+											</#if>
 											</tbody>
 										</table>
 									</div>
@@ -115,9 +99,7 @@
 								<!-- /.panel-body -->
 							</div>
 					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-primary suit-submit">保存</button>
-					</div>
+
 				</form>
 
 				<!-- 选择测试用例弹框 -->
@@ -136,51 +118,16 @@
 											<th>用例编号</th>
 											<th>用例描述</th>
 											<th>用例类型</th>
-											<th>所属接口名</th>
 											<th>操作</th>
 										</tr>
 										</thead>
-										<tbody>
-										<tr>
-											<td>123123</td>
-											<td>必填字段校验-appId</td>
-											<td>单接口</td>
-											<td>反欺诈规则接口</td>
-											<td>
-												<label>
-													<input type="checkbox" value="">
-												</label>
-											</td>
-										</tr>
-										<tr>
-											<td>123123</td>
-											<td>必填字段校验-reqId</td>
-											<td>单接口</td>
-											<td>反欺诈规则接口</td>
-											<td>
-												<label>
-													<input type="checkbox" value="">
-												</label>
-											</td>
-										</tr>
-
-										<tr>
-											<td>123123</td>
-											<td>必填字段校验-accesstoken</td>
-											<td>单接口</td>
-											<td>反欺诈规则接口</td>
-											<td>
-												<label>
-													<input type="checkbox" value="">
-												</label>
-											</td>
-										</tr>
+										<tbody class="add-tr">
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-primary">保存</button>
+								<button type="button" class="btn btn-primary add-submit" onclick="saveRelationSuitCase();">保存</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 							</div>
 						</div>
@@ -197,7 +144,183 @@
    <!-- /.container-fluid -->
     <script type="text/javascript">
 
-    </script>
+		function initSuitForm() {
+			var validator =$("#suit-form").validate({
+				submitHandler : function() {  //验证通过后的执行方法
+					//当前的form通过ajax方式提交（用到jQuery.Form文件）
+					$.ajax({
+						type: "POST",
+						dataType: "html",
+						url: "${basePath}/autotest/suit/saveSuit",
+						data: $('#suit-form').serialize(),
+						success: function(result) {
+							data = eval("(" + result + ")");
+							if (data.code == 0) {
+								alert("保存成功");
+								//将id写回到页面
+								$("#suit-form input[name='id']").val(data.data.id);
+								$(".suit-panel").removeClass("hidden");
+								//reload();
+							} else {
+								alert("保存失败："+data.message);
+							}
+						},
+						error: function(result) {
+							alert(eval("(" + result + ")").message);
+						}
+					});
+				},
+				focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+				rules: {
+					name: {
+						required:true,
+						maxlength:30
+					},
+					description:  {
+						maxlength:300
+					}
+				},
+				messages: {
+					name: {
+						required:"请输入测试集名称",
+						maxlength:"测试集名称不超过30个字符"
+					},
+					description:  {
+						maxlength:"测试集描述不超过300个字符"
+					}
+				},
+				errorElement : "span",
+				errorClass : "error_info",
+				showErrors: function(errorMap, errorList) {
+					$.each(this.successList, function(index, value) {
+						return $(value).popover("hide");
+					});
+					return $.each(errorList, function(index, value) {
+						var _popover;
+						_popover = $(value.element).popover({
+							trigger: "manual",
+							placement: "top",
+							content: value.message,
+							template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+						});
+						_popover.data("bs.popover").options.content = value.message;
+						return _popover.popover("show");
+					});
+				}
+
+			});
+		}
+
+
+
+		function showCaseList(_interfaceId,caseType) {
+            var suitId = $("#suit-form input[name='id']").val();
+            var suitCaseList = new Object();
+            //获取该测试集下指定接口的已保存的用例
+            $.post("${basePath}/autotest/suit/getSuitCaseList",{"interfaceId":_interfaceId,"suitId":suitId},function(data,status) {
+                if("undefined" != data){
+                    suitCaseList = data;
+                }
+                setSuitCaseList(_interfaceId,caseType,suitCaseList);
+            });
+		}
+
+		//获取该接口所有用例
+		function setSuitCaseList(_interfaceId,caseType,suitCaseList){
+            $.post("${basePath}/autotest/case/getCaseByInterfaceId",{"interfaceId":_interfaceId,"caseType":caseType},function(data,status){
+                if("undefined"!=data){
+                    //查询该测试集含有该接口的用例列表
+                    var caseList = data;
+                    //显示该接口下所有的用例
+                    var htmlStr = "";
+                    for(var i = 0;i < caseList.length ;i++){
+                        htmlStr += '<tr>';
+                        htmlStr += '<td>' + caseList[i].number + '</td>';
+                        htmlStr += '<td>' + caseList[i].name + '</td>';
+                        htmlStr += '<td><#if caseTypeEnums??>';
+                        htmlStr += '<#list caseTypeEnums as item>';
+                        if("${item}"==caseList[i].type){
+                            htmlStr += "${item.getName()}" ;
+                        }
+                        htmlStr += '</#list>';
+                        htmlStr += '</#if>';
+                        htmlStr += '</td><td>';
+                        htmlStr += '<label>';
+                        if(caseList[i].type == "SINGLE"){
+                            //单接口测试用例才保存接口id，集成测试用例则不保存接口id
+                            htmlStr += '<input type="hidden" value="' + caseList[i].interfaceId + '" name="interfaceId">';
+                        }
+                        var flag = 0;
+                        //遍历suitCaseList，如果caseid相等就置为选中
+                        if("undefined"!=suitCaseList){
+                            for(var k  = 0;k < suitCaseList.length ;k++){
+                                if(suitCaseList[k].caseId == caseList[i].id){
+                                    //说明已存在用例
+                                    flag = 1;
+                                }
+                            }
+                        }
+
+                        if(flag == 1){
+                            htmlStr += '<input type="checkbox" disabled="disabled" checked  value="' + caseList[i].id + '" name="caseIds">';
+                        }else {
+                            htmlStr += '<input type="checkbox"  value="' + caseList[i].id + '" name="caseIds">';
+                        }
+                        htmlStr += '</label>';
+                        htmlStr += '</td>';
+                        htmlStr += '</tr>';
+                    }
+                    //先删除以前的
+                    $(".add-tr tr").remove();
+                    //增加用例列表
+                    $(".add-tr").append(htmlStr);
+                }
+            });
+
+        }
+
+		function saveRelationSuitCase(){
+			//获取被选中的测试用例id
+			var caseId = "";
+			$("input[name='caseIds']").each(function() {
+				if($(this).is(':checked')){
+					caseId += $(this).val() + ",";
+				}
+			});
+
+			var suitId = $("#suit-form input[name='id']").val();
+			var interfaceId = $("input[name='interfaceId']").val();
+
+			//发送请求保存测试用例和测试集的关系
+			submitRelationSuitCase(caseId,suitId,interfaceId);
+		}
+
+		function submitRelationSuitCase(caseId,suitId,interfaceId ){
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "${basePath}/autotest/suit/saveSuitCaseRelation",
+				data: {"caseIds":caseId,"suitId":suitId,"interfaceId":interfaceId},
+				success: function(result) {
+					data = eval("(" + result + ")");
+					if (data.code == 0) {
+						alert("保存成功");
+						$("#caseList").modal("hide");
+					} else {
+						alert("保存失败："+data.message);
+					}
+				},
+				error: function(result) {
+					alert(eval("(" + result + ")").message);
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			initSuitForm();
+		});
+
+	</script>
 
 
 </body>

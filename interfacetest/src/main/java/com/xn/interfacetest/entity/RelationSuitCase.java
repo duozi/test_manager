@@ -43,7 +43,7 @@ public class RelationSuitCase extends BaseEntity {
      */
     private Long serviceId;
 
-
+    private Long caseId;
 	
 	public RelationSuitCase(){
 	    // default constructor
@@ -84,7 +84,12 @@ public class RelationSuitCase extends BaseEntity {
     public void setServiceId(Long serviceId) {
         this.serviceId = serviceId;
     }
-    
 
+    public Long getCaseId() {
+        return caseId;
+    }
 
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
+    }
 }

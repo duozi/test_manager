@@ -96,7 +96,8 @@ public class SystemController {
 	public CommonResult saveSystem(TestSystemDto systemDto) {
 		CommonResult result = new CommonResult();
 		try{
-			testSystemService.save(systemDto);
+			TestSystemDto testSystemDto = testSystemService.save(systemDto);
+			result.setData(testSystemDto);
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();
 			String message =e.getMessage();

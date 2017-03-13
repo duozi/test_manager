@@ -114,4 +114,18 @@ public interface TestSuitService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestSuitDto> testSuits);
+
+    /**
+     * 查询测试集（含接口信息和系统信息）
+     * @param params
+     * @return
+     */
+    List<TestSuitDto> listWithSystemAndInterface(Map<String, Object> params);
+
+    /**
+     * 查询含有该测试用例的测试集
+     * @param l
+     * @return
+     */
+    List<TestSuitDto> getSuitByCaseId(Long id);
 }

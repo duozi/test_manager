@@ -7,6 +7,8 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestSuit;
 
+import java.util.List;
+
 /**
  * TestSuit Dao 接口
  * 
@@ -15,4 +17,5 @@ import com.xn.interfacetest.entity.TestSuit;
  */
 public interface TestSuitMapper extends BaseMapper<TestSuit, Long> {
 
+    List<TestSuit> getSuitByCaseId(Long caseId);
 }

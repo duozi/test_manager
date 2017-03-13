@@ -42,7 +42,7 @@ public class TestSuit extends BaseEntity {
      */
     private String createPerson;
 
-
+    private Long systemId;
 	
 	public TestSuit(){
 	    // default constructor
@@ -83,7 +83,12 @@ public class TestSuit extends BaseEntity {
     public void setCreatePerson(String createPerson) {
         this.createPerson = createPerson;
     }
-    
 
+    public Long getSystemId() {
+        return systemId;
+    }
 
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
+    }
 }

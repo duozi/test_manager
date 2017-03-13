@@ -121,4 +121,17 @@ public interface TestInterfaceService {
      * @return
      */
     List<TestInterfaceDto> listByParams(Map<String, Object> params);
+
+    /**
+     * 根据测试集id查询接口信息
+     * @param o
+     * @return
+     */
+    List<TestInterfaceDto> listAllBySuitId(Object o);
+
+    /**
+     * 查询接口信息（含所属服务和系统）
+     * @return
+     */
+    List<TestInterfaceDto> listAll();
 }

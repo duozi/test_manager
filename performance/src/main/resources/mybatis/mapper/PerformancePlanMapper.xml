@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.performance.dao.PerformancePlanMapper">
 
@@ -17,7 +17,6 @@
         <result property="scenarioName" column="scenario_name"/>
         <result property="planStatus" column="plan_status"/>
         <result property="createPerson" column="create_person"/>
-        <result property="isDelete" column="is_delete"/>
     </resultMap>
 
 

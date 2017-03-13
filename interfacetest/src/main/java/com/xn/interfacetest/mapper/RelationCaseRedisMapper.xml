@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationCaseRedisMapper">
 
@@ -10,16 +10,16 @@
         <result property="redisId" column="redis_id"/>
         <result property="operateType" column="operate_type"/>
         <result property="redisOperateType" column="redis_operate_type"/>
-        <result property="key" column="key"/>
-        <result property="value" column="value"/>
-        <result property="time" column="time"/>
+        <result property="key" column="t_key"/>
+        <result property="value" column="t_value"/>
+        <result property="time" column="t_time"/>
         <result property="interfaceId" column="interface_id"/>
-        <result property="type" column="type"/>
+        <result property="type" column="t_type"/>
     </resultMap>
 
     <sql id="columns">
         <![CDATA[
-        id, case_id, redis_id, operate_type, redis_operate_type, key, value, time, interface_id, type
+        id, case_id, redis_id, operate_type, redis_operate_type, t_key, t_value, t_time, interface_id, t_type
         ]]>
     </sql>
 
@@ -41,19 +41,19 @@
                 AND redis_operate_type = #{redisOperateType}
             </if>
             <if test="@Ognl@isNotEmpty(key)">
-                AND key = #{key}
+                AND t_key = #{key}
             </if>
             <if test="@Ognl@isNotEmpty(value)">
-                AND value = #{value}
+                AND t_value = #{value}
             </if>
             <if test="@Ognl@isNotEmpty(time)">
-                AND time = #{time}
+                AND t_time = #{time}
             </if>
             <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
             <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
+                AND t_type = #{type}
             </if>
         </where>
     </sql>
@@ -94,11 +94,11 @@
                 redis_id,
                 operate_type,
                 redis_operate_type,
-                key,
-                value,
-                time,
+                t_key,
+                t_value,
+                t_time,
                 interface_id,
-                type
+                t_type
             ) VALUES (
                 #{id},
                 #{caseId},
@@ -122,11 +122,11 @@
                 redis_id,
                 operate_type,
                 redis_operate_type,
-                key,
-                value,
-                time,
+                t_key,
+                t_value,
+                t_time,
                 interface_id,
-                type
+                t_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
@@ -151,19 +151,19 @@
                 <![CDATA[ redis_operate_type = #{redisOperateType} ]]>,
             </if>
             <if test="key != null">
-                <![CDATA[ key = #{key} ]]>,
+                <![CDATA[ t_key = #{key} ]]>,
             </if>
             <if test="value != null">
-                <![CDATA[ value = #{value} ]]>,
+                <![CDATA[ t_value = #{value} ]]>,
             </if>
             <if test="time != null">
-                <![CDATA[ time = #{time} ]]>,
+                <![CDATA[ t_time = #{time} ]]>,
             </if>
             <if test="interfaceId != null">
                 <![CDATA[ interface_id = #{interfaceId} ]]>,
             </if>
             <if test="type != null">
-                <![CDATA[ type = #{type} ]]>
+                <![CDATA[ t_type = #{type} ]]>
             </if>
         </set>
         WHERE

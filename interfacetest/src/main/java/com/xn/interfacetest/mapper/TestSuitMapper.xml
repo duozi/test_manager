@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestSuitMapper">
 
@@ -9,11 +8,12 @@
         <result property="name" column="name"/>
         <result property="description" column="description"/>
         <result property="createPerson" column="create_person"/>
+        <result property="systemId" column="system_id"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, create_person
+        id, name, description, create_person,system_id
         ]]>
     </sql>
     
@@ -30,6 +30,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(systemId)">
+                AND system_id = #{systemId}
             </if>
         </where>
     </sql>
@@ -48,10 +51,43 @@
         SELECT
             <include refid="columns" />
         FROM
-            test_suit 
-        <include refid="where"/>
+            test_suit
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(description)">
+                AND description = #{description}
+            </if>
+            <if test="@Ognl@isNotEmpty(createPerson)">
+                AND create_person = #{createPerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(systemId)">
+                AND system_id = #{systemId}
+            </if>
+        </where>
     </select>
-        
+
+    <select id="getSuitByCaseId" resultMap="TestSuitMap">
+        select ts.*
+        from　test_suit ts
+        where ts.id in (
+            select suit_id
+            from relation_suit_case
+            <where>
+                <if test="@Ognl@isNotEmpty(caseId)">
+                    AND   case_id = #{caseId}
+                </if>
+            </where>
+            GROUP BY suit_id
+        )
+
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -68,12 +104,14 @@
                 id,
                 name,
                 description,
-                create_person
+                create_person,
+                system_id
             ) VALUES (
                 #{id},
                 #{name},
                 #{description},
-                #{createPerson}
+                #{createPerson},
+                #{systemId}
             )
         ]]>
     </insert>
@@ -84,11 +122,11 @@
                 id,
                 name,
                 description,
-                create_person
+                create_person,system_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.createPerson})
+            (#{item.id},#{item.name},#{item.description},#{item.createPerson}),#{item.systemId})
         </foreach>
     </insert>
     
@@ -102,8 +140,11 @@
                 <if test="description != null">
                 	<![CDATA[ description = #{description} ]]>,
                 </if>
+                <if test="systemId != null">
+                	<![CDATA[ system_id = #{systemId} ]]>,
+                </if>
                 <if test="createPerson != null">
-                	<![CDATA[ create_person = #{createPerson} ]]>
+                    <![CDATA[ create_person = #{createPerson} ]]>
                 </if>
             </set>
             WHERE
@@ -112,11 +153,11 @@
     
     <delete id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+          update
                 test_suit
+          set is_delete = 1
             WHERE
-                id = #{id} 
+                id = #{id}
         ]]>
     </delete>
     

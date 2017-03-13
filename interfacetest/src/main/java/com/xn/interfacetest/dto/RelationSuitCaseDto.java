@@ -43,6 +43,8 @@ public class RelationSuitCaseDto extends BaseDto {
      */
     private Long serviceId;
 
+    private Long caseId;
+
     public Long getId() {
         return this.id;
     }
@@ -75,7 +77,12 @@ public class RelationSuitCaseDto extends BaseDto {
         this.serviceId = serviceId;
     }
 
+    public Long getCaseId() {
+        return caseId;
+    }
 
-
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
+    }
 }
 

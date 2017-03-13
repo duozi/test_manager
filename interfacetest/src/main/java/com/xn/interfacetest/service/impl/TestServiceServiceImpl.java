@@ -142,4 +142,13 @@ public class TestServiceServiceImpl implements TestServiceService {
         return dtoList;
     }
 
+    @Override
+    public TestServiceDto getWithSystem(Long serviceId) {
+        TestService testService = testServiceMapper.get(serviceId);
+        TestServiceDto testServiceDto = BeanUtils.toBean(testService,TestServiceDto.class);
+        TestSystemDto systemDto = testSystemService.getWithCompanyInfo(testServiceDto.getSystemId());
+        testServiceDto.setSystemDto(systemDto);
+        return testServiceDto;
+    }
+
 }
