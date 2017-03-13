@@ -3,10 +3,7 @@ package com.xn.performance.service.impl;/**
  */
 
 import com.xn.performance.dto.*;
-import com.xn.performance.service.JmeterService;
-import com.xn.performance.service.PerformancePlanService;
-import com.xn.performance.service.PerformanceResultService;
-import com.xn.performance.service.PerformanceScriptService;
+import com.xn.performance.service.*;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -40,6 +37,9 @@ public class StartUp {
     @Autowired
     PerformanceScriptService performanceScriptService;
 
+    @Autowired
+    PerformanceScenarioService performanceScenarioService;
+
     @PostConstruct
     public void getTask() {
         PerformanceResultDto performanceResultDto = new PerformanceResultDto();
@@ -70,8 +70,14 @@ public class StartUp {
         performanceScriptDto = performanceScriptService.get(performanceScriptDto);
         //脚本的地址
         String scriptPath = performanceScriptDto.getPath();
+        //获得场景
+        Integer scenarioId = performancePlanShowDto.getScenarioId();
+        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+        performanceScenarioDto.setId(scenarioId);
+        performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
 
 
+        generateJmeterScript(scriptPath,performanceScenarioDto);
     }
 
     public static void generateJmeterScript(String scriptPath, PerformanceScenarioDto performanceScenarioDto) {
@@ -91,7 +97,6 @@ public class StartUp {
         Element scenario = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup");
         // 获取所有子元素
         List<Element> list = scenario.elements();
-
         for (Element element : list) {
             String name = element.attribute("name").getValue();
             //线程数
@@ -99,14 +104,42 @@ public class StartUp {
                 element.setText(String.valueOf(performanceScenarioDto.getConcurrency()));
             }
             //所有线程在多少时间内启动完毕
-            else if(name.equals("ThreadGroup.ramp_time")){
+            else if (name.equals("ThreadGroup.ramp_time")) {
                 element.setText(String.valueOf(performanceScenarioDto.getStartup()));
             }
-            //开始时间
-            else if(name.equals("ThreadGroup.start_time")){
-                element.setText(String.valueOf(performanceScenarioDto.));
+
+            //是否调用执行器
+            else if (name.equals("ThreadGroup.scheduler")) {
+                String scheduler = String.valueOf(performanceScenarioDto.getScheduler());
+                element.setText(scheduler);
             }
+
+            //开始时间
+            else if (name.equals("ThreadGroup.start_time")) {
+                String setStartTime = String.valueOf(performanceScenarioDto.getSetStartTime());
+                element.setText(setStartTime);
+            }
+            //结束时间
+            else if (name.equals("ThreadGroup.end_time")) {
+                String setEndTime = String.valueOf(performanceScenarioDto.getSetEndTime());
+                element.setText(setEndTime);
+            }
+            //持续时间
+            else if (name.equals("ThreadGroup.duration")) {
+                String executeTime = String.valueOf(performanceScenarioDto.getExecuteTime());
+                element.setText(executeTime);
+            }
+            //延迟时间
+            else if (name.equals("ThreadGroup.delay")) {
+                String delayTime = String.valueOf(performanceScenarioDto.getDelayTime());
+                element.setText(delayTime);
+            }
+
+
         }
+
+        Element cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
+        cycle.setText(String.valueOf(performanceScenarioDto.getCycle()));
         // 输出格式
         OutputFormat outformat = new OutputFormat();
         // 指定XML编码
@@ -136,7 +169,11 @@ public class StartUp {
     }
 
     public static void main(String[] args) {
-        generateJmeterScript("E:\\upload\\线程组.jmx", null);
+       PerformanceScenarioService performanceScenarioService=new PerformanceScenarioServiceImpl();
+        PerformanceScenarioDto performanceScenarioDto=new PerformanceScenarioDto();
+        performanceScenarioDto.setId(11);
+        performanceScenarioDto=performanceScenarioService.get(performanceScenarioDto);
+        generateJmeterScript("E:\\upload\\线程组.jmx", performanceScenarioDto);
     }
 
 }

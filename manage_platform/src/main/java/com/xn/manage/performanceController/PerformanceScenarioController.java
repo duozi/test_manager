@@ -13,6 +13,7 @@ import com.xn.manage.Enum.PublishEnum;
 import com.xn.performance.dto.PerformanceScenarioDto;
 import com.xn.performance.service.PerformanceScenarioService;
 import com.xn.performance.util.CommonResult;
+import com.xn.performance.util.DateUtil;
 import com.xn.performance.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
@@ -88,7 +90,7 @@ public class PerformanceScenarioController {
 
     @RequestMapping(value = "/scenario_list/save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult saveScenario(PerformanceScenarioDto performanceScenarioDto) {
+    public CommonResult saveScenario(PerformanceScenarioDto performanceScenarioDto,@RequestParam String startTime,@RequestParam String endTime) {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScenarioDto.setScenarioStatus(PublishEnum.UNPUBLISHED.getName());
@@ -97,6 +99,15 @@ public class PerformanceScenarioController {
                 commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
                 commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
                 return commonResult;
+            }
+            Date setStartTime = DateUtil.getStandardStringDate(startTime);
+            Date setEndTime = DateUtil.getStandardStringDate(endTime);
+            performanceScenarioDto.setSetStartTime(setStartTime);
+            performanceScenarioDto.setSetEndTime(setEndTime);
+            if(setStartTime!=null||setEndTime!=null||performanceScenarioDto.getDelayTime()!=null||performanceScenarioDto.getExecuteTime()!=null){
+                performanceScenarioDto.setScheduler("true");
+            }else{
+                performanceScenarioDto.setScheduler("false");
             }
 
             performanceScenarioService.save(performanceScenarioDto);

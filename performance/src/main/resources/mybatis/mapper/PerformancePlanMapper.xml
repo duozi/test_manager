@@ -110,7 +110,7 @@
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, P.paln_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time
         FROM

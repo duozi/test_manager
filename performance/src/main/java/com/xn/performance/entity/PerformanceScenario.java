@@ -6,6 +6,7 @@ package com.xn.performance.entity;
 import com.xn.performance.util.BaseEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -93,7 +94,45 @@ public class PerformanceScenario extends BaseEntity {
      */
     private String createPerson;
 
-    
+    private Date setStartTime;
+
+    private Date setEndTime;
+
+    private Integer delayTime;
+    private String scheduler;
+
+    public String getScheduler() {
+        return scheduler;
+    }
+
+    public void setScheduler(String scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    public Date getSetStartTime() {
+        return setStartTime;
+    }
+
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
+    }
+
+    public Date getSetEndTime() {
+        return setEndTime;
+    }
+
+    public void setSetEndTime(Date setEndTime) {
+        this.setEndTime = setEndTime;
+    }
+
+    public Integer getDelayTime() {
+        return delayTime;
+    }
+
+    public void setDelayTime(Integer delayTime) {
+        this.delayTime = delayTime;
+    }
+
     private List<PerformancePlan> performancePlans = new ArrayList<PerformancePlan>();
 
 	

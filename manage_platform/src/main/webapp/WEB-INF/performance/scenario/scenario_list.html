@@ -2,15 +2,40 @@
 <html lang="en">
 
 <head>
-    <!--<script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>-->
-    <!--<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">-->
 
+    <script type="text/javascript" src="../../../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../vendor/bootstrap-select/bootstrap-select.css">
+    <!--datetimepicker-->
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet"
+          type="text/css">
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
     <script src="../../../vendor/jquery/messages_zh.js"></script>
     <script src="../../../js/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+            // 选择时间和日期
+            $(".form-datetime").datetimepicker(
+                    {
+                        weekStart: 1,
+                        todayBtn: 1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        forceParse: 0,
+                        showMeridian: 1,
+                        format: "yyyy-mm-dd hh:ii:ss",
+                        language: "zh-CN"
+                    });
 
             $("#scenario-save").validate({
                 submitHandler: function () {
@@ -59,29 +84,7 @@
                 }
             });
         });
-        $.validator.setDefaults({
-//            submitHandler: function () {
-//                var params = $("#scenario-save").serializeArray();
-//
-//                $.ajax({
-//                    type: "POST",
-//                    url: "/performance/scenario/scenario_list/save",
-//                    data: params,
-//                    success: function (data) {
-//
-//                        if (data.code != 0) {
-//                            alert(data.message);
-//
-//                        }
-//                        $("#addScenario").modal("hide");
-//                        reload();
-//                    },
-//                    error: function (data) {
-//                        alert("异常：" + data.message);
-//                    }
-//                });
-//            }
-        });
+        $.validator.setDefaults({});
         function deleteScenario(id) {
             $.post("/performance/scenario/scenario_list/delete", {id: id}, function (data) {
                 if (data.code == 0) {
@@ -104,7 +107,7 @@
             window.location.href = "scenario_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scenarioName=" + scenarioName + "&scenarioStatus=" + scenarioStatus
         }
 
-        function showScenario(item){
+        function showScenario(item) {
             $("#scenarioId").val(item.id);
             $("#createPerson").val(item.createPerson);
             $("#scenarioName").val(item.scenarioName);
@@ -116,6 +119,9 @@
             $("#startup").val(item.startup);
             $("#executeTime").val(item.executeTime);
             $("#cycle").val(item.cycle);
+            $("#startTime").val(item.setStartTime);
+            $("#endTime").val(item.setEndTime);
+            $("#delayTime").val(item.delayTime);
             $('#editScenario').modal('show');
         }
     </script>
@@ -207,8 +213,11 @@
                             <th>系统</th>
                             <th>并发数</th>
                             <th>线程启动时间（秒）</th>
-                            <th>执行时间（秒）</th>
                             <th>循环次数</th>
+                            <th>持续时间（秒）</th>
+                            <th>延迟启动（秒）</th>
+                            <th>启动时间</th>
+                            <th>结束时间</th>
                             <th>场景状态</th>
                             <th>创建人</th>
                             <th>操作</th>
@@ -226,8 +235,17 @@
                                     <td>${item.psystem}</td>
                                     <td>${item.concurrency}</td>
                                     <td>${item.startup}</td>
-                                    <td>${item.executeTime}</td>
                                     <td>${item.cycle}</td>
+                                    <td>${item.executeTime}</td>
+                                    <td>${item.delayTime}</td>
+                                    <td>
+                                        <#if item.setStartTime ??>
+                                            ${(item.setStartTime)?string("yyyy-MM-dd hh:mm:ss")}
+                                        </#if>
+                                    </td>
+                                    <td><#if item.setEndTime ??>
+                                        ${(item.setEndTime)?string("yyyy-MM-dd hh:mm:ss")}
+                                    </#if></td>
                                     <td>${item.scenarioStatus}</td>
                                     <td>${item.createPerson}</td>
                                     <td>
@@ -271,7 +289,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">新增场景</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 600px">
+                <div class="modal-body modal-add" style="min-height: 800px">
                     <form role="form " class="col-lg-12 edit-form" id="scenario-save" name="scenario-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -332,15 +350,30 @@
                                        placeholder="请输入线程启动时间" required>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">执行时间（秒）</label>
-                                <input type="text" class="form-control" name="executeTime" placeholder="请输入执行时间">
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label">循环次数</label>
                                 <!--<label class="checkbox-inline" style="margin-top: 2%"><input type="checkbox"-->
                                 <!--id="forever">永远</label>-->
                                 <input type="text" class="form-control" name="cycle" placeholder="请输入循环次数,-1表示永远">
                             </div>
+                            <div class="form-group">
+                                <label class="control-label">持续时间（秒）</label>
+                                <input type="text" class="form-control" name="executeTime" placeholder="请输入执行时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">延迟时间（秒）</label>
+                                <input type="text" class="form-control" name="delayTime" placeholder="请输入延迟时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">启动时间</label>
+                                <input type="text" class="form-control form-datetime" name="startTime"
+                                       placeholder="请输入启动时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">结束时间</label>
+                                <input type="text" class="form-control form-datetime" name="endTime"
+                                       placeholder="请输入结束时间">
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
@@ -365,7 +398,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">编辑场景</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 600px">
+                <div class="modal-body modal-add" style="min-height: 800px">
                     <form role="form " class="col-lg-12 edit-form" id="scenario-edit" name="scenario-edit">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -403,7 +436,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
-                                <select class="form-control"  id="psystem" name="psystem" required>
+                                <select class="form-control" id="psystem" name="psystem" required>
                                     <#if psystemList ??>
                                         <#list psystemList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -414,7 +447,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">并发数<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="concurrency" name="concurrency" placeholder="请输入并发数"
+                                <input type="text" class="form-control" id="concurrency" name="concurrency"
+                                       placeholder="请输入并发数"
                                        required>
                             </div>
                             <div class="form-group">
@@ -422,15 +456,30 @@
                                 <input type="text" class="form-control" id="startup" name="startup"
                                        placeholder="请输入线程启动时间" required>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">执行时间（秒）</label>
-                                <input type="text" class="form-control" id="executeTime" name="executeTime" placeholder="请输入执行时间">
-                            </div>
+
                             <div class="form-group">
                                 <label class="control-label">循环次数</label>
-                                <!--<label class="checkbox-inline" style="margin-top: 2%"><input type="checkbox"-->
-                                <!--id="forever">永远</label>-->
-                                <input type="text" class="form-control" id="cycle" name="cycle" placeholder="请输入循环次数,-1表示永远">
+                                <input type="text" class="form-control" id="cycle" name="cycle"
+                                       placeholder="请输入循环次数,-1表示永远">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">持续时间（秒）</label>
+                                <input type="text" class="form-control" id="executeTime" name="executeTime"
+                                       placeholder="请输入执行时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">延迟时间（秒）</label>
+                                <input type="text" class="form-control" name="delayTime" placeholder="请输入延迟时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">启动时间</label>
+                                <input type="text" class="form-control form-datetime" name="startTime"
+                                       placeholder="请输入启动时间">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">结束时间</label>
+                                <input type="text" class="form-control form-datetime" name="endTime"
+                                       placeholder="请输入结束时间">
                             </div>
                         </div>
                         <div class="modal-footer">
