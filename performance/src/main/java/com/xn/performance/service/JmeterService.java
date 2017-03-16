@@ -10,11 +10,13 @@ import java.util.List;
  */
 
 public interface JmeterService {
-    void execute(String stressMachineIp);
+    void execute(String stressMachineIp,String jmeterScriptPath);
 
     void executePlan(String executeType, PerformanceResultDto performanceResultDto);
 
-    void addToQueue(List<PerformancePlanShowDto> list);
+    void addToNowQueue(List<PerformancePlanShowDto> list);
+
+    void addToScheduleQueue(List<PerformancePlanShowDto> list);
 
     boolean stopPlan(String ip);
 }

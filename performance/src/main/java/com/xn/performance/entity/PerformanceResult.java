@@ -31,18 +31,33 @@ public class PerformanceResult extends BaseEntity {
      * 计划id 
      */
     private Integer planId;
+    /**
+     *
+     * 设置执行时间，立即执行的就是00000000
+     */
+    private Date setStartTime;
+    private Date setStartTimeBegin;
+    private Date setStartTimeEnd;
+
+
 
     /**
      * 
-     * 设置执行时间，立即执行的就是00000000 
+     * 实际结束时间
      */
-    private Date setStartTime;
+    private Date actualEndTime;
+    private Date actualEndTimeBegin;
+    private Date actualEndTimeEnd;
+
+
 
     /**
      * 
      * 实际开始时间 
      */
     private Date actualStartTime;
+    private Date actualStartTimeBegin;
+    private Date actualStartTimeEnd;
 
     /**
      * 
@@ -65,16 +80,58 @@ public class PerformanceResult extends BaseEntity {
      */
     private String executeStatus;
 
-    public String getExecuteStatus() {
-        return executeStatus;
-    }
 
-    public void setExecuteStatus(String executeStatus) {
-        this.executeStatus = executeStatus;
-    }
 
     private Integer stressMachineId;
     private  String stressMachineName;
+
+    public Date getSetStartTimeBegin() {
+        return setStartTimeBegin;
+    }
+
+    public void setSetStartTimeBegin(Date setStartTimeBegin) {
+        this.setStartTimeBegin = setStartTimeBegin;
+    }
+
+    public Date getSetStartTimeEnd() {
+        return setStartTimeEnd;
+    }
+
+    public void setSetStartTimeEnd(Date setStartTimeEnd) {
+        this.setStartTimeEnd = setStartTimeEnd;
+    }
+
+    public Date getActualEndTimeBegin() {
+        return actualEndTimeBegin;
+    }
+
+    public void setActualEndTimeBegin(Date actualEndTimeBegin) {
+        this.actualEndTimeBegin = actualEndTimeBegin;
+    }
+
+    public Date getActualEndTimeEnd() {
+        return actualEndTimeEnd;
+    }
+
+    public void setActualEndTimeEnd(Date actualEndTimeEnd) {
+        this.actualEndTimeEnd = actualEndTimeEnd;
+    }
+
+    public Date getActualStartTimeBegin() {
+        return actualStartTimeBegin;
+    }
+
+    public void setActualStartTimeBegin(Date actualStartTimeBegin) {
+        this.actualStartTimeBegin = actualStartTimeBegin;
+    }
+
+    public Date getActualStartTimeEnd() {
+        return actualStartTimeEnd;
+    }
+
+    public void setActualStartTimeEnd(Date actualStartTimeEnd) {
+        this.actualStartTimeEnd = actualStartTimeEnd;
+    }
 
     public Integer getStressMachineId() {
         return stressMachineId;
@@ -116,13 +173,8 @@ public class PerformanceResult extends BaseEntity {
         return this.planId;
     }
     
-    public void setSetStartTime(Date setStartTime) {
-        this.setStartTime = setStartTime;
-    }
-    
-    public Date getSetStartTime() {
-        return this.setStartTime;
-    }
+
+
     
     public void setActualStartTime(Date actualStartTime) {
         this.actualStartTime = actualStartTime;
@@ -148,5 +200,25 @@ public class PerformanceResult extends BaseEntity {
     public String getExecutePerson() {
         return this.executePerson;
     }
+    public Date getActualEndTime() {
+        return actualEndTime;
+    }
 
+    public void setActualEndTime(Date actualEndTime) {
+        this.actualEndTime = actualEndTime;
+    }
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
+
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
+    }
+    public Date getSetStartTime() {
+        return setStartTime;
+    }
+
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
+    }
 }

@@ -15,11 +15,12 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="createPerson" column="create_person"/>
+        <result property="stressMachineStatus" column="stress_machine_status"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, stress_machine_name, remark, company, department, psystem, ip, username, password, create_person
+        id, stress_machine_name, remark, company, department, psystem, ip, username, password, create_person,stress_machine_status
         ]]>
     </sql>
     
@@ -54,6 +55,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(stressMachineStatus)">
+                AND stress_machine_status = #{stressMachineStatus}
             </if>
         </where>
     </sql>
@@ -98,7 +102,8 @@
                 ip,
                 username,
                 password,
-                create_person
+                create_person_status
+                stress_machine_s
             ) VALUES (
                 #{id},
                 #{stressMachineName},
@@ -109,7 +114,8 @@
                 #{ip},
                 #{username},
                 #{password},
-                #{createPerson}
+                #{createPerson},
+                #{stressMachineStatus}
             )
         ]]>
     </insert>

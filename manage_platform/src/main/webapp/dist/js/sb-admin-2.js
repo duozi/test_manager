@@ -44,6 +44,12 @@ $(function() {
         if(path=="/performance/report/report_detail" && herfurl==originurl +"/performance/report/report_list"){
             return true;
         }
+        if(path=="/autotest/case/case_item_single" && herfurl==originurl +"/autotest/case/case_item"){
+            return true;
+        }
+        if(path=="/autotest/case/case_item_multiple" && herfurl==originurl +"/autotest/case/case_item"){
+            return true;
+        }
          return herfurl == pathurl;
 
     }).addClass('active').parent();

@@ -7,13 +7,14 @@
     <resultMap id="PerformanceResultMap" type="com.xn.performance.entity.PerformanceResult">
         <result property="id" column="id"/>
         <result property="planId" column="plan_id"/>
-        <result property="setStartTime" column="set_start_time"/>
+        <result property="actualEndTime" column="actual_end_time"/>
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeTime" column="execute_time"/>
         <result property="stressMachineId" column="stress_machine_id"/>
         <result property="stressMachineName" column="stress_machine_name"/>
         <result property="executePerson" column="execute_person"/>
         <result property="executeStatus" column="execute_status"/>
+        <result property="setStartTime" column="set_start_time"/>
     </resultMap>
 
     <resultMap id="PerformancePlanShowMap" type="com.xn.performance.entity.PerformancePlanShow">
@@ -35,13 +36,14 @@
         <result property="stressMachineName" column="stress_machine_name"/>
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeStatus" column="execute_status"/>
+        <result property="setStartTime" column="set_start_time"/>
     </resultMap>
 
 
     <sql id="columns">
         <![CDATA[
 
-        id, plan_id, set_start_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status
+        id, plan_id, actual_end_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status,set_start_time
 
         ]]>
     </sql>
@@ -54,11 +56,11 @@
             <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-            <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
-                AND set_start_time >= #{setStartTimeBegin}
+            <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+                AND actual_end_time >= #{actualEndTimeBegin}
             </if>
-            <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
-                AND set_start_time &lt;= #{setStartTimeEnd}
+            <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+                AND actual_end_time &lt;= #{actualEndTimeEnd}
             </if>
             <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
                 AND actual_start_time >= #{actualStartTimeBegin}
@@ -80,6 +82,12 @@
             </if>
             <if test="@Ognl@isNotEmpty(executeStatus)">
                 AND execute_status = #{executeStatus}
+            </if>
+            <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+                AND set_start_time >= #{setStartTimeBegin}
+            </if>
+            <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+                AND set_start_time &lt;= #{setStartTimeEnd}
             </if>
         </where>
     </sql>
@@ -107,7 +115,7 @@
         SELECT
         R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
         WHERE P.is_delete="未删除"
@@ -117,11 +125,11 @@
         <if test="@Ognl@isNotEmpty(planId)">
             AND plan_id = #{planId}
         </if>
-        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
-            AND set_start_time >= #{setStartTimeBegin}
+        <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+            AND actual_end_time >= #{actualEndTimeBegin}
         </if>
-        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
-            AND set_start_time &lt;= #{setStartTimeEnd}
+        <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+            AND actual_end_time &lt;= #{actualEndTimeEnd}
         </if>
         <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
             AND actual_start_time >= #{actualStartTimeBegin}
@@ -144,6 +152,12 @@
         <if test="@Ognl@isNotEmpty(executeStatus)">
             AND execute_status = #{executeStatus}
         </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+            AND set_start_time >= #{setStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+            AND set_start_time &lt;= #{setStartTimeEnd}
+        </if>
     </select>
 
     <select id="count" resultType="long">
@@ -162,23 +176,25 @@
             INSERT INTO performance_result (
                 id,
                 plan_id,
-                set_start_time,
+                actual_end_time,
                 actual_start_time,
                 execute_time,
                 stress_machine_id,
                 stress_machine_name,
                 execute_person,
-                execute_status
+                execute_status,
+                set_start_time
             ) VALUES (
                 #{id},
                 #{planId},
-                #{setStartTime},
+                #{actualEndTime},
                 #{actualStartTime},
                 #{executeTime},
                 #{stressMachineId},
                 #{stressMachineName},
                 #{executePerson},
-                #{executeStatus}
+                #{executeStatus},
+                #{setStartTime}
             )
 
         ]]>
@@ -189,17 +205,18 @@
             INSERT INTO performance_result (
                 id,
                 plan_id,
-                set_start_time,
+                actula_end_time,
                 actual_start_time,
                 execute_time,
                 stress_machine_id,
                 stress_machine_name,
-                execute_person
-                execute_status
+                execute_person,
+                execute_status,
+                set_start_time
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planId},#{item.setStartTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson}),#{item.executeStatus}
+            (#{item.id},#{item.planId},#{item.actualEndTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson}),#{item.executeStatus},#{item.setStartTime}
         </foreach>
     </insert>
 
@@ -210,8 +227,8 @@
             <if test="planId != null">
                 <![CDATA[ plan_id = #{planId} ]]>,
             </if>
-            <if test="setStartTime != null">
-                <![CDATA[ set_start_time = #{setStartTime} ]]>,
+            <if test="actualEndTime != null">
+                <![CDATA[ actual_end_time = #{actualEndTime} ]]>,
             </if>
             <if test="actualStartTime != null">
                 <![CDATA[ actual_start_time = #{actualStartTime} ]]>,
@@ -230,6 +247,9 @@
             </if>
             <if test="executeStatus != null">
                 <![CDATA[ execute_status = #{executeStatus} ]]>
+            </if>
+            <if test="setStartTime != null">
+                <![CDATA[ set_start_time = #{setStartTime} ]]>
             </if>
         </set>
         WHERE

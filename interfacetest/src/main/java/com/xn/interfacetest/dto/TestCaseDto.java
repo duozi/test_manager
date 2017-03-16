@@ -91,6 +91,32 @@ public class TestCaseDto extends BaseDto {
      */
     private Integer redisAssert;
 
+
+    /**
+     *
+     * header里面的自定义参数
+     */
+    private String customParamsHeader;
+
+    /**
+     *
+     * body里面的自定义参数
+     */
+    private String customParamsBody;
+
+    /**
+     *
+     * header里面的自定义参数类型
+     */
+    private Boolean customParamsHeaderType;
+
+    /**
+     *
+     * body里面的自定义参数类型
+     */
+    private Boolean customParamsBodyType;
+
+
     public Long getId() {
         return this.id;
     }
@@ -187,7 +213,36 @@ public class TestCaseDto extends BaseDto {
         this.redisAssert = redisAssert;
     }
 
+    public String getCustomParamsHeader() {
+        return customParamsHeader;
+    }
 
+    public void setCustomParamsHeader(String customParamsHeader) {
+        this.customParamsHeader = customParamsHeader;
+    }
 
+    public String getCustomParamsBody() {
+        return customParamsBody;
+    }
+
+    public void setCustomParamsBody(String customParamsBody) {
+        this.customParamsBody = customParamsBody;
+    }
+
+    public Boolean getCustomParamsHeaderType() {
+        return customParamsHeaderType;
+    }
+
+    public void setCustomParamsHeaderType(Boolean customParamsHeaderType) {
+        this.customParamsHeaderType = customParamsHeaderType;
+    }
+
+    public Boolean getCustomParamsBodyType() {
+        return customParamsBodyType;
+    }
+
+    public void setCustomParamsBodyType(Boolean customParamsBodyType) {
+        this.customParamsBodyType = customParamsBodyType;
+    }
 }
 

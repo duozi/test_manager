@@ -70,7 +70,7 @@ public class XNJmeterStartRemot {
         return tree;
     }
 
-    public void remoteStart(String remote_hosts_string, String rmi_server) throws Exception {
+    public void remoteStart(String remote_hosts_string, String rmi_server,String jmeterScriptPath) throws Exception {
         String logFile = getProperty("reports");
         // jmeter.properties
         JMeterUtils.loadJMeterProperties(getProperty("jmeter_root") + "bin/saveservice.properties");
@@ -86,7 +86,7 @@ public class XNJmeterStartRemot {
         // jtl报告文件名称
         SimpleDateFormat df = new SimpleDateFormat("_yyyyMMdd_HHmmss");
         String jtltime = df.format(new Date());
-        File tempFile = new File(getFileNameNoEx(getProperty("jmxfile")));
+        File tempFile = new File(jmeterScriptPath);
         String jmxfileName = tempFile.getName();
         System.out.println("jmxfileName = " + jmxfileName);
         String outputFileJtl = getProperty("reports") + jmxfileName + jtltime + ".jtl";
@@ -149,14 +149,6 @@ public class XNJmeterStartRemot {
                 }
             }
 
-            // 分布式测试的类 DistributedRunner
-            //JMeterUtils.setProperty(DistributedRunner.RETRIES_NUMBER, "1");
-            //JMeterUtils.setProperty(DistributedRunner.CONTINUE_ON_FAIL, "false");
-            //obj.shutdown(hosts);
-            //obj.stop(hosts);
-            //obj.exit(hosts);
-
-            //testTree.add(testTree.getArray()[0], new RemoteThreadsListenerTestElement());
             List<JMeterEngine> engines = new LinkedList<JMeterEngine>();
             agentlisten = new ListenToTest(this, engines, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);

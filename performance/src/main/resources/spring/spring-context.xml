@@ -15,8 +15,8 @@
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.xn.performance"/>
 
+    <context:component-scan base-package="com.xn.performance"/>
 
     <mvc:annotation-driven/>
     <bean id="propertyConfigurer" class="com.xn.performance.util.PropertyUtil">
@@ -68,6 +68,14 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xn.performance.dao"/>
     </bean>
+    <!--定时任务-->
+    <task:scheduler id="scheduler" pool-size="10" />
+
+    <task:executor id="executor" keep-alive="3600" pool-size="100-200"
+
+                   queue-capacity="500" rejection-policy="CALLER_RUNS" />
+
+    <task:annotation-driven executor="executor" scheduler="scheduler" />
 
     <mvc:default-servlet-handler/>
 

@@ -88,6 +88,16 @@ public class PerformanceStressMachineDto extends BaseDto{
     @NotNullField
     private String createPerson;
 
+    private String stressMachineStatus;
+
+    public String getStressMachineStatus() {
+        return stressMachineStatus;
+    }
+
+    public void setStressMachineStatus(String stressMachineStatus) {
+        this.stressMachineStatus = stressMachineStatus;
+    }
+
     
 
     

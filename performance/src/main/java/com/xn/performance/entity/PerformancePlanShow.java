@@ -110,6 +110,15 @@ public class PerformancePlanShow {
      */
     private Date actualStartTime;
     private String executeStatus;
+    private Date setStartTime;
+
+    public Date getSetStartTime() {
+        return setStartTime;
+    }
+
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
+    }
 
     public String getExecuteStatus() {
         return executeStatus;

@@ -16,6 +16,8 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,9 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
      */
     @Autowired
     private PerformanceResultMapper performanceResultMapper;
+
+    @Autowired
+    private PerformanceScenarioServiceImpl performanceScenarioService;
 
     @Override
     public PerformanceResultDto get(Object condition)  
@@ -112,10 +117,33 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
     }
 
     @Override
-    public List<PerformancePlanShowDto> getTask(PerformanceResultDto performanceResultDto) {
+    public List<PerformancePlanShowDto> getNowTask(PerformanceResultDto performanceResultDto) {
         List<PerformancePlanShow> list=performanceResultMapper.getTask(performanceResultDto);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
-        return dtoList;
+        List<PerformancePlanShowDto> resultList=new ArrayList<PerformancePlanShowDto>();
+        for(PerformancePlanShowDto performancePlanShowDto:dtoList){
+
+            Date setStartTime=performancePlanShowDto.getSetStartTime();
+            if (setStartTime==null){
+                resultList.add(performancePlanShowDto);
+            }
+        }
+        return resultList;
+    }
+
+    @Override
+    public List<PerformancePlanShowDto> getSetTimeTask(PerformanceResultDto performanceResultDto) {
+        List<PerformancePlanShow> list=performanceResultMapper.getTask(performanceResultDto);
+        List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
+        List<PerformancePlanShowDto> resultList=new ArrayList<PerformancePlanShowDto>();
+        for(PerformancePlanShowDto performancePlanShowDto:dtoList){
+
+            Date setStartTime=performancePlanShowDto.getSetStartTime();
+            if (setStartTime!=null){
+                resultList.add(performancePlanShowDto);
+            }
+        }
+        return resultList;
     }
 
 }

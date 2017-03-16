@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -116,6 +114,8 @@ public class PerformanceMachineController {
     public CommonResult saveStressMachine(PerformanceStressMachineDto performanceStressMachineDto) {
         CommonResult commonResult = new CommonResult();
         try {
+            performanceStressMachineDto.setStressMachineStatus("未执行");
+
             if (!ValidateUtil.validate(performanceStressMachineDto)) {
                 logger.warn(String.format("参数有误", performanceStressMachineDto));
                 commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());

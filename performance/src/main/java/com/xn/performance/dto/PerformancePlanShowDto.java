@@ -25,7 +25,6 @@ public class PerformancePlanShowDto extends BaseDto {
 
     /**
      * 结果id
-     *
      */
     private Integer id;
 
@@ -112,12 +111,21 @@ public class PerformancePlanShowDto extends BaseDto {
      */
     private List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList;
     /**
-     *
      * 实际开始时间
      */
     private Date actualStartTime;
 
     private String executeStatus;
+
+    private Date setStartTime;
+
+    public Date getSetStartTime() {
+        return setStartTime;
+    }
+
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
+    }
 
     public String getExecuteStatus() {
         return executeStatus;
@@ -182,7 +190,6 @@ public class PerformancePlanShowDto extends BaseDto {
     public void setPerformancePlanMonitoredDtoList(List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList) {
         this.performancePlanMonitoredDtoList = performancePlanMonitoredDtoList;
     }
-
 
 
     public void setId(Integer id) {

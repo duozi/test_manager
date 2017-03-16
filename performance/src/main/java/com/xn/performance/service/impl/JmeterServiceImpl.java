@@ -16,7 +16,8 @@ import java.net.InetAddress;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import static com.xn.performance.service.impl.StartUp.PERFORMANCE_Map;
+import static com.xn.performance.service.impl.SpringTask.PERFORMANCE_NOW_MAP;
+import static com.xn.performance.service.impl.SpringTask.PERFORMANCE_SCHEDULE_MAP;
 
 
 @Service
@@ -27,11 +28,11 @@ public class JmeterServiceImpl implements JmeterService {
 
     XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot();
 
-    public void execute(String stressMachineIp) {
+    public void execute(String stressMachineIp,String jmeterScriptPath) {
         try {
             InetAddress addr = InetAddress.getLocalHost();
             String ip = addr.getHostAddress();//获得本机IP
-            xnJmeterStartRemot.remoteStart(stressMachineIp, ip);
+            xnJmeterStartRemot.remoteStart(stressMachineIp, ip,jmeterScriptPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,9 +44,9 @@ public class JmeterServiceImpl implements JmeterService {
 
         //立即执行
         if (executeType.equals("now")) {
-            List<PerformancePlanShowDto> performancePlanShowDtoList = performanceResultService.getTask(performanceResultDto);
+            List<PerformancePlanShowDto> performancePlanShowDtoList = performanceResultService.getNowTask(performanceResultDto);
 
-            addToQueue(performancePlanShowDtoList);
+            addToNowQueue(performancePlanShowDtoList);
 
         }
         //定时执行
@@ -54,21 +55,34 @@ public class JmeterServiceImpl implements JmeterService {
         }
     }
 
-    public void addToQueue(List<PerformancePlanShowDto> list) {
+    public void addToNowQueue(List<PerformancePlanShowDto> list) {
         for (PerformancePlanShowDto performancePlanShowDto : list) {
             Integer stressMachineId = performancePlanShowDto.getStressMachineId();
-            if (PERFORMANCE_Map.containsKey(stressMachineId)) {
-                PERFORMANCE_Map.get(stressMachineId).add(performancePlanShowDto);
+            if (PERFORMANCE_NOW_MAP.containsKey(stressMachineId)) {
+                PERFORMANCE_NOW_MAP.get(stressMachineId).add(performancePlanShowDto);
             } else {
                 ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
                 queue.offer(performancePlanShowDto);
-                PERFORMANCE_Map.put(stressMachineId, queue);
+                PERFORMANCE_NOW_MAP.put(stressMachineId, queue);
 
             }
 
         }
     }
+        public void addToScheduleQueue(List<PerformancePlanShowDto> list) {
+        for (PerformancePlanShowDto performancePlanShowDto : list) {
+            Integer stressMachineId = performancePlanShowDto.getStressMachineId();
+            if (PERFORMANCE_SCHEDULE_MAP.containsKey(stressMachineId)) {
+                PERFORMANCE_SCHEDULE_MAP.get(stressMachineId).add(performancePlanShowDto);
+            } else {
+                ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
+                queue.offer(performancePlanShowDto);
+                PERFORMANCE_SCHEDULE_MAP.put(stressMachineId, queue);
 
+            }
+
+        }
+    }
 
     public boolean stopPlan(String ip) {
         return xnJmeterStartRemot.stop();

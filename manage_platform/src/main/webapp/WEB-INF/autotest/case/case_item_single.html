@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+</head>
+
+<body>
+<!-- 	 -->
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">接口自动化</a></li>
+        <li><a href="#">测试用例管理</a></li>
+        <li class="active">新增测试用例-单接口用例</li>
+    </ol>
+</div>
+<div class="col-lg-14">
+    <div class="panel panel-default">
+
+        <form id="case-form" role="form" class="case-form">
+            <input type="hidden" name="id" value="${testCaseDto.id}">
+            <div id="case-form-div">
+                <!--单接口用例-->
+                <div class="form-group" id='single-header' style="width: 140%">
+                    <label style="margin-top:1%">请求参数header</label>
+                    <!--<textarea class=" form-control  text-control "></textarea>-->
+                    <div class="panel panel-default" style="width: 125%">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#gui-header" data-toggle="tab" aria-expanded="true">参数设置</a>
+                                </li>
+                                <li class=""><a href="#source-header" data-toggle="tab" aria-expanded="false">自定义参数</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="gui-header">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width:30%">参数名</th>
+                                                <th style="width:10%">参数类型</th>
+                                                <th style="width:40%">参数值</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><input type="text" class="form-control"></td>
+                                                <td>
+                                                    <select class="form-control">
+                                                        <#if paramTypeList ??>
+                                                            <#list paramTypeList as item>
+                                                                <option values="${item}">
+                                                                    ${item.getName()}
+                                                                </option>
+                                                            </#list>
+                                                        </#if>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"></td>
+                                                <td>
+                                                    <button type="button" name="delete" class="btn btn-info">删除
+                                                    </button>
+                                                    <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: none"><span name="addParam"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加参数</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="source-header">
+                                    <div class="form-group ">
+                                        <label>参数格式</label>
+                                        <select class="form-control">
+                                            <option values="1">
+                                                xml格式
+                                            </option>
+                                            <option values="1">
+                                                json格式
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <textarea class=" form-control  text-control"></textarea>
+                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                    <button type="submit" class="btn btn-warning">清空</button>
+                                    <button type="submit" class="btn btn-info">保存</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <div class="form-group" id='single-body' style="width: 140%">
+                    <label style="margin-top:1%">请求参数body</label>
+                    <!--<textarea class=" form-control  text-control "></textarea>-->
+                    <div class="panel panel-default" style="width: 125%">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#gui-body" data-toggle="tab" aria-expanded="true">参数设置</a>
+                                </li>
+                                <li class=""><a href="#source-body" data-toggle="tab" aria-expanded="false">自定义参数</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="gui-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width:30%">参数名</th>
+                                                <th style="width:10%">参数类型</th>
+                                                <th style="width:40%">参数值</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><input type="text" class="form-control"></td>
+                                                <td>
+                                                    <select class="form-control">
+                                                        <#if paramTypeList ??>
+                                                            <#list paramTypeList as item>
+                                                                <option values="${item}">
+                                                                    ${item.getName()}
+                                                                </option>
+                                                            </#list>
+                                                        </#if>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"></td>
+                                                <td>
+                                                    <button type="button" name="delete" class="btn btn-info">删除
+                                                    </button>
+                                                    <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style=" border: none"><span name="addParam"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加参数</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="form-group http-interface ">
+                                        <label class="control-label">附加参数</label>
+                                        <select class="form-control" name="appendParam">
+                                            <option value="" disabled selected></option>
+                                            <#if appendParamList ??>
+                                                <#list appendParamList as item>
+                                                    <option values="${item}">
+                                                        ${item.getName()}
+                                                    </option>
+                                                </#list>
+                                            </#if>
+                                        </select>
+                                    </div>
+                                    <div class="form-group  hidden" style="margin-left: 2%">
+                                        <label class="control-label"></label>
+                                        <textarea class=" form-control  text-control"></textarea>
+                                    </div>
+                                    <div class="form-group  hidden">
+                                        <label class="control-label"></label>
+                                        <input class="file form-control" type="file" multiple data-min-file-count="1"
+                                               name="encryptJar">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="source-body">
+                                    <div class="form-group ">
+                                        <label>参数格式</label>
+                                        <select class="form-control">
+                                            <option values="1">
+                                                xml格式
+                                            </option>
+                                            <option values="1">
+                                                json格式
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <textarea class=" form-control  text-control"></textarea>
+                                    <button type="submit" class="btn btn-success">格式校验</button>
+                                    <button type="submit" class="btn btn-warning">清空</button>
+                                    <button type="submit" class="btn btn-info">保存</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+
+                <!--返回校验-->
+                <div class="panel panel-default panel-collapse collapse operation-width in">
+                    <!-- 返回参数校验 -->
+                    <label class="control-label col-lg-4 top-label">返回参数校验</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:45%">校验字段</th>
+                                        <th style="width: 45%">期望值</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td style=" border: none"><span name="addParamAssert"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加参数校验字段</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--db校验-->
+                <div class="panel panel-default panel-collapse collapse operation-width  in">
+                    <!-- 数据库参数校验 -->
+                    <label class="control-label col-lg-4 top-label">数据库校验</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10%">数据库配置名</th>
+                                        <th style="width: 60%">sql</th>
+                                        <th style="width: 10%">校验字段</th>
+                                        <th style="width: 10%">期望值</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <td>
+                                                <select class="form-control" name="dbAssert">
+                                                    <#if contentTypeList ??>
+                                                        <#list contentTypeList as item>
+                                                            <option values="${item}">
+                                                                ${item.getName()}
+                                                            </option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-info">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td style=" border: none"><span name="addDbAssert"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加数据库校验</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--redis校验-->
+                <div class="panel panel-default panel-collapse collapse operation-width  in">
+                    <!-- redis校验 -->
+                    <label class="control-label col-lg-4 top-label">redis校验</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10%">redis名</th>
+                                        <th style="width: 10%">校验类型</th>
+                                        <th style="width: 50%">key</th>
+                                        <th style="width: 10%">校验字段</th>
+                                        <th style="width: 10%">期望值</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <div class="row">
+                                            <td>
+                                                <select class="form-control">
+                                                    <#if contentTypeList ??>
+                                                        <#list contentTypeList as item>
+                                                            <option values="${item}">
+                                                                ${item.getName()}
+                                                            </option>
+                                                        </#list>
+                                                    </#if>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control case-select" name="redisAssertType">
+                                                    <option values="valueAssert">缓存值</option>
+                                                    <option values="timeAssert">缓存时间</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td><input type="text" class="form-control"></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-info">保存</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" name="delete" class="btn btn-info">删除</button>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td style=" border: none"><span name="addRedisAssert"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加redis校验</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--数据准备-->
+                <div id="prepare-form-div" class="in panel panel-default panel-collapse collapse operation-width">
+                    <!-- 数据准备 -->
+                    <label class="control-label col-lg-4 top-label">数据准备</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-heading">
+                            数据库操作
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 15%">数据库配置名</th>
+                                        <th style="width: 75%">sql语句</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    <tr>
+                                        <td style=" border: none"><span id="prepareAddDbOperation"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <div class="panel panel-default operation">
+                        <div class="panel-heading">
+                            redis操作
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10%">redis名</th>
+                                        <th style="width: 10%">redis操作类型</th>
+                                        <th style="width: 30%">key</th>
+                                        <th style="width: 30%">value</th>
+                                        <th style="width: 10%">time</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr>
+                                        <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+
+                <!--数据清除-->
+                <div id="clear-form-div" class="in panel panel-default panel-collapse collapse operation-width">
+                    <!-- 数据清除 -->
+                    <label class="control-label col-lg-4 top-label">数据清除</label>
+
+                    <div class="panel panel-default operation">
+                        <div class="panel-heading">
+                            数据库操作
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 15%">数据库配置名</th>
+                                        <th style="width: 75%">sql语句</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style=" border: none"><span id="clearAddDbOperation"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <div class="panel panel-default operation">
+                        <div class="panel-heading">
+                            redis操作
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table case-table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10%">redis名</th>
+                                        <th style="width: 10%">redis操作类型</th>
+                                        <th style="width: 30%">key</th>
+                                        <th style="width: 30%">value</th>
+                                        <th style="width: 10%">time</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    <tr>
+                                        <td style=" border: none"><span id="clearAddRedisOperation"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal"
+                            data-target="#environmentList">联调
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--联调弹框-->
+<div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title">选择运行环境</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>环境ID</th>
+                        <th>环境名称</th>
+                        <th>环境描述</th>
+                        <th>创建人</th>
+                        <th>选择</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>牛贷系统查询联系人测试</td>
+                        <th>你猜你猜</th>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="../report/report_detail" type="button" class="btn btn-primary">运行</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!--测试集弹框-->
+<div class="modal fade" id="suitList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="suitListLabel">查看测试集</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>测试集ID</th>
+                        <th>测试集名称</th>
+                        <th>测试集描述</th>
+                        <th>创建人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#if testSuitDtoList??>
+                        <#list testSuitDtoList as suitItem>
+                            <tr>
+                                <td>${suitItem.id}</td>
+                                <td>${suitItem.name}</td>
+                                <td>${suitItem.description}</td>
+                                <td>${suitItem.createPerson}</td>
+                            </tr>
+                        </#list>
+                    </#if>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    var dbhtml = '<tr>';
+    dbhtml += '<div class="row">';
+    dbhtml += '<td>';
+    dbhtml += '<select class="form-control" >';
+    dbhtml += '<#if dbNameList ??>';
+    dbhtml += '<#list dbNameList as item>';
+    dbhtml += ' <option values="${item}">${item.getName()}</option>';
+    dbhtml += '</#list>';
+    dbhtml += '</#if>';
+    dbhtml += '</select>';
+    dbhtml += '</td>';
+    dbhtml += '<td><textarea type="text" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
+    dbhtml += '<td>';
+    dbhtml += '<button type="submit" class="btn btn-info">保存</button>';
+    dbhtml += '</td>';
+    dbhtml += '<td>';
+    dbhtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    dbhtml += '</td>';
+    dbhtml += '</div>';
+    dbhtml += '</tr>';
+
+    var redishtml = '<tr>';
+    redishtml += ' <div class="row">';
+
+    redishtml += '<td>';
+    redishtml += '<select class="form-control"  name="redisName">';
+    redishtml += '<#if redisNameList ??>';
+    redishtml += '<#list redisNameList as item>';
+    redishtml += '<option values="${item}">${item.getName()}</option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
+    redishtml += '</select>';
+    redishtml += '</td>';
+    redishtml += '<td>';
+    redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
+    redishtml += '<#if redisOperationTypeEnumList ??>';
+    redishtml += '<#list redisOperationTypeEnumList as item>';
+    redishtml += '<option values="${item.getName()} "> ${item.getName()} </option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
+    redishtml += '</select>';
+    redishtml += '</td>';
+    redishtml += '<td><input type="text" class="form-control" name="key"></td>';
+    redishtml += '<td><input type="text" class="form-control" name="value"></td>';
+    redishtml += '<td><input type="text" class="form-control" name="time"></td>';
+
+    redishtml += '<td>';
+    redishtml += '<button type="submit" class="btn btn-info">保存</button>';
+    redishtml += '</td>';
+
+    redishtml += '<td>';
+    redishtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    redishtml += '</td>';
+    redishtml += '</div>';
+    redishtml += '</tr>';
+
+
+    $("#clearAddDbOperation").click(function () {
+        $(this).parent().parent().before(dbhtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        })
+    });
+
+    $("#clearAddRedisOperation").click(function () {
+
+        $(this).parent().parent().before(redishtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        })
+
+        $("select[name='redisType']").change(function () {
+            var content = $(this).val();
+            var value;
+            var time;
+            if (content == 'del') {
+                value = $(this).parent().next().next().children()[0];
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "不需要填");
+                time = $(this).parent().next().next().next().children()[0];
+                time.setAttribute("readOnly", "true");
+                time.setAttribute("placeholder", "不需要填");
+            } else if (content == 'set') {
+                value = $(this).parent().next().next().children()[0];
+                value.removeAttribute("readOnly");
+                value.removeAttribute("placeholder");
+                time = $(this).parent().next().next().next().children()[0];
+                time.removeAttribute("readOnly");
+                time.removeAttribute("placeholder");
+            } else if (content == 'expire') {
+                value = $(this).parent().next().next().children()[0];
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "不需要填");
+                time = $(this).parent().next().next().next().children()[0];
+                time.removeAttribute("readOnly");
+                time.removeAttribute("placeholder");
+            }
+
+        })
+    });
+
+    $("#prepareAddDbOperation").click(function () {
+        $(this).parent().parent().before(dbhtml);
+
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        })
+    });
+
+    $("#prepareAddRedisOperation").click(function () {
+
+        $(this).parent().parent().before(redishtml);
+
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        })
+
+        $("select[name='redisType']").change(function () {
+            var content = $(this).val();
+            var value;
+            var time;
+            if (content == 'del') {
+                value = $(this).parent().next().next().children()[0];
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "不需要填");
+                time = $(this).parent().next().next().next().children()[0];
+                time.setAttribute("readOnly", "true");
+                time.setAttribute("placeholder", "不需要填");
+            } else if (content == 'set') {
+                value = $(this).parent().next().next().children()[0];
+                value.removeAttribute("readOnly");
+                value.removeAttribute("placeholder");
+                time = $(this).parent().next().next().next().children()[0];
+                time.removeAttribute("readOnly");
+                time.removeAttribute("placeholder");
+            } else if (content == 'expire') {
+                value = $(this).parent().next().next().children()[0];
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "不需要填");
+                time = $(this).parent().next().next().next().children()[0];
+                time.removeAttribute("readOnly");
+                time.removeAttribute("placeholder");
+            }
+
+        })
+    });
+
+    var paramAssertHtml = '<tr>';
+    paramAssertHtml += '<div class="row">';
+    paramAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    paramAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    paramAssertHtml += '<td>';
+    paramAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    paramAssertHtml += '</td>';
+    paramAssertHtml += '<td>';
+    paramAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    paramAssertHtml += '</td>';
+    paramAssertHtml += '</div>';
+    paramAssertHtml += '</tr>';
+
+    var dbAssertHtml = '<tr>';
+    dbAssertHtml += '<div class="row">';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
+    dbAssertHtml += '<#if dbNameList ??>';
+    dbAssertHtml += '<#list dbNameList as item>';
+    dbAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    dbAssertHtml += '</#list>';
+    dbAssertHtml += '</#if>';
+    dbAssertHtml += '</select>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '</div>';
+    dbAssertHtml += '</tr>';
+
+    var redisAssertHtml = '<tr>';
+    redisAssertHtml += '<div class="row">';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<select class="form-control" >';
+    redisAssertHtml += '<#if redisNameList ??>';
+    redisAssertHtml += '<#list redisNameList as item>';
+    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
+    redisAssertHtml += '</select>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
+    redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
+    redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
+    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
+    redisAssertHtml += '</select>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '</div>';
+    redisAssertHtml += '</tr>';
+
+    $("input[name='assertType']").click(function () {
+        var assertType = $(this).val();
+        if (assertType == 'paramAssert' && $(this).is(':checked')) {
+            $(this).parent().parent().parent().next().addClass("in");
+//            $("#param-form-div").addClass("in");
+        } else if (assertType == 'paramAssert' && !$(this).is(':checked')) {
+            $(this).parent().parent().parent().next().removeClass("in");
+//            $("#param-form-div").removeClass("in");
+        }
+        if (assertType == 'dbAssert' && $(this).is(':checked')) {
+            $(this).parent().parent().parent().next().next().addClass("in");
+//            $("#db-form-div").addClass("in");
+        } else if (assertType == 'dbAssert' && !$(this).is(':checked')) {
+            $(this).parent().parent().parent().next().next().removeClass("in");
+//            $("#db-form-div").removeClass("in");
+        }
+
+        if (assertType == 'redisAssert' && $(this).is(':checked')) {
+            $(this).parent().parent().parent().next().next().next().addClass("in");
+//            $("#redis-form-div").addClass("in");
+
+        } else if (assertType == 'redisAssert' && !$(this).is(':checked')) {
+            $(this).parent().parent().parent().next().next().next().removeClass("in");
+//            $("#redis-form-div").removeClass("in");
+
+        }
+
+
+    });
+    $("span[name='addParamAssert']").click(function () {
+        $(this).parent().parent().before(paramAssertHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+
+    });
+    $("span[name='addDbAssert']").click(function () {
+        $(this).parent().parent().before(dbAssertHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+    });
+    $("span[name='addRedisAssert']").click(function () {
+        $(this).parent().parent().before(redisAssertHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+        $("select[name='redisAssertType']").change(function () {
+            var content = $(this).val();
+            var value = $(this).parent().next().next().children()[0];
+            if (content == '缓存值') {
+
+                value.removeAttribute("readOnly");
+                value.removeAttribute("placeholder");
+
+            } else if (content == '缓存时间') {
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "time");
+            }
+        });
+    });
+    var paramAddHtml = '<tr>';
+    paramAddHtml += '<div class="row">';
+    paramAddHtml += '<td><input type="text" class="form-control"></td>';
+    paramAddHtml += '<td>';
+    paramAddHtml += '<select class="form-control">';
+    paramAddHtml += '<#if paramTypeList ??>';
+    paramAddHtml += '<#list paramTypeList as item>';
+    paramAddHtml += '<option values="${item}">${item.getName()}</option>';
+    paramAddHtml += '</#list>';
+    paramAddHtml += '</#if>';
+    paramAddHtml += '</select>';
+    paramAddHtml += '</td>';
+    paramAddHtml += '<td><input type="text" class="form-control"></td>';
+    paramAddHtml += '<td>';
+    paramAddHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>  <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>';
+    paramAddHtml += '</td>';
+    paramAddHtml += '</div>';
+    paramAddHtml += '</tr>';
+
+    $("span[name='addParam']").click(function () {
+        $(this).parent().parent().before(paramAddHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+    });
+
+
+    $(".radio-inline").change(function () {
+        $.MsgBox.Alert("温馨提示", "离开本页内容将不会保存");
+        var caseType = $("input[name='caseType']:checked").val();
+        if (caseType == "单接口用例") {
+            $("#leave").click(function () {
+                window.location = "case_item?caseType=1";
+            });
+            $("#stay").click(function () {
+                $("input[name='caseType']:eq(0)").prop("checked", false);
+                $("input[name='caseType']:eq(1)").prop("checked", true);
+            });
+
+        } else if (caseType == "集成用例") {
+            $("#leave").click(function () {
+                window.location = "case_item?caseType=2";
+            });
+            $("#stay").click(function () {
+                $("input[name='caseType']:eq(0)").prop("checked", true);
+                $("input[name='caseType']:eq(1)").prop("checked", false);
+            });
+        }
+    })
+
+    var choseCaseHtml = '<tr>';
+    choseCaseHtml += '<td>';
+    choseCaseHtml += '<select class="form-control">';
+    choseCaseHtml += '<#if contentTypeList ??>';
+    choseCaseHtml += '<#list contentTypeList as item>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
+    choseCaseHtml += ' </#list>';
+    choseCaseHtml += '</#if>';
+    choseCaseHtml += ' </select>';
+    choseCaseHtml += '</td>';
+    choseCaseHtml += '<td>';
+    choseCaseHtml += '<select class="form-control">';
+    choseCaseHtml += '<#if contentTypeList ??>';
+    choseCaseHtml += '<#list contentTypeList as item>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
+    choseCaseHtml += '</#list>';
+    choseCaseHtml += '</#if>';
+    choseCaseHtml += '</select>';
+    choseCaseHtml += '</td>';
+    choseCaseHtml += '<td>';
+    choseCaseHtml += '<select class="form-control">';
+    choseCaseHtml += '<#if contentTypeList ??>';
+    choseCaseHtml += '<#list contentTypeList as item>';
+    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
+    choseCaseHtml += '</#list>';
+    choseCaseHtml += '</#if>';
+    choseCaseHtml += '</select>';
+    choseCaseHtml += '</td>';
+    choseCaseHtml += '<td>';
+    choseCaseHtml += '<button type="button" name="delete" class="btn btn-info">删除 </button>';
+    choseCaseHtml += '</td>';
+    choseCaseHtml += '<td>';
+    choseCaseHtml += '<button type="button" name="detail" class="btn btn-info">详情</button>';
+    choseCaseHtml += '</td>';
+    choseCaseHtml += '</tr>';
+    $("#addCase").click(function () {
+        $(this).parent().parent().before(choseCaseHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+    });
+    $("button[name='delete']").click(function () {
+        $(this).parent().parent().remove();
+    });
+
+    $("select[name='appendParam']").change(function () {
+        var content = $(this).val();
+
+        if (content == '上传文件') {
+
+            $(this).parent().next().addClass("hidden");
+            $(this).parent().next().next().removeClass("hidden");
+        } else if (content == 'JSON' || content == 'XML') {
+            $(this).parent().next().removeClass("hidden");
+            $(this).parent().next().next().addClass("hidden");
+        }
+
+    });
+
+    $(document).ready(function () {
+
+    });
+
+    function saveParams(_this){
+        alert("开发中……");
+    }
+
+    function deleteParams(_this){
+        alert("开发中……");
+    }
+
+    function saveCustomParams(_this){
+        alert("开发中……");
+    }
+
+    function testFormatParams(_this){
+        alert("开发中……");
+    }
+</script>
+</body>
+
+</html>

@@ -122,5 +122,6 @@ public interface PerformanceResultService {
      * @param condition 主键/Map/查询对象
      * @return
      */
-    List<PerformancePlanShowDto>  getTask(PerformanceResultDto performanceResultDto);
+    List<PerformancePlanShowDto>  getNowTask(PerformanceResultDto performanceResultDto);
+    List<PerformancePlanShowDto>  getSetTimeTask(PerformanceResultDto performanceResultDto);
 }
