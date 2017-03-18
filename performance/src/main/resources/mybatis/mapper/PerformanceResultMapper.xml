@@ -111,14 +111,64 @@
         <include refid="where"/>
     </select>
 
-    <select id="getTask" resultMap="PerformancePlanShowMap">
+    <select id="getNowTask" resultMap="PerformancePlanShowMap">
         SELECT
         R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
-        WHERE P.is_delete="未删除"
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NULL
+        <if test="@Ognl@isNotEmpty(id)">
+            AND id = #{id}
+        </if>
+        <if test="@Ognl@isNotEmpty(planId)">
+            AND plan_id = #{planId}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+            AND actual_end_time >= #{actualEndTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+            AND actual_end_time &lt;= #{actualEndTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            AND actual_start_time >= #{actualStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            AND actual_start_time &lt;= #{actualStartTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeTime)">
+            AND execute_time = #{executeTime}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineId)">
+            AND stress_machine_id = #{stressMachineId}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineName)">
+            AND stress_machine_name = #{stressMachineName}
+        </if>
+        <if test="@Ognl@isNotEmpty(executePerson)">
+            AND execute_person = #{executePerson}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeStatus)">
+            AND execute_status = #{executeStatus}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+            AND set_start_time >= #{setStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+            AND set_start_time &lt;= #{setStartTimeEnd}
+        </if>
+    </select>
+
+
+    <select id="getScheduleTask" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
+        FROM
+        performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NOT NULL
         <if test="@Ognl@isNotEmpty(id)">
             AND id = #{id}
         </if>

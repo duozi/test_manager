@@ -18,6 +18,7 @@
 
     <context:component-scan base-package="com.xn.performance"/>
 
+
     <mvc:annotation-driven/>
     <bean id="propertyConfigurer" class="com.xn.performance.util.PropertyUtil">
         <property name="locations">
@@ -69,13 +70,21 @@
         <property name="basePackage" value="com.xn.performance.dao"/>
     </bean>
     <!--定时任务-->
-    <task:scheduler id="scheduler" pool-size="10" />
+    <task:scheduler id="scheduler" pool-size="10"/>
 
     <task:executor id="executor" keep-alive="3600" pool-size="100-200"
 
-                   queue-capacity="500" rejection-policy="CALLER_RUNS" />
+                   queue-capacity="500" rejection-policy="CALLER_RUNS"/>
 
-    <task:annotation-driven executor="executor" scheduler="scheduler" />
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+
+
+
+    <!--动态配置时间定时任务-->
+
+
+    <bean name="MyScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    </bean>
 
     <mvc:default-servlet-handler/>
 

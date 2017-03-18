@@ -16,8 +16,6 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -118,32 +116,18 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
 
     @Override
     public List<PerformancePlanShowDto> getNowTask(PerformanceResultDto performanceResultDto) {
-        List<PerformancePlanShow> list=performanceResultMapper.getTask(performanceResultDto);
+        List<PerformancePlanShow> list=performanceResultMapper.getNowTask(performanceResultDto);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
-        List<PerformancePlanShowDto> resultList=new ArrayList<PerformancePlanShowDto>();
-        for(PerformancePlanShowDto performancePlanShowDto:dtoList){
 
-            Date setStartTime=performancePlanShowDto.getSetStartTime();
-            if (setStartTime==null){
-                resultList.add(performancePlanShowDto);
-            }
-        }
-        return resultList;
+        return dtoList;
     }
 
     @Override
-    public List<PerformancePlanShowDto> getSetTimeTask(PerformanceResultDto performanceResultDto) {
-        List<PerformancePlanShow> list=performanceResultMapper.getTask(performanceResultDto);
+    public List<PerformancePlanShowDto> getScheduleTask(PerformanceResultDto performanceResultDto) {
+        List<PerformancePlanShow> list=performanceResultMapper.getScheduleTask(performanceResultDto);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
-        List<PerformancePlanShowDto> resultList=new ArrayList<PerformancePlanShowDto>();
-        for(PerformancePlanShowDto performancePlanShowDto:dtoList){
 
-            Date setStartTime=performancePlanShowDto.getSetStartTime();
-            if (setStartTime!=null){
-                resultList.add(performancePlanShowDto);
-            }
-        }
-        return resultList;
+        return dtoList;
     }
 
 }

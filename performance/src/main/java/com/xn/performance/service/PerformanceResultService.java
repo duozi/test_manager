@@ -123,5 +123,5 @@ public interface PerformanceResultService {
      * @return
      */
     List<PerformancePlanShowDto>  getNowTask(PerformanceResultDto performanceResultDto);
-    List<PerformancePlanShowDto>  getSetTimeTask(PerformanceResultDto performanceResultDto);
+    List<PerformancePlanShowDto> getScheduleTask(PerformanceResultDto performanceResultDto);
 }

@@ -241,7 +241,7 @@ public class PerformancePlanController {
             performanceResultDto.setExecutePerson(executePerson);
             performanceResultDto.setExecuteStatus(PlanStatusEnum.UN_EXECUTE.getName());
 
-            if (executeType.equals("settime")) {
+            if (executeType.equals("schedule")) {
                 Date time = DateUtil.getStandardStringDate(setStartTime);
                 performanceResultDto.setSetStartTime(time);
             }else if(executeType.equals("now")){

@@ -150,7 +150,8 @@ public class XNJmeterStartRemot {
             }
 
             List<JMeterEngine> engines = new LinkedList<JMeterEngine>();
-            agentlisten = new ListenToTest(this, engines, reportGenerator);
+//            agentlisten = new ListenToTest(this, engines, reportGenerator);
+            agentlisten = new ListenToTest(this, null, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);
 
             StringTokenizer st = new StringTokenizer(remote_hosts_string, ",");

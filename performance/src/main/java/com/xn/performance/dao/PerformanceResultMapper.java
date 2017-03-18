@@ -18,5 +18,6 @@ import java.util.List;
  */
 @Service
 public interface PerformanceResultMapper extends BaseMapper<PerformanceResult, Integer> {
-    List<PerformancePlanShow> getTask(Object condition);
+    List<PerformancePlanShow> getNowTask(Object condition);
+    List<PerformancePlanShow> getScheduleTask(Object condition);
 }

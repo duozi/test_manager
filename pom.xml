@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>manage_platform</module>
-       <!--  <module>autotest</module> -->
+        <!--  <module>autotest</module> -->
         <module>mock</module>
         <module>interfacetest</module>
         <module>common-test</module>
@@ -96,11 +96,32 @@
                 <artifactId>spring-aop</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-test</artifactId>-->
+            <!--<version>${spring.version}</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
+                <type>jar</type>
+                <scope>test</scope>
+            </dependency>
+            <!--定时任务-->
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>2.2.1</version>
             </dependency>
             <!-- springframe end -->
 
@@ -314,29 +335,29 @@
                 <version>4.4.5</version>
             </dependency>
             <dependency>
-            	<groupId>org.springframework</groupId>
-            	<artifactId>spring-beans</artifactId>
-            	<version>4.1.4.RELEASE</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>4.1.4.RELEASE</version>
             </dependency>
             <dependency>
-            	<groupId>org.javassist</groupId>
-            	<artifactId>javassist</artifactId>
-            	<version>3.18.2-GA</version>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.18.2-GA</version>
             </dependency>
             <dependency>
-            	<groupId>commons-beanutils</groupId>
-            	<artifactId>commons-beanutils-core</artifactId>
-            	<version>1.8.3</version>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils-core</artifactId>
+                <version>1.8.3</version>
             </dependency>
             <dependency>
-            	<groupId>org.springframework</groupId>
-            	<artifactId>spring-context</artifactId>
-            	<version>4.1.4.RELEASE</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.1.4.RELEASE</version>
             </dependency>
             <dependency>
-            	<groupId>org.apache.httpcomponents</groupId>
-            	<artifactId>httpclient</artifactId>
-            	<version>4.5.2</version>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.2</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>

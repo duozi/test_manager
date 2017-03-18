@@ -2,49 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/test/java/com/xn/performance/SpringTaskTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test/src/test/com/xn/test/UTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/test/java/com/xn/performance/StartUpTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/StartUp.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/QuartzManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/SpringContextUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test_manager.iml" afterPath="$PROJECT_DIR$/.idea/test_manager.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" afterPath="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dto/TestCaseDto.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dto/TestCaseDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestCaseMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestCaseMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/dist/js/sb-admin-2.js" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/dist/js/sb-admin-2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mock/mock.iml" afterPath="$PROJECT_DIR$/mock/mock.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/pom.xml" afterPath="$PROJECT_DIR$/performance/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceResult.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceStressMachine.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceStressMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_quartz_scheduler_quartz_2_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_quartz_scheduler_quartz_2_2_1.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,24 +67,30 @@
       <file leaf-file-name="SpringTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="54" column="26" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+            <state relative-caret-position="440">
+              <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#930#962#0" expanded="true" />
-                <element signature="e#1079#1111#0" expanded="true" />
-                <element signature="e#3071#3389#0" expanded="true" />
-                <element signature="e#3388#3389#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerformanceResultService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java">
+      <file leaf-file-name="plan_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="125" column="44" selection-start-line="125" selection-start-column="44" selection-end-line="125" selection-end-column="44" />
+            <state relative-caret-position="205">
+              <caret line="479" column="44" selection-start-line="479" selection-start-column="44" selection-end-line="479" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExecuteScheduleQueue.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="814">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,89 +99,63 @@
       <file leaf-file-name="PerformanceResultServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="142" column="55" selection-start-line="142" selection-start-column="55" selection-end-line="142" selection-end-column="55" />
+            <state relative-caret-position="1628">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#4839#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1587#1588#0" expanded="false" />
+                <element signature="e#1650#1651#0" expanded="false" />
+                <element signature="e#3548#3549#0" expanded="false" />
+                <element signature="e#3609#3610#0" expanded="false" />
+                <element signature="e#3944#3945#0" expanded="false" />
+                <element signature="e#4011#4012#0" expanded="false" />
+                <element signature="e#4106#4107#0" expanded="false" />
+                <element signature="e#4130#4131#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobRunShell.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/core/JobRunShell.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3762">
+              <caret line="204" column="57" selection-start-line="204" selection-start-column="57" selection-end-line="204" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#13831#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3468#3469#0" expanded="false" />
+                <element signature="e#3501#3502#0" expanded="false" />
+                <element signature="e#3548#3549#0" expanded="false" />
+                <element signature="e#3574#3575#0" expanded="false" />
+                <element signature="e#4736#4737#0" expanded="false" />
+                <element signature="e#4776#4777#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuartzManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/QuartzManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4157#4158#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4557#4581#0" expanded="true" />
-                <element signature="e#5254#5278#0" expanded="true" />
+                <element signature="e#987#1016#1" expanded="true" />
+                <element signature="e#1470#1502#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerformanceResult.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceResult.java">
+      <file leaf-file-name="PerformancePlanController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-              <folding>
-                <element signature="e#1359#1360#0" expanded="true" />
-                <element signature="e#1399#1400#0" expanded="true" />
-                <element signature="e#1463#1464#0" expanded="true" />
-                <element signature="e#1521#1522#0" expanded="true" />
-                <element signature="e#1561#1562#0" expanded="true" />
-                <element signature="e#1599#1600#0" expanded="true" />
-                <element signature="e#1659#1660#0" expanded="true" />
-                <element signature="e#1713#1714#0" expanded="true" />
-                <element signature="e#1756#1757#0" expanded="true" />
-                <element signature="e#1797#1798#0" expanded="true" />
-                <element signature="e#1863#1864#0" expanded="true" />
-                <element signature="e#1923#1924#0" expanded="true" />
-                <element signature="e#1964#1965#0" expanded="true" />
-                <element signature="e#2003#2004#0" expanded="true" />
-                <element signature="e#2065#2066#0" expanded="true" />
-                <element signature="e#2121#2122#0" expanded="true" />
-                <element signature="e#2166#2167#0" expanded="true" />
-                <element signature="e#2209#2210#0" expanded="true" />
-                <element signature="e#2279#2280#0" expanded="true" />
-                <element signature="e#2343#2344#0" expanded="true" />
-                <element signature="e#2386#2387#0" expanded="true" />
-                <element signature="e#2427#2428#0" expanded="true" />
-                <element signature="e#2493#2494#0" expanded="true" />
-                <element signature="e#2553#2554#0" expanded="true" />
-                <element signature="e#4014#4015#0" expanded="true" />
-                <element signature="e#4050#4051#0" expanded="true" />
-                <element signature="e#4106#4107#0" expanded="true" />
-                <element signature="e#4156#4157#0" expanded="true" />
-                <element signature="e#4195#4196#0" expanded="true" />
-                <element signature="e#4231#4232#0" expanded="true" />
-                <element signature="e#4289#4290#0" expanded="true" />
-                <element signature="e#4339#4340#0" expanded="true" />
-                <element signature="e#4375#4376#0" expanded="true" />
-                <element signature="e#4410#4411#0" expanded="true" />
-                <element signature="e#4464#4465#0" expanded="true" />
-                <element signature="e#4512#4513#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PerformanceResultDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <element signature="e#3647#3648#0" expanded="true" />
-                <element signature="e#3683#3684#0" expanded="true" />
-                <element signature="e#3739#3740#0" expanded="true" />
-                <element signature="e#3789#3790#0" expanded="true" />
-                <element signature="e#3828#3829#0" expanded="true" />
-                <element signature="e#3866#3867#0" expanded="true" />
-                <element signature="e#3926#3927#0" expanded="true" />
-                <element signature="e#3980#3981#0" expanded="true" />
-                <element signature="e#4023#4024#0" expanded="true" />
-                <element signature="e#4064#4065#0" expanded="true" />
-                <element signature="e#4130#4131#0" expanded="true" />
-                <element signature="e#4190#4191#0" expanded="true" />
-                <element signature="e#4231#4232#0" expanded="true" />
-                <element signature="e#4270#4271#0" expanded="true" />
-                <element signature="e#4332#4333#0" expanded="true" />
-                <element signature="e#4388#4389#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -205,68 +163,29 @@
       <file leaf-file-name="JmeterService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="242">
+              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JmeterServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JmeterServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+            <state relative-caret-position="242">
+              <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerformanceResultMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
+      <file leaf-file-name="spring-context.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2486">
-              <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
-              <folding>
-                <marker date="1489563809820" expanded="true" signature="4314:4471" ph="SELECT FROM performance_result" />
-                <marker date="1489563809820" expanded="true" signature="4564:4645" ph="SELECT FROM performance_result" />
-                <marker date="1489563809820" expanded="true" signature="6816:6899" ph="SELECT count... performance_result" />
-                <marker date="1489563809820" expanded="true" signature="7055:7760" ph="INSERT INTO performance_result... " />
-                <marker date="1489563809820" expanded="true" signature="8587:9839" ph="UPDATE perfo... " />
-                <marker date="1489563809820" expanded="true" signature="9915:10018" ph="DELETE FROM " />
-                <marker date="1489563809820" expanded="true" signature="10103:10161" ph="DELETE FROM " />
-                <marker date="1489563809820" expanded="true" signature="10286:10497" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PerformancePlanShow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="30" />
-              <folding>
-                <element signature="e#1728#1729#0" expanded="true" />
-                <element signature="e#1763#1764#0" expanded="true" />
-                <element signature="e#1817#1818#0" expanded="true" />
-                <element signature="e#1865#1866#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PerformancePlanShowDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1681">
-              <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-              <folding>
-                <element signature="e#1803#1804#0" expanded="true" />
-                <element signature="e#1838#1839#0" expanded="true" />
-                <element signature="e#1892#1893#0" expanded="true" />
-                <element signature="e#1940#1941#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="171">
+              <caret line="69" column="56" selection-start-line="69" selection-start-column="56" selection-end-line="69" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -277,8 +196,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -301,11 +220,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceMonitoredMachineService.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/performance/dao/PerformanceMonitoredMachineResultMapper.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/monitored_machine_list.html" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/ShellLinux.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/SSHLinux.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/SSHHelper.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceMonitoredMachineServiceImpl.java" />
@@ -318,40 +232,45 @@
         <option value="$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/DateUtil.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceScenario.java" />
         <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceScenarioDto.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScenarioController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/test/java/com/xn/performance/service/impl/StartUpTest.java" />
         <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/test/java/com/xn/performance/StartUpTest.java" />
         <option value="$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/StartUp.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/performance/pom.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceStressMachine.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java" />
         <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceResult.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java" />
+        <option value="$PROJECT_DIR$/performance/pom.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SimpleJobListener.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/SpringContextUtils.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/MyJobFactory.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/QuartzManager.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
       </list>
     </option>
   </component>
@@ -418,8 +337,8 @@
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-15" />
+    <option name="y" value="-2" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -497,7 +416,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -526,6 +444,114 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="performance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -540,7 +566,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="performance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -562,63 +626,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
+              <option name="myItemId" value="manage_platform" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -644,7 +652,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
+              <option name="myItemId" value="manage_platform" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -660,7 +668,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
+              <option name="myItemId" value="manage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -674,7 +682,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
+              <option name="myItemId" value="manage_platform" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -690,50 +698,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
+              <option name="myItemId" value="manage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dto" />
+              <option name="myItemId" value="performanceController" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
@@ -787,7 +762,7 @@
       <recent name="E:\test_manager\manage_platform\src\main\webapp\WEB-INF" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.performance">
+  <component name="RunManager" selected="Tomcat Server.interfacetest">
     <configuration default="false" name="PerformanceMonitoredMachineServiceImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1899,6 +1874,9 @@
       <workItem from="1489457713512" duration="17317000" />
       <workItem from="1489502809378" duration="793000" />
       <workItem from="1489543115004" duration="16462000" />
+      <workItem from="1489629802994" duration="21126000" />
+      <workItem from="1489716367178" duration="21498000" />
+      <workItem from="1489810326970" duration="2669000" />
     </task>
     <task id="LOCAL-00001" summary="1.4&#10;">
       <created>1483496820689</created>
@@ -2167,7 +2145,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="723769000" />
+    <option name="totallyTimeSpent" value="769062000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2179,33 +2157,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-15" y="-2" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.486747" sideWeight="0.7034632" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.49570817" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22168675" sideWeight="0.23376623" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33614457" sideWeight="0.4978355" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20779221" sideWeight="0.5060449" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5554217" sideWeight="0.75919914" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14092447" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06877114" sideWeight="0.49570817" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21204819" sideWeight="0.89880955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25378788" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.4939551" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52048194" sideWeight="0.76623374" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3759036" sideWeight="0.7034632" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.49570817" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08072289" sideWeight="0.75919914" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14092447" sideWeight="0.5869099" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06877114" sideWeight="0.49570817" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6060241" sideWeight="0.89880955" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.254329" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24578314" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17831326" sideWeight="0.76623374" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21727468" sideWeight="0.13025211" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2213,6 +2190,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39797068" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36626506" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -2361,13 +2339,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java</url>
-          <line>201</line>
+          <line>202</line>
           <properties />
           <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java</url>
-          <line>200</line>
+          <line>201</line>
           <properties />
           <option name="timeStamp" value="161" />
         </line-breakpoint>
@@ -2379,13 +2357,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java</url>
-          <line>169</line>
+          <line>170</line>
           <properties />
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java</url>
-          <line>178</line>
+          <line>179</line>
           <properties />
           <option name="timeStamp" value="167" />
         </line-breakpoint>
@@ -2409,45 +2387,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>216</line>
+          <line>45</line>
           <properties />
           <option name="timeStamp" value="205" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>91</line>
           <properties />
           <option name="timeStamp" value="209" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>132</line>
+          <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java</url>
+          <line>42</line>
           <properties />
-          <option name="timeStamp" value="210" />
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="216" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>114</line>
+          <line>70</line>
           <properties />
-          <option name="timeStamp" value="211" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>181</line>
-          <properties />
-          <option name="timeStamp" value="212" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java</url>
-          <line>179</line>
-          <properties />
-          <option name="timeStamp" value="213" />
+          <option name="timeStamp" value="225" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="214" />
+      <option name="time" value="229" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
@@ -2463,492 +2434,396 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html">
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="247" column="47" selection-start-line="247" selection-start-column="47" selection-end-line="247" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScenarioController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
-          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/4.1.4.RELEASE/spring-test-4.1.4.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunAfterTestMethodCallbacks.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1033">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestSystemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dto/TestEnvironmentDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2046">
-          <caret line="125" column="16" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/RelationCaseRedisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="64" column="32" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/test/com/xn/test/UTest.java" />
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/EnvironmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="290" column="99" selection-start-line="290" selection-start-column="44" selection-end-line="290" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/test_manager/interfacetest/1.0-SNAPSHOT/interfacetest-1.0-SNAPSHOT.jar!/com/xn/interfacetest/service/TestEnvironmentService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/test_manager/interfacetest/1.0-SNAPSHOT/interfacetest-1.0-SNAPSHOT.jar!/com/xn/interfacetest/service/TestInterfaceService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/TestInterfaceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="74" column="55" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3058">
-          <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestServiceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dto/TestServiceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/UTest.java" />
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dto/TestInterfaceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/properties/jmeter.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/Dbtest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceMonitoredMachineResultService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/test/java/com/xn/performance/SpringTaskTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/src/main/resources/spring/spring-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8690">
-          <caret line="395" column="11" selection-start-line="395" selection-start-column="11" selection-end-line="399" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5566">
-          <caret line="253" column="19" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1562">
-          <caret line="71" column="52" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.4.RELEASE/spring-context-4.1.4.RELEASE.jar!/org/springframework/scheduling/support/ScheduledMethodRunnable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.4.RELEASE/spring-context-4.1.4.RELEASE.jar!/org/springframework/scheduling/support/DelegatingErrorHandlingRunnable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.4.RELEASE/spring-context-4.1.4.RELEASE.jar!/org/springframework/scheduling/concurrent/ReschedulingRunnable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3718">
-          <caret line="201" column="77" selection-start-line="201" selection-start-column="77" selection-end-line="201" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceStressMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-          <folding>
-            <element signature="e#1177#1178#0" expanded="true" />
-            <element signature="e#1219#1220#0" expanded="true" />
-            <element signature="e#1289#1290#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-484">
-          <caret line="190" column="55" selection-start-line="190" selection-start-column="55" selection-end-line="190" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
-          <folding>
-            <marker date="1489557683985" expanded="true" signature="2598:2756" ph="SELECT FROM performance_stress_machine" />
-            <marker date="1489557683985" expanded="true" signature="2860:2958" ph="SELECT FROM performance_stress_machine" />
-            <marker date="1489557683985" expanded="true" signature="3088:3179" ph="SELECT count... performance_stress_machine" />
-            <marker date="1489557683985" expanded="true" signature="3334:4040" ph="INSERT INTO performance_stress_machine... " />
-            <marker date="1489557683985" expanded="true" signature="4792:6038" ph="UPDATE perfo... " />
-            <marker date="1489557683985" expanded="true" signature="6118:6229" ph="DELETE FROM " />
-            <marker date="1489557683985" expanded="true" signature="6317:6383" ph="DELETE FROM " />
-            <marker date="1489557683985" expanded="true" signature="6512:6731" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding>
-            <element signature="e#1377#1378#0" expanded="false" />
-            <element signature="e#1419#1420#0" expanded="false" />
-            <element signature="e#1489#1490#0" expanded="false" />
-            <element signature="e#1551#1552#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2024">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding>
-            <marker date="1489394376789" expanded="true" signature="4282:4639" ph="SELECT R.id,... performance_plan" />
-            <marker date="1489394376789" expanded="true" signature="4751:4906" ph="SELECT FROM performance_plan" />
-            <marker date="1489394376789" expanded="true" signature="4997:5076" ph="SELECT FROM performance_plan" />
-            <marker date="1489394376789" expanded="true" signature="5197:5278" ph="SELECT count... performance_plan" />
-            <marker date="1489394376789" expanded="true" signature="5438:6238" ph="INSERT INTO performance_plan... " />
-            <marker date="1489394376789" expanded="true" signature="7128:8618" ph="UPDATE perfo... " />
-            <marker date="1489394376789" expanded="true" signature="8693:8794" ph="DELETE FROM " />
-            <marker date="1489394376789" expanded="true" signature="8879:8935" ph="DELETE FROM " />
-            <marker date="1489394376789" expanded="true" signature="9060:9269" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="244" column="73" selection-start-line="244" selection-start-column="73" selection-end-line="244" selection-end-column="73" />
-          <folding />
+        <state relative-caret-position="1386">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="112" column="2" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="30" />
-          <folding>
-            <element signature="e#1728#1729#0" expanded="true" />
-            <element signature="e#1763#1764#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-            <element signature="e#1865#1866#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="241">
+          <caret line="109" column="7" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1681">
-          <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-          <folding>
-            <element signature="e#1803#1804#0" expanded="true" />
-            <element signature="e#1838#1839#0" expanded="true" />
-            <element signature="e#1892#1893#0" expanded="true" />
-            <element signature="e#1940#1941#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="161">
+          <caret line="170" column="64" selection-start-line="170" selection-start-column="64" selection-end-line="170" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/1.8.6/quartz-1.8.6.jar!/org/quartz/Scheduler.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="125" column="44" selection-start-line="125" selection-start-column="44" selection-end-line="125" selection-end-column="44" />
+        <state relative-caret-position="52">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="123" column="40" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformanceResult.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/org/quartz/JobKey.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#1463#1464#0" expanded="true" />
-            <element signature="e#1521#1522#0" expanded="true" />
-            <element signature="e#1561#1562#0" expanded="true" />
-            <element signature="e#1599#1600#0" expanded="true" />
-            <element signature="e#1659#1660#0" expanded="true" />
-            <element signature="e#1713#1714#0" expanded="true" />
-            <element signature="e#1756#1757#0" expanded="true" />
-            <element signature="e#1797#1798#0" expanded="true" />
-            <element signature="e#1863#1864#0" expanded="true" />
-            <element signature="e#1923#1924#0" expanded="true" />
-            <element signature="e#1964#1965#0" expanded="true" />
-            <element signature="e#2003#2004#0" expanded="true" />
-            <element signature="e#2065#2066#0" expanded="true" />
-            <element signature="e#2121#2122#0" expanded="true" />
-            <element signature="e#2166#2167#0" expanded="true" />
-            <element signature="e#2209#2210#0" expanded="true" />
-            <element signature="e#2279#2280#0" expanded="true" />
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2386#2387#0" expanded="true" />
-            <element signature="e#2427#2428#0" expanded="true" />
-            <element signature="e#2493#2494#0" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-            <element signature="e#4014#4015#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
-            <element signature="e#4106#4107#0" expanded="true" />
-            <element signature="e#4156#4157#0" expanded="true" />
-            <element signature="e#4195#4196#0" expanded="true" />
-            <element signature="e#4231#4232#0" expanded="true" />
-            <element signature="e#4289#4290#0" expanded="true" />
-            <element signature="e#4339#4340#0" expanded="true" />
-            <element signature="e#4375#4376#0" expanded="true" />
-            <element signature="e#4410#4411#0" expanded="true" />
-            <element signature="e#4464#4465#0" expanded="true" />
-            <element signature="e#4512#4513#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="322">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/org/quartz/JobDetail.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/org/quartz/CronTrigger.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/JobKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="258" column="23" selection-start-line="258" selection-start-column="23" selection-end-line="258" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/JobDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="124" column="21" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/impl/JobDetailImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="449" column="22" selection-start-line="449" selection-start-column="22" selection-end-line="449" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/impl/triggers/AbstractTrigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="880" column="32" selection-start-line="880" selection-start-column="32" selection-end-line="881" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/CronTrigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="169" column="17" selection-start-line="169" selection-start-column="17" selection-end-line="169" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/TriggerBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="149" column="29" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4620">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SimpleJobListener.java" />
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3102">
+          <caret line="181" column="16" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/mybatis/BaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/JobBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="86" column="29" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/impl/StdScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/4.1.4.RELEASE/spring-context-support-4.1.4.RELEASE.jar!/org/springframework/scheduling/quartz/SchedulerFactoryBean.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/spi/JobFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/src/main/test/com/xn/PlanTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="23" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1188">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/4.1.4.RELEASE/spring-context-support-4.1.4.RELEASE.jar!/org/springframework/scheduling/quartz/AdaptableJobFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52">
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="315" column="0" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="299" column="29" selection-start-line="299" selection-start-column="29" selection-end-line="299" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/factory/annotation/InitDestroyAnnotationBeanPostProcessor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.7.0_79/src.zip!/java/net/DualStackPlainSocketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="282" column="22" selection-start-line="282" selection-start-column="22" selection-end-line="282" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/SpringContextUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/properties/jmeter.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/JobExecutionContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-952">
+          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/4.1.4.RELEASE/spring-context-support-4.1.4.RELEASE.jar!/org/springframework/scheduling/quartz/SpringBeanJobFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.4.RELEASE/spring-beans-4.1.4.RELEASE.jar!/org/springframework/beans/factory/config/AutowireCapableBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1-sources.jar!/org/quartz/core/JobRunShell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3762">
+          <caret line="204" column="57" selection-start-line="204" selection-start-column="57" selection-end-line="204" selection-end-column="57" />
           <folding>
-            <element signature="e#3647#3648#0" expanded="true" />
-            <element signature="e#3683#3684#0" expanded="true" />
-            <element signature="e#3739#3740#0" expanded="true" />
-            <element signature="e#3789#3790#0" expanded="true" />
-            <element signature="e#3828#3829#0" expanded="true" />
-            <element signature="e#3866#3867#0" expanded="true" />
-            <element signature="e#3926#3927#0" expanded="true" />
-            <element signature="e#3980#3981#0" expanded="true" />
-            <element signature="e#4023#4024#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-            <element signature="e#4130#4131#0" expanded="true" />
-            <element signature="e#4190#4191#0" expanded="true" />
-            <element signature="e#4231#4232#0" expanded="true" />
-            <element signature="e#4270#4271#0" expanded="true" />
-            <element signature="e#4332#4333#0" expanded="true" />
-            <element signature="e#4388#4389#0" expanded="true" />
+            <element signature="e#0#13831#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3468#3469#0" expanded="false" />
+            <element signature="e#3501#3502#0" expanded="false" />
+            <element signature="e#3548#3549#0" expanded="false" />
+            <element signature="e#3574#3575#0" expanded="false" />
+            <element signature="e#4736#4737#0" expanded="false" />
+            <element signature="e#4776#4777#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="142" column="55" selection-start-line="142" selection-start-column="55" selection-end-line="142" selection-end-column="55" />
+        <state relative-caret-position="1628">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#4839#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1587#1588#0" expanded="false" />
+            <element signature="e#1650#1651#0" expanded="false" />
+            <element signature="e#3548#3549#0" expanded="false" />
+            <element signature="e#3609#3610#0" expanded="false" />
+            <element signature="e#3944#3945#0" expanded="false" />
+            <element signature="e#4011#4012#0" expanded="false" />
+            <element signature="e#4106#4107#0" expanded="false" />
+            <element signature="e#4130#4131#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/PerformanceResultService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1672">
+          <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#2765#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/ExecuteScheduleQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/MyJobFactory.java" />
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="69" column="56" selection-start-line="69" selection-start-column="56" selection-end-line="69" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/QuartzManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4157#4158#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4557#4581#0" expanded="true" />
-            <element signature="e#5254#5278#0" expanded="true" />
+            <element signature="e#987#1016#1" expanded="true" />
+            <element signature="e#1470#1502#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2486">
-          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
-          <folding>
-            <marker date="1489563809820" expanded="true" signature="4314:4471" ph="SELECT FROM performance_result" />
-            <marker date="1489563809820" expanded="true" signature="4564:4645" ph="SELECT FROM performance_result" />
-            <marker date="1489563809820" expanded="true" signature="6816:6899" ph="SELECT count... performance_result" />
-            <marker date="1489563809820" expanded="true" signature="7055:7760" ph="INSERT INTO performance_result... " />
-            <marker date="1489563809820" expanded="true" signature="8587:9839" ph="UPDATE perfo... " />
-            <marker date="1489563809820" expanded="true" signature="9915:10018" ph="DELETE FROM " />
-            <marker date="1489563809820" expanded="true" signature="10103:10161" ph="DELETE FROM " />
-            <marker date="1489563809820" expanded="true" signature="10286:10497" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="54" column="26" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+        <state relative-caret-position="440">
+          <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#930#962#0" expanded="true" />
-            <element signature="e#1079#1111#0" expanded="true" />
-            <element signature="e#3071#3389#0" expanded="true" />
-            <element signature="e#3388#3389#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+        <state relative-caret-position="242">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/JmeterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="479" column="44" selection-start-line="479" selection-start-column="44" selection-end-line="479" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3018,7 +2893,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>test_manager</last-edited>
+          <last-edited>performance</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

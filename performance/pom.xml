@@ -256,6 +256,19 @@
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
         </dependency>
+        <!--动态配置定时任务-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json</groupId>
+            <artifactId>json-lib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json</groupId>
+            <artifactId>json-lib</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>performance</finalName>

@@ -19,4 +19,6 @@ public interface JmeterService {
     void addToScheduleQueue(List<PerformancePlanShowDto> list);
 
     boolean stopPlan(String ip);
+
+    void executeOnce(PerformancePlanShowDto performancePlanShowDto);
 }
