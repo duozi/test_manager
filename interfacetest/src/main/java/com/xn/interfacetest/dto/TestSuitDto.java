@@ -51,6 +51,11 @@ public class TestSuitDto extends BaseDto {
 
     private List<TestInterfaceDto> interfaceList;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
     public Long getId() {
         return this.id;
     }
@@ -105,6 +110,14 @@ public class TestSuitDto extends BaseDto {
 
     public void setSystemId(Long systemId) {
         this.systemId = systemId;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }
 

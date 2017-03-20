@@ -18,4 +18,6 @@ import java.util.Map;
 public interface TestInterfaceMapper extends BaseMapper<TestInterface, Long> {
 
     List<TestInterface> listByParams(Map<String, Object> params);
+
+    String getParamsByInterfaceId(String interfaceId);
 }

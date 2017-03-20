@@ -115,4 +115,17 @@ public interface TestCaseService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestCaseDto> testCases);
+
+    /**
+     * 更新除了开关以外的字段
+     * @param testCaseDto
+     */
+    int updatePart(TestCaseDto testCaseDto);
+
+    /**
+     * 根据条件查询
+     * @param params
+     * @return
+     */
+    List<TestCaseDto> listByParams(Map<String, Object> params);
 }

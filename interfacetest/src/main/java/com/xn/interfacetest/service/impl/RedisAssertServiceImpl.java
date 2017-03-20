@@ -77,7 +77,12 @@ public class RedisAssertServiceImpl implements RedisAssertService {
     @Override
     public RedisAssertDto save(RedisAssertDto redisAssertDto) {
         RedisAssert redisAssert = BeanUtils.toBean(redisAssertDto,RedisAssert.class);
-        redisAssertMapper.save(redisAssert);
+        if(null == redisAssertDto.getId()){
+            redisAssertMapper.save(redisAssert);
+        } else {
+            redisAssertMapper.update(redisAssert);
+        }
+
         redisAssertDto.setId(redisAssert.getId());
         return redisAssertDto;
     }

@@ -118,4 +118,9 @@ public class TestPlanServiceImpl implements TestPlanService {
         return 0;
     }
 
+    @Override
+    public List<TestPlanDto> listWithOtherInformation(Map<String, Object> params) {
+        return null;
+    }
+
 }

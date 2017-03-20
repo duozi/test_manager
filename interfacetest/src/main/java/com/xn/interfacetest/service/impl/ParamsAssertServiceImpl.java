@@ -76,7 +76,11 @@ public class ParamsAssertServiceImpl implements ParamsAssertService {
     @Override
     public ParamsAssertDto save(ParamsAssertDto paramsAssertDto) {
         ParamsAssert paramsAssert = BeanUtils.toBean(paramsAssertDto,ParamsAssert.class);
-        paramsAssertMapper.save(paramsAssert);
+        if(null == paramsAssertDto.getId()){
+            paramsAssertMapper.save(paramsAssert);
+        } else {
+            paramsAssertMapper.update(paramsAssert);
+        }
         paramsAssertDto.setId(paramsAssert.getId());
         return paramsAssertDto;
     }

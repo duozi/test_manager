@@ -45,6 +45,11 @@ public class ParamsAssert extends BaseEntity {
 
     
     private TestCase testCase;
+
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
    
 	
 	public ParamsAssert(){
@@ -93,5 +98,13 @@ public class ParamsAssert extends BaseEntity {
     
     public void setTestCase(TestCase testCase){
         this.testCase = testCase;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

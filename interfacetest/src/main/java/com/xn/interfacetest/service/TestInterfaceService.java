@@ -134,4 +134,11 @@ public interface TestInterfaceService {
      * @return
      */
     List<TestInterfaceDto> listAll();
+
+    /**
+     * 查询接口的参数信息
+     * @param interfaceId
+     * @return
+     */
+    String getParamsByInterfaceId(String interfaceId);
 }

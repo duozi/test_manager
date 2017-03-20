@@ -109,6 +109,11 @@ public class TestInterfaceDto extends BaseDto {
     private Integer zkOrNot;
 
     /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
+    /**
      * 系统
      */
     private TestServiceDto testServiceDto;
@@ -239,6 +244,14 @@ public class TestInterfaceDto extends BaseDto {
 
     public void setTestServiceDto(TestServiceDto testServiceDto) {
         this.testServiceDto = testServiceDto;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }
 

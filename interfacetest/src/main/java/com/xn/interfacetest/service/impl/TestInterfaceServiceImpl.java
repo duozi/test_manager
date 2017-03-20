@@ -6,11 +6,15 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dao.TestParamsMapper;
 import com.xn.interfacetest.dto.TestServiceDto;
 import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.entity.TestParams;
 import com.xn.interfacetest.entity.TestService;
+import com.xn.interfacetest.service.TestParamsService;
 import com.xn.interfacetest.service.TestServiceService;
 import com.xn.interfacetest.service.TestSystemService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +46,9 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
 
     @Autowired
     private TestServiceService testServiceService;
+
+    @Autowired
+    private TestParamsMapper testParamsMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -87,6 +94,19 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
             testInterfaceMapper.update(testInterface);
         }else{
             testInterfaceMapper.save(testInterface);
+        }
+
+        //保存参数字段到参数表
+        if(StringUtils.isNotBlank(testInterface.getParams())){
+            String[] params = testInterface.getParams().split(",|，");
+            for(String paramName : params){
+                TestParams testParams = new TestParams();
+                testParams.setInterfaceId(testInterfaceDto.getId());
+                testParams.setName(paramName);
+                testParamsMapper.save(testParams);
+            }
+
+
         }
         testInterfaceDto.setId(testInterface.getId());
         return testInterfaceDto;
@@ -154,5 +174,10 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
             testInterfaceDto.setTestServiceDto(serviceDto);
         }
         return dtoList;
+    }
+
+    @Override
+    public String getParamsByInterfaceId(String interfaceId) {
+        return testInterfaceMapper.getParamsByInterfaceId(interfaceId);
     }
 }

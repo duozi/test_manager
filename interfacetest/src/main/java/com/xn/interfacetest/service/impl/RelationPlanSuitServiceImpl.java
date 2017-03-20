@@ -75,6 +75,10 @@ public class RelationPlanSuitServiceImpl implements RelationPlanSuitService {
     @Override
     public RelationPlanSuitDto save(RelationPlanSuitDto relationPlanSuitDto) {
         RelationPlanSuit relationPlanSuit = BeanUtils.toBean(relationPlanSuitDto,RelationPlanSuit.class);
+        //先删除对应计划的所有测试集，再保存新的测试集关系
+        relationPlanSuitMapper.deleteByPlanId(relationPlanSuitDto.getPlanId());
+
+        //保存操作
         relationPlanSuitMapper.save(relationPlanSuit);
         relationPlanSuitDto.setId(relationPlanSuit.getId());
         return relationPlanSuitDto;

@@ -7,15 +7,17 @@
     <resultMap id="RedisAssertMap" type="com.xn.interfacetest.entity.RedisAssert">
         <result property="id" column="id"/>
         <result property="redisConfigId" column="redis_config_id"/>
-        <result property="sqlStr" column="sql_str"/>
+        <result property="keyStr" column="key_str"/>
         <result property="assertParam" column="assert_param"/>
         <result property="rightValue" column="right_value"/>
         <result property="caseId" column="case_id"/>
+        <result property="type" column="redis_assert_type"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, redis_config_id, sql_str, assert_param, right_value, case_id
+        id, redis_config_id, key_str, assert_param, right_value, case_id,redis_assert_type
         ]]>
     </sql>
     
@@ -27,8 +29,8 @@
            <if test="@Ognl@isNotEmpty(redisConfigId)">
                 AND redis_config_id = #{redisConfigId}
             </if>
-           <if test="@Ognl@isNotEmpty(sqlStr)">
-                AND sql_str = #{sqlStr}
+           <if test="@Ognl@isNotEmpty(keyStr)">
+                AND key_str = #{keyStr}
             </if>
            <if test="@Ognl@isNotEmpty(assertParam)">
                 AND assert_param = #{assertParam}
@@ -38,6 +40,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{redis_assert_type}
             </if>
         </where>
     </sql>
@@ -56,8 +61,31 @@
         SELECT
             <include refid="columns" />
         FROM
-            redis_assert 
-        <include refid="where"/>
+            redis_assert
+        <where>
+            is_delete=0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisConfigId)">
+                AND redis_config_id = #{redisConfigId}
+            </if>
+            <if test="@Ognl@isNotEmpty(keyStr)">
+                AND key_str = #{keyStr}
+            </if>
+            <if test="@Ognl@isNotEmpty(assertParam)">
+                AND assert_param = #{assertParam}
+            </if>
+            <if test="@Ognl@isNotEmpty(rightValue)">
+                AND right_value = #{rightValue}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{redis_assert_type}
+            </if>
+        </where>
     </select>
         
     <select id="count" resultType="long">
@@ -75,17 +103,19 @@
             INSERT INTO redis_assert (
                 id,
                 redis_config_id,
-                sql_str,
+                key_str,
                 assert_param,
                 right_value,
-                case_id
+                case_id,
+                redis_assert_type
             ) VALUES (
                 #{id},
                 #{redisConfigId},
-                #{sqlStr},
+                #{keyStr},
                 #{assertParam},
                 #{rightValue},
-                #{caseId}
+                #{caseId},
+                #{type}
             )
         ]]>
     </insert>
@@ -95,14 +125,15 @@
             INSERT INTO redis_assert (
                 id,
                 redis_config_id,
-                sql_str,
+                key_str,
                 assert_param,
                 right_value,
-                case_id
+                case_id,
+                redis_assert_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.redisConfigId},#{item.sqlStr},#{item.assertParam},#{item.rightValue},#{item.caseId})
+            (#{item.id},#{item.redisConfigId},#{item.keyStr},#{item.assertParam},#{item.rightValue},#{item.caseId},#{item.type})
         </foreach>
     </insert>
     
@@ -113,14 +144,17 @@
                 <if test="redisConfigId != null">
                 	<![CDATA[ redis_config_id = #{redisConfigId} ]]>,
                 </if>
-                <if test="sqlStr != null">
-                	<![CDATA[ sql_str = #{sqlStr} ]]>,
+                <if test="keyStr != null">
+                	<![CDATA[ key_str = #{keyStr} ]]>,
                 </if>
                 <if test="assertParam != null">
                 	<![CDATA[ assert_param = #{assertParam} ]]>,
                 </if>
                 <if test="rightValue != null">
                 	<![CDATA[ right_value = #{rightValue} ]]>,
+                </if>
+                <if test="type != null">
+                    <![CDATA[ redis_assert_type = #{type} ]]>,
                 </if>
                 <if test="caseId != null">
                 	<![CDATA[ case_id = #{caseId} ]]>
@@ -130,15 +164,15 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                redis_assert
+            update
+            redis_assert
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

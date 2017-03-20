@@ -1,22 +1,21 @@
 package com.xn.manage.Enum;
 
 
-public enum AppendParamEnum {
-	JSON("JSON", 0),XML("XML", 1);
-//    ,FILE("上传文件", 1);
+public enum ExcuteTypeEnum {
+    once("单次执行" ,1),circulation("循环执行", 2);
     // 成员变量
     private String name;
     private int id;
 
     // 构造方法
-    private AppendParamEnum(String name, int id) {
+    private ExcuteTypeEnum(String name, int id) {
         this.name = name;
         this.id = id;
     }
 
     // 普通方法
     public static String getName(int id) {
-        for (AppendParamEnum c : AppendParamEnum.values()) {
+        for (ExcuteTypeEnum c : ExcuteTypeEnum.values()) {
             if (c.getId() == id) {
                 return c.name;
             }

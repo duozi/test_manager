@@ -20,6 +20,7 @@
         <result property="dubboGroup" column="dubbo_group"/>
         <result property="dubboTimeout" column="dubbo_timeout"/>
         <result property="zkOrNot" column="zk_or_not"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
@@ -77,7 +78,15 @@
             </if>
         </where>
     </sql>
-    
+
+    <select id="getParamsByInterfaceId" resultType="String">
+        SELECT params
+            FROM
+                test_interface
+            WHERE
+                id = #{id}
+    </select>
+
     <select id="get" resultMap="TestInterfaceMap">
         SELECT <include refid="columns" />
         <![CDATA[
@@ -92,8 +101,55 @@
         SELECT
             <include refid="columns" />
         FROM
-            test_interface 
-        <include refid="where"/>
+            test_interface
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(description)">
+                AND description = #{description}
+            </if>
+            <if test="@Ognl@isNotEmpty(serviceId)">
+                AND service_id = #{serviceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
+            <if test="@Ognl@isNotEmpty(url)">
+                AND url = #{url}
+            </if>
+            <if test="@Ognl@isNotEmpty(codeText)">
+                AND code_text = #{codeText}
+            </if>
+            <if test="@Ognl@isNotEmpty(jarPath)">
+                AND jar_path = #{jarPath}
+            </if>
+            <if test="@Ognl@isNotEmpty(requestType)">
+                AND request_type = #{requestType}
+            </if>
+            <if test="@Ognl@isNotEmpty(protocolType)">
+                AND protocol_type = #{protocolType}
+            </if>
+            <if test="@Ognl@isNotEmpty(params)">
+                AND params = #{params}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboVersion)">
+                AND dubbo_version = #{dubboVersion}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboGroup)">
+                AND dubbo_group = #{dubboGroup}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboTimeout)">
+                AND dubbo_timeout = #{dubboTimeout}
+            </if>
+            <if test="@Ognl@isNotEmpty(zkOrNot)">
+                AND zk_or_not = #{zkOrNot}
+            </if>
+        </where>
     </select>
 
     <select id="count" resultType="long">
@@ -221,15 +277,15 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                test_interface
+            UPDATE
+            test_interface
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

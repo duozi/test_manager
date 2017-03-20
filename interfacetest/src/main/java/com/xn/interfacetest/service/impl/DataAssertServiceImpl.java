@@ -76,7 +76,12 @@ public class DataAssertServiceImpl implements DataAssertService {
     @Override
     public DataAssertDto save(DataAssertDto dataAssertDto) {
         DataAssert dataAssert = BeanUtils.toBean(dataAssertDto,DataAssert.class);
-        dataAssertMapper.save(dataAssert);
+        if(null == dataAssertDto.getId()){
+            dataAssertMapper.save(dataAssert);
+        } else {
+            dataAssertMapper.update(dataAssert);
+        }
+
         dataAssertDto.setId(dataAssert.getId());
         return dataAssertDto;
     }

@@ -10,6 +10,7 @@
         <result property="description" column="description"/>
         <result property="systemId" column="system_id"/>
         <result property="jarPath" column="jar_path"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
@@ -169,7 +170,7 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
             update
                 test_service
@@ -177,7 +178,7 @@
             WHERE
                 id = #{id}
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

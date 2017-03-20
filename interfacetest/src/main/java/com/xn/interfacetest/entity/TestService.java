@@ -46,6 +46,11 @@ public class TestService extends BaseEntity {
      * jar包路径
      */
     private String jarPath;
+
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
 	
 	public TestService(){
 	    // default constructor
@@ -93,5 +98,13 @@ public class TestService extends BaseEntity {
 
     public void setJarPath(String jarPath) {
         this.jarPath = jarPath;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

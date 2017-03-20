@@ -77,7 +77,12 @@ public class RelationCaseDatabaseServiceImpl implements RelationCaseDatabaseServ
     @Override
     public RelationCaseDatabaseDto save(RelationCaseDatabaseDto relationCaseDatabaseDto) {
         RelationCaseDatabase relationCaseDatabase = BeanUtils.toBean(relationCaseDatabaseDto,RelationCaseDatabase.class);
-        relationCaseDatabaseMapper.save(relationCaseDatabase);
+        if(null == relationCaseDatabaseDto.getId()){
+            relationCaseDatabaseMapper.save(relationCaseDatabase);
+        } else {
+            relationCaseDatabaseMapper.update(relationCaseDatabase);
+        }
+
         relationCaseDatabaseDto.setId(relationCaseDatabase.getId());
         return relationCaseDatabaseDto;
     }

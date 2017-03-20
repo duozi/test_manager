@@ -15,6 +15,7 @@
         <result property="time" column="t_time"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="type" column="t_type"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
 
     <sql id="columns">
@@ -73,7 +74,39 @@
         <include refid="columns" />
         FROM
         relation_case_redis
-        <include refid="where"/>
+        <where>
+            is_delete= 0
+            <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisId)">
+                AND redis_id = #{redisId}
+            </if>
+            <if test="@Ognl@isNotEmpty(operateType)">
+                AND operate_type = #{operateType}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisOperateType)">
+                AND redis_operate_type = #{redisOperateType}
+            </if>
+            <if test="@Ognl@isNotEmpty(key)">
+                AND t_key = #{key}
+            </if>
+            <if test="@Ognl@isNotEmpty(value)">
+                AND t_value = #{value}
+            </if>
+            <if test="@Ognl@isNotEmpty(time)">
+                AND t_time = #{time}
+            </if>
+            <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND t_type = #{type}
+            </if>
+        </where>
     </select>
 
     <select id="count" resultType="long">
@@ -170,15 +203,15 @@
         id = #{id}
     </update>
 
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                relation_case_redis
+            update
+            relation_case_redis
+            set is_delete=1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
 
     <delete id="delete">
         <![CDATA[

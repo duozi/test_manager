@@ -6,6 +6,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestSuit;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ import java.util.List;
  */
 public interface TestSuitMapper extends BaseMapper<TestSuit, Long> {
 
-    List<TestSuit> getSuitByCaseId(Long caseId);
+    List<TestSuit> getSuitByCaseId(@Param("caseId") Long caseId);
 }

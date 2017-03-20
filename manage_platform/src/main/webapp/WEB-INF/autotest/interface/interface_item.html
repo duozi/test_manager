@@ -174,7 +174,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="dataPrepareLabel">
                             <#if operateType=1>数据准备</#if>
-                            <#if operateType=1>数据清除</#if>
+                            <#if operateType=2>数据清除</#if>
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -361,7 +361,7 @@
                         htmlStr += '<button type="submit" class="btn btn-info" onclick="addDatabaseSql(this)">保存</button>';
                         htmlStr += '</td>';
                         htmlStr += '<td>';
-                        htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDatabaseDate(this)">删除</button>';
+                        htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDatabaseData(this)">删除</button>';
                         htmlStr += '</td>';
                         htmlStr += '</div>';
                         htmlStr += '</tr>';
@@ -685,7 +685,7 @@
     }
 
     //删除数据库操作
-    function deleteDatabaseDate(_this){
+    function deleteDatabaseData(_this){
         var id = $(_this).parent().parent().find("input[name='id']").val();
         $.MsgBox.Confirm("删除提示","确定要删除该数据库操作吗",function(){
             if(null != id && "undefined"!= id ){
