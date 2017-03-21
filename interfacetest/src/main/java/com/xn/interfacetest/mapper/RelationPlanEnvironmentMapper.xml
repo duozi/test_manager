@@ -58,6 +58,16 @@
         <include refid="where"/>
     </select>
 
+    <select id="getByPlanId" resultMap="RelationPlanEnvironmentMap">
+        <![CDATA[
+            SELECT
+                *
+            FROM
+                relation_plan_environment
+            WHERE plan_id = #{planId}
+        ]]>
+    </select>
+
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
             INSERT INTO relation_plan_environment (
@@ -99,7 +109,13 @@
             WHERE
                 id = #{id} 
     </update>
-    
+
+    <delete id="deleteByPlanId">
+        delete
+        from  relation_plan_environment
+        where plan_id = #{planId}
+    </delete>
+
     <delete id="deleteByPK">
         <![CDATA[
             DELETE

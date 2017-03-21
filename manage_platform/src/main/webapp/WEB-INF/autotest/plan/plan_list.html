@@ -11,26 +11,8 @@
                 'selectedText': 'cat'
             });
 
+            initPlanForm();
 
-            $('#chooseSuit').click (function () {
-                //alert("chooseSuit");
-            });
-
-            $('#chooseEnvironment').click (function () {
-                //alert("chooseEnvironment");
-            });
-
-            $('#chooseTime').click (function () {
-                // alert("chooseTime");
-            });
-
-            $('#excutePlan').click (function () {
-                // alert("excutePlan");
-            });
-
-            $('#deletePlan').click (function () {
-                //alert("deletePlan");
-            });
 
         });
 
@@ -43,7 +25,7 @@
             var url = "${basePath}/autotest/plan/plan_list?"
             url +="&systemId=" + systemId;
             url += "&name=" + name;
-            url += "&type=" + type;
+            url += "&status=" + status;
             url += "&createPerson=" + createPerson;
             window.location.href = url;
         }
@@ -68,13 +50,13 @@
                         type: "POST",
                         dataType: "html",
                         url: "${basePath}/autotest/plan/savePlan",
-                        data: $('#plan-form').serialize(),
+                        data: $('#plan-form').serialize() ,
                         success: function(result) {
                             data = eval("(" + result + ")");
                             if (data.code == 0) {
                                 $("#addPlan").modal("hide");
                                 alert("保存成功");
-                                reload();
+                                //reload();
                             } else {
                                 alert("保存失败："+data.message);
                             }
@@ -95,6 +77,9 @@
                     },
                     description:  {
                         maxlength:300
+                    },
+                    suitIds:  {
+                        required:true
                     }
                 },
                 messages: {
@@ -107,6 +92,9 @@
                     },
                     description:  {
                         maxlength:"描述不超过300个字符"
+                    },
+                    suitIds:  {
+                        required:"请选择测试集"
                     }
                 },
                 errorElement : "span",
@@ -133,19 +121,17 @@
             $('#addPlan').on('hide.bs.modal', function () {
                 // 弹框变比的时候reset校验.
                 validator.resetForm();
-                $('#add-service')[0].reset();
+                $('#plan-form')[0].reset();
+                $(".selectpicker").selectpicker('deselectAll');
                 $(".popover").remove();
             })
             $('#suitList').on('hide.bs.modal', function () {
-                $('#suitList')[0].reset();
                 $(".popover").remove();
             })
             $('#environmentList').on('hide.bs.modal', function () {
-                $('#environmentList')[0].reset();
                 $(".popover").remove();
             })
             $('#timeList').on('hide.bs.modal', function () {
-                $('#timeList')[0].reset();
                 $(".popover").remove();
             })
         }
@@ -216,26 +202,81 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>牛贷系统查询联系人测试计划</td>
-                            <td>
-                                <a href="../suit/suit_item">风控规则测试集</a>，
-                                <a href="../suit/suit_item">风控规则反欺诈规则测试集</a>
-                            </td>
-                            <td>测试环境1</td>
-                            <td>未发布</td>
-                            <td>单次执行</td>
-                            <td>小珊珊</td>
-                            <td>
-                                <a type="button" id="chooseSuit"   data-toggle="modal" data-target="#suitList"  class="btn btn-warning">修改测试集</a>
-                                <a type="button" id="chooseEnvironment"  data-toggle="modal" data-target="#environmentList" class="btn btn-info">修改执行环境</a>
-                                <a type="button" id="chooseTime"  data-toggle="modal" data-target="#timeList" class="btn btn-default">配置执行时间</a>
-                                <a type="button" id="excutePlan" class="btn btn-primary">执行</a>
-                                <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
-                                <a href="../report/report_detail" type="button" class="btn btn-info">查看测试报告</a>
-                            </td>
-                        </tr>
+                        <#if planList??>
+                            <#list planList as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.name}</td>
+                                    <td>
+                                        <#if item.suitList??>
+                                            <#list item.suitList as suit>
+                                                <a href="../suit/suit_item?id=${suit.id}">${suit.name}</a>
+                                                <#if suit_has_next>
+                                                    ,
+                                                </#if>
+                                            </#list>
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#if item.environmentList??>
+                                            <#list item.environmentList as environment>
+                                                <a href="../environment/environment_item?id=${environment.id}">${environment.name}</a>
+                                                <#if environment_has_next>
+                                                    ,
+                                                </#if>
+                                            </#list>
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#if item.status == 0>
+                                            未发布
+                                        </#if>
+                                        <#if item.status == 1>
+                                            已发布
+                                        </#if>
+                                        <#if item.status == 2>
+                                            已执行
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <#if item.excuteType == 1>
+                                            单次执行
+                                        </#if>
+                                        <#if item.excuteType == 2>
+                                            循环执行
+                                        </#if>
+                                    </td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+                                        <#if item.status==0>
+                                            <!--未发布-->
+                                            <a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id})">修改测试集</a>
+                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id})">修改执行环境</a>
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id})">配置执行时间</a>
+                                            <a type="button" class="btn btn-primary" onclick="publish(${item.id})">发布</a>
+                                            <a type="button" class="btn btn-danger" onclick="deletePlan(${item.id})">删除</a>
+                                        </#if>
+                                        <#if item.status==1>
+                                            <!--已发布-->
+                                            <a type="button" data-toggle="modal" data-target="#suitList"  class="btn btn-warning">查看测试集</a>
+                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info">查看执行环境</a>
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default">查看执行时间</a>
+                                            <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
+                                        </#if>
+                                        <#if item.status==2>
+                                            <!--已执行-->
+                                            <a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning">查看测试集</a>
+                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info">查看执行环境</a>
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default">查看执行时间</a>
+                                            <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
+                                            <a href="../report/report_detail" type="button" class="btn btn-info">查看测试报告</a>
+                                        </#if>
+
+                                    </td>
+                                </tr>
+                            </#list>
+                        </#if>
+
                         </tbody>
                     </table>
                 </div>
@@ -267,18 +308,9 @@
                             <th>选择</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>风控规则测试集</td>
-                            <td>风控规则测试集-多个规则</td>
-                            <td>风控规则</td>
-                            <td>高珊</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
+                        <tbody class="suit-body">
+                        <tr >
+
                         </tr>
                         <tr>
                             <td>2</td>
@@ -395,19 +427,26 @@
                     <form class="col-lg-14 edit-form time-form">
                         <div class="form-group">
                             <label class="control-label" >执行时间类型</label>
-                            <select class="form-control" id="excuteTimeType">
-                                <option value="once-modal">单次执行</option>
-                                <option value="circulation-modal">循环执行</option>
+                            <select class="form-control" id="excuteTimeType" name="excuteType">
+                                <#if excuteList ??>
+                                    <#list excuteList as item>
+                                        <option value="${item.getId()}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
-                        <div class="form-group once-modal">
+                        <div class="form-group once">
                             <label class="control-label" >执行时间</label>
                             <input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
                             <button class="btn btn-default once-modal" type="button" id="addTime">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>
-                        <div class="form-group circulation-modal hidden">
+                        <div class="form-group circulation hidden">
+                            <label class="control-label" >循环执行时间描述</label>
+                            <input type="text" class="form-control"  name="timeDescription" placeholder="请输入执行时间描述，例如：每周三10点执行一次">
+                        </div>
+                        <div class="form-group circulation hidden">
                             <label class="control-label" >循环执行表达式</label>
                             <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
                         </div>
@@ -426,14 +465,17 @@
     <!-- 新增测试计划弹框 -->
     <div class="modal fade" id="addPlan" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
         <div class="modal-dialog">
+            <form role="form " class="col-lg-12 edit-form" id="plan-form">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPlanLabel">新增测试计划</h4>
                 </div>
+
                 <div class="modal-body modal-add">
-                    <form role="form " class="col-lg-12 edit-form" id="plan-form">
+
                         <div class="col-lg-14 form-div">
+                            <input type="hidden" name="status" value="0">
                             <div class="form-group">
                                 <label class="control-label" >创建人</label>
                                 <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
@@ -470,7 +512,7 @@
                             <div class="form-group once">
                                 <label class="control-label" >执行时间</label>
                                 <input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">
-                                <button class="btn btn-default once" type="button" id="add-time">
+                                <button class="btn btn-default once" type="button" id="add-Time">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </div>
@@ -484,22 +526,24 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >执行环境</label>
-                                <select class="form-control" id="testEnvironmentDtoList">
-                                    <#if excuteList ??>
-                                        <#list excuteList as item>
-                                            <option value="${item.getId()}">${item.getName()}</option>
+                                <select  name="environmentIds" class="selectpicker bla bla bli" multiple data-live-search="true">
+                                    <#if testEnvironmentDtoList ??>
+                                        <#list testEnvironmentDtoList as item>
+                                            <option value="${item.id}" >${item.name}</option>
                                         </#list>
                                     </#if>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-primary" >保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
+
             </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
@@ -508,9 +552,9 @@
 <!-- /.row -->
 <script type="text/javascript">
     var countNum = 1;
-    $("#addTime").click(function(){
+    $("#addTime,#add-Time").click(function(){
         countNum += 1;
-        var html = ' <div class="add-time-div once-modal"><div class="form-group"><label class="control-label" ></label>';
+        var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
         html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
         html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
         html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
@@ -522,45 +566,101 @@
 
     });
 
-    $("#excuteTimeType").change(
+    $("select[name='excuteType']").change(
             function(){
                 var value = $(this).val();
-                if(value == 'once-modal'){
-                    $(".once-modal").removeClass("hidden");
-                    $(".circulation-modal").addClass("hidden");
-                } else if(value == 'circulation-modal'){
-                    $(".once-modal").addClass("hidden");
-                    $(".circulation-modal").removeClass("hidden");
-                }
-            }
-    );
-
-    $("#add-time").click(function(){
-        countNum += 1;
-        var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
-        html += '<input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">';
-        html += '  <button class="btn btn-default " type="button" id="delete-time'+ countNum +'" >';
-        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
-        $(this).parent().after(html);
-
-        $("#delete-time" +countNum).click(function(){
-            $(this).parent().parent().remove();
-        });
-
-    });
-
-    $("#excute-time-type").change(
-            function(){
-                var value = $(this).val();
-                if(value == 'once'){
+                if(value == '1'){
                     $(".once").removeClass("hidden");
                     $(".circulation").addClass("hidden");
-                } else if(value == 'circulation'){
+                } else if(value == '2'){
                     $(".once").addClass("hidden");
                     $(".circulation").removeClass("hidden");
                 }
             }
     );
+
+//    $("#add-time").click(function(){
+//        countNum += 1;
+//        var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
+//        html += '<input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">';
+//        html += '  <button class="btn btn-default " type="button" id="delete-time'+ countNum +'" >';
+//        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+//        $(this).parent().after(html);
+//
+//        $("#delete-time" +countNum).click(function(){
+//            $(this).parent().parent().remove();
+//        });
+//
+//    });
+//
+//    $("#excute-time-type").change(
+//            function(){
+//                var value = $(this).val();
+//                if(value == 'once'){
+//                    $(".once").removeClass("hidden");
+//                    $(".circulation").addClass("hidden");
+//                } else if(value == 'circulation'){
+//                    $(".once").addClass("hidden");
+//                    $(".circulation").removeClass("hidden");
+//                }
+//            }
+//    );
+
+    function publish(id){
+        $.post("${basePath}/autotest/plan/publishPlan",{id:id},function(data,status){
+            if(0!=data.code){
+                alert(data.message);
+            } else {
+                reloadPlan();
+            }
+        });
+    }
+
+    function showSuitList(_id){
+        var htmlStr = '';
+        $.post("${basePath}/autotest/case/getCaseByInterfaceId",{"interfaceId":_interfaceId,"caseType":caseType},function(data,status){
+            if("undefined"!=data){
+                //查询该测试集含有该接口的用例列表
+                var caseList = data;
+                //显示该接口下所有的用例
+                var htmlStr = "";
+                for(var i = 0;i < caseList.length ;i++){
+                    htmlStr += '<td>1</td>';
+                    htmlStr += '<td>风控规则测试集</td>';
+                    htmlStr += '<td>风控规则测试集-多个规则</td>';
+                    htmlStr += '<td>风控规则</td>';
+                    htmlStr += '<td>高珊</td>';
+                    htmlStr += '<td>';
+                    htmlStr += '<label>';
+                    htmlStr += '<input type="checkbox" value="">';
+                    htmlStr += '</label>';
+                    htmlStr += '</td>';
+                }
+                //先删除以前的
+                $(".suit-body tr").remove();
+                //增加测试集列表
+                $(".suit-body").append(htmlStr);
+            }
+        });
+    }
+
+    function showSuitList(_id) {
+        var suitCaseList = ${suitList};
+    }
+
+    //获取该接口所有用例
+    function setSuitCaseList(_interfaceId,caseType,suitCaseList){
+
+
+    }
+
+    function showEnvironmentList(_id){
+
+    }
+
+    function showTime(_id){
+
+    }
 </script>
 <!-- /.container-fluid -->
 </body>

@@ -55,7 +55,16 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByPlanId" resultMap="TestEnvironmentMap">
+        SELECT
+        te.*
+        FROM
+        test_environment te
+        LEFT join relation_plan_environment rpe on te.id = rpe.environment_id
+        where rpe.plan_id = #{planId}
+    </select>
+
     <select id="list" resultMap="TestEnvironmentMap">
         SELECT
             <include refid="columns" />

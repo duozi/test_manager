@@ -164,4 +164,11 @@ public class TestSuitServiceImpl implements TestSuitService {
         List<TestSuitDto> dtoList = CollectionUtils.transform(testSuitList, TestSuitDto.class);
         return dtoList;
     }
+
+    @Override
+    public List<TestSuitDto> getByPlanId(Long id) {
+        List<TestSuit> testSuitList = testSuitMapper.getByPlanId(id);
+        List<TestSuitDto> dtoList = CollectionUtils.transform(testSuitList, TestSuitDto.class);
+        return dtoList;
+    }
 }

@@ -73,6 +73,13 @@
         </where>
     </select>
 
+    <select id="getByPlanId" resultMap="TestSuitMap">
+        select ts.*
+        from test_suit ts
+        left JOIN relation_plan_suit rps on ts.id = rps.suit_id
+        where rps.plan_id = #{planId}
+    </select>
+
     <select id="getSuitByCaseId" resultMap="TestSuitMap" parameterType="Long">
         select ts.*
         from test_suit ts

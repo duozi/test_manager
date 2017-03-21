@@ -115,4 +115,17 @@ public interface RelationPlanEnvironmentService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationPlanEnvironmentDto> relationPlanEnvironments);
+
+    /**
+     * 根据测试计划查询环境信息
+     * @param id
+     * @return
+     */
+    RelationPlanEnvironmentDto getByPlanId(Long id);
+
+    /**
+     * 根据测试计划删除环境关系
+     * @param id
+     */
+    void deleteByPlanId(Long planId);
 }

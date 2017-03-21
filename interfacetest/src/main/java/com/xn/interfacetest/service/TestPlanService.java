@@ -122,4 +122,10 @@ public interface TestPlanService {
      * @return
      */
     List<TestPlanDto> listWithOtherInformation(Map<String, Object> params);
+
+    /**
+     * 发布计划
+     * @param l
+     */
+    void publishPlan(Integer status,Long id);
 }

@@ -43,7 +43,11 @@ public class TestSuit extends BaseEntity {
     private String createPerson;
 
     private Long systemId;
-	
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
 	public TestSuit(){
 	    // default constructor
 	}
@@ -90,5 +94,13 @@ public class TestSuit extends BaseEntity {
 
     public void setSystemId(Long systemId) {
         this.systemId = systemId;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

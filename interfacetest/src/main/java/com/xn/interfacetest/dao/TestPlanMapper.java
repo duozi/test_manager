@@ -5,6 +5,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestPlan;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * TestPlan Dao 接口
@@ -14,4 +15,5 @@ import com.xn.interfacetest.entity.TestPlan;
  */
 public interface TestPlanMapper extends BaseMapper<TestPlan, Long> {
 
+    void updateStatus(@Param("status") Integer status,@Param("id") Long id);
 }

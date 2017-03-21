@@ -27,13 +27,13 @@ public class TimeConfigDto extends BaseDto {
 
     /**
      * 
-     * 执行时间描述 
+     * 执行时间描述
      */
     private String description;
 
     /**
      * 
-     * 时间表达式 
+     * 时间表达式 ，若执行时间类型是单次执行，则将具体的执行时间写入时间表达式中
      */
     private String timeExpression;
 

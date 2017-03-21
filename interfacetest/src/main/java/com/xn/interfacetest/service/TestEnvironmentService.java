@@ -128,4 +128,6 @@ public interface TestEnvironmentService {
      * @return
      */
     TestEnvironmentDto getWithSystem(Long id);
+
+    List<TestEnvironmentDto> getByPlanId(Long id);
 }

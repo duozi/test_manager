@@ -115,4 +115,10 @@ public interface RelationPlanSuitService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationPlanSuitDto> relationPlanSuits);
+
+    /**
+     * 根据计划id删除计划与测试集的关系
+     * @param id
+     */
+    void deleteByPlanId(Long id);
 }
