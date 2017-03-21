@@ -27,8 +27,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -36,6 +37,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
     private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
     @Autowired
@@ -54,7 +56,7 @@ public class PerformancePlanController {
     @Autowired
     private JmeterService jmeterService;
     @Autowired
-    private  PerformanceResultService performanceResultService;
+    private PerformanceResultService performanceResultService;
     @Autowired
     private PerformanceMonitoredMachineService performanceMonitoredMachineService;
 
@@ -63,6 +65,8 @@ public class PerformancePlanController {
 
     @Autowired
     private PerformanceStressMachineService performanceStressMachineService;
+    @Autowired
+    private PerformanceMonitoredMachineResultService performanceMonitoredMachineResultService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
@@ -127,7 +131,7 @@ public class PerformancePlanController {
         List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanDto);
         for (PerformancePlanShowDto performancePlanShowDto : performancePlanShowDtoList) {
             Map<String, Object> map = new HashMap<>();
-            map.put("planId", performancePlanShowDto.getId());
+            map.put("planId", performancePlanShowDto.getPlanId());
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
             performancePlanShowDto.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
         }
@@ -231,10 +235,11 @@ public class PerformancePlanController {
     //保存执行配置
     @RequestMapping(value = "/plan_list/execute_save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam Integer stressMachineName, @RequestParam String executeType, @RequestParam String setStartTime,@RequestParam String executePerson) {
+    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam Integer stressMachineName, @RequestParam final String executeType, @RequestParam String setStartTime, @RequestParam String executePerson) {
         CommonResult commonResult = new CommonResult();
         try {
             PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+
             performanceResultDto.setPlanId(planId);
             performanceResultDto.setStressMachineId(stressMachineId);
             performanceResultDto.setStressMachineName(stressMachineName);
@@ -244,13 +249,34 @@ public class PerformancePlanController {
             if (executeType.equals("schedule")) {
                 Date time = DateUtil.getStandardStringDate(setStartTime);
                 performanceResultDto.setSetStartTime(time);
-            }else if(executeType.equals("now")){
-                Date time = DateUtil.getStandardStringDate(setStartTime);
-                performanceResultDto.setSetStartTime(time);
             }
             //先保存到执行结果
-           PerformanceResultDto performanceResultDto1= performanceResultService.save(performanceResultDto);
-            jmeterService.executePlan(executeType,performanceResultDto1);
+            performanceResultDto = performanceResultService.save(performanceResultDto);
+            //保存到plan_monitored_result表
+            Integer resultId=performanceResultDto.getId();
+            PerformancePlanMonitoredDto performancePlanMonitoredDto=new PerformancePlanMonitoredDto();
+            performancePlanMonitoredDto.setPlanId(planId);
+            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList=performancePlanMonitoredService.list(performancePlanMonitoredDto);
+            for(PerformancePlanMonitoredDto item:performancePlanMonitoredDtoList){
+                Integer monitoredMachineId=item.getMonitoredMachineId();
+                String monitoredMachineName=item.getMonitoredMachineName();
+                PerformanceMonitoredMachineResultDto performanceMonitoredResultDto=new PerformanceMonitoredMachineResultDto();
+                performanceMonitoredResultDto.setPlanId(planId);
+                performanceMonitoredResultDto.setMonitoredMachineId(monitoredMachineId);
+                performanceMonitoredResultDto.setMonitoredMachineName(monitoredMachineName);
+                performanceMonitoredResultDto.setResultId(resultId);
+                performanceMonitoredMachineResultService.save(performanceMonitoredResultDto);
+            }
+
+            final PerformanceResultDto finalPerformanceResultDto = performanceResultDto;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info("============" + Thread.currentThread().getName());
+                    jmeterService.executePlan(executeType, finalPerformanceResultDto);
+                }
+            });
+
 
         } catch (Exception e) {
 
@@ -308,5 +334,32 @@ public class PerformancePlanController {
         }
 
     }
+    //停止执行
+    @RequestMapping(value = "/plan_list/stop", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult stopPlan(@RequestParam final Integer id ,@RequestParam final Integer planId) {
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info("stopPlan============" + Thread.currentThread().getName());
+                    jmeterService.stopPlan(id,planId);
+                }
+            });
+
+
+        } catch (Exception e) {
+
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("停止执行操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+    }
+
+
 }
 

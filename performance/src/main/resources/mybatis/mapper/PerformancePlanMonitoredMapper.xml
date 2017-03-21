@@ -9,12 +9,12 @@
         <result property="planId" column="plan_id"/>
         <result property="monitoredMachineId" column="monitored_machine_id"/>
         <result property="monitoredMachineName" column="monitored_machine_name"/>
-        <result property="resultId" column="result_id"/>
+        <result property="monitoredMachineIp" column="monitored_machine_ip"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, plan_id, monitored_machine_id, monitored_machine_name,result_id
+        id, plan_id, monitored_machine_id, monitored_machine_name,monitored_machine_ip
         ]]>
     </sql>
     
@@ -31,6 +31,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(monitoredMachineName)">
                 AND monitored_machine_name = #{monitoredMachineName}
+            </if>
+            <if test="@Ognl@isNotEmpty(monitoredMachineIp)">
+                AND monitored_machine_ip = #{monitoredMachineIp}
             </if>
         </where>
     </sql>
@@ -69,12 +72,14 @@
                 id,
                 plan_id,
                 monitored_machine_id,
-                monitored_machine_name
+                monitored_machine_name,
+                monitored_machine_ip
             ) VALUES (
                 #{id},
                 #{planId},
                 #{monitoredMachineId},
-                #{monitoredMachineName}
+                #{monitoredMachineName},
+                #{monitoredMachineIp}
             )
         ]]>
     </insert>
@@ -85,11 +90,12 @@
                 id,
                 plan_id,
                 monitored_machine_id,
-                monitored_machine_name
+                monitored_machine_name,
+                monitored_machine_ip
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planId},#{item.monitoredMachineId},#{item.monitoredMachineName})
+            (#{item.id},#{item.planId},#{item.monitoredMachineId},#{item.monitoredMachineName},#{item.monitoredMachineIp})
         </foreach>
     </insert>
     
@@ -104,7 +110,10 @@
                 	<![CDATA[ monitored_machine_id = #{monitoredMachineId} ]]>,
                 </if>
                 <if test="monitoredMachineName != null">
-                	<![CDATA[ monitored_machine_name = #{monitoredMachineName} ]]>
+                	<![CDATA[ monitored_machine_name = #{monitoredMachineName} ]]>,
+                </if>
+                  <if test="monitoredMachineIp != null">
+                	<![CDATA[ monitored_machine_ip = #{monitoredMachineIp} ]]>
                 </if>
             </set>
             WHERE

@@ -1,8 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="common-test:Web exploded">
-    <output-path>$PROJECT_DIR$/common-test/target/common-test</output-path>
+  <artifact type="exploded-war" name="common-test:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/common_test_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="common-test/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="common-test" />
@@ -57,6 +56,7 @@
           <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="common-test/web/Web" />
     </root>
   </artifact>
 </component>

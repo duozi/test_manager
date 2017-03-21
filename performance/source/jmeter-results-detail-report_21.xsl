@@ -170,12 +170,12 @@
 			<xsl:variable name="allTotalTime" select="sum(/testResults/*/@t)" />
 			<xsl:variable name="allAverageTime" select="$allTotalTime div $allCount" />
 			<xsl:variable name="allMinTime">
-				<xsl:call-template name="min">
+				<xsl:call-template name="minTime">
 					<xsl:with-param name="nodes" select="/testResults/*/@t" />
 				</xsl:call-template>
 			</xsl:variable>
 			<xsl:variable name="allMaxTime">
-				<xsl:call-template name="max">
+				<xsl:call-template name="maxTime">
 					<xsl:with-param name="nodes" select="/testResults/*/@t" />
 				</xsl:call-template>
 			</xsl:variable>
@@ -236,12 +236,12 @@
 			<xsl:variable name="totalTime" select="sum(../*[@lb = current()/@lb]/@t)" />
 			<xsl:variable name="averageTime" select="$totalTime div $count" />
 			<xsl:variable name="minTime">
-				<xsl:call-template name="min">
+				<xsl:call-template name="minTime">
 					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
 				</xsl:call-template>
 			</xsl:variable>
 			<xsl:variable name="maxTime">
-				<xsl:call-template name="max">
+				<xsl:call-template name="maxTime">
 					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
 				</xsl:call-template>
 			</xsl:variable>
@@ -368,7 +368,7 @@
 	</xsl:if>
 </xsl:template>
 
-<xsl:template name="min">
+<xsl:template name="minTime">
 	<xsl:param name="nodes" select="/.." />
 	<xsl:choose>
 		<xsl:when test="not($nodes)">NaN</xsl:when>
@@ -383,7 +383,7 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template name="max">
+<xsl:template name="maxTime">
 	<xsl:param name="nodes" select="/.." />
 	<xsl:choose>
 		<xsl:when test="not($nodes)">NaN</xsl:when>

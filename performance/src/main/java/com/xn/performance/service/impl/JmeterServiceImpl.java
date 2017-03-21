@@ -45,30 +45,65 @@ public class JmeterServiceImpl implements JmeterService {
 
     XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot();
 
-    public void execute(String stressMachineIp, String jmeterScriptPath) {
+    public String execute(String stressMachineIp, String jmeterScriptPath, Integer id) {
+        String resultPath = "";
         try {
             InetAddress addr = InetAddress.getLocalHost();
             String ip = addr.getHostAddress();//获得本机IP
-            xnJmeterStartRemot.remoteStart(stressMachineIp, ip, jmeterScriptPath);
+            resultPath = xnJmeterStartRemot.remoteStart(stressMachineIp, ip, jmeterScriptPath, id);
+
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            return resultPath;
         }
     }
 
 
     @Override
     public void executePlan(String executeType, PerformanceResultDto performanceResultDto) {
+        logger.info("============start");
+        logger.info("============start");
         //立即执行
         if (executeType.equals("now")) {
-            List<PerformancePlanShowDto> performancePlanShowDtoList = performanceResultService.getNowTask(performanceResultDto);
-
-            addToNowQueue(performancePlanShowDtoList);
+            PerformancePlanShowDto performancePlanShowDto = performanceResultService.getShow(performanceResultDto);
+            if (performancePlanShowDto!=null) {
+//            addToNowQueue(performancePlanShowDtoList);
+                executeOnce(performancePlanShowDto);
+            }
         }
         //定时执行
         else {
             List<PerformancePlanShowDto> performancePlanShowDtoList = performanceResultService.getScheduleTask(performanceResultDto);
             addToScheduleQueue(performancePlanShowDtoList);
         }
+    }
+
+    public boolean stopPlan(Integer id, Integer planId) {
+        boolean flag = xnJmeterStartRemot.stop(id);
+
+        PerformancePlanDto performancePlanDto = new PerformancePlanDto();
+        performancePlanDto.setId(planId);
+        performancePlanDto = performancePlanService.get(performancePlanDto);
+        String planStatus = performancePlanDto.getPlanStatus();
+        //更新计划的状态，如果这是第一次执行，那还是退回到未执行的状态，计划还可以修改，如果是已经执行过，就不修改计划的状态，还是已执行，不能修改计划
+        if (planStatus.equals("执行中")) {
+            performancePlanDto.setPlanStatus("未执行");
+            performancePlanService.update(performancePlanDto);
+        }
+        //更新单次执行状态
+        PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+        performanceResultDto.setId(id);
+        performanceResultDto.setExecuteStatus("未执行");
+        performanceResultService.update(performanceResultDto);
+        //更新压力机的状态
+        performanceResultDto = performanceResultService.get(performanceResultDto);
+        Integer stressMachineId = performanceResultDto.getStressMachineId();
+        PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
+        performanceStressMachineDto.setId(stressMachineId);
+        performanceStressMachineDto.setStressMachineStatus("未执行");
+        performanceStressMachineService.update(performanceStressMachineDto);
+        return flag;
     }
 
     public void addToNowQueue(List<PerformancePlanShowDto> list) {
@@ -99,10 +134,6 @@ public class JmeterServiceImpl implements JmeterService {
             }
 
         }
-    }
-
-    public boolean stopPlan(String ip) {
-        return xnJmeterStartRemot.stop();
     }
 
 
@@ -143,7 +174,6 @@ public class JmeterServiceImpl implements JmeterService {
         Integer stressMachineId = performancePlanShowDto.getStressMachineId();
         PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
         performanceStressMachineDto.setId(stressMachineId);
-        performanceStressMachineDto = performanceStressMachineService.get(performanceStressMachineDto);
         //更新压力机的状态为执行中
         performanceStressMachineDto.setStressMachineStatus("执行中");
         performanceStressMachineService.update(performanceStressMachineDto);
@@ -155,7 +185,13 @@ public class JmeterServiceImpl implements JmeterService {
 
         logger.info(Thread.currentThread().getName() + "==========jmeterScriptPath:" + jmeterScriptPath);
         //使用压力机远程执行
-//        jmeterService.execute(stressMachineIp, jmeterScriptPath);
+        String resultPath = execute(stressMachineIp, jmeterScriptPath, id);
+
+        performanceResultDto.setExecuteStatus("已执行");
+        performanceResultDto.setResultPath(resultPath);
+        performanceResultService.update(performanceResultDto);
+
+
     }
 
     public String generateJmeterScript(String scriptPath, PerformanceScenarioDto performanceScenarioDto, Integer id) {
@@ -237,7 +273,12 @@ public class JmeterServiceImpl implements JmeterService {
             //循环数
             String cycleString = String.valueOf(performanceScenarioDto.getCycle());
             if (!cycleString.equals("null")) {
-                Element cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
+                Element cycle = null;
+                try {
+                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/stringProp");
+                } catch (Exception e) {
+                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
+                }
                 cycle.setText(cycleString);
             }
             // 输出格式
@@ -270,5 +311,10 @@ public class JmeterServiceImpl implements JmeterService {
         }
 
     }
+//
+//    public static void main(String[] args) {
+//        JmeterServiceImpl jmeterService=new JmeterServiceImpl();
+//        jmeterService.execute("10.17.2.187","E:\\upload\\jmeter_script_9_线程组.jmx");
+//    }
 
 }

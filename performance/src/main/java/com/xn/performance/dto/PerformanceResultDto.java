@@ -83,6 +83,15 @@ public class PerformanceResultDto extends BaseDto{
      * 执行状态
      */
     private String executeStatus;
+    private String resultPath;
+
+    public String getResultPath() {
+        return resultPath;
+    }
+
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
 
     public String getExecuteStatus() {
         return executeStatus;

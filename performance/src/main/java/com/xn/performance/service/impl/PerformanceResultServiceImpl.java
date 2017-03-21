@@ -130,4 +130,14 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
         return dtoList;
     }
 
+
+
+    @Override
+    public PerformancePlanShowDto getShow(PerformanceResultDto performanceResultDto) {
+        PerformancePlanShow performancePlanShow=performanceResultMapper.getShow(performanceResultDto);
+        PerformancePlanShowDto performancePlanShowDto= BeanUtils.toBean(performancePlanShow,PerformancePlanShowDto.class);
+
+        return performancePlanShowDto;
+    }
+
 }

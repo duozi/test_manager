@@ -84,6 +84,15 @@ public class PerformanceResult extends BaseEntity {
 
     private Integer stressMachineId;
     private  String stressMachineName;
+    private  String resultPath;
+
+    public String getResultPath() {
+        return resultPath;
+    }
+
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
 
     public Date getSetStartTimeBegin() {
         return setStartTimeBegin;

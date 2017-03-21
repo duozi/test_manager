@@ -12,12 +12,15 @@ import java.util.List;
 
 /**
  * PerformanceResult Dao 接口
- * 
+ *
  * @author zhouxi
  * @date 2017-02-21
  */
 @Service
 public interface PerformanceResultMapper extends BaseMapper<PerformanceResult, Integer> {
     List<PerformancePlanShow> getNowTask(Object condition);
+
     List<PerformancePlanShow> getScheduleTask(Object condition);
+
+    PerformancePlanShow getShow(Object condition);
 }

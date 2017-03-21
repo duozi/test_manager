@@ -15,6 +15,7 @@
         <result property="executePerson" column="execute_person"/>
         <result property="executeStatus" column="execute_status"/>
         <result property="setStartTime" column="set_start_time"/>
+        <result property="resultPath" column="result_path"/>
     </resultMap>
 
     <resultMap id="PerformancePlanShowMap" type="com.xn.performance.entity.PerformancePlanShow">
@@ -37,13 +38,15 @@
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeStatus" column="execute_status"/>
         <result property="setStartTime" column="set_start_time"/>
+        <result property="resultPath" column="result_path"/>
+        <result property="executePerson" column="execute_person"/>
     </resultMap>
 
 
     <sql id="columns">
         <![CDATA[
 
-        id, plan_id, actual_end_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status,set_start_time
+        id, plan_id, actual_end_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status,set_start_time,result_path
 
         ]]>
     </sql>
@@ -89,6 +92,9 @@
             <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
                 AND set_start_time &lt;= #{setStartTimeEnd}
             </if>
+            <if test="@Ognl@isNotEmpty(resultPath)">
+                AND result_path = #{resultPath}
+            </if>
         </where>
     </sql>
 
@@ -115,12 +121,12 @@
         SELECT
         R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time, R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
         WHERE P.is_delete="未删除" AND R.set_start_time IS NULL
         <if test="@Ognl@isNotEmpty(id)">
-            AND id = #{id}
+            AND R.id = #{id}
         </if>
         <if test="@Ognl@isNotEmpty(planId)">
             AND plan_id = #{planId}
@@ -158,6 +164,9 @@
         <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
             AND set_start_time &lt;= #{setStartTimeEnd}
         </if>
+        <if test="@Ognl@isNotEmpty(resultPath)">
+            AND result_path = #{resultPath}
+        </if>
     </select>
 
 
@@ -165,7 +174,7 @@
         SELECT
         R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
         WHERE P.is_delete="未删除" AND R.set_start_time IS NOT NULL
@@ -208,6 +217,61 @@
         <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
             AND set_start_time &lt;= #{setStartTimeEnd}
         </if>
+        <if test="@Ognl@isNotEmpty(resultPath)">
+            AND result_path = #{resultPath}
+        </if>
+    </select>
+
+
+ <select id="getShow" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
+        FROM
+        performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
+        WHERE P.is_delete="未删除" AND  R.id=#{id}
+
+        <if test="@Ognl@isNotEmpty(planId)">
+            AND plan_id = #{planId}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+            AND actual_end_time >= #{actualEndTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+            AND actual_end_time &lt;= #{actualEndTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            AND actual_start_time >= #{actualStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            AND actual_start_time &lt;= #{actualStartTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeTime)">
+            AND execute_time = #{executeTime}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineId)">
+            AND stress_machine_id = #{stressMachineId}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineName)">
+            AND stress_machine_name = #{stressMachineName}
+        </if>
+        <if test="@Ognl@isNotEmpty(executePerson)">
+            AND execute_person = #{executePerson}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeStatus)">
+            AND execute_status = #{executeStatus}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+            AND set_start_time >= #{setStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+            AND set_start_time &lt;= #{setStartTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(resultPath)">
+            AND result_path = #{resultPath}
+        </if>
+
     </select>
 
     <select id="count" resultType="long">
@@ -233,7 +297,8 @@
                 stress_machine_name,
                 execute_person,
                 execute_status,
-                set_start_time
+                set_start_time,
+                result_path
             ) VALUES (
                 #{id},
                 #{planId},
@@ -244,7 +309,8 @@
                 #{stressMachineName},
                 #{executePerson},
                 #{executeStatus},
-                #{setStartTime}
+                #{setStartTime},
+                #{resultPath}
             )
 
         ]]>
@@ -262,11 +328,12 @@
                 stress_machine_name,
                 execute_person,
                 execute_status,
-                set_start_time
+                set_start_time,
+                result_path
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planId},#{item.actualEndTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson}),#{item.executeStatus},#{item.setStartTime}
+            (#{item.id},#{item.planId},#{item.actualEndTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson}),#{item.executeStatus},#{item.setStartTime},#{item.resultPath}
         </foreach>
     </insert>
 
@@ -293,13 +360,16 @@
                 <![CDATA[ stress_machine_name = #{stressMachineName} ]]>,
             </if>
             <if test="executePerson != null">
-                <![CDATA[ execute_person = #{executePerson} ]]>
+                <![CDATA[ execute_person = #{executePerson} ]]>,
             </if>
             <if test="executeStatus != null">
-                <![CDATA[ execute_status = #{executeStatus} ]]>
+                <![CDATA[ execute_status = #{executeStatus} ]]>,
             </if>
             <if test="setStartTime != null">
-                <![CDATA[ set_start_time = #{setStartTime} ]]>
+                <![CDATA[ set_start_time = #{setStartTime} ]]>,
+            </if>
+            <if test="resultPath != null">
+                <![CDATA[ result_path = #{resultPath} ]]>,
             </if>
         </set>
         WHERE

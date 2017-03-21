@@ -42,20 +42,17 @@ public class PerformancePlanMonitoredDto extends BaseDto {
      * 监控机名 
      */
     private String monitoredMachineName;
+    private String monitoredMachineIp;
 
-    /**
-     *
-     * 结果id
-     */
-    private Integer resultId;
-
-    public Integer getResultId() {
-        return resultId;
+    public String getMonitoredMachineIp() {
+        return monitoredMachineIp;
     }
 
-    public void setResultId(Integer resultId) {
-        this.resultId = resultId;
+    public void setMonitoredMachineIp(String monitoredMachineIp) {
+        this.monitoredMachineIp = monitoredMachineIp;
     }
+
+
 
     public void setId(Integer id) {
         this.id = id;

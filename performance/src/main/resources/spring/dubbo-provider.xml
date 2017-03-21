@@ -17,6 +17,7 @@
     <dubbo:service interface="com.xn.performance.service.PerformancePlanService" ref="performancePlanService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
     <dubbo:service interface="com.xn.performance.service.PerformancePlanMonitoredService" ref="performancePlanMonitoredService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
     <dubbo:service interface="com.xn.performance.service.PerformanceResultService" ref="performanceResultService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
+    <dubbo:service interface="com.xn.performance.service.PerformanceMonitoredMachineResultService" ref="performanceMonitoredMachineResultService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
     <dubbo:service interface="com.xn.performance.service.JmeterService" ref="jmeterService" version="${dubbo_version}" timeout="${dubbo_timeout}" group="${dubbo_group}"/>
 
     <!-- 和本地bean一样实现服务 -->
@@ -27,6 +28,7 @@
     <bean id="performancePlanService" class="com.xn.performance.service.impl.PerformancePlanServiceImpl"/>
     <bean id="performancePlanMonitoredService" class="com.xn.performance.service.impl.PerformancePlanMonitoredServiceImpl"/>
     <bean id="performanceResultService" class="com.xn.performance.service.impl.PerformanceResultServiceImpl"/>
+    <bean id="performanceMonitoredMachineResultService" class="com.xn.performance.service.impl.PerformanceMonitoredMachineResultServiceImpl"/>
     <bean id="jmeterService" class="com.xn.performance.service.impl.JmeterServiceImpl"/>
 
     <dubbo:monitor protocol="registry" />

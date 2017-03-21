@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface JmeterService {
-    void execute(String stressMachineIp,String jmeterScriptPath);
+    String execute(String stressMachineIp,String jmeterScriptPath,Integer id);
 
     void executePlan(String executeType, PerformanceResultDto performanceResultDto);
 
@@ -18,7 +18,7 @@ public interface JmeterService {
 
     void addToScheduleQueue(List<PerformancePlanShowDto> list);
 
-    boolean stopPlan(String ip);
+    boolean stopPlan(Integer id,Integer planId);
 
     void executeOnce(PerformancePlanShowDto performancePlanShowDto);
 }

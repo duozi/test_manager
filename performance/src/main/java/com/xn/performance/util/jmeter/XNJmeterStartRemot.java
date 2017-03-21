@@ -29,6 +29,8 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,14 +38,16 @@ import static com.xn.performance.util.PropertyUtil.getProperty;
 
 public class XNJmeterStartRemot {
     private static final org.apache.log.Logger logger = LoggingManager.getLoggerForClass();
-    boolean running = false;
+    public static ConcurrentMap<Integer, DistributedRunner> RUNNING_MAP = new ConcurrentHashMap<Integer, DistributedRunner>();
+
     ListenToTest agentlisten = null;
 
-    DistributedRunner distributedRunner = null;
 
-    public boolean stop() {
+    public boolean stop(Integer id) {
+        DistributedRunner distributedRunner = RUNNING_MAP.get(id);
         if (distributedRunner != null) {
             distributedRunner.stop();
+            RUNNING_MAP.remove(id);
             return true;
         }
         return false;
@@ -70,7 +74,8 @@ public class XNJmeterStartRemot {
         return tree;
     }
 
-    public void remoteStart(String remote_hosts_string, String rmi_server,String jmeterScriptPath) throws Exception {
+    public String remoteStart(String remote_hosts_string, String rmi_server, String jmeterScriptPath, Integer id) throws Exception {
+        String resultPath = "";
         String logFile = getProperty("reports");
         // jmeter.properties
         JMeterUtils.loadJMeterProperties(getProperty("jmeter_root") + "bin/saveservice.properties");
@@ -86,14 +91,14 @@ public class XNJmeterStartRemot {
         // jtl报告文件名称
         SimpleDateFormat df = new SimpleDateFormat("_yyyyMMdd_HHmmss");
         String jtltime = df.format(new Date());
-        File tempFile = new File(jmeterScriptPath);
+        File tempFile = new File(getFileNameNoEx(jmeterScriptPath));
         String jmxfileName = tempFile.getName();
         System.out.println("jmxfileName = " + jmxfileName);
-        String outputFileJtl = getProperty("reports") + jmxfileName + jtltime + ".jtl";
+        String outputFileJtl = getProperty("reports") + id + jtltime + ".jtl";
         // html报告文件名
-        String outputFileHtml = getProperty("reports") + jmxfileName + jtltime + ".html";
+        String outputFileHtml = getProperty("reports") + id + jtltime + ".html";
 
-        File file = new File( getProperty("jmxfile")); //jmx文件
+        File file = new File(jmeterScriptPath); //jmx文件
         HashTree testTree;
         try {
             testTree = loadJMX(file);
@@ -151,6 +156,7 @@ public class XNJmeterStartRemot {
 
             List<JMeterEngine> engines = new LinkedList<JMeterEngine>();
 //            agentlisten = new ListenToTest(this, engines, reportGenerator);
+//            远程jmeter不关闭
             agentlisten = new ListenToTest(this, null, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);
 
@@ -175,7 +181,9 @@ public class XNJmeterStartRemot {
             // Waiting for JMeter ending，读输出日志判断是否结束测试, 分布式读取不到输出流
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             System.setOut(new PrintStream(baos));
-            running = true;
+            boolean running = true;
+            //可以方便停止执行
+            RUNNING_MAP.put(id, distributedRunner);
             do {
                 BufferedReader br = new BufferedReader(new StringReader(baos.toString()));
                 String line;
@@ -197,18 +205,21 @@ public class XNJmeterStartRemot {
                 }
             } while (running);
 
-
+            //不可以停止执行了
+            RUNNING_MAP.remove(id);
             // Transform raw JTL to friendly HTML using XSL
             File xsl = new File(getProperty("reporttohtml_xsl"));
-            jtl2html(xsl, new File(outputFileJtl), new File(outputFileHtml));
-            System.out.println("*********Jmeter runing End! html report show.");
+            resultPath = jtl2html(xsl, new File(outputFileJtl), new File(outputFileHtml));
+            System.out.println("*********Jmeter runing End! html report show in " + resultPath);
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
+        } finally {
+            return resultPath;
         }
     }
 
-    public void jtl2html(File stylesheet, File datafile, File fileOutput) throws Exception {
+    public String jtl2html(File stylesheet, File datafile, File fileOutput) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(datafile);
@@ -220,6 +231,8 @@ public class XNJmeterStartRemot {
         DOMSource source = new DOMSource(document);
         StreamResult result = new StreamResult(fileOutput);
         transformer.transform(source, result);
+        datafile.delete();
+        return fileOutput.getAbsolutePath();
     }
 
     private static class ListenToTest implements TestStateListener, Runnable, Remoteable {
@@ -322,7 +335,7 @@ public class XNJmeterStartRemot {
                 TimeUnit.SECONDS.sleep(5); // Allow listeners to close files
             } catch (InterruptedException ignored) {
             }
-            ClientJMeterEngine.tidyRMI( logger);
+            ClientJMeterEngine.tidyRMI(logger);
             try {
                 generateReport();
             } catch (Exception e) {

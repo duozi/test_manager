@@ -6,19 +6,24 @@
         <result property="id" column="id"/>
         <result property="samples" column="samples"/>
         <result property="average" column="average"/>
-        <result property="min" column="min"/>
-        <result property="max" column="max"/>
+        <result property="minTime" column="min_time"/>
+        <result property="maxTime" column="max_time"/>
         <result property="error" column="error"/>
         <result property="throughput" column="throughput"/>
         <result property="kbsec" column="kbsec"/>
-        <result property="load" column="load"/>
+        <result property="machineLoad" column="machine_load"/>
         <result property="qps" column="qps"/>
         <result property="memory" column="memory"/>
+        <result property="planId" column="plan_id"/>
+        <result property="resultId" column="result_id"/>
+        <result property="monitoredMachineId" column="monitored_machine_id"/>
+        <result property="monitoredMachineName" column="monitored_machine_name"/>
+        <result property="monitoredMachineIp" column="monitored_machine_ip"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, samples, average, min, max, error, throughput, kbsec, load, qps, memory
+        id, samples, average, min_time, max_time, error, throughput, kbsec, machine_load, qps, memory,plan_id,result_id,monitored_machine_id,monitored_machine_name,monitored_machine_ip
         ]]>
     </sql>
     
@@ -33,11 +38,11 @@
            <if test="@Ognl@isNotEmpty(average)">
                 AND average = #{average}
             </if>
-           <if test="@Ognl@isNotEmpty(min)">
-                AND min = #{min}
+           <if test="@Ognl@isNotEmpty(minTime)">
+                AND min_time = #{minTime}
             </if>
-           <if test="@Ognl@isNotEmpty(max)">
-                AND max = #{max}
+           <if test="@Ognl@isNotEmpty(maxTime)">
+                AND max_time = #{maxTime}
             </if>
            <if test="@Ognl@isNotEmpty(error)">
                 AND error = #{error}
@@ -48,14 +53,29 @@
            <if test="@Ognl@isNotEmpty(kbsec)">
                 AND kbsec = #{kbsec}
             </if>
-           <if test="@Ognl@isNotEmpty(load)">
-                AND load = #{load}
+           <if test="@Ognl@isNotEmpty(machineLoad)">
+                AND machine_load = #{machineLoad}
             </if>
            <if test="@Ognl@isNotEmpty(qps)">
                 AND qps = #{qps}
             </if>
            <if test="@Ognl@isNotEmpty(memory)">
                 AND memory = #{memory}
+            </if>
+            <if test="@Ognl@isNotEmpty(planId)">
+                AND plan_id = #{planId}
+            </if>
+            <if test="@Ognl@isNotEmpty(resultId)">
+                AND result_id = #{resultId}
+            </if>
+            <if test="@Ognl@isNotEmpty(monitoredMachineId)">
+                AND monitored_machine_id = #{monitoredMachineId}
+            </if>
+            <if test="@Ognl@isNotEmpty(monitoredMachineName)">
+                AND monitored_machine_name = #{monitoredMachineName}
+            </if>
+            <if test="@Ognl@isNotEmpty(monitoredMachineIp)">
+                AND monitored_machine_ip = #{monitoredMachineIp}
             </if>
         </where>
     </sql>
@@ -94,26 +114,38 @@
                 id,
                 samples,
                 average,
-                min,
-                max,
+                min_time,
+                max_time,
                 error,
                 throughput,
                 kbsec,
-                load,
+                machine_load,
                 qps,
-                memory
+                memory,
+                plan_id,
+                result_id,
+                monitored_machine_id,
+                monitored_machine_name,
+                monitored_machine_ip
+
             ) VALUES (
                 #{id},
                 #{samples},
                 #{average},
-                #{min},
-                #{max},
+                #{minTime},
+                #{maxTime},
                 #{error},
                 #{throughput},
                 #{kbsec},
-                #{load},
+                #{machineLoad},
                 #{qps},
-                #{memory}
+                #{memory},
+                #{planId},
+                #{resultId},
+                #{monitoredMachineId},
+                #{monitoredMachineName},
+                #{monitoredMachineIp}
+
             )
         ]]>
     </insert>
@@ -124,18 +156,23 @@
                 id,
                 samples,
                 average,
-                min,
-                max,
+                min_time,
+                max_time,
                 error,
                 throughput,
                 kbsec,
-                load,
+                machine_load,
                 qps,
-                memory
+                memory,
+                plan_id,
+                result_id,
+                monitored_machine_id,
+                monitored_machine_name,
+                monitored_machine_ip
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.samples},#{item.average},#{item.min},#{item.max},#{item.error},#{item.throughput},#{item.kbsec},#{item.load},#{item.qps},#{item.memory})
+            (#{item.id},#{item.samples},#{item.average},#{item.minTime},#{item.maxTime},#{item.error},#{item.throughput},#{item.kbsec},#{item.machineLoad},#{item.qps},#{item.memory},#{item.planId},#{item.resultId},#{item.monitoredMachineId},#{item.monitoredMachineName},#{item.monitoredMachineIp})
         </foreach>
     </insert>
     
@@ -149,11 +186,11 @@
                 <if test="average != null">
                 	<![CDATA[ average = #{average} ]]>,
                 </if>
-                <if test="min != null">
-                	<![CDATA[ min = #{min} ]]>,
+                <if test="minTime != null">
+                	<![CDATA[ min_time = #{minTime} ]]>,
                 </if>
-                <if test="max != null">
-                	<![CDATA[ max = #{max} ]]>,
+                <if test="maxTime != null">
+                	<![CDATA[ max_time = #{maxTime} ]]>,
                 </if>
                 <if test="error != null">
                 	<![CDATA[ error = #{error} ]]>,
@@ -164,8 +201,8 @@
                 <if test="kbsec != null">
                 	<![CDATA[ kbsec = #{kbsec} ]]>,
                 </if>
-                <if test="load != null">
-                	<![CDATA[ load = #{load} ]]>,
+                <if test="machineLoad != null">
+                	<![CDATA[ machine_load = #{machineLoad} ]]>,
                 </if>
                 <if test="qps != null">
                 	<![CDATA[ qps = #{qps} ]]>,
@@ -173,6 +210,21 @@
                 <if test="memory != null">
                 	<![CDATA[ memory = #{memory} ]]>
                 </if>
+                <if test="planId != null">
+                	<![CDATA[ plan_id = #{planId} ]]>
+                </if>
+                 <if test="resultId != null">
+                	<![CDATA[ result_id = #{resultId} ]]>
+                </if>
+                <if test="monitoredMachineId != null">
+                	<![CDATA[ monitored_machine_id = #{monitoredMachineId} ]]>
+                </if>
+                 <if test="monitoredMachineName != null">
+                <![CDATA[ monitored_machine_name = #{monitoredMachineName} ]]>
+            </if>
+                <if test="monitoredMachineIp != null">
+                <![CDATA[ monitored_machine_ip = #{monitoredMachineIp} ]]>
+            </if>
             </set>
             WHERE
                 id = #{id} 
@@ -205,7 +257,7 @@
             WHERE
                 id IN
         ]]>
-        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
     </delete>
 </mapper>
 

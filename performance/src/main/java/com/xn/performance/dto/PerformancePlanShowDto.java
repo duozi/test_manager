@@ -118,6 +118,24 @@ public class PerformancePlanShowDto extends BaseDto {
     private String executeStatus;
 
     private Date setStartTime;
+    private String resultPath;
+    private String executePerson;
+
+    public String getExecutePerson() {
+        return executePerson;
+    }
+
+    public void setExecutePerson(String executePerson) {
+        this.executePerson = executePerson;
+    }
+
+    public String getResultPath() {
+        return resultPath;
+    }
+
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
 
     public Date getSetStartTime() {
         return setStartTime;
