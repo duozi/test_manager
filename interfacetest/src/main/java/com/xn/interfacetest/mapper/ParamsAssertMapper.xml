@@ -9,6 +9,7 @@
         <result property="assertParam" column="assert_param"/>
         <result property="rightValue" column="right_value"/>
         <result property="caseId" column="case_id"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
@@ -48,8 +49,22 @@
         SELECT
             <include refid="columns" />
         FROM
-            params_assert 
-        <include refid="where"/>
+            params_assert
+        <where>
+            is_delete=0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(assertParam)">
+                AND assert_param = #{assertParam}
+            </if>
+            <if test="@Ognl@isNotEmpty(rightValue)">
+                AND right_value = #{rightValue}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+        </where>
     </select>
         
     <select id="count" resultType="long">
@@ -110,15 +125,15 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                params_assert
+            UPDATE
+            params_assert
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

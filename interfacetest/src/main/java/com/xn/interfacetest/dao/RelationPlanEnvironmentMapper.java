@@ -14,4 +14,7 @@ import com.xn.interfacetest.entity.RelationPlanEnvironment;
  */
 public interface RelationPlanEnvironmentMapper extends BaseMapper<RelationPlanEnvironment, Long> {
 
+    void deleteByPlanId(Long planId);
+
+    RelationPlanEnvironment getByPlanId(Long planId);
 }

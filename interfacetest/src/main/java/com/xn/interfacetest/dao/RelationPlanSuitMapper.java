@@ -15,4 +15,5 @@ import com.xn.interfacetest.entity.RelationPlanSuit;
  */
 public interface RelationPlanSuitMapper extends BaseMapper<RelationPlanSuit, Long> {
 
+    void deleteByPlanId(Long planId);
 }

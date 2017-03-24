@@ -20,7 +20,9 @@ import java.io.*;
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentMap;
 
 import static com.xn.performance.service.impl.SpringTask.PERFORMANCE_NOW_MAP;
 import static com.xn.performance.service.impl.SpringTask.PERFORMANCE_SCHEDULE_MAP;
@@ -29,6 +31,7 @@ import static com.xn.performance.service.impl.SpringTask.PERFORMANCE_SCHEDULE_MA
 @Service
 public class JmeterServiceImpl implements JmeterService {
     private static final Logger logger = LoggerFactory.getLogger(JmeterServiceImpl.class);
+    public static ConcurrentMap<Integer, XNJmeterStartRemot> RUNNING_MAP = new ConcurrentHashMap<Integer, XNJmeterStartRemot>();
     @Autowired
     PerformanceResultService performanceResultService;
 
@@ -43,14 +46,15 @@ public class JmeterServiceImpl implements JmeterService {
     @Autowired
     PerformanceStressMachineService performanceStressMachineService;
 
-    XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot();
+
 
     public String execute(String stressMachineIp, String jmeterScriptPath, Integer id) {
         String resultPath = "";
         try {
             InetAddress addr = InetAddress.getLocalHost();
             String ip = addr.getHostAddress();//获得本机IP
-            resultPath = xnJmeterStartRemot.remoteStart(stressMachineIp, ip, jmeterScriptPath, id);
+            XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot(id);
+            xnJmeterStartRemot.rstart_csv(stressMachineIp, ip, jmeterScriptPath);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,8 +83,9 @@ public class JmeterServiceImpl implements JmeterService {
         }
     }
 
-    public boolean stopPlan(Integer id, Integer planId) {
-        boolean flag = xnJmeterStartRemot.stop(id);
+    public  void stopPlan(Integer id, Integer planId) {
+        XNJmeterStartRemot xnJmeterStartRemot=RUNNING_MAP.get(id);
+         xnJmeterStartRemot.stop();
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         performancePlanDto.setId(planId);
@@ -103,7 +108,7 @@ public class JmeterServiceImpl implements JmeterService {
         performanceStressMachineDto.setId(stressMachineId);
         performanceStressMachineDto.setStressMachineStatus("未执行");
         performanceStressMachineService.update(performanceStressMachineDto);
-        return flag;
+
     }
 
     public void addToNowQueue(List<PerformancePlanShowDto> list) {
@@ -177,15 +182,17 @@ public class JmeterServiceImpl implements JmeterService {
         //更新压力机的状态为执行中
         performanceStressMachineDto.setStressMachineStatus("执行中");
         performanceStressMachineService.update(performanceStressMachineDto);
-
+        performanceStressMachineDto=performanceStressMachineService.get(performanceStressMachineDto);
         String stressMachineIp = performanceStressMachineDto.getIp();
         //获得结果的id用来标识jemeter脚本
         Integer id = performancePlanShowDto.getId();
         String jmeterScriptPath = generateJmeterScript(scriptPath, performanceScenarioDto, id);
 
         logger.info(Thread.currentThread().getName() + "==========jmeterScriptPath:" + jmeterScriptPath);
+        logger.info("stressMachineIp========="+stressMachineIp);
         //使用压力机远程执行
         String resultPath = execute(stressMachineIp, jmeterScriptPath, id);
+
 
         performanceResultDto.setExecuteStatus("已执行");
         performanceResultDto.setResultPath(resultPath);

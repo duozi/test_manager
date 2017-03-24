@@ -54,8 +54,11 @@ public class RelationCaseParams extends BaseEntity {
      */
     private Integer type;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+	private Integer isDelete;
 
-	
 	public RelationCaseParams(){
 	    // default constructor
 	}
@@ -111,7 +114,12 @@ public class RelationCaseParams extends BaseEntity {
     public void setType(Integer type) {
         this.type = type;
     }
-    
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
 
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
 }

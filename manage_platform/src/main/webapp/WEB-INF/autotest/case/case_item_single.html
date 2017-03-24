@@ -29,55 +29,61 @@
             <input type="hidden" name="id" value="${testCaseDto.id}">
             <div id="case-form-div">
                 <!--单接口用例-->
+                <!--header-->
                 <div class="form-group" id='single-header' style="width: 140%">
                     <label style="margin-top:1%">请求参数header</label>
-                    <!--<textarea class=" form-control  text-control "></textarea>-->
                     <div class="panel panel-default" style="width: 125%">
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui-header" data-toggle="tab" aria-expanded="true">参数设置</a>
+                                <li class="<#if null == testCaseDto.customParamsHeaderType>active</#if>">
+                                    <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsHeaderType>true<#else>false</#if>">参数设置</a>
                                 </li>
-                                <li class=""><a href="#source-header" data-toggle="tab" aria-expanded="false">自定义参数</a>
+                                <li class="<#if null != testCaseDto.customParamsHeaderType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsHeaderType>true<#else>false</#if>">自定义参数</a>
                                 </li>
-
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade active in" id="gui-header">
+                                <div class="tab-pane fade <#if null == testCaseDto.customParamsHeaderType>active  in</#if>" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
                                             <tr>
                                                 <th style="width:30%">参数名</th>
-                                                <th style="width:10%">参数类型</th>
+                                                <!--<th style="width:10%">参数类型</th>-->
                                                 <th style="width:40%">参数值</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <select class="form-control">
-                                                        <#if paramTypeList ??>
-                                                            <#list paramTypeList as item>
-                                                                <option values="${item}">
-                                                                    ${item.getName()}
-                                                                </option>
-                                                            </#list>
-                                                        </#if>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <button type="button" name="delete" class="btn btn-info">删除
-                                                    </button>
-                                                    <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
-                                                </td>
-                                            </tr>
+                                            <input type="hidden" name="type" value="1">
+                                            <#if headerParamsDtoList??>
+                                                <#list headerParamsDtoList as item>
+                                                    <tr>
+                                                        <input type="hidden" name="id" value="${item.id}">
+                                                        <td>
+                                                            <select class="form-control" name="paramsId">
+                                                                <#if testParamsDtoList ??>
+                                                                    <#list testParamsDtoList as paramsItem>
+                                                                        <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
+                                                                            ${paramsItem.name}
+                                                                        </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
+                                                        <td>
+                                                            <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
                                             <tr>
                                                 <td style=" border: none"><span name="addParam"
                                                                                 class="btn btn-info"><i
@@ -88,99 +94,94 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="source-header">
+                                <div class="tab-pane fade <#if null != testCaseDto.customParamsHeaderType>active  in</#if>" id="source-header">
+                                    <input type="hidden" name="type" value="1">
                                     <div class="form-group ">
                                         <label>参数格式</label>
-                                        <select class="form-control">
-                                            <option values="1">
-                                                xml格式
-                                            </option>
-                                            <option values="1">
-                                                json格式
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <textarea class=" form-control  text-control"></textarea>
-                                    <button type="submit" class="btn btn-success">格式校验</button>
-                                    <button type="submit" class="btn btn-warning">清空</button>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
-                <div class="form-group" id='single-body' style="width: 140%">
-                    <label style="margin-top:1%">请求参数body</label>
-                    <!--<textarea class=" form-control  text-control "></textarea>-->
-                    <div class="panel panel-default" style="width: 125%">
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gui-body" data-toggle="tab" aria-expanded="true">参数设置</a>
-                                </li>
-                                <li class=""><a href="#source-body" data-toggle="tab" aria-expanded="false">自定义参数</a>
-                                </li>
-
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade active in" id="gui-body">
-                                    <div class="table-responsive">
-                                        <table class="table case-table">
-                                            <thead>
-                                            <tr>
-                                                <th style="width:30%">参数名</th>
-                                                <th style="width:10%">参数类型</th>
-                                                <th style="width:40%">参数值</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <select class="form-control">
-                                                        <#if paramTypeList ??>
-                                                            <#list paramTypeList as item>
-                                                                <option values="${item}">
-                                                                    ${item.getName()}
-                                                                </option>
-                                                            </#list>
-                                                        </#if>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" class="form-control"></td>
-                                                <td>
-                                                    <button type="button" name="delete" class="btn btn-info">删除
-                                                    </button>
-                                                    <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style=" border: none"><span name="addParam"
-                                                                                class="btn btn-info"><i
-                                                        class="icon icon-plus-sign"></i>添加参数</span>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="form-group http-interface ">
-                                        <label class="control-label">附加参数</label>
                                         <select class="form-control" name="appendParam">
-                                            <option value="" disabled selected></option>
                                             <#if appendParamList ??>
                                                 <#list appendParamList as item>
-                                                    <option values="${item}">
+                                                    <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsHeaderType>selected</#if>>
                                                         ${item.getName()}
                                                     </option>
                                                 </#list>
                                             </#if>
                                         </select>
+                                    </div>
+                                    <textarea class=" form-control  text-control">${testCaseDto.customParamsHeader}</textarea>
+                                    <!--<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">-->
+                                    <!--<input type="hidden" name="jarPath" value="">-->
+                                    <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
+                                    <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
+                                    <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'header')">保存</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <!--body-->
+                <div class="form-group" id='single-body' style="width: 140%">
+                    <label style="margin-top:1%">请求参数body</label>
+                    <div class="panel panel-default" style="width: 125%">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="<#if null == testCaseDto.customParamsBodyType>active</#if>">
+                                    <a href="#gui-body" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsBodyType>true<#else>false</#if>">参数设置</a>
+                                </li>
+                                <li class="<#if null != testCaseDto.customParamsBodyType>active</#if>">
+                                    <a href="#source-body" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsBodyType>true<#else>false</#if>">自定义参数</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade <#if null == testCaseDto.customParamsBodyType>active  in</#if>" id="gui-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width:30%">参数名</th>
+                                                <!--<th style="width:10%">参数类型</th>-->
+                                                <th style="width:40%">参数值</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <input type="hidden" name="type" value="2">
+                                            <#if bodyParamsDtoList??>
+                                                <#list bodyParamsDtoList as item>
+                                                <tr>
+                                                    <input type="hidden" name="id" value="${item.id}">
+                                                    <td>
+                                                        <select class="form-control" name="paramsId">
+                                                            <#if testParamsDtoList ??>
+                                                                <#list testParamsDtoList as paramsItem>
+                                                                    <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
+                                                                    ${paramsItem.name}
+                                                                    </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                        <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr>
+                                                <td style=" border: none"><span name="addParam"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加参数</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="form-group  hidden" style="margin-left: 2%">
                                         <label class="control-label"></label>
@@ -188,26 +189,27 @@
                                     </div>
                                     <div class="form-group  hidden">
                                         <label class="control-label"></label>
-                                        <input class="file form-control" type="file" multiple data-minTime-file-count="1"
+                                        <input class="file form-control" type="file" multiple data-min-file-count="1"
                                                name="encryptJar">
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="source-body">
+                                <div class="tab-pane fade <#if null != testCaseDto.customParamsBodyType>active  in</#if>" id="source-body">
                                     <div class="form-group ">
                                         <label>参数格式</label>
-                                        <select class="form-control">
-                                            <option values="1">
-                                                xml格式
-                                            </option>
-                                            <option values="1">
-                                                json格式
-                                            </option>
+                                        <select class="form-control" name="appendParam">
+                                            <#if appendParamList ??>
+                                                <#list appendParamList as item>
+                                                    <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsBodyType>selected</#if>>
+                                                        ${item.getName()}
+                                                    </option>
+                                                </#list>
+                                            </#if>
                                         </select>
                                     </div>
-                                    <textarea class=" form-control  text-control"></textarea>
-                                    <button type="submit" class="btn btn-success">格式校验</button>
-                                    <button type="submit" class="btn btn-warning">清空</button>
-                                    <button type="submit" class="btn btn-info">保存</button>
+                                    <textarea class=" form-control  text-control">${testCaseDto.customParamsBody}</textarea>
+                                    <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
+                                    <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
+                                    <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'body')">保存</a>
                                 </div>
 
                             </div>
@@ -216,302 +218,453 @@
                     </div>
                 </div>
 
-                <!--返回校验-->
-                <div class="panel panel-default panel-collapse collapse operation-width in">
-                    <!-- 返回参数校验 -->
-                    <label class="control-label col-lg-4 top-label">返回参数校验</label>
+                <!--返回参数校验-->
+                <#if testCaseDto.paramsAssert==1>
 
-                    <div class="panel panel-default operation">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width:45%">校验字段</th>
-                                        <th style="width: 45%">期望值</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <div class="row">
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td>
-                                                <button type="button" name="delete" class="btn btn-info">保存</button>
-                                            </td>
-                                            <td>
-                                                <button type="button" name="delete" class="btn btn-info">删除</button>
-                                            </td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <td style=" border: none"><span name="addParamAssert"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加参数校验字段</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <div class="form-group" style="width: 140%">
+                        <label style="margin-top:1%">返回参数校验</label>
+                        <!--<textarea class=" form-control  text-control "></textarea>-->
+                        <div class="panel panel-default" style="width: 125%">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:45%">校验字段</th>
+                                            <th style="width: 45%">期望值</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <#if paramsAssertDtoList??>
+                                            <#list paramsAssertDtoList as item>
+                                                <tr>
+                                                    <div class="row">
+                                                        <input type="hidden" name="id" class="form-control" value="${item.id}">
+                                                        <td><input type="text" class="form-control" name="assertParam" value="${item.assertParam}"></td>
+                                                        <td><input type="text" class="form-control" name="rightValue" value="${item.rightValue}"></td>
+                                                        <td>
+                                                            <a type="button" name="delete" class="btn btn-info" onclick="saveParamsValidation(this)">保存</a>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteParamsValidation(this)">删除</button>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                        <tr>
+                                            <td style=" border: none"><span name="addParamAssert"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加参数校验字段</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </#if>
+
                 <!--db校验-->
-                <div class="panel panel-default panel-collapse collapse operation-width  in">
-                    <!-- 数据库参数校验 -->
-                    <label class="control-label col-lg-4 top-label">数据库校验</label>
-
-                    <div class="panel panel-default operation">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10%">数据库配置名</th>
-                                        <th style="width: 60%">sql</th>
-                                        <th style="width: 10%">校验字段</th>
-                                        <th style="width: 10%">期望值</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <div class="row">
-                                            <td>
-                                                <select class="form-control" name="dbAssert">
-                                                    <#if contentTypeList ??>
-                                                        <#list contentTypeList as item>
-                                                            <option values="${item}">
-                                                                ${item.getName()}
-                                                            </option>
-                                                        </#list>
-                                                    </#if>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-info">保存</button>
-                                            </td>
-                                            <td>
-                                                <button type="button" name="delete" class="btn btn-info">删除</button>
-                                            </td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <td style=" border: none"><span name="addDbAssert"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加数据库校验</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <#if testCaseDto.databaseAssert==1>
+                    <div class="form-group"  style="width: 140%">
+                        <label style="margin-top:1%">数据库校验</label>
+                        <!--<textarea class=" form-control  text-control "></textarea>-->
+                        <div class="panel panel-default" style="width: 125%">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%">数据库配置名</th>
+                                            <th style="width: 60%">sql</th>
+                                            <th style="width: 10%">校验字段</th>
+                                            <th style="width: 10%">期望值</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <#if dataAssertDtoList??>
+                                            <#list dataAssertDtoList as item>
+                                                <tr>
+                                                    <input type="hidden" name="id" value="${item.id}">
+                                                    <div class="row">
+                                                        <td>
+                                                            <select class="form-control" name="databaseConfigId">
+                                                                <#if databaseConfigDtoList ??>
+                                                                    <#list databaseConfigDtoList as dbItem>
+                                                                        <option value="${dbItem.id}" <#if item.databaseConfigId == dbItem.id>selected</#if>>
+                                                                            ${dbItem.name}
+                                                                        </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control" name="sqlStr" value="${item.sqlStr}"></td>
+                                                        <td><input type="text" class="form-control"  name="assertParam" value="${item.assertParam}"></td>
+                                                        <td><input type="text" class="form-control"  name="rightValue" value="${item.rightValue}"></td>
+                                                        <td>
+                                                            <a type="button" class="btn btn-info" onclick="saveDBValidation(this)">保存</a>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteDBValidation(this)">删除</button>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                        <tr>
+                                            <td style=" border: none"><span name="addDbAssert"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加数据库校验</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </#if>
+
                 <!--redis校验-->
-                <div class="panel panel-default panel-collapse collapse operation-width  in">
-                    <!-- redis校验 -->
-                    <label class="control-label col-lg-4 top-label">redis校验</label>
+                <#if testCaseDto.redisAssert==1>
 
-                    <div class="panel panel-default operation">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10%">redis名</th>
-                                        <th style="width: 10%">校验类型</th>
-                                        <th style="width: 50%">key</th>
-                                        <th style="width: 10%">校验字段</th>
-                                        <th style="width: 10%">期望值</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <div class="row">
-                                            <td>
-                                                <select class="form-control">
-                                                    <#if contentTypeList ??>
-                                                        <#list contentTypeList as item>
-                                                            <option values="${item}">
-                                                                ${item.getName()}
-                                                            </option>
-                                                        </#list>
-                                                    </#if>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <select class="form-control case-select" name="redisAssertType">
-                                                    <option values="valueAssert">缓存值</option>
-                                                    <option values="timeAssert">缓存时间</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-info">保存</button>
-                                            </td>
-                                            <td>
-                                                <button type="button" name="delete" class="btn btn-info">删除</button>
-                                            </td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <td style=" border: none"><span name="addRedisAssert"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加redis校验</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <div class="form-group" style="width: 140%">
+                        <label style="margin-top:1%">redis校验</label>
+                        <!--<textarea class=" form-control  text-control "></textarea>-->
+                        <div class="panel panel-default" style="width: 125%">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table case-table">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%">redis名</th>
+                                            <th style="width: 10%">校验类型</th>
+                                            <th style="">key</th>
+                                            <th style="width: 10%">校验字段</th>
+                                            <th style="width: 10%">期望值</th>
+                                            <th>操作</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <#if redisAssertDtoList??>
+                                            <#list redisAssertDtoList as assertItem>
+                                                 <tr>
+                                                    <div class="row">
+                                                        <td>
+                                                            <input type="hidden" name="id" value="${assertItem.id}">
+                                                            <select class="form-control" name="redisConfigId">
+                                                                <#if testRedisConfigDtoList ??>
+                                                                    <#list testRedisConfigDtoList as item>
+                                                                        <option value="${item.id}" <#if item.id == assertItem.redisConfigId>selected</#if>>
+                                                                            ${item.name}
+                                                                        </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control case-select" name="redisAssertType">
+                                                                <#if redisAssertTypeEnumList??>
+                                                                    <#list redisAssertTypeEnumList as item>
+                                                                        <option value="${item.getId()}" <#if item.getId() == assertItem.type>selected</#if> >${item.getName()}</option>
+                                                                    </#list>
+
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control" name="keyStr" value="${assertItem.keyStr}"></td>
+                                                        <td><input type="text" class="form-control"  name="assertParam" value="${assertItem.assertParam}"></td>
+                                                        <td><input type="text" class="form-control"  name="rightValue" value="${assertItem.rightValue}"></td>
+                                                        <td>
+                                                            <a type="button" class="btn btn-info" onclick="saveRedisValidation(this)">保存</a>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisValidation(this)">删除</button>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                        <tr>
+                                            <td style=" border: none"><span name="addRedisAssert"
+                                                                            class="btn btn-info"><i
+                                                    class="icon icon-plus-sign"></i>添加redis校验</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </#if>
                 <!--数据准备-->
-                <div id="prepare-form-div" class="in panel panel-default panel-collapse collapse operation-width">
-                    <!-- 数据准备 -->
-                    <label class="control-label col-lg-4 top-label">数据准备</label>
+                <#if testCaseDto.dataPrepare==1>
+                    <div class="form-group" style="width: 140%">
+                        <label style="margin-top:1%">数据准备</label>
+                        <!--<textarea class=" form-control  text-control "></textarea>-->
+                        <div class="prepare-data"  style="width: 125%">
 
-                    <div class="panel panel-default operation">
-                        <div class="panel-heading">
-                            数据库操作
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 15%">数据库配置名</th>
-                                        <th style="width: 75%">sql语句</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                    <tr>
-                                        <td style=" border: none"><span id="prepareAddDbOperation"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="panel panel-default" >
+                                <div class="panel-heading">
+                                    数据库操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">数据库配置名</th>
+                                                <th style="">sql语句</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="database-body">
+                                            <#if prepareDatabaseDtoList??>
+                                                <#list prepareDatabaseDtoList as dbItem>
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" name="id" value="${dbItem.id}">
+                                                        <input type="hidden" name="operateType" value="${dbItem.operateType}">
+                                                        <select class="form-control" name="databaseId">
+                                                            <#if  databaseConfigDtoList??>
+                                                                <#list databaseConfigDtoList as item>
+                                                                    <option value="${item.id}" <#if item.id == dbItem.databaseId>selected</#if>>${item.name} </option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
+                                                    </td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-info" onclick="addDatabaseSql(this)">保存</a>
+                                                        <button type="button" name="delete" class="btn btn-info" onclick="deleteDb(this)">删除</button>
+                                                    </td>
+                                                </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr class="add-tr">
+                                                <td style=" border: none"><span id="prepareAddDbOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
                             </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <div class="panel panel-default operation">
-                        <div class="panel-heading">
-                            redis操作
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10%">redis名</th>
-                                        <th style="width: 10%">redis操作类型</th>
-                                        <th style="width: 30%">key</th>
-                                        <th style="width: 30%">value</th>
-                                        <th style="width: 10%">time</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr>
-                                        <td style=" border: none"><span id="prepareAddRedisOperation"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="panel panel-default operation" >
+                                <div class="panel-heading">
+                                    redis操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">redis名</th>
+                                                <th style="">redis操作类型</th>
+                                                <th style="">key</th>
+                                                <th style="">value</th>
+                                                <th style="width:10%;">time</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="redis-body">
+                                            <input type="hidden" name="operateType" value="1">
+                                                <#if prepareRedisDtoList??>
+                                                    <#list prepareRedisDtoList as redisItem>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="hidden" name="id" value="${redisItem.id}">
+                                                                <select class="form-control" name="redisId">
+                                                                    <#if  testRedisConfigDtoList??>
+                                                                        <#list testRedisConfigDtoList as item>
+                                                                            <option value="${item.id}" <#if item.id == redisItem.redisId>selected</#if>>${item.name} </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control case-select" id="redisOperateType" name="redisOperateType">
+                                                                    <#if  redisOperationTypeEnumList??>
+                                                                        <#list redisOperationTypeEnumList as item>
+                                                                            <option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="key" value="${redisItem.key}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="value" value="${redisItem.value}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">
+                                                            </td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>
+                                                            </td>
+                                                        </tr>
+                                                    </#list>
+                                                </#if>
+                                            <tr class="add-tr">
+                                                <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
                             </div>
-                            <!-- /.table-responsive -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
 
+                    </div>
+                </#if>
                 <!--数据清除-->
-                <div id="clear-form-div" class="in panel panel-default panel-collapse collapse operation-width">
-                    <!-- 数据清除 -->
-                    <label class="control-label col-lg-4 top-label">数据清除</label>
+                <#if testCaseDto.dataClear==1>
 
-                    <div class="panel panel-default operation">
-                        <div class="panel-heading">
-                            数据库操作
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 15%">数据库配置名</th>
-                                        <th style="width: 75%">sql语句</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td style=" border: none"><span id="clearAddDbOperation"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                    <div class="form-group" style="width: 140%">
+                        <label style="margin-top:1%">数据清除</label>
+                        <div class="clear-data" style="width: 125%">
+                            <input type="hidden" name="operateType" value="2">
+                            <div class="panel panel-default operation">
+                                <div class="panel-heading">
+                                    数据库操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">数据库配置名</th>
+                                                <th style="">sql语句</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="database-body">
+                                            <input type="hidden" name="operateType" value="2">
+                                            <#if clearDatabaseDtoList??>
+                                                <#list clearDatabaseDtoList as dbItem>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="id" value="${dbItem.id}">
+                                                            <select class="form-control" name="databaseId">
+                                                                <#if  databaseConfigDtoList??>
+                                                                    <#list databaseConfigDtoList as item>
+                                                                        <option value="${item.id}" <#if item.id == dbItem.databaseId>selected</#if>>${item.name} </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
+                                                        </td>
+                                                        <td>
+                                                            <a type="button" class="btn btn-info" onclick="addDatabaseSql(this)">保存</a>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteDb(this)">删除</button>
+                                                        </td>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr class="add-tr">
+                                                <td style=" border: none"><span id="clearAddDbOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
                             </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <div class="panel panel-default operation">
-                        <div class="panel-heading">
-                            redis操作
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table case-table">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10%">redis名</th>
-                                        <th style="width: 10%">redis操作类型</th>
-                                        <th style="width: 30%">key</th>
-                                        <th style="width: 30%">value</th>
-                                        <th style="width: 10%">time</th>
-                                        <th>操作</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                    <tr>
-                                        <td style=" border: none"><span id="clearAddRedisOperation"
-                                                                        class="btn btn-info"><i
-                                                class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="panel panel-default operation">
+                                <div class="panel-heading">
+                                    redis操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">redis名</th>
+                                                <th style="">redis操作类型</th>
+                                                <th style="">key</th>
+                                                <th style="">value</th>
+                                                <th style="width:10%;">time</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="redis-body">
+                                            <input type="hidden" name="operateType" value="2">
+                                            <#if clearRedisDtoList??>
+                                                <#list clearRedisDtoList as redisItem>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="id" value="${redisItem.id}">
+                                                            <select class="form-control" name="redisId">
+                                                                <#if  testRedisConfigDtoList??>
+                                                                    <#list testRedisConfigDtoList as item>
+                                                                        <option value="${item.id}" <#if item.id == redisItem.redisId>selected</#if>>${item.name} </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control case-select"  name="redisOperateType">
+                                                                <#if  redisOperationTypeEnumList??>
+                                                                    <#list redisOperationTypeEnumList as item>
+                                                                        <option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="key" value="${redisItem.key}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="value" value="${redisItem.value}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">
+                                                        </td>
+                                                        <td>
+                                                            <a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>
+                                                        </td>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr class ="add-tr">
+                                                <td style=" border: none"><span id="clearAddRedisOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
                             </div>
-                            <!-- /.table-responsive -->
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                </div>
-
+                </#if>
                 <div class="form-group">
                     <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal"
                             data-target="#environmentList">联调
@@ -631,76 +784,58 @@
 </div>
 
 <script type="text/javascript">
-    var dbhtml = '<tr>';
-    dbhtml += '<div class="row">';
-    dbhtml += '<td>';
-    dbhtml += '<select class="form-control" >';
-    dbhtml += '<#if dbNameList ??>';
-    dbhtml += '<#list dbNameList as item>';
-    dbhtml += ' <option values="${item}">${item.getName()}</option>';
+    var dbhtml = '<tr><div class="row"><td><input type="hidden" name="id">';
+    dbhtml += '<select class="form-control" name="databaseId">';
+    dbhtml += '<#if databaseConfigDtoList ??>';
+    dbhtml += '<#list databaseConfigDtoList as item>';
+    dbhtml += '<option value="${item.id}">${item.name} </option>';
     dbhtml += '</#list>';
     dbhtml += '</#if>';
     dbhtml += '</select>';
     dbhtml += '</td>';
-    dbhtml += '<td><textarea type="text" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
+    dbhtml += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
     dbhtml += '<td>';
-    dbhtml += '<button type="submit" class="btn btn-info">保存</button>';
-    dbhtml += '</td>';
-    dbhtml += '<td>';
-    dbhtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    dbhtml += '<a type="button" class="btn btn-info" onclick="addDatabaseSql(this)">保存</a>';
+    dbhtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDb(this)">删除</button>';
     dbhtml += '</td>';
     dbhtml += '</div>';
     dbhtml += '</tr>';
 
-    var redishtml = '<tr>';
-    redishtml += ' <div class="row">';
-
-    redishtml += '<td>';
-    redishtml += '<select class="form-control"  name="redisName">';
-    redishtml += '<#if redisNameList ??>';
-    redishtml += '<#list redisNameList as item>';
-    redishtml += '<option values="${item}">${item.getName()}</option>';
+    var redishtml = '<tr><div class="row"><td><input type="hidden" name="id">';
+    redishtml += '<select class="form-control"  name="redisId">';
+    redishtml += '<#if testRedisConfigDtoList ??>';
+    redishtml += '<#list testRedisConfigDtoList as item>';
+    redishtml += '<option value="${item.id}"> ${item.name} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td>';
-    redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
+    redishtml += '<select class="form-control case-select"  name="redisOperateType">';
     redishtml += '<#if redisOperationTypeEnumList ??>';
     redishtml += '<#list redisOperationTypeEnumList as item>';
-    redishtml += '<option values="${item.getName()} "> ${item.getName()} </option>';
+    redishtml += '<option value="${item.getId()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td><input type="text" class="form-control" name="key"></td>';
     redishtml += '<td><input type="text" class="form-control" name="value"></td>';
-    redishtml += '<td><input type="text" class="form-control" name="time"></td>';
-
+    redishtml += '<td><input type="text" class="form-control" name="time" placeholder="ms数"></td>';
     redishtml += '<td>';
-    redishtml += '<button type="submit" class="btn btn-info">保存</button>';
-    redishtml += '</td>';
-
-    redishtml += '<td>';
-    redishtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    redishtml += '<a type="button" class="btn btn-info"  onclick="addRedisOperation(this)">保存</a>';
+    redishtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>';
     redishtml += '</td>';
     redishtml += '</div>';
     redishtml += '</tr>';
 
-
     $("#clearAddDbOperation").click(function () {
         $(this).parent().parent().before(dbhtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
     });
 
     $("#clearAddRedisOperation").click(function () {
 
         $(this).parent().parent().before(redishtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
 
         $("select[name='redisType']").change(function () {
             var content = $(this).val();
@@ -734,19 +869,11 @@
 
     $("#prepareAddDbOperation").click(function () {
         $(this).parent().parent().before(dbhtml);
-
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
     });
 
     $("#prepareAddRedisOperation").click(function () {
 
         $(this).parent().parent().before(redishtml);
-
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
 
         $("select[name='redisType']").change(function () {
             var content = $(this).val();
@@ -778,49 +905,53 @@
         })
     });
 
-    var paramAssertHtml = '<tr>';
+    var paramAssertHtml = '<tr><input type="hidden" name="id" class="form-control">';
     paramAssertHtml += '<div class="row">';
-    paramAssertHtml += '<td><input type="text" class="form-control" ></td>';
-    paramAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    paramAssertHtml += '<td><input type="text" class="form-control" name="assertParam"></td>';
+    paramAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
     paramAssertHtml += '<td>';
-    paramAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    paramAssertHtml += '<a type="button" class="btn btn-info" onclick="saveParamsValidation(this)">保存</a>';
     paramAssertHtml += '</td>';
     paramAssertHtml += '<td>';
-    paramAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    paramAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteParamsValidation(this)">删除</button>';
     paramAssertHtml += '</td>';
     paramAssertHtml += '</div>';
     paramAssertHtml += '</tr>';
 
-    var dbAssertHtml = '<tr>';
+    var dbAssertHtml = '<tr>  <input type="hidden" name="id" value="${item.id}">';
     dbAssertHtml += '<div class="row">';
     dbAssertHtml += '<td>';
-    dbAssertHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
-    dbAssertHtml += '<#if dbNameList ??>';
-    dbAssertHtml += '<#list dbNameList as item>';
-    dbAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    dbAssertHtml += '<select class="form-control" name="databaseConfigId">';
+    dbAssertHtml += '<#if databaseConfigDtoList ??>';
+    dbAssertHtml += '<#list databaseConfigDtoList as dbItem>';
+    dbAssertHtml += '<option value="${dbItem.id}">';
+    dbAssertHtml += '${dbItem.name}';
+    dbAssertHtml += '</option>';
     dbAssertHtml += '</#list>';
     dbAssertHtml += '</#if>';
     dbAssertHtml += '</select>';
     dbAssertHtml += '</td>';
-    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
-    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
-    dbAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control"  name="sqlStr"></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control"  name="assertParam"></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
     dbAssertHtml += '<td>';
-    dbAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
+    dbAssertHtml += '<a type="button" class="btn btn-info" onclick="saveDBValidation(this)">保存</a>';
     dbAssertHtml += '</td>';
     dbAssertHtml += '<td>';
-    dbAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    dbAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDBValidation(this)">删除</button>';
     dbAssertHtml += '</td>';
     dbAssertHtml += '</div>';
     dbAssertHtml += '</tr>';
 
     var redisAssertHtml = '<tr>';
     redisAssertHtml += '<div class="row">';
-    redisAssertHtml += '<td>';
-    redisAssertHtml += '<select class="form-control" >';
-    redisAssertHtml += '<#if redisNameList ??>';
-    redisAssertHtml += '<#list redisNameList as item>';
-    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    redisAssertHtml += '<td><input type="hidden" name="id" value="">';
+    redisAssertHtml += '<select class="form-control" name="redisConfigId">';
+    redisAssertHtml += ' <#if testRedisConfigDtoList ??>';
+    redisAssertHtml += '<#list testRedisConfigDtoList as item>';
+    redisAssertHtml += '<option value="${item.id}">';
+    redisAssertHtml += '${item.name}';
+    redisAssertHtml += '</option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
@@ -829,52 +960,21 @@
     redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
     redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
     redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
-    redisAssertHtml += '<option values="${item}">${item.getName()}</option>';
+    redisAssertHtml += '<option value="${item.getId()}">${item.getName()}</option>';
     redisAssertHtml += '</#list>';
     redisAssertHtml += '</#if>';
     redisAssertHtml += '</select>';
     redisAssertHtml += '</td>';
-    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
-    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
-    redisAssertHtml += '<td><input type="text" class="form-control" ></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control"  name="keyStr"></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" name="assertParam"></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
     redisAssertHtml += '<td>';
-    redisAssertHtml += '<button type="submit" class="btn btn-info">保存</button>';
-    redisAssertHtml += '</td>';
-    redisAssertHtml += '<td>';
-    redisAssertHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
+    redisAssertHtml += '<a type="button" class="btn btn-info" onclick="saveRedisValidation(this)">保存</a>';
+    redisAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisValidation(this)">删除</button>';
     redisAssertHtml += '</td>';
     redisAssertHtml += '</div>';
     redisAssertHtml += '</tr>';
 
-    $("input[name='assertType']").click(function () {
-        var assertType = $(this).val();
-        if (assertType == 'paramAssert' && $(this).is(':checked')) {
-            $(this).parent().parent().parent().next().addClass("in");
-//            $("#param-form-div").addClass("in");
-        } else if (assertType == 'paramAssert' && !$(this).is(':checked')) {
-            $(this).parent().parent().parent().next().removeClass("in");
-//            $("#param-form-div").removeClass("in");
-        }
-        if (assertType == 'dbAssert' && $(this).is(':checked')) {
-            $(this).parent().parent().parent().next().next().addClass("in");
-//            $("#db-form-div").addClass("in");
-        } else if (assertType == 'dbAssert' && !$(this).is(':checked')) {
-            $(this).parent().parent().parent().next().next().removeClass("in");
-//            $("#db-form-div").removeClass("in");
-        }
-
-        if (assertType == 'redisAssert' && $(this).is(':checked')) {
-            $(this).parent().parent().parent().next().next().next().addClass("in");
-//            $("#redis-form-div").addClass("in");
-
-        } else if (assertType == 'redisAssert' && !$(this).is(':checked')) {
-            $(this).parent().parent().parent().next().next().next().removeClass("in");
-//            $("#redis-form-div").removeClass("in");
-
-        }
-
-
-    });
     $("span[name='addParamAssert']").click(function () {
         $(this).parent().parent().before(paramAssertHtml);
         $("button[name='delete']").click(function () {
@@ -884,15 +984,11 @@
     });
     $("span[name='addDbAssert']").click(function () {
         $(this).parent().parent().before(dbAssertHtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        });
     });
+
     $("span[name='addRedisAssert']").click(function () {
         $(this).parent().parent().before(redisAssertHtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        });
+
         $("select[name='redisAssertType']").change(function () {
             var content = $(this).val();
             var value = $(this).parent().next().next().children()[0];
@@ -908,110 +1004,31 @@
         });
     });
     var paramAddHtml = '<tr>';
-    paramAddHtml += '<div class="row">';
-    paramAddHtml += '<td><input type="text" class="form-control"></td>';
     paramAddHtml += '<td>';
-    paramAddHtml += '<select class="form-control">';
-    paramAddHtml += '<#if paramTypeList ??>';
-    paramAddHtml += '<#list paramTypeList as item>';
-    paramAddHtml += '<option values="${item}">${item.getName()}</option>';
+    paramAddHtml += '<input type="hidden" name="id" value=""><select class="form-control" name="paramsId">';
+    paramAddHtml += '<#if testParamsDtoList ??>';
+    paramAddHtml += '<#list testParamsDtoList as item>';
+    paramAddHtml += '<option value="${item.id}">${item.name}</option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';
     paramAddHtml += '</select>';
     paramAddHtml += '</td>';
-    paramAddHtml += '<td><input type="text" class="form-control"></td>';
+    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue"></td>';
     paramAddHtml += '<td>';
-    paramAddHtml += '<button type="button" name="delete" class="btn btn-info">删除</button>  <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>';
+    paramAddHtml += '<a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a><button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除</button>  ';
     paramAddHtml += '</td>';
-    paramAddHtml += '</div>';
     paramAddHtml += '</tr>';
 
     $("span[name='addParam']").click(function () {
         $(this).parent().parent().before(paramAddHtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        });
-    });
-
-
-    $(".radio-inline").change(function () {
-        $.MsgBox.Alert("温馨提示", "离开本页内容将不会保存");
-        var caseType = $("input[name='caseType']:checked").val();
-        if (caseType == "单接口用例") {
-            $("#leave").click(function () {
-                window.location = "case_item?caseType=1";
-            });
-            $("#stay").click(function () {
-                $("input[name='caseType']:eq(0)").prop("checked", false);
-                $("input[name='caseType']:eq(1)").prop("checked", true);
-            });
-
-        } else if (caseType == "集成用例") {
-            $("#leave").click(function () {
-                window.location = "case_item?caseType=2";
-            });
-            $("#stay").click(function () {
-                $("input[name='caseType']:eq(0)").prop("checked", true);
-                $("input[name='caseType']:eq(1)").prop("checked", false);
-            });
-        }
-    })
-
-    var choseCaseHtml = '<tr>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<select class="form-control">';
-    choseCaseHtml += '<#if contentTypeList ??>';
-    choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
-    choseCaseHtml += ' </#list>';
-    choseCaseHtml += '</#if>';
-    choseCaseHtml += ' </select>';
-    choseCaseHtml += '</td>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<select class="form-control">';
-    choseCaseHtml += '<#if contentTypeList ??>';
-    choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
-    choseCaseHtml += '</#list>';
-    choseCaseHtml += '</#if>';
-    choseCaseHtml += '</select>';
-    choseCaseHtml += '</td>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<select class="form-control">';
-    choseCaseHtml += '<#if contentTypeList ??>';
-    choseCaseHtml += '<#list contentTypeList as item>';
-    choseCaseHtml += '<option values="${item}">${item.getName()}</option>';
-    choseCaseHtml += '</#list>';
-    choseCaseHtml += '</#if>';
-    choseCaseHtml += '</select>';
-    choseCaseHtml += '</td>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<button type="button" name="delete" class="btn btn-info">删除 </button>';
-    choseCaseHtml += '</td>';
-    choseCaseHtml += '<td>';
-    choseCaseHtml += '<button type="button" name="detail" class="btn btn-info">详情</button>';
-    choseCaseHtml += '</td>';
-    choseCaseHtml += '</tr>';
-    $("#addCase").click(function () {
-        $(this).parent().parent().before(choseCaseHtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        });
-    });
-    $("button[name='delete']").click(function () {
-        $(this).parent().parent().remove();
     });
 
     $("select[name='appendParam']").change(function () {
         var content = $(this).val();
-
-        if (content == '上传文件') {
-
-            $(this).parent().next().addClass("hidden");
-            $(this).parent().next().next().removeClass("hidden");
+        if (content == 'FILE') {
+            $(this).parent().parent().find(".test-format").addClass("hidden");
         } else if (content == 'JSON' || content == 'XML') {
-            $(this).parent().next().removeClass("hidden");
-            $(this).parent().next().next().addClass("hidden");
+            $(this).parent().parent().find(".test-format").removeClass("hidden");
         }
 
     });
@@ -1020,20 +1037,191 @@
 
     });
 
+
     function saveParams(_this){
-        alert("开发中……");
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var paramsId = $(_this).parent().parent().find("select[name='paramsId']").val();
+        var paramValue = $(_this).parent().parent().find("input[name='paramValue']").val();
+        var type = $(_this).parent().parent().parent().find("input[name='type']").val();
+        var urlParamStr =  "id="+ id  + "&paramsId="+ paramsId  + "&type=" + type;
+        urlParamStr += "&value=" + paramValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveParams",urlParamStr,_this);
+    }
+
+    //保存参数校验
+    function saveParamsValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveParamsValidation",urlParamStr,_this);
+    }
+    //保存数据库校验
+    function saveDBValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var databaseConfigId = $(_this).parent().parent().find("select[name='databaseConfigId']").val();
+        var sqlStr = $(_this).parent().parent().find("input[name='sqlStr']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&databaseConfigId=" + databaseConfigId + "&sqlStr=" + sqlStr+ "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveDBValidation",urlParamStr,_this);
+    }
+    //保存redis校验
+    function saveRedisValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var redisConfigId = $(_this).parent().parent().find("select[name='redisConfigId']").val();
+        var redisAssertType = $(_this).parent().parent().find("select[name='redisAssertType']").val();
+        var keyStr = $(_this).parent().parent().find("input[name='keyStr']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&redisConfigId=" + redisConfigId + "&keyStr=" + keyStr+ "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue + "&type=" + redisAssertType +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveRedisValidation",urlParamStr,_this);
+    }
+
+    function addRedisOperation(_this){
+        var redisId = $(_this).parent().parent().find("select[name='redisId']").val();
+        var redisOperateType = $(_this).parent().parent().find("select[name='redisOperateType']").val();
+        var id  = $(_this).parent().parent().find("input[name='id']").val();
+        var operateType =  $(_this).parent().parent().parent().find("input[name='operateType']").val();
+        var key = $(_this).parent().parent().find("input[name='key']").val();
+        var value = $(_this).parent().parent().find("input[name='value']").val();
+        var time = $(_this).parent().parent().find("input[name='time']").val();
+        //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
+        var type = 1;
+        var params = "redisId=" + redisId + "&redisOperateType=" + redisOperateType;
+        params += "&id=" + id + "&operateType=" + operateType + "&type=" + type ;
+        params += "&caseId=${caseId}&interfaceId=${interfaceId}" + "&key=" + key + "&value=" + value + "&time=" + time;
+        savePost("${basePath}/autotest/interface/saveRedisOperation",params,_this);
+    }
+
+    //获取保存所属行的数据库操作信息
+    function addDatabaseSql(_this){
+        var databaseId = $(_this).parent().parent().find("select[name='databaseId']").val();
+        var sqlStr = $(_this).parent().parent().find("textarea[name='sqlStr']").val();
+        var id  = $(_this).parent().parent().find("input[name='id']").val();
+        var operateType =  $(_this).parent().parent().parent().find("input[name='operateType']").val();
+        //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
+        var type = 1;
+        var params = "databaseId=" + databaseId + "&sqlStr=" + sqlStr + "&id=" + id
+                + "&operateType=" + operateType + "&type=" + type +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/interface/saveDataBaseSql",params,_this);
+    }
+
+    //发送请求保存params操作
+    function savePost(path,urlParamStr,_this) {
+        $.ajax({
+            type: "POST",
+            url: path,
+            data: urlParamStr,
+            success: function (result) {
+                if (result.code == 0) {
+                    data = result.data;
+                    alert("保存成功");
+                    $(_this).parent().parent().find("input[name='id']").val(data.id);
+                } else {
+                    alert("保存失败：" + result.message);
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        });
+
     }
 
     function deleteParams(_this){
-        alert("开发中……");
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteParams",_this);
     }
 
-    function saveCustomParams(_this){
-        alert("开发中……");
+    //删除数据库校验
+    function deleteDBValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteDbValidation",_this);
+    }
+
+    //删除redis校验
+    function deleteRedisValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteRedisValidation",_this);
+    }
+
+    //删除参数校验
+    function deleteParamsValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteParamsValidation",_this);
+    }
+
+    //删除数据库操作
+    function deleteDb(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/interface/deleteDatabaseData",_this);
+    }
+
+    //删除redis操作
+    function deleteRedisData(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/interface/deleteRedisData",_this);
+    }
+
+    function deletePost(id,url,_this) {
+        $.MsgBox.Confirm("删除提示","确定要执行删除操作吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post(url,{id:id},function(data,status){
+                    if(0!=data.code){
+                        alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        })
+    }
+
+    function saveCustomParams(_this,paramsType){
+        if("header" == paramsType){
+            var customParamsHeaderType = $(_this).parent().find("select[name='appendParam']").val();
+            var customParamsHeader = $(_this).parent().find("textarea").val();
+            var params = "customParamsHeaderType=" + customParamsHeaderType + "&customParamsHeader=" + customParamsHeader
+                   +"&id=${caseId}&interfaceId=${interfaceId}";
+        } else {
+            var customParamsBodyType = $(_this).parent().find("select[name='appendParam']").val();
+            var customParamsBody = $(_this).parent().find("textarea").val();
+            var params = "customParamsBodyType=" + customParamsBodyType + "&customParamsBody=" + customParamsBody
+                    +"&id=${caseId}&interfaceId=${interfaceId}";
+        }
+        savePost("${basePath}/autotest/case/saveCustomParams",params,_this);
     }
 
     function testFormatParams(_this){
-        alert("开发中……");
+        var jsonStr =$(_this).parent().find("textarea").val();
+        var dataType = $(_this).parent().find("select[name='appendParam']").val();
+        $.ajax({
+            type: "POST",
+            url: "${basePath}/autotest/case/testFormatParams",
+            data: {"jsonStr":jsonStr,"dataType":dataType},
+            success: function (result) {
+                if (result.code == 0) {
+                    data = result.data;
+                    alert("校验结果：" + data);
+                } else {
+                    alert("校验失败：" + result.message);
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        });
+
+    }
+
+    function ClearCustomParams(_this){
+        $(_this).parent().find("textarea").val("");
+
     }
 </script>
 </body>

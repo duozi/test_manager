@@ -99,17 +99,17 @@
             WHERE
                 id = #{id} 
     </update>
-    
-    <delete id="deleteByPK">
+
+    <delete id="deleteByPlanId">
         <![CDATA[
-            DELETE
+            delete
             FROM
                 relation_plan_suit
             WHERE
-                id = #{id} 
+                plan_id = #{planId}
         ]]>
     </delete>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE

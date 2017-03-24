@@ -115,4 +115,11 @@ public interface TestParamsService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestParamsDto> testParamss);
+
+    /**
+     * 根据接口id查询params
+     * @param interfaceId
+     * @return
+     */
+    List<TestParamsDto> getParamsByInterfaceId(String interfaceId);
 }

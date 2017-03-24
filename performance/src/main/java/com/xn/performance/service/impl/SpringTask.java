@@ -56,19 +56,25 @@ public class SpringTask {
 //            SchedulerFactory gSchedulerFactory = new StdSchedulerFactory();
 //            Scheduler scheduler = gSchedulerFactory.getScheduler();
 //
-//            String job_name = "动态任务调度";
+//            String job_name1 = "动态任务调度1";
+//            String job_name2 = "动态任务调度2";
 //            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//小写的mm表示的是分钟
-//            String dstr="2017-3-17 18:06:00";
+//            String dstr="2017-3-23 14:12:00";
 //            Date date=null;
 //            try {
 //                date=sdf.parse(dstr);
 //            } catch (ParseException e) {
 //                e.printStackTrace();
 //            }
-//            PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
-//            performancePlanShowDto.setId(2);
+//            PerformancePlanShowDto performancePlanShowDto1=new PerformancePlanShowDto();
+//            performancePlanShowDto1.setId(1);
 //
-//            QuartzManager.addJob(scheduler, job_name, ExecuteScheduleQueue.class, date,performancePlanShowDto);
+//            QuartzManager.addJob(scheduler, job_name1, ExecuteScheduleQueue.class, date,performancePlanShowDto1);
+//            PerformancePlanShowDto performancePlanShowDto2=new PerformancePlanShowDto();
+//
+//            performancePlanShowDto2.setId(2);
+//            QuartzManager.addJob(scheduler, job_name2, ExecuteScheduleQueue.class, date,performancePlanShowDto2);
+//
 //        } catch (SchedulerException e) {
 //            e.printStackTrace();
 //        }

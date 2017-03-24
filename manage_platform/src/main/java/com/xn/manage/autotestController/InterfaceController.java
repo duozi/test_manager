@@ -275,6 +275,11 @@ public class InterfaceController {
 				params.put("interfaceId",interfaceId);
 			}
 
+			String caseId = request.getParameter("caseId");
+			if(StringUtils.isNotBlank(caseId)){
+				params.put("caseId",caseId);
+			}
+
 			String operateType = request.getParameter("operateType");
 			if(StringUtils.isNotBlank(operateType)){
 				params.put("operateType",operateType);
@@ -298,6 +303,11 @@ public class InterfaceController {
 			String interfaceId = request.getParameter("interfaceId");
 			if(StringUtils.isNotBlank(interfaceId)){
 				params.put("interfaceId",interfaceId);
+			}
+
+			String caseId = request.getParameter("caseId");
+			if(StringUtils.isNotBlank(caseId)){
+				params.put("caseId",caseId);
 			}
 
 			String operateType = request.getParameter("operateType");

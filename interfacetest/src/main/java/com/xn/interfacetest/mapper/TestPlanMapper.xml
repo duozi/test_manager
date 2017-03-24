@@ -105,7 +105,14 @@
             (#{item.id},#{item.name},#{item.description},#{item.status},#{item.excuteType},#{item.createPerson})
         </foreach>
     </insert>
-    
+
+    <update id="updateStatus">
+        update
+        test_plan
+        set status = #{status}
+        where id = #{id}
+    </update>
+
     <update id="update">
         	UPDATE
                 test_plan

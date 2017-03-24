@@ -6,6 +6,11 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.*;
+import com.xn.interfacetest.entity.RelationPlanEnvironment;
+import com.xn.interfacetest.entity.RelationPlanSuit;
+import com.xn.interfacetest.entity.TestEnvironment;
+import com.xn.interfacetest.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +20,7 @@ import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dao.TestPlanMapper;
-import com.xn.interfacetest.dto.TestPlanDto;
 import com.xn.interfacetest.entity.TestPlan;
-import com.xn.interfacetest.service.TestPlanService;
-
 
 
 /**
@@ -36,6 +38,18 @@ public class TestPlanServiceImpl implements TestPlanService {
      */
     @Autowired
     private TestPlanMapper testPlanMapper;
+
+    @Autowired
+    private TestEnvironmentService testEnvironmentService;
+
+    @Autowired
+    private TestSuitService testSuitService;
+
+    @Autowired
+    private RelationPlanEnvironmentService relationPlanEnvironmentService;
+
+    @Autowired
+    private RelationPlanSuitService relationPlanSuitService;
 
     @Override
     @Transactional(readOnly = true)
@@ -116,6 +130,26 @@ public class TestPlanServiceImpl implements TestPlanService {
     @Override
     public int deleteBatch(List<TestPlanDto> testPlans) {
         return 0;
+    }
+
+    @Override
+    public List<TestPlanDto> listWithOtherInformation(Map<String, Object> params) {
+        List<TestPlan> list = testPlanMapper.list(params);
+        List<TestPlanDto> dtoList = CollectionUtils.transform(list, TestPlanDto.class);
+        for(TestPlanDto testPlanDto:dtoList){
+            //查询环境信息
+            List<TestEnvironmentDto> environmentDtoList = testEnvironmentService.getByPlanId(testPlanDto.getId());
+            testPlanDto.setEnvironmentList(environmentDtoList);
+            //查询测试集列表
+            List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(testPlanDto.getId());
+            testPlanDto.setSuitList(testSuitDtoList);
+        }
+        return dtoList;
+    }
+
+    @Override
+    public void publishPlan(Integer status,Long id) {
+        testPlanMapper.updateStatus(status,id);
     }
 
 }

@@ -9,13 +9,11 @@
         <result property="name" column="name"/>
         <result property="formatType" column="format_type"/>
         <result property="interfaceId" column="interface_id"/>
-        <result property="dataType" column="data_type"/>
-        <result property="type" column="type"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, format_type, interface_id, data_type, type
+        id, name, format_type, interface_id
         ]]>
     </sql>
     
@@ -33,12 +31,6 @@
            <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
-           <if test="@Ognl@isNotEmpty(dataType)">
-                AND data_type = #{dataType}
-            </if>
-           <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
-            </if>
         </where>
     </sql>
     
@@ -51,7 +43,16 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+
+    <select id="getParamsByInterfaceId" resultMap="TestParamsMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_params
+        where interface_id= #{interfaceId}
+    </select>
+
     <select id="list" resultMap="TestParamsMap">
         SELECT
             <include refid="columns" />
@@ -76,16 +77,12 @@
                 id,
                 name,
                 format_type,
-                interface_id,
-                data_type,
-                type
+                interface_id
             ) VALUES (
                 #{id},
                 #{name},
                 #{formatType},
-                #{interfaceId},
-                #{dataType},
-                #{type}
+                #{interfaceId}
             )
         ]]>
     </insert>
@@ -96,13 +93,11 @@
                 id,
                 name,
                 format_type,
-                interface_id,
-                data_type,
-                type
+                interface_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.formatType},#{item.interfaceId},#{item.dataType},#{item.type})
+            (#{item.id},#{item.name},#{item.formatType},#{item.interfaceId}
         </foreach>
     </insert>
     
@@ -117,13 +112,7 @@
                 	<![CDATA[ format_type = #{formatType} ]]>,
                 </if>
                 <if test="interfaceId != null">
-                	<![CDATA[ interface_id = #{interfaceId} ]]>,
-                </if>
-                <if test="dataType != null">
-                	<![CDATA[ data_type = #{dataType} ]]>,
-                </if>
-                <if test="type != null">
-                	<![CDATA[ type = #{type} ]]>
+                	<![CDATA[ interface_id = #{interfaceId} ]]>
                 </if>
             </set>
             WHERE

@@ -6,6 +6,8 @@ package com.xn.interfacetest.dto;
 
 import com.xn.common.base.BaseDto;
 
+import java.util.List;
+
 /**
  * TestPlan Dto 对象
  * 
@@ -55,6 +57,16 @@ public class TestPlanDto extends BaseDto {
      */
     private String createPerson;
 
+    /**
+     * 测试集列表
+     */
+    private List<TestSuitDto> suitList;
+
+    /**
+     * 测试环境
+     */
+    private List<TestEnvironmentDto> environmentList;
+
     public Long getId() {
         return this.id;
     }
@@ -103,7 +115,20 @@ public class TestPlanDto extends BaseDto {
         this.createPerson = createPerson;
     }
 
+    public List<TestSuitDto> getSuitList() {
+        return suitList;
+    }
 
+    public void setSuitList(List<TestSuitDto> suitList) {
+        this.suitList = suitList;
+    }
 
+    public List<TestEnvironmentDto> getEnvironmentList() {
+        return environmentList;
+    }
+
+    public void setEnvironmentList(List<TestEnvironmentDto> environmentList) {
+        this.environmentList = environmentList;
+    }
 }
 

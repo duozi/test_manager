@@ -115,4 +115,17 @@ public interface TestPlanService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestPlanDto> testPlans);
+
+    /**
+     * 查询测试计划（含测试集，时间配置，测试环境信息）
+     * @param params
+     * @return
+     */
+    List<TestPlanDto> listWithOtherInformation(Map<String, Object> params);
+
+    /**
+     * 发布计划
+     * @param l
+     */
+    void publishPlan(Integer status,Long id);
 }

@@ -149,10 +149,6 @@ form .choose-sys {
     margin-top: 1%;
 }
 
-.case-form label {
-    width: 30%;
-}
-
 .modal-suit-list {
     width: 50% !important;
 }
@@ -362,3 +358,8 @@ form .choose-sys {
 }
 
 .disabled { pointer-events: none; }
+
+label.error
+{
+    width: 1% !important;
+}

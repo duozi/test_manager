@@ -9,6 +9,7 @@
         <result property="description" column="description"/>
         <result property="createPerson" column="create_person"/>
         <result property="systemId" column="system_id"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
@@ -72,20 +73,22 @@
         </where>
     </select>
 
-    <select id="getSuitByCaseId" resultMap="TestSuitMap">
+    <select id="getByPlanId" resultMap="TestSuitMap">
         select ts.*
-        from　test_suit ts
+        from test_suit ts
+        left JOIN relation_plan_suit rps on ts.id = rps.suit_id
+        where rps.plan_id = #{planId}
+    </select>
+
+    <select id="getSuitByCaseId" resultMap="TestSuitMap" parameterType="Long">
+        select ts.*
+        from test_suit ts
         where ts.id in (
             select suit_id
             from relation_suit_case
-            <where>
-                <if test="@Ognl@isNotEmpty(caseId)">
-                    AND   case_id = #{caseId}
-                </if>
-            </where>
+            where case_id = #{caseId}
             GROUP BY suit_id
         )
-
     </select>
 
     <select id="count" resultType="long">
@@ -151,7 +154,7 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
           update
                 test_suit
@@ -159,7 +162,7 @@
             WHERE
                 id = #{id}
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

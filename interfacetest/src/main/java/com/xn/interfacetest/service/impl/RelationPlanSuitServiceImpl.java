@@ -75,6 +75,7 @@ public class RelationPlanSuitServiceImpl implements RelationPlanSuitService {
     @Override
     public RelationPlanSuitDto save(RelationPlanSuitDto relationPlanSuitDto) {
         RelationPlanSuit relationPlanSuit = BeanUtils.toBean(relationPlanSuitDto,RelationPlanSuit.class);
+        //保存操作
         relationPlanSuitMapper.save(relationPlanSuit);
         relationPlanSuitDto.setId(relationPlanSuit.getId());
         return relationPlanSuitDto;
@@ -114,6 +115,11 @@ public class RelationPlanSuitServiceImpl implements RelationPlanSuitService {
     @Override
     public int deleteBatch(List<RelationPlanSuitDto> relationPlanSuits) {
         return 0;
+    }
+
+    @Override
+    public void deleteByPlanId(Long id) {
+        relationPlanSuitMapper.deleteByPlanId(id);
     }
 
 }

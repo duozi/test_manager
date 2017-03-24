@@ -55,6 +55,11 @@ public class DataAssert extends BaseEntity {
      */
     private Long caseId;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
 
 //
 //    private TestCase testCase;
@@ -118,10 +123,15 @@ public class DataAssert extends BaseEntity {
     public void setCaseId(Long caseId) {
         this.caseId = caseId;
     }
-    
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
 
-    
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
 //    public void setTestCase(TestCase testCase){
 //        this.testCase = testCase;
 //    }

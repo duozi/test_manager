@@ -78,7 +78,12 @@ public class RelationCaseParamsServiceImpl implements RelationCaseParamsService 
     @Override
     public RelationCaseParamsDto save(RelationCaseParamsDto relationCaseParamsDto) {
         RelationCaseParams relationCaseParams = BeanUtils.toBean(relationCaseParamsDto,RelationCaseParams.class);
-        relationCaseParamsMapper.save(relationCaseParams);
+        if(null == relationCaseParamsDto.getId()){
+            relationCaseParamsMapper.save(relationCaseParams);
+        } else {
+            relationCaseParamsMapper.update(relationCaseParams);
+        }
+
         relationCaseParamsDto.setId(relationCaseParams.getId());
         return relationCaseParamsDto;
     }

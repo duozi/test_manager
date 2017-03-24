@@ -55,6 +55,11 @@ public class DataAssertDto extends BaseDto {
      */
     private Long caseId;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
     public Long getId() {
         return this.id;
     }
@@ -103,7 +108,12 @@ public class DataAssertDto extends BaseDto {
         this.caseId = caseId;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
 
-
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
 }
 

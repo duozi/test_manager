@@ -79,7 +79,11 @@ public class RelationCaseRedis extends BaseEntity {
     private Integer type;
 
     private TestRedisConfig testRedisConfig;
-   
+
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
 	
 	public RelationCaseRedis(){
 	    // default constructor
@@ -175,5 +179,13 @@ public class RelationCaseRedis extends BaseEntity {
     
     public void setTestRedisConfig(TestRedisConfig testRedisConfig){
         this.testRedisConfig = testRedisConfig;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

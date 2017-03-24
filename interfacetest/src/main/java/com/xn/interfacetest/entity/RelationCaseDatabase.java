@@ -61,7 +61,10 @@ public class RelationCaseDatabase extends BaseEntity {
      */
     private Long interfaceId;
 
-
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
 
     public RelationCaseDatabase(){
         // default constructor
@@ -127,4 +130,11 @@ public class RelationCaseDatabase extends BaseEntity {
         this.interfaceId = interfaceId;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
 }

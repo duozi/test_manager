@@ -6,6 +6,8 @@ package com.xn.interfacetest.dto;
 
 import com.xn.common.base.BaseDto;
 
+import java.util.List;
+
 /**
  * TestCase Dto 对象
  * 
@@ -108,14 +110,20 @@ public class TestCaseDto extends BaseDto {
      *
      * header里面的自定义参数类型
      */
-    private Boolean customParamsHeaderType;
+    private Integer customParamsHeaderType;
 
     /**
      *
      * body里面的自定义参数类型
      */
-    private Boolean customParamsBodyType;
+    private Integer customParamsBodyType;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
+    private TestInterfaceDto interfaceDto;
 
     public Long getId() {
         return this.id;
@@ -229,20 +237,36 @@ public class TestCaseDto extends BaseDto {
         this.customParamsBody = customParamsBody;
     }
 
-    public Boolean getCustomParamsHeaderType() {
+    public Integer getCustomParamsHeaderType() {
         return customParamsHeaderType;
     }
 
-    public void setCustomParamsHeaderType(Boolean customParamsHeaderType) {
+    public void setCustomParamsHeaderType(Integer customParamsHeaderType) {
         this.customParamsHeaderType = customParamsHeaderType;
     }
 
-    public Boolean getCustomParamsBodyType() {
+    public Integer getCustomParamsBodyType() {
         return customParamsBodyType;
     }
 
-    public void setCustomParamsBodyType(Boolean customParamsBodyType) {
+    public void setCustomParamsBodyType(Integer customParamsBodyType) {
         this.customParamsBodyType = customParamsBodyType;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public TestInterfaceDto getInterfaceDto() {
+        return interfaceDto;
+    }
+
+    public void setInterfaceDto(TestInterfaceDto interfaceDto) {
+        this.interfaceDto = interfaceDto;
     }
 }
 

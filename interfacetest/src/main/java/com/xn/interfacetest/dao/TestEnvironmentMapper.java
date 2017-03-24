@@ -6,6 +6,8 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestEnvironment;
 
+import java.util.List;
+
 /**
  * TestEnvironment Dao 接口
  * 
@@ -14,4 +16,5 @@ import com.xn.interfacetest.entity.TestEnvironment;
  */
 public interface TestEnvironmentMapper extends BaseMapper<TestEnvironment, Long> {
 
+    List<TestEnvironment> getByPlanId(Long planId);
 }

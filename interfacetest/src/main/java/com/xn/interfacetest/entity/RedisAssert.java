@@ -31,10 +31,10 @@ public class RedisAssert extends BaseEntity {
     private Long redisConfigId;
 
     /**
-     * 
-     * Sql 
+     *
+     * keyStr
      */
-    private String sqlStr;
+    private String keyStr;
 
     /**
      * 
@@ -60,9 +60,17 @@ public class RedisAssert extends BaseEntity {
    
     
     private TestCase testCase;
-   
-	
-	public RedisAssert(){
+
+    /**
+     * 缓存类型1-时间，2-值
+     */
+    private Integer type;
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
+    public RedisAssert(){
 	    // default constructor
 	}
     
@@ -85,15 +93,15 @@ public class RedisAssert extends BaseEntity {
     public void setRedisConfigId(Long redisConfigId) {
         this.redisConfigId = redisConfigId;
     }
-    
-    public String getSqlStr() {
-        return this.sqlStr;
+
+    public String getKeyStr() {
+        return keyStr;
     }
-    
-    public void setSqlStr(String sqlStr) {
-        this.sqlStr = sqlStr;
+
+    public void setKeyStr(String keyStr) {
+        this.keyStr = keyStr;
     }
-    
+
     public String getAssertParam() {
         return this.assertParam;
     }
@@ -132,5 +140,21 @@ public class RedisAssert extends BaseEntity {
     
     public void setTestCase(TestCase testCase){
         this.testCase = testCase;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

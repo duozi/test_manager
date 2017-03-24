@@ -117,4 +117,11 @@ public class TestParamsServiceImpl implements TestParamsService {
         return 0;
     }
 
+    @Override
+    public List<TestParamsDto> getParamsByInterfaceId(String interfaceId) {
+        List<TestParams> list = testParamsMapper.getParamsByInterfaceId(interfaceId);
+        List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
+        return dtoList;
+    }
+
 }

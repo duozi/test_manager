@@ -3,15 +3,13 @@
 
 <head>
     <!-- DataTables JavaScript -->
-    <script src="../../vendor/datatables/js/jquery.dataTables.minTime.js"></script>
-    <script src="../../vendor/datatables-plugins/dataTables.bootstrap.minTime.js"></script>
+    <script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
+
         });
 
         function reloadInterfaceList(){
@@ -70,7 +68,7 @@
                         </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control" name="type">
-                                <option value="" disabled selected>接口类型</option>
+                                <option value="" <#if type = null>disabled selected</#if> >接口类型</option>
                                 <#if interfaceTypeList ??>
                                     <#list interfaceTypeList as item>
                                         <option value="${item.getId()}" <#if type = item.getId()>selected</#if>>${item.getName()}</option>

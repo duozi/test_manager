@@ -119,4 +119,16 @@ public class RelationPlanEnvironmentServiceImpl implements RelationPlanEnvironme
         return 0;
     }
 
+    @Override
+    public RelationPlanEnvironmentDto getByPlanId(Long planId) {
+        RelationPlanEnvironment relationPlanEnvironment = relationPlanEnvironmentMapper.getByPlanId(planId);
+        RelationPlanEnvironmentDto relationPlanEnvironmentDto = BeanUtils.toBean(relationPlanEnvironment,RelationPlanEnvironmentDto.class);
+        return relationPlanEnvironmentDto;
+    }
+
+    @Override
+    public void deleteByPlanId(Long planId) {
+        relationPlanEnvironmentMapper.deleteByPlanId(planId);
+    }
+
 }

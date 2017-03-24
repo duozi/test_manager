@@ -260,10 +260,16 @@ public class PerformancePlanController {
             for(PerformancePlanMonitoredDto item:performancePlanMonitoredDtoList){
                 Integer monitoredMachineId=item.getMonitoredMachineId();
                 String monitoredMachineName=item.getMonitoredMachineName();
+                PerformanceMonitoredMachineDto performanceMonitoredMachineDto=new PerformanceMonitoredMachineDto();
+                performanceMonitoredMachineDto.setId(monitoredMachineId);
+                performanceMonitoredMachineDto=performanceMonitoredMachineService.get(performanceMonitoredMachineDto);
+
+                String monitoredMachineIP=performanceMonitoredMachineDto.getIp();
                 PerformanceMonitoredMachineResultDto performanceMonitoredResultDto=new PerformanceMonitoredMachineResultDto();
                 performanceMonitoredResultDto.setPlanId(planId);
                 performanceMonitoredResultDto.setMonitoredMachineId(monitoredMachineId);
                 performanceMonitoredResultDto.setMonitoredMachineName(monitoredMachineName);
+                performanceMonitoredResultDto.setMonitoredMachineIp(monitoredMachineIP);
                 performanceMonitoredResultDto.setResultId(resultId);
                 performanceMonitoredMachineResultService.save(performanceMonitoredResultDto);
             }

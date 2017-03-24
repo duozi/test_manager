@@ -111,13 +111,18 @@ public class TestCase extends BaseEntity {
      *
      * header里面的自定义参数类型
      */
-    private Boolean customParamsHeaderType;
+    private Integer customParamsHeaderType;
 
     /**
      *
      * body里面的自定义参数类型
      */
-    private Boolean customParamsBodyType;
+    private Integer customParamsBodyType;
+
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
 
     private List<DataAssert> dataAsserts = new ArrayList<DataAssert>();
     
@@ -270,19 +275,27 @@ public class TestCase extends BaseEntity {
         this.customParamsBody = customParamsBody;
     }
 
-    public Boolean getCustomParamsHeaderType() {
+    public Integer getCustomParamsHeaderType() {
         return customParamsHeaderType;
     }
 
-    public void setCustomParamsHeaderType(Boolean customParamsHeaderType) {
+    public void setCustomParamsHeaderType(Integer customParamsHeaderType) {
         this.customParamsHeaderType = customParamsHeaderType;
     }
 
-    public Boolean getCustomParamsBodyType() {
+    public Integer getCustomParamsBodyType() {
         return customParamsBodyType;
     }
 
-    public void setCustomParamsBodyType(Boolean customParamsBodyType) {
+    public void setCustomParamsBodyType(Integer customParamsBodyType) {
         this.customParamsBodyType = customParamsBodyType;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

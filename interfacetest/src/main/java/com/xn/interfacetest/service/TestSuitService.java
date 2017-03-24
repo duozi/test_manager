@@ -128,4 +128,11 @@ public interface TestSuitService {
      * @return
      */
     List<TestSuitDto> getSuitByCaseId(Long id);
+
+    /**
+     * 根据测试计划查询测试集信息
+     * @param id
+     * @return
+     */
+    List<TestSuitDto> getByPlanId(Long id);
 }

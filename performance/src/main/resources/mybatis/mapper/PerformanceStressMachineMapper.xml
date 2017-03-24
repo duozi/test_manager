@@ -102,8 +102,8 @@
                 ip,
                 username,
                 password,
-                create_person_status
-                stress_machine_s
+                create_person,
+                stress_machine_status
             ) VALUES (
                 #{id},
                 #{stressMachineName},
@@ -132,11 +132,12 @@
                 ip,
                 username,
                 password,
-                create_person
+                create_person,
+                stress_machine_status
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.stressMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson})
+            (#{item.id},#{item.stressMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson},#{stressMachineStatus})
         </foreach>
     </insert>
     
@@ -170,6 +171,9 @@
                 </if>
                 <if test="createPerson != null">
                 	<![CDATA[ create_person = #{createPerson} ]]>
+                </if>
+                <if test="stressMachineStatus != null">
+                    <![CDATA[ stress_machine_status = #{stressMachineStatus} ]]>
                 </if>
             </set>
             WHERE

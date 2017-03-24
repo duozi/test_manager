@@ -153,4 +153,11 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
         return testEnvironmentDto;
     }
 
+    @Override
+    public List<TestEnvironmentDto> getByPlanId(Long planId) {
+        List<TestEnvironment> list = testEnvironmentMapper.getByPlanId(planId);
+        List<TestEnvironmentDto> dtoList = CollectionUtils.transform(list, TestEnvironmentDto.class);
+        return dtoList;
+    }
+
 }

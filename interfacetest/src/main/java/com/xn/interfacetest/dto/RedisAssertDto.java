@@ -32,10 +32,10 @@ public class RedisAssertDto extends BaseDto {
     private Long redisConfigId;
 
     /**
-     * 
-     * Sql 
+     *
+     * keyStr
      */
-    private String sqlStr;
+    private String keyStr;
 
     /**
      * 
@@ -55,6 +55,16 @@ public class RedisAssertDto extends BaseDto {
      */
     private Long caseId;
 
+    /**
+     * 缓存类型1-时间，2-值
+     */
+    private Integer type;
+
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
     public Long getId() {
         return this.id;
     }
@@ -69,14 +79,6 @@ public class RedisAssertDto extends BaseDto {
     
     public void setRedisConfigId(Long redisConfigId) {
         this.redisConfigId = redisConfigId;
-    }
-
-    public String getSqlStr() {
-        return this.sqlStr;
-    }
-    
-    public void setSqlStr(String sqlStr) {
-        this.sqlStr = sqlStr;
     }
 
     public String getAssertParam() {
@@ -103,7 +105,28 @@ public class RedisAssertDto extends BaseDto {
         this.caseId = caseId;
     }
 
+    public Integer getType() {
+        return type;
+    }
 
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
+    public String getKeyStr() {
+        return keyStr;
+    }
+
+    public void setKeyStr(String keyStr) {
+        this.keyStr = keyStr;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
 }
 

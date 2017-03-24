@@ -6,6 +6,8 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.service.TestInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +36,9 @@ public class TestCaseServiceImpl implements TestCaseService {
      */
     @Autowired
     private TestCaseMapper testCaseMapper;
+
+    @Autowired
+    private TestInterfaceService testInterfaceService;
 
     @Override
     @Transactional(readOnly = true)
@@ -119,6 +124,25 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Override
     public int deleteBatch(List<TestCaseDto> testCases) {
         return 0;
+    }
+
+    @Override
+    public int updatePart(TestCaseDto testCaseDto) {
+        TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
+        return testCaseMapper.updatePart(testCase);
+    }
+
+    @Override
+    public List<TestCaseDto> listByParams(Map<String, Object> params) {
+        List<TestCase> list = testCaseMapper.listByParams(params);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        for(TestCaseDto testCaseDto: dtoList ){
+            if(null != testCaseDto.getInterfaceId()){
+                TestInterfaceDto testInterfaceDto = testInterfaceService.get(testCaseDto.getInterfaceId());
+                testCaseDto.setInterfaceDto(testInterfaceDto);
+            }
+        }
+        return dtoList;
     }
 
 }

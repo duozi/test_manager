@@ -12,6 +12,7 @@
         <result property="sqlStr" column="sql_str"/>
         <result property="type" column="type"/>
         <result property="interfaceId" column="interface_id"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
 
     <sql id="columns">
@@ -61,7 +62,30 @@
         <include refid="columns" />
         FROM
         relation_case_database
-        <include refid="where"/>
+        <where>
+            is_delete = 0
+            <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(databaseId)">
+                AND database_id = #{databaseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(operateType)">
+                AND operate_type = #{operateType}
+            </if>
+            <if test="@Ognl@isNotEmpty(sqlStr)">
+                AND sql_str = #{sqlStr}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
+            <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+        </where>
     </select>
 
     <select id="count" resultType="long">
@@ -140,15 +164,15 @@
         id = #{id}
     </update>
 
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                relation_case_database
+            update
+            relation_case_database
+            set is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
 
     <delete id="delete">
         <![CDATA[

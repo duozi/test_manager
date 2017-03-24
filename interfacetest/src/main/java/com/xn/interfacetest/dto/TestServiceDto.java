@@ -57,6 +57,11 @@ public class TestServiceDto extends BaseDto {
     */
     private TestSystemDto systemDto;
 
+    /**
+     * 是否被删除0-否，1-是
+     */
+    private Integer isDelete;
+
     public Long getId() {
         return this.id;
     }
@@ -103,6 +108,14 @@ public class TestServiceDto extends BaseDto {
 
     public void setJarPath(String jarPath) {
         this.jarPath = jarPath;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }
 
