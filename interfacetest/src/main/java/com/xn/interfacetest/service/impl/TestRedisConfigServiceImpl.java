@@ -117,4 +117,11 @@ public class TestRedisConfigServiceImpl implements TestRedisConfigService {
         return 0;
     }
 
+    @Override
+    public TestRedisConfigDto getByRedisNameAndEnvironmentId(String redisName, Long environmentId) {
+        TestRedisConfig testRedisConfig = testRedisConfigMapper.getByRedisNameAndEnvironmentId(redisName,environmentId);
+        TestRedisConfigDto testRedisConfigDto = BeanUtils.toBean(testRedisConfig,TestRedisConfigDto.class);
+        return testRedisConfigDto;
+    }
+
 }

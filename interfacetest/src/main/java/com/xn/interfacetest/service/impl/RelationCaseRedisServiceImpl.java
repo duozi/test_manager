@@ -121,4 +121,11 @@ public class RelationCaseRedisServiceImpl implements RelationCaseRedisService {
         return 0;
     }
 
+    @Override
+    public List<RelationCaseRedisDto> getByCaseIdAndOperateType(Long caseId, int operateType) {
+        List<RelationCaseRedis> list = relationCaseRedisMapper.getByCaseIdAndOperateType(caseId,operateType);
+        List<RelationCaseRedisDto> dtoList = CollectionUtils.transform(list, RelationCaseRedisDto.class);
+        return dtoList;
+    }
+
 }

@@ -1,17 +1,17 @@
 package com.xn.manage.autotestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import com.xn.common.base.CommonResult;
 import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.RelationPlanEnvironment;
 import com.xn.interfacetest.entity.TestPlan;
 import com.xn.interfacetest.service.*;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.ExcuteTypeEnum;
-import com.xn.performance.util.CommonResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +35,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/autotest/plan")
 public class PlanController {
 	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
+
+	private static final SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
 	@Autowired
 	private CompanyService companyService;
@@ -170,8 +173,21 @@ public class PlanController {
 				String[] excuteTimes =  request.getParameterValues("excuteTime");
 				if(null != excuteTimes && excuteTimes.length > 0){
 					for(String excuteTime : excuteTimes){
-						timeConfigDto.setTimeExpression(excuteTime);
-						timeConfigService.save(timeConfigDto);
+						boolean dateflag=true;
+						Date time = new Date();
+						try {
+							time = format.parse(excuteTime);
+						}catch (ParseException e){
+							dateflag=false;
+						}finally{
+							if(!dateflag){
+								result.setCode(CommonResultEnum.ERROR.getReturnCode());
+								result.setMessage("时间格式不正确！");
+								return result;
+							}
+							timeConfigDto.setExcuteTime(excuteTime);
+							timeConfigService.save(timeConfigDto);
+						}
 					}
 				}
 			} else if(testPlanDto.getExcuteType() == ExcuteTypeEnum.circulation.getId()){
@@ -203,10 +219,8 @@ public class PlanController {
 				}
 			}
 		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message =e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
 			logger.error("保存接口异常｛｝",e);
 		}
 		return  result;
@@ -227,6 +241,151 @@ public class PlanController {
 			result.setCode(code);
 			result.setMessage(message);
 			logger.error("发布操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/getPlanTime", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TimeConfigDto> getPlanTime(HttpServletRequest request) {
+		String planId = request.getParameter("planId");
+		List<TimeConfigDto> timeConfigDtos = new ArrayList<TimeConfigDto>();
+		try{
+			if(StringUtils.isNotBlank(planId)){
+				timeConfigDtos = timeConfigService.getByPlanId(Long.parseLong(planId));
+			}
+		}catch (Exception e){
+			logger.error("操作异常｛｝",e);
+		}
+		return  timeConfigDtos;
+	}
+
+	@RequestMapping(value="/savePlanSuit", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanSuit(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String[] suitIds = request.getParameterValues("suitIds[]");
+			Long suitId = 0L;
+			//先删除对应计划的所有测试集，再保存新的测试集关系
+			String planIdStr = request.getParameter("planId");
+			Long planId = Long.parseLong(planIdStr);
+			relationPlanSuitService.deleteByPlanId(planId);
+			if(null != suitIds && suitIds.length > 0){
+				for(String suitIdStr : suitIds){
+					if(!"null".equals(suitIdStr) && StringUtils.isNotBlank(suitIdStr)){
+						RelationPlanSuitDto relationPlanSuitDto = new RelationPlanSuitDto();
+						relationPlanSuitDto.setPlanId(planId
+						);
+						relationPlanSuitDto.setSuitId(Long.parseLong(suitIdStr));
+						relationPlanSuitService.save(relationPlanSuitDto);
+					}
+				}
+			}
+
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试集异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/savePlanEnvironment", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanEnvironment(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String[] environmentIds = request.getParameterValues("environmentIds[]");
+			Long suitId = 0L;
+			//先删除对应计划的所有测试集，再保存新的测试集关系
+			String planIdStr = request.getParameter("planId");
+			Long planId = Long.parseLong(planIdStr);
+			//先删除对应计划的所有环境关系，再保存新的测试集关系
+			relationPlanEnvironmentService.deleteByPlanId(planId);
+			if(null != environmentIds && environmentIds.length > 0){
+				for(String environmentIdStr : environmentIds){
+					if(!"null".equals(environmentIdStr) && StringUtils.isNotBlank(environmentIdStr)){
+						RelationPlanEnvironmentDto relationPlanEnvironmentDto = new RelationPlanEnvironmentDto();
+						relationPlanEnvironmentDto.setPlanId(planId);
+						relationPlanEnvironmentDto.setEnvironmentId(Long.parseLong(environmentIdStr));
+						relationPlanEnvironmentService.save(relationPlanEnvironmentDto);
+					}
+				}
+			}
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试环境异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/savePlanTime", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanTime(TimeConfigDto timeConfigDto,HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			//先删除以前的配置
+			timeConfigService.deleteByPlanId(timeConfigDto.getPlanId());
+			String excuteTypeStr = request.getParameter("excuteType");
+			Integer excuteType = Integer.parseInt(excuteTypeStr);
+			if(excuteType == ExcuteTypeEnum.once.getId()){
+				String[] excuteTimes =  request.getParameterValues("excuteTime");
+				if(null != excuteTimes && excuteTimes.length > 0){
+					for(String excuteTime : excuteTimes){
+						boolean dateflag=true;
+						Date time = new Date();
+						try {
+							time = format.parse(excuteTime);
+						}catch (ParseException e){
+							dateflag=false;
+						}finally{
+							if(!dateflag){
+								result.setCode(CommonResultEnum.ERROR.getReturnCode());
+								result.setMessage("时间格式不正确！");
+								return result;
+							}
+							timeConfigDto.setExcuteTime(excuteTime);
+							timeConfigService.save(timeConfigDto);
+						}
+					}
+				}
+			} else if(excuteType == ExcuteTypeEnum.circulation.getId()){
+				String timeDescription =  request.getParameter("timeDescription");
+				if(StringUtils.isNotBlank(timeDescription)){
+					timeConfigDto.setDescription(timeDescription);
+				}
+
+				String cronExpression =  request.getParameter("cronExpression");
+				if(StringUtils.isNotBlank(cronExpression)){
+					timeConfigDto.setTimeExpression(cronExpression);
+				}
+				timeConfigService.save(timeConfigDto);
+			}
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试集异常｛｝",e);
+		}
+		return  result;
+	}
+
+	//执行测试计划
+	@RequestMapping(value="/excutePlan", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult excutePlan(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String planIdStr = request.getParameter("planId");
+			if(StringUtils.isNotBlank(planIdStr)){
+				Long planId = Long.parseLong(planIdStr);
+				result = testPlanService.excutePlan(planId);
+			}
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("计划执行异常｛｝",e);
 		}
 		return  result;
 	}

@@ -7,6 +7,8 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TimeConfig;
 
+import java.util.List;
+
 /**
  * TimeConfig Dao 接口
  * 
@@ -15,4 +17,7 @@ import com.xn.interfacetest.entity.TimeConfig;
  */
 public interface TimeConfigMapper extends BaseMapper<TimeConfig, Long> {
 
+    List<TimeConfig> getByPlanId(Long planId);
+
+    void deleteByPlanId(Long planId);
 }

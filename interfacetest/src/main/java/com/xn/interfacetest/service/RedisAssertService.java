@@ -114,4 +114,11 @@ public interface RedisAssertService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RedisAssertDto> redisAsserts);
+
+    /**
+     * 根据用例id查询redis断言
+     * @param id
+     * @return
+     */
+    List<RedisAssertDto> getByCaseId(Long id);
 }

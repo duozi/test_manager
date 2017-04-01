@@ -4,6 +4,7 @@
 package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.entity.ParamEntity;
 import com.xn.interfacetest.entity.TestParams;
 
 import java.util.List;
@@ -17,4 +18,6 @@ import java.util.List;
 public interface TestParamsMapper extends BaseMapper<TestParams, Long> {
 
     List<TestParams> getParamsByInterfaceId(String interfaceId);
+
+    List<ParamEntity> listByCaseIdFromRelation(Long caseId);
 }

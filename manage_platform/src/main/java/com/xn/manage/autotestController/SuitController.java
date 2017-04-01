@@ -54,6 +54,7 @@ public class SuitController {
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
+
 		Map<String,Object> params = new HashMap<String,Object>();
 
 		String systemId = request.getParameter("selectSystemId");
@@ -94,8 +95,13 @@ public class SuitController {
 			map.put("testSuitDto", testSuitDto);
 		}
 
+		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
+		TestSystemDto systemDto = new TestSystemDto();
+		systemList = systemService.list(systemDto);
+
 		map.put("caseTypeEnums",CaseTypeEnum.values());
 		map.put("interfaceTypeList", interfaceTypeEnumList);
+		map.put("systemList",systemList);
 		return "/autotest/suit/suit_item";
 	}
 
@@ -193,5 +199,35 @@ public class SuitController {
 		//查询指定测试集的指定接口的用例
 		relationSuitCaseDtoList = relationSuitCaseService.list(params);
 		return relationSuitCaseDtoList;
+	}
+
+	/**
+	 * 得到所有的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getSuitList")
+	@ResponseBody
+	public List<TestSuitDto> getSuitList(HttpServletRequest request) {
+		Map<String,Object> params = new HashMap<String, Object>();
+		//查询指定测试集的指定接口的用例
+		return testSuitService.listWithSystemAndInterface(params);
+	}
+
+	/**
+	 * 得到指定测试计划的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getPlanSuitList")
+	@ResponseBody
+	public List<TestSuitDto> getPlanSuitList(HttpServletRequest request) {
+		//查询指定测试集的指定接口的用例
+		List<TestSuitDto> list = new ArrayList<TestSuitDto>();
+		String planId = request.getParameter("planId");
+		if(StringUtils.isNotBlank(planId) && !"null".equals(planId)){
+			list = testSuitService.getByPlanId(Long.parseLong(planId));
+		}
+		return list;
 	}
 }

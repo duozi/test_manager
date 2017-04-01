@@ -97,27 +97,16 @@ public class TestCase extends BaseEntity {
 
     /**
      *
-     * header里面的自定义参数
+     * 自定义参数
      */
-    private String customParamsHeader;
+    private String customParams;
+
 
     /**
      *
-     * body里面的自定义参数
+     * 自定义参数类型
      */
-    private String customParamsBody;
-
-    /**
-     *
-     * header里面的自定义参数类型
-     */
-    private Integer customParamsHeaderType;
-
-    /**
-     *
-     * body里面的自定义参数类型
-     */
-    private Integer customParamsBodyType;
+    private Integer customParamsType;
 
     /**
      * 是否被删除0-否，1-是
@@ -259,36 +248,20 @@ public class TestCase extends BaseEntity {
         this.paramsAsserts = paramsAsserts;
     }
 
-    public String getCustomParamsHeader() {
-        return customParamsHeader;
+    public String getCustomParams() {
+        return customParams;
     }
 
-    public void setCustomParamsHeader(String customParamsHeader) {
-        this.customParamsHeader = customParamsHeader;
+    public void setCustomParams(String customParams) {
+        this.customParams = customParams;
     }
 
-    public String getCustomParamsBody() {
-        return customParamsBody;
+    public Integer getCustomParamsType() {
+        return customParamsType;
     }
 
-    public void setCustomParamsBody(String customParamsBody) {
-        this.customParamsBody = customParamsBody;
-    }
-
-    public Integer getCustomParamsHeaderType() {
-        return customParamsHeaderType;
-    }
-
-    public void setCustomParamsHeaderType(Integer customParamsHeaderType) {
-        this.customParamsHeaderType = customParamsHeaderType;
-    }
-
-    public Integer getCustomParamsBodyType() {
-        return customParamsBodyType;
-    }
-
-    public void setCustomParamsBodyType(Integer customParamsBodyType) {
-        this.customParamsBodyType = customParamsBodyType;
+    public void setCustomParamsType(Integer customParamsType) {
+        this.customParamsType = customParamsType;
     }
 
     public Integer getIsDelete() {

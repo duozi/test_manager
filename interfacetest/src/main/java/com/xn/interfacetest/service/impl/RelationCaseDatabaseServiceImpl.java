@@ -123,4 +123,18 @@ public class RelationCaseDatabaseServiceImpl implements RelationCaseDatabaseServ
         return 0;
     }
 
+    @Override
+    public List<RelationCaseDatabaseDto> getByCaseId(Long caseId) {
+        List<RelationCaseDatabase> list = relationCaseDatabaseMapper.getByCaseId(caseId);
+        List<RelationCaseDatabaseDto> dtoList = CollectionUtils.transform(list, RelationCaseDatabaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<RelationCaseDatabaseDto> getByCaseIdAndOperateType(Long caseId, int operateType) {
+        List<RelationCaseDatabase> list = relationCaseDatabaseMapper.getByCaseIdAndOperateType(caseId,operateType);
+        List<RelationCaseDatabaseDto> dtoList = CollectionUtils.transform(list, RelationCaseDatabaseDto.class);
+        return dtoList;
+    }
+
 }

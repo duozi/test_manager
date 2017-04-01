@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.dto.ParamDto;
 import com.xn.interfacetest.dto.TestParamsDto;
 
 
@@ -122,4 +123,11 @@ public interface TestParamsService {
      * @return
      */
     List<TestParamsDto> getParamsByInterfaceId(String interfaceId);
+
+    /**
+     * 根据用例id查询
+     * @param id
+     * @return
+     */
+    List<ParamDto> listByCaseIdFromRelation(Long id);
 }

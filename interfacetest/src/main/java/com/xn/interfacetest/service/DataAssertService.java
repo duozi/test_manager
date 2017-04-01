@@ -115,4 +115,11 @@ public interface DataAssertService {
      * @return 操作影响行数
      */
     int deleteBatch(List<DataAssertDto> dataAsserts);
+
+    /**
+     * 根据caseid查询
+     * @param caseId
+     * @return
+     */
+    List<DataAssertDto> getByCaseId(Long caseId);
 }

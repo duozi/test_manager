@@ -6,6 +6,8 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.ParamDto;
+import com.xn.interfacetest.entity.ParamEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -121,6 +123,13 @@ public class TestParamsServiceImpl implements TestParamsService {
     public List<TestParamsDto> getParamsByInterfaceId(String interfaceId) {
         List<TestParams> list = testParamsMapper.getParamsByInterfaceId(interfaceId);
         List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<ParamDto> listByCaseIdFromRelation(Long caseId) {
+        List<ParamEntity> list = testParamsMapper.listByCaseIdFromRelation(caseId);
+        List<ParamDto> dtoList = CollectionUtils.transform(list, ParamDto.class);
         return dtoList;
     }
 

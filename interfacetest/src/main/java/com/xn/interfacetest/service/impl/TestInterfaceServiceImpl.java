@@ -180,4 +180,11 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     public String getParamsByInterfaceId(String interfaceId) {
         return testInterfaceMapper.getParamsByInterfaceId(interfaceId);
     }
+
+    @Override
+    public TestInterfaceDto getByCaseId(Long caseId) {
+        TestInterface testInterface = testInterfaceMapper.getByCaseId(caseId);
+        TestInterfaceDto testInterfaceDto = BeanUtils.toBean(testInterface,TestInterfaceDto.class);
+        return testInterfaceDto;
+    }
 }

@@ -8,6 +8,8 @@ import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.ParamsAssert;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * ParamsAssert Dao 接口
  * 
@@ -16,4 +18,5 @@ import org.springframework.stereotype.Service;
  */
 public interface ParamsAssertMapper extends BaseMapper<ParamsAssert, Long> {
 
+    List<ParamsAssert> getByCaseId(Long caseId);
 }

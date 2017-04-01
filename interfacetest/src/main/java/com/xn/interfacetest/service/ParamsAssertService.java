@@ -115,4 +115,11 @@ public interface ParamsAssertService {
      * @return 操作影响行数
      */
     int deleteBatch(List<ParamsAssertDto> paramsAsserts);
+
+    /**
+     * 根据用例id查询对应的断言信息
+     * @param id
+     * @return
+     */
+    List<ParamsAssertDto> getByCaseId(Long id);
 }

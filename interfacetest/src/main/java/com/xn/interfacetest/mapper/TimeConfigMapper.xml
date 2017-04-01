@@ -9,11 +9,12 @@
         <result property="description" column="description"/>
         <result property="timeExpression" column="time_expression"/>
         <result property="planId" column="plan_id"/>
+        <result property="excuteTime" column="excute_time"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, description, time_expression, plan_id
+        id, description, time_expression, plan_id,DATE_FORMAT(excute_time,'%Y-%m-%d %H:%i:%s') excute_time
         ]]>
     </sql>
     
@@ -31,6 +32,9 @@
            <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
+            <if test="@Ognl@isNotEmpty(excuteTime)">
+                AND excute_time = #{excuteTime}
+            </if>
         </where>
     </sql>
     
@@ -41,6 +45,16 @@
                 time_config
             WHERE 
                 id = #{id} 
+        ]]>
+    </select>
+
+    <select id="getByPlanId" resultMap="TimeConfigMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                time_config
+            WHERE
+                plan_id = #{planId}
         ]]>
     </select>
     
@@ -68,12 +82,14 @@
                 id,
                 description,
                 time_expression,
-                plan_id
+                plan_id,
+                excute_time
             ) VALUES (
                 #{id},
                 #{description},
                 #{timeExpression},
-                #{planId}
+                #{planId},
+                str_to_date(#{excuteTime}, '%Y-%m-%d %H:%i:%s')
             )
         ]]>
     </insert>
@@ -84,11 +100,12 @@
                 id,
                 description,
                 time_expression,
-                plan_id
+                plan_id,
+                excute_time
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.description},#{item.timeExpression},#{item.planId})
+            (#{item.id},#{item.description},#{item.timeExpression},#{item.planId}，#{item.excuteTime})
         </foreach>
     </insert>
     
@@ -103,7 +120,10 @@
                 	<![CDATA[ time_expression = #{timeExpression} ]]>,
                 </if>
                 <if test="planId != null">
-                	<![CDATA[ plan_id = #{planId} ]]>
+                	<![CDATA[ plan_id = #{planId} ]]>,
+                </if>
+                <if test="excuteTime != null">
+                    <![CDATA[ excute_time = #{excuteTime} ]]>
                 </if>
             </set>
             WHERE
@@ -119,7 +139,17 @@
                 id = #{id} 
         ]]>
     </delete>
-    
+
+    <delete id="deleteByPlanId">
+        <![CDATA[
+            DELETE
+            FROM
+                time_config
+            WHERE
+                plan_id = #{planId}
+        ]]>
+    </delete>
+
     <delete id="delete">
         <![CDATA[
             DELETE

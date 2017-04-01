@@ -9,6 +9,8 @@ import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.DataAssert;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * DataAssert Dao 接口
  * 
@@ -17,4 +19,5 @@ import org.springframework.stereotype.Repository;
  */
 public interface DataAssertMapper extends BaseMapper<DataAssert, Long> {
 
+    List<DataAssert> getByCaseId(Long caseId);
 }

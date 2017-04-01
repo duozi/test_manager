@@ -10,13 +10,12 @@
         <result property="value" column="value"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="caseId" column="case_id"/>
-        <result property="type" column="type"/>
         <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, params_id, value, interface_id, case_id, type
+        id, params_id, value, interface_id, case_id
         ]]>
     </sql>
     
@@ -36,9 +35,6 @@
             </if>
            <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
-            </if>
-           <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
             </if>
         </where>
     </sql>
@@ -75,9 +71,6 @@
             <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-            <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
-            </if>
         </where>
     </select>
         
@@ -98,15 +91,13 @@
                 params_id,
                 value,
                 interface_id,
-                case_id,
-                type
+                case_id
             ) VALUES (
                 #{id},
                 #{paramsId},
                 #{value},
                 #{interfaceId},
-                #{caseId},
-                #{type}
+                #{caseId}
             )
         ]]>
     </insert>
@@ -118,12 +109,11 @@
                 params_id,
                 value,
                 interface_id,
-                case_id,
-                type
+                case_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.paramsId},#{item.value},#{item.interfaceId},#{item.caseId},#{item.type})
+            (#{item.id},#{item.paramsId},#{item.value},#{item.interfaceId},#{item.caseId})
         </foreach>
     </insert>
     
@@ -141,10 +131,7 @@
                 	<![CDATA[ interface_id = #{interfaceId} ]]>,
                 </if>
                 <if test="caseId != null">
-                	<![CDATA[ case_id = #{caseId} ]]>,
-                </if>
-                <if test="type != null">
-                	<![CDATA[ type = #{type} ]]>
+                	<![CDATA[ case_id = #{caseId} ]]>
                 </if>
             </set>
             WHERE

@@ -96,7 +96,15 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByCaseId" resultMap="TestInterfaceMap">
+        SELECT ti.*
+            FROM
+                test_interface ti,test_case tc
+            WHERE ti.id = tc.interface_id
+                and tc.id = #{caseId}
+    </select>
+
     <select id="list" resultMap="TestInterfaceMap">
         SELECT
             <include refid="columns" />

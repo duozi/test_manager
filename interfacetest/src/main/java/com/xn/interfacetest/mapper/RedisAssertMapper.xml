@@ -56,6 +56,15 @@
                 id = #{id} 
         ]]>
     </select>
+
+    <select id="getByCaseId" resultMap="RedisAssertMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+          redis_assert
+        where
+          is_delete=0 and case_id=#{caseId}
+    </select>
     
     <select id="list" resultMap="RedisAssertMap">
         SELECT

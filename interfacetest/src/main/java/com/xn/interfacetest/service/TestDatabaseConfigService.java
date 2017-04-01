@@ -115,4 +115,12 @@ public interface TestDatabaseConfigService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestDatabaseConfigDto> testDatabaseConfigs);
+
+    /**
+     *根据环境和数据库名称查找数据库信息
+     * @param databaseName
+     * @param environmentId
+     * @return
+     */
+    TestDatabaseConfigDto getByEnvironmentAndDbName(String databaseName, Long environmentId);
 }

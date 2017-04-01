@@ -5,6 +5,9 @@ package com.xn.interfacetest.entity;
 
 import com.xn.common.base.BaseEntity;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  * TimeConfig 实体类
  * 
@@ -45,7 +48,11 @@ public class TimeConfig extends BaseEntity {
 
     
     private TestPlan testPlan;
-   
+
+    /**
+     * 执行时间
+     */
+    private String excuteTime;
 	
 	public TimeConfig(){
 	    // default constructor
@@ -93,5 +100,13 @@ public class TimeConfig extends BaseEntity {
     
     public void setTestPlan(TestPlan testPlan){
         this.testPlan = testPlan;
+    }
+
+    public String getExcuteTime() {
+        return excuteTime;
+    }
+
+    public void setExcuteTime(String excuteTime) {
+        this.excuteTime = excuteTime;
     }
 }

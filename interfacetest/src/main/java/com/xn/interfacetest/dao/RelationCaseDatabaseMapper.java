@@ -6,6 +6,9 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationCaseDatabase;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * RelationCaseDatabase Dao 接口
@@ -15,4 +18,7 @@ import com.xn.interfacetest.entity.RelationCaseDatabase;
  */
 public interface RelationCaseDatabaseMapper extends BaseMapper<RelationCaseDatabase, Long> {
 
+    List<RelationCaseDatabase> getByCaseId(Long caseId);
+
+    List<RelationCaseDatabase> getByCaseIdAndOperateType(@Param("caseId") Long caseId,@Param("operateType") int operateType);
 }

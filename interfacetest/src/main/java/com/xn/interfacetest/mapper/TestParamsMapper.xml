@@ -10,6 +10,11 @@
         <result property="formatType" column="format_type"/>
         <result property="interfaceId" column="interface_id"/>
     </resultMap>
+
+    <resultMap id="ParamsMap" type="com.xn.interfacetest.entity.ParamEntity">
+        <result property="name" column="name"/>
+        <result property="value" column="value"/>
+    </resultMap>
     
     <sql id="columns">
         <![CDATA[
@@ -59,6 +64,13 @@
         FROM
             test_params 
         <include refid="where"/>
+    </select>
+
+    <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
+        select tp.name ,rcp.`value`
+        from test_params tp
+        LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
+        where rcp.case_id = #{caseId}
     </select>
         
     <select id="count" resultType="long">

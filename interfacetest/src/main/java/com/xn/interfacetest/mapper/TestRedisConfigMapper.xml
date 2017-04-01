@@ -51,7 +51,17 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByRedisNameAndEnvironmentId" resultMap="TestRedisConfigMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_redis_config
+            WHERE
+                environment_id = #{environmentId}  and name = #{redisName}
+        ]]>
+    </select>
+
     <select id="list" resultMap="TestRedisConfigMap">
         SELECT
             <include refid="columns" />

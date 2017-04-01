@@ -141,4 +141,11 @@ public interface TestInterfaceService {
      * @return
      */
     String getParamsByInterfaceId(String interfaceId);
+
+    /**
+     * 通过用例id查询接口信息
+     * @param id
+     * @return
+     */
+    TestInterfaceDto getByCaseId(Long id);
 }

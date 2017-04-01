@@ -122,4 +122,11 @@ public class TestDatabaseConfigServiceImpl implements TestDatabaseConfigService 
         return 0;
     }
 
+    @Override
+    public TestDatabaseConfigDto getByEnvironmentAndDbName(String databaseName, Long environmentId) {
+        TestDatabaseConfig testDatabaseConfig = testDatabaseConfigMapper.getByEnvironmentAndDbName(databaseName,environmentId);
+        TestDatabaseConfigDto testDatabaseConfigDto = BeanUtils.toBean(testDatabaseConfig,TestDatabaseConfigDto.class);
+        return testDatabaseConfigDto;
+    }
+
 }

@@ -49,12 +49,6 @@ public class RelationCaseParams extends BaseEntity {
     private Long caseId;
 
     /**
-     * 
-     * Header里面的参数-1，Body里面的参数-2 
-     */
-    private Integer type;
-
-    /**
      * 是否被删除0-否，1-是
      */
 	private Integer isDelete;
@@ -105,14 +99,6 @@ public class RelationCaseParams extends BaseEntity {
     
     public void setCaseId(Long caseId) {
         this.caseId = caseId;
-    }
-    
-    public Integer getType() {
-        return this.type;
-    }
-    
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Integer getIsDelete() {

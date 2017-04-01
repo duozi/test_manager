@@ -109,6 +109,16 @@
         </where>
     </select>
 
+    <select id="getByCaseIdAndOperateType" resultMap="RelationCaseRedisMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        relation_case_redis
+        where
+            is_delete= 0  AND operate_type = #{operateType} AND case_id = #{caseId}
+
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT

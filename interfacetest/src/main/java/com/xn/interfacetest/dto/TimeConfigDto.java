@@ -6,6 +6,8 @@ package com.xn.interfacetest.dto;
 
 import com.xn.common.base.BaseDto;
 
+import java.sql.Timestamp;
+
 /**
  * TimeConfig Dto 对象
  * 
@@ -43,6 +45,11 @@ public class TimeConfigDto extends BaseDto {
      */
     private Long planId;
 
+    /**
+     * 执行时间
+     */
+    private String excuteTime;
+
     public Long getId() {
         return this.id;
     }
@@ -75,7 +82,12 @@ public class TimeConfigDto extends BaseDto {
         this.planId = planId;
     }
 
+    public String getExcuteTime() {
+        return excuteTime;
+    }
 
-
+    public void setExcuteTime(String excuteTime) {
+        this.excuteTime = excuteTime;
+    }
 }
 

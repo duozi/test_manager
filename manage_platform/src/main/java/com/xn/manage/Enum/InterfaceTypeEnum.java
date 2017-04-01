@@ -2,7 +2,7 @@ package com.xn.manage.Enum;
 
 
 public enum InterfaceTypeEnum {
-    GET("HTTP", 1), POST("DUBBO", 2);
+    HTTP("HTTP", 1), DUBBO("DUBBO", 2);
     // 成员变量
     private String name;
     private int id;

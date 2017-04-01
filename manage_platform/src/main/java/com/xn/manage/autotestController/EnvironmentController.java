@@ -451,4 +451,34 @@ public class EnvironmentController {
 		}
 		return  result;
 	}
+
+	/**
+	 * 得到所有的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getEnvironmentList")
+	@ResponseBody
+	public List<TestEnvironmentDto> getEnvironmentList(HttpServletRequest request) {
+		Map<String,Object> params = new HashMap<String, Object>();
+		//查询指定测试集的指定接口的用例
+		return testEnvironmentService.list(params);
+	}
+
+	/**
+	 * 得到指定测试计划的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getPlanEnvironmentList")
+	@ResponseBody
+	public List<TestEnvironmentDto> getPlanEnvironmentList(HttpServletRequest request) {
+		//查询指定测试集的指定接口的用例
+		List<TestEnvironmentDto> list = new ArrayList<TestEnvironmentDto>();
+		String planId = request.getParameter("planId");
+		if(StringUtils.isNotBlank(planId) && !"null".equals(planId)){
+			list = testEnvironmentService.getByPlanId(Long.parseLong(planId));
+		}
+		return list;
+	}
 }

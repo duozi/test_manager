@@ -31,11 +31,10 @@ public class RelationCaseRedisDto extends BaseDto {
     private Long caseId;
 
     /**
-     * 
-     * redisId 
+     *
+     * 数redis名称
      */
-    private Long redisId;
-
+    private String redisName;
     /**
      * 
      * 操作类型（1-数据准备，2-数据清除） 
@@ -64,7 +63,7 @@ public class RelationCaseRedisDto extends BaseDto {
      * 
      * time 
      */
-    private Long time;
+    private Integer time;
 
     /**
      *
@@ -99,12 +98,12 @@ public class RelationCaseRedisDto extends BaseDto {
         this.caseId = caseId;
     }
 
-    public Long getRedisId() {
-        return this.redisId;
+    public String getRedisName() {
+        return redisName;
     }
-    
-    public void setRedisId(Long redisId) {
-        this.redisId = redisId;
+
+    public void setRedisName(String redisName) {
+        this.redisName = redisName;
     }
 
     public Integer getOperateType() {
@@ -139,11 +138,11 @@ public class RelationCaseRedisDto extends BaseDto {
         this.value = value;
     }
 
-    public Long getTime() {
+    public Integer getTime() {
         return this.time;
     }
     
-    public void setTime(Long time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 

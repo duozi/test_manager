@@ -22,4 +22,6 @@ public interface TestCaseMapper extends BaseMapper<TestCase, Long> {
     int updatePart(TestCase testCase);
 
     List<TestCase> listByParams(Map<String, Object> params);
+
+    List<TestCase> listBySuitId(Long suitId);
 }

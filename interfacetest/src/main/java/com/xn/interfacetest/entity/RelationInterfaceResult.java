@@ -70,7 +70,7 @@ public class RelationInterfaceResult extends BaseEntity {
      * 
      * 请求结果(通过，错误，失败) 
      */
-    private Integer result;
+    private String  result;
 
 
 	
@@ -146,11 +146,11 @@ public class RelationInterfaceResult extends BaseEntity {
         this.responseData = responseData;
     }
     
-    public Integer getResult() {
+    public String getResult() {
         return this.result;
     }
     
-    public void setResult(Integer result) {
+    public void setResult(String result) {
         this.result = result;
     }
     

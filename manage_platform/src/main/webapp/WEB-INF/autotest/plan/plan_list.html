@@ -14,6 +14,15 @@
             initPlanForm();
 
 
+            $('#suitList').on('hide.bs.modal', function () {
+                $(".popover").remove();
+            })
+            $('#environmentList').on('hide.bs.modal', function () {
+                $(".popover").remove();
+            })
+            $('#timeList').on('hide.bs.modal', function () {
+                $(".popover").remove();
+            })
         });
 
 
@@ -31,8 +40,8 @@
         }
 
         function deletePlan(id){
-            $.MsgBox.Confirm("删除提示","确定要删除该接口吗",function(){
-                $.post("${basePath}/autotest/case/deleteCase",{id:id},function(data,status){
+            $.MsgBox.Confirm("删除提示","确定要删除该测试计划吗",function(){
+                $.post("${basePath}/autotest/plan/deletePlan",{id:id},function(data,status){
                     if(0!=data.code){
                         alert(data.message);
                     } else {
@@ -56,7 +65,7 @@
                             if (data.code == 0) {
                                 $("#addPlan").modal("hide");
                                 alert("保存成功");
-                                //reload();
+                                reload();
                             } else {
                                 alert("保存失败："+data.message);
                             }
@@ -117,7 +126,6 @@
                 }
 
             });
-
             $('#addPlan').on('hide.bs.modal', function () {
                 // 弹框变比的时候reset校验.
                 validator.resetForm();
@@ -125,15 +133,7 @@
                 $(".selectpicker").selectpicker('deselectAll');
                 $(".popover").remove();
             })
-            $('#suitList').on('hide.bs.modal', function () {
-                $(".popover").remove();
-            })
-            $('#environmentList').on('hide.bs.modal', function () {
-                $(".popover").remove();
-            })
-            $('#timeList').on('hide.bs.modal', function () {
-                $(".popover").remove();
-            })
+
         }
 
     </script>
@@ -250,26 +250,26 @@
                                     <td>
                                         <#if item.status==0>
                                             <!--未发布-->
-                                            <a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id})">修改测试集</a>
-                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id})">修改执行环境</a>
-                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id})">配置执行时间</a>
+                                            <a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">修改测试集</a>
+                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">修改执行环境</a>
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">配置执行时间</a>
                                             <a type="button" class="btn btn-primary" onclick="publish(${item.id})">发布</a>
                                             <a type="button" class="btn btn-danger" onclick="deletePlan(${item.id})">删除</a>
                                         </#if>
                                         <#if item.status==1>
                                             <!--已发布-->
-                                            <a type="button" data-toggle="modal" data-target="#suitList"  class="btn btn-warning">查看测试集</a>
-                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info">查看执行环境</a>
-                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default">查看执行时间</a>
+                                            <!--<a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">查看测试集</a>-->
+                                            <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
                                             <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
                                         </#if>
                                         <#if item.status==2>
                                             <!--已执行-->
-                                            <a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning">查看测试集</a>
-                                            <a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info">查看执行环境</a>
-                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default">查看执行时间</a>
+                                            <!--<a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">查看测试集</a>-->
+                                            <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
+                                            <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
                                             <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
-                                            <a href="../report/report_detail" type="button" class="btn btn-info">查看测试报告</a>
+                                            <a href="../reportResult/report_detail" type="button" class="btn btn-info">查看测试报告</a>
                                         </#if>
 
                                     </td>
@@ -292,6 +292,7 @@
     <div class="modal fade" id="suitList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel" aria-hidden="true">
         <div class="modal-dialog modal-suit-list">
             <div class="modal-content">
+                <input type="hidden" name="planId" value="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="suitListLabel">选择测试集</h4>
@@ -309,38 +310,12 @@
                         </tr>
                         </thead>
                         <tbody class="suit-body">
-                        <tr >
 
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>风控规则贷后规则测试集</td>
-                            <td>风控规则测试集-贷后规则</td>
-                            <td>风控规则</td>
-                            <td>高珊</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>风控规则反欺诈规则测试集</td>
-                            <td>风控规则测试集-反欺诈规则</td>
-                            <td>风控规则</td>
-                            <td>高珊</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" onclick="savePlanSuit()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -354,6 +329,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
+                    <input type="hidden" name="planId" value="">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="environmentListLabel">选择测试计划执行环境</h4>
                 </div>
@@ -362,51 +338,18 @@
                         <thead>
                         <tr >
                             <th>环境ID</th>
-                            <th>环境描述</th>
                             <th>环境名称</th>
-                            <th>创建人</th>
+                            <th>环境描述</th>
                             <th>选择</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境1</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境2</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>风控规则测试环境</td>
-                            <td>测试环境3</td>
-                            <td>高高</td>
-                            <td>
-                                <label>
-                                    <input type="checkbox" value="">
-                                </label>
-                            </td>
-                        </tr>
+                        <tbody class="environment-body">
+
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" onclick="savePlanEnvironment()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -425,6 +368,7 @@
                 </div>
                 <div class="modal-body modal-time">
                     <form class="col-lg-14 edit-form time-form">
+                        <input type="hidden" name="planId" value="">
                         <div class="form-group">
                             <label class="control-label" >执行时间类型</label>
                             <select class="form-control" id="excuteTimeType" name="excuteType">
@@ -444,16 +388,16 @@
                         </div>
                         <div class="form-group circulation hidden">
                             <label class="control-label" >循环执行时间描述</label>
-                            <input type="text" class="form-control"  name="timeDescription" placeholder="请输入执行时间描述，例如：每周三10点执行一次">
+                            <input type="text" class="form-control"  name="description" placeholder="请输入执行时间描述，例如：每周三10点执行一次">
                         </div>
                         <div class="form-group circulation hidden">
                             <label class="control-label" >循环执行表达式</label>
-                            <input type="text" class="form-control"  name="cronExpression" placeholder="请输入定时任务表达式">
+                            <input type="text" class="form-control"  name="timeExpression" placeholder="请输入定时任务表达式">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" onclick="savePlanTime()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -555,7 +499,7 @@
     $("#addTime,#add-Time").click(function(){
         countNum += 1;
         var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
-        html += '<input type="text" class="form-control" id="excuteTime" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
+        html += '<input type="text" class="form-control" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23"> ';
         html += '  <button class="btn btn-default " type="button" id="deleteTime'+ countNum +'" >';
         html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
         $(this).parent().after(html);
@@ -579,33 +523,7 @@
             }
     );
 
-//    $("#add-time").click(function(){
-//        countNum += 1;
-//        var html = ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
-//        html += '<input type="text" class="form-control" id="excute-time" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23">';
-//        html += '  <button class="btn btn-default " type="button" id="delete-time'+ countNum +'" >';
-//        html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
-//        $(this).parent().after(html);
-//
-//        $("#delete-time" +countNum).click(function(){
-//            $(this).parent().parent().remove();
-//        });
-//
-//    });
-//
-//    $("#excute-time-type").change(
-//            function(){
-//                var value = $(this).val();
-//                if(value == 'once'){
-//                    $(".once").removeClass("hidden");
-//                    $(".circulation").addClass("hidden");
-//                } else if(value == 'circulation'){
-//                    $(".once").addClass("hidden");
-//                    $(".circulation").removeClass("hidden");
-//                }
-//            }
-//    );
-
+    //发布计划
     function publish(id){
         $.post("${basePath}/autotest/plan/publishPlan",{id:id},function(data,status){
             if(0!=data.code){
@@ -616,25 +534,57 @@
         });
     }
 
-    function showSuitList(_id){
+    //展示测试集
+    function showSuitList(planId,status) {
+        $("#suitList input[name=planId]").val(planId);
+        var planSuitList = new Object();
+        //获取该测试计划已包含的测试集
+        $.post("${basePath}/autotest/suit/getPlanSuitList", {"planId":planId},function (data, status) {
+            if ("undefined" != data) {
+                planSuitList = data;
+            }
+            setSuitList(planSuitList);
+
+        });
+        if(status>0){
+            $("#suitList .modal-footer").addClass("hidden");
+        } else {
+            $("#suitList .modal-footer").removeClass("hidden");
+        }
+    }
+
+    function  setSuitList(planSuitList){
         var htmlStr = '';
-        $.post("${basePath}/autotest/case/getCaseByInterfaceId",{"interfaceId":_interfaceId,"caseType":caseType},function(data,status){
-            if("undefined"!=data){
-                //查询该测试集含有该接口的用例列表
-                var caseList = data;
-                //显示该接口下所有的用例
-                var htmlStr = "";
-                for(var i = 0;i < caseList.length ;i++){
-                    htmlStr += '<td>1</td>';
-                    htmlStr += '<td>风控规则测试集</td>';
-                    htmlStr += '<td>风控规则测试集-多个规则</td>';
-                    htmlStr += '<td>风控规则</td>';
-                    htmlStr += '<td>高珊</td>';
+        $.post("${basePath}/autotest/suit/getSuitList",function (data, status) {
+            if ("undefined" != data) {
+                var suitList = data;
+                for(var i=0;i<suitList.length;i++){
+                    var suit = suitList[i];
+                    htmlStr += '<tr >';
+                    htmlStr += '<td>' + suit.id + '</td>';
+                    htmlStr += '<td>' + suit.name + '</td>';
+                    htmlStr += '<td>' + suit.description + '</td>';
+                    htmlStr += '<td>' + suit.testSystemDto.name + '</td>';
+                    htmlStr += '<td>' + suit.createPerson + '</td>';
+
                     htmlStr += '<td>';
                     htmlStr += '<label>';
-                    htmlStr += '<input type="checkbox" value="">';
+                    var flag = 0;
+                    for(var k = 0;k < planSuitList.length ;k++){
+                        if(planSuitList[k].id == suit.id){
+                            flag = 1;
+                        }
+                    }
+                    //已存在测试集与测试计划的对应关系就置为已选中
+                    if(flag==1){
+                        htmlStr += '<input type="checkbox" name="suitId" value="' + suit.id + '" checked>';
+                    } else {
+                        htmlStr += '<input type="checkbox" name="suitId" value="' + suit.id + '" >';
+                    }
                     htmlStr += '</label>';
                     htmlStr += '</td>';
+                    htmlStr += '</tr >';
+
                 }
                 //先删除以前的
                 $(".suit-body tr").remove();
@@ -644,22 +594,164 @@
         });
     }
 
-    function showSuitList(_id) {
-        var suitCaseList = ${suitList};
+    //获取运行环境列表
+    function showEnvironmentList(planId,status){
+        $("#environmentList input[name=planId]").val(planId);
+        var planEnvironmentList = new Object();
+        //获取该测试计划已包含的测试集
+        $.post("${basePath}/autotest/environment/getPlanEnvironmentList", {"planId":planId},function (data, status) {
+            if ("undefined" != data) {
+                planEnvironmentList = data;
+            }
+            setEnvironmentList(planEnvironmentList);
+        });
+
+        if(status>0){
+            $("#environmentList .modal-footer").addClass("hidden");
+        } else {
+            $("#environmentList .modal-footer").removeClass("hidden");
+        }
     }
 
-    //获取该接口所有用例
-    function setSuitCaseList(_interfaceId,caseType,suitCaseList){
+    function  setEnvironmentList(planEnvironmentList){
+        var htmlStr = '';
+        $.post("${basePath}/autotest/environment/getEnvironmentList",function (data, status) {
+            if ("undefined" != data) {
+                var environmentList = data;
+                for(var i=0;i<environmentList.length;i++){
+                    var environment = environmentList[i];
+                    htmlStr += '<tr >';
+                    htmlStr += '<td>' + environment.id + '</td>';
+                    htmlStr += '<td>' + environment.name + '</td>';
+                    htmlStr += '<td>' + environment.description + '</td>';
+                    htmlStr += '<td>';
+                    htmlStr += '<label>';
+                    var flag = 0;
+                    for(var k = 0;k < planEnvironmentList.length ;k++){
+                        if(planEnvironmentList[k].id == environment.id){
+                            flag = 1;
+                        }
+                    }
+                    //已存在测试集与测试计划的对应关系就置为已选中
+                    if(flag==1){
+                        htmlStr += '<input type="checkbox" name="environmentId" value="' + environment.id + '" checked>';
+                    } else {
+                        htmlStr += '<input type="checkbox" name="environmentId" value="' + environment.id + '" >';
+                    }
+                    htmlStr += '</label>';
+                    htmlStr += '</td>';
+                    htmlStr += '</tr >';
 
-
+                }
+                //先删除以前的
+                $(".environment-body tr").remove();
+                //增加测试集列表
+                $(".environment-body").append(htmlStr);
+            }
+        });
     }
 
-    function showEnvironmentList(_id){
+    //显示时间配置
+    function showTime(id,excuteType,status){
+        $("#timeList select[name='excuteType']").val(excuteType);
+        $("#timeList input[name=planId]").val(id);
+        //获取该测试计划已包含的测试集
+        $.post("${basePath}/autotest/plan/getPlanTime", {"planId":id},function (data, status) {
+            if ("undefined" != data) {
+                if(excuteType == 1){
+                    //如果是单次执行类型，则取时间值
+                    var html = "";
+                    for(var i=0;i<data.length;i++){
+                        if(i==0){
+                            $("#timeList input[name='excuteTime']").val(data[i].excuteTime);
+                        } else {
+                            html += ' <div class="add-time-div once"><div class="form-group"><label class="control-label" ></label>';
+                            html += '<input type="text" class="form-control" name="excuteTime" placeholder="请输入时间：2017-01-01 12:23:23" value="' + data[i].excuteTime+ '"> ';
+                            html += '  <button class="btn btn-default " type="button" id="deleteExcuteTime'+ i +'" >';
+                            html += '<span class="glyphicon glyphicon-minus"></span></button></div></div>';
+                            $("#deleteExcuteTime" +i).click(function(){
+                                $(this).parent().parent().remove();
+                            });
+                        }
+                    }
+                    $("#timeList .add-time-div").remove();
+                    $("#timeList .once").after(html);
+                } else {
+                    for(var i=0;i<data.length;i++){
+                        $("#timeList input[name='description']").val(data[i].description);
+                        $("#timeList input[name='timeExpression']").val(data[i].timeExpression);
+                    }
+                }
+            }
 
+        });
+        if(status>0){
+            $("#timeList .modal-footer").addClass("hidden");
+        } else {
+            $("#timeList .modal-footer").removeClass("hidden");
+        }
     }
 
-    function showTime(_id){
+    //保存测试集
+    function savePlanSuit(){
+        var planId = $("#suitList input[name='planId']").val();
+        var suitIds = [];
+        $("#suitList input[name='suitId']:checked").each(function(){
+            suitIds.push($(this).val());
+        });
+        $.post("${basePath}/autotest/plan/savePlanSuit", {"planId":planId,"suitIds":suitIds},function (data, status) {
+            if ("0" != data.code) {
+                    alert(data.message);
+            } else {
+                alert("保存成功");
+                $("#suitList").modal("hide");
+                reloadPlan();
+            }
 
+        });
+    }
+
+    //保存环境信息
+    function savePlanEnvironment(){
+        var planId = $("#environmentList input[name='planId']").val();
+        var environmentIds = [];
+        $("#environmentList input[name='environmentId']:checked").each(function(){
+            environmentIds.push($(this).val());
+        });
+        $.post("${basePath}/autotest/plan/savePlanEnvironment", {"planId":planId,"environmentIds":environmentIds},function (data, status) {
+            if ("0" != data.code) {
+                alert(data.message);
+            } else {
+                alert("保存成功");
+                $("#environmentList").modal("hide");
+                reloadPlan();
+            }
+
+        });
+    }
+
+    //保存时间配置
+    function savePlanTime(){
+        var excuteType= $(".time-form input[name='excuteType']").val();
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "${basePath}/autotest/plan/savePlanTime",
+            data: $('.time-form').serialize() + "&excuteType=" + excuteType,
+            success: function(result) {
+                data = eval("(" + result + ")");
+                if (data.code == 0) {
+                    $("#timeList").modal("hide");
+                    alert("保存成功");
+                    reload();
+                } else {
+                    alert("保存失败："+data.message);
+                }
+            },
+            error: function(result) {
+                alert(eval("(" + result + ")").message);
+            }
+        });
     }
 </script>
 <!-- /.container-fluid -->

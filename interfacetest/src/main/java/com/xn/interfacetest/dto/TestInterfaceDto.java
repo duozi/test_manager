@@ -253,5 +253,28 @@ public class TestInterfaceDto extends BaseDto {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "TestInterfaceDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", serviceId=" + serviceId +
+                ", type=" + type +
+                ", url='" + url + '\'' +
+                ", codeText='" + codeText + '\'' +
+                ", jarPath='" + jarPath + '\'' +
+                ", requestType=" + requestType +
+                ", protocolType=" + protocolType +
+                ", params='" + params + '\'' +
+                ", dubboVersion=" + dubboVersion +
+                ", dubboGroup='" + dubboGroup + '\'' +
+                ", dubboTimeout=" + dubboTimeout +
+                ", zkOrNot=" + zkOrNot +
+                ", isDelete=" + isDelete +
+                ", testServiceDto=" + testServiceDto +
+                '}';
+    }
 }
 

@@ -5,6 +5,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestRedisConfig;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * TestRedisConfig Dao 接口
@@ -14,4 +15,5 @@ import com.xn.interfacetest.entity.TestRedisConfig;
  */
 public interface TestRedisConfigMapper extends BaseMapper<TestRedisConfig, Long> {
 
+    TestRedisConfig getByRedisNameAndEnvironmentId(@Param("redisName") String redisName, @Param("environmentId") Long environmentId);
 }

@@ -118,4 +118,16 @@ public class TimeConfigServiceImpl implements TimeConfigService {
         return 0;
     }
 
+    @Override
+    public List<TimeConfigDto> getByPlanId(Long planId) {
+        List<TimeConfig> list = timeConfigMapper.getByPlanId(planId);
+        List<TimeConfigDto> dtoList = CollectionUtils.transform(list, TimeConfigDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public void deleteByPlanId(Long planId) {
+        timeConfigMapper.deleteByPlanId(planId);
+    }
+
 }

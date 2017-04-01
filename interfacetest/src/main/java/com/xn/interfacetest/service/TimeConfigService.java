@@ -114,4 +114,13 @@ public interface TimeConfigService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TimeConfigDto> timeConfigs);
+
+    /**
+     * 通过查询计划的时间配置
+     * @param l
+     * @return
+     */
+    List<TimeConfigDto> getByPlanId(Long planId);
+
+    void deleteByPlanId(Long planId);
 }

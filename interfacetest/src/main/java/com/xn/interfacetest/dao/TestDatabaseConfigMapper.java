@@ -6,6 +6,8 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestDatabaseConfig;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * TestDatabaseConfig Dao 接口
@@ -15,4 +17,5 @@ import com.xn.interfacetest.entity.TestDatabaseConfig;
  */
 public interface TestDatabaseConfigMapper extends BaseMapper<TestDatabaseConfig, Long> {
 
+    TestDatabaseConfig getByEnvironmentAndDbName(@Param("databaseName") String databaseName, @Param("environmentId") Long environmentId);
 }

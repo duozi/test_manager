@@ -115,4 +115,12 @@ public interface TestRedisConfigService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestRedisConfigDto> testRedisConfigs);
+
+    /**
+     * 通过环境id和redis名称唯一指定redis信息
+     * @param redisName
+     * @param environmentId
+     * @return
+     */
+    TestRedisConfigDto getByRedisNameAndEnvironmentId(String redisName, Long environmentId);
 }

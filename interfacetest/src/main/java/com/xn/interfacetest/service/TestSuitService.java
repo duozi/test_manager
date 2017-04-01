@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 
 /**
@@ -135,4 +137,11 @@ public interface TestSuitService {
      * @return
      */
     List<TestSuitDto> getByPlanId(Long id);
+
+    /**
+     * 批量执行测试集，指定测试环境
+     * @param testSuitDtoList
+     * @param testEnvironmentDto
+     */
+    void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId);
 }

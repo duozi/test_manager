@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 
 public class PropertyUtil extends PropertyPlaceholderConfigurer {
-    private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
 	private static Map<String, Object> ctxPropertiesMap; 
     
     public static String getProperty(String name) {
@@ -24,17 +24,6 @@ public class PropertyUtil extends PropertyPlaceholderConfigurer {
         return obj.toString();
     }
  
-    @Override
-    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
-        super.processProperties(beanFactoryToProcess, props);
-        ctxPropertiesMap = new HashMap<String, Object>();
-        for (Object key : props.keySet()) {
-            String keyStr = key.toString();
-            String value = props.getProperty(keyStr);
-            ctxPropertiesMap.put(keyStr, value);
-        }
-    }
-
     public static String getPro(String file, String properName) {
         Properties prop = new Properties();
         String value = null;
@@ -47,6 +36,17 @@ public class PropertyUtil extends PropertyPlaceholderConfigurer {
             logger.error("properties file is not exist");
         } finally {
             return value;
+        }
+    }
+
+    @Override
+    protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess, Properties props) throws BeansException {
+        super.processProperties(beanFactoryToProcess, props);
+        ctxPropertiesMap = new HashMap<String, Object>();
+        for (Object key : props.keySet()) {
+            String keyStr = key.toString();
+            String value = props.getProperty(keyStr);
+            ctxPropertiesMap.put(keyStr, value);
         }
     }
 }

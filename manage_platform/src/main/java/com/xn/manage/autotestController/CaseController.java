@@ -141,13 +141,8 @@ public class CaseController {
 			//查询已添加的参数值
 			RelationCaseParamsDto relationCaseParamsDto = new RelationCaseParamsDto();
 			relationCaseParamsDto.setCaseId(testCaseDto.getId());
-			relationCaseParamsDto.setType(1);//1-header里面的参数
-			List<RelationCaseParamsDto> headerParamsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
-			map.put("headerParamsDtoList",headerParamsDtoList);
-
-			relationCaseParamsDto.setType(2);//2-body里面的参数
-			List<RelationCaseParamsDto> bodyParamsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
-			map.put("bodyParamsDtoList",bodyParamsDtoList);
+			List<RelationCaseParamsDto> paramsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
+			map.put("paramsDtoList",paramsDtoList);
 
 			//查询参数校验列表
 			ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
@@ -255,13 +250,8 @@ public class CaseController {
 			//查询已添加的参数值
 			RelationCaseParamsDto relationCaseParamsDto = new RelationCaseParamsDto();
 			relationCaseParamsDto.setCaseId(testCaseDto.getId());
-			relationCaseParamsDto.setType(1);//1-header里面的参数
-			List<RelationCaseParamsDto> headerParamsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
-			map.put("headerParamsDtoList",headerParamsDtoList);
-
-			relationCaseParamsDto.setType(2);//2-body里面的参数
-			List<RelationCaseParamsDto> bodyParamsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
-			map.put("bodyParamsDtoList",bodyParamsDtoList);
+			List<RelationCaseParamsDto> paramsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
+			map.put("paramsDtoList",paramsDtoList);
 
 			//查询参数校验列表
 			ParamsAssertDto paramsAssertDto = new ParamsAssertDto();

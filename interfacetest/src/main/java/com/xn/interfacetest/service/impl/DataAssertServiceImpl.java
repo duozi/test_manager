@@ -122,4 +122,11 @@ public class DataAssertServiceImpl implements DataAssertService {
         return 0;
     }
 
+    @Override
+    public List<DataAssertDto> getByCaseId(Long caseId) {
+        List<DataAssert> list = dataAssertMapper.getByCaseId(caseId);
+        List<DataAssertDto> dtoList = CollectionUtils.transform(list, DataAssertDto.class);
+        return dtoList;
+    }
+
 }

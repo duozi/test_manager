@@ -6,7 +6,7 @@
 
     <resultMap id="DataAssertMap" type="com.xn.interfacetest.entity.DataAssert">
         <result property="id" column="id"/>
-        <result property="databaseConfigId" column="database_config_id"/>
+        <result property="databaseName" column="database_name"/>
         <result property="sqlStr" column="sql_str"/>
         <result property="assertParam" column="assert_param"/>
         <result property="rightValue" column="right_value"/>
@@ -16,7 +16,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, database_config_id, sql_str, assert_param, right_value, case_id
+        id, database_name, sql_str, assert_param, right_value, case_id
         ]]>
     </sql>
     
@@ -25,8 +25,8 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@Ognl@isNotEmpty(databaseConfigId)">
-                AND database_config_id = #{databaseConfigId}
+           <if test="@Ognl@isNotEmpty(databaseName)">
+                AND database_name = #{databaseName}
             </if>
            <if test="@Ognl@isNotEmpty(sqlStr)">
                 AND sql_str = #{sqlStr}
@@ -52,7 +52,21 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByCaseId" resultMap="DataAssertMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        data_assert
+        <where>
+            is_delete = 0
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+        </where>
+    </select>
+
+
     <select id="list" resultMap="DataAssertMap">
         SELECT
             <include refid="columns" />
@@ -63,8 +77,8 @@
             <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-            <if test="@Ognl@isNotEmpty(databaseConfigId)">
-                AND database_config_id = #{databaseConfigId}
+            <if test="@Ognl@isNotEmpty(databaseName)">
+                AND database_name = #{databaseName}
             </if>
             <if test="@Ognl@isNotEmpty(sqlStr)">
                 AND sql_str = #{sqlStr}
@@ -95,14 +109,14 @@
         <![CDATA[
             INSERT INTO data_assert (
                 id,
-                database_config_id,
+                database_name,
                 sql_str,
                 assert_param,
                 right_value,
                 case_id
             ) VALUES (
                 #{id},
-                #{databaseConfigId},
+                #{databaseName},
                 #{sqlStr},
                 #{assertParam},
                 #{rightValue},
@@ -115,7 +129,7 @@
         <![CDATA[
             INSERT INTO data_assert (
                 id,
-                database_config_id,
+                database_name,
                 sql_str,
                 assert_param,
                 right_value,
@@ -123,7 +137,7 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.databaseConfigId},#{item.sqlStr},#{item.assertParam},#{item.rightValue},#{item.caseId})
+            (#{item.id},#{item.databaseName},#{item.sqlStr},#{item.assertParam},#{item.rightValue},#{item.caseId})
         </foreach>
     </insert>
     
@@ -131,8 +145,8 @@
         	UPDATE
                 data_assert
             <set>
-                <if test="databaseConfigId != null">
-                	<![CDATA[ database_config_id = #{databaseConfigId} ]]>,
+                <if test="databaseName != null">
+                	<![CDATA[ database_name = #{databaseName} ]]>,
                 </if>
                 <if test="sqlStr != null">
                 	<![CDATA[ sql_str = #{sqlStr} ]]>,

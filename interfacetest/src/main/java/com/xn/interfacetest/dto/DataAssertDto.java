@@ -27,9 +27,9 @@ public class DataAssertDto extends BaseDto {
 
     /**
      * 
-     * 数据库id 
+     * 数据库名称
      */
-    private Long databaseConfigId;
+    private String databaseName;
 
     /**
      * 
@@ -68,12 +68,12 @@ public class DataAssertDto extends BaseDto {
         this.id = id;
     }
 
-    public Long getDatabaseConfigId() {
-        return this.databaseConfigId;
+    public String getDatabaseName() {
+        return databaseName;
     }
-    
-    public void setDatabaseConfigId(Long databaseConfigId) {
-        this.databaseConfigId = databaseConfigId;
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
     }
 
     public String getSqlStr() {

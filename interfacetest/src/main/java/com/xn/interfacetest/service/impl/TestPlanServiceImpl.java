@@ -6,11 +6,14 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.base.CommonResult;
 import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.RelationPlanEnvironment;
 import com.xn.interfacetest.entity.RelationPlanSuit;
 import com.xn.interfacetest.entity.TestEnvironment;
 import com.xn.interfacetest.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +35,7 @@ import com.xn.interfacetest.entity.TestPlan;
 @Service
 @Transactional
 public class TestPlanServiceImpl implements TestPlanService {
-
+    private static final Logger logger = LoggerFactory.getLogger(TestPlanServiceImpl.class);
     /**
      *  Dao
      */
@@ -50,6 +53,9 @@ public class TestPlanServiceImpl implements TestPlanService {
 
     @Autowired
     private RelationPlanSuitService relationPlanSuitService;
+
+    @Autowired
+    private TimeConfigService timeConfigService;
 
     @Override
     @Transactional(readOnly = true)
@@ -150,6 +156,50 @@ public class TestPlanServiceImpl implements TestPlanService {
     @Override
     public void publishPlan(Integer status,Long id) {
         testPlanMapper.updateStatus(status,id);
+    }
+
+    @Override
+    public CommonResult excutePlan(Long planId) {
+        CommonResult result = new CommonResult();
+        //读取测试集
+        List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(planId);
+        if(null == testSuitDtoList || testSuitDtoList.size() <= 0){
+            logger.info("校验测试集列表｛｝：没有可执行测试集");
+            result.setMessage("没有可执行测试集！");
+            result.setCode(0);
+            return result;
+        }
+
+        //读取执行环境
+        List<TestEnvironmentDto> testEnvironmentDtoList = testEnvironmentService.getByPlanId(planId);
+        if(null == testEnvironmentDtoList || testEnvironmentDtoList.size() <= 0){
+            logger.info("校验测试环境列表｛｝：没有可执行测试环境");
+            result.setMessage("没有可执行测试环境！");
+            result.setCode(0);
+            return result;
+        }
+
+        //获取执行时间---即刻执行
+        List<TimeConfigDto> timeConfigDtoList = timeConfigService.getByPlanId(planId);
+//        if(null == timeConfigDtoList || timeConfigDtoList.size() <= 0){
+//            result.setMessage("没有设置执行时间！");
+//            result.setCode(0);
+//            return result;
+//        }
+
+        return this.excutePlan(testSuitDtoList,testEnvironmentDtoList,timeConfigDtoList, planId);
+    }
+
+    private CommonResult excutePlan(List<TestSuitDto> testSuitDtoList,List<TestEnvironmentDto> testEnvironmentDtoList,List<TimeConfigDto> timeConfigDtoList,Long planId){
+        CommonResult result = new CommonResult();
+
+        //遍历执行环境，在每一套环境上执行一次
+        logger.info("==========遍历测试环境========");
+        for(TestEnvironmentDto testEnvironmentDto : testEnvironmentDtoList){
+            //执行测试集
+            testSuitService.excuteSuitList(testSuitDtoList,testEnvironmentDto,planId);
+        }
+        return result;
     }
 
 }

@@ -25,11 +25,12 @@ public class RedisAssertDto extends BaseDto {
      */
     private Long id;
 
+
     /**
-     * 
-     * 数据库id 
+     *
+     * 数redis名称
      */
-    private Long redisConfigId;
+    private String redisName;
 
     /**
      *
@@ -73,12 +74,12 @@ public class RedisAssertDto extends BaseDto {
         this.id = id;
     }
 
-    public Long getRedisConfigId() {
-        return this.redisConfigId;
+    public String getRedisName() {
+        return redisName;
     }
-    
-    public void setRedisConfigId(Long redisConfigId) {
-        this.redisConfigId = redisConfigId;
+
+    public void setRedisName(String redisName) {
+        this.redisName = redisName;
     }
 
     public String getAssertParam() {

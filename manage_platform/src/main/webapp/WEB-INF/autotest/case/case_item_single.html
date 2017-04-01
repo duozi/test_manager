@@ -31,23 +31,23 @@
                 <!--单接口用例-->
                 <!--header-->
                 <div class="form-group" id='single-header' style="width: 140%">
-                    <label style="margin-top:1%">请求参数header</label>
+                    <label style="margin-top:1%">请求参数</label>
                     <div class="panel panel-default" style="width: 125%">
                         <!-- /.panel-heading -->
                         <div class="panel-body">
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="<#if null == testCaseDto.customParamsHeaderType>active</#if>">
-                                    <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsHeaderType>true<#else>false</#if>">参数设置</a>
+                                <li class="<#if null == testCaseDto.customParamsType>active</#if>">
+                                    <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsType>true<#else>false</#if>">参数设置</a>
                                 </li>
-                                <li class="<#if null != testCaseDto.customParamsHeaderType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsHeaderType>true<#else>false</#if>">自定义参数</a>
+                                <li class="<#if null != testCaseDto.customParamsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
                                 </li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade <#if null == testCaseDto.customParamsHeaderType>active  in</#if>" id="gui-header">
+                                <div class="tab-pane fade <#if null == testCaseDto.customParamsType>active  in</#if>" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
@@ -60,8 +60,8 @@
                                             </thead>
                                             <tbody>
                                             <input type="hidden" name="type" value="1">
-                                            <#if headerParamsDtoList??>
-                                                <#list headerParamsDtoList as item>
+                                            <#if paramsDtoList??>
+                                                <#list paramsDtoList as item>
                                                     <tr>
                                                         <input type="hidden" name="id" value="${item.id}">
                                                         <td>
@@ -94,130 +94,32 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade <#if null != testCaseDto.customParamsHeaderType>active  in</#if>" id="source-header">
+                                <div class="tab-pane fade <#if null != testCaseDto.customParamsType>active  in</#if>" id="source-header">
                                     <input type="hidden" name="type" value="1">
                                     <div class="form-group ">
                                         <label>参数格式</label>
                                         <select class="form-control" name="appendParam">
                                             <#if appendParamList ??>
                                                 <#list appendParamList as item>
-                                                    <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsHeaderType>selected</#if>>
+                                                    <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsType>selected</#if>>
                                                         ${item.getName()}
                                                     </option>
                                                 </#list>
                                             </#if>
                                         </select>
                                     </div>
-                                    <textarea class=" form-control  text-control">${testCaseDto.customParamsHeader}</textarea>
+                                    <textarea class=" form-control  text-control">${testCaseDto.customParams}</textarea>
                                     <!--<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">-->
                                     <!--<input type="hidden" name="jarPath" value="">-->
                                     <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
                                     <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
-                                    <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'header')">保存</a>
+                                    <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this)">保存</a>
                                 </div>
                             </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                 </div>
-                <!--body-->
-                <div class="form-group" id='single-body' style="width: 140%">
-                    <label style="margin-top:1%">请求参数body</label>
-                    <div class="panel panel-default" style="width: 125%">
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
-                                <li class="<#if null == testCaseDto.customParamsBodyType>active</#if>">
-                                    <a href="#gui-body" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsBodyType>true<#else>false</#if>">参数设置</a>
-                                </li>
-                                <li class="<#if null != testCaseDto.customParamsBodyType>active</#if>">
-                                    <a href="#source-body" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsBodyType>true<#else>false</#if>">自定义参数</a>
-                                </li>
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade <#if null == testCaseDto.customParamsBodyType>active  in</#if>" id="gui-body">
-                                    <div class="table-responsive">
-                                        <table class="table case-table">
-                                            <thead>
-                                            <tr>
-                                                <th style="width:30%">参数名</th>
-                                                <!--<th style="width:10%">参数类型</th>-->
-                                                <th style="width:40%">参数值</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <input type="hidden" name="type" value="2">
-                                            <#if bodyParamsDtoList??>
-                                                <#list bodyParamsDtoList as item>
-                                                <tr>
-                                                    <input type="hidden" name="id" value="${item.id}">
-                                                    <td>
-                                                        <select class="form-control" name="paramsId">
-                                                            <#if testParamsDtoList ??>
-                                                                <#list testParamsDtoList as paramsItem>
-                                                                    <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
-                                                                    ${paramsItem.name}
-                                                                    </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
-                                                    </td>
-                                                    <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
-                                                    <td>
-                                                        <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
-                                                        <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                </#list>
-                                            </#if>
-                                            <tr>
-                                                <td style=" border: none"><span name="addParam"
-                                                                                class="btn btn-info"><i
-                                                        class="icon icon-plus-sign"></i>添加参数</span>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="form-group  hidden" style="margin-left: 2%">
-                                        <label class="control-label"></label>
-                                        <textarea class=" form-control  text-control"></textarea>
-                                    </div>
-                                    <div class="form-group  hidden">
-                                        <label class="control-label"></label>
-                                        <input class="file form-control" type="file" multiple data-min-file-count="1"
-                                               name="encryptJar">
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade <#if null != testCaseDto.customParamsBodyType>active  in</#if>" id="source-body">
-                                    <div class="form-group ">
-                                        <label>参数格式</label>
-                                        <select class="form-control" name="appendParam">
-                                            <#if appendParamList ??>
-                                                <#list appendParamList as item>
-                                                    <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsBodyType>selected</#if>>
-                                                        ${item.getName()}
-                                                    </option>
-                                                </#list>
-                                            </#if>
-                                        </select>
-                                    </div>
-                                    <textarea class=" form-control  text-control">${testCaseDto.customParamsBody}</textarea>
-                                    <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
-                                    <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
-                                    <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'body')">保存</a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
-
                 <!--返回参数校验-->
                 <#if testCaseDto.paramsAssert==1>
 
@@ -293,15 +195,7 @@
                                                     <input type="hidden" name="id" value="${item.id}">
                                                     <div class="row">
                                                         <td>
-                                                            <select class="form-control" name="databaseConfigId">
-                                                                <#if databaseConfigDtoList ??>
-                                                                    <#list databaseConfigDtoList as dbItem>
-                                                                        <option value="${dbItem.id}" <#if item.databaseConfigId == dbItem.id>selected</#if>>
-                                                                            ${dbItem.name}
-                                                                        </option>
-                                                                    </#list>
-                                                                </#if>
-                                                            </select>
+                                                            <input type="text" class="form-control" name="databaseName" value="${item.databaseName}">
                                                         </td>
                                                         <td><input type="text" class="form-control" name="sqlStr" value="${item.sqlStr}"></td>
                                                         <td><input type="text" class="form-control"  name="assertParam" value="${item.assertParam}"></td>
@@ -357,15 +251,7 @@
                                                     <div class="row">
                                                         <td>
                                                             <input type="hidden" name="id" value="${assertItem.id}">
-                                                            <select class="form-control" name="redisConfigId">
-                                                                <#if testRedisConfigDtoList ??>
-                                                                    <#list testRedisConfigDtoList as item>
-                                                                        <option value="${item.id}" <#if item.id == assertItem.redisConfigId>selected</#if>>
-                                                                            ${item.name}
-                                                                        </option>
-                                                                    </#list>
-                                                                </#if>
-                                                            </select>
+                                                            <input type="text" class="form-control" name="redisName" value="${assertItem.redisName}">
                                                         </td>
                                                         <td>
                                                             <select class="form-control case-select" name="redisAssertType">
@@ -429,13 +315,7 @@
                                                     <td>
                                                         <input type="hidden" name="id" value="${dbItem.id}">
                                                         <input type="hidden" name="operateType" value="${dbItem.operateType}">
-                                                        <select class="form-control" name="databaseId">
-                                                            <#if  databaseConfigDtoList??>
-                                                                <#list databaseConfigDtoList as item>
-                                                                    <option value="${item.id}" <#if item.id == dbItem.databaseId>selected</#if>>${item.name} </option>
-                                                                </#list>
-                                                            </#if>
-                                                        </select>
+                                                        <input type="text" class="form-control" name="databaseName" value="${item.databaseName}">
                                                     </td>
                                                     <td>
                                                         <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
@@ -484,13 +364,7 @@
                                                         <tr>
                                                             <td>
                                                                 <input type="hidden" name="id" value="${redisItem.id}">
-                                                                <select class="form-control" name="redisId">
-                                                                    <#if  testRedisConfigDtoList??>
-                                                                        <#list testRedisConfigDtoList as item>
-                                                                            <option value="${item.id}" <#if item.id == redisItem.redisId>selected</#if>>${item.name} </option>
-                                                                        </#list>
-                                                                    </#if>
-                                                                </select>
+                                                                <input type="text" name="redisName" value="${redisItem.redisName}">
                                                             </td>
                                                             <td>
                                                                 <select class="form-control case-select" id="redisOperateType" name="redisOperateType">
@@ -562,13 +436,7 @@
                                                     <tr>
                                                         <td>
                                                             <input type="hidden" name="id" value="${dbItem.id}">
-                                                            <select class="form-control" name="databaseId">
-                                                                <#if  databaseConfigDtoList??>
-                                                                    <#list databaseConfigDtoList as item>
-                                                                        <option value="${item.id}" <#if item.id == dbItem.databaseId>selected</#if>>${item.name} </option>
-                                                                    </#list>
-                                                                </#if>
-                                                            </select>
+                                                            <input type="text" class="form-control" name="databaseName" value="${item.databaseName}">
                                                         </td>
                                                         <td>
                                                             <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
@@ -617,13 +485,7 @@
                                                     <tr>
                                                         <td>
                                                             <input type="hidden" name="id" value="${redisItem.id}">
-                                                            <select class="form-control" name="redisId">
-                                                                <#if  testRedisConfigDtoList??>
-                                                                    <#list testRedisConfigDtoList as item>
-                                                                        <option value="${item.id}" <#if item.id == redisItem.redisId>selected</#if>>${item.name} </option>
-                                                                    </#list>
-                                                                </#if>
-                                                            </select>
+                                                            <input type="text" name="redisName" value="${redisItem.redisName}">
                                                         </td>
                                                         <td>
                                                             <select class="form-control case-select"  name="redisOperateType">
@@ -736,7 +598,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="../report/report_detail" type="button" class="btn btn-primary">运行</a>
+                <a href="../reportResult/report_detail" type="button" class="btn btn-primary">运行</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -785,13 +647,7 @@
 
 <script type="text/javascript">
     var dbhtml = '<tr><div class="row"><td><input type="hidden" name="id">';
-    dbhtml += '<select class="form-control" name="databaseId">';
-    dbhtml += '<#if databaseConfigDtoList ??>';
-    dbhtml += '<#list databaseConfigDtoList as item>';
-    dbhtml += '<option value="${item.id}">${item.name} </option>';
-    dbhtml += '</#list>';
-    dbhtml += '</#if>';
-    dbhtml += '</select>';
+    dbhtml += '<input type="text" class="form-control" name="databaseName" value="">';
     dbhtml += '</td>';
     dbhtml += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
     dbhtml += '<td>';
@@ -802,13 +658,7 @@
     dbhtml += '</tr>';
 
     var redishtml = '<tr><div class="row"><td><input type="hidden" name="id">';
-    redishtml += '<select class="form-control"  name="redisId">';
-    redishtml += '<#if testRedisConfigDtoList ??>';
-    redishtml += '<#list testRedisConfigDtoList as item>';
-    redishtml += '<option value="${item.id}"> ${item.name} </option>';
-    redishtml += '</#list>';
-    redishtml += '</#if>';
-    redishtml += '</select>';
+    redishtml += '  <input type="text" name="redisName" value="">';
     redishtml += '</td>';
     redishtml += '<td>';
     redishtml += '<select class="form-control case-select"  name="redisOperateType">';
@@ -946,15 +796,7 @@
     var redisAssertHtml = '<tr>';
     redisAssertHtml += '<div class="row">';
     redisAssertHtml += '<td><input type="hidden" name="id" value="">';
-    redisAssertHtml += '<select class="form-control" name="redisConfigId">';
-    redisAssertHtml += ' <#if testRedisConfigDtoList ??>';
-    redisAssertHtml += '<#list testRedisConfigDtoList as item>';
-    redisAssertHtml += '<option value="${item.id}">';
-    redisAssertHtml += '${item.name}';
-    redisAssertHtml += '</option>';
-    redisAssertHtml += '</#list>';
-    redisAssertHtml += '</#if>';
-    redisAssertHtml += '</select>';
+    redisAssertHtml += '<input type="text" name="redisName" value="">';
     redisAssertHtml += '</td>';
     redisAssertHtml += '<td>';
     redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
@@ -1060,29 +902,29 @@
     //保存数据库校验
     function saveDBValidation(_this){
         var id = $(_this).parent().parent().find("input[name='id']").val();
-        var databaseConfigId = $(_this).parent().parent().find("select[name='databaseConfigId']").val();
+        var databaseName = $(_this).parent().parent().find("input[name='databaseName']").val();
         var sqlStr = $(_this).parent().parent().find("input[name='sqlStr']").val();
         var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
         var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
-        var urlParamStr = "id="+ id  + "&databaseConfigId=" + databaseConfigId + "&sqlStr=" + sqlStr+ "&assertParam=" + assertParam;
+        var urlParamStr = "id="+ id  + "&databaseName=" + databaseName + "&sqlStr=" + sqlStr+ "&assertParam=" + assertParam;
         urlParamStr += "&rightValue=" + rightValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
         savePost("${basePath}/autotest/case/saveDBValidation",urlParamStr,_this);
     }
     //保存redis校验
     function saveRedisValidation(_this){
         var id = $(_this).parent().parent().find("input[name='id']").val();
-        var redisConfigId = $(_this).parent().parent().find("select[name='redisConfigId']").val();
+        var redisName = $(_this).parent().parent().find("select[name='redisName']").val();
         var redisAssertType = $(_this).parent().parent().find("select[name='redisAssertType']").val();
         var keyStr = $(_this).parent().parent().find("input[name='keyStr']").val();
         var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
         var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
-        var urlParamStr = "id="+ id  + "&redisConfigId=" + redisConfigId + "&keyStr=" + keyStr+ "&assertParam=" + assertParam;
+        var urlParamStr = "id="+ id  + "&redisName=" + redisName + "&keyStr=" + keyStr+ "&assertParam=" + assertParam;
         urlParamStr += "&rightValue=" + rightValue + "&type=" + redisAssertType +"&caseId=${caseId}&interfaceId=${interfaceId}";
         savePost("${basePath}/autotest/case/saveRedisValidation",urlParamStr,_this);
     }
 
     function addRedisOperation(_this){
-        var redisId = $(_this).parent().parent().find("select[name='redisId']").val();
+        var redisName = $(_this).parent().parent().find("input[name='redisName']").val();
         var redisOperateType = $(_this).parent().parent().find("select[name='redisOperateType']").val();
         var id  = $(_this).parent().parent().find("input[name='id']").val();
         var operateType =  $(_this).parent().parent().parent().find("input[name='operateType']").val();
@@ -1091,7 +933,7 @@
         var time = $(_this).parent().parent().find("input[name='time']").val();
         //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
         var type = 1;
-        var params = "redisId=" + redisId + "&redisOperateType=" + redisOperateType;
+        var params = "redisName=" + redisName + "&redisOperateType=" + redisOperateType;
         params += "&id=" + id + "&operateType=" + operateType + "&type=" + type ;
         params += "&caseId=${caseId}&interfaceId=${interfaceId}" + "&key=" + key + "&value=" + value + "&time=" + time;
         savePost("${basePath}/autotest/interface/saveRedisOperation",params,_this);
@@ -1099,13 +941,13 @@
 
     //获取保存所属行的数据库操作信息
     function addDatabaseSql(_this){
-        var databaseId = $(_this).parent().parent().find("select[name='databaseId']").val();
+        var databaseName = $(_this).parent().parent().find("select[name='databaseName']").val();
         var sqlStr = $(_this).parent().parent().find("textarea[name='sqlStr']").val();
         var id  = $(_this).parent().parent().find("input[name='id']").val();
         var operateType =  $(_this).parent().parent().parent().find("input[name='operateType']").val();
         //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
         var type = 1;
-        var params = "databaseId=" + databaseId + "&sqlStr=" + sqlStr + "&id=" + id
+        var params = "databaseName=" + databaseName + "&sqlStr=" + sqlStr + "&id=" + id
                 + "&operateType=" + operateType + "&type=" + type +"&caseId=${caseId}&interfaceId=${interfaceId}";
         savePost("${basePath}/autotest/interface/saveDataBaseSql",params,_this);
     }
@@ -1182,18 +1024,12 @@
         })
     }
 
-    function saveCustomParams(_this,paramsType){
-        if("header" == paramsType){
-            var customParamsHeaderType = $(_this).parent().find("select[name='appendParam']").val();
-            var customParamsHeader = $(_this).parent().find("textarea").val();
-            var params = "customParamsHeaderType=" + customParamsHeaderType + "&customParamsHeader=" + customParamsHeader
-                   +"&id=${caseId}&interfaceId=${interfaceId}";
-        } else {
-            var customParamsBodyType = $(_this).parent().find("select[name='appendParam']").val();
-            var customParamsBody = $(_this).parent().find("textarea").val();
-            var params = "customParamsBodyType=" + customParamsBodyType + "&customParamsBody=" + customParamsBody
-                    +"&id=${caseId}&interfaceId=${interfaceId}";
-        }
+    function saveCustomParams(_this){
+        var customParamsType = $(_this).parent().find("select[name='appendParam']").val();
+        var customParams = $(_this).parent().find("textarea").val();
+        var params = "customParamsType=" + customParamsType + "&customParams" + customParams
+               +"&id=${caseId}&interfaceId=${interfaceId}";
+
         savePost("${basePath}/autotest/case/saveCustomParams",params,_this);
     }
 

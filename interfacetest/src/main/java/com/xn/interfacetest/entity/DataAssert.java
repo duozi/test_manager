@@ -26,10 +26,10 @@ public class DataAssert extends BaseEntity {
     private Long id;
 
     /**
-     * 
-     * 数据库id 
+     *
+     * 数据库名称
      */
-    private Long databaseConfigId;
+    private String databaseName;
 
     /**
      * 
@@ -83,15 +83,15 @@ public class DataAssert extends BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Long getDatabaseConfigId() {
-        return this.databaseConfigId;
+
+    public String getDatabaseName() {
+        return databaseName;
     }
-    
-    public void setDatabaseConfigId(Long databaseConfigId) {
-        this.databaseConfigId = databaseConfigId;
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
     }
-    
+
     public String getSqlStr() {
         return this.sqlStr;
     }

@@ -63,7 +63,23 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByEnvironmentAndDbName" resultMap="TestDatabaseConfigMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_database_config
+            <where>
+               <if test="@Ognl@isNotEmpty(databaseName)">
+                    AND database_name = #{databaseName}
+                </if>
+               <if test="@Ognl@isNotEmpty(environmentId)">
+                    AND environment_id = #{environmentId}
+                </if>
+            </where>
+        ]]>
+    </select>
+
     <select id="list" resultMap="TestDatabaseConfigMap">
         SELECT
             <include refid="columns" />

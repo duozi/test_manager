@@ -7,6 +7,8 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationCaseRedis;
 
+import java.util.List;
+
 /**
  * RelationCaseRedis Dao 接口
  * 
@@ -15,4 +17,5 @@ import com.xn.interfacetest.entity.RelationCaseRedis;
  */
 public interface RelationCaseRedisMapper extends BaseMapper<RelationCaseRedis, Long> {
 
+    List<RelationCaseRedis> getByCaseIdAndOperateType(Long caseId, int operateType);
 }

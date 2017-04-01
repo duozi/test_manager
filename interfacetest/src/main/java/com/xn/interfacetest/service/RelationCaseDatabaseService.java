@@ -114,4 +114,18 @@ public interface RelationCaseDatabaseService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationCaseDatabaseDto> relationCaseDatabases);
+
+    /**
+     * 根据caseId查询数据库信息
+     * @param caseId
+     * @return
+     */
+    List<RelationCaseDatabaseDto> getByCaseId(Long caseId);
+
+    /**
+     * 根据caseId和操作类型查询数据库信息
+     * @param caseId
+     * @return
+     */
+    List<RelationCaseDatabaseDto> getByCaseIdAndOperateType(Long caseId, int operateType);
 }

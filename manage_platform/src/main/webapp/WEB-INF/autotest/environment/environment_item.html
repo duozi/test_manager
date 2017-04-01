@@ -326,7 +326,7 @@
     redisPropertiesHtml += '<td><input type="text" class="form-control" name="timeout" required maxlength="30" digits></td>';
     redisPropertiesHtml += '<td><input type="text" class="form-control" name="tryTime" required maxlength="30" digits></td>';
     redisPropertiesHtml += '<td >';
-    redisPropertiesHtml += '<input type="text" class="form-control" name="ipAddress" required maxlength="300" >';
+    redisPropertiesHtml += '<input type="text" class="form-control" name="ipAddress" required maxlength="300" placeholder="集群地址以分号隔开，如：10.17.2.151:8080;10.17.2.152:8012">';
     redisPropertiesHtml += '</td>';
     redisPropertiesHtml += '<td>';
     redisPropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>';

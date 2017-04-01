@@ -6,6 +6,7 @@ package com.xn.interfacetest.service;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.base.CommonResult;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestPlanDto;
 
@@ -128,4 +129,11 @@ public interface TestPlanService {
      * @param l
      */
     void publishPlan(Integer status,Long id);
+
+    /**
+     * 根据计划Id执行测试计划
+     * @param planId
+     * @return
+     */
+    CommonResult excutePlan(Long planId);
 }

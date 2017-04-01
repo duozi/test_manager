@@ -26,9 +26,9 @@ public class RedisAssert extends BaseEntity {
 
     /**
      * 
-     * 数据库id 
+     * 数redis名称
      */
-    private Long redisConfigId;
+    private String redisName;
 
     /**
      *
@@ -84,14 +84,6 @@ public class RedisAssert extends BaseEntity {
     
     public void setId(Long id) {
         this.id = id;
-    }
-    
-    public Long getRedisConfigId() {
-        return this.redisConfigId;
-    }
-    
-    public void setRedisConfigId(Long redisConfigId) {
-        this.redisConfigId = redisConfigId;
     }
 
     public String getKeyStr() {
@@ -156,5 +148,13 @@ public class RedisAssert extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getRedisName() {
+        return redisName;
+    }
+
+    public void setRedisName(String redisName) {
+        this.redisName = redisName;
     }
 }

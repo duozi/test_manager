@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestReportDto;
 
 
 /**
@@ -128,4 +131,18 @@ public interface TestCaseService {
      * @return
      */
     List<TestCaseDto> listByParams(Map<String, Object> params);
+
+    /**
+     * 通过测试集查询测试用例
+     * @param id
+     * @return
+     */
+    List<TestCaseDto> listBySuitId(Long id);
+
+    /**
+     * 批量执行测试用例-指定执行环境
+     * @param testCaseDtoList
+     * @param testEnvironmentDto
+     */
+    void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId);
 }

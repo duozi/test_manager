@@ -121,4 +121,11 @@ public class ParamsAssertServiceImpl implements ParamsAssertService {
         return 0;
     }
 
+    @Override
+    public List<ParamsAssertDto> getByCaseId(Long caseId) {
+        List<ParamsAssert> list = paramsAssertMapper.getByCaseId(caseId);
+        List<ParamsAssertDto> dtoList = CollectionUtils.transform(list, ParamsAssertDto.class);
+        return dtoList;
+    }
+
 }

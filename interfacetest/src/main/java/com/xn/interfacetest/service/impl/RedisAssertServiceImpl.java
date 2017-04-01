@@ -123,4 +123,11 @@ public class RedisAssertServiceImpl implements RedisAssertService {
         return 0;
     }
 
+    @Override
+    public List<RedisAssertDto> getByCaseId(Long caseId) {
+        List<RedisAssert> list = redisAssertMapper.getByCaseId(caseId);
+        List<RedisAssertDto> dtoList = CollectionUtils.transform(list, RedisAssertDto.class);
+        return dtoList;
+    }
+
 }

@@ -56,8 +56,28 @@
         SELECT
             <include refid="columns" />
         FROM
-            test_plan 
-        <include refid="where"/>
+            test_plan
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(description)">
+                AND description = #{description}
+            </if>
+            <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+            <if test="@Ognl@isNotEmpty(excuteType)">
+                AND excute_type = #{excuteType}
+            </if>
+            <if test="@Ognl@isNotEmpty(createPerson)">
+                AND create_person = #{createPerson}
+            </if>
+        </where>
     </select>
         
     <select id="count" resultType="long">
@@ -137,15 +157,15 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+            UPDATE
                 test_plan
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

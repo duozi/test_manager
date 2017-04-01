@@ -7,6 +7,8 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RedisAssert;
 
+import java.util.List;
+
 /**
  * RedisAssert Dao 接口
  * 
@@ -15,4 +17,5 @@ import com.xn.interfacetest.entity.RedisAssert;
  */
 public interface RedisAssertMapper extends BaseMapper<RedisAssert, Long> {
 
+    List<RedisAssert> getByCaseId(Long caseId);
 }

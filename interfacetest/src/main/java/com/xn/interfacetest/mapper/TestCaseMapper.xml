@@ -17,16 +17,14 @@
         <result property="paramsAssert" column="params_assert"/>
         <result property="databaseAssert" column="database_assert"/>
         <result property="redisAssert" column="redis_assert"/>
-        <result property="customParamsHeader" column="custom_params_header"/>
-        <result property="customParamsBody" column="custom_params_body"/>
-        <result property="customParamsHeaderType" column="custom_params_header_type"/>
-        <result property="customParamsBodyType" column="custom_params_body_type"/>
+        <result property="customParams" column="custom_params"/>
+        <result property="customParamsType" column="custom_params_type"/>
         <result property="isDelete" column="is_delete"/>
     </resultMap>
 
     <sql id="columns">
         <![CDATA[
-        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear, params_assert, database_assert, redis_assert, custom_params_header, custom_params_body, custom_params_header_type, custom_params_body_type
+        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear, params_assert, database_assert, redis_assert, custom_params, custom_params_type
         ]]>
     </sql>
 
@@ -68,18 +66,13 @@
             <if test="@Ognl@isNotEmpty(redisAssert)">
                 AND redis_assert = #{redisAssert}
             </if>
-            <if test="@Ognl@isNotEmpty(customParamsHeader)">
-                AND custom_params_header = #{customParamsHeader}
+            <if test="@Ognl@isNotEmpty(customParams)">
+                AND custom_params = #{customParams}
             </if>
-            <if test="@Ognl@isNotEmpty(customParamsBody)">
-                AND custom_params_body = #{customParamsBody}
+            <if test="@Ognl@isNotEmpty(customParamsType)">
+                AND custom_params_type = #{customParamsType}
             </if>
-            <if test="@Ognl@isNotEmpty(customParamsHeaderType)">
-                AND custom_params_header_type = #{customParamsHeaderType}
-            </if>
-            <if test="@Ognl@isNotEmpty(customParamsBodyType)">
-                AND custom_params_body_type = #{customParamsBodyType}
-            </if>
+
         </where>
     </sql>
 
@@ -136,20 +129,15 @@
             <if test="@Ognl@isNotEmpty(redisAssert)">
                 AND redis_assert = #{redisAssert}
             </if>
-            <if test="@Ognl@isNotEmpty(customParamsHeader)">
-                AND custom_params_header = #{customParamsHeader}
+            <if test="@Ognl@isNotEmpty(customParams)">
+                AND custom_params = #{customParams}
             </if>
-            <if test="@Ognl@isNotEmpty(customParamsBody)">
-                AND custom_params_body = #{customParamsBody}
-            </if>
-            <if test="@Ognl@isNotEmpty(customParamsHeaderType)">
-                AND custom_params_header_type = #{customParamsHeaderType}
-            </if>
-            <if test="@Ognl@isNotEmpty(customParamsBodyType)">
-                AND custom_params_body_type = #{customParamsBodyType}
+            <if test="@Ognl@isNotEmpty(customParamsType)">
+                AND custom_params_type = #{customParamsType}
             </if>
         </where>
     </select>
+
 
     <select id="listByParams" resultMap="TestCaseMap">
         SELECT
@@ -179,6 +167,13 @@
         </where>
     </select>
 
+    <select id="listBySuitId" resultMap="TestCaseMap">
+        SELECT tc.*
+        from test_case tc
+        left join relation_suit_case rsc on tc.id = rsc.case_id
+        where rsc.suit_id = #{suitId}
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -204,10 +199,9 @@
                 params_assert,
                 database_assert,
                 redis_assert,
-                custom_params_header,
-                custom_params_body,
-                custom_params_header_type,
-                custom_params_body_type
+                custom_params,
+                custom_params_type
+
             ) VALUES (
                 #{id},
                 #{name},
@@ -221,10 +215,8 @@
                 #{paramsAssert},
                 #{databaseAssert},
                 #{redisAssert},
-                #{customParamsHeader},
-                #{customParamsBody},
-                #{customParamsHeaderType},
-                #{customParamsBodyType}
+                #{customParams},
+                #{customParamsType}
             )
         ]]>
     </insert>
@@ -244,14 +236,12 @@
                 params_assert,
                 database_assert,
                 redis_assert,
-                custom_params_header,
-                custom_params_body,
-                custom_params_header_type,
-                custom_params_body_type
+                custom_params,
+                custom_params_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.number},#{item.description},#{item.interfaceId},#{item.type},#{item.createPerson},#{item.dataPrepare},#{item.dataClear},#{item.paramsAssert},#{item.databaseAssert},#{item.redisAssert},#{item.customParamsHeader},#{item.customParamsBody},#{item.customParamsHeaderType},#{item.customParamsBodyType})
+            (#{item.id},#{item.name},#{item.number},#{item.description},#{item.interfaceId},#{item.type},#{item.createPerson},#{item.dataPrepare},#{item.dataClear},#{item.paramsAssert},#{item.databaseAssert},#{item.redisAssert},#{item.customParams},#{item.customParamsType})
         </foreach>
     </insert>
 
@@ -282,17 +272,11 @@
             <if test="type != null">
                 <![CDATA[ type = #{type} ]]>,
             </if>
-            <if test="customParamsHeader != null">
-                <![CDATA[ custom_params_header = #{customParamsHeader} ]]>,
+            <if test="customParams != null">
+                <![CDATA[ custom_params = #{customParams} ]]>,
             </if>
-            <if test="customParamsBody != null">
-                <![CDATA[ custom_params_body = #{customParamsBody} ]]>,
-            </if>
-            <if test="customParamsHeaderType != null">
-                <![CDATA[ custom_params_header_type = #{customParamsHeaderType} ]]>,
-            </if>
-            <if test="customParamsBodyType != null">
-                <![CDATA[ custom_params_body_type = #{customParamsBodyType} ]]>
+            <if test="customParamsType != null">
+                <![CDATA[ custom_params_type = #{customParamsType} ]]>
             </if>
         </set>
         WHERE
@@ -321,17 +305,11 @@
             <if test="type != null">
                 <![CDATA[ type = #{type} ]]>,
             </if>
-            <if test="customParamsHeader != null">
-                <![CDATA[ custom_params_header = #{customParamsHeader} ]]>,
+            <if test="customParams != null">
+                <![CDATA[ custom_params = #{customParams} ]]>,
             </if>
-            <if test="customParamsBody != null">
-                <![CDATA[ custom_params_body = #{customParamsBody} ]]>,
-            </if>
-            <if test="customParamsHeaderType != null">
-                <![CDATA[ custom_params_header_type = #{customParamsHeaderType} ]]>,
-            </if>
-            <if test="customParamsBodyType != null">
-                <![CDATA[ custom_params_body_type = #{customParamsBodyType} ]]>
+            <if test="customParamsType != null">
+                <![CDATA[ custom_params_type = #{customParamsType} ]]>
             </if>
         </set>
         WHERE

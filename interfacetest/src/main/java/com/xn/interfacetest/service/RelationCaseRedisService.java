@@ -115,4 +115,12 @@ public interface RelationCaseRedisService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationCaseRedisDto> relationCaseRediss);
+
+    /**
+     * 根据用例id和操作类型查询redis操作
+     * @param caseId
+     * @param id
+     * @return
+     */
+    List<RelationCaseRedisDto> getByCaseIdAndOperateType(Long caseId, int id);
 }
