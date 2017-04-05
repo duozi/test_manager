@@ -6,7 +6,7 @@
 
     <resultMap id="RedisAssertMap" type="com.xn.interfacetest.entity.RedisAssert">
         <result property="id" column="id"/>
-        <result property="redisConfigId" column="redis_config_id"/>
+        <result property="redisName" column="redis_name"/>
         <result property="keyStr" column="key_str"/>
         <result property="assertParam" column="assert_param"/>
         <result property="rightValue" column="right_value"/>
@@ -17,7 +17,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, redis_config_id, key_str, assert_param, right_value, case_id,redis_assert_type
+        id, redis_name, key_str, assert_param, right_value, case_id,redis_assert_type
         ]]>
     </sql>
     
@@ -26,8 +26,8 @@
            <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-           <if test="@Ognl@isNotEmpty(redisConfigId)">
-                AND redis_config_id = #{redisConfigId}
+           <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
             </if>
            <if test="@Ognl@isNotEmpty(keyStr)">
                 AND key_str = #{keyStr}
@@ -76,8 +76,8 @@
             <if test="id != null and id != 0">
                 AND id = #{id}
             </if>
-            <if test="@Ognl@isNotEmpty(redisConfigId)">
-                AND redis_config_id = #{redisConfigId}
+            <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
             </if>
             <if test="@Ognl@isNotEmpty(keyStr)">
                 AND key_str = #{keyStr}
@@ -111,7 +111,7 @@
         <![CDATA[
             INSERT INTO redis_assert (
                 id,
-                redis_config_id,
+                redis_name,
                 key_str,
                 assert_param,
                 right_value,
@@ -119,7 +119,7 @@
                 redis_assert_type
             ) VALUES (
                 #{id},
-                #{redisConfigId},
+                #{redisName},
                 #{keyStr},
                 #{assertParam},
                 #{rightValue},
@@ -133,7 +133,7 @@
         <![CDATA[
             INSERT INTO redis_assert (
                 id,
-                redis_config_id,
+                redis_name,
                 key_str,
                 assert_param,
                 right_value,
@@ -142,7 +142,7 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.redisConfigId},#{item.keyStr},#{item.assertParam},#{item.rightValue},#{item.caseId},#{item.type})
+            (#{item.id},#{item.redisName},#{item.keyStr},#{item.assertParam},#{item.rightValue},#{item.caseId},#{item.type})
         </foreach>
     </insert>
     
@@ -150,8 +150,8 @@
         	UPDATE
                 redis_assert
             <set>
-                <if test="redisConfigId != null">
-                	<![CDATA[ redis_config_id = #{redisConfigId} ]]>,
+                <if test="redisName != null">
+                	<![CDATA[ redis_name = #{redisName} ]]>,
                 </if>
                 <if test="keyStr != null">
                 	<![CDATA[ key_str = #{keyStr} ]]>,

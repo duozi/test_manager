@@ -40,53 +40,53 @@ public class StringUtil {
         return str;
     }
 
-    public static String getPro(String file, String properName) {
-        Properties prop = new Properties();
-        String value = null;
-        InputStream in = Object.class.getResourceAsStream("/" + file);
-        try {
-            prop.load(in);
-            value = prop.getProperty(properName).trim();
-        } catch (IOException e) {
-            e.printStackTrace();
-            logger.error("properties file is not exist");
-        } finally {
-            return value;
-        }
-    }
-
-
-    public static Boolean isEmpty(Object value) {
-        if (value == null) return true;
-        if (org.apache.commons.lang.StringUtils.isBlank(value.toString())) return true;
-        return false;
-    }
-
-    public static boolean isJson(Object value) {
-        if (!(value instanceof String)) return false;
-        String json = value.toString();
-        return json.startsWith("{") && json.endsWith("}");
-    }
-
-    public static String getConfig(File file, String properName, String defaultValue) {
-
-        List<String> lines = FileUtil.fileReadeForList(file);
-        if(null != lines && lines.size() >0 ){
-            for (String line : lines) {
-                if (!line.startsWith("#")) {
-                    if (line.contains("=")) {
-                        String split[] = line.split("=", 2);
-                        if (split[0].equals(properName)) {
-                            return split[1];
-
-                        }
-
-                    }
-                }
-            }
-        }
-        return defaultValue;
-    }
+//    public static String getPro(String file, String properName) {
+//        Properties prop = new Properties();
+//        String value = null;
+//        InputStream in = Object.class.getResourceAsStream("/" + file);
+//        try {
+//            prop.load(in);
+//            value = prop.getProperty(properName).trim();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            logger.error("properties file is not exist");
+//        } finally {
+//            return value;
+//        }
+//    }
+//
+//
+//    public static Boolean isEmpty(Object value) {
+//        if (value == null) return true;
+//        if (org.apache.commons.lang.StringUtils.isBlank(value.toString())) return true;
+//        return false;
+//    }
+//
+//    public static boolean isJson(Object value) {
+//        if (!(value instanceof String)) return false;
+//        String json = value.toString();
+//        return json.startsWith("{") && json.endsWith("}");
+//    }
+//
+//    public static String getConfig(File file, String properName, String defaultValue) {
+//
+//        List<String> lines = FileUtil.fileReadeForList(file);
+//        if(null != lines && lines.size() >0 ){
+//            for (String line : lines) {
+//                if (!line.startsWith("#")) {
+//                    if (line.contains("=")) {
+//                        String split[] = line.split("=", 2);
+//                        if (split[0].equals(properName)) {
+//                            return split[1];
+//
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        return defaultValue;
+//    }
 
 
 

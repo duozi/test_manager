@@ -51,63 +51,63 @@ public class JarUtil {
     }
 
     public static void checkNew(String jarPath)  {
-        GetPara getPara = new GetPara();
-        String path = getPara.getPath();
-        File profile = new File(path + "suite/jar.properties");
-        String checkurl = StringUtil.getPro("jar.properties", "checkurl");
-        String repository = StringUtil.getConfig(profile, "repository","snapshots");
-        String artifact = StringUtil.getConfig(profile, "artifact","");
-        String group = StringUtil.getConfig(profile, "group","");
-        String version = StringUtil.getConfig(profile, "version","");
-
-        checkurl = String.format(checkurl, repository, group, artifact, version);
-
-
-        String newJarName = getNewJarName(checkurl);
-        File file = new File(jarPath);
-        File[] files = file.listFiles();
-        if (files.length == 0) {
-            try {
-                downloadJar(repository, artifact, group, version, jarPath,newJarName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            String oldJar = files[0].getAbsolutePath();
-            String oldJarName = oldJar.substring(oldJar.lastIndexOf("/") + 1);
-            if (!newJarName.equals("") && !oldJarName.equals(newJarName)) {
-
-                try {
-                    downloadJar(repository, artifact,  group, version, jarPath,newJarName);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                File oldJarFile=new File(oldJar);
-                oldJarFile.delete();
-            }
-
-        }
+//        GetPara getPara = new GetPara();
+//        String path = getPara.getPath();
+//        File profile = new File(path + "suite/jar.properties");
+//        String checkurl = StringUtil.getPro("jar.properties", "checkurl");
+//        String repository = StringUtil.getConfig(profile, "repository","snapshots");
+//        String artifact = StringUtil.getConfig(profile, "artifact","");
+//        String group = StringUtil.getConfig(profile, "group","");
+//        String version = StringUtil.getConfig(profile, "version","");
+//
+//        checkurl = String.format(checkurl, repository, group, artifact, version);
+//
+//
+//        String newJarName = getNewJarName(checkurl);
+//        File file = new File(jarPath);
+//        File[] files = file.listFiles();
+//        if (files.length == 0) {
+//            try {
+//                downloadJar(repository, artifact, group, version, jarPath,newJarName);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            String oldJar = files[0].getAbsolutePath();
+//            String oldJarName = oldJar.substring(oldJar.lastIndexOf("/") + 1);
+//            if (!newJarName.equals("") && !oldJarName.equals(newJarName)) {
+//
+//                try {
+//                    downloadJar(repository, artifact,  group, version, jarPath,newJarName);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                File oldJarFile=new File(oldJar);
+//                oldJarFile.delete();
+//            }
+//
+//        }
     }
 
     public static void downloadJar(String r, String a, String g, String v, String jarPath,String name) throws Exception {
-        String downloadUrl = StringUtil.getPro("jar.properties", "newurl");
-        downloadUrl = String.format(downloadUrl, r, g, a, v);
-        System.out.println(downloadUrl);
-        try {
-
-            File f = new File(jarPath+"/"+name);
-            URL httpurl = new URL(downloadUrl);
-            FileUtils.copyURLToFile(httpurl, f);
-            if (!f.exists()) {
-                logger.error("download jar failed!");
-                throw new Exception("download jar failed!");
-            }
-
-        } catch (Exception e) {
-
-            logger.error("download jar failed!");
-            throw new Exception("download jar failed!");
-        }
+//        String downloadUrl = StringUtil.getPro("jar.properties", "newurl");
+//        downloadUrl = String.format(downloadUrl, r, g, a, v);
+//        System.out.println(downloadUrl);
+//        try {
+//
+//            File f = new File(jarPath+"/"+name);
+//            URL httpurl = new URL(downloadUrl);
+//            FileUtils.copyURLToFile(httpurl, f);
+//            if (!f.exists()) {
+//                logger.error("download jar failed!");
+//                throw new Exception("download jar failed!");
+//            }
+//
+//        } catch (Exception e) {
+//
+//            logger.error("download jar failed!");
+//            throw new Exception("download jar failed!");
+//        }
 
     }
 

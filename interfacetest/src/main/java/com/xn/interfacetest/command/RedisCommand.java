@@ -8,6 +8,7 @@ import com.xn.interfacetest.util.RedisUtil;
 import com.xn.interfacetest.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -127,14 +128,14 @@ public class RedisCommand implements Command {
     }
 
     private void set(String key, String value, int time) {
-        if (StringUtil.isEmpty(key) || StringUtil.isEmpty(value)) {
+        if (StringUtils.isEmpty(key) || StringUtils.isEmpty(value)) {
             return;
         }
         RedisUtil.set(key, value, time);
     }
 
     private String get(String key) {
-        if (StringUtil.isEmpty(key)) {
+        if (StringUtils.isEmpty(key)) {
             return null;
         }
         return RedisUtil.get(key);
@@ -145,7 +146,7 @@ public class RedisCommand implements Command {
     }
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId) {
+    public void execute(Long caseId, Long interfaceId, Long planId, Long reportId) {
 
     }
 
@@ -160,6 +161,11 @@ public class RedisCommand implements Command {
 
     @Override
     public void executeWithException() throws Exception {
+
+    }
+
+    @Override
+    public void executeWithException(Long reportId) throws Exception {
 
     }
 }

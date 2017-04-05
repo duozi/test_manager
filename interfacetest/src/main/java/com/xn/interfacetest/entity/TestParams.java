@@ -43,20 +43,7 @@ public class TestParams extends BaseEntity {
      */
     private Long interfaceId;
 
-    /**
-     * 
-     * 数据类型（int,string….） 
-     */
-    private String dataType;
 
-    /**
-     * 
-     * 1-Header参数，2-body参数 
-     */
-    private Integer type;
-
-
-    
     private TestInterface testInterface;
    
 	
@@ -98,22 +85,6 @@ public class TestParams extends BaseEntity {
     
     public void setInterfaceId(Long interfaceId) {
         this.interfaceId = interfaceId;
-    }
-    
-    public String getDataType() {
-        return this.dataType;
-    }
-    
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-    
-    public Integer getType() {
-        return this.type;
-    }
-    
-    public void setType(Integer type) {
-        this.type = type;
     }
     
     public TestInterface getTestInterface() {

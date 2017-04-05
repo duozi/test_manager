@@ -40,17 +40,17 @@ public class FileUtil {
         }
     }
 
-    public static List fileReadeForList(File file) {
-
-        List<String> lines = null;
-
-        try {
-            lines = Files.readLines(file, Charsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return lines;
-    }
+//    public static List fileReadeForList(File file) {
+//
+//        List<String> lines = null;
+//
+//        try {
+//            lines = Files.readLines(file, Charsets.UTF_8);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return lines;
+//    }
 
     public static String fileReadeForStr(File file) {
 

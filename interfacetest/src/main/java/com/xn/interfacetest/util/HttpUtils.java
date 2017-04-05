@@ -21,7 +21,6 @@ import java.net.*;
 /**
  * Created by xn058121 on 2017/3/29.
  */
-@Component
 public class HttpUtils {
     private static final Logger logger = LoggerFactory.getLogger(HttpUtils.class);
     private static HttpUtils  httpUtils ;  //  关键点1   静态初使化 一个工具类  这样是为了在spring初使化之前
@@ -42,16 +41,6 @@ public class HttpUtils {
         this.paramsType = paramsType;
         this.timeout = timeout;
         this.propType = propType;
-    }
-
-    public void setRelationInterfaceResultService(RelationInterfaceResultService  relationInterfaceResultService) {
-        this.relationInterfaceResultService = relationInterfaceResultService;
-    }
-
-    @PostConstruct     //关键二   通过@PostConstruct 和 @PreDestroy 方法 实现初始化和销毁bean之前进行的操作
-    public void init() {
-        httpUtils = this;
-        httpUtils.relationInterfaceResultService = this.relationInterfaceResultService;   // 初使化时将已静态化的testService实例化
     }
 
     public Response getResponse() {

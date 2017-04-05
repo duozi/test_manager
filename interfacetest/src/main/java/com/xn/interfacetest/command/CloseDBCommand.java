@@ -10,7 +10,7 @@ public class CloseDBCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(CloseDBCommand.class);
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId) {
+    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
         DBUtil.DBClose();
     }
 
@@ -21,6 +21,11 @@ public class CloseDBCommand implements Command {
 
     @Override
     public void executeWithException() throws Exception {
+
+    }
+
+    @Override
+    public void executeWithException(Long reportId) throws Exception {
 
     }
 }

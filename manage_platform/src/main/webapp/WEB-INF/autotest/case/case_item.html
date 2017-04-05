@@ -97,21 +97,25 @@
                 <div class="form-group ">
                     <label>期望</label>
                     <div class="choose-sys" style="margin-left: 1%">
-                        <label class="checkbox-inline select-first">
-                            <input type="checkbox" value="1" name="paramsAssert" <#if testCaseDto.paramsAssert==1>checked</#if>>返回参数校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="databaseAssert" <#if testCaseDto.databaseAssert==1>checked</#if>>数据库校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="redisAssert" <#if testCaseDto.redisAssert==1>checked</#if>>redis校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="dataPrepare" <#if testCaseDto.dataPrepare==1>checked</#if>>数据库校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="dataClear" <#if testCaseDto.dataClear==1>checked</#if>>redis校验
-                        </label>
+                        <div class="checkbox-class ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="paramsAssert" <#if testCaseDto.paramsAssert==1>checked</#if>>返回参数校验
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="databaseAssert" <#if testCaseDto.databaseAssert==1>checked</#if>>数据库校验
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="redisAssert" <#if testCaseDto.redisAssert==1>checked</#if>>redis校验
+                            </label>
+                        </div>
+                        <div class="checkbox-class ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataPrepare" <#if testCaseDto.dataPrepare==1>checked</#if>>数据准备
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataClear" <#if testCaseDto.dataClear==1>checked</#if>>数据清除
+                            </label>
+                        </div>
                     </div>
                 </div>
 

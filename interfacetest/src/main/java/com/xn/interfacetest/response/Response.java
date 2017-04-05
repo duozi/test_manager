@@ -52,7 +52,7 @@ public class Response {
     public void paraVerify(Map<String, String> expected, Assert assertItem, Long reportId) throws AssertNotEqualException {
 
         try {
-            validate(expected, assertItem,reportId);
+            validate(expected, assertItem);
         } catch (AssertNotEqualException e) {
             assertItem.setResult("failed");
             logger.error("parameter assert is  not Equal");
@@ -91,16 +91,6 @@ public class Response {
         }
     }
 
-    /**
-     * 比较断言内容
-     * @param jsonObject
-     * @param name
-     * @param value
-     * @param assertItem
-     * @param id
-     * @param reportId
-     */
-
 //    private void assertBody(String expected) {
 //        if (expected != null) {
 //            String json = bodyInString(body);
@@ -109,13 +99,13 @@ public class Response {
 //        }
 //    }
 
-    private void validate(Map<String, String> expected, Assert assertItem, Long reportId) throws AssertNotEqualException {
+    private void validate(Map<String, String> expected, Assert assertItem) throws AssertNotEqualException {
         if (body != null) {
             logger.info("para assert command<{}> is starting... ", expected);
             JSONObject jsonObject = JSONObject.fromObject(body);
             for (String key : expected.keySet()) {
                 String value = expected.get(key);
-                deepAssert(jsonObject, key, value, assertItem,reportId);
+                deepAssert(jsonObject, key, value, assertItem);
             }
         }
         if (exception != null) {
@@ -139,21 +129,21 @@ public class Response {
 //        }
 //    }
 
-    private String bodyInString(Object body) {
-        if (body instanceof String)
-            return body.toString();
-        return responseJson(body);
-    }
+//    private String bodyInString(Object body) {
+//        if (body instanceof String)
+//            return body.toString();
+//        return responseJson(body);
+//    }
 
-    private String responseJson(Object body) {
-        Boolean jsonWriteOriginalDoubleValue = Boolean.valueOf(StringUtil.getPro("json_write_original_double_value", "false"));
-        SerializeConfig config = new SerializeConfig();
-        if (jsonWriteOriginalDoubleValue) {
-            config.setAsmEnable(false);
-            config.put(Double.class, TestDoubleSerializer.INSTANCE);
-        }
-        return JSON.toJSONString(body, config, SerializerFeature.WriteMapNullValue);
-    }
+//    private String responseJson(Object body) {
+//        Boolean jsonWriteOriginalDoubleValue = Boolean.valueOf(StringUtil.getPro("json_write_original_double_value", "false"));
+//        SerializeConfig config = new SerializeConfig();
+//        if (jsonWriteOriginalDoubleValue) {
+//            config.setAsmEnable(false);
+//            config.put(Double.class, TestDoubleSerializer.INSTANCE);
+//        }
+//        return JSON.toJSONString(body, config, SerializerFeature.WriteMapNullValue);
+//    }
 
     private Class<?> getClass(String className) {
         try {

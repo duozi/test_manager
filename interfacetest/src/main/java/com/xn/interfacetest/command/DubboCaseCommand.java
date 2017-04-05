@@ -65,7 +65,7 @@ public class DubboCaseCommand implements CaseCommand {
     }
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId) {
+    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
 
     }
 
@@ -197,6 +197,11 @@ public class DubboCaseCommand implements CaseCommand {
 
     @Override
     public void executeWithException() throws Exception {
+
+    }
+
+    @Override
+    public void executeWithException(Long reportId) throws Exception {
 
     }
 }

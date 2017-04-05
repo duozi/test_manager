@@ -13,6 +13,7 @@ import com.xn.interfacetest.util.StringUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ import static com.xn.interfacetest.command.AssertCommand.deepAssert;
 public class RedisAssertCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(RedisAssertCommand.class);
     private final static String separator = System.getProperty("line.separator", "\r\n");
-    RedisUtil redisUtil = new RedisUtil();
+    RedisUtil redisUtil = new RedisUtil(null,null);
     private List<KeyValueStore> redisParams;
     private Assert assertItem;
     private String key;
@@ -47,14 +48,14 @@ public class RedisAssertCommand implements Command {
     }
 
     private String getValue(String key) {
-        if (StringUtil.isEmpty(key)) {
+        if (StringUtils.isEmpty(key)) {
             return null;
         }
         return redisUtil.get(key);
     }
 
     private Long getTime(String key) {
-        if (StringUtil.isEmpty(key)) {
+        if (StringUtils.isEmpty(key)) {
             return Long.valueOf(-3);
         }
         return redisUtil.getTime(key);
@@ -124,7 +125,7 @@ public class RedisAssertCommand implements Command {
 
                 for (String key : expected.keySet()) {
                     String value = expected.get(key);
-                    deepAssert(jsonObject, key, value, assertItem, reportId);
+                    deepAssert(jsonObject, key, value, assertItem);
                 }
             }
         }
@@ -132,7 +133,7 @@ public class RedisAssertCommand implements Command {
     }
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId) {
+    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
 
     }
 
@@ -145,6 +146,11 @@ public class RedisAssertCommand implements Command {
     @Override
     public void executeWithException() throws Exception {
         doExecuteRedisAssert(redisParams);
+    }
+
+    @Override
+    public void executeWithException(Long reportId) throws Exception {
+
     }
 
 

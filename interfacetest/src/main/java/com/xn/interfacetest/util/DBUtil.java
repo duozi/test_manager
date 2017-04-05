@@ -38,33 +38,33 @@ public class DBUtil {
     private static BasicDataSource bds = null;
 
     public static boolean DBInit() {
-        GetPara getPara = new GetPara();
-        String path = getPara.getPath();
-        File file = new File(path + "suite/jdbc.properties");
-        String names = StringUtil.getConfig(file, "db_name", "");
-        String[] dbName = names.split(",");
-        for (String name : dbName) {
-            String url = StringUtil.getConfig(file, name + ".jdbc_url", "");
-            String user = StringUtil.getConfig(file, name + ".jdbc_username", "");
-            String pwd = StringUtil.getConfig(file, name + ".jdbc_password", "");
-            if (!url.equals("") && !user.equals("") && !pwd.equals("")) {
-                DBService dbService = new DBService(url, user, pwd);
-
-                try {
-                    dbService.newDB();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return false;
-                }
-
-                DbMap.put(name, dbService);
-                logger.info("new db ----{}", name);
-            }
-        }
+//        GetPara getPara = new GetPara();
+//        String path = getPara.getPath();
+//        File file = new File(path + "suite/jdbc.properties");
+//        String names = StringUtil.getConfig(file, "db_name", "");
+//        String[] dbName = names.split(",");
+//        for (String name : dbName) {
+//            String url = StringUtil.getConfig(file, name + ".jdbc_url", "");
+//            String user = StringUtil.getConfig(file, name + ".jdbc_username", "");
+//            String pwd = StringUtil.getConfig(file, name + ".jdbc_password", "");
+//            if (!url.equals("") && !user.equals("") && !pwd.equals("")) {
+//                DBService dbService = new DBService(url, user, pwd);
+//
+//                try {
+//                    dbService.newDB();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                    return false;
+//                }
+//
+//                DbMap.put(name, dbService);
+//                logger.info("new db ----{}", name);
+//            }
+//        }
         return true;
     }
 
-    public static boolean getDBInit(Long environmentId,Long caseId) {
+    public static boolean getDBInit(Long environmentId,Long caseId){
         //得到数据清除或数据准备时db信息----
         List<RelationCaseDatabaseDto> relationCaseDatabaseList = relationCaseDatabaseService.getByCaseId(caseId);
         //得到数据校验时的db信息

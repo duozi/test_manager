@@ -80,12 +80,14 @@ public class DBAssertCommand implements Command {
             ReportResult.failedPlus();
             AssertItem item = new AssertItem("DB.getCount", expectCount, exactCount);
             assertItem.addDiff(item);
-            //保存断言结果
-            RelationAssertResultDto relationAssertResultDto = new RelationAssertResultDto();
-            relationAssertResultDto.setDbAssertId(id);
-            relationAssertResultDto.setReportId(reportId);
-            relationAssertResultDto.setResult("assert is not Equal");
-            relationAssertResultService.save(relationAssertResultDto);
+            if(null != reportId){
+                //保存断言结果
+                RelationAssertResultDto relationAssertResultDto = new RelationAssertResultDto();
+                relationAssertResultDto.setDbAssertId(id);
+                relationAssertResultDto.setReportId(reportId);
+                relationAssertResultDto.setResult("assert is not Equal");
+                relationAssertResultService.save(relationAssertResultDto);
+            }
             throw new AssertNotEqualException("assert is not Equal");
         }
     }

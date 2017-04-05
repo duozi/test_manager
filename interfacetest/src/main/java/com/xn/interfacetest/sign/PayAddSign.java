@@ -20,48 +20,48 @@ public class PayAddSign {
     private static final Logger logger = LoggerFactory.getLogger(PayAddSign.class);
 
     public String PayHttpAddSing(TreeMap<String, Object> treeMap, boolean useSign, String signType, String paramType, String signAddSignType) throws CaseErrorEqualException {
-        String key = "";
-        //只有useSign为true&&传入sign为空才会计算sign
-        if (useSign) {
-            String oldSign = String.valueOf(treeMap.get("sign"));
-            if (StringUtils.isEmpty(oldSign)) {
-                GetPara getPara = new GetPara();
-                String path = getPara.getPath();
-                File file = new File(path + "suite/key.properties");
-                key = StringUtil.getConfig(file, "key", "");
-                if (StringUtils.isEmpty(key)) {
-                    throw new CaseErrorEqualException("no key");
-                }
-
-
-                treeMap.remove("sign");
-                TreeMap<String, Object> treeMapForSign = new TreeMap<>();
-                treeMapForSign.putAll(treeMap);
-                if (signAddSignType.equals("false")) {
-                    treeMapForSign.remove("sign_type");
-                }
-                String withSignType = mapToString(treeMap);
-                String sign_sb = mapToString(treeMapForSign);
-                String signPara = sign_sb + "&key=" + key;
-                String sign = md5(signPara, String.valueOf(treeMap.get("input_charset")));
-                if (paramType.equalsIgnoreCase("form")) {
-                    withSignType += "&sign=" + sign;
-                    return withSignType;
-                } else if (paramType.equalsIgnoreCase("json")) {
-                    treeMap.put("sign", sign);
-                    String request = JSONObject.fromObject(treeMap).toString();
-                    return request;
-                }
-            }
-        }
-
-        if (paramType.equalsIgnoreCase("form")) {
-            String sign_sb = mapToString(treeMap);
-            return sign_sb;
-        } else if (paramType.equalsIgnoreCase("json")) {
-            String request = JSONObject.fromObject(treeMap).toString();
-            return request;
-        }
+//        String key = "";
+//        //只有useSign为true&&传入sign为空才会计算sign
+//        if (useSign) {
+//            String oldSign = String.valueOf(treeMap.get("sign"));
+//            if (StringUtils.isEmpty(oldSign)) {
+//                GetPara getPara = new GetPara();
+//                String path = getPara.getPath();
+//                File file = new File(path + "suite/key.properties");
+//                key = StringUtil.getConfig(file, "key", "");
+//                if (StringUtils.isEmpty(key)) {
+//                    throw new CaseErrorEqualException("no key");
+//                }
+//
+//
+//                treeMap.remove("sign");
+//                TreeMap<String, Object> treeMapForSign = new TreeMap<>();
+//                treeMapForSign.putAll(treeMap);
+//                if (signAddSignType.equals("false")) {
+//                    treeMapForSign.remove("sign_type");
+//                }
+//                String withSignType = mapToString(treeMap);
+//                String sign_sb = mapToString(treeMapForSign);
+//                String signPara = sign_sb + "&key=" + key;
+//                String sign = md5(signPara, String.valueOf(treeMap.get("input_charset")));
+//                if (paramType.equalsIgnoreCase("form")) {
+//                    withSignType += "&sign=" + sign;
+//                    return withSignType;
+//                } else if (paramType.equalsIgnoreCase("json")) {
+//                    treeMap.put("sign", sign);
+//                    String request = JSONObject.fromObject(treeMap).toString();
+//                    return request;
+//                }
+//            }
+//        }
+//
+//        if (paramType.equalsIgnoreCase("form")) {
+//            String sign_sb = mapToString(treeMap);
+//            return sign_sb;
+//        } else if (paramType.equalsIgnoreCase("json")) {
+//            String request = JSONObject.fromObject(treeMap).toString();
+//            return request;
+//        }
         return null;
     }
 

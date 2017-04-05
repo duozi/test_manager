@@ -159,7 +159,7 @@ public class TestPlanServiceImpl implements TestPlanService {
     }
 
     @Override
-    public CommonResult excutePlan(Long planId) {
+    public CommonResult excutePlan(Long planId) throws Exception{
         CommonResult result = new CommonResult();
         //读取测试集
         List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(planId);
@@ -190,7 +190,7 @@ public class TestPlanServiceImpl implements TestPlanService {
         return this.excutePlan(testSuitDtoList,testEnvironmentDtoList,timeConfigDtoList, planId);
     }
 
-    private CommonResult excutePlan(List<TestSuitDto> testSuitDtoList,List<TestEnvironmentDto> testEnvironmentDtoList,List<TimeConfigDto> timeConfigDtoList,Long planId){
+    private CommonResult excutePlan(List<TestSuitDto> testSuitDtoList,List<TestEnvironmentDto> testEnvironmentDtoList,List<TimeConfigDto> timeConfigDtoList,Long planId) throws Exception{
         CommonResult result = new CommonResult();
 
         //遍历执行环境，在每一套环境上执行一次

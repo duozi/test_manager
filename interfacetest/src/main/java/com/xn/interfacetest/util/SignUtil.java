@@ -116,23 +116,23 @@ public class SignUtil {
     }
 
 
-    public static String httpAddSign(TreeMap<String, Object> map, boolean useSign, String signType,String paramType,String signAddSignType) throws CaseErrorEqualException {
-
-        String system = new GetPara().getSystem();
-        if (system.equalsIgnoreCase("user")) {
-            UserAddSign userAddSing = new UserAddSign();
-            return userAddSing.UserHttpAddSing(map, useSign, signType);
-        } else if (system.equalsIgnoreCase("message")) {
-            MessageAddSign messageAddSign = new MessageAddSign();
-            return messageAddSign.MessageHttpAddSing(map, useSign, signType);
-        } else if (system.equalsIgnoreCase("unipay")) {
-            PayAddSign payAddSign = new PayAddSign();
-            return payAddSign.PayHttpAddSing(map, useSign, signType,paramType,signAddSignType);
-        } else {
-            return null;
-        }
-
-    }
+//    public static String httpAddSign(TreeMap<String, Object> map, boolean useSign, String signType,String paramType,String signAddSignType) throws CaseErrorEqualException {
+//
+//        String system = new GetPara().getSystem();
+//        if (system.equalsIgnoreCase("user")) {
+//            UserAddSign userAddSing = new UserAddSign();
+//            return userAddSing.UserHttpAddSing(map, useSign, signType);
+//        } else if (system.equalsIgnoreCase("message")) {
+//            MessageAddSign messageAddSign = new MessageAddSign();
+//            return messageAddSign.MessageHttpAddSing(map, useSign, signType);
+//        } else if (system.equalsIgnoreCase("unipay")) {
+//            PayAddSign payAddSign = new PayAddSign();
+//            return payAddSign.PayHttpAddSing(map, useSign, signType,paramType,signAddSignType);
+//        } else {
+//            return null;
+//        }
+//
+//    }
 
     public static String mapToString(TreeMap<String, Object> treeMap) {
         //遍历签名参数

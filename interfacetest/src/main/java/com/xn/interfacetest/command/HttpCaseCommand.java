@@ -292,16 +292,20 @@ public class HttpCaseCommand implements CaseCommand {
             response.setException(e);
             result = "error";
         } finally {
-            //将请求结果保存至数据库
-            RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
-            relationInterfaceResultDto.setPlanId(planId);
-            relationInterfaceResultDto.setCaseId(caseId);
-            relationInterfaceResultDto.setInterfaceId(interfaceId);
-            relationInterfaceResultDto.setRequestData(params);
-            relationInterfaceResultDto.setResponseData(response.toString());
-            relationInterfaceResultDto.setResult(result);
-            relationInterfaceResultDto.setReportId(reportId);
-            relationInterfaceResultService.save(relationInterfaceResultDto);
+            //结果id和计划id为空表示是用例的调试，用例调试不需要保存结果
+            if(reportId != null && null != planId){
+                //将请求结果保存至数据库
+                RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
+                relationInterfaceResultDto.setPlanId(planId);
+                relationInterfaceResultDto.setCaseId(caseId);
+                relationInterfaceResultDto.setInterfaceId(interfaceId);
+                relationInterfaceResultDto.setRequestData(params);
+                relationInterfaceResultDto.setResponseData(response.toString());
+                relationInterfaceResultDto.setResult(result);
+                relationInterfaceResultDto.setReportId(reportId);
+                relationInterfaceResultService.save(relationInterfaceResultDto);
+            }
+
         }
     }
 
@@ -317,6 +321,11 @@ public class HttpCaseCommand implements CaseCommand {
 
     @Override
     public void executeWithException() throws Exception {
+
+    }
+
+    @Override
+    public void executeWithException(Long reportId) throws Exception {
 
     }
 }

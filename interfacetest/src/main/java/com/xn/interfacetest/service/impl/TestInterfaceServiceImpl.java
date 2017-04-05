@@ -90,26 +90,36 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     @Override
     public TestInterfaceDto save(TestInterfaceDto testInterfaceDto) {
         TestInterface testInterface = BeanUtils.toBean(testInterfaceDto,TestInterface.class);
+        //保存接口字段
         if(null != testInterfaceDto.getId()){
             testInterfaceMapper.update(testInterface);
         }else{
             testInterfaceMapper.save(testInterface);
+            testInterfaceDto.setId(testInterface.getId());
         }
 
+        //保存参数字段到参数表
+        saveParams(testInterface);
+        return testInterfaceDto;
+    }
+
+    private void saveParams(TestInterface testInterface){
         //保存参数字段到参数表
         if(StringUtils.isNotBlank(testInterface.getParams())){
             String[] params = testInterface.getParams().split(",|，");
             for(String paramName : params){
                 TestParams testParams = new TestParams();
-                testParams.setInterfaceId(testInterfaceDto.getId());
+                testParams.setInterfaceId(testInterface.getId());
                 testParams.setName(paramName);
+                //普通参数
+                if(!paramName.equals("-d")){
+                    testParams.setFormatType(2);
+                } else {
+                    testParams.setFormatType(1);
+                }
                 testParamsMapper.save(testParams);
             }
-
-
         }
-        testInterfaceDto.setId(testInterface.getId());
-        return testInterfaceDto;
     }
 
     @Override

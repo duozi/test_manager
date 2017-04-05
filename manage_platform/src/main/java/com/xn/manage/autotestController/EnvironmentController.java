@@ -99,17 +99,17 @@ public class EnvironmentController {
 				Map<String,Object> params = new HashMap<String,Object>();
 				params.put("environmentId",id);
 				//查询环境对应的配置信息
-				if(environmentDto.getServiceProperty()==1){
+				if(null != environmentDto.getServiceProperty() && environmentDto.getServiceProperty()==1){
 					//如果有服务配置则查询服务配置信息
 					List<RelationServiceEnvironmentDto> relationServiceEnvironmentDtoList = relationServiceEnvironmentService.list(params);
 					model.put("relationServiceEnvironmentDtoList",relationServiceEnvironmentDtoList);
 				}
-				if(environmentDto.getDbProperty()==1){
+				if(null != environmentDto.getDbProperty() && environmentDto.getDbProperty()==1){
 					//如果有数据库配置则查询数据库配置信息
 					List<TestDatabaseConfigDto> testDatabaseConfigDtoList = testDatabaseConfigService.list(params);
 					model.put("testDatabaseConfigDtoList",testDatabaseConfigDtoList);
 				}
-				if(environmentDto.getRedisProperty()==1){
+				if(null != environmentDto.getRedisProperty() && environmentDto.getRedisProperty()==1){
 					//如果有redis配置则查询redis配置信息
 					List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(params);
 					model.put("testRedisConfigDtoList",testRedisConfigDtoList);
@@ -316,7 +316,7 @@ public class EnvironmentController {
 			}
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(testDatabaseConfigDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getDbProperty() == 0){
+			if(null != environmentDto&& ((null != environmentDto.getDbProperty() && environmentDto.getDbProperty() == 0) || null == environmentDto.getDbProperty())){
 				environmentDto.setDbProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}
@@ -374,7 +374,7 @@ public class EnvironmentController {
 			}
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(testRedisConfigDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getRedisProperty() == 0){
+			if(null != environmentDto && ((null != environmentDto.getRedisProperty() && environmentDto.getRedisProperty() == 0) || null == environmentDto.getRedisProperty())){
 				environmentDto.setRedisProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}
@@ -435,7 +435,7 @@ public class EnvironmentController {
 
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(relationServiceEnvironmentDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getServiceProperty() == 0){
+			if(null != environmentDto  && ((null != environmentDto.getServiceProperty() && environmentDto.getServiceProperty() == 0) || null == environmentDto.getServiceProperty())){
 				environmentDto.setServiceProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}

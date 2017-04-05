@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,24 +72,30 @@ public class AssertCommand implements Command {
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
                 //保存断言结果
-                relationAssertResultDto.setReportId(reportId);
-                relationAssertResultDto.setParamsAssertId(assertId);
-                relationAssertResultDto.setResult("assert is not Equal");
+                if(null != reportId){
+                    relationAssertResultDto.setReportId(reportId);
+                    relationAssertResultDto.setParamsAssertId(assertId);
+                    relationAssertResultDto.setResult("assert is not Equal");
+                }
+
                 throw new AssertNotEqualException("assert is not Equal");
             }
         } else {
             Set set = jsonObject.keySet();
             if (set.contains(key)) {
                 String returnValue = String.valueOf(jsonObject.get(key));
-                if (value.equals("NOTNULL")) {
-                    if (StringUtil.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
+                if (value.equals("NONULL")) {
+                    if (StringUtils.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
                         ReportResult.failedPlus();
 
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
-                        relationAssertResultDto.setReportId(reportId);
-                        relationAssertResultDto.setParamsAssertId(assertId);
-                        relationAssertResultDto.setResult("assert is not Equal");
+                        //保存断言结果
+                        if(null != reportId){
+                            relationAssertResultDto.setReportId(reportId);
+                            relationAssertResultDto.setParamsAssertId(assertId);
+                            relationAssertResultDto.setResult("assert is not Equal");
+                        }
                         throw new AssertNotEqualException("assert is not Equal");
                     }
                 } else {
@@ -98,9 +105,12 @@ public class AssertCommand implements Command {
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
 
-                        relationAssertResultDto.setReportId(reportId);
-                        relationAssertResultDto.setParamsAssertId(assertId);
-                        relationAssertResultDto.setResult("assert is not Equal");
+                        //保存断言结果
+                        if(null != reportId){
+                            relationAssertResultDto.setReportId(reportId);
+                            relationAssertResultDto.setParamsAssertId(assertId);
+                            relationAssertResultDto.setResult("assert is not Equal");
+                        }
 
                         throw new AssertNotEqualException("assert is not Equal");
 
@@ -112,9 +122,12 @@ public class AssertCommand implements Command {
                 assertItem.addDiff(item);
 //                ReportResult.getReportResult().assertAdd(assertItem);
 
-                relationAssertResultDto.setReportId(reportId);
-                relationAssertResultDto.setParamsAssertId(assertId);
-                relationAssertResultDto.setResult("assert is not Equal");
+                //保存断言结果
+                if(null != reportId){
+                    relationAssertResultDto.setReportId(reportId);
+                    relationAssertResultDto.setParamsAssertId(assertId);
+                    relationAssertResultDto.setResult("assert is not Equal");
+                }
 
                 throw new AssertNotEqualException("assert is not Equal");
             }
@@ -125,11 +138,11 @@ public class AssertCommand implements Command {
         }
     }
 
-    public static void deepAssert(JSONObject jsonObject, String key, String value, Assert assertItem, Long reportId) throws AssertNotEqualException {
+    public static void deepAssert(JSONObject jsonObject, String key, String value, Assert assertItem) throws AssertNotEqualException {
         if (key.contains(".")) {
             String[] array = key.split("\\.", 2);
             if (jsonObject.containsKey(array[0])) {
-                deepAssert(jsonObject.getJSONObject(array[0]), array[1], value, assertItem, reportId);
+                deepAssert(jsonObject.getJSONObject(array[0]), array[1], value, assertItem);
             } else {
                 ReportResult.failedPlus();
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
@@ -142,7 +155,7 @@ public class AssertCommand implements Command {
             if (set.contains(key)) {
                 String returnValue = String.valueOf(jsonObject.get(key));
                 if (value.equals("NOTNULL")) {
-                    if (StringUtil.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
+                    if (StringUtils.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
                         ReportResult.failedPlus();
 
                         AssertItem item = new AssertItem(key, value, returnValue);
@@ -174,7 +187,7 @@ public class AssertCommand implements Command {
     public static void main(String[] args) throws AssertNotEqualException {
         String s="{\"batch_id\":{},\"error_msg\":\"成功\",\"error_no\":0}";
         JSONObject jsonObject= JSONObject.fromObject(s);
-        deepAssert(jsonObject,"batch_id","NOTNULL",null, null);
+        deepAssert(jsonObject,"batch_id","NOTNULL",null);
     }
 
     public void setAssertItem(String request, Response response, String result) {

@@ -45,7 +45,7 @@
         ]]>
     </select>
 
-    <select id="getByCaseId" resultMap="RedisAssertMap">
+    <select id="getByCaseId" resultMap="ParamsAssertMap">
         SELECT
         <include refid="columns" />
         FROM

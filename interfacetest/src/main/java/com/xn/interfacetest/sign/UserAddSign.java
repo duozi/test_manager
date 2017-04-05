@@ -20,34 +20,34 @@ public class UserAddSign {
 
 
     public String UserHttpAddSing(TreeMap<String, Object> treeMap, boolean useSign, String signType) throws CaseErrorEqualException {
-        String key = "";
-        //只有useSign为true&&传入sign为空才会计算sign
-        if (useSign) {
-            String oldSign = String.valueOf(treeMap.get("sign"));
-            if (StringUtils.isEmpty(oldSign)) {
-                String type = "";
-                if (treeMap.containsKey("systemType")) {
-                    type =String.valueOf( treeMap.get("systemType"));
-                }
-
-                GetPara getPara = new GetPara();
-                String path = getPara.getPath();
-                File file = new File(path + "suite/key.properties");
-                key = StringUtil.getConfig(file, signType + ".key." + type, "");
-                if (StringUtils.isEmpty(key)) {
-                    throw new CaseErrorEqualException("no key");
-                }
-
-                treeMap.remove("sign");
-                treeMap.remove("sign_type");
-                String sign_sb = mapToString(treeMap);
-                String signPara = sign_sb + "&key=" + key;
-                String sign = md5(signPara,"");
-                sign_sb += "&sign=" + sign;
-                return sign_sb;
-            }
-        }
-
+//        String key = "";
+//        //只有useSign为true&&传入sign为空才会计算sign
+//        if (useSign) {
+//            String oldSign = String.valueOf(treeMap.get("sign"));
+//            if (StringUtils.isEmpty(oldSign)) {
+//                String type = "";
+//                if (treeMap.containsKey("systemType")) {
+//                    type =String.valueOf( treeMap.get("systemType"));
+//                }
+//
+//                GetPara getPara = new GetPara();
+//                String path = getPara.getPath();
+//                File file = new File(path + "suite/key.properties");
+//                key = StringUtil.getConfig(file, signType + ".key." + type, "");
+//                if (StringUtils.isEmpty(key)) {
+//                    throw new CaseErrorEqualException("no key");
+//                }
+//
+//                treeMap.remove("sign");
+//                treeMap.remove("sign_type");
+//                String sign_sb = mapToString(treeMap);
+//                String signPara = sign_sb + "&key=" + key;
+//                String sign = md5(signPara,"");
+//                sign_sb += "&sign=" + sign;
+//                return sign_sb;
+//            }
+//        }
+//
 
         String sign_sb = mapToString(treeMap);
         return sign_sb;

@@ -135,5 +135,5 @@ public interface TestPlanService {
      * @param planId
      * @return
      */
-    CommonResult excutePlan(Long planId);
+    CommonResult excutePlan(Long planId)  throws Exception;
 }

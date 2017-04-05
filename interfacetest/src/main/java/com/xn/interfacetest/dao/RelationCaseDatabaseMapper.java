@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface RelationCaseDatabaseMapper extends BaseMapper<RelationCaseDatabase, Long> {
 
-    List<RelationCaseDatabase> getByCaseId(Long caseId);
+    List<RelationCaseDatabase> getByCaseId(@Param("caseId") Long caseId);
 
     List<RelationCaseDatabase> getByCaseIdAndOperateType(@Param("caseId") Long caseId,@Param("operateType") int operateType);
 }

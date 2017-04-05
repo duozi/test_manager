@@ -143,5 +143,5 @@ public interface TestSuitService {
      * @param testSuitDtoList
      * @param testEnvironmentDto
      */
-    void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId);
+    void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId)  throws Exception;
 }

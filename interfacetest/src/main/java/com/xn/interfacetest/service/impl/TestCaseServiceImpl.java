@@ -74,6 +74,9 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Autowired
     private TestReportService testReportService;
 
+    @Autowired
+    private TestEnvironmentService testEnvironmentService;
+
     @Override
     @Transactional(readOnly = true)
     public TestCaseDto get(Object condition)
@@ -195,6 +198,46 @@ public class TestCaseServiceImpl implements TestCaseService {
         }
     }
 
+    @Override
+    public void testRun(Long caseId, Long environmentId) {
+        //判断是dubbo接口还是http接口
+        logger.info("==========联调测试用例========");
+        TestInterfaceDto testInterfaceDto = testInterfaceService.getByCaseId(caseId);
+        if(null != testInterfaceDto){
+            if(InterfaceTypeEnum.HTTP.getId() == testInterfaceDto.getType()){
+                testRunHttp(testInterfaceDto,caseId,environmentId);
+            } else if(InterfaceTypeEnum.DUBBO.getId() == testInterfaceDto.getType()){
+                testRunDubbo(testInterfaceDto,caseId,environmentId);
+            }
+        }
+    }
+
+    /**
+     * dubbo接口联调
+     * @param testInterfaceDto
+     * @param caseId
+     * @param environmentId
+     */
+    private void testRunDubbo(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId) {
+        logger.info("==========联调测试用例DUBBO========");
+        TestCaseDto testCaseDto = this.get(caseId);
+        TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(environmentId);
+        this.excuteDubbo(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null);
+    }
+
+    /**
+     * http接口联调
+     * @param testInterfaceDto
+     * @param caseId
+     * @param environmentId
+     */
+    private void testRunHttp(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId) {
+        logger.info("==========联调测试用例HTTP========");
+        TestCaseDto testCaseDto = this.get(caseId);
+        TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(environmentId);
+        this.excuteHttp(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null);
+    }
+
     /**
      * 执行测试用例
      * @param caseDto 用例
@@ -209,7 +252,6 @@ public class TestCaseServiceImpl implements TestCaseService {
             logger.info("==========即将更新的caseIds=" + casesInReport + "========");
 
         }
-
 
         //查询用例所属接口的基本配置
         logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
@@ -248,14 +290,16 @@ public class TestCaseServiceImpl implements TestCaseService {
         Long caseId = caseDto.getId(); //用例id
         Long interfaceId = interfaceDto.getId();//接口id
         Long environmentId = testEnvironmentDto.getId();//环境id
+        Long reportId = null != testReportDto?testReportDto.getId():null;
         logger.info("==========http接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseId + "," + interfaceId + "," + environmentId);
 
 
         //初始化执行结果对象
         ReportResult.getReportResult().setStartTime(new Date());
 
-        //初始化数据库
-        boolean falg = DBUtil.getDBInit(environmentId,caseId);
+            //初始化数据库
+            boolean falg = DBUtil.getDBInit(environmentId,caseId);
+
 
         TestCaseCommand testCaseCommand = new TestCaseCommand();
         //进行执行用例之前的初始化工作
@@ -263,7 +307,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         //数据清除
         testCaseCommand.setAfterCommand(getAfterCommand(testEnvironmentDto,caseDto));
         //断言初始化
-        testCaseCommand.setAssertCommand(getAssertCommand(caseDto, interfaceDto,testReportDto.getId()));
+        testCaseCommand.setAssertCommand(getAssertCommand(caseDto, interfaceDto,reportId));
 
         //========================发送http请求初始化===============================
         //取超时时间---默认200000
@@ -279,7 +323,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,null,timeout,propType));
 
         //执行测试用例
-        testCaseCommand.execute( caseId, interfaceId, planId, testReportDto.getId());
+        testCaseCommand.execute( caseId, interfaceId, planId, reportId);
     }
 
     //初始化用例的执行

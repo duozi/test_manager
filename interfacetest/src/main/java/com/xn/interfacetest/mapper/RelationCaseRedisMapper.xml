@@ -7,7 +7,7 @@
     <resultMap id="RelationCaseRedisMap" type="com.xn.interfacetest.entity.RelationCaseRedis">
         <result property="id" column="id"/>
         <result property="caseId" column="case_id"/>
-        <result property="redisId" column="redis_id"/>
+        <result property="redisName" column="redis_name"/>
         <result property="operateType" column="operate_type"/>
         <result property="redisOperateType" column="redis_operate_type"/>
         <result property="key" column="t_key"/>
@@ -20,7 +20,7 @@
 
     <sql id="columns">
         <![CDATA[
-        id, case_id, redis_id, operate_type, redis_operate_type, t_key, t_value, t_time, interface_id, t_type
+        id, case_id, redis_name, operate_type, redis_operate_type, t_key, t_value, t_time, interface_id, t_type
         ]]>
     </sql>
 
@@ -32,8 +32,8 @@
             <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-            <if test="@Ognl@isNotEmpty(redisId)">
-                AND redis_id = #{redisId}
+            <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
             </if>
             <if test="@Ognl@isNotEmpty(operateType)">
                 AND operate_type = #{operateType}
@@ -82,8 +82,8 @@
             <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-            <if test="@Ognl@isNotEmpty(redisId)">
-                AND redis_id = #{redisId}
+            <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
             </if>
             <if test="@Ognl@isNotEmpty(operateType)">
                 AND operate_type = #{operateType}
@@ -134,7 +134,7 @@
             INSERT INTO relation_case_redis (
                 id,
                 case_id,
-                redis_id,
+                redis_name,
                 operate_type,
                 redis_operate_type,
                 t_key,
@@ -145,7 +145,7 @@
             ) VALUES (
                 #{id},
                 #{caseId},
-                #{redisId},
+                #{redisName},
                 #{operateType},
                 #{redisOperateType},
                 #{key},
@@ -162,7 +162,7 @@
             INSERT INTO relation_case_redis (
                 id,
                 case_id,
-                redis_id,
+                redis_name,
                 operate_type,
                 redis_operate_type,
                 t_key,
@@ -173,7 +173,7 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.caseId},#{item.redisId},#{item.operateType},#{item.redisOperateType},#{item.key},#{item.value},#{item.time},#{item.interfaceId},#{item.type})
+            (#{item.id},#{item.caseId},#{item.redisName},#{item.operateType},#{item.redisOperateType},#{item.key},#{item.value},#{item.time},#{item.interfaceId},#{item.type})
         </foreach>
     </insert>
 
@@ -184,8 +184,8 @@
             <if test="caseId != null">
                 <![CDATA[ case_id = #{caseId} ]]>,
             </if>
-            <if test="redisId != null">
-                <![CDATA[ redis_id = #{redisId} ]]>,
+            <if test="redisName != null">
+                <![CDATA[ redis_name = #{redisName} ]]>,
             </if>
             <if test="operateType != null">
                 <![CDATA[ operate_type = #{operateType} ]]>,

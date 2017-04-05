@@ -553,52 +553,30 @@
                         <th>环境ID</th>
                         <th>环境名称</th>
                         <th>环境描述</th>
-                        <th>创建人</th>
                         <th>选择</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>牛贷系统查询联系人测试</td>
-                        <th>你猜你猜</th>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
-                            <label>
-                                <input type="radio" name="chose" value="">
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
-                            <label>
-                                <input type="radio" name="chose" value="">
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
-                            <label>
-                                <input type="radio" name="chose" value="">
-                            </label>
-                        </td>
-                    </tr>
+                    <#if testEnvironmentDtoList??>
+                        <#list testEnvironmentDtoList as item>
+                            <tr>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <th>${item.description}</th>
+                                <td>
+                                    <a  href="../environment/environment_item?id=${item.id}" target="_blank" type="button" class="btn btn-info">详情</a>
+                                    <label>
+                                        <input type="radio" name="environmentId" value="${item.id}">
+                                    </label>
+                                </td>
+                            </tr>
+                        </#list>
+                    </#if>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="../reportResult/report_detail" type="button" class="btn btn-primary">运行</a>
+                <a onclick="testRun(this)" type="button" class="btn btn-primary">运行</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -1058,6 +1036,18 @@
     function ClearCustomParams(_this){
         $(_this).parent().find("textarea").val("");
 
+    }
+
+    function testRun(_this){
+        var environmentId = $("input[name='environmentId']").val();
+        alert(environmentId);
+        $.post("${basePath}/autotest/case/testRun",{"environmentId":environmentId,"caseId":"${caseId}"},function(data,status){
+            if(0!=data.code){
+                alert(data.message);
+            } else {
+                $(_this).parent().parent().remove();
+            }
+        });
     }
 </script>
 </body>

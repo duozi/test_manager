@@ -195,7 +195,7 @@ public class TestSuitServiceImpl implements TestSuitService {
     }
 
     @Override
-    public void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId) {
+    public void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId)  throws Exception{
         TestPlanDto testPlanDto = testPlanService.get(planId);
         //计划执行过程中将所有的相关测试集、测试用例、测试环境锁定并且不允许修改和删除
         lockPlanIn(testSuitDtoList,testEnvironmentDto,planId);
@@ -232,7 +232,7 @@ public class TestSuitServiceImpl implements TestSuitService {
      * @param testEnvironmentDto
      * @param id
      */
-    private void excuteSuit(TestSuitDto testSuitDto, TestEnvironmentDto testEnvironmentDto, Long planId, Long reportId) {
+    private void excuteSuit(TestSuitDto testSuitDto, TestEnvironmentDto testEnvironmentDto, Long planId, Long reportId)  throws Exception {
         //得到测试集的所有用例信息（因为集成测试用例并没有接口信息，所以直接取测试集下的所有用例来执行）
         List<TestCaseDto> testCaseDtoList = testCaseService.listBySuitId(testSuitDto.getId());
         //用例列表不为空则执行测试用例
