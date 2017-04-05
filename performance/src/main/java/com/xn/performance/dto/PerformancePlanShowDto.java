@@ -120,6 +120,24 @@ public class PerformancePlanShowDto extends BaseDto {
     private Date setStartTime;
     private String resultPath;
     private String executePerson;
+    private Date actualStartTimeBegin;
+    private Date actualStartTimeEnd;
+
+    public Date getActualStartTimeBegin() {
+        return actualStartTimeBegin;
+    }
+
+    public void setActualStartTimeBegin(Date actualStartTimeBegin) {
+        this.actualStartTimeBegin = actualStartTimeBegin;
+    }
+
+    public Date getActualStartTimeEnd() {
+        return actualStartTimeEnd;
+    }
+
+    public void setActualStartTimeEnd(Date actualStartTimeEnd) {
+        this.actualStartTimeEnd = actualStartTimeEnd;
+    }
 
     public String getExecutePerson() {
         return executePerson;
@@ -290,6 +308,32 @@ public class PerformancePlanShowDto extends BaseDto {
         return this.createPerson;
     }
 
-
+    @Override
+    public String toString() {
+        return "PerformancePlanShowDto{" +
+                "id=" + id +
+                ", planId=" + planId +
+                ", planName='" + planName + '\'' +
+                ", remark='" + remark + '\'' +
+                ", company='" + company + '\'' +
+                ", department='" + department + '\'' +
+                ", psystem='" + psystem + '\'' +
+                ", scriptId=" + scriptId +
+                ", scriptName='" + scriptName + '\'' +
+                ", scenarioId=" + scenarioId +
+                ", scenarioName='" + scenarioName + '\'' +
+                ", planStatus='" + planStatus + '\'' +
+                ", createPerson='" + createPerson + '\'' +
+                ", isDelete='" + isDelete + '\'' +
+                ", stressMachineId=" + stressMachineId +
+                ", stressMachineName='" + stressMachineName + '\'' +
+                ", performancePlanMonitoredDtoList=" + performancePlanMonitoredDtoList +
+                ", actualStartTime=" + actualStartTime +
+                ", executeStatus='" + executeStatus + '\'' +
+                ", setStartTime=" + setStartTime +
+                ", resultPath='" + resultPath + '\'' +
+                ", executePerson='" + executePerson + '\'' +
+                '}';
+    }
 }
 

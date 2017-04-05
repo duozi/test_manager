@@ -652,4 +652,13 @@ public class DateUtil {
         cal.set(Calendar.SECOND, 59);
         return cal.getTime();
     }
+
+//    两个日期之间相差的秒数
+
+    public static int lastedTime(Date startDate,Date endDate) {
+        long a = endDate.getTime();
+        long b = startDate.getTime();
+        int c = (int)((a - b) / 1000);
+        return c;
+    }
 }

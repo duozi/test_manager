@@ -25,11 +25,22 @@
                         startView: 2,
                         forceParse: 0,
                         showMeridian: 1,
-                        minView: 2,
-                        format: "yyyy-mm-dd",
-                        language: "en"
+                        minView: 0,//0是分，1是小时，2是天
+                        format: "yyyy-mm-dd hh:ii:ss",
+                        language: "zh-CN"
                     });
         });
+        function searchResult() {
+            var company = $("select[name='search-company']").val();
+            var department = $("select[name='search-department']").val();
+            var psystem = $("select[name='search-psystem']").val();
+            var scriptName = $("select[name='search-scriptName']").val();
+            var executeStatus = $("select[name='search-executeStatus']").val();
+            var planName = $("select[name='search-planName']").val();
+            var actualStartTimeBegin=$("input[name='actualStartTimeBegin']").val();
+            var actualStartTimeEnd=$("input[name='actualStartTimeEnd']").val();
+            window.location.href = "report_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&executeStatus=" + executeStatus + "&planName=" + planName+"&actualStartTimeBegin="+actualStartTimeBegin+"&actualStartTimeEnd="+actualStartTimeEnd
+        }
 
     </script>
 </head>
@@ -38,7 +49,7 @@
     <ol class="breadcrumb">
         <li><a href="#">接口自动化</a></li>
         <li><a href="#">测试报告管理</a></li>
-        <li class="active">测试结果管理</li>
+        <li class="active">测试结果列表</li>
     </ol>
 </div>
 
@@ -49,56 +60,77 @@
             <div class="panel-body">
                 <form role="form " class="select-form">
                     <div class="col-lg-12">
-                        <div class="form-group col-lg-2">
-                            <select class="form-control">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-company">
                                 <option value="" disabled selected>选择公司</option>
                                 <#if companyList ??>
                                     <#list companyList as item>
-                                        <option value="${item.id}">${item.name}</option>
+                                        <option value="${item.name}">${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
-                            <select class="form-control">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-department">
                                 <option value="" disabled selected>选择部门</option>
-                                <#if systemList ??>
+                                <#if departmentList ??>
                                     <#list departmentList as item>
-                                        <option value="${item.id}">${item.name}</option>
+                                        <option value="${item.name}">${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
-                            <select class="form-control">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-psystem">
                                 <option value="" disabled selected>选择系统</option>
-                                <#if systemList ??>
-                                    <#list departmentList as item>
-                                        <option value="${item.id}">${item.name}</option>
+                                <#if psystemList ??>
+                                    <#list psystemList as item>
+                                        <option value="${item.name}">${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
-                            <select class="form-control">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-planName">
                                 <option value="" disabled selected>选择计划名称</option>
-                                <#if planList ??>
-                                    <#list planList as item>
-                                        <option value="${item.id}">${item.planName}</option>
+                                <#if plan_list_all ??>
+                                    <#list plan_list_all as item>
+                                        <option value="${item.planName}">${item.planName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-scriptName">
+                                <option value="" disabled selected>选择脚本名称</option>
+                                <#if script_list_all ??>
+                                    <#list script_list_all as item>
+                                        <option value="${item.scriptName}">${item.scriptName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" name="search-executeStatus">
+                                <option value="" disabled selected>选择执行状态</option>
+                                <#if execute_status_list ??>
+                                    <#list execute_status_list as item>
+                                        <option value="${item.getName()}">${item.getName()}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
 
-                        <div class="form-group col-lg-2" style="width: 10%">
 
-                            <input type="text" class="form-control form-datetime" placeholder="查询开始日期">
+                        <div class="form-group col-lg-2" style="width: 30%">
+                            <lable class="control-label" style="width:55%;margin-top: 2%;margin-right: 2%">执行开始时间</lable>
+                            <input type="text" class="form-control form-datetime" name="actualStartTimeBegin">
+                            <span style="width: 5%;margin-top: 2%;margin-left: 2%;margin-right: 2%"> — </span>
+                            <input type="text" class="form-control form-datetime" name="actualStartTimeEnd">
                         </div>
-                        <div class="form-group col-lg-2" style="width: 10%">
-                            <input type="text" class="form-control form-datetime" placeholder="查询结束时间">
-                        </div>
+
                         <div class="form-group col-lg-1">
-                            <button type="submit" class="btn btn-default">查询</button>
+                            <a class="btn btn-default" onclick="searchResult()">查询</a>
                         </div>
                     </div>
                 </form>
@@ -107,41 +139,68 @@
                         <thead>
                         <tr>
                             <th>结果ID</th>
+                            <th>计划名称</th>
+                            <th>计划描述</th>
+                            <th>计划状态</th>
                             <th>公司</th>
                             <th>部门</th>
                             <th>系统</th>
-                            <th>计划名称</th>
-                            <th>脚本名</th>
-                            <th>场景名</th>
-                            <th>压力机名</th>
-                            <th>监控机名</th>
+                            <th>脚本</th>
+                            <th>场景</th>
+                            <th>压力机</th>
+                            <th>监控机</th>
+                            <th>执行状态</th>
+                            <th>开始时间</th>
                             <th>执行人</th>
-                            <th>执行开始时间</th>
-                            <th>执行时间（秒）</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>123123</td>
-                            <td>牛鼎丰</td>
-                            <td>测试部门</td>
-                            <td>用户中心</td>
-                            <td>用户中心测试</td>
-                            <td>用户中心脚本</td>
-                            <td>100并发</td>
-                            <td>压力机1</td>
-                            <td>监控机1</td>
-                            <td>小明</td>
-                            <td>2016-12-09 23:23:23</td>
-                            <td>50</td>
-                            <td>
-                                <a type="button" href="report_detail" class="btn btn-warning">查看详情</a>
-                                <a type="button" class="btn btn-info">下载</a>
-                                <a type="button" data-toggle="modal" data-target="#email"
-                                   class="btn btn-default">发送结果</a>
-                            </td>
-                        </tr>
+                        <#if result_list ??>
+                            <#list result_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.planName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.planStatus}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.scriptName}</td>
+                                    <td>${item.scenarioName}</td>
+                                    <td>${item.stressMachineName}</td>
+                                    <td>
+                                        <#list item.performancePlanMonitoredDtoList as monitored_item>
+                                            ${monitored_item.monitoredMachineName}
+                                        </#list>
+                                    </td>
+                                    <td>${item.executeStatus}</td>
+                                    <td>
+                                        <#if item.actualStartTime ??>
+                                            ${(item.actualStartTime)?datetime}
+                                        </#if>
+
+                                    </td>
+                                    <td>${item.executePerson}</td>
+
+
+                                    <td>
+                                        <a type="button" class="btn btn-info"
+                                        <#if item.executeStatus=="已执行"  >
+                                            onclick="report(${item.id})"
+                                            <#else> disabled
+                                        </#if>
+                                        >测试报告</a>
+                                        <a type="button" class="btn btn-default"
+                                        <#if item.executeStatus=="已执行"  >
+                                            data-toggle="modal" data-target="#email"
+                                            <#else> disabled
+                                        </#if>
+                                        >发送结果</a>
+                                    </td>
+                                </tr>
+                            </#list>
+                        </#if>
                         </tbody>
                     </table>
                 </div>
@@ -152,7 +211,7 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
-    <!-- 新增测试计划弹框 -->
+    <!-- 配置收件人弹框 -->
     <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="emailLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

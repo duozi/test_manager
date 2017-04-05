@@ -156,9 +156,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <#if monitored_machine_detail_list ??>
-                                        <#list  monitored_machine_detail_list as item>
+
+                                <#if monitored_machine_detail_list ??>
+                                    <#list  monitored_machine_detail_list as item>
+                                        <tr>
                                             <td>${item.monitoredMachineName}</td>
                                             <td>${item.monitoredMachineIp}</td>
                                             <td>${item.samples}</td>
@@ -171,12 +172,14 @@
                                             <td>${item.machineLoad}</td>
                                             <td>${item.qps}</td>
                                             <td>${item.memory}</td>
-                                        </#list>
-                                    </#if>
-                                </tr>
+                                        </tr>
+                                    </#list>
+                                </#if>
+
                                 </tbody>
                             </table>
-                            <iframe style="width: 100%;height: 800px"  frameborder="0" scrolling="auto" src="3_20170320_160819.html" >
+                            <iframe style="width: 100%;height: 800px" frameborder="0" scrolling="auto"
+                                    src="http://localhost/${result_detail.resultPath}/index.html">
 
                             </iframe>
                         </div>

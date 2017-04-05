@@ -45,4 +45,6 @@
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
     <mvc:default-servlet-handler />
 
+    <mvc:resources mapping="/perpormance/report/result_52_20170324_134246/**" location="/WEB-INF/performance/report/result*" cache-period="2592000"/>
+
 </beans>

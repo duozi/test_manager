@@ -222,19 +222,19 @@
                 <![CDATA[ scenario_status = #{scenarioStatus} ]]>,
             </if>
             <if test="createPerson != null">
-                <![CDATA[ create_person = #{createPerson} ]]>
+                <![CDATA[ create_person = #{createPerson} ]]>,
             </if>
             <if test="setStartTime != null">
-                <![CDATA[ set_start_time = #{setStartTime} ]]>
+                <![CDATA[ set_start_time = #{setStartTime} ]]>,
             </if>
             <if test="setEndTime != null">
-                <![CDATA[ set_end_time = #{setEndTime} ]]>
+                <![CDATA[ set_end_time = #{setEndTime} ]]>,
             </if>
             <if test="delayTime != null">
-                <![CDATA[ delay_time = #{delayTime} ]]>
+                <![CDATA[ delay_time = #{delayTime} ]]>,
             </if>
             <if test="scheduler != null">
-                <![CDATA[ scheduler = #{scheduler} ]]>
+                <![CDATA[ scheduler = #{scheduler} ]]>,
             </if>
         </set>
         WHERE

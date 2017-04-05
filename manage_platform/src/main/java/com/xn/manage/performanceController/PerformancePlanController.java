@@ -11,6 +11,7 @@ import com.xn.common.company.service.DepartmentService;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.PerformancePlanStatusEnum;
 import com.xn.manage.Enum.PlanStatusEnum;
 import com.xn.performance.dto.*;
 import com.xn.performance.service.*;
@@ -67,6 +68,8 @@ public class PerformancePlanController {
     private PerformanceStressMachineService performanceStressMachineService;
     @Autowired
     private PerformanceMonitoredMachineResultService performanceMonitoredMachineResultService;
+    @Autowired
+    private PerformancePlanShowService performancePlanShowService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
@@ -88,27 +91,27 @@ public class PerformancePlanController {
         String planName = request.getParameter("planName");
         String planStatus = request.getParameter("planStatus");
         String scriptName = request.getParameter("scriptName");
-
+PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
         if (isNotEmpty(company) && !company.equals("null")) {
-            performancePlanDto.setCompany(company);
+            performancePlanShowDto.setCompany(company);
         }
         if (isNotEmpty(department) && !department.equals("null")) {
-            performancePlanDto.setDepartment(department);
+            performancePlanShowDto.setDepartment(department);
         }
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
-            performancePlanDto.setPsystem(psystem);
+            performancePlanShowDto.setPsystem(psystem);
         }
         if (isNotEmpty(planName) && !planName.equals("null")) {
-            performancePlanDto.setPlanName(planName);
+            performancePlanShowDto.setPlanName(planName);
         }
         if (isNotEmpty(planStatus) && !planStatus.equals("null")) {
-            performancePlanDto.setPlanStatus(planStatus);
+            performancePlanShowDto.setPlanStatus(planStatus);
         }
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
-            performancePlanDto.setPlanStatus(scriptName);
+            performancePlanShowDto.setScriptName(scriptName);
         }
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = getPlanShow(performancePlanDto);
+        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getPlanShow(performancePlanShowDto);
         model.put("plan_list", performancePlanShowDtoList);
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
@@ -117,26 +120,17 @@ public class PerformancePlanController {
         model.put("companyList", companyDtoList);
         model.put("departmentList", departmentDtoList);
         model.put("psystemList", testSystemDtoList);
-        List<PlanStatusEnum> publishEnumList = new ArrayList<>();
-        for (PlanStatusEnum item : PlanStatusEnum.values()) {
-            publishEnumList.add(item);
+        List<PerformancePlanStatusEnum> performancePlanStatusEnumList = new ArrayList<>();
+        for (PerformancePlanStatusEnum item : PerformancePlanStatusEnum.values()) {
+            performancePlanStatusEnumList.add(item);
         }
-        model.put("publish_list", publishEnumList);
+        model.put("plan_status_list", performancePlanStatusEnumList);
 
         return "/performance/plan/" + path;
     }
 
 
-    private List<PerformancePlanShowDto> getPlanShow(PerformancePlanDto performancePlanDto) {
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanDto);
-        for (PerformancePlanShowDto performancePlanShowDto : performancePlanShowDtoList) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("planId", performancePlanShowDto.getPlanId());
-            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
-            performancePlanShowDto.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
-        }
-        return performancePlanShowDtoList;
-    }
+
 
     //保存计划
     @RequestMapping(value = "/plan_list/save", method = RequestMethod.POST)
@@ -244,7 +238,7 @@ public class PerformancePlanController {
             performanceResultDto.setStressMachineId(stressMachineId);
             performanceResultDto.setStressMachineName(stressMachineName);
             performanceResultDto.setExecutePerson(executePerson);
-            performanceResultDto.setExecuteStatus(PlanStatusEnum.UN_EXECUTE.getName());
+            performanceResultDto.setExecuteStatus("等待中");
 
             if (executeType.equals("schedule")) {
                 Date time = DateUtil.getStandardStringDate(setStartTime);
@@ -343,7 +337,7 @@ public class PerformancePlanController {
     //停止执行
     @RequestMapping(value = "/plan_list/stop", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult stopPlan(@RequestParam final Integer id ,@RequestParam final Integer planId) {
+    public CommonResult stopPlan(@RequestParam final Integer id ,@RequestParam final Integer planId,@RequestParam final String executeStatus) {
         CommonResult commonResult = new CommonResult();
         try {
 
@@ -351,7 +345,7 @@ public class PerformancePlanController {
                 @Override
                 public void run() {
                     logger.info("stopPlan============" + Thread.currentThread().getName());
-                    jmeterService.stopPlan(id,planId);
+                    jmeterService.stopPlan(id,planId,executeStatus);
                 }
             });
 

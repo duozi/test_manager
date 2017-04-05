@@ -98,7 +98,7 @@ public class PerformanceScriptController {
         try {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
 //            String fileName = "e:\\\\upload\\\\" + performanceScriptDto.getPath();
-            performanceScriptDto.setPath(performanceScriptDto.getPath());
+
 
             if (!ValidateUtil.validate(performanceScriptDto)) {
                 logger.warn(String.format("参数有误", performanceScriptDto));
@@ -173,22 +173,56 @@ public class PerformanceScriptController {
         }
     }
 
-    @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
+    @RequestMapping(value = "/script_list/upload_file", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
-        String path = "";
+        String fileName = "";
+        String path="";
         try {
             if (files != null && files.length > 0) {
                 for (int i = 0; i < files.length; i++) {
                     MultipartFile file = files[i];
                     // 保存文件
-                    path = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+                    String name=file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") + name;
                     FileUtil.saveFile(request, file,path);
-
-                    result.setData(path);
+                    fileName+=" "+file.getOriginalFilename();
                 }
+                result.setData(fileName.trim());
+            }
+        } catch (Exception e) {
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message = e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("上传文件操作异常｛｝", e);
+        }finally {
+            return  result;
+        }
+
+
+    }
+
+    @RequestMapping(value = "/script_list/upload_dependence_file", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult uploadDependenceFile(@RequestParam("dependenceFile") MultipartFile[] files, HttpServletRequest request) {
+        CommonResult result = new CommonResult();
+        result.setMessage("上传成功！");
+        String fileName = "";
+        String path="";
+        try {
+            if (files != null && files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    MultipartFile file = files[i];
+                    // 保存文件
+                    String name=file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") + name;
+                    FileUtil.saveFile(request, file,path);
+                    fileName+=" "+file.getOriginalFilename();
+                }
+                result.setData(fileName.trim());
             }
         } catch (Exception e) {
             int code = CommonResultEnum.ERROR.getReturnCode();
@@ -219,7 +253,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
-            logger.error("删除操作异常｛｝", e);
+            logger.error("查看脚本操作异常｛｝", e);
         } finally {
             return commonResult;
         }

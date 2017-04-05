@@ -115,4 +115,10 @@ public interface PerformancePlanShowService {
      * @return 操作影响行数
      */
     int deleteBatch(List<PerformancePlanShowDto> performancePlanShows);
+
+     List<PerformancePlanShowDto> getPlanShow(PerformancePlanShowDto performancePlanShowDto);
+
+     List<PerformancePlanShowDto> getResultList(PerformancePlanShowDto performancePlanShowDto);
+
+
 }

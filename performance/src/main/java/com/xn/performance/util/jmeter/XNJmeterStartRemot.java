@@ -35,36 +35,53 @@ import java.io.*;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.xn.performance.util.PropertyUtil.getProperty;
+import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.exec_command;
 
 public class XNJmeterStartRemot {
     private static final org.apache.log.Logger logger = LoggingManager.getLoggerForClass();
-
+    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     boolean is_running = false; // 本地 distributedRunner 是否在运行
+    boolean interrupt = false;//是否被打断而结束
+
+    public boolean is_running() {
+        return is_running;
+    }
+
+    public boolean isInterrupt() {
+        return interrupt;
+    }
+
     ListenToTest agentlisten = null;  // 监听器
     DistributedRunner distributedRunner = null; // Jmeter 远程测试执行控制器
     List<JMeterEngine> engines = new LinkedList<JMeterEngine>(); // 远程执行机列表
     public Map<String, Boolean> setjmeterpros = new HashMap<String, Boolean>();
 
     String outputFileJtl = "";
-    String outputFileHtml = "";
+    String outputFile = "";
     Integer id;
+    String ip;
+    String username;
+    String pwd;
+    String port;
 
-    public XNJmeterStartRemot(Integer id) {
-        setjmeterpros.put("setAsXml",true);
-        setjmeterpros.put("setCode",true);
-        setjmeterpros.put("setLatency",true);
-        setjmeterpros.put("setTime",true);
-        setjmeterpros.put("setTimestamp",true);
-        setjmeterpros.put("setBytes",true);
-        setjmeterpros.put("setAssertionResultsFailureMessage",true);
-        setjmeterpros.put("setSuccess",true);
-        setjmeterpros.put("setThreadName",true);
-        setjmeterpros.put("setThreadCounts",true);
-        setjmeterpros.put("setLabel",true);
+    public XNJmeterStartRemot(Integer id,String ip,String username,String pwd,String port) {
+        setjmeterpros.put("setAsXml", true);
+        setjmeterpros.put("setCode", true);
+        setjmeterpros.put("setLatency", true);
+        setjmeterpros.put("setTime", true);
+        setjmeterpros.put("setTimestamp", true);
+        setjmeterpros.put("setBytes", true);
+        setjmeterpros.put("setAssertionResultsFailureMessage", true);
+        setjmeterpros.put("setSuccess", true);
+        setjmeterpros.put("setThreadName", true);
+        setjmeterpros.put("setThreadCounts", true);
+        setjmeterpros.put("setLabel", true);
 
         // jmeter.properties
         JMeterUtils.loadJMeterProperties(getProperty("jmeter_root") + "bin/jmeter.properties");
@@ -73,7 +90,11 @@ public class XNJmeterStartRemot {
         JMeterUtils.setJMeterHome(getProperty("jmeter_root"));
 
 
-        this.id=id;
+        this.id = id;
+        this.ip=ip;
+        this.username=username;
+        this.pwd=pwd;
+        this.port=port;
     }
 
     /**
@@ -112,6 +133,7 @@ public class XNJmeterStartRemot {
     public void stop() {
         if (distributedRunner != null) {
             distributedRunner.stop();
+            interrupt = true;
         }
     }
 
@@ -155,7 +177,7 @@ public class XNJmeterStartRemot {
      * Transform raw JTL to friendly HTML using XSL
      */
     public void generateReportXMLToHtml() {
-        generateReportXMLToHtml(outputFileJtl, outputFileHtml);
+        generateReportXMLToHtml(outputFileJtl, outputFile);
     }
 
     public void generateReportXMLToHtml(String jtlfile, String htmlfile) {
@@ -187,7 +209,7 @@ public class XNJmeterStartRemot {
      * Transform raw CSV to friendly HTML
      */
     public void generateReportCSVToHtml() {
-        generateReportCSVToHtml(outputFileJtl, outputFileHtml);
+        generateReportCSVToHtml(outputFileJtl, outputFile);
     }
 
     public void generateReportCSVToHtml(String csvfile, String htmlfile) {
@@ -195,24 +217,15 @@ public class XNJmeterStartRemot {
             csvfile = outputFileJtl;
         }
         if (htmlfile == "") {
-            htmlfile = outputFileHtml;
+            htmlfile = outputFile;
         }
-        /*
-		CLOption testReportOpt = parser.getArgumentById(REPORT_GENERATING_OPT);
-                if (testReportOpt != null) { // generate report from existing file
-                    String reportFile = testReportOpt.getArgument();
-                    extractAndSetReportOutputFolder(parser);
-                    ReportGenerator generator = new ReportGenerator(reportFile, null);
-                    generator.generate();
-        */
-        //private void extractAndSetReportOutputFolder(CLArgsParser parser)throws IllegalArgumentException {
-        //}
-        File reportOutputFolderAsFile = new File(outputFileHtml);
+
+        File reportOutputFolderAsFile = new File(outputFile);
         JOrphanUtils.canSafelyWriteToFolder(reportOutputFolderAsFile);
         logger.info("Setting property 'jmeter.reportgenerator.outputdir' to:'" + reportOutputFolderAsFile.getAbsolutePath() + "'");
         //JMeterUtils.setProperty("jmeter.reportgenerator.outputdir", reportOutputFolderAsFile.getAbsolutePath());
         System.out.println("````````````````````````````````````");
-        System.out.println(outputFileHtml);
+        System.out.println(outputFile);
         System.out.println(reportOutputFolderAsFile.getAbsolutePath());
         System.out.println(JMeterUtils.getJMeterVersion());
         System.out.println(getProperty("jmeter_root") + "bin/jmeter.properties");
@@ -221,7 +234,8 @@ public class XNJmeterStartRemot {
 
         ReportGenerator generator;
         try {
-            JMeterUtils.setProperty("jmeter.reportgenerator.apdex_satisfied_threshold", String.valueOf(5000));
+            JMeterUtils.setProperty("jmeter.reportgenerator.graph.syntheticResponseTimeDistribution.property.set_satisfied_threshold", String.valueOf(500));
+            JMeterUtils.setProperty("jmeter.reportgenerator.graph.syntheticResponseTimeDistribution.property.set_tolerated_threshold", String.valueOf(1500));
             generator = new ReportGenerator(csvfile, null);
 
             generator.generate();
@@ -312,18 +326,19 @@ public class XNJmeterStartRemot {
      * @throws Exception
      */
     public void remoteStart(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
+
         // jtl报告文件名称
         SimpleDateFormat df = new SimpleDateFormat("_yyyyMMdd_HHmmss");
         String jtltime = df.format(new Date());
         if (jmxfile == "") {
             jmxfile = getProperty("jmxfile");
         }
-          String  reportPath =getProperty("reports");
+        String reportPath = getProperty("reports");
 
         if (setjmeterpros.get("setAsXml") == true) {
             outputFileJtl = reportPath + id + jtltime + ".jtl";
             // html报告文件名
-            outputFileHtml = reportPath + id + jtltime + ".html";
+            outputFile = reportPath + id + ".html";
         } else {
             // 使用Jmeter自带的 csv 转 html api 要求下面设个属性为 csv，光设置setAsXml=false还不够
             JMeterUtils.setProperty("jmeter.save.saveservice.output_format", "csv");
@@ -331,7 +346,7 @@ public class XNJmeterStartRemot {
             JMeterUtils.setProperty("jmeter.save.saveservice.timestamp_format", "yyyy/MM/dd HH:mm:ss.SSS");
             outputFileJtl = reportPath + id + jtltime + ".csv";
             // jmeter3.x html报告需要路径，报告会包含js等多个文件
-            outputFileHtml = reportPath + id + jtltime;
+            outputFile = reportPath + id;
             JMeterUtils.getPropDefault("jmeter.save.saveservice.output_format", "csv");
         }
 
@@ -425,7 +440,7 @@ public class XNJmeterStartRemot {
 
             //testTree.add(testTree.getArray()[0], new RemoteThreadsListenerTestElement());
 
-            //agentlisten = new ListenToTest(this,engines, reportGenerator); // 第二个参数会导致测试结束，负载机被关闭
+//            agentlisten = new ListenToTest(this,engines, reportGenerator); // 第二个参数会导致测试结束，负载机被关闭
             agentlisten = new ListenToTest(this, null, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);
 
@@ -437,7 +452,10 @@ public class XNJmeterStartRemot {
             distributedRunner = new DistributedRunner();
             distributedRunner.setStdout(System.out);
             distributedRunner.setStdErr(System.err);
-            distributedRunner.init(hosts, testTree);
+
+
+            retry(hosts, testTree);
+
             engines.addAll(distributedRunner.getEngines());
             /**
              * DistributedRunner.start(List<String> addresses) # 启动指定的负载机
@@ -483,12 +501,39 @@ public class XNJmeterStartRemot {
             // Utils.jtl2html(xsl, new File(outputFileJtl), new File(outputFileHtml));
             // System.out.println("*********Jmeter runing End! html report show.");
 
+        } catch (RuntimeException e) {
+            is_running = false;
+            throw e;
         } catch (Exception e) {
             is_running = false;
-            System.out.println(e);
             e.printStackTrace();
+            throw e;
         }
     }
+
+    private void retry(List<String> hosts, HashTree testTree) throws InterruptedException {
+        try {
+            distributedRunner.init(hosts, testTree);
+        } catch (Exception e) {
+
+            logger.error("========jmeter server is lost ,retry agin");
+
+
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info(new Date() + Thread.currentThread().getName() + "启动jmeter======");
+                    exec_command(ip, username, pwd, Integer.parseInt(port), "bash  /data/apache-jmeter-3.1/bin/jmeter-server");
+                }
+            });
+
+            Thread.sleep(5000);
+
+            distributedRunner.init(hosts, testTree);
+        }
+
+    }
+
 
     private void startOptionalServers() {
         int bshport = JMeterUtils.getPropDefault("beanshell.server.port", 0);// $NON-NLS-1$
@@ -717,9 +762,13 @@ public class XNJmeterStartRemot {
         generateReportCSVToHtml();
     }
 
-    public void rstart_csv(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
+    public String rstart_csv(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
+        logger.info(Thread.currentThread().getName() + "===========rstart_csv remote_hosts_string:" + remote_hosts_string + " rmi_server:" + rmi_server + " jmxfile:" + jmxfile);
         setjmeterpros.put("setAsXml", false);
         remoteStart(remote_hosts_string, rmi_server, jmxfile);
         generateReportCSVToHtml();
+        return outputFile;
     }
+
+
 }

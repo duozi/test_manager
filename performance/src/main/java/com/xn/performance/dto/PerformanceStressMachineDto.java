@@ -9,86 +9,95 @@ import com.xn.performance.util.BaseDto;
 
 /**
  * PerformanceStressMachine Dto 对象
- * 
+ *
  * @author zhouxi
  * @date 2017-02-21
  */
-public class PerformanceStressMachineDto extends BaseDto{
-    
+public class PerformanceStressMachineDto extends BaseDto {
+
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * 主键列
-     * id 
+     * id
      */
     private Integer id;
 
     /**
-     * 
-     * 压力机名 
+     * 压力机名
      */
     @NotNullField
     private String stressMachineName;
 
     /**
-     * 
-     * 备注 
+     * 备注
      */
     private String remark;
 
     /**
-     * 
-     * 公司 
+     * 公司
      */
     @NotNullField
     private String company;
 
     /**
-     * 
-     * 部门 
+     * 部门
      */
     @NotNullField
     private String department;
 
     /**
-     * 
-     * 系统 
+     * 系统
      */
     @NotNullField
     private String psystem;
 
     /**
-     * 
-     * ip 
+     * ip
      */
     @NotNullField
     private String ip;
 
     /**
-     * 
-     * 用户名 
+     * 用户名
      */
     @NotNullField
     private String username;
 
     /**
-     * 
-     * 密码 
+     * 密码
      */
     @NotNullField
     private String password;
 
     /**
-     * 
-     * 创建人 
+     * 创建人
      */
     @NotNullField
     private String createPerson;
+    private String port;
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
 
     private String stressMachineStatus;
+
+    public PerformanceStressMachineDto(Integer id) {
+        this.id = id;
+    }
+
+    public PerformanceStressMachineDto() {
+
+    }
 
     public String getStressMachineStatus() {
         return stressMachineStatus;
@@ -98,13 +107,11 @@ public class PerformanceStressMachineDto extends BaseDto{
         this.stressMachineStatus = stressMachineStatus;
     }
 
-    
 
-    
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Integer getId() {
         return this.id;
     }
@@ -112,7 +119,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setStressMachineName(String stressMachineName) {
         this.stressMachineName = stressMachineName;
     }
-    
+
     public String getStressMachineName() {
         return this.stressMachineName;
     }
@@ -120,7 +127,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    
+
     public String getRemark() {
         return this.remark;
     }
@@ -128,7 +135,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setCompany(String company) {
         this.company = company;
     }
-    
+
     public String getCompany() {
         return this.company;
     }
@@ -136,7 +143,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setDepartment(String department) {
         this.department = department;
     }
-    
+
     public String getDepartment() {
         return this.department;
     }
@@ -144,7 +151,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setPsystem(String psystem) {
         this.psystem = psystem;
     }
-    
+
     public String getPsystem() {
         return this.psystem;
     }
@@ -152,7 +159,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setIp(String ip) {
         this.ip = ip;
     }
-    
+
     public String getIp() {
         return this.ip;
     }
@@ -160,7 +167,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getUsername() {
         return this.username;
     }
@@ -168,7 +175,7 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getPassword() {
         return this.password;
     }
@@ -176,11 +183,10 @@ public class PerformanceStressMachineDto extends BaseDto{
     public void setCreatePerson(String createPerson) {
         this.createPerson = createPerson;
     }
-    
+
     public String getCreatePerson() {
         return this.createPerson;
     }
-
 
 
 }

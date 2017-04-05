@@ -16,11 +16,12 @@
         <result property="password" column="password"/>
         <result property="createPerson" column="create_person"/>
         <result property="stressMachineStatus" column="stress_machine_status"/>
+        <result property="port" column="port"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, stress_machine_name, remark, company, department, psystem, ip, username, password, create_person,stress_machine_status
+        id, stress_machine_name, remark, company, department, psystem, ip, username, password, create_person,stress_machine_status,port
         ]]>
     </sql>
     
@@ -58,6 +59,9 @@
             </if>
             <if test="@Ognl@isNotEmpty(stressMachineStatus)">
                 AND stress_machine_status = #{stressMachineStatus}
+            </if>
+            <if test="@Ognl@isNotEmpty(port)">
+                AND port = #{port}
             </if>
         </where>
     </sql>
@@ -103,7 +107,8 @@
                 username,
                 password,
                 create_person,
-                stress_machine_status
+                stress_machine_status,
+                port
             ) VALUES (
                 #{id},
                 #{stressMachineName},
@@ -115,7 +120,8 @@
                 #{username},
                 #{password},
                 #{createPerson},
-                #{stressMachineStatus}
+                #{stressMachineStatus},
+                #{port}
             )
         ]]>
     </insert>
@@ -133,11 +139,12 @@
                 username,
                 password,
                 create_person,
-                stress_machine_status
+                stress_machine_status,
+                port
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.stressMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson},#{stressMachineStatus})
+            (#{item.id},#{item.stressMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson},#{stressMachineStatus},#{port})
         </foreach>
     </insert>
     
@@ -170,10 +177,13 @@
                 	<![CDATA[ password = #{password} ]]>,
                 </if>
                 <if test="createPerson != null">
-                	<![CDATA[ create_person = #{createPerson} ]]>
+                	<![CDATA[ create_person = #{createPerson} ]]>,
                 </if>
                 <if test="stressMachineStatus != null">
-                    <![CDATA[ stress_machine_status = #{stressMachineStatus} ]]>
+                    <![CDATA[ stress_machine_status = #{stressMachineStatus} ]]>,
+                </if>
+                <if test="port != null">
+                    <![CDATA[ port = #{port} ]]>
                 </if>
             </set>
             WHERE

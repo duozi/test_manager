@@ -79,6 +79,16 @@ public class PerformanceStressMachine extends BaseEntity {
     private String createPerson;
 
     private String stressMachineStatus;
+    private String port;
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
 
     public String getStressMachineStatus() {
         return stressMachineStatus;

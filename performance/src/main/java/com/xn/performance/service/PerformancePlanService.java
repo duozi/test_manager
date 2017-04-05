@@ -27,6 +27,14 @@ public interface PerformancePlanService {
      * @return
      */
     List<PerformancePlanShowDto>  show(Object condition);
+
+    /**
+     * 查询计划记录
+     * 主键：id
+     * @param condition 主键/Map/查询对象
+     * @return
+     */
+    List<PerformancePlanShowDto>  resultList(Object condition);
     /**
      * 查询单个记录
      * 主键：id 

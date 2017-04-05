@@ -115,5 +115,5 @@ public interface PerformanceMonitoredMachineService {
      */
     int deleteBatch(List<PerformanceMonitoredMachineDto> performanceMonitoredMachines);
 
-    boolean testLink(String s1,String s2,String s3);
+    boolean testLink(String ip,String username,String pwd,int port);
 }

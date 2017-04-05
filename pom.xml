@@ -380,11 +380,6 @@
                 <artifactId>ganymed-ssh2</artifactId>
                 <version>build209</version>
             </dependency>
-            <dependency>
-                <groupId>com.jcraft</groupId>
-                <artifactId>jsch</artifactId>
-                <version>0.1.53</version>
-            </dependency>
             <!--jmeter-->
             <dependency>
                 <groupId>org.apache.jmeter</groupId>
@@ -418,6 +413,12 @@
                 <groupId>aopalliance</groupId>
                 <artifactId>aopalliance</artifactId>
                 <version>1.0</version>
+            </dependency>
+            <!--执行linux命令-->
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jsch</artifactId>
+                <version>0.1.54</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

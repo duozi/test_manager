@@ -22,5 +22,9 @@ public interface PerformanceResultMapper extends BaseMapper<PerformanceResult, I
 
     List<PerformancePlanShow> getScheduleTask(Object condition);
 
+    List<PerformancePlanShow> resultList(Object condition);
+
     PerformancePlanShow getShow(Object condition);
+
+
 }

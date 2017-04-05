@@ -4,7 +4,9 @@ package com.xn.performance.service.impl;/**
 
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.service.PerformanceResultService;
-import org.quartz.*;
+import org.quartz.JobDataMap;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import java.util.Date;
+
+import static com.xn.performance.service.impl.SpringTask.STRESS_MACHINE_STATUS;
+import static com.xn.performance.service.impl.SpringTask.STRESS_MACHINE_WAITING_MAP;
+
 
 public class ExecuteScheduleQueue extends QuartzJobBean {
     private static final Logger logger = LoggerFactory.getLogger(ExecuteScheduleQueue.class);
+
     @Autowired
     PerformanceResultService performanceResultService;
+    @Autowired
+    JmeterServiceImpl jmeterService;
 
     public ExecuteScheduleQueue() {
 
@@ -25,37 +35,47 @@ public class ExecuteScheduleQueue extends QuartzJobBean {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+
         //job自动注入
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 
-
+        //获得传入的参数
         JobDataMap dataMap = jobExecutionContext.getMergedJobDataMap();  // Note the difference from the previous example
 
-            //执行完更新结果表
-            PerformancePlanShowDto performancePlanShowDto = (PerformancePlanShowDto) dataMap.get("performancePlanShowDto");
-            Integer id = performancePlanShowDto.getId();
-            logger.info(id + "****start***********" + Thread.currentThread().getName());
 
-            try {
-                Thread.sleep(30000);
+        PerformancePlanShowDto performancePlanShowDto = (PerformancePlanShowDto) dataMap.get("performancePlanShowDto");
+        logger.info(new Date() +Thread.currentThread().getName()+"=========executeInternal performanceResultDto:"+performancePlanShowDto.toString() );
+        Integer stressMachineId = performancePlanShowDto.getStressMachineId();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        Date setStartTime = performancePlanShowDto.getSetStartTime();
+        if (setStartTime != null) {
+            STRESS_MACHINE_WAITING_MAP.put(stressMachineId, 2);
+        }
+        Integer nextTask = STRESS_MACHINE_WAITING_MAP.get(stressMachineId);
+
+        while (true) {
+            Integer stressMachineStatus = STRESS_MACHINE_STATUS.get(stressMachineId);
+            if (stressMachineStatus == null || (stressMachineStatus == 0)) {
+                if (nextTask == 2 && setStartTime != null)  {
+                    STRESS_MACHINE_STATUS.put(stressMachineId, 1);
+                    jmeterService.executeOnce(performancePlanShowDto);
+
+                    break;
+                }
+            } else {
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        logger.info(id + "****stop************" + Thread.currentThread().getName());
-
-//        PerformanceResultDto performanceResultDto = new PerformanceResultDto();
-//        performanceResultDto.setActualEndTime(new Date());
-//
-//
-//        performanceResultDto.setActualStartTime(jobExecutionContext.getFireTime());
-//        performanceResultDto.setExecuteTime((int) (jobExecutionContext.getJobRunTime() / 1000));
-//        performanceResultDto.setExecuteStatus("已执行");
-//        performanceResultDto.setId(2);
-//        performanceResultService.update(performanceResultDto);
+        }
+        //给立即执行的任务机会
+        STRESS_MACHINE_WAITING_MAP.put(stressMachineId, 1);
+        //压力机空闲
+        STRESS_MACHINE_STATUS.put(stressMachineId,0);
 
 
     }
-
 
 }

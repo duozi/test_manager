@@ -113,6 +113,16 @@ public class PerformancePlanShow {
     private Date setStartTime;
     private String resultPath;
     private String executePerson;
+    private Date actualStartTimeBegin;
+    private Date actualStartTimeEnd;
+
+    public Date getActualStartTimeBegin() {
+        return actualStartTimeBegin;
+    }
+
+    public void setActualStartTimeBegin(Date actualStartTimeBegin) {
+        this.actualStartTimeBegin = actualStartTimeBegin;
+    }
 
     public String getExecutePerson() {
         return executePerson;

@@ -113,13 +113,41 @@
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.result_path,R.execute_person
         FROM
         performance_plan P LEFT JOIN performance_result R ON P.id=R.plan_id
+            <where>
+                <if test="@Ognl@isNotEmpty(id)">
+                    AND R.id = #{id}
+                </if>
+                <if test="@Ognl@isNotEmpty(planName)">
+                    AND R.plan_name = #{planName}
+                </if>
+                <if test="@Ognl@isNotEmpty(company)">
+                    AND P.company = #{company}
+                </if>
+                <if test="@Ognl@isNotEmpty(department)">
+                    AND P.department = #{department}
+                </if>
+                <if test="@Ognl@isNotEmpty(psystem)">
+                    AND P.psystem = #{psystem}
+                </if>
 
-        <include refid="where"/>
+                <if test="@Ognl@isNotEmpty(scriptName)">
+                    AND P.script_name = #{scriptName}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(planStatus)">
+                    AND P.plan_status = #{planStatus}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(isDelete)">
+                    AND P.is_delete = #{isDelete}
+                </if>
+            </where>
+
 
     </select>
 

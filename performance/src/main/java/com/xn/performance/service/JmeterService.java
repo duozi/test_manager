@@ -10,15 +10,21 @@ import java.util.List;
  */
 
 public interface JmeterService {
-    String execute(String stressMachineIp,String jmeterScriptPath,Integer id);
+    String execute(String stressMachineIp, String jmeterScriptPath, Integer id) throws Exception;
 
     void executePlan(String executeType, PerformanceResultDto performanceResultDto);
 
     void addToNowQueue(List<PerformancePlanShowDto> list);
 
+    void addToNowQueue(PerformancePlanShowDto performancePlanShowDto);
+
     void addToScheduleQueue(List<PerformancePlanShowDto> list);
 
-    void stopPlan(Integer id,Integer planId);
+    public void scheduleJob(PerformancePlanShowDto performancePlanShowDto);
 
-    void executeOnce(PerformancePlanShowDto performancePlanShowDto);
+    void addToScheduleQueue(PerformancePlanShowDto performancePlanShowDto);
+
+    void stopPlan(Integer id, Integer planId,String executeStatus);
+
+    void executeOnce(PerformancePlanShowDto performancePlanShowDto) ;
 }

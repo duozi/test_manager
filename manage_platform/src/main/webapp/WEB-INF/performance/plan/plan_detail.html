@@ -87,18 +87,18 @@
                 submitHandler: function () {
                     var planId = $("#planId").val();
                     var stressMachineId = $("#stress_machine_name").val();
-                    var stressMachineName = $("#stress_machine_name").find("option:selected").text();
+                    var stressMachineName= $("#stress_machine_name").find("option:selected").text();
                     var executeType = $("#execute-time-type").val();
                     var setStartTime = $("#set-start-time").val();
-                    var executePerson = $("#execute-person").val();
+                    var executePerson=$("#execute-person").val();
 
                     $.post("/performance/plan/plan_list/execute_save", {
                         planId: planId,
                         stressMachineId: stressMachineId,
-                        stressMachineName: stressMachineName,
+                        stressMachineName:stressMachineName,
                         executeType: executeType,
                         setStartTime: setStartTime,
-                        executePerson: executePerson,
+                        executePerson:executePerson,
                     }, function (data) {
                         if (data.code == 0) {
                             $("#execute").modal("hide");
@@ -127,7 +127,7 @@
             });
         }
         //        执行弹框根据公司部门系统查询可选压力机，然后弹出弹框
-        function execute(id, planId, company, department, psystem) {
+        function execute(id,planId, company, department, psystem) {
             $.post("/performance/plan/plan_list/show_stress_machine", {
                 company: company,
                 department: department,
@@ -159,14 +159,14 @@
             });
         }
 
-        function stop(id, planId, executeStatus) {
+        function stop(id,planId,executeStatus) {
             $.post("/performance/plan/plan_list/stop", {
                 id: id,
-                planId: planId,
-                executeStatus: executeStatus
+                planId:planId,
+                executeStatus:executeStatus
             }, function (data) {
                 if (data.code == 0) {
-                    reload();
+                  reload();
                 } else if (data.code == 1) {
                     alert("删除失败");
                 } else if (data.code == 2) {
@@ -176,17 +176,9 @@
 
         }
         function report(id) {
-            window.location.href = "/performance/report/report_detail?id=" + id
+            window.location.href = "/performance/report/report_detail?id=" +id
         }
-        function searchPlan() {
-            var company = $("select[name='search-company']").val();
-            var department = $("select[name='search-department']").val();
-            var psystem = $("select[name='search-psystem']").val();
-            var scriptName = $("select[name='search-scriptName']").val();
-            var planStatus = $("select[name='search-planStatus']").val();
-            var planName = $("select[name='search-planName']").val();
-            window.location.href = "plan_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&planStatus=" + planStatus + "&planName=" + planName
-        }
+
 
     </script>
 </head>
@@ -196,7 +188,7 @@
     <ol class="breadcrumb">
         <li><a href="#">性能自动化</a></li>
         <li><a href="active">计划管理</a></li>
-        <li class="active">测试计划列表</li>
+        <li class="active">测试计划详情</li>
     </ol>
 </div>
 
@@ -208,7 +200,7 @@
                 <form role="form">
                     <div class="col-lg-12">
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-company">
+                            <select class="form-control" id="search-company">
                                 <option value="" disabled selected>选择公司</option>
                                 <#if companyList ??>
                                     <#list companyList as item>
@@ -218,7 +210,7 @@
                             </select>
                         </div>
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-department">
+                            <select class="form-control" id="search-department">
                                 <option value="" disabled selected>选择部门</option>
                                 <#if departmentList ??>
                                     <#list departmentList as item>
@@ -228,7 +220,7 @@
                             </select>
                         </div>
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-psystem">
+                            <select class="form-control" id="search-psystem">
                                 <option value="" disabled selected>选择系统</option>
                                 <#if psystemList ??>
                                     <#list psystemList as item>
@@ -238,7 +230,7 @@
                             </select>
                         </div>
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-planName">
+                            <select class="form-control" id="search-planName">
                                 <option value="" disabled selected>选择计划名称</option>
                                 <#if plan_list_all ??>
                                     <#list plan_list_all as item>
@@ -248,7 +240,7 @@
                             </select>
                         </div>
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-scriptName">
+                            <select class="form-control" id="search-scriptName">
                                 <option value="" disabled selected>选择脚本名称</option>
                                 <#if script_list_all ??>
                                     <#list script_list_all as item>
@@ -258,17 +250,18 @@
                             </select>
                         </div>
                         <div class="form-group col-xs-2" style="width: 15%">
-                            <select class="form-control" name="search-planStatus">
+                            <select class="form-control" id="search-planStatus">
                                 <option value="" disabled selected>选择计划状态</option>
-                                <#if plan_status_list ??>
-                                    <#list plan_status_list as item>
+                                <#if publish_list ??>
+                                    <#list publish_list as item>
                                         <option value="${item.getName()}">${item.getName()}</option>
                                     </#list>
                                 </#if>
+
                             </select>
                         </div>
                         <div class="form-group col-xs-1" style="width: 10%">
-                            <a class="btn btn-default" onclick="searchPlan()">查询</a>
+                            <button type="submit" class="btn btn-default">查询</button>
                             <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPlan"><i
                                     class=" fa-plus-circle fa"></i>新增计划</a>
                         </div>
@@ -281,7 +274,6 @@
                             <th>计划ID</th>
                             <th>计划名称</th>
                             <th>计划描述</th>
-                            <th>计划状态</th>
                             <th>公司</th>
                             <th>部门</th>
                             <th>系统</th>
@@ -300,10 +292,9 @@
                         <#if plan_list ??>
                             <#list plan_list as item>
                                 <tr>
-                                    <td>${item.planId}</td>
+                                    <td>${item.id}</td>
                                     <td>${item.planName}</td>
                                     <td>${item.remark}</td>
-                                    <td>${item.planStatus}</td>
                                     <td>${item.company}</td>
                                     <td>${item.department}</td>
                                     <td>${item.psystem}</td>
@@ -326,8 +317,7 @@
                                     <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
                                            onclick="execute(${item.id},${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
                                         <a type="button" name="stop" class="btn btn-warning"
-                                        <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" >
-                                            onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
+                                        <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" > onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
                                             <#else> disabled
                                         </#if>
                                         >停止执行</a>
@@ -336,7 +326,7 @@
                                     <td>
                                         <a type="button" id="deletePlan" class="btn btn-danger"
                                            onclick="deletePlan(${item.id})">删除计划</a>
-                                        <a type="button" class="btn btn-info"
+                                        <a  type="button" class="btn btn-info"
                                         <#if item.executeStatus=="已执行"  >
                                             onclick="report(${item.id})"
                                             <#else> disabled
@@ -377,8 +367,8 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">压力机<span style="color:red">*</span></label>
-                            <input type="text" class="hidden" id="planId">
-                            <input type="text" class="hidden" id="id">
+                            <input type="text" class="hidden" id="planId" >
+                            <input type="text" class="hidden" id="id" >
                             <select class="form-control" id="stress_machine_name" required>
 
                             </select>
@@ -393,7 +383,7 @@
                         </div>
                         <div class="form-group schedule hidden">
                             <label class="control-label">执行时间<span style="color:red">*</span></label>
-                            <input type="text" class="form-control form-datetime" id="set-start-time">
+                            <input type="text" class="form-control form-datetime" id="set-start-time" >
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary submit">保存</button>

@@ -3,10 +3,9 @@ package com.xn.performance.service.impl;/**
  */
 
 import com.xn.performance.dto.PerformancePlanShowDto;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
+import org.quartz.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -21,8 +20,9 @@ import static org.quartz.JobBuilder.newJob;
  * @author Administrator
  */
 public class QuartzManager {
+    private static final Logger logger = LoggerFactory.getLogger(SpringTask.class);
     private static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
-    private static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
+
     @Autowired
     JobDetail jobDetail;
 
@@ -35,13 +35,16 @@ public class QuartzManager {
      * @Description: 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
      * @Title: QuartzManager.java
      */
-    public static void addJob(Scheduler sched, String jobName, @SuppressWarnings("rawtypes") Class cls, Date time,PerformancePlanShowDto performancePlanShowDto) {
+    public static JobKey addJob(Scheduler sched, String jobName, @SuppressWarnings("rawtypes") Class cls, Date time, PerformancePlanShowDto performancePlanShowDto) {
+        logger.info(new Date() + Thread.currentThread().getName() + "============addJob performancePlanShowDto:"+performancePlanShowDto.toString());
+        JobDetail jobDetail=null;
         try {
 //            JSONObject jsonObject = JSONObject.fromObject(performancePlanShowDto);
-            JobDetail jobDetail = newJob(cls)
+            jobDetail = newJob(cls)
                     .withIdentity(jobName, JOB_GROUP_NAME)
 //            .usingJobData("param", jsonObject.toString())
                     .build();
+
             // 触发器
             Map<String, PerformancePlanShowDto> parameters=new HashMap<String, PerformancePlanShowDto>();
             parameters.put("performancePlanShowDto",performancePlanShowDto);
@@ -53,12 +56,16 @@ public class QuartzManager {
                     .startAt(time)
                     .build();
             sched.scheduleJob(jobDetail, trigger);
+
             // 启动
             if (!sched.isShutdown()) {
+
                 sched.start();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }finally {
+            return jobDetail.getKey();
         }
     }
 

@@ -66,17 +66,22 @@
             var ip = $("input[name='ip']").val();
             var username = $("input[name='username']").val();
             var password = $("input[name='password']").val();
+            var port=$("input[name='port']").val();
             if (ip == '') {
                 alert("ip为空");
             } else if (username == '') {
                 alert("用户名为空");
             } else if (password == '') {
                 alert('密码为空');
-            } else {
+            } else if(port==''){
+                alert('端口号为空');
+            }else {
                 $.post("/performance/machine/stress_machine_list/test", {
                     ip: ip,
                     username: username,
-                    password: password
+                    password: password,
+                    port:port
+
                 }, function (data) {
                     if (data.code == 0) {
                         $("input[name=islink]").val(data.data);
@@ -173,6 +178,7 @@
                             <th>系统</th>
                             <th>ip</th>
                             <th>用户名</th>
+                            <th>端口号</th>
                             <th>创建人</th>
                             <th>压力机状态</th>
                             <th>操作</th>
@@ -190,6 +196,7 @@
                                     <td>${item.psystem}</td>
                                     <td>${item.ip}</td>
                                     <td>${item.username}</td>
+                                    <td>${item.port}</td>
                                     <td>${item.createPerson}</td>
                                     <td>${item.stressMachineStatus}</td>
                                     <td>
@@ -222,7 +229,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPress">新增压力机</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 550px">
+                <div class="modal-body modal-add" style="min-height: 600px">
                     <form role="form " class="col-lg-12 edit-form" id="stressMachine-save" name="stressMachine-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
@@ -286,7 +293,11 @@
                                 <input type="password" class="form-control " name="password"
                                        placeholder="请输入密码" required>
                             </div>
-
+                            <div class="form-group">
+                                <label class="control-label">端口号<span style="color:red">*</span></label>
+                                <input type="text" class="form-control " name="port"
+                                       placeholder="请输入端口号" required>
+                            </div>
                         </div>
 
                         <div class="modal-footer">

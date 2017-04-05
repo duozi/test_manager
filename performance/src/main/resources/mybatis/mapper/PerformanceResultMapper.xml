@@ -46,7 +46,9 @@
     <sql id="columns">
         <![CDATA[
 
+
         id, plan_id, actual_end_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status,set_start_time,result_path
+
 
         ]]>
     </sql>
@@ -119,12 +121,15 @@
 
     <select id="getNowTask" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name,
+        P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time, R.result_path,R.execute_person
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,
+        R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
-        WHERE P.is_delete="未删除" AND R.set_start_time IS NULL
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NULL AND (execute_status ="未执行" OR execute_status ="等待中" OR
+        execute_status ="执行中")
         <if test="@Ognl@isNotEmpty(id)">
             AND R.id = #{id}
         </if>
@@ -155,9 +160,6 @@
         <if test="@Ognl@isNotEmpty(executePerson)">
             AND execute_person = #{executePerson}
         </if>
-        <if test="@Ognl@isNotEmpty(executeStatus)">
-            AND execute_status = #{executeStatus}
-        </if>
         <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
             AND set_start_time >= #{setStartTimeBegin}
         </if>
@@ -172,12 +174,14 @@
 
     <select id="getScheduleTask" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name,
+        P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
-        WHERE P.is_delete="未删除" AND R.set_start_time IS NOT NULL
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NOT NULL AND (execute_status ="未执行" OR execute_status ="等待中" OR
+        execute_status ="执行中")
         <if test="@Ognl@isNotEmpty(id)">
             AND id = #{id}
         </if>
@@ -223,14 +227,15 @@
     </select>
 
 
- <select id="getShow" resultMap="PerformancePlanShowMap">
+    <select id="getShow" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name,
+        P.scenario_id,
         P.scenario_name,P.plan_status,
         P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
-        WHERE P.is_delete="未删除" AND  R.id=#{id}
+        WHERE P.is_delete="未删除" AND R.id=#{id}
 
         <if test="@Ognl@isNotEmpty(planId)">
             AND plan_id = #{planId}
@@ -272,8 +277,53 @@
             AND result_path = #{resultPath}
         </if>
 
-    </select>
 
+    </select>
+    <select id="resultList" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name,
+        P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
+        FROM
+        performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
+        WHERE R.id is not NULL
+        <if test="@Ognl@isNotEmpty(id)">
+            AND R.id = #{id}
+        </if>
+        <if test="@Ognl@isNotEmpty(planId)">
+            AND plan_id = #{planId}
+        </if>
+
+        <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            AND actual_start_time >= #{actualStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            AND actual_start_time &lt;= #{actualStartTimeEnd}
+        </if>
+
+        <if test="@Ognl@isNotEmpty(stressMachineId)">
+            AND stress_machine_id = #{stressMachineId}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineName)">
+            AND stress_machine_name = #{stressMachineName}
+        </if>
+        <if test="@Ognl@isNotEmpty(executePerson)">
+            AND execute_person = #{executePerson}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeStatus)">
+            AND execute_status = #{executeStatus}
+        </if>
+        <if test="@Ognl@isNotEmpty(company)">
+            AND P.company = #{company}
+        </if>
+        <if test="@Ognl@isNotEmpty(department)">
+            AND P.department = #{department}
+        </if>
+        <if test="@Ognl@isNotEmpty(psystem)">
+            AND P.psystem = #{psystem}
+        </if>
+    </select>
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -286,6 +336,7 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
+
 
             INSERT INTO performance_result (
                 id,
@@ -312,6 +363,7 @@
                 #{setStartTime},
                 #{resultPath}
             )
+
 
         ]]>
     </insert>
@@ -379,11 +431,13 @@
     <delete id="deleteByPK">
         <![CDATA[
 
+
             DELETE
             FROM
                 performance_result
             WHERE
                 id = #{id} 
+
 
         ]]>
     </delete>

@@ -120,6 +120,6 @@ public interface PerformanceStressMachineService {
 
     String sayHello(String name);
 
-    boolean testLink(String ip,String username,String password);
+    boolean testLink(String ip,String username,String password,int port);
 
 }

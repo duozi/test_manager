@@ -80,7 +80,7 @@ public class PerformanceMachineController {
             String company = request.getParameter("company");
             String department = request.getParameter("department");
             String psystem = request.getParameter("psystem");
-            String stressMachineName = request.getParameter("stressMachineName");
+            String stressMachineName = request.getParameter("monitoredMachineName");
 
             if (isNotEmpty(company) && !company.equals("null")) {
                 performanceMonitoredMachineDto.setCompany(company);
@@ -197,15 +197,15 @@ public class PerformanceMachineController {
 
     @RequestMapping(value = "/{path}/test", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult testLink(@PathVariable final String path, @RequestParam final String ip, @RequestParam final String username, @RequestParam final String password) {
+    public CommonResult testLink(@PathVariable final String path, @RequestParam final String ip, @RequestParam final String username, @RequestParam final String password,@RequestParam final Integer port) {
         final CommonResult commonResult = new CommonResult();
         try {
             if (isNotEmpty(ip) && isNotEmpty(username) && isNotEmpty(password)) {
 
                         if (path.equals("stress_machine_list")) {
-                            commonResult.setData(performanceStressMachineService.testLink(ip, username, password));
+                            commonResult.setData(performanceStressMachineService.testLink(ip, username, password,port));
                         } else if (path.equals("monitored_machine_list")) {
-                            boolean canLink = performanceMonitoredMachineService.testLink(ip, username, password);
+                            boolean canLink = performanceMonitoredMachineService.testLink(ip, username, password,port);
                             commonResult.setData(canLink);
                         }
 
