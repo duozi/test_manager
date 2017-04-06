@@ -6,13 +6,12 @@ import com.xn.common.company.dto.CompanyDto;
 import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.DateUtil;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.ExecuteStatusEnum;
+import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
-import com.xn.performance.service.*;
-import com.xn.performance.util.DateUtil;
-import com.xn.performance.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @Controller
 @RequestMapping("/performance/report")
 public class PerformanceReportController {
-    private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PerformanceReportController.class);
     @Autowired
     private CompanyService companyService;
     @Autowired

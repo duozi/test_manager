@@ -3,7 +3,6 @@ package com.xn.performance.service.impl;/**
  */
 
 import com.xn.performance.dto.PerformancePlanShowDto;
-import com.xn.performance.service.PerformanceResultService;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -25,7 +24,7 @@ public class ExecuteScheduleQueue extends QuartzJobBean {
     private static final Logger logger = LoggerFactory.getLogger(ExecuteScheduleQueue.class);
 
     @Autowired
-    PerformanceResultService performanceResultService;
+    PerformanceResultServiceImpl performanceResultService;
     @Autowired
     JmeterServiceImpl jmeterService;
 

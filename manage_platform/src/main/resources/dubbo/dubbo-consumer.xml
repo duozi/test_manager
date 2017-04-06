@@ -46,16 +46,16 @@
     <dubbo:reference id="timeConfigService" interface="com.xn.interfacetest.service.TimeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--performance的服务-->
-    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.service.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceMonitoredMachineService" interface="com.xn.performance.service.PerformanceMonitoredMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceScenarioService" interface="com.xn.performance.service.PerformanceScenarioService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceScriptService" interface="com.xn.performance.service.PerformanceScriptService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performancePlanService" interface="com.xn.performance.service.PerformancePlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performancePlanMonitoredService" interface="com.xn.performance.service.PerformancePlanMonitoredService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceResultService" interface="com.xn.performance.service.PerformanceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performanceMonitoredMachineResultService" interface="com.xn.performance.service.PerformanceMonitoredMachineResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="performancePlanShowService" interface="com.xn.performance.service.PerformancePlanShowService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="jmeterService" interface="com.xn.performance.service.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceMonitoredMachineService" interface="com.xn.performance.api.PerformanceMonitoredMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScenarioService" interface="com.xn.performance.api.PerformanceScenarioService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScriptService" interface="com.xn.performance.api.PerformanceScriptService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanService" interface="com.xn.performance.api.PerformancePlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanMonitoredService" interface="com.xn.performance.api.PerformancePlanMonitoredService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceResultService" interface="com.xn.performance.api.PerformanceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceMonitoredMachineResultService" interface="com.xn.performance.api.PerformanceMonitoredMachineResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanShowService" interface="com.xn.performance.api.PerformancePlanShowService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <dubbo:monitor protocol="registry" />
 </beans>

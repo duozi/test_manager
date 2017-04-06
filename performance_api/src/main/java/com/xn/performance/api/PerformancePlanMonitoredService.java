@@ -1,24 +1,21 @@
 /*
  * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
  */
-package com.xn.performance.service;
+package com.xn.performance.api;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.xn.performance.dto.PerformanceStressMachineDto;
+import com.xn.performance.dto.PerformancePlanMonitoredDto;
 import com.xn.performance.mybatis.PageResult;
 
 import java.util.List;
 import java.util.Map;
 
-;
-
 /**
- * PerformanceStressMachine Service
+ * PerformancePlanMonitored Service
  * 
  * @author zhouxi
- * @date 2017-02-21
+ * @date 2017-03-01
  */
-public interface PerformanceStressMachineService {
+public interface PerformancePlanMonitoredService {
 
     /**
      * 查询单个记录
@@ -26,7 +23,7 @@ public interface PerformanceStressMachineService {
      * @param condition 主键/Map/查询对象
      * @return 
      */
-    PerformanceStressMachineDto get(Object condition);
+    PerformancePlanMonitoredDto get(Object condition);
 
     /**
      * 统计数量
@@ -34,7 +31,7 @@ public interface PerformanceStressMachineService {
      * @param condition 查询条件对象
      * @return 统计数量
      */
-    long count(PerformanceStressMachineDto condition);
+    long count(PerformancePlanMonitoredDto condition);
 
     /**
      * 根据组合条件查询
@@ -42,7 +39,7 @@ public interface PerformanceStressMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceStressMachineDto> list(PerformanceStressMachineDto condition);
+    List<PerformancePlanMonitoredDto> list(PerformancePlanMonitoredDto condition);
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  
@@ -50,7 +47,7 @@ public interface PerformanceStressMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceStressMachineDto> list(Map<String, Object> condition);
+    List<PerformancePlanMonitoredDto> list(Map<String, Object> condition);
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  
@@ -58,36 +55,36 @@ public interface PerformanceStressMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    PageResult<PerformanceStressMachineDto> page(Map<String, Object> condition);
+    PageResult<PerformancePlanMonitoredDto> page(Map<String, Object> condition);
     
 
     /**
      * 保存
      * 
-     * @param performanceStressMachine 
+     * @param performancePlanMonitored 
      * @return 带主键的DTO
      */
-    PerformanceStressMachineDto save(PerformanceStressMachineDto performanceStressMachineDto);
+    PerformancePlanMonitoredDto save(PerformancePlanMonitoredDto performancePlanMonitoredDto);
 
     /**
      * 批量保存
      * 
-     * @param performanceStressMachines 
+     * @param performancePlanMonitoreds 
      * @return 带主键的DTO
      */
-    int save(List<PerformanceStressMachineDto> performanceStressMachineDtos);
+    int save(List<PerformancePlanMonitoredDto> performancePlanMonitoredDtos);
 
     /**
      * 更新
      * 
-     * @param performanceStressMachine 
+     * @param performancePlanMonitored 
      * @return 操作影响行数
      */
-    int update(PerformanceStressMachineDto performanceStressMachineDto);
+    int update(PerformancePlanMonitoredDto performancePlanMonitoredDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceStressMachine performanceStressMachine)
+     * 不建议，建议使用delete(PerformancePlanMonitored performancePlanMonitored)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -99,11 +96,11 @@ public interface PerformanceStressMachineService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int delete(PerformanceStressMachineDto performanceStressMachineDto);
+    int delete(PerformancePlanMonitoredDto performancePlanMonitoredDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceStressMachineDto performanceStressMachine)
+     * 不建议，建议使用delete(PerformancePlanMonitoredDto performancePlanMonitored)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -116,10 +113,5 @@ public interface PerformanceStressMachineService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int deleteBatch(List<PerformanceStressMachineDto> performanceStressMachines);
-
-    String sayHello(String name);
-
-    boolean testLink(String ip,String username,String password,int port);
-
+    int deleteBatch(List<PerformancePlanMonitoredDto> performancePlanMonitoreds);
 }

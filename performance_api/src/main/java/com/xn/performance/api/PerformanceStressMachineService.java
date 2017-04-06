@@ -1,21 +1,22 @@
 /*
  * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
  */
-package com.xn.performance.service;
+package com.xn.performance.api;
+
+import com.xn.performance.dto.PerformanceStressMachineDto;
+import com.xn.performance.mybatis.PageResult;
 
 import java.util.List;
 import java.util.Map;
-import com.xn.performance.mybatis.PageResult;
 
-import com.xn.performance.dto.PerformanceScriptDto;
 
 /**
- * PerformanceScript Service
+ * PerformanceStressMachine Service
  * 
  * @author zhouxi
  * @date 2017-02-21
  */
-public interface PerformanceScriptService {
+public interface PerformanceStressMachineService {
 
     /**
      * 查询单个记录
@@ -23,7 +24,7 @@ public interface PerformanceScriptService {
      * @param condition 主键/Map/查询对象
      * @return 
      */
-    PerformanceScriptDto get(Object condition);
+    PerformanceStressMachineDto get(Object condition);
 
     /**
      * 统计数量
@@ -31,7 +32,7 @@ public interface PerformanceScriptService {
      * @param condition 查询条件对象
      * @return 统计数量
      */
-    long count(PerformanceScriptDto condition);
+    long count(PerformanceStressMachineDto condition);
 
     /**
      * 根据组合条件查询
@@ -39,7 +40,7 @@ public interface PerformanceScriptService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceScriptDto> list(PerformanceScriptDto condition);
+    List<PerformanceStressMachineDto> list(PerformanceStressMachineDto condition);
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  
@@ -47,7 +48,7 @@ public interface PerformanceScriptService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceScriptDto> list(Map<String, Object> condition);
+    List<PerformanceStressMachineDto> list(Map<String, Object> condition);
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  
@@ -55,36 +56,36 @@ public interface PerformanceScriptService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    PageResult<PerformanceScriptDto> page(Map<String, Object> condition);
+    PageResult<PerformanceStressMachineDto> page(Map<String, Object> condition);
     
 
     /**
      * 保存
      * 
-     * @param performanceScript 
+     * @param performanceStressMachine 
      * @return 带主键的DTO
      */
-    PerformanceScriptDto save(PerformanceScriptDto performanceScriptDto);
+    PerformanceStressMachineDto save(PerformanceStressMachineDto performanceStressMachineDto);
 
     /**
      * 批量保存
      * 
-     * @param performanceScripts 
+     * @param performanceStressMachines 
      * @return 带主键的DTO
      */
-    int save(List<PerformanceScriptDto> performanceScriptDtos);
+    int save(List<PerformanceStressMachineDto> performanceStressMachineDtos);
 
     /**
      * 更新
      * 
-     * @param performanceScript 
+     * @param performanceStressMachine 
      * @return 操作影响行数
      */
-    int update(PerformanceScriptDto performanceScriptDto);
+    int update(PerformanceStressMachineDto performanceStressMachineDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceScript performanceScript)
+     * 不建议，建议使用delete(PerformanceStressMachine performanceStressMachine)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -96,11 +97,11 @@ public interface PerformanceScriptService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int delete(PerformanceScriptDto performanceScriptDto);
+    int delete(PerformanceStressMachineDto performanceStressMachineDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceScriptDto performanceScript)
+     * 不建议，建议使用delete(PerformanceStressMachineDto performanceStressMachine)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -113,5 +114,10 @@ public interface PerformanceScriptService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int deleteBatch(List<PerformanceScriptDto> performanceScripts);
+    int deleteBatch(List<PerformanceStressMachineDto> performanceStressMachines);
+
+    String sayHello(String name);
+
+    boolean testLink(String ip,String username,String password,int port);
+
 }

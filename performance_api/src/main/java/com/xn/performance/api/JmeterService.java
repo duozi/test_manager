@@ -1,4 +1,4 @@
-package com.xn.performance.service;
+package com.xn.performance.api;
 
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.dto.PerformanceResultDto;
@@ -20,7 +20,7 @@ public interface JmeterService {
 
     void addToScheduleQueue(List<PerformancePlanShowDto> list);
 
-    public void scheduleJob(PerformancePlanShowDto performancePlanShowDto);
+    void scheduleJob(PerformancePlanShowDto performancePlanShowDto);
 
     void addToScheduleQueue(PerformancePlanShowDto performancePlanShowDto);
 

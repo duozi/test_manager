@@ -4,7 +4,6 @@ package com.xn.performance.util;/**
 
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.ArrayUtils;
@@ -12,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.beans.PropertyDescriptor;
-import java.text.SimpleDateFormat;
-import java.util.Map;
 
 public class BeanUtils {
     private static final Logger logger = LoggerFactory.getLogger(BeanUtils.class);
@@ -50,16 +47,16 @@ public class BeanUtils {
      * @param bean
      * @return
      */
-    @SuppressWarnings("unchecked")
-    public static Map<String, Object> toMap(Object bean) {
-        if (bean instanceof Map) {
-            return (Map<String, Object>) bean;
-        }
-        ObjectMapper m = new ObjectMapper();
-        m.setDateFormat(new SimpleDateFormat());
-        Map<String, Object> map = m.convertValue(bean, Map.class);
-        return map;
-    }
+//    @SuppressWarnings("unchecked")
+//    public static Map<String, Object> toMap(Object bean) {
+//        if (bean instanceof Map) {
+//            return (Map<String, Object>) bean;
+//        }
+//        ObjectMapper m = new ObjectMapper();
+//        m.setDateFormat(new SimpleDateFormat());
+//        Map<String, Object> map = m.convertValue(bean, Map.class);
+//        return map;
+//    }
 
     /**
      * map 转 javabean
@@ -72,12 +69,12 @@ public class BeanUtils {
      * @param clazz
      * @return
      */
-    public static <T> T toBean(Map<String, Object> map, Class<T> clazz) {
-        ObjectMapper m = new ObjectMapper();
-        m.setDateFormat(new SimpleDateFormat());
-        T t = m.convertValue(map, clazz);
-        return t;
-    }
+//    public static <T> T toBean(Map<String, Object> map, Class<T> clazz) {
+//        ObjectMapper m = new ObjectMapper();
+//        m.setDateFormat(new SimpleDateFormat());
+//        T t = m.convertValue(map, clazz);
+//        return t;
+//    }
 
     /**
      * 对象转换 ,将source对象中的所有属性复制到clazz类的实例中并返回

@@ -3,6 +3,7 @@
  */
 package com.xn.performance.service.impl;
 
+import com.xn.performance.api.PerformanceResultService;
 import com.xn.performance.dao.PerformanceResultMapper;
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.dto.PerformanceResultDto;
@@ -10,7 +11,6 @@ import com.xn.performance.entity.PerformancePlanShow;
 import com.xn.performance.entity.PerformanceResult;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.service.PerformanceResultService;
 import com.xn.performance.util.BeanUtils;
 import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;

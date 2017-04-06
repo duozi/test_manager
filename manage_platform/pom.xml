@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>test_manager</artifactId>
-        <groupId>test_manager</groupId>
+        <groupId>com.xn.test_manager</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,8 +12,8 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>test_manager</groupId>
-            <artifactId>performance</artifactId>
+            <groupId>com.xn.test_manager</groupId>
+            <artifactId>performance.api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -218,6 +218,16 @@
             <groupId>net.sf.ezmorph</groupId>
             <artifactId>ezmorph</artifactId>
         </dependency>
+        <!--机器连接测试-->
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>manage_platform</finalName>

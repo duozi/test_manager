@@ -8,27 +8,27 @@ import com.xn.common.company.dto.CompanyDto;
 import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.DateUtil;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.PerformancePlanStatusEnum;
 import com.xn.manage.Enum.PlanStatusEnum;
+import com.xn.manage.bean.CommonResult;
+import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
-import com.xn.performance.service.*;
-import com.xn.performance.util.CommonResult;
-import com.xn.performance.util.DateUtil;
-import com.xn.performance.util.ValidateUtil;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,38 +37,38 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @Controller
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
-    private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PerformancePlanController.class);
     private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
-    @Autowired
+    @Resource
     private CompanyService companyService;
-    @Autowired
+    @Resource
     private TestSystemService systemService;
-    @Autowired
+    @Resource
     private DepartmentService departmentService;
-    @Autowired
+    @Resource
     private PerformancePlanService performancePlanService;
 
-    @Autowired
+    @Resource
     private PerformanceScenarioService performanceScenarioService;
 
 
-    @Autowired
+    @Resource
     private JmeterService jmeterService;
-    @Autowired
+    @Resource
     private PerformanceResultService performanceResultService;
-    @Autowired
+    @Resource
     private PerformanceMonitoredMachineService performanceMonitoredMachineService;
 
-    @Autowired
+    @Resource
     private PerformancePlanMonitoredService performancePlanMonitoredService;
 
-    @Autowired
+    @Resource
     private PerformanceStressMachineService performanceStressMachineService;
-    @Autowired
+    @Resource
     private PerformanceMonitoredMachineResultService performanceMonitoredMachineResultService;
-    @Autowired
+    @Resource
     private PerformancePlanShowService performancePlanShowService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
@@ -147,12 +147,7 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
             performancePlanDto.setPlanStatus(PlanStatusEnum.UN_EXECUTE.getName());
             performancePlanDto.setIsDelete("未删除");
 
-            if (!ValidateUtil.validate(performancePlanDto)) {
-                logger.warn(String.format("参数有误", performancePlanDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
+
 
             performancePlanDto = performancePlanService.save(performancePlanDto);
 

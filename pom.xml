@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>test_manager</groupId>
+    <groupId>com.xn.test_manager</groupId>
     <artifactId>test_manager</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -15,6 +15,7 @@
         <module>interfacetest</module>
         <module>common-test</module>
         <module>performance</module>
+        <module>performance_api</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -281,12 +282,7 @@
                 <artifactId>mail</artifactId>
                 <version>1.4</version>
             </dependency>
-            <!--dom4j-->
-            <dependency>
-                <groupId>org.jvnet.hudson.dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>1.6.1-hudson-3</version>
-            </dependency>
+
             <!--js-->
             <dependency>
                 <groupId>commons-collections</groupId>

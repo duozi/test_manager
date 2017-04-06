@@ -2,11 +2,11 @@ package com.xn.performance.service.impl;/**
  * Created by xn056839 on 2017/3/7.
  */
 
+
+import com.xn.performance.api.JmeterService;
 import com.xn.performance.dto.*;
-import com.xn.performance.service.*;
 import com.xn.performance.util.PropertyUtil;
 import com.xn.performance.util.jmeter.XNJmeterStartRemot;
-import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
@@ -39,18 +39,18 @@ public class JmeterServiceImpl implements JmeterService {
     public static ConcurrentMap<Integer, XNJmeterStartRemot> RUNNING_MAP = new ConcurrentHashMap<Integer, XNJmeterStartRemot>();
     public static ConcurrentMap<Integer, Scheduler> SCHEDULE_JOB_MAP = new ConcurrentHashMap<>();
     @Autowired
-    PerformanceResultService performanceResultService;
+    PerformanceResultServiceImpl performanceResultService;
 
     @Autowired
-    PerformancePlanService performancePlanService;
+    PerformancePlanServiceImpl performancePlanService;
 
     @Autowired
-    PerformanceScriptService performanceScriptService;
+    PerformanceScriptServiceImpl performanceScriptService;
 
     @Autowired
-    PerformanceScenarioService performanceScenarioService;
+    PerformanceScenarioServiceImpl performanceScenarioService;
     @Autowired
-    PerformanceStressMachineService performanceStressMachineService;
+    PerformanceStressMachineServiceImpl performanceStressMachineService;
 
 
     public String execute(String stressMachineIp, String jmeterScriptPath, Integer id) throws Exception {
@@ -263,7 +263,7 @@ public class JmeterServiceImpl implements JmeterService {
         performanceScriptDto = performanceScriptService.get(performanceScriptDto);
         //脚本的地址
         String scriptName=performanceScriptDto.getScriptFileName();
-        String scriptPath = PropertyUtil.getProperty("upload_path")+File.separator+scriptId+File.separator+scriptName;
+        String scriptPath = PropertyUtil.getProperty("upload_path")+scriptId+File.separator+scriptName;
         //更新脚本状态
         String scriptStatus = performanceScriptDto.getScriptStatus();
         if (scriptStatus.equals("未发布")) {
@@ -365,7 +365,7 @@ public class JmeterServiceImpl implements JmeterService {
             SAXReader saxReader = new SAXReader();
 
             //读取脚本
-            Document document = null;
+            org.dom4j.Document document = null;
 
             try {
                 document = saxReader.read(new File(scriptPath));

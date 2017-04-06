@@ -3,13 +3,12 @@ package com.xn.manage.utils;
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
 import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.performance.util.CommonResult;
+import com.xn.manage.bean.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 
 /**
  * Created by xn058121 on 2017/3/2.
@@ -19,7 +18,7 @@ public class FileUpload {
 
     private static final String file_separator = "/";
 
-    public static CommonResult upload(MultipartFile[] files,String folderName,HttpServletRequest request){
+    public static CommonResult upload(MultipartFile[] files, String folderName, HttpServletRequest request){
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
         String jarPath = "";

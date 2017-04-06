@@ -1,5 +1,6 @@
 package com.xn.performance.util.jmeter;
 
+
 import org.apache.jmeter.JMeter;
 import org.apache.jmeter.engine.ClientJMeterEngine;
 import org.apache.jmeter.engine.DistributedRunner;
@@ -22,6 +23,7 @@ import org.apache.jorphan.logging.LoggingManager;
 import org.apache.jorphan.reflect.ClassTools;
 import org.apache.jorphan.util.JMeterException;
 import org.apache.jorphan.util.JOrphanUtils;
+import org.apache.log.Logger;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -44,7 +46,7 @@ import static com.xn.performance.util.PropertyUtil.getProperty;
 import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.exec_command;
 
 public class XNJmeterStartRemot {
-    private static final org.apache.log.Logger logger = LoggingManager.getLoggerForClass();
+    private static final Logger logger = LoggingManager.getLoggerForClass();
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     boolean is_running = false; // 本地 distributedRunner 是否在运行
     boolean interrupt = false;//是否被打断而结束

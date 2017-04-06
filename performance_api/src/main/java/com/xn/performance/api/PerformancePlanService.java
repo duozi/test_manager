@@ -1,29 +1,47 @@
 /*
  * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
  */
-package com.xn.performance.service;
-
-import com.xn.performance.dto.PerformancePlanMonitoredDto;
-import com.xn.performance.mybatis.PageResult;
+package com.xn.performance.api;
 
 import java.util.List;
 import java.util.Map;
 
+import com.xn.performance.dto.PerformancePlanShowDto;
+
+import com.xn.performance.mybatis.PageResult;
+
+import com.xn.performance.dto.PerformancePlanDto;
+
 /**
- * PerformancePlanMonitored Service
+ * PerformancePlan Service
  * 
  * @author zhouxi
- * @date 2017-03-01
+ * @date 2017-02-21
  */
-public interface PerformancePlanMonitoredService {
+public interface PerformancePlanService {
 
+    /**
+     * 查询计划记录
+     * 主键：id
+     * @param condition 主键/Map/查询对象
+     * @return
+     */
+    List<PerformancePlanShowDto>  show(Object condition);
+
+    /**
+     * 查询计划记录
+     * 主键：id
+     * @param condition 主键/Map/查询对象
+     * @return
+     */
+    List<PerformancePlanShowDto>  resultList(Object condition);
     /**
      * 查询单个记录
      * 主键：id 
      * @param condition 主键/Map/查询对象
      * @return 
      */
-    PerformancePlanMonitoredDto get(Object condition);
+    PerformancePlanDto get(Object condition);
 
     /**
      * 统计数量
@@ -31,7 +49,7 @@ public interface PerformancePlanMonitoredService {
      * @param condition 查询条件对象
      * @return 统计数量
      */
-    long count(PerformancePlanMonitoredDto condition);
+    long count(PerformancePlanDto condition);
 
     /**
      * 根据组合条件查询
@@ -39,7 +57,7 @@ public interface PerformancePlanMonitoredService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformancePlanMonitoredDto> list(PerformancePlanMonitoredDto condition);
+    List<PerformancePlanDto> list(PerformancePlanDto condition);
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  
@@ -47,7 +65,7 @@ public interface PerformancePlanMonitoredService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformancePlanMonitoredDto> list(Map<String, Object> condition);
+    List<PerformancePlanDto> list(Map<String, Object> condition);
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  
@@ -55,36 +73,36 @@ public interface PerformancePlanMonitoredService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    PageResult<PerformancePlanMonitoredDto> page(Map<String, Object> condition);
+    PageResult<PerformancePlanDto> page(Map<String, Object> condition);
     
 
     /**
      * 保存
      * 
-     * @param performancePlanMonitored 
+     * @param performancePlan 
      * @return 带主键的DTO
      */
-    PerformancePlanMonitoredDto save(PerformancePlanMonitoredDto performancePlanMonitoredDto);
+    PerformancePlanDto save(PerformancePlanDto performancePlanDto);
 
     /**
      * 批量保存
      * 
-     * @param performancePlanMonitoreds 
+     * @param performancePlans 
      * @return 带主键的DTO
      */
-    int save(List<PerformancePlanMonitoredDto> performancePlanMonitoredDtos);
+    int save(List<PerformancePlanDto> performancePlanDtos);
 
     /**
      * 更新
      * 
-     * @param performancePlanMonitored 
+     * @param performancePlan 
      * @return 操作影响行数
      */
-    int update(PerformancePlanMonitoredDto performancePlanMonitoredDto);
+    int update(PerformancePlanDto performancePlanDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformancePlanMonitored performancePlanMonitored)
+     * 不建议，建议使用delete(PerformancePlan performancePlan)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -96,11 +114,11 @@ public interface PerformancePlanMonitoredService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int delete(PerformancePlanMonitoredDto performancePlanMonitoredDto);
+    int delete(PerformancePlanDto performancePlanDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformancePlanMonitoredDto performancePlanMonitored)
+     * 不建议，建议使用delete(PerformancePlanDto performancePlan)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -113,5 +131,5 @@ public interface PerformancePlanMonitoredService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int deleteBatch(List<PerformancePlanMonitoredDto> performancePlanMonitoreds);
+    int deleteBatch(List<PerformancePlanDto> performancePlans);
 }

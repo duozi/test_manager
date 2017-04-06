@@ -9,12 +9,11 @@ import com.xn.common.company.service.DepartmentService;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.bean.CommonResult;
+import com.xn.performance.api.PerformanceMonitoredMachineService;
+import com.xn.performance.api.PerformanceStressMachineService;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;
 import com.xn.performance.dto.PerformanceStressMachineDto;
-import com.xn.performance.service.PerformanceMonitoredMachineService;
-import com.xn.performance.service.PerformanceStressMachineService;
-import com.xn.performance.util.CommonResult;
-import com.xn.performance.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @Controller
 @RequestMapping("/performance/machine")
 public class PerformanceMachineController {
-    private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PerformanceMachineController.class);
 
     @Resource
     PerformanceStressMachineService performanceStressMachineService;
@@ -116,12 +115,7 @@ public class PerformanceMachineController {
         try {
             performanceStressMachineDto.setStressMachineStatus("未执行");
 
-            if (!ValidateUtil.validate(performanceStressMachineDto)) {
-                logger.warn(String.format("参数有误", performanceStressMachineDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
+
             performanceStressMachineService.save(performanceStressMachineDto);
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
             commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
@@ -139,12 +133,7 @@ public class PerformanceMachineController {
     public CommonResult saveMonitoredMachine(PerformanceMonitoredMachineDto performanceMonitoredMachineDto) {
         CommonResult commonResult = new CommonResult();
         try {
-            if (!ValidateUtil.validate(performanceMonitoredMachineDto)) {
-                logger.warn(String.format("参数有误", performanceMonitoredMachineDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
+
             performanceMonitoredMachineService.save(performanceMonitoredMachineDto);
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
             commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());

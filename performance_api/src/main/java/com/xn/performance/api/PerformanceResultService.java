@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
  */
-package com.xn.performance.service;
+package com.xn.performance.api;
 
 import java.util.List;
 import java.util.Map;

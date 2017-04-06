@@ -1,21 +1,21 @@
 /*
  * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
  */
-package com.xn.performance.service;
+package com.xn.performance.api;
 
 import java.util.List;
 import java.util.Map;
 import com.xn.performance.mybatis.PageResult;
 
-import com.xn.performance.dto.PerformanceMonitoredMachineDto;
+import com.xn.performance.dto.PerformanceScriptDto;
 
 /**
- * PerformanceMonitoredMachine Service
+ * PerformanceScript Service
  * 
  * @author zhouxi
  * @date 2017-02-21
  */
-public interface PerformanceMonitoredMachineService {
+public interface PerformanceScriptService {
 
     /**
      * 查询单个记录
@@ -23,7 +23,7 @@ public interface PerformanceMonitoredMachineService {
      * @param condition 主键/Map/查询对象
      * @return 
      */
-    PerformanceMonitoredMachineDto get(Object condition);
+    PerformanceScriptDto get(Object condition);
 
     /**
      * 统计数量
@@ -31,7 +31,7 @@ public interface PerformanceMonitoredMachineService {
      * @param condition 查询条件对象
      * @return 统计数量
      */
-    long count(PerformanceMonitoredMachineDto condition);
+    long count(PerformanceScriptDto condition);
 
     /**
      * 根据组合条件查询
@@ -39,7 +39,7 @@ public interface PerformanceMonitoredMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceMonitoredMachineDto> list(PerformanceMonitoredMachineDto condition);
+    List<PerformanceScriptDto> list(PerformanceScriptDto condition);
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  
@@ -47,7 +47,7 @@ public interface PerformanceMonitoredMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<PerformanceMonitoredMachineDto> list(Map<String, Object> condition);
+    List<PerformanceScriptDto> list(Map<String, Object> condition);
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  
@@ -55,36 +55,36 @@ public interface PerformanceMonitoredMachineService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    PageResult<PerformanceMonitoredMachineDto> page(Map<String, Object> condition);
+    PageResult<PerformanceScriptDto> page(Map<String, Object> condition);
     
 
     /**
      * 保存
      * 
-     * @param performanceMonitoredMachineDto
+     * @param performanceScript 
      * @return 带主键的DTO
      */
-    PerformanceMonitoredMachineDto save(PerformanceMonitoredMachineDto performanceMonitoredMachineDto);
+    PerformanceScriptDto save(PerformanceScriptDto performanceScriptDto);
 
     /**
      * 批量保存
      * 
-     * @param performanceMonitoredMachines
+     * @param performanceScripts 
      * @return 带主键的DTO
      */
-    int save(List<PerformanceMonitoredMachineDto> performanceMonitoredMachineDtos);
+    int save(List<PerformanceScriptDto> performanceScriptDtos);
 
     /**
      * 更新
      * 
-     * @param performanceMonitoredMachine
+     * @param performanceScript 
      * @return 操作影响行数
      */
-    int update(PerformanceMonitoredMachineDto performanceMonitoredMachineDto);
+    int update(PerformanceScriptDto performanceScriptDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceMonitoredMachine performanceMonitoredMachine)
+     * 不建议，建议使用delete(PerformanceScript performanceScript)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -96,11 +96,11 @@ public interface PerformanceMonitoredMachineService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int delete(PerformanceMonitoredMachineDto performanceMonitoredMachineDto);
+    int delete(PerformanceScriptDto performanceScriptDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(PerformanceMonitoredMachineDto performanceMonitoredMachine)
+     * 不建议，建议使用delete(PerformanceScriptDto performanceScript)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -113,7 +113,5 @@ public interface PerformanceMonitoredMachineService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int deleteBatch(List<PerformanceMonitoredMachineDto> performanceMonitoredMachines);
-
-    boolean testLink(String ip,String username,String pwd,int port);
+    int deleteBatch(List<PerformanceScriptDto> performanceScripts);
 }

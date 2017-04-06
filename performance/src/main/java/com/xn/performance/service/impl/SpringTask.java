@@ -2,16 +2,15 @@ package com.xn.performance.service.impl;/**
  * Created by xn056839 on 2017/3/8.
  */
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.dto.PerformanceResultDto;
-import com.xn.performance.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
@@ -31,21 +30,23 @@ public class SpringTask {
 
 
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
-    @Autowired
-    PerformanceResultService performanceResultService;
+    @Resource
+    PerformanceResultServiceImpl performanceResultService;
 
-    @Autowired
-    PerformancePlanService performancePlanService;
-    @Autowired
-    JmeterService jmeterService;
+    @Resource
+    PerformancePlanServiceImpl performancePlanService;
 
-    @Autowired
-    PerformanceScriptService performanceScriptService;
+    @Resource
+    JmeterServiceImpl jmeterService;
 
-    @Autowired
-    PerformanceScenarioService performanceScenarioService;
-    @Autowired
-    PerformanceStressMachineService performanceStressMachineService;
+    @Resource
+    PerformanceScriptServiceImpl performanceScriptService;
+
+    @Resource
+    PerformanceScenarioServiceImpl performanceScenarioService;
+
+    @Resource
+    PerformanceStressMachineServiceImpl performanceStressMachineService;
 
     //获得要立即执行但是还没有执行的任务
     @PostConstruct

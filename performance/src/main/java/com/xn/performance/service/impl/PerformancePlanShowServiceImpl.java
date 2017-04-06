@@ -3,15 +3,13 @@
  */
 package com.xn.performance.service.impl;
 
+import com.xn.performance.api.PerformancePlanShowService;
 import com.xn.performance.dao.PerformancePlanShowMapper;
 import com.xn.performance.dto.PerformancePlanMonitoredDto;
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.entity.PerformancePlanShow;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.service.PerformancePlanMonitoredService;
-import com.xn.performance.service.PerformancePlanService;
-import com.xn.performance.service.PerformancePlanShowService;
 import com.xn.performance.util.BeanUtils;
 import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +36,10 @@ public class PerformancePlanShowServiceImpl implements PerformancePlanShowServic
     private PerformancePlanShowMapper performancePlanShowMapper;
 
     @Autowired
-    private PerformancePlanService performancePlanService;
+    private PerformancePlanServiceImpl performancePlanService;
 
     @Autowired
-    private PerformancePlanMonitoredService performancePlanMonitoredService;
+    private PerformancePlanMonitoredServiceImpl performancePlanMonitoredService;
 
     @Override
     public PerformancePlanShowDto get(Object condition) {
