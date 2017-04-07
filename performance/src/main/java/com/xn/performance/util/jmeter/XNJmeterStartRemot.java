@@ -2,6 +2,7 @@ package com.xn.performance.util.jmeter;
 
 
 import org.apache.jmeter.JMeter;
+import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.engine.ClientJMeterEngine;
 import org.apache.jmeter.engine.DistributedRunner;
 import org.apache.jmeter.engine.JMeterEngine;
@@ -18,6 +19,7 @@ import org.apache.jmeter.testelement.TestStateListener;
 import org.apache.jmeter.util.BeanShellInterpreter;
 import org.apache.jmeter.util.BeanShellServer;
 import org.apache.jmeter.util.JMeterUtils;
+import org.apache.jmeter.visualizers.backend.BackendListener;
 import org.apache.jorphan.collections.HashTree;
 import org.apache.jorphan.logging.LoggingManager;
 import org.apache.jorphan.reflect.ClassTools;
@@ -398,6 +400,22 @@ public class XNJmeterStartRemot {
                 resultCollector.setSaveConfig(saveConfiguration);
                 testTree.get(key).add(resultCollector);
             }
+            Arguments arguments = new Arguments();
+            arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");git
+            arguments.addArgument("graphiteHost", "10.10.22.144");
+            arguments.addArgument("graphitePort", "2003");
+            arguments.addArgument("rootMetricsPrefix", "jmeter.");
+            arguments.addArgument("summaryOnly", "true");
+            arguments.addArgument("samplersList", ".*");
+            arguments.addArgument("useRegexpForSamplersList", "false");
+            arguments.addArgument("percentiles", "90;95;99");
+            //arguments.addArgument("TestPlan.comments", "=");
+
+            BackendListener backendListener = new BackendListener();
+            backendListener.setArguments(arguments);
+            backendListener.setClassname("org.apache.jmeter.visualizers.backend.graphite.GraphiteBackendListenerClient");
+            backendListener.setQueueSize("5000");
+            testTree.add(testTree.getArray()[0], backendListener);
 
             /**
              * jmeter.properties配置文件中，设置写日志的方式，避免大量写导致性能问题，下面设置每隔3分钟向jmeter.log中写入一行log
@@ -432,6 +450,7 @@ public class XNJmeterStartRemot {
                     testTree.add(testTree.getArray()[0], summer);
                 }
             }
+
 
             // 分布式测试的类 DistributedRunner
             //JMeterUtils.setProperty(DistributedRunner.RETRIES_NUMBER, "1");
