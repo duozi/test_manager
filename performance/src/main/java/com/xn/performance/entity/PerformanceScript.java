@@ -104,12 +104,12 @@ public class PerformanceScript extends BaseEntity {
         return this.id;
     }
 
-    public void setScriptName(String scriptName) {
-        this.scriptName = scriptName;
+    public String getScriptName() {
+        return scriptName;
     }
 
-    public String getScriptName() {
-        return this.scriptName;
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     public void setRemark(String remark) {

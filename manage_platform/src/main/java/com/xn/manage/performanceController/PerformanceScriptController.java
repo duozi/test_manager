@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 import static com.xn.manage.utils.StartJMeterAgent_SSH.exec_command;
@@ -37,6 +39,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 public class PerformanceScriptController {
 
     private static final Logger logger = LoggerFactory.getLogger(PerformanceScriptController.class);
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
     @Resource
@@ -105,7 +108,15 @@ public class PerformanceScriptController {
             Integer id=performanceScriptDto.getId();
             String tempPath=PropertyUtil.getProperty("upload_path")+"temp"+File.separator;
             String savePath=PropertyUtil.getProperty("upload_path")+id+File.separator;
-            exec_command("10.17.2.137", "root", "xnhack", 65300, "mv"+tempPath+" "+savePath);
+            final String command="mv "+tempPath+" "+savePath;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info("============" + Thread.currentThread().getName());
+                    exec_command("10.17.2.137", "root", "xnhack", 65300,command);
+                }
+            });
+
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
             commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
         } catch (Exception e) {
@@ -177,7 +188,7 @@ public class PerformanceScriptController {
                     MultipartFile file = files[i];
                     // 保存文件
                     String name=file.getOriginalFilename();
-                    path = PropertyUtil.getProperty("upload_path") +File.separator+"temp"+ name;
+                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
                     FileUtil.saveFile(request, file,path);
                     fileName+=" "+file.getOriginalFilename();
                 }
@@ -209,7 +220,7 @@ public class PerformanceScriptController {
                     MultipartFile file = files[i];
                     // 保存文件
                     String name=file.getOriginalFilename();
-                    path = PropertyUtil.getProperty("upload_path") + name;
+                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
                     FileUtil.saveFile(request, file,path);
                     fileName+=" "+file.getOriginalFilename();
                 }
