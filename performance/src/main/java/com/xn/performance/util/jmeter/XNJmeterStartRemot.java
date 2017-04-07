@@ -401,7 +401,7 @@ public class XNJmeterStartRemot {
                 testTree.get(key).add(resultCollector);
             }
             Arguments arguments = new Arguments();
-            arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");git
+            arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");
             arguments.addArgument("graphiteHost", "10.10.22.144");
             arguments.addArgument("graphitePort", "2003");
             arguments.addArgument("rootMetricsPrefix", "jmeter.");
