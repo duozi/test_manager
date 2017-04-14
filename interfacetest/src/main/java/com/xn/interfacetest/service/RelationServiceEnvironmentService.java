@@ -115,4 +115,12 @@ public interface RelationServiceEnvironmentService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationServiceEnvironmentDto> relationServiceEnvironments);
+
+    /**
+     * 根据service id和环境id查询
+     * @param serviceId
+     * @param environmentId
+     * @return
+     */
+    RelationServiceEnvironmentDto getByCaseAndEnvironment(Long serviceId, Long environmentId);
 }

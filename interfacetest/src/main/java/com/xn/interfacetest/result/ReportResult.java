@@ -31,6 +31,13 @@ public class ReportResult {
         return reportResult;
     }
 
+    public static synchronized ReportResult resetReportResult() {
+        if (reportResult != null) {
+            reportResult = null;
+        }
+        return reportResult;
+    }
+
     public static void errorPlus() {
         int currentError = getReportResult().getError();
         getReportResult().setError(currentError + 1);
@@ -41,8 +48,9 @@ public class ReportResult {
         getReportResult().setFailed(currentFailed + 1);
     }
 
-    public void setStopTime(Date stopTime) {
-        this.stopTime = stopTime;
+    public static void totalPlus() {
+        int currentFailed = getReportResult().getTotal();
+        getReportResult().setTotal(currentFailed + 1);
     }
 
     public ArrayList<Assert> getAssertList() {
@@ -55,6 +63,14 @@ public class ReportResult {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public Date getStopTime() {
+        return stopTime;
+    }
+
+    public void setStopTime(Date stopTime) {
+        this.stopTime = stopTime;
     }
 
     public synchronized int getError() {
@@ -77,7 +93,7 @@ public class ReportResult {
         return total;
     }
 
-    public void setTotal(int total) {
+    public synchronized void setTotal(int total) {
         this.total += total;
     }
 
@@ -89,13 +105,24 @@ public class ReportResult {
 
         long between = 0;
         try {
-
             between = (stopTime.getTime() - startTime.getTime());// 得到两者的毫秒数
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             return String.valueOf(between);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ReportResult{" +
+                "startTime=" + startTime +
+                ", stopTime=" + stopTime +
+                ", error=" + error +
+                ", failed=" + failed +
+                ", total=" + total +
+                ", assertList=" + assertList +
+                '}';
     }
 
     public void generateReport() {

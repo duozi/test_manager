@@ -39,6 +39,8 @@
     <dubbo:service interface="com.xn.interfacetest.service.TestPlanService" ref="testPlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.TimeConfigService" ref="timeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
     <dubbo:service interface="com.xn.interfacetest.service.RelationCaseParamsService" ref="relationCaseParamsService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.service.RelationAssertResultService" ref="relationAssertResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.service.TestReportService" ref="testReportService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="testSystemService" class="com.xn.interfacetest.service.impl.TestSystemServiceImpl"/>
@@ -66,6 +68,8 @@
     <bean id="relationPlanSuitService" class="com.xn.interfacetest.service.impl.RelationPlanSuitServiceImpl"/>
     <bean id="relationPlanTimeService" class="com.xn.interfacetest.service.impl.RelationPlanTimeServiceImpl"/>
     <bean id="timeConfigService" class="com.xn.interfacetest.service.impl.TimeConfigServiceImpl"/>
+    <bean id="relationAssertResultService" class="com.xn.interfacetest.service.impl.RelationAssertResultServiceImpl"/>
+    <bean id="testReportService" class="com.xn.interfacetest.service.impl.TestReportServiceImpl"/>
 
 
     <!--调用的服务-->

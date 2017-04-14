@@ -639,21 +639,24 @@ public class CaseController {
 		CommonResult result = new CommonResult();
 		try{
 			String environmentIdStr = request.getParameter("environmentId");
-			Long environmentId = 0L;
-			if(StringUtils.isNotBlank(environmentIdStr)){
-				environmentId = Long.parseLong(environmentIdStr);
+
+			if(!StringUtils.isNotBlank(environmentIdStr)){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("请勾选运行环境！");
+				return  result;
 			}
 
 			String caseIdStr = request.getParameter("caseId");
-			Long caseId = 0L;
-			if(StringUtils.isNotBlank(caseIdStr)){
-				caseId = Long.parseLong(caseIdStr);
+			if(!StringUtils.isNotBlank(caseIdStr)){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("用例id为空！");
+				return  result;
 			}
 
-			testCaseService.testRun(caseId,environmentId);
+			testCaseService.testRun(Long.parseLong(caseIdStr),Long.parseLong(environmentIdStr));
 		}catch (Exception e){
 			result.setCode(CommonResultEnum.ERROR.getReturnCode());
-			result.setMessage(e.getMessage());
+			result.setMessage("调试出现异常，请联系管理员！");
 			logger.error("执行异常｛｝",e);
 		}
 		return  result;

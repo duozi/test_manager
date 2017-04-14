@@ -12,6 +12,7 @@ import com.xn.interfacetest.entity.TestPlan;
 import com.xn.interfacetest.service.*;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.ExcuteTypeEnum;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -149,75 +150,21 @@ public class PlanController {
 				result.setMessage("请填写计划名称");
 				return result;
 			}
-			testPlanDto = testPlanService.save(testPlanDto);
-			result.setData(testPlanDto);
 
+			Map<String,Object> params = new HashMap<String,Object>();
 			String[] suitIds = request.getParameterValues("suitIds");
-			Long suitId = 0L;
-			//先删除对应计划的所有测试集，再保存新的测试集关系
-			relationPlanSuitService.deleteByPlanId(testPlanDto.getId());
-			if(null != suitIds && suitIds.length > 0){
-				for(String suitIdStr : suitIds){
-					if(!"null".equals(suitIdStr) && StringUtils.isNotBlank(suitIdStr)){
-						RelationPlanSuitDto relationPlanSuitDto = new RelationPlanSuitDto();
-						relationPlanSuitDto.setPlanId(testPlanDto.getId());
-						relationPlanSuitDto.setSuitId(Long.parseLong(suitIdStr));
-						relationPlanSuitService.save(relationPlanSuitDto);
-					}
-				}
-			}
-
-			TimeConfigDto timeConfigDto = new TimeConfigDto();
-			timeConfigDto.setPlanId(testPlanDto.getId());
-			if(testPlanDto.getExcuteType() == ExcuteTypeEnum.once.getId()){
-				String[] excuteTimes =  request.getParameterValues("excuteTime");
-				if(null != excuteTimes && excuteTimes.length > 0){
-					for(String excuteTime : excuteTimes){
-						boolean dateflag=true;
-						Date time = new Date();
-						try {
-							time = format.parse(excuteTime);
-						}catch (ParseException e){
-							dateflag=false;
-						}finally{
-							if(!dateflag){
-								result.setCode(CommonResultEnum.ERROR.getReturnCode());
-								result.setMessage("时间格式不正确！");
-								return result;
-							}
-							timeConfigDto.setExcuteTime(excuteTime);
-							timeConfigService.save(timeConfigDto);
-						}
-					}
-				}
-			} else if(testPlanDto.getExcuteType() == ExcuteTypeEnum.circulation.getId()){
-				String timeDescription =  request.getParameter("timeDescription");
-				if(StringUtils.isNotBlank(timeDescription)){
-					timeConfigDto.setDescription(timeDescription);
-				}
-
-				String cronExpression =  request.getParameter("cronExpression");
-				if(StringUtils.isNotBlank(cronExpression)){
-					timeConfigDto.setTimeExpression(cronExpression);
-				}
-				timeConfigService.save(timeConfigDto);
-			}
-
-			//保存测试计划与环境的关系
+			params.put("suitIds",suitIds);
+			String[] excuteTimes =  request.getParameterValues("excuteTime");
+			params.put("excuteTime",excuteTimes);
+			String timeDescription =  request.getParameter("timeDescription");
+			params.put("timeDescription",timeDescription);
+			String cronExpression =  request.getParameter("cronExpression");
+			params.put("cronExpression",cronExpression);
 			String[] environmentIds =  request.getParameterValues("environmentIds");
+			params.put("environmentIds",environmentIds);
 
-			//先删除对应计划的所有环境关系，再保存新的测试集关系
-			relationPlanEnvironmentService.deleteByPlanId(testPlanDto.getId());
-			if(null != environmentIds && environmentIds.length > 0){
-				for(String environmentIdStr : environmentIds){
-					if(!"null".equals(environmentIdStr) && StringUtils.isNotBlank(environmentIdStr)){
-						RelationPlanEnvironmentDto relationPlanEnvironmentDto = new RelationPlanEnvironmentDto();
-						relationPlanEnvironmentDto.setPlanId(testPlanDto.getId());
-						relationPlanEnvironmentDto.setEnvironmentId(Long.parseLong(environmentIdStr));
-						relationPlanEnvironmentService.save(relationPlanEnvironmentDto);
-					}
-				}
-			}
+			result = testPlanService.saveWithInfo(testPlanDto,params);
+
 		}catch (Exception e){
 			result.setCode(CommonResultEnum.ERROR.getReturnCode());
 			result.setMessage(e.getMessage());
@@ -378,10 +325,14 @@ public class PlanController {
 		CommonResult result = new CommonResult();
 		try{
 			String planIdStr = request.getParameter("planId");
-			if(StringUtils.isNotBlank(planIdStr)){
-				Long planId = Long.parseLong(planIdStr);
-				result = testPlanService.excutePlan(planId);
+			if(StringUtils.isBlank(planIdStr)){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("计划id为空");
+				return result;
 			}
+
+			Long planId = Long.parseLong(planIdStr);
+			result = testPlanService.excutePlan(planId);
 		}catch (Exception e){
 			result.setCode(CommonResultEnum.ERROR.getReturnCode());
 			result.setMessage(e.getMessage());

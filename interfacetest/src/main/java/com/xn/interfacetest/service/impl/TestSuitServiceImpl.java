@@ -4,17 +4,19 @@
 package com.xn.interfacetest.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.dao.RelationSuitCaseMapper;
 import com.xn.interfacetest.dao.TestInterfaceMapper;
 import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.*;
+import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.service.*;
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,8 @@ import com.xn.interfacetest.dao.TestSuitMapper;
 @Transactional
 public class TestSuitServiceImpl implements TestSuitService {
     private static final Logger logger = LoggerFactory.getLogger(TestSuitServiceImpl.class);
-
     private static final String reportName = "report";
-
+    public static ExecutorService exe = Executors.newFixedThreadPool(50);
     private static SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
     /**
      *  Dao
@@ -195,24 +196,65 @@ public class TestSuitServiceImpl implements TestSuitService {
     }
 
     @Override
-    public void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId)  throws Exception{
-        TestPlanDto testPlanDto = testPlanService.get(planId);
-        //计划执行过程中将所有的相关测试集、测试用例、测试环境锁定并且不允许修改和删除
-        lockPlanIn(testSuitDtoList,testEnvironmentDto,planId);
+    public void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId) throws Exception{
+        try{
+            ExecutorService exe = Executors.newFixedThreadPool(50);
 
+            TestPlanDto testPlanDto = testPlanService.get(planId);
+            //计划执行过程中将所有的相关测试集、测试用例、测试环境锁定并且不允许修改和删除
+            lockPlanIn(testSuitDtoList,testEnvironmentDto,planId);
+            ReportResult.getReportResult().setStartTime(new Date());
 
-        //预保存执行结果：
-        TestReportDto testReportDto = new TestReportDto();
-        testReportDto.setPlanId(planId);
-        Date dataTime = new Date();
-        testReportDto.setName(testPlanDto.getName() + "-"+ reportName + format.format(dataTime));
-        testReportDto = testReportService.save(testReportDto);
+            //预保存执行结果：
+            TestReportDto testReportDto = new TestReportDto();
+            //设置计划id
+            testReportDto.setPlanId(planId);
+            //设置报告名称
+            Date dataTime = new Date();
+            testReportDto.setName(testPlanDto.getName() + "-"+ reportName + format.format(dataTime));
+            testReportDto = testReportService.save(testReportDto);
 
-        logger.info("==========遍历测试集========");
-        //遍历测试集执行测试用例
-        for(TestSuitDto testSuitDto:testSuitDtoList){
-            this.excuteSuit(testSuitDto,testEnvironmentDto, planId,testReportDto.getId());
+            excute(testSuitDtoList, testEnvironmentDto, planId, testReportDto.getId(),testReportDto);
+        }catch (Exception e){
+            logger.error("异常：｛｝",e);
+            throw e;
         }
+
+
+
+    }
+
+    private void excute(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, Long id, TestReportDto testReportDto) throws Exception{
+        for (int i = 0; i < testSuitDtoList.size(); i++) {
+            try {
+                excuteSuit(testSuitDtoList.get(i),testEnvironmentDto, planId,testReportDto.getId());
+            } catch (Exception e) {
+                logger.error("测试集｛｝执行异常:"+testSuitDtoList.get(i).getName(),e);
+                throw e;
+            }
+        }
+        //保存执行时间和执行结果
+        updateReportResult(testReportDto);
+
+    }
+
+
+    private void updateReportResult(TestReportDto testReportDto) {
+        ReportResult.getReportResult().setStopTime(new Date());
+
+        //保存计划执行时间
+        testReportDto.setBeginTime(format.format(ReportResult.getReportResult().getStartTime()));
+        testReportDto.setEndTime(format.format(ReportResult.getReportResult().getStopTime()));
+        testReportDto.setCostTime(Integer.valueOf(ReportResult.getReportResult().getTimeLong()));
+        testReportDto.setCaseCount((long) ReportResult.getReportResult().getTotal());
+        testReportDto.setErrorCaseCout((long) ReportResult.getReportResult().getError());
+        testReportDto.setFailCaseCout((long) ReportResult.getReportResult().getFailed());
+        testReportDto.setPassCaseCount((long) ReportResult.getReportResult().getTotal()-(long) ReportResult.getReportResult().getFailed()-(long) ReportResult.getReportResult().getError());
+        logger.info("更新计划执行时间:{}"+testReportDto.toString());
+        testReportService.update(testReportDto);
+
+        //重置结果计数类
+        ReportResult.resetReportResult();
     }
 
     /**
@@ -226,19 +268,50 @@ public class TestSuitServiceImpl implements TestSuitService {
 
     }
 
+    public void run(final List<TestSuitDto> testSuitDtoList,final TestEnvironmentDto testEnvironmentDto,final Long planId,final Long reportId) throws InterruptedException,Exception {
+
+        for (int i = 0; i < testSuitDtoList.size(); i++) {
+
+            final int finalI = i;
+            if (!exe.isShutdown()) {
+                exe.execute(new Runnable() {
+                    @Override
+                    public void run() {
+//                    System.out.println("1--------"+Thread.currentThread().getName());
+                        try {
+                            excuteSuit(testSuitDtoList.get(finalI),testEnvironmentDto, planId,reportId);
+                        } catch (Exception e) {
+                            logger.error("测试集｛｝执行异常:"+testSuitDtoList.get(finalI).getName(),e);
+                        }
+                    }
+                });
+
+            }
+            try {
+                Thread.sleep(50);
+
+            } catch (InterruptedException e) {
+
+            }
+
+        }
+
+    }
+
     /**
      * 以测试集为维度在指定环境执行测试用例
      * @param testSuitDto
      * @param testEnvironmentDto
-     * @param id
+     * @param reportId
      */
     private void excuteSuit(TestSuitDto testSuitDto, TestEnvironmentDto testEnvironmentDto, Long planId, Long reportId)  throws Exception {
+        logger.info("==========执行测试集========");
         //得到测试集的所有用例信息（因为集成测试用例并没有接口信息，所以直接取测试集下的所有用例来执行）
         List<TestCaseDto> testCaseDtoList = testCaseService.listBySuitId(testSuitDto.getId());
         //用例列表不为空则执行测试用例
         if(null != testCaseDtoList && testCaseDtoList.size() > 0){
             logger.info("==========遍历执行测试集========");
-            testCaseService.excuteCaseList(testCaseDtoList,testEnvironmentDto,planId,reportId);
+            testCaseService.excuteCaseList(testCaseDtoList,testEnvironmentDto,planId,reportId,testSuitDto.getId());
         }
     }
 }

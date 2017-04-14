@@ -7,13 +7,11 @@ import com.xn.interfacetest.dto.TestRedisConfigDto;
 import com.xn.interfacetest.entity.RedisAssert;
 import com.xn.interfacetest.entity.RelationCaseRedis;
 import com.xn.interfacetest.entity.TestRedisConfig;
-import com.xn.interfacetest.service.GetPara;
-import com.xn.interfacetest.service.RedisAssertService;
-import com.xn.interfacetest.service.RelationCaseRedisService;
-import com.xn.interfacetest.service.TestRedisConfigService;
+import com.xn.interfacetest.service.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -27,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("redisUtil")
 public class RedisUtil {
     public static final int LOGIN_EXPIRE = 30 * 24 * 60 * 1000;// 登录默认失效三十天
     //    public ApplicationContext context = new ClassPathXmlApplicationContext(
@@ -39,10 +36,14 @@ public class RedisUtil {
     public static final String BID = "UNIUSER";//缓存的业务id
     public static final String PREFIX_LOGIN = "login";
     private static final Logger logger = LoggerFactory.getLogger(RedisUtil.class);
-    static  ApplicationContext ctx=new ClassPathXmlApplicationContext("/spring/spring-context.xml");
-    static RelationCaseRedisService relationCaseRedisService=(RelationCaseRedisService) ctx.getBean("relationCaseRedisService");
-    static RedisAssertService redisAssertService=(RedisAssertService) ctx.getBean("redisAssertService");
-    static TestRedisConfigService testRedisConfigService=(TestRedisConfigService) ctx.getBean("testRedisConfigService");
+
+    static RelationCaseRedisService relationCaseRedisService = (RelationCaseRedisService) SpringContextUtil.getBean("relationCaseRedisService");
+
+    static RedisAssertService redisAssertService = (RedisAssertService) SpringContextUtil.getBean("redisAssertService");
+
+
+    static TestRedisConfigService testRedisConfigService = (TestRedisConfigService) SpringContextUtil.getBean("testRedisConfigService");
+
     private static JedisCluster jedisCluster;
     /**
      * 登录token保存时间

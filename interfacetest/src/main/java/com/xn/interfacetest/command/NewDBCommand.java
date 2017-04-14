@@ -10,11 +10,6 @@ public class NewDBCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(NewDBCommand.class);
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long report) {
-
-    }
-
-    @Override
     public void execute() {
         DBUtil.DBInit();
     }

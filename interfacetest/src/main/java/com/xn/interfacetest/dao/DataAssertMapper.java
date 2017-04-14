@@ -7,6 +7,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.DataAssert;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,5 @@ import java.util.List;
  */
 public interface DataAssertMapper extends BaseMapper<DataAssert, Long> {
 
-    List<DataAssert> getByCaseId(Long caseId);
+    List<DataAssert> getByCaseId(@Param("caseId") Long caseId);
 }

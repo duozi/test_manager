@@ -144,7 +144,7 @@ public interface TestCaseService {
      * @param testCaseDtoList
      * @param testEnvironmentDto
      */
-    void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId) throws Exception;
+    void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,Long suitId) throws Exception;
 
     /**
      * 测试用例调试--不保存测试结果

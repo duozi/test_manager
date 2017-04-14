@@ -5,9 +5,9 @@ package com.xn.interfacetest.service.impl;
 
 import java.util.*;
 
-import com.alibaba.dubbo.common.json.JSONArray;
 import com.google.common.collect.Lists;
 import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.command.*;
 import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.*;
@@ -17,8 +17,10 @@ import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.service.*;
 import com.xn.interfacetest.util.DBUtil;
-import com.xn.interfacetest.util.HttpUtils;
 import com.xn.interfacetest.util.RedisUtil;
+import net.sf.json.JSONObject;
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,12 +65,6 @@ public class TestCaseServiceImpl implements TestCaseService {
     private  DataAssertService dataAssertService;
 
     @Autowired
-    private  TestDatabaseConfigService testDatabaseConfigService;
-
-    @Autowired
-    private  RedisAssertService redisAssertService;
-
-    @Autowired
     private  ParamsAssertService paramsAssertService;
 
     @Autowired
@@ -76,6 +72,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Autowired
     private TestEnvironmentService testEnvironmentService;
+
+    @Autowired
+    private RelationServiceEnvironmentService relationServiceEnvironmentService;
 
     @Override
     @Transactional(readOnly = true)
@@ -190,16 +189,16 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId) {
+    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,Long suitId) throws Exception{
         //遍历执行测试用例
         for(TestCaseDto caseDto:testCaseDtoList){
             logger.info("==========遍历执行测试用例========");
-            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId);
+            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitId);
         }
     }
 
     @Override
-    public void testRun(Long caseId, Long environmentId) {
+    public void testRun(Long caseId, Long environmentId) throws Exception{
         //判断是dubbo接口还是http接口
         logger.info("==========联调测试用例========");
         TestInterfaceDto testInterfaceDto = testInterfaceService.getByCaseId(caseId);
@@ -231,11 +230,11 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param caseId
      * @param environmentId
      */
-    private void testRunHttp(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId) {
+    private void testRunHttp(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId)throws Exception {
         logger.info("==========联调测试用例HTTP========");
         TestCaseDto testCaseDto = this.get(caseId);
         TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(environmentId);
-        this.excuteHttp(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null);
+        this.excuteHttp(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null,null);
     }
 
     /**
@@ -243,36 +242,53 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param caseDto 用例
      * @param testEnvironmentDto 执行环境
      */
-    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId) {
-        //将执行的用例id保存到报告表
+    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,Long suitId) throws Exception {
+        ReportResult.totalPlus();
         TestReportDto testReportDto = testReportService.get(reportId);
-        if(null != testReportDto && testReportDto.getCaseIds().indexOf("," + caseDto.getId() + ",") < 0){
-            String casesInReport = testReportDto.getCaseIds()  + caseDto.getId()+ ",";
-            testReportDto.setCaseIds(casesInReport);
-            logger.info("==========即将更新的caseIds=" + casesInReport + "========");
 
+        //将执行的用例id保存到报告表
+        String existCaseIds =  testReportDto.getCaseIds();
+        if(null != testReportDto && StringUtils.isNotBlank(existCaseIds)){
+            String[] caseIdsArray = existCaseIds.split(",|，");
+            List list = Arrays.asList(caseIdsArray);
+            //不存在当前测试集用例id的时候加进去，以免重复
+            if(!list.contains(caseDto.getId())){
+                String casesInReport = "," + existCaseIds  + caseDto.getId();
+                testReportDto.setCaseIds(casesInReport);
+                logger.info("==========即将更新的caseIds=" + casesInReport + "========");
+            }
+        } else if(null != testReportDto && StringUtils.isBlank(existCaseIds)){
+            //没有保存过用例则直接保存
+            testReportDto.setCaseIds(caseDto.getId() + "");
         }
+
 
         //查询用例所属接口的基本配置
         logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
         TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
+        String existInterfaceIds =  testReportDto.getInterfaceIds();
         if(null != interfaceDto){
             logger.info("==========接口信息{}:" + interfaceDto.toString());
-            if(null != testReportDto && testReportDto.getInterfaceIds().indexOf("," + interfaceDto.getId() + ",") < 0) {
-                //判断是否已含有当前接口id，没有则加进去
-                String interafceInReport = testReportDto.getInterfaceIds()  + interfaceDto.getId() + ",";
-                testReportDto.setInterfaceIds(interafceInReport);
-                //保存接口Id到report表
-                logger.info("==========即将更新的interfaceIds=" + interafceInReport + "========");
-                testReportService.update(testReportDto);
+            if(null != testReportDto && StringUtils.isNotBlank(existInterfaceIds)) {
+                String[] interfaceIdsArray = existInterfaceIds.split(",|，");
+                List list = Arrays.asList(interfaceIdsArray);
+                //不存在当前测试集用例id的时候加进去，以免重复
+                if(!list.contains(interfaceDto.getId())){
+                    String interfacesInReport = "," + existInterfaceIds  + interfaceDto.getId();
+                    testReportDto.setInterfaceIds(interfacesInReport);
+                    logger.info("==========即将更新的interfaceIds=" + interfacesInReport + "========");
+                }
+            } else if(null != testReportDto && StringUtils.isBlank(existInterfaceIds)){
+                //没有保存过用例则直接保存
+                testReportDto.setInterfaceIds(interfaceDto.getId() + "");
             }
-
+            testReportService.update(testReportDto);
             if(InterfaceTypeEnum.DUBBO.getId() == interfaceDto.getType()){
                 //dubbo接口
                 this.excuteDubbo(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto);
             } else if(InterfaceTypeEnum.HTTP.getId() == interfaceDto.getType()){
                 //http接口
-                this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto);
+                this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitId);
             }
 
 
@@ -286,19 +302,14 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param interfaceDto
      * @param testEnvironmentDto
      */
-    private void excuteHttp(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto,Long planId,TestReportDto testReportDto) {
+    private void excuteHttp(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto,Long planId,TestReportDto testReportDto,Long suitId) throws Exception{
         Long caseId = caseDto.getId(); //用例id
         Long interfaceId = interfaceDto.getId();//接口id
         Long environmentId = testEnvironmentDto.getId();//环境id
         Long reportId = null != testReportDto?testReportDto.getId():null;
         logger.info("==========http接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseId + "," + interfaceId + "," + environmentId);
-
-
-        //初始化执行结果对象
-        ReportResult.getReportResult().setStartTime(new Date());
-
             //初始化数据库
-            boolean falg = DBUtil.getDBInit(environmentId,caseId);
+        boolean flag = DBUtil.getDBInit(environmentId,caseId);
 
 
         TestCaseCommand testCaseCommand = new TestCaseCommand();
@@ -318,17 +329,33 @@ public class TestCaseServiceImpl implements TestCaseService {
         String propType = HttpTypeEnum.getName(interfaceDto.getProtocolType());
         //取http接口的url
         String url = interfaceDto.getUrl();
-        //请求参数处理
-        String paramsStr  = formatParams(caseDto);
-        testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,null,timeout,propType));
+        //contentType
+        String contentType = interfaceDto.getContentType();
+        logger.info("contentType:" + contentType);
+        //http请求的服务器地址
+        RelationServiceEnvironmentDto relationServiceEnvironmentDto = relationServiceEnvironmentService.getByCaseAndEnvironment(interfaceDto.getServiceId(),environmentId);
+        if(null != relationServiceEnvironmentDto){
+            url = propType + "://" + relationServiceEnvironmentDto.getIpAddress() + ":" + relationServiceEnvironmentDto.getHttpPort() + "/" + url;
+        }
+        logger.info("url:" + url);
+        //请求参数处理9
+        String paramsStr  = formatParams(caseDto,contentType);
+        logger.info("paramsStr:" + paramsStr);
+
+        testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseId, interfaceId, planId, reportId, suitId));
 
         //执行测试用例
-        testCaseCommand.execute( caseId, interfaceId, planId, reportId);
+        testCaseCommand.execute();
+
+        if (flag) {
+            DBUtil.DBClose();
+        }
     }
 
     //初始化用例的执行
-    private CaseCommand getCaseCommand(String requestType,String url,String paramsStr,String paramsType,String timeout,String propType) {
-        return new HttpCaseCommand(requestType,url,paramsStr,paramsType,timeout,propType);
+    private CaseCommand getCaseCommand(String requestType,String url,String paramsStr,String contentType,String timeout,String propType,
+                                       Long caseId,Long interfaceId,Long planId,Long reportId,Long suitId) {
+        return new HttpCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseId, interfaceId, planId, reportId, suitId);
     }
 
     //初始化字段校验
@@ -352,6 +379,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 dbAssertCommand.setAssertItem(assertItem);
                 dbAssertCommand.setId(dataAssert.getId());
                 dbAssertCommandList.add(dbAssertCommand);
+                logger.info("数据库断言内容：" + dbAssertCommand.toString());
             }
         }
 
@@ -365,11 +393,13 @@ public class TestCaseServiceImpl implements TestCaseService {
             for(ParamsAssertDto paramsDto : paramsAssertDtoList){
                 AssertKeyValueVo keyValueStore = new AssertKeyValueVo(paramsDto.getAssertParam(),paramsDto.getRightValue(),paramsDto.getId());
                 paralist.add(keyValueStore);
+                logger.info("响应字段断言内容：" + keyValueStore.toString());
             }
             paraAssertCommand = new ParaAssertCommand(paralist);
             paraAssertCommand.setAssertItem(assertItem);
         }
-        return new AssertCommand(paraAssertCommand, null, null, assertItem,reportId);
+        AssertCommand assertCommand = new AssertCommand(paraAssertCommand, null, dbAssertCommandList, assertItem,reportId);
+        return assertCommand;
 
     }
 
@@ -447,19 +477,34 @@ public class TestCaseServiceImpl implements TestCaseService {
       return list;
     }
 
-    private String formatParams(TestCaseDto caseDto) {
+    private String formatParams(TestCaseDto caseDto, String contentType) {
         //参数,如果没有配置自定义类型就说明是配置了参数,如果配置了就取自定义参数
         String paramsStr = "";
         if(null == caseDto.getCustomParams() && null == caseDto.getCustomParamsType()){
             //获取参数列表
             List<ParamDto> testParamsDtoList = testParamsService.listByCaseIdFromRelation(caseDto.getId());
-            //将参数转化为字符串类型
-            if(null != testParamsDtoList && testParamsDtoList.size() > 0){
-                Iterator iterator = testParamsDtoList.iterator();
-                while(iterator.hasNext()){
-                    ParamDto param = (ParamDto) iterator.next();
-                    paramsStr += param.getName() + "=" + param.getValue();
-                    paramsStr += "&";
+            if(contentType.equals("application/json")){
+                //将参数转化为json字符串类型
+                if(null != testParamsDtoList && testParamsDtoList.size() > 0){
+                    JSONObject jsonObject = new JSONObject();
+                    Iterator iterator = testParamsDtoList.iterator();
+                    while(iterator.hasNext()){
+                        ParamDto param = (ParamDto) iterator.next();
+                        jsonObject.put(param.getName(),param.getValue());
+                    }
+                    paramsStr = jsonObject.toString();
+                }
+
+            } else {
+                //将参数转化为字符串类型
+                if(null != testParamsDtoList && testParamsDtoList.size() > 0){
+                    Iterator iterator = testParamsDtoList.iterator();
+                    while(iterator.hasNext()){
+                        ParamDto param = (ParamDto) iterator.next();
+                        paramsStr += param.getName() + "=" + param.getValue();
+                        paramsStr += "&";
+                    }
+                    paramsStr = paramsStr.substring(0,paramsStr.lastIndexOf("&"));
                 }
             }
         } else if(null != caseDto.getCustomParams()){

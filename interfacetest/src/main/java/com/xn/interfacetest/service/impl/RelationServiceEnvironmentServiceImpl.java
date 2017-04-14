@@ -123,4 +123,11 @@ public class RelationServiceEnvironmentServiceImpl implements RelationServiceEnv
         return 0;
     }
 
+    @Override
+    public RelationServiceEnvironmentDto getByCaseAndEnvironment(Long serviceId, Long environmentId) {
+        RelationServiceEnvironment relationServiceEnvironment = relationServiceEnvironmentMapper.getByCaseAndEnvironment(serviceId, environmentId);
+        RelationServiceEnvironmentDto relationServiceEnvironmentDto = BeanUtils.toBean(relationServiceEnvironment,RelationServiceEnvironmentDto.class);
+        return relationServiceEnvironmentDto;
+    }
+
 }

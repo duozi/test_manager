@@ -17,7 +17,7 @@
 
     <context:annotation-config />
 
-    <context:component-scan base-package="com.xn.interfacetest" />
+    <context:component-scan base-package="com.xn.interfacetest.service" />
 
     <mvc:annotation-driven/>
 
@@ -70,6 +70,8 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xn.interfacetest.dao"/>
     </bean>
+
+    <bean id="SpringContextUtil" class="com.xn.interfacetest.util.SpringContextUtil"  scope="singleton"/>
 
     <mvc:default-servlet-handler/>
 

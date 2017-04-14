@@ -18,10 +18,6 @@ public class DBCommand implements Command {
     }
 
     @Override
-    public void execute(Long caseId,Long interfaceId,Long planId,Long reportId) {
-    }
-
-    @Override
     public void execute() {
         if (sql.toLowerCase().startsWith("select")) {
             DBUtil.selectFromDB(name,sql);

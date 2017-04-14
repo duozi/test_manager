@@ -60,7 +60,7 @@ public class Suite {
         this.testCase = testCase;
     }
 
-    public void execute() {
+    public void execute() throws Exception{
         if (beforeClass != null) {
 
             for(Command command:beforeClass){

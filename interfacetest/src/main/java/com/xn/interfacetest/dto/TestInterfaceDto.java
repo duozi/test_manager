@@ -114,6 +114,11 @@ public class TestInterfaceDto extends BaseDto {
     private Integer isDelete;
 
     /**
+     * contentType
+     */
+    private String contentType;
+
+    /**
      * 系统
      */
     private TestServiceDto testServiceDto;
@@ -254,6 +259,14 @@ public class TestInterfaceDto extends BaseDto {
         this.isDelete = isDelete;
     }
 
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
     @Override
     public String toString() {
         return "TestInterfaceDto{" +
@@ -273,6 +286,7 @@ public class TestInterfaceDto extends BaseDto {
                 ", dubboTimeout=" + dubboTimeout +
                 ", zkOrNot=" + zkOrNot +
                 ", isDelete=" + isDelete +
+                ", contentType='" + contentType + '\'' +
                 ", testServiceDto=" + testServiceDto +
                 '}';
     }

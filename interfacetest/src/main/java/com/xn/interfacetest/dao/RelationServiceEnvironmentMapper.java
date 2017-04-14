@@ -5,6 +5,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationServiceEnvironment;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * RelationServiceEnvironment Dao 接口
@@ -14,4 +15,5 @@ import com.xn.interfacetest.entity.RelationServiceEnvironment;
  */
 public interface RelationServiceEnvironmentMapper extends BaseMapper<RelationServiceEnvironment, Long> {
 
+    RelationServiceEnvironment getByCaseAndEnvironment(@Param("serviceId") Long serviceId,@Param("environmentId") Long environmentId);
 }

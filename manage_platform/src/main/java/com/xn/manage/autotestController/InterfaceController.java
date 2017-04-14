@@ -6,19 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.RelationCaseDatabase;
-import com.xn.interfacetest.entity.TestDatabaseConfig;
 import com.xn.interfacetest.service.*;
 import com.xn.manage.Enum.*;
 import com.xn.performance.util.CommonResult;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 

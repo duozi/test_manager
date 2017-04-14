@@ -5,7 +5,9 @@ package com.xn.interfacetest.command;
 
 import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.dto.RelationAssertResultDto;
+import com.xn.interfacetest.dto.TestReportDto;
 import com.xn.interfacetest.entity.RelationAssertResult;
+import com.xn.interfacetest.entity.TestReport;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.model.KeyValueStore;
 import com.xn.interfacetest.response.Assert;
@@ -14,6 +16,8 @@ import com.xn.interfacetest.response.Response;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.service.RelationAssertResultService;
 import com.xn.interfacetest.service.TestDatabaseConfigService;
+import com.xn.interfacetest.service.TestReportService;
+import com.xn.interfacetest.util.SpringContextUtil;
 import com.xn.interfacetest.util.StringUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -32,8 +36,9 @@ public class AssertCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(AssertCommand.class);
     private final static String separator = System.getProperty("line.separator", "\r\n");
 
-    static ApplicationContext ctx=new ClassPathXmlApplicationContext("/spring/spring-context.xml");
-    static RelationAssertResultService relationAssertResultService=(RelationAssertResultService) ctx.getBean("relationAssertResultService");
+    static RelationAssertResultService relationAssertResultService = (RelationAssertResultService) SpringContextUtil.getBean("relationAssertResultService");
+    static TestReportService testReportService = (TestReportService) SpringContextUtil.getBean("testReportService");
+
     public Assert assertItem; //断言校验结果-----指定断言不符合的内容是什么
     private Command paramAssertCommand; //响应参数校验断言
     private List<Command> redisAssertCommandList; //redis数据断言
@@ -68,14 +73,14 @@ public class AssertCommand implements Command {
             if (jsonObject.containsKey(array[0])) {
                 deepAssert(jsonObject.getJSONObject(array[0]), array[1], value, assertItem, reportId,assertId);
             } else {
-                ReportResult.failedPlus();
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
                 //保存断言结果
                 if(null != reportId){
                     relationAssertResultDto.setReportId(reportId);
                     relationAssertResultDto.setParamsAssertId(assertId);
-                    relationAssertResultDto.setResult("assert is not Equal");
+                    relationAssertResultDto.setResult("not match");
+                    relationAssertResultService.save(relationAssertResultDto);
                 }
 
                 throw new AssertNotEqualException("assert is not Equal");
@@ -84,24 +89,21 @@ public class AssertCommand implements Command {
             Set set = jsonObject.keySet();
             if (set.contains(key)) {
                 String returnValue = String.valueOf(jsonObject.get(key));
-                if (value.equals("NONULL")) {
+                if (value.equalsIgnoreCase("NONULL")) {
                     if (StringUtils.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
-                        ReportResult.failedPlus();
-
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
                         //保存断言结果
                         if(null != reportId){
                             relationAssertResultDto.setReportId(reportId);
                             relationAssertResultDto.setParamsAssertId(assertId);
-                            relationAssertResultDto.setResult("assert is not Equal");
+                            relationAssertResultDto.setResult("not match");
+                            relationAssertResultService.save(relationAssertResultDto);
                         }
                         throw new AssertNotEqualException("assert is not Equal");
                     }
                 } else {
                     if (!returnValue.equals(value)) {
-                        ReportResult.failedPlus();
-
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
 
@@ -109,7 +111,8 @@ public class AssertCommand implements Command {
                         if(null != reportId){
                             relationAssertResultDto.setReportId(reportId);
                             relationAssertResultDto.setParamsAssertId(assertId);
-                            relationAssertResultDto.setResult("assert is not Equal");
+                            relationAssertResultDto.setResult("not match");
+                            relationAssertResultService.save(relationAssertResultDto);
                         }
 
                         throw new AssertNotEqualException("assert is not Equal");
@@ -117,7 +120,6 @@ public class AssertCommand implements Command {
                     }
                 }
             } else {
-                ReportResult.failedPlus();
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
 //                ReportResult.getReportResult().assertAdd(assertItem);
@@ -126,15 +128,12 @@ public class AssertCommand implements Command {
                 if(null != reportId){
                     relationAssertResultDto.setReportId(reportId);
                     relationAssertResultDto.setParamsAssertId(assertId);
-                    relationAssertResultDto.setResult("assert is not Equal");
+                    relationAssertResultDto.setResult("not match");
+                    relationAssertResultService.save(relationAssertResultDto);
                 }
 
                 throw new AssertNotEqualException("assert is not Equal");
             }
-            if(null != relationAssertResultDto.getReportId()){
-                relationAssertResultService.save(relationAssertResultDto);
-            }
-
         }
     }
 
@@ -144,7 +143,6 @@ public class AssertCommand implements Command {
             if (jsonObject.containsKey(array[0])) {
                 deepAssert(jsonObject.getJSONObject(array[0]), array[1], value, assertItem);
             } else {
-                ReportResult.failedPlus();
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
                 //
@@ -156,16 +154,12 @@ public class AssertCommand implements Command {
                 String returnValue = String.valueOf(jsonObject.get(key));
                 if (value.equals("NOTNULL")) {
                     if (StringUtils.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
-                        ReportResult.failedPlus();
-
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
                         throw new AssertNotEqualException("assert is not Equal");
                     }
                 } else {
                     if (!returnValue.equals(value)) {
-                        ReportResult.failedPlus();
-
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
                         throw new AssertNotEqualException("assert is not Equal");
@@ -173,7 +167,6 @@ public class AssertCommand implements Command {
                     }
                 }
             } else {
-                ReportResult.failedPlus();
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
 //                ReportResult.getReportResult().assertAdd(assertItem);
@@ -197,13 +190,7 @@ public class AssertCommand implements Command {
     }
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
-
-    }
-
-    @Override
-    public void execute() {
-
+    public void execute() throws Exception{
         try {
             String result = assertItem.getResult();
             if (result == null || !result.equals("error")) {
@@ -224,6 +211,12 @@ public class AssertCommand implements Command {
                 }
             }
         } catch (Exception e) {
+            //将该测试计划的结果保存为失败
+            TestReportDto testReportDto = new TestReportDto();
+            testReportDto.setId(reportId);
+            testReportDto.setResult("fail");
+            testReportService.update(testReportDto);
+            ReportResult.failedPlus();
             logger.error(assertItem.getInterfaceName() + "/" + assertItem.getMethodName() + "/" + assertItem.getCaseName() + "=====[assert error]");
         } finally {
             ReportResult.getReportResult().assertAdd(assertItem);

@@ -38,21 +38,14 @@ public class ParaAssertCommand implements Command {
             preResult.paraVerify(processedParams, assertItem,reportId);
 
 //        } catch (AssertNotEqualException e) {
-//            String message = assertItem.getInterfaceName()+"/"+assertItem.getMethodName()+"/"+assertItem.getCaseName()+"====assert para step invoke has error,expect=" + expectation + separator + "result=" + preResult;
+//            String message = assertItem.getInterfaceName()+"/"+assertItem.getMethodName()+"/"+assertItem.getCaseName()+"====assert para step invoke has error,expect=" + e + separator + "result=" + preResult;
 //            assertItem.setResult("failed");
 //            logger.error(message,e);
 //            throw e;
 //        }
     }
-
-
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
-
-    }
-
-    @Override
-    public void execute()  {
+    public void execute() throws Exception {
 
     }
 

@@ -11,6 +11,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.fastjson.TestDoubleSerializer;
 import com.xn.interfacetest.model.AssertKeyValueVo;
+import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.util.StringUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -69,7 +70,6 @@ public class Response {
             assertItem.setResult("failed");
             logger.error("parameter assert is  not Equal");
             throw e;
-
         }
 
 
@@ -81,6 +81,7 @@ public class Response {
             logger.info("para assert command<{}> is starting... ", expected);
             JSONObject jsonObject = JSONObject.fromObject(body);
             for (AssertKeyValueVo key : expected) {
+                logger.info("校验断言：｛｝"+key.getName()+":"+key.getValue());
                 String value = (String)key.getValue();
                 deepAssert(jsonObject, key.getName(), value, assertItem,reportId,key.getId());
             }

@@ -14,9 +14,7 @@ public interface CaseCommand extends Command {
     String casePath = null;
 
     @Override
-    void execute(Long caseId,Long interfaceId,Long planId,Long reportId) ;
-
-
+    void execute() ;
 
     Response getResponse();
 

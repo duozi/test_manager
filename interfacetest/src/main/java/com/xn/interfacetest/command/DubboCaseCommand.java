@@ -64,11 +64,6 @@ public class DubboCaseCommand implements CaseCommand {
         return result;
     }
 
-    @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
-
-    }
-
     public Response getResponse() {
         return response;
     }

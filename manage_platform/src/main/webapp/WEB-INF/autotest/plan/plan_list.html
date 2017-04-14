@@ -261,14 +261,14 @@
                                             <!--<a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">查看测试集</a>-->
                                             <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
                                             <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
-                                            <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
+                                            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#excutePlan" onclick="excutePlan('${item.id}','${item.name}')">执行</a>
                                         </#if>
                                         <#if item.status==2>
                                             <!--已执行-->
                                             <!--<a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">查看测试集</a>-->
                                             <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
                                             <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
-                                            <a type="button" class="btn btn-primary" onclick="excute()">执行</a>
+                                            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#excutePlan" onclick="excutePlan('${item.id}','${item.name}')">执行</a>
                                             <a href="../reportResult/report_detail" type="button" class="btn btn-info">查看测试报告</a>
                                         </#if>
 
@@ -470,13 +470,20 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >执行环境</label>
-                                <select  name="environmentIds" class="selectpicker bla bla bli" multiple data-live-search="true">
+                                <!--<select  name="environmentIds" class="selectpicker bla bla bli" multiple data-live-search="true">-->
+                                    <!--<#if testEnvironmentDtoList ??>-->
+                                        <!--<#list testEnvironmentDtoList as item>-->
+                                            <!--<option value="${item.id}" >${item.name}</option>-->
+                                        <!--</#list>-->
+                                    <!--</#if>-->
+                                    <!--</optgroup>-->
+                                <!--</select>-->
+                                <select class="form-control" id="environmentIds" name="environmentIds">
                                     <#if testEnvironmentDtoList ??>
                                         <#list testEnvironmentDtoList as item>
                                             <option value="${item.id}" >${item.name}</option>
                                         </#list>
                                     </#if>
-                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -492,6 +499,22 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <!-- 执行计划弹框 -->
+    <div class="modal fade" id="excutePlan" tabindex="-1" role="dialog" aria-labelledby="excutePlanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3  style="padding-left: 10%;"><i class="fa fa-spinner"></i>   计划正在执行,跳转到查看结果页面？</h3>
+                        <a href="" type="button" class="result-path btn btn-primary" style="margin-left: 40%;">好的</a>
+                        <a type="button" class="result-path btn btn-default" data-dismiss="modal">留在当前页</a>
+                    </div>
+                </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 </div>
 <!-- /.row -->
 <script type="text/javascript">
@@ -750,6 +773,17 @@
             },
             error: function(result) {
                 alert(eval("(" + result + ")").message);
+            }
+        });
+    }
+
+    //执行计划
+    function excutePlan(_id,_name) {
+        $.post("${basePath}/autotest/plan/excutePlan",{planId:_id},function(data,status){
+            if(0!=data.code){
+                alert(data.message);
+            } else {
+                $(".result-path").attr("href","${basePath}/autotest/report/report_detail?id=" + _id);
             }
         });
     }

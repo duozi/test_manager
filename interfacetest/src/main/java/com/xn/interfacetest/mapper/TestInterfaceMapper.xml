@@ -21,11 +21,12 @@
         <result property="dubboTimeout" column="dubbo_timeout"/>
         <result property="zkOrNot" column="zk_or_not"/>
         <result property="isDelete" column="is_delete"/>
+        <result property="contentType" column="content_type"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, service_id, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not
+        id, name, description, service_id, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
         ]]>
     </sql>
     
@@ -75,6 +76,9 @@
             </if>
             <if test="@Ognl@isNotEmpty(zkOrNot)">
                 AND zk_or_not = #{zkOrNot}
+            </if>
+            <if test="@Ognl@isNotEmpty(contentType)">
+                AND content_type = #{contentType}
             </if>
         </where>
     </sql>
@@ -157,6 +161,9 @@
             <if test="@Ognl@isNotEmpty(zkOrNot)">
                 AND zk_or_not = #{zkOrNot}
             </if>
+            <if test="@Ognl@isNotEmpty(contentType)">
+                AND content_type = #{contentType}
+            </if>
         </where>
     </select>
 
@@ -187,7 +194,8 @@
                 dubbo_version,
                 dubbo_group,
                 dubbo_timeout,
-                zk_or_not
+                zk_or_not,
+                content_type
             ) VALUES (
                 #{id},
                 #{name},
@@ -203,7 +211,8 @@
                 #{dubboVersion},
                 #{dubboGroup},
                 #{dubboTimeout},
-                #{zkOrNot}
+                #{zkOrNot},
+                #{contentType}
             )
         ]]>
     </insert>
@@ -225,12 +234,13 @@
                 dubbo_version,
                 dubbo_group,
                 dubbo_timeout,
-                zk_or_not
+                zk_or_not,
+                content_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
             (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},#{item.requestType},
-            #{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout},#{item.zkOrNot})
+            #{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout},#{item.zkOrNot},#{item.contentType})
         </foreach>
     </insert>
     
@@ -278,7 +288,10 @@
                 	<![CDATA[ dubbo_timeout = #{dubboTimeout} ]]>,
                 </if>
                 <if test="zkOrNot != null">
-                    <![CDATA[ zk_or_not = #{zkOrNot} ]]>
+                    <![CDATA[ zk_or_not = #{zkOrNot} ]]>,
+                </if>
+                <if test="contentType != null">
+                    <![CDATA[ content_type = #{contentType} ]]>
                 </if>
             </set>
             WHERE

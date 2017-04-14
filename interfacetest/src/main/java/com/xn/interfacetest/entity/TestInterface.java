@@ -115,7 +115,12 @@ public class TestInterface extends BaseEntity {
      * 是否被删除0-否，1-是
      */
     private Integer isDelete;
-    
+
+    /**
+     * contentType
+     */
+    private String contentType;
+
     private List<TestParams> testParamss = new ArrayList<TestParams>();
 
 	
@@ -261,5 +266,13 @@ public class TestInterface extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 }

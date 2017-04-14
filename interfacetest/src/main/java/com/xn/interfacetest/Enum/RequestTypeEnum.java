@@ -2,7 +2,7 @@ package com.xn.interfacetest.Enum;
 
 
 public enum RequestTypeEnum {
-    GET("get", 1), POST("post", 2);
+    GET("GET", 1), POST("POST", 2);
     // 成员变量
     private String name;
     private int id;

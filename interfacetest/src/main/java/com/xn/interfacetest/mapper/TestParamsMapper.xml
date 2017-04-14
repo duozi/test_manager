@@ -70,7 +70,7 @@
         select tp.name ,rcp.`value`
         from test_params tp
         LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
-        where rcp.case_id = #{caseId}
+        where rcp.case_id = #{caseId} and rcp.is_delete = 0
     </select>
         
     <select id="count" resultType="long">

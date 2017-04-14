@@ -85,6 +85,21 @@ public class TestReportDto extends BaseDto {
      */
     private String result;
 
+    /**
+     * 计划开始执行的时间
+     */
+    private String beginTime;
+
+    /**
+     * 计划执行结束的时间
+     */
+    private String endTime;
+
+    /**
+     * 计划执行消耗的时间
+     */
+    private Integer costTime;
+
     public Long getId() {
         return this.id;
     }
@@ -173,7 +188,28 @@ public class TestReportDto extends BaseDto {
         this.result = result;
     }
 
+    public String getBeginTime() {
+        return beginTime;
+    }
 
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
 
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public Integer getCostTime() {
+        return costTime;
+    }
+
+    public void setCostTime(Integer costTime) {
+        this.costTime = costTime;
+    }
 }
 

@@ -10,11 +10,6 @@ public class CloseDBCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(CloseDBCommand.class);
 
     @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
-        DBUtil.DBClose();
-    }
-
-    @Override
     public void execute() {
         DBUtil.DBClose();
     }

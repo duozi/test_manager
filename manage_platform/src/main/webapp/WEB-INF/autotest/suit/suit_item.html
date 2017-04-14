@@ -97,7 +97,7 @@
 														<td>${item.testServiceDto.systemDto.name}</td>
 														<td>
                                                             <input type="hidden" value="${item.id}" name="interfaceId">
-															<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success" onclick="showCaseList(${item.id},'SINGLE')">选择单接口用例</button>
+															<button type="button"  data-toggle="modal" data-target="#caseList" class="btn btn-success" onclick="showCaseList('${item.id}','SINGLE')">选择单接口用例</button>
 														</td>
 													</tr>
 												</#list>

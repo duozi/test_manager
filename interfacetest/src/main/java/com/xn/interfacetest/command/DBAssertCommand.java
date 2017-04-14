@@ -9,8 +9,10 @@ import com.xn.interfacetest.entity.RelationAssertResult;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.response.AssertItem;
 import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.service.DataAssertService;
 import com.xn.interfacetest.service.RelationAssertResultService;
 import com.xn.interfacetest.util.DBUtil;
+import com.xn.interfacetest.util.SpringContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -21,9 +23,7 @@ public class DBAssertCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(DBAssertCommand.class);
     private final static String separator = System.getProperty("line.separator", "\r\n");
 
-    static ApplicationContext ctx=new ClassPathXmlApplicationContext("/spring/spring-context.xml");
-    static RelationAssertResultService relationAssertResultService=(RelationAssertResultService) ctx.getBean("relationAssertResultService");
-
+    static RelationAssertResultService relationAssertResultService = (RelationAssertResultService) SpringContextUtil.getBean("relationAssertResultService");
 
     private Assert assertItem;
     private String sql;
@@ -92,12 +92,6 @@ public class DBAssertCommand implements Command {
         }
     }
 
-
-    @Override
-    public void execute(Long caseId, Long interfaceId, Long planId,Long reportId) {
-
-    }
-
     @Override
     public void execute()  {
 
@@ -114,5 +108,14 @@ public class DBAssertCommand implements Command {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "DBAssertCommand{" +
+                "assertItem=" + assertItem +
+                ", sql='" + sql + '\'' +
+                ", expectCount='" + expectCount + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -36,7 +36,7 @@ public class TestCaseCommand implements Command {
 
 
     @Override
-    public void execute(Long caseId,Long interfaceId,Long planId,Long reportId)  {
+    public void execute() throws Exception {
         if (caseCommand != null) {
             if (beforeCommand != null) {
 
@@ -45,7 +45,7 @@ public class TestCaseCommand implements Command {
                 }
             }
 
-            caseCommand.execute( caseId, interfaceId, planId, reportId);
+            caseCommand.execute();
             //响应内容
             Response response = caseCommand.getResponse();
             //请求参数
@@ -60,11 +60,6 @@ public class TestCaseCommand implements Command {
                 }
             }
         }
-    }
-
-    @Override
-    public void execute() {
-
     }
 
     @Override

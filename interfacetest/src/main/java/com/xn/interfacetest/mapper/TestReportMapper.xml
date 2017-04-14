@@ -15,12 +15,15 @@
         <result property="passCaseCount" column="pass_case_count"/>
         <result property="failCaseCout" column="fail_case_cout"/>
         <result property="errorCaseCout" column="error_case_cout"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="costTime" column="cost_time"/>
         <result property="result" column="result"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, case_ids, system_id, plan_id, interface_ids, case_count, pass_case_count, fail_case_cout, error_case_cout, result
+        id, name, case_ids, system_id, plan_id, interface_ids, case_count, pass_case_count, fail_case_cout, error_case_cout, result,begin_time,end_time,cost_time
         ]]>
     </sql>
     
@@ -59,6 +62,15 @@
            <if test="@Ognl@isNotEmpty(result)">
                 AND result = #{result}
             </if>
+            <if test="@Ognl@isNotEmpty(beginTime)">
+                AND begin_time = #{beginTime}
+            </if>
+            <if test="@Ognl@isNotEmpty(endTime)">
+                AND end_time = #{endTime}
+            </if>
+            <if test="@Ognl@isNotEmpty(costTime)">
+                AND cost_time = #{costTime}
+            </if>
         </where>
     </sql>
     
@@ -66,7 +78,7 @@
         SELECT <include refid="columns" />
         <![CDATA[
             FROM
-                test_result
+                test_report
             WHERE 
                 id = #{id} 
         ]]>
@@ -76,7 +88,7 @@
         SELECT
             <include refid="columns" />
         FROM
-            test_result 
+            test_report
         <include refid="where"/>
     </select>
         
@@ -85,14 +97,14 @@
             SELECT
                 count(1)
             FROM
-                test_result
+                test_report
         ]]>
         <include refid="where"/>
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
-            INSERT INTO test_result (
+            INSERT INTO test_report (
                 id,
                 name,
                 case_ids,
@@ -103,7 +115,10 @@
                 pass_case_count,
                 fail_case_cout,
                 error_case_cout,
-                result
+                result,
+                begin_time,
+                end_time,
+                cost_time
             ) VALUES (
                 #{id},
                 #{name},
@@ -115,14 +130,17 @@
                 #{passCaseCount},
                 #{failCaseCout},
                 #{errorCaseCout},
-                #{result}
+                #{result},
+                #{beginTime},
+                #{endTime},
+                #{costTime}
             )
         ]]>
     </insert>
 
     <insert id="saveBatch">
         <![CDATA[
-            INSERT INTO test_result (
+            INSERT INTO test_report (
                 id,
                 name,
                 case_ids,
@@ -133,17 +151,22 @@
                 pass_case_count,
                 fail_case_cout,
                 error_case_cout,
-                result
+                result,
+                begin_time,
+                end_time,
+                cost_time
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.caseIds},#{item.systemId},#{item.planId},#{item.interfaceIds},#{item.caseCount},#{item.passCaseCount},#{item.failCaseCout},#{item.errorCaseCout},#{item.result})
+            (#{item.id},#{item.name},#{item.caseIds},#{item.systemId},#{item.planId},#{item.interfaceIds},
+            #{item.caseCount},#{item.passCaseCount},#{item.failCaseCout},#{item.errorCaseCout},#{item.result},
+            #{item.beginTime},#{item.endTime},#{item.costTime})
         </foreach>
     </insert>
     
     <update id="update">
         	UPDATE
-                test_result
+                test_report
             <set>
                 <if test="name != null">
                 	<![CDATA[ name = #{name} ]]>,
@@ -173,7 +196,16 @@
                 	<![CDATA[ error_case_cout = #{errorCaseCout} ]]>,
                 </if>
                 <if test="result != null">
-                	<![CDATA[ result = #{result} ]]>
+                	<![CDATA[ result = #{result} ]]>,
+                </if>
+                <if test="beginTime != null">
+                    <![CDATA[ begin_time = #{beginTime} ]]>,
+                </if>
+                <if test="endTime != null">
+                    <![CDATA[ end_time = #{endTime} ]]>,
+                </if>
+                <if test="costTime != null">
+                    <![CDATA[ cost_time = #{costTime} ]]>
                 </if>
             </set>
             WHERE
@@ -184,7 +216,7 @@
         <![CDATA[
             DELETE
             FROM
-                test_result
+                test_report
             WHERE
                 id = #{id} 
         ]]>
@@ -194,7 +226,7 @@
         <![CDATA[
             DELETE
             FROM
-                test_result
+                test_report
         ]]>
         <include refid="where"/>
     </delete>
@@ -203,7 +235,7 @@
         <![CDATA[
             DELETE
             FROM
-                test_result
+                test_report
             WHERE
                 id IN
         ]]>

@@ -30,10 +30,13 @@ import java.util.List;
 public class DBUtil {
     private static final Logger logger = LoggerFactory.getLogger(DBUtil.class);
     public static HashMap<String, DBService> DbMap = new HashMap<String, DBService>();
-    static ApplicationContext ctx=new ClassPathXmlApplicationContext("/spring/spring-context.xml");
-    static TestDatabaseConfigService testDatabaseConfigService=(TestDatabaseConfigService) ctx.getBean("testDatabaseConfigService");
-    static RelationCaseDatabaseService relationCaseDatabaseService=(RelationCaseDatabaseService) ctx.getBean("relationCaseDatabaseService");
-    static DataAssertService dataAssertService=(DataAssertService) ctx.getBean("dataAssertService");
+
+    static TestDatabaseConfigService testDatabaseConfigService = (TestDatabaseConfigService) SpringContextUtil.getBean("testDatabaseConfigService");
+
+    static RelationCaseDatabaseService relationCaseDatabaseService = (RelationCaseDatabaseService) SpringContextUtil.getBean("relationCaseDatabaseService");
+
+    static DataAssertService dataAssertService = (DataAssertService) SpringContextUtil.getBean("dataAssertService");
+
     private static Connection con;
     private static BasicDataSource bds = null;
 

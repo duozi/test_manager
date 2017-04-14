@@ -6,6 +6,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RedisAssert;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ import java.util.List;
  */
 public interface RedisAssertMapper extends BaseMapper<RedisAssert, Long> {
 
-    List<RedisAssert> getByCaseId(Long caseId);
+    List<RedisAssert> getByCaseId(@Param("caseId") Long caseId);
 }

@@ -33,15 +33,15 @@
                     <label>用例类型</label>
                     <#if testCaseDto.type==null>
                         <label class="radio-inline" style="margin-top: 0">
-                            <input type="radio" name="type" value="1" checked="true">单接口用例
+                            <input type="radio" name="type" value="SINGLE" checked="true">单接口用例
                         </label>
                         <!--<label class="radio-inline">-->
                             <!--<input type="radio" name="type" value="2" >集成用例-->
                         <!--</label>-->
                         <#else>
-                            <#if testCaseDto.type==1>
+                            <#if testCaseDto.type=='SINGLE'>
                                 <label class="radio-inline" style="margin-top: 0">
-                                    <input type="radio" name="type" value="1" checked="true">单接口用例
+                                    <input type="radio" name="type" value="SINGLE" checked="true">单接口用例
                                 </label>
                             </#if>
                             <!--<#if testCaseDto.type==2>-->
@@ -79,7 +79,7 @@
 
                 </div>
                 <!--所属接口-->
-                <#if testCaseDto.type != 2>
+                <#if testCaseDto.type != MULTIPLE>
                     <div class="form-group ">
                         <label>所属接口</label>
                         <select class="form-control col-lg-5" name="interfaceId">
@@ -250,7 +250,7 @@
         //跳转到单接口用例页面还是集成接口用例页面
         var urlStr = "${basePath}/autotest/case/case_item_";
         var type = $("input[name='type']").val();
-        if(type==1){
+        if(type=="SINGLE"){
             urlStr += "single";
             var caseId = $("input[name='id']").val();
             var interfaceId = $("select[name='interfaceId']").val();

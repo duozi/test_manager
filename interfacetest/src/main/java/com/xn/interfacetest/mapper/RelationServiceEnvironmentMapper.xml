@@ -22,7 +22,7 @@
     
     <sql id="where">
         <where>
-           <if test="id != null and id != 0">
+           <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
            <if test="@Ognl@isNotEmpty(serviceId)">
@@ -54,6 +54,13 @@
             WHERE 
                 id = #{id} 
         ]]>
+    </select>
+
+    <select id="getByCaseAndEnvironment" resultMap="RelationServiceEnvironmentMap">
+        SELECT <include refid="columns" />
+        FROM
+                relation_service_environment
+        WHERE service_id = #{serviceId} and environment_id = #{environmentId}
     </select>
     
     <select id="list" resultMap="RelationServiceEnvironmentMap">

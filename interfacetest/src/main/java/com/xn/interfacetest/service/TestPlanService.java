@@ -136,4 +136,12 @@ public interface TestPlanService {
      * @return
      */
     CommonResult excutePlan(Long planId)  throws Exception;
+
+    /**
+     * 保存测试计划---含基础信息和其他信息
+     * @param testPlanDto
+     * @param params
+     * @return
+     */
+    CommonResult saveWithInfo(TestPlanDto testPlanDto, Map<String, Object> params)  throws Exception;
 }
