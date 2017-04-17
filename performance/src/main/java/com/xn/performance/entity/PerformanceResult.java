@@ -3,8 +3,9 @@
  */
 package com.xn.performance.entity;
 
-import java.util.Date;
 import com.xn.performance.util.BaseEntity;
+
+import java.util.Date;
 
 /**
  * PerformanceResult 实体类
@@ -30,18 +31,33 @@ public class PerformanceResult extends BaseEntity {
      * 计划id 
      */
     private Integer planId;
+    /**
+     *
+     * 设置执行时间，立即执行的就是00000000
+     */
+    private Date setStartTime;
+    private Date setStartTimeBegin;
+    private Date setStartTimeEnd;
+
+
 
     /**
      * 
-     * 设置执行时间，立即执行的就是00000000 
+     * 实际结束时间
      */
-    private Date setStartTime;
+    private Date actualEndTime;
+    private Date actualEndTimeBegin;
+    private Date actualEndTimeEnd;
+
+
 
     /**
      * 
      * 实际开始时间 
      */
     private Date actualStartTime;
+    private Date actualStartTimeBegin;
+    private Date actualStartTimeEnd;
 
     /**
      * 
@@ -49,17 +65,7 @@ public class PerformanceResult extends BaseEntity {
      */
     private Integer executeTime;
 
-    /**
-     * 
-     * 监控机id 
-     */
-    private Integer monitoredMachineId;
 
-    /**
-     * 
-     * 监控机结果id 
-     */
-    private Integer monitoredMachineResultId;
 
     /**
      * 
@@ -68,17 +74,82 @@ public class PerformanceResult extends BaseEntity {
     private String executePerson;
 
 
-    
-    private PerformancePlan performancePlan;
-   
-    
-    private PerformanceMonitoredMachineResult performanceMonitoredMachineResult;
-   
-    
-    private PerformanceMonitoredMachine performanceMonitoredMachine;
-   
-	
-	public PerformanceResult(){
+    /**
+     *
+     * 执行状态
+     */
+    private String executeStatus;
+
+
+
+    private Integer stressMachineId;
+    private  String stressMachineName;
+
+    public Date getSetStartTimeBegin() {
+        return setStartTimeBegin;
+    }
+
+    public void setSetStartTimeBegin(Date setStartTimeBegin) {
+        this.setStartTimeBegin = setStartTimeBegin;
+    }
+
+    public Date getSetStartTimeEnd() {
+        return setStartTimeEnd;
+    }
+
+    public void setSetStartTimeEnd(Date setStartTimeEnd) {
+        this.setStartTimeEnd = setStartTimeEnd;
+    }
+
+    public Date getActualEndTimeBegin() {
+        return actualEndTimeBegin;
+    }
+
+    public void setActualEndTimeBegin(Date actualEndTimeBegin) {
+        this.actualEndTimeBegin = actualEndTimeBegin;
+    }
+
+    public Date getActualEndTimeEnd() {
+        return actualEndTimeEnd;
+    }
+
+    public void setActualEndTimeEnd(Date actualEndTimeEnd) {
+        this.actualEndTimeEnd = actualEndTimeEnd;
+    }
+
+    public Date getActualStartTimeBegin() {
+        return actualStartTimeBegin;
+    }
+
+    public void setActualStartTimeBegin(Date actualStartTimeBegin) {
+        this.actualStartTimeBegin = actualStartTimeBegin;
+    }
+
+    public Date getActualStartTimeEnd() {
+        return actualStartTimeEnd;
+    }
+
+    public void setActualStartTimeEnd(Date actualStartTimeEnd) {
+        this.actualStartTimeEnd = actualStartTimeEnd;
+    }
+
+    public Integer getStressMachineId() {
+        return stressMachineId;
+    }
+
+    public void setStressMachineId(Integer stressMachineId) {
+        this.stressMachineId = stressMachineId;
+    }
+
+    public String getStressMachineName() {
+        return stressMachineName;
+    }
+
+    public void setStressMachineName(String stressMachineName) {
+        this.stressMachineName = stressMachineName;
+    }
+
+    public PerformanceResult(){
 	    // default constructor
 	}
     
@@ -102,13 +173,8 @@ public class PerformanceResult extends BaseEntity {
         return this.planId;
     }
     
-    public void setSetStartTime(Date setStartTime) {
-        this.setStartTime = setStartTime;
-    }
-    
-    public Date getSetStartTime() {
-        return this.setStartTime;
-    }
+
+
     
     public void setActualStartTime(Date actualStartTime) {
         this.actualStartTime = actualStartTime;
@@ -125,23 +191,8 @@ public class PerformanceResult extends BaseEntity {
     public Integer getExecuteTime() {
         return this.executeTime;
     }
-    
-    public void setMonitoredMachineId(Integer monitoredMachineId) {
-        this.monitoredMachineId = monitoredMachineId;
-    }
-    
-    public Integer getMonitoredMachineId() {
-        return this.monitoredMachineId;
-    }
-    
-    public void setMonitoredMachineResultId(Integer monitoredMachineResultId) {
-        this.monitoredMachineResultId = monitoredMachineResultId;
-    }
-    
-    public Integer getMonitoredMachineResultId() {
-        return this.monitoredMachineResultId;
-    }
-    
+
+
     public void setExecutePerson(String executePerson) {
         this.executePerson = executePerson;
     }
@@ -149,31 +200,25 @@ public class PerformanceResult extends BaseEntity {
     public String getExecutePerson() {
         return this.executePerson;
     }
-    
+    public Date getActualEndTime() {
+        return actualEndTime;
+    }
 
+    public void setActualEndTime(Date actualEndTime) {
+        this.actualEndTime = actualEndTime;
+    }
+    public String getExecuteStatus() {
+        return executeStatus;
+    }
 
-    
-    public void setPerformancePlan(PerformancePlan performancePlan){
-        this.performancePlan = performancePlan;
+    public void setExecuteStatus(String executeStatus) {
+        this.executeStatus = executeStatus;
     }
-    
-    public PerformancePlan getPerformancePlan() {
-        return performancePlan;
+    public Date getSetStartTime() {
+        return setStartTime;
     }
-    
-    public void setPerformanceMonitoredMachineResult(PerformanceMonitoredMachineResult performanceMonitoredMachineResult){
-        this.performanceMonitoredMachineResult = performanceMonitoredMachineResult;
-    }
-    
-    public PerformanceMonitoredMachineResult getPerformanceMonitoredMachineResult() {
-        return performanceMonitoredMachineResult;
-    }
-    
-    public void setPerformanceMonitoredMachine(PerformanceMonitoredMachine performanceMonitoredMachine){
-        this.performanceMonitoredMachine = performanceMonitoredMachine;
-    }
-    
-    public PerformanceMonitoredMachine getPerformanceMonitoredMachine() {
-        return performanceMonitoredMachine;
+
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
     }
 }

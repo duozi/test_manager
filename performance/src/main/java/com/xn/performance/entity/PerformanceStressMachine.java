@@ -78,9 +78,17 @@ public class PerformanceStressMachine extends BaseEntity {
      */
     private String createPerson;
 
+    private String stressMachineStatus;
 
-	
-	public PerformanceStressMachine(){
+    public String getStressMachineStatus() {
+        return stressMachineStatus;
+    }
+
+    public void setStressMachineStatus(String stressMachineStatus) {
+        this.stressMachineStatus = stressMachineStatus;
+    }
+
+    public PerformanceStressMachine(){
 	    // default constructor
 	}
     

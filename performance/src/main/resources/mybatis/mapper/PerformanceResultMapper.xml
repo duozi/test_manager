@@ -1,63 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.performance.dao.PerformanceResultMapper">
 
     <resultMap id="PerformanceResultMap" type="com.xn.performance.entity.PerformanceResult">
         <result property="id" column="id"/>
         <result property="planId" column="plan_id"/>
-        <result property="setStartTime" column="set_start_time"/>
+        <result property="actualEndTime" column="actual_end_time"/>
         <result property="actualStartTime" column="actual_start_time"/>
         <result property="executeTime" column="execute_time"/>
-        <result property="monitoredMachineId" column="monitored_machine_id"/>
-        <result property="monitoredMachineResultId" column="monitored_machine_result_id"/>
+        <result property="stressMachineId" column="stress_machine_id"/>
+        <result property="stressMachineName" column="stress_machine_name"/>
         <result property="executePerson" column="execute_person"/>
+        <result property="executeStatus" column="execute_status"/>
+        <result property="setStartTime" column="set_start_time"/>
     </resultMap>
-    
+
+    <resultMap id="PerformancePlanShowMap" type="com.xn.performance.entity.PerformancePlanShow">
+        <result property="id" column="id"/>
+        <result property="planId" column="plan_id"/>
+        <result property="planName" column="plan_name"/>
+        <result property="remark" column="remark"/>
+        <result property="company" column="company"/>
+        <result property="department" column="department"/>
+        <result property="psystem" column="psystem"/>
+        <result property="scriptId" column="script_id"/>
+        <result property="scriptName" column="script_name"/>
+        <result property="scenarioId" column="scenario_id"/>
+        <result property="scenarioName" column="scenario_name"/>
+        <result property="planStatus" column="plan_status"/>
+        <result property="createPerson" column="create_person"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="stressMachineId" column="stress_machine_id"/>
+        <result property="stressMachineName" column="stress_machine_name"/>
+        <result property="actualStartTime" column="actual_start_time"/>
+        <result property="executeStatus" column="execute_status"/>
+        <result property="setStartTime" column="set_start_time"/>
+    </resultMap>
+
+
     <sql id="columns">
         <![CDATA[
-        id, plan_id, set_start_time, actual_start_time, execute_time, monitored_machine_id, monitored_machine_result_id, execute_person
+
+        id, plan_id, actual_end_time, actual_start_time, execute_time, stress_machine_id,stress_machine_name, execute_person,execute_status,set_start_time
+
         ]]>
     </sql>
-    
+
     <sql id="where">
         <where>
-           <if test="@Ognl@isNotEmpty(id)">
+            <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
-           <if test="@Ognl@isNotEmpty(planId)">
+            <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
             </if>
-           <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
-                AND set_start_time >= #{setStartTimeBegin}
-           </if>
-           <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
-                AND set_start_time &lt;= #{setStartTimeEnd}
-           </if>
-           <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+                AND actual_end_time >= #{actualEndTimeBegin}
+            </if>
+            <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+                AND actual_end_time &lt;= #{actualEndTimeEnd}
+            </if>
+            <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
                 AND actual_start_time >= #{actualStartTimeBegin}
-           </if>
-           <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            </if>
+            <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
                 AND actual_start_time &lt;= #{actualStartTimeEnd}
-           </if>
-           <if test="@Ognl@isNotEmpty(executeTime)">
+            </if>
+            <if test="@Ognl@isNotEmpty(executeTime)">
                 AND execute_time = #{executeTime}
             </if>
-           <if test="@Ognl@isNotEmpty(monitoredMachineId)">
-                AND monitored_machine_id = #{monitoredMachineId}
+            <if test="@Ognl@isNotEmpty(stressMachineId)">
+                AND stress_machine_id = #{stressMachineId}
             </if>
-           <if test="@Ognl@isNotEmpty(monitoredMachineResultId)">
-                AND monitored_machine_result_id = #{monitoredMachineResultId}
+            <if test="@Ognl@isNotEmpty(stressMachineName)">
+                AND stress_machine_name = #{stressMachineName}
             </if>
-           <if test="@Ognl@isNotEmpty(executePerson)">
+            <if test="@Ognl@isNotEmpty(executePerson)">
                 AND execute_person = #{executePerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(executeStatus)">
+                AND execute_status = #{executeStatus}
+            </if>
+            <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+                AND set_start_time >= #{setStartTimeBegin}
+            </if>
+            <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+                AND set_start_time &lt;= #{setStartTimeEnd}
             </if>
         </where>
     </sql>
-    
+
     <select id="get" resultMap="PerformanceResultMap">
-        SELECT <include refid="columns" />
+        SELECT
+        <include refid="columns"/>
         <![CDATA[
             FROM
                 performance_result
@@ -65,15 +102,114 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
     <select id="list" resultMap="PerformanceResultMap">
         SELECT
-            <include refid="columns" />
+        <include refid="columns"/>
         FROM
-            performance_result 
+        performance_result
         <include refid="where"/>
     </select>
-        
+
+    <select id="getNowTask" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
+        FROM
+        performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NULL
+        <if test="@Ognl@isNotEmpty(id)">
+            AND id = #{id}
+        </if>
+        <if test="@Ognl@isNotEmpty(planId)">
+            AND plan_id = #{planId}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+            AND actual_end_time >= #{actualEndTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+            AND actual_end_time &lt;= #{actualEndTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            AND actual_start_time >= #{actualStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            AND actual_start_time &lt;= #{actualStartTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeTime)">
+            AND execute_time = #{executeTime}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineId)">
+            AND stress_machine_id = #{stressMachineId}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineName)">
+            AND stress_machine_name = #{stressMachineName}
+        </if>
+        <if test="@Ognl@isNotEmpty(executePerson)">
+            AND execute_person = #{executePerson}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeStatus)">
+            AND execute_status = #{executeStatus}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+            AND set_start_time >= #{setStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+            AND set_start_time &lt;= #{setStartTimeEnd}
+        </if>
+    </select>
+
+
+    <select id="getScheduleTask" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time
+        FROM
+        performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
+        WHERE P.is_delete="未删除" AND R.set_start_time IS NOT NULL
+        <if test="@Ognl@isNotEmpty(id)">
+            AND id = #{id}
+        </if>
+        <if test="@Ognl@isNotEmpty(planId)">
+            AND plan_id = #{planId}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeBegin)">
+            AND actual_end_time >= #{actualEndTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualEndTimeEnd)">
+            AND actual_end_time &lt;= #{actualEndTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
+            AND actual_start_time >= #{actualStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(actualStartTimeEnd)">
+            AND actual_start_time &lt;= #{actualStartTimeEnd}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeTime)">
+            AND execute_time = #{executeTime}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineId)">
+            AND stress_machine_id = #{stressMachineId}
+        </if>
+        <if test="@Ognl@isNotEmpty(stressMachineName)">
+            AND stress_machine_name = #{stressMachineName}
+        </if>
+        <if test="@Ognl@isNotEmpty(executePerson)">
+            AND execute_person = #{executePerson}
+        </if>
+        <if test="@Ognl@isNotEmpty(executeStatus)">
+            AND execute_status = #{executeStatus}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeBegin)">
+            AND set_start_time >= #{setStartTimeBegin}
+        </if>
+        <if test="@Ognl@isNotEmpty(setStartTimeEnd)">
+            AND set_start_time &lt;= #{setStartTimeEnd}
+        </if>
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -86,25 +222,31 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
+
             INSERT INTO performance_result (
                 id,
                 plan_id,
-                set_start_time,
+                actual_end_time,
                 actual_start_time,
                 execute_time,
-                monitored_machine_id,
-                monitored_machine_result_id,
-                execute_person
+                stress_machine_id,
+                stress_machine_name,
+                execute_person,
+                execute_status,
+                set_start_time
             ) VALUES (
                 #{id},
                 #{planId},
-                #{setStartTime},
+                #{actualEndTime},
                 #{actualStartTime},
                 #{executeTime},
-                #{monitoredMachineId},
-                #{monitoredMachineResultId},
-                #{executePerson}
+                #{stressMachineId},
+                #{stressMachineName},
+                #{executePerson},
+                #{executeStatus},
+                #{setStartTime}
             )
+
         ]]>
     </insert>
 
@@ -113,59 +255,69 @@
             INSERT INTO performance_result (
                 id,
                 plan_id,
-                set_start_time,
+                actula_end_time,
                 actual_start_time,
                 execute_time,
-                monitored_machine_id,
-                monitored_machine_result_id,
-                execute_person
+                stress_machine_id,
+                stress_machine_name,
+                execute_person,
+                execute_status,
+                set_start_time
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.planId},#{item.setStartTime},#{item.actualStartTime},#{item.executeTime},#{item.monitoredMachineId},#{item.monitoredMachineResultId},#{item.executePerson})
+            (#{item.id},#{item.planId},#{item.actualEndTime},#{item.actualStartTime},#{item.executeTime},#{item.stressMachineId},#{item.stressMachineName},#{item.executePerson}),#{item.executeStatus},#{item.setStartTime}
         </foreach>
     </insert>
-    
+
     <update id="update">
-        	UPDATE
-                performance_result
-            <set>
-                <if test="planId != null">
-                	<![CDATA[ plan_id = #{planId} ]]>,
-                </if>
-                <if test="setStartTime != null">
-                	<![CDATA[ set_start_time = #{setStartTime} ]]>,
-                </if>
-                <if test="actualStartTime != null">
-                	<![CDATA[ actual_start_time = #{actualStartTime} ]]>,
-                </if>
-                <if test="executeTime != null">
-                	<![CDATA[ execute_time = #{executeTime} ]]>,
-                </if>
-                <if test="monitoredMachineId != null">
-                	<![CDATA[ monitored_machine_id = #{monitoredMachineId} ]]>,
-                </if>
-                <if test="monitoredMachineResultId != null">
-                	<![CDATA[ monitored_machine_result_id = #{monitoredMachineResultId} ]]>,
-                </if>
-                <if test="executePerson != null">
-                	<![CDATA[ execute_person = #{executePerson} ]]>
-                </if>
-            </set>
-            WHERE
-                id = #{id} 
+        UPDATE
+        performance_result
+        <set>
+            <if test="planId != null">
+                <![CDATA[ plan_id = #{planId} ]]>,
+            </if>
+            <if test="actualEndTime != null">
+                <![CDATA[ actual_end_time = #{actualEndTime} ]]>,
+            </if>
+            <if test="actualStartTime != null">
+                <![CDATA[ actual_start_time = #{actualStartTime} ]]>,
+            </if>
+            <if test="executeTime != null">
+                <![CDATA[ execute_time = #{executeTime} ]]>,
+            </if>
+            <if test="stressMachineId != null">
+                <![CDATA[ stress_machine_id = #{stressMachineId} ]]>,
+            </if>
+            <if test="stressMachineName != null">
+                <![CDATA[ stress_machine_name = #{stressMachineName} ]]>,
+            </if>
+            <if test="executePerson != null">
+                <![CDATA[ execute_person = #{executePerson} ]]>
+            </if>
+            <if test="executeStatus != null">
+                <![CDATA[ execute_status = #{executeStatus} ]]>
+            </if>
+            <if test="setStartTime != null">
+                <![CDATA[ set_start_time = #{setStartTime} ]]>
+            </if>
+        </set>
+        WHERE
+        id = #{id}
     </update>
-    
+
     <delete id="deleteByPK">
         <![CDATA[
+
             DELETE
             FROM
                 performance_result
             WHERE
                 id = #{id} 
+
         ]]>
     </delete>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE
@@ -174,7 +326,7 @@
         ]]>
         <include refid="where"/>
     </delete>
-    
+
     <delete id="deleteBatchByPK">
         <![CDATA[
             DELETE

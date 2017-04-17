@@ -4,10 +4,10 @@
 package com.xn.interfacetest.entity;
 
 
+import com.xn.common.base.BaseEntity;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.xn.common.base.BaseEntity;
 
 /**
  * TestCase 实体类

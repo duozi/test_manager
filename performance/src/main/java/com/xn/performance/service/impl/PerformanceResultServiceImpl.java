@@ -3,20 +3,21 @@
  */
 package com.xn.performance.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
+import com.xn.performance.dao.PerformanceResultMapper;
+import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.dto.PerformanceResultDto;
+import com.xn.performance.entity.PerformancePlanShow;
+import com.xn.performance.entity.PerformanceResult;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
+import com.xn.performance.service.PerformanceResultService;
+import com.xn.performance.util.BeanUtils;
+import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xn.performance.util.BeanUtils;
-import com.xn.performance.util.CollectionUtils;
-import com.xn.performance.mybatis.PageInfo;
-import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.entity.PerformanceResult;
-import com.xn.performance.dto.PerformanceResultDto;
-import com.xn.performance.service.PerformanceResultService;
-import com.xn.performance.dao.PerformanceResultMapper;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -33,6 +34,9 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
      */
     @Autowired
     private PerformanceResultMapper performanceResultMapper;
+
+    @Autowired
+    private PerformanceScenarioServiceImpl performanceScenarioService;
 
     @Override
     public PerformanceResultDto get(Object condition)  
@@ -108,6 +112,22 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
     @Override
     public int deleteBatch(List<PerformanceResultDto> performanceResults) {
         return 0;
+    }
+
+    @Override
+    public List<PerformancePlanShowDto> getNowTask(PerformanceResultDto performanceResultDto) {
+        List<PerformancePlanShow> list=performanceResultMapper.getNowTask(performanceResultDto);
+        List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
+
+        return dtoList;
+    }
+
+    @Override
+    public List<PerformancePlanShowDto> getScheduleTask(PerformanceResultDto performanceResultDto) {
+        List<PerformancePlanShow> list=performanceResultMapper.getScheduleTask(performanceResultDto);
+        List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
+
+        return dtoList;
     }
 
 }

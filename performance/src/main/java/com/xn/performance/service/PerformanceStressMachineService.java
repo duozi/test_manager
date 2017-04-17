@@ -119,4 +119,7 @@ public interface PerformanceStressMachineService {
     int deleteBatch(List<PerformanceStressMachineDto> performanceStressMachines);
 
     String sayHello(String name);
+
+    boolean testLink(String ip,String username,String password);
+
 }
