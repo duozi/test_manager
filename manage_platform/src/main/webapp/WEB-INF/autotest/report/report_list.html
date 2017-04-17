@@ -47,52 +47,59 @@
                 <div class="panel-body">
                     <form role="form " class="report-form">
                         <div class="row col-lg-12">
-                            <div class="form-group col-lg-4 ">
-                                <label  class="control-label">测试系统</label>
-                                <select class="form-control"  name="systemId" >
-                                    <option value="" disabled selected >选择系统名称</option>
-                                    <#if systemList ??>
-                                        <#list systemList as item>
-                                            <option value="${item.id}">${item.name}</option>
-                                        </#list>
-                                    </#if>
-                                </select>
-                            </div>
+                            <!--<div class="form-group col-lg-4 ">-->
+                                <!--<label  class="control-label">测试系统</label>-->
+                                <!--<select class="form-control"  name="systemId" >-->
+                                    <!--<option value="" disabled selected >选择系统名称</option>-->
+                                    <!--<#if systemList ??>-->
+                                        <!--<#list systemList as item>-->
+                                            <!--<option value="${item.id}">${item.name}</option>-->
+                                        <!--</#list>-->
+                                    <!--</#if>-->
+                                <!--</select>-->
+                            <!--</div>-->
                             <div class="form-group col-lg-4 ">
                                 <label  class="control-label">测试计划</label>
                                 <select class="form-control">
-                                    <option value="" disabled selected >选择计划名称</option>
+                                    <option value="" <#if planId = null>disabled selected</#if> >选择计划名称</option>
                                     <#if planList ??>
                                         <#list planList as item>
-                                            <option value="${item.id}">${item.name}</option>
+                                            <option value="${item.id}"  <#if planId = item.id>selected</#if>>${item.name}</option>
                                         </#list>
                                     </#if>
                                 </select>
                             </div>
                             <div class="form-group col-lg-4 ">
                                 <label  class="control-label">测试环境</label>
-                                <select class="form-control">
-                                    <option value="" disabled selected >选择环境名称</option>
-                                    <select   id="" name="environmentId" class="form-control">
-                                        <#if testEnvironmentDtoList ??>
-                                            <#list testEnvironmentDtoList as item>
-                                                <option value="${item.id}" >${item.name}</option>
-                                            </#list>
-                                        </#if>
-                                    </select>
+                                <select   id="" name="environmentId" class="form-control">
+                                    <option value="" <#if environmentId = null>disabled selected</#if>  >选择环境名称</option>
+                                    <#if testEnvironmentDtoList ??>
+                                        <#list testEnvironmentDtoList as item>
+                                            <option value="${item.id}" <#if environmentId = item.id>selected</#if>>${item.name}</option>
+                                        </#list>
+                                    </#if>
                                 </select>
+                            </div>
+                            <div class="form-group col-lg-4 ">
+                                <label  class="control-label">报告名称</label>
+                                <input type="text" name="name" value="${name}" class="form-control" placeholder="请输入报告名称">
                             </div>
                         </div>
                         <div class="row col-lg-12">
                             <div class="form-group col-lg-4 ">
-                                <label  class="control-label">报告名称</label>
-                                <input type="text" name="name" class="form-control" placeholder="请输入报告名称">
+                                <label  class="control-label">执行结果</label>
+                                <select class="form-control" name="result">
+                                    <option value="" <#if result = null>disabled selected</#if> >选择执行结果</option>
+                                    <option value="success" <#if result = 'success'>selected</#if> >成功</option>
+                                    <option value="fail" <#if result = 'fail'>selected</#if> >失败</option>
+                                    <option value="error" <#if result = 'error'>selected</#if> >异常</option>
+                                </select>
                             </div>
                             <div class="form-group col-lg-6 ">
                                 <label  class="control-label">执行时间</label>
-                                <input type="text" name="beginTime" class="form-control form-datetime" placeholder="如：2017-01-01 12:12">
+                                <input type="text" name="beginTime" value="${beginTime}" class="form-control form-datetime" placeholder="如：2017-01-01 12:12">
 
-                                <input type="text" name="endTime" class="form-control form-datetime" placeholder="如：2017-09-01 12:12">
+                                <input type="text" name="endTime" value="${toTime}" class="form-control form-datetime" placeholder="如：2017-09-01 12:12">
                             </div>
                             <div class="form-group ">
                                 <button type="submit" class="btn btn-default"  onclick="reloadReport()">查询</button>
@@ -103,46 +110,56 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>报告编号</th>
-                                <th>测试系统</th>
+                                <th>报告名称</th>
+                                <!--<th>测试系统</th>-->
                                 <th>测试计划</th>
                                 <th>执行环境</th>
                                 <th>测试集</th>
+                                <th>通过用例数</th>
+                                <th>不通过用例数</th>
+                                <th>异常用例数</th>
                                 <th>执行时间</th>
                                 <th>执行持续时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>${item.id}</td>
-                                <td>
-                                    ${item.system.name}
-                                </td>
-                                <td>
-                                    <a href="../plan/plan_item?id=${item.plan.id}">${item.plan.name}</a>
-                                </td>
-                                <td>
-                                    ${item.environment.name}
-                                </td>
-                                <td>
-                                    <#if item.suitList??>
-                                        <#list item.suitList as suit>
-                                            <a href="../suit/suit_item?id=${suit.id}">${suit.name}</a>
-                                            <#if suit_has_next>
-                                                ,
+                            <#if testReportDtoList??>
+                                <#list testReportDtoList as item>
+                                    <tr>
+                                        <td>${item.name}</td>
+                                        <!--<td>-->
+                                        <!--${item.system.name}-->
+                                        <!--</td>-->
+                                        <td>
+                                            ${item.plan.name}
+                                        </td>
+                                        <td>
+                                            <a href="../environment/environment_item?id=${item.environment.id}">${item.environment.name}</a>
+                                        </td>
+                                        <td>
+                                            <#if item.suitList??>
+                                                <#list item.suitList as suit>
+                                                    <a href="../suit/suit_item?id=${suit.id}">${suit.name}</a>
+                                                    <#if suit_has_next>
+                                                        ,
+                                                    </#if>
+                                                </#list>
                                             </#if>
-                                        </#list>
-                                    </#if>
-                                </td>
-                                <td>${item.beginTime}</td>
-                                <td>${item.costTime}ms</td>
-                                <td>
-                                    <a type="button"   href="report_detail?id=${item.id}" class="btn btn-warning">查看详情</a>
-                                    <!--<a type="button"  class="btn btn-info">下载</a>-->
-                                    <a type="button" data-toggle="modal" data-target="#email" class="btn btn-default">发送结果</a>
-                                </td>
-                            </tr>
+                                        </td>
+                                        <td>${item.passCaseCount?c}</td>
+                                        <td>${item.failCaseCout?c}</td>
+                                        <td>${item.errorCaseCout?c}</td>
+                                        <td>${item.beginTime}</td>
+                                        <td>${item.costTime?c}ms</td>
+                                        <td>
+                                            <a type="button"   href="report_detail?id=${item.id}" class="btn btn-warning">查看详情</a>
+                                            <!--<a type="button"  class="btn btn-info">下载</a>-->
+                                            <a type="button" data-toggle="modal" data-target="#email" class="btn btn-default">发送结果</a>
+                                        </td>
+                                    </tr>
+                                </#list>
+                            </#if>
                             </tbody>
                         </table>
                     </div>
@@ -181,15 +198,19 @@
   <!-- jQuery -->
 <script type="text/javascript">
     function reloadReport(){
-        var systemId = $("select[name='systemId']").val();
         var name = $("input[name='name']").val();
-        var createPerson = $("input[name='createPerson']").val();
-        var status = $("select[name='status']").val();
-        var url = "${basePath}/autotest/plan/plan_list?"
-        url +="&systemId=" + systemId;
+        var planId = $("select[name='planId']").val();
+        var environmentId = $("select[name='environmentId']").val();
+        var beginTime = $("input[name='beginTime']").val();
+        var endTime = $("input[name='endTime']").val();
+        var result = $("input[name='result']").val();
+        var url = "${basePath}/autotest/report/report_list?"
+        url +="&planId=" + planId;
         url += "&name=" + name;
-        url += "&status=" + status;
-        url += "&createPerson=" + createPerson;
+        url += "&environmentId=" + environmentId;
+        url += "&beginTime=" + beginTime;
+        url += "&endTime=" + endTime;
+        url += "&result=" + result;
         window.location.href = url;
     }
 

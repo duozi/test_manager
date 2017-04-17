@@ -125,4 +125,11 @@ public interface TestSystemService {
     int deleteBatch(List<TestSystemDto> testSystems);
 
     TestSystemDto getWithCompanyInfo(Long systemId);
+
+    /**
+     * 根据多个系统id查询系统信息
+     * @param systemIds
+     * @return
+     */
+    List<TestSystemDto> getWithCompanyInfoBySystems(String systemIds);
 }

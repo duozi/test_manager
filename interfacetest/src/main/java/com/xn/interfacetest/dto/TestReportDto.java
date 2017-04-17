@@ -5,6 +5,9 @@ package com.xn.interfacetest.dto;
 
 
 import com.xn.common.base.BaseDto;
+import com.xn.interfacetest.entity.TestPlan;
+
+import java.util.List;
 
 /**
  * TestReport Dto 对象
@@ -41,13 +44,19 @@ public class TestReportDto extends BaseDto {
      * 
      * 系统id 
      */
-    private Long systemId;
+    private String systemIds;
 
     /**
-     * 
-     * 计划id 
+     *
+     * 计划id
      */
     private Long planId;
+
+    /**
+     *
+     * 环境id
+     */
+    private Long environmentId;
 
     /**
      * 
@@ -100,6 +109,12 @@ public class TestReportDto extends BaseDto {
      */
     private Integer costTime;
 
+    private TestPlanDto plan;
+
+    private TestEnvironmentDto environment;
+
+    private List<TestSuitDto> suitList;
+
     public Long getId() {
         return this.id;
     }
@@ -124,12 +139,12 @@ public class TestReportDto extends BaseDto {
         this.caseIds = caseIds;
     }
 
-    public Long getSystemId() {
-        return this.systemId;
+    public String getSystemIds() {
+        return systemIds;
     }
-    
-    public void setSystemId(Long systemId) {
-        this.systemId = systemId;
+
+    public void setSystemIds(String systemIds) {
+        this.systemIds = systemIds;
     }
 
     public Long getPlanId() {
@@ -210,6 +225,38 @@ public class TestReportDto extends BaseDto {
 
     public void setCostTime(Integer costTime) {
         this.costTime = costTime;
+    }
+
+    public Long getEnvironmentId() {
+        return environmentId;
+    }
+
+    public void setEnvironmentId(Long environmentId) {
+        this.environmentId = environmentId;
+    }
+
+    public TestPlanDto getPlan() {
+        return plan;
+    }
+
+    public void setPlan(TestPlanDto plan) {
+        this.plan = plan;
+    }
+
+    public TestEnvironmentDto getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(TestEnvironmentDto environment) {
+        this.environment = environment;
+    }
+
+    public List<TestSuitDto> getSuitList() {
+        return suitList;
+    }
+
+    public void setSuitList(List<TestSuitDto> suitList) {
+        this.suitList = suitList;
     }
 }
 

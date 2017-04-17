@@ -36,6 +36,9 @@
            <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
+            <if test="@Ognl@isNotEmpty(isDelete)">
+                AND is_delete = #{isDelete}
+            </if>
         </where>
     </sql>
     
@@ -55,7 +58,7 @@
         <include refid="columns" />
         FROM
         test_params
-        where interface_id= #{interfaceId}
+        where interface_id= #{interfaceId} and is_delete = 0
     </select>
 
     <select id="list" resultMap="TestParamsMap">
@@ -72,7 +75,16 @@
         LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
         where rcp.case_id = #{caseId} and rcp.is_delete = 0
     </select>
-        
+
+    <select id="getParamsByInterfaceIdAndName">
+        <![CDATA[
+            select *
+            from   test_params
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = #{isDlete}
+        ]]>
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -131,15 +143,35 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+            UPDATE
                 test_params
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
+
+    <update id="deleteByInterfaceId">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId}
+        ]]>
+    </update>
+
+    <update id="deleteByInterfaceIdAndParamName">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = 0
+        ]]>
+    </update>
     
     <delete id="delete">
         <![CDATA[

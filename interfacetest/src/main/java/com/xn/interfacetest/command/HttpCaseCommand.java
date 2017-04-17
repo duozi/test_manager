@@ -4,12 +4,16 @@ package com.xn.interfacetest.command;/**
 
 import com.alibaba.fastjson.JSON;
 import com.xn.interfacetest.dto.RelationInterfaceResultDto;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.response.Response;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.service.RelationInterfaceResultService;
 import com.xn.interfacetest.util.FileUtil;
 import com.xn.interfacetest.util.HttpClientUtil;
 import com.xn.interfacetest.util.SpringContextUtil;
+import junit.framework.TestCase;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +22,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.net.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HttpCaseCommand implements CaseCommand {
     private static final Logger logger = LoggerFactory.getLogger(HttpCaseCommand.class);
     private static HttpCaseCommand httpCaseCommand ;  //  关键点1   静态初使化 一个工具类  这样是为了在spring初使化之前
+    private static SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
     private RelationInterfaceResultService relationInterfaceResultService = (RelationInterfaceResultService) SpringContextUtil.getBean("relationInterfaceResultService");
 
     private Response response = new Response();
@@ -33,12 +40,12 @@ public class HttpCaseCommand implements CaseCommand {
     private String result;//请求结果
     private String propType;//请求协议类型：http、https
     private Long planId;
-    private Long suitId;
+    private TestSuitDto suitDto;
     private Long reportId;
-    private Long caseId;
-    private Long interfaceId;
+    private TestCaseDto caseDto;
+    private TestInterfaceDto interfaceDto;
 
-    public HttpCaseCommand(String type, String url, String params, String contentType, String timeout, String propType, Long  caseId,Long interfaceId,Long planId,Long reportId,Long suitId) {
+    public HttpCaseCommand(String type, String url, String params, String contentType, String timeout, String propType, TestCaseDto caseDto, TestInterfaceDto interfaceDto, Long planId, Long reportId, TestSuitDto suitDto) {
         this.type = type;
         this.url = url;
         this.params = params;
@@ -46,10 +53,10 @@ public class HttpCaseCommand implements CaseCommand {
         this.timeout = timeout;
         this.propType = propType;
         this.planId = planId;
-        this.suitId = suitId;
+        this.interfaceDto = interfaceDto;
         this.reportId = reportId;
-        this.caseId = caseId;
-        this.interfaceId = interfaceId;
+        this.caseDto = caseDto;
+        this.suitDto = suitDto;
     }
 
     public static void main(String[] args) throws IOException {
@@ -184,8 +191,10 @@ public class HttpCaseCommand implements CaseCommand {
 
     //发送请求
     public void httpRequest(){
-            String responseStr = "";
+        String responseStr = "";
+        RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
         try {
+            relationInterfaceResultDto.setExcuteTime(format.format(new Date()));
             if(contentType.contains("json")){
                 responseStr =  HttpClientUtil.sendHttpPostJson(url,params);
             } else if(contentType.contains("form")){
@@ -202,11 +211,13 @@ public class HttpCaseCommand implements CaseCommand {
         } finally {
             //保存请求结果
             response.setBody(responseStr);
-            RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
             relationInterfaceResultDto.setPlanId(planId);
-            relationInterfaceResultDto.setSuitId(suitId);
-            relationInterfaceResultDto.setCaseId(caseId);
-            relationInterfaceResultDto.setInterfaceId(interfaceId);
+            relationInterfaceResultDto.setSuitId(suitDto.getId());
+            relationInterfaceResultDto.setCaseId(caseDto.getId());
+            relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
+            relationInterfaceResultDto.setSuitName(suitDto.getName());
+            relationInterfaceResultDto.setInterfaceName(caseDto.getName());
+            relationInterfaceResultDto.setCaseName(interfaceDto.getName());
             relationInterfaceResultDto.setRequestData(params);
             relationInterfaceResultDto.setResponseData(responseStr);
             relationInterfaceResultDto.setResult(result);

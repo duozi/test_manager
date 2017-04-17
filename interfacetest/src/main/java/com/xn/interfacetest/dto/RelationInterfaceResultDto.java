@@ -5,6 +5,9 @@ package com.xn.interfacetest.dto;
 
 
 import com.xn.common.base.BaseDto;
+import com.xn.interfacetest.response.AssertItem;
+
+import java.util.List;
 
 /**
  * RelationInterfaceResult Dto 对象
@@ -44,6 +47,24 @@ public class RelationInterfaceResultDto extends BaseDto {
     private Long caseId;
 
     /**
+     *
+     * suitId
+     */
+    private String suitName;
+
+    /**
+     *
+     * interfaceId
+     */
+    private String interfaceName;
+
+    /**
+     *
+     * caseId
+     */
+    private String caseName;
+
+    /**
      * 
      * planId 
      */
@@ -68,10 +89,25 @@ public class RelationInterfaceResultDto extends BaseDto {
     private String responseData;
 
     /**
+     * 占用时间
+     */
+    private Integer costTime;
+
+    /**
+     * 执行时间
+     */
+    private String excuteTime;
+
+    /**
      * 
      * 请求结果(通过，错误，失败) 
      */
     private String result;
+
+    /**
+     * 断言结果，用来展示期望值和实际值
+     */
+    private List<AssertItem> assertItemList;
 
     public Long getId() {
         return this.id;
@@ -145,7 +181,52 @@ public class RelationInterfaceResultDto extends BaseDto {
         this.result = result;
     }
 
+    public Integer getCostTime() {
+        return costTime;
+    }
 
+    public void setCostTime(Integer costTime) {
+        this.costTime = costTime;
+    }
 
+    public String getSuitName() {
+        return suitName;
+    }
+
+    public void setSuitName(String suitName) {
+        this.suitName = suitName;
+    }
+
+    public String getInterfaceName() {
+        return interfaceName;
+    }
+
+    public void setInterfaceName(String interfaceName) {
+        this.interfaceName = interfaceName;
+    }
+
+    public String getCaseName() {
+        return caseName;
+    }
+
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public List<AssertItem> getAssertItemList() {
+        return assertItemList;
+    }
+
+    public void setAssertItemList(List<AssertItem> assertItemList) {
+        this.assertItemList = assertItemList;
+    }
+
+    public String getExcuteTime() {
+        return excuteTime;
+    }
+
+    public void setExcuteTime(String excuteTime) {
+        this.excuteTime = excuteTime;
+    }
 }
 

@@ -6,8 +6,15 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
 import com.xn.interfacetest.dto.TestReportDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.entity.TestEnvironment;
 import com.xn.interfacetest.entity.TestReport;
+import com.xn.interfacetest.service.TestEnvironmentService;
+import com.xn.interfacetest.service.TestPlanService;
+import com.xn.interfacetest.service.TestSuitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +43,15 @@ public class TestReportServiceImpl implements TestReportService {
      */
     @Autowired
     private TestReportMapper testReportMapper;
+
+    @Autowired
+    private TestPlanService testPlanService;
+
+    @Autowired
+    private TestSuitService testSuitService;
+
+    @Autowired
+    private TestEnvironmentService testEnvironmentService;
 
     @Override
     @Transactional(readOnly = true)
@@ -116,6 +132,54 @@ public class TestReportServiceImpl implements TestReportService {
     @Override
     public int deleteBatch(List<TestReportDto> testResults) {
         return 0;
+    }
+
+    @Override
+    public List<TestReportDto> selectWithOtherInfo(Map<String, Object> params) {
+        List<TestReport> list = testReportMapper.selectWithOtherInfo(params);
+        List<TestReportDto> dtoList = CollectionUtils.transform(list, TestReportDto.class);
+        for(TestReportDto testReportDto:dtoList){
+            //查询测试计划详情
+            TestPlanDto testPlanDto = testPlanService.get(testReportDto.getPlanId());
+            if(null != testPlanDto){
+                testReportDto.setPlan(testPlanDto);
+            }
+            //查询测试环境详情
+            TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(testReportDto.getEnvironmentId());
+            if(null != testEnvironmentDto){
+                testReportDto.setEnvironment(testEnvironmentDto);
+            }
+            //查询出测试集
+            List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(testReportDto.getPlanId());
+            if(null != testSuitDtoList && testSuitDtoList.size() > 0){
+                testReportDto.setSuitList(testSuitDtoList);
+            }
+        }
+        return dtoList;
+    }
+
+    @Override
+    public TestReportDto getWithInfo(long id) {
+        TestReport testReport = testReportMapper.get(id);
+        TestReportDto testReportDto = BeanUtils.toBean(testReport,TestReportDto.class);
+        if(null != testReportDto){
+            //查询测试计划详情
+            TestPlanDto testPlanDto = testPlanService.get(testReportDto.getPlanId());
+            if(null != testPlanDto){
+                testReportDto.setPlan(testPlanDto);
+            }
+            //查询测试环境详情
+            TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(testReportDto.getEnvironmentId());
+            if(null != testEnvironmentDto){
+                testReportDto.setEnvironment(testEnvironmentDto);
+            }
+            //查询出测试集
+            List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(testReportDto.getPlanId());
+            if(null != testSuitDtoList && testSuitDtoList.size() > 0){
+                testReportDto.setSuitList(testSuitDtoList);
+            }
+        }
+        return testReportDto;
     }
 
 }

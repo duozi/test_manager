@@ -151,6 +151,17 @@ public class TestSystemServiceImpl implements TestSystemService {
         return testSystemDto;
     }
 
+    @Override
+    public List<TestSystemDto> getWithCompanyInfoBySystems(String systemIds) {
+        String[] ids = systemIds.split(",|，");
+        List<TestSystem> list = testSystemMapper.getWithCompanyInfoBySystems(ids);
+        List<TestSystemDto> dtoList = CollectionUtils.transform(list, TestSystemDto.class);
+        for(TestSystemDto systemDto: dtoList){
+            selectFromCompany(systemDto);
+        }
+        return dtoList;
+    }
+
     private void selectFromCompany( TestSystemDto testSystemDto){
         //查询部门
         DepartmentDto departmentDto = departmentService.get(testSystemDto.getDepartmentId());

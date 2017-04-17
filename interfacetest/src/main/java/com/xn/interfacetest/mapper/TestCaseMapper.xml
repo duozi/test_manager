@@ -345,5 +345,18 @@
         ]]>
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
     </delete>
+
+    <select id="getByCaseIds" resultMap="TestCaseMap">
+        <![CDATA[
+        SELECT
+        *
+        FROM
+        test_case
+        WHERE
+                id IN
+        ]]>
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
+
 </mapper>
 

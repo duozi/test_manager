@@ -114,4 +114,6 @@ public interface RelationInterfaceResultService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationInterfaceResultDto> relationInterfaceResults);
+
+    List<RelationInterfaceResultDto> getByReportId(Map<String, Object> condition);
 }

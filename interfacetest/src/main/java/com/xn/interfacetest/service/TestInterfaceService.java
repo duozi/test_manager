@@ -148,4 +148,18 @@ public interface TestInterfaceService {
      * @return
      */
     TestInterfaceDto getByCaseId(Long id);
+
+    /**
+     * 通过多个接口id查询出接口详细信息
+     * @param interfaceArray
+     * @return
+     */
+    List<TestInterfaceDto> listWithInfoByIds(String[] interfaceArray);
+
+    /**
+     * 通过多个接口id查询出接口
+     * @param interfaceIds
+     * @return
+     */
+    List<TestInterfaceDto> getByInterfaceIds(String interfaceIds);
 }

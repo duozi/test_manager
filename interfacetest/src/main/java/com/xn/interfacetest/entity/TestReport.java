@@ -37,16 +37,22 @@ public class TestReport extends BaseEntity {
     private String caseIds;
 
     /**
-     * 
-     * 系统id 
+     *
+     * 系统id
      */
-    private Long systemId;
+    private String systemIds;
 
     /**
      * 
      * 计划id 
      */
     private Long planId;
+
+    /**
+     *
+     * 环境id
+     */
+    private Long environmentId;
 
     /**
      * 
@@ -130,15 +136,15 @@ public class TestReport extends BaseEntity {
     public void setCaseIds(String caseIds) {
         this.caseIds = caseIds;
     }
-    
-    public Long getSystemId() {
-        return this.systemId;
+
+    public String getSystemIds() {
+        return systemIds;
     }
-    
-    public void setSystemId(Long systemId) {
-        this.systemId = systemId;
+
+    public void setSystemIds(String systemIds) {
+        this.systemIds = systemIds;
     }
-    
+
     public Long getPlanId() {
         return this.planId;
     }
@@ -217,5 +223,13 @@ public class TestReport extends BaseEntity {
 
     public void setCostTime(Integer costTime) {
         this.costTime = costTime;
+    }
+
+    public Long getEnvironmentId() {
+        return environmentId;
+    }
+
+    public void setEnvironmentId(Long environmentId) {
+        this.environmentId = environmentId;
     }
 }

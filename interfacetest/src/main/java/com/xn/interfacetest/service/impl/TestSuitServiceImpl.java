@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.xn.common.base.CommonResult;
 import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.dao.RelationSuitCaseMapper;
 import com.xn.interfacetest.dao.TestInterfaceMapper;
@@ -196,7 +197,8 @@ public class TestSuitServiceImpl implements TestSuitService {
     }
 
     @Override
-    public void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId) throws Exception{
+    public CommonResult excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId) throws Exception{
+        CommonResult result = new CommonResult();
         try{
             ExecutorService exe = Executors.newFixedThreadPool(50);
 
@@ -209,30 +211,45 @@ public class TestSuitServiceImpl implements TestSuitService {
             TestReportDto testReportDto = new TestReportDto();
             //设置计划id
             testReportDto.setPlanId(planId);
+            testReportDto.setEnvironmentId(testEnvironmentDto.getId());
             //设置报告名称
             Date dataTime = new Date();
             testReportDto.setName(testPlanDto.getName() + "-"+ reportName + format.format(dataTime));
             testReportDto = testReportService.save(testReportDto);
+            result.setData(testReportDto);
 
             excute(testSuitDtoList, testEnvironmentDto, planId, testReportDto.getId(),testReportDto);
         }catch (Exception e){
             logger.error("异常：｛｝",e);
+            result.setCode(1);
+            result.setMessage("执行计划异常：" + e.getMessage());
             throw e;
         }
+        return result;
+    }
 
-
-
+    @Override
+    public List<TestSuitDto> listAll() {
+        List<TestSuit> list = testSuitMapper.list(new TestSuit());
+        List<TestSuitDto> dtoList = CollectionUtils.transform(list, TestSuitDto.class);
+        return dtoList;
     }
 
     private void excute(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, Long id, TestReportDto testReportDto) throws Exception{
+        String systemIds = "";
         for (int i = 0; i < testSuitDtoList.size(); i++) {
             try {
+                //系统id
+                systemIds = testSuitDtoList.get(i).getSystemId() + ",";
+                //执行单个测试集
                 excuteSuit(testSuitDtoList.get(i),testEnvironmentDto, planId,testReportDto.getId());
             } catch (Exception e) {
                 logger.error("测试集｛｝执行异常:"+testSuitDtoList.get(i).getName(),e);
                 throw e;
             }
         }
+
+        testReportDto.setSystemIds(StringUtils.isNotBlank(systemIds)?systemIds.substring(0,systemIds.length()-1):null);
         //保存执行时间和执行结果
         updateReportResult(testReportDto);
 
@@ -311,7 +328,7 @@ public class TestSuitServiceImpl implements TestSuitService {
         //用例列表不为空则执行测试用例
         if(null != testCaseDtoList && testCaseDtoList.size() > 0){
             logger.info("==========遍历执行测试集========");
-            testCaseService.excuteCaseList(testCaseDtoList,testEnvironmentDto,planId,reportId,testSuitDto.getId());
+            testCaseService.excuteCaseList(testCaseDtoList,testEnvironmentDto,planId,reportId,testSuitDto);
         }
     }
 }

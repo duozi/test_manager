@@ -5,7 +5,11 @@ package com.xn.interfacetest.dao;
 
 
 import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.dto.RelationInterfaceResultDto;
 import com.xn.interfacetest.entity.RelationInterfaceResult;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * RelationInterfaceResult Dao 接口
@@ -15,4 +19,5 @@ import com.xn.interfacetest.entity.RelationInterfaceResult;
  */
 public interface RelationInterfaceResultMapper extends BaseMapper<RelationInterfaceResult, Long> {
 
+    List<RelationInterfaceResult> getByReportId(Map<String, Object> params);
 }

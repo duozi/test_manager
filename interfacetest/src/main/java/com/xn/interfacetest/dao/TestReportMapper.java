@@ -7,6 +7,9 @@ package com.xn.interfacetest.dao;
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestReport;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * TestReport Dao 接口
  * 
@@ -15,4 +18,5 @@ import com.xn.interfacetest.entity.TestReport;
  */
 public interface TestReportMapper extends BaseMapper<TestReport, Long> {
 
+    List<TestReport> selectWithOtherInfo(Map<String, Object> params);
 }

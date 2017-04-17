@@ -189,11 +189,11 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,Long suitId) throws Exception{
+    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception{
         //遍历执行测试用例
         for(TestCaseDto caseDto:testCaseDtoList){
             logger.info("==========遍历执行测试用例========");
-            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitId);
+            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitDto);
         }
     }
 
@@ -209,6 +209,14 @@ public class TestCaseServiceImpl implements TestCaseService {
                 testRunDubbo(testInterfaceDto,caseId,environmentId);
             }
         }
+    }
+
+    @Override
+    public List<TestCaseDto> getByCaseIds(String caseIds) {
+        String[] ids = caseIds.split(",|，");
+        List<TestCase> testCaseList = testCaseMapper.getByCaseIds(ids);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        return dtoList;
     }
 
     /**
@@ -242,7 +250,7 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param caseDto 用例
      * @param testEnvironmentDto 执行环境
      */
-    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,Long suitId) throws Exception {
+    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
         ReportResult.totalPlus();
         TestReportDto testReportDto = testReportService.get(reportId);
 
@@ -288,7 +296,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 this.excuteDubbo(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto);
             } else if(InterfaceTypeEnum.HTTP.getId() == interfaceDto.getType()){
                 //http接口
-                this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitId);
+                this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitDto);
             }
 
 
@@ -302,7 +310,7 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param interfaceDto
      * @param testEnvironmentDto
      */
-    private void excuteHttp(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto,Long planId,TestReportDto testReportDto,Long suitId) throws Exception{
+    private void excuteHttp(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto,Long planId,TestReportDto testReportDto,TestSuitDto suitDto) throws Exception{
         Long caseId = caseDto.getId(); //用例id
         Long interfaceId = interfaceDto.getId();//接口id
         Long environmentId = testEnvironmentDto.getId();//环境id
@@ -342,7 +350,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         String paramsStr  = formatParams(caseDto,contentType);
         logger.info("paramsStr:" + paramsStr);
 
-        testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseId, interfaceId, planId, reportId, suitId));
+        testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseDto, interfaceDto, planId, reportId, suitDto));
 
         //执行测试用例
         testCaseCommand.execute();
@@ -354,8 +362,8 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     //初始化用例的执行
     private CaseCommand getCaseCommand(String requestType,String url,String paramsStr,String contentType,String timeout,String propType,
-                                       Long caseId,Long interfaceId,Long planId,Long reportId,Long suitId) {
-        return new HttpCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseId, interfaceId, planId, reportId, suitId);
+                                       TestCaseDto caseDto,TestInterfaceDto interfaceDto,Long planId,Long reportId,TestSuitDto suitDto) {
+        return new HttpCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseDto, interfaceDto, planId, reportId, suitDto);
     }
 
     //初始化字段校验

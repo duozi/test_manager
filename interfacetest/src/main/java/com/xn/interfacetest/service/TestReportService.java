@@ -115,4 +115,13 @@ public interface TestReportService {
      * @return 操作影响行数
      */
     int deleteBatch(List<TestReportDto> testResults);
+
+    /**
+     * 根据条件查询测试报告，查询出：测试计划、测试集、测试环境
+     * @param params
+     * @return
+     */
+    List<TestReportDto> selectWithOtherInfo(Map<String, Object> params);
+
+    TestReportDto getWithInfo(long l);
 }

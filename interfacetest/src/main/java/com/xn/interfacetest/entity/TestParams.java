@@ -43,6 +43,10 @@ public class TestParams extends BaseEntity {
      */
     private Long interfaceId;
 
+    /**
+     * 删除标记字段1-表示删除
+     */
+    private Integer isDelete;
 
     private TestInterface testInterface;
    
@@ -93,5 +97,13 @@ public class TestParams extends BaseEntity {
     
     public void setTestInterface(TestInterface testInterface){
         this.testInterface = testInterface;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

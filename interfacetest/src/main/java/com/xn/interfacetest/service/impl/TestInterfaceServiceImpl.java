@@ -3,8 +3,7 @@
  */
 package com.xn.interfacetest.service.impl;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.xn.interfacetest.dao.TestParamsMapper;
 import com.xn.interfacetest.dto.TestServiceDto;
@@ -92,32 +91,65 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         TestInterface testInterface = BeanUtils.toBean(testInterfaceDto,TestInterface.class);
         //保存接口字段
         if(null != testInterfaceDto.getId()){
+            //保存参数字段到参数表
+            saveParams(testInterface);
             testInterfaceMapper.update(testInterface);
         }else{
             testInterfaceMapper.save(testInterface);
             testInterfaceDto.setId(testInterface.getId());
+            //保存参数字段到参数表
+            saveParams(testInterface);
         }
-
-        //保存参数字段到参数表
-        saveParams(testInterface);
         return testInterfaceDto;
     }
 
     private void saveParams(TestInterface testInterface){
-        //保存参数字段到参数表
-        if(StringUtils.isNotBlank(testInterface.getParams())){
-            String[] params = testInterface.getParams().split(",|，");
-            for(String paramName : params){
-                TestParams testParams = new TestParams();
-                testParams.setInterfaceId(testInterface.getId());
-                testParams.setName(paramName);
-                //普通参数
-                if(!paramName.equals("-d")){
-                    testParams.setFormatType(2);
-                } else {
-                    testParams.setFormatType(1);
+        TestInterface testInterfaceExist = testInterfaceMapper.get(testInterface.getId());
+        if(null != testInterfaceExist){
+            String existParams = testInterfaceExist.getParams();
+            String newParams = testInterface.getParams();
+            if(StringUtils.isNotBlank(newParams) && !newParams.equals(existParams)){
+                String[] existArray = existParams.split(",|，");
+                //把字符串数组转为集合
+                List<String> existlist = new ArrayList<String>();
+                if(null != existArray && existArray.length>0){
+                    existlist = Arrays.asList(existArray);
                 }
-                testParamsMapper.save(testParams);
+
+                String[] newArray = newParams.split(",|，");
+                List<String> newlist = new ArrayList<String>();
+                if(null != newArray && newArray.length>0){
+                     newlist = Arrays.asList(newArray);
+                }
+
+                //比较元素是否存在，存在的不变化，不存在的增加，
+                for(String existParam:existlist){
+                    //新参数列表中不包含的字段-删除
+                    if(!newlist.contains(existParam)){
+                        testParamsMapper.deleteByInterfaceIdAndParamName(testInterface.getId(),existParam);
+                    }
+                }
+
+                for(String newParam:newlist){
+                    //旧参数列表中不包含的字段-新增
+                    if(!existlist.contains(newParam)){
+                        TestParams paramsExist = testParamsMapper.getParamsByInterfaceIdAndName(testInterface.getId(),newParam,0);
+                        //同一接口下不能存在同名的参数，不存在再保存
+                        if(null == paramsExist){
+                            TestParams testParams = new TestParams();
+                            testParams.setInterfaceId(testInterface.getId());
+                            testParams.setName(newParam);
+                            //普通参数
+                            if(!newParam.equals("-d")){
+                                testParams.setFormatType(2);
+                            } else {
+                                testParams.setFormatType(1);
+                            }
+                            testParamsMapper.save(testParams);
+                        }
+                    }
+
+                }
             }
         }
     }
@@ -196,5 +228,24 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         TestInterface testInterface = testInterfaceMapper.getByCaseId(caseId);
         TestInterfaceDto testInterfaceDto = BeanUtils.toBean(testInterface,TestInterfaceDto.class);
         return testInterfaceDto;
+    }
+
+    @Override
+    public List<TestInterfaceDto> listWithInfoByIds(String[] interfaceArray) {
+        List<TestInterface> list = testInterfaceMapper.listWithInfoByIds(interfaceArray);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        for(TestInterfaceDto testInterfaceDto: dtoList){
+            TestServiceDto serviceDto = testServiceService.getWithSystem(testInterfaceDto.getServiceId());
+            testInterfaceDto.setTestServiceDto(serviceDto);
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<TestInterfaceDto> getByInterfaceIds(String interfaceIds) {
+        String[] interfaceArray = interfaceIds.split(",|，");
+        List<TestInterface> list = testInterfaceMapper.listWithInfoByIds(interfaceArray);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        return dtoList;
     }
 }

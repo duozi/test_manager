@@ -327,5 +327,15 @@
         ]]>
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
     </delete>
+
+    <select id="listWithInfoByIds" resultMap="TestInterfaceMap">
+        <![CDATA[
+        select *
+        from test_interface
+        WHERE
+        id IN
+        ]]>
+        <foreach collection="array " index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
 </mapper>
 

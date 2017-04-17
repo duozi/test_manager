@@ -5,7 +5,7 @@
     <meta http-equiv="refresh" content="0;url=/interface/interface_item">
     <title>测试管理平台</title>
     <script language="javascript">
-        window.location.href = "/autotest/interface/interface_item.html"
+        window.location.href = "/autotest/interface/interface_item"
     </script>
 </head>
 <body>

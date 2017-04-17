@@ -179,5 +179,18 @@
         ]]>
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
     </delete>
+
+    <select id="getWithCompanyInfoBySystems" resultMap="TestSystemMap">
+        <![CDATA[
+        SELECT
+        ts.*
+        FROM
+        test_system ts
+        left join department d on ts.department_id = d.id
+          WHERE
+                ts.id IN
+        ]]>
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
 </mapper>
 

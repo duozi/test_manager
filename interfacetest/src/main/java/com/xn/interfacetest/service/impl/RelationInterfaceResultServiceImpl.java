@@ -117,4 +117,12 @@ public class RelationInterfaceResultServiceImpl implements RelationInterfaceResu
         return 0;
     }
 
+    @Override
+    public List<RelationInterfaceResultDto> getByReportId(Map<String, Object> params) {
+        List<RelationInterfaceResult> list = relationInterfaceResultMapper.getByReportId(params);
+        List<RelationInterfaceResultDto> dtoList = CollectionUtils.transform(list, RelationInterfaceResultDto.class);
+
+        return dtoList;
+    }
+
 }

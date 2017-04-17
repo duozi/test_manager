@@ -21,4 +21,5 @@ public interface TestSystemMapper extends BaseMapper<TestSystem, Long> {
     /** 按条件查询对象 **/
     List<TestSystem> listByCompany(Map<String, Object> parameters);
 
+    List<TestSystem> getWithCompanyInfoBySystems(String[] ids);
 }

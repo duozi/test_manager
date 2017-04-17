@@ -201,7 +201,7 @@ public class TestPlanServiceImpl implements TestPlanService {
 //            return result;
 //        }
 
-        return this.excutePlan(testSuitDtoList,testEnvironmentDtoList,timeConfigDtoList, planId);
+        return this.excutePlan(result,testSuitDtoList,testEnvironmentDtoList,timeConfigDtoList, planId);
     }
 
     @Override
@@ -306,14 +306,12 @@ public class TestPlanServiceImpl implements TestPlanService {
         }
     }
 
-    private CommonResult excutePlan(List<TestSuitDto> testSuitDtoList,List<TestEnvironmentDto> testEnvironmentDtoList,List<TimeConfigDto> timeConfigDtoList,Long planId) throws Exception{
-        CommonResult result = new CommonResult();
-
+    private CommonResult excutePlan(CommonResult result,List<TestSuitDto> testSuitDtoList,List<TestEnvironmentDto> testEnvironmentDtoList,List<TimeConfigDto> timeConfigDtoList,Long planId) throws Exception{
         //遍历执行环境，在每一套环境上执行一次======目前只支持一个测试计划对应一个执行环境
         logger.info("==========遍历测试环境========");
         for(TestEnvironmentDto testEnvironmentDto : testEnvironmentDtoList){
             //执行测试集
-            testSuitService.excuteSuitList(testSuitDtoList,testEnvironmentDto,planId);
+            result = testSuitService.excuteSuitList(testSuitDtoList,testEnvironmentDto,planId);
         }
 
         return result;

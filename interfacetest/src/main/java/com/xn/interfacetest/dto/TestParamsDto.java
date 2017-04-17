@@ -55,6 +55,11 @@ public class TestParamsDto extends BaseDto {
      */
     private Integer type;
 
+    /**
+     * 删除标记字段1-表示删除
+     */
+    private Integer isDelete;
+
     public Long getId() {
         return this.id;
     }
@@ -103,7 +108,12 @@ public class TestParamsDto extends BaseDto {
         this.type = type;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
 
-
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
 }
 

@@ -22,4 +22,6 @@ public interface TestInterfaceMapper extends BaseMapper<TestInterface, Long> {
     String getParamsByInterfaceId(String interfaceId);
 
     TestInterface getByCaseId(Long caseId);
+
+    List<TestInterface> listWithInfoByIds(String[] interfaceArray);
 }

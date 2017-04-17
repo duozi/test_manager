@@ -8,7 +8,7 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="caseIds" column="case_ids"/>
-        <result property="systemId" column="system_id"/>
+        <result property="systemIds" column="system_ids"/>
         <result property="planId" column="plan_id"/>
         <result property="interfaceIds" column="interface_ids"/>
         <result property="caseCount" column="case_count"/>
@@ -19,11 +19,13 @@
         <result property="endTime" column="end_time"/>
         <result property="costTime" column="cost_time"/>
         <result property="result" column="result"/>
+        <result property="environmentId" column="environment_id"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, case_ids, system_id, plan_id, interface_ids, case_count, pass_case_count, fail_case_cout, error_case_cout, result,begin_time,end_time,cost_time
+        id, name, case_ids, system_ids, plan_id, interface_ids, case_count, pass_case_count, fail_case_cout, error_case_cout,
+         result,DATE_FORMAT(begin_time,'%Y-%m-%d %H:%i:%s') begin_time, DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,cost_time,environment_id
         ]]>
     </sql>
     
@@ -38,8 +40,8 @@
            <if test="@Ognl@isNotEmpty(caseIds)">
                 AND case_ids = #{caseIds}
             </if>
-           <if test="@Ognl@isNotEmpty(systemId)">
-                AND system_id = #{systemId}
+           <if test="@Ognl@isNotEmpty(systemIds)">
+                AND system_ids = #{systemIds}
             </if>
            <if test="@Ognl@isNotEmpty(planId)">
                 AND plan_id = #{planId}
@@ -71,6 +73,10 @@
             <if test="@Ognl@isNotEmpty(costTime)">
                 AND cost_time = #{costTime}
             </if>
+            <if test="@Ognl@isNotEmpty(environmentId)">
+                AND environment_id = #{environmentId}
+            </if>
+
         </where>
     </sql>
     
@@ -91,6 +97,34 @@
             test_report
         <include refid="where"/>
     </select>
+
+    <select id="selectWithOtherInfo" resultMap="TestResultMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_report
+        <where>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(planId)">
+                AND plan_id = #{planId}
+            </if>
+            <if test="@Ognl@isNotEmpty(result)">
+                AND result = #{result}
+            </if>
+            <if test="@Ognl@isNotEmpty(environmentId)">
+                AND environment_id = #{environmentId}
+            </if>
+            <if test="@Ognl@isNotEmpty(beginTime)">
+                <![CDATA[ AND begin_time >= date_format(#{beginTime}, '%YY-%mm-%dd HH:MM:DD') ]]>
+            </if>
+            <if test="@Ognl@isNotEmpty(toTime)">
+                <![CDATA[   AND begin_time <=  date_format(#{toTime}, '%YY-%mm-%dd HH:MM:DD') ]]>
+            </if>
+
+        </where>
+    </select>
         
     <select id="count" resultType="long">
         <![CDATA[
@@ -108,7 +142,7 @@
                 id,
                 name,
                 case_ids,
-                system_id,
+                system_ids,
                 plan_id,
                 interface_ids,
                 case_count,
@@ -118,12 +152,13 @@
                 result,
                 begin_time,
                 end_time,
-                cost_time
+                cost_time,
+                environment_id
             ) VALUES (
                 #{id},
                 #{name},
                 #{caseIds},
-                #{systemId},
+                #{systemIds},
                 #{planId},
                 #{interfaceIds},
                 #{caseCount},
@@ -133,7 +168,8 @@
                 #{result},
                 #{beginTime},
                 #{endTime},
-                #{costTime}
+                #{costTime},
+                #{environmentId}
             )
         ]]>
     </insert>
@@ -144,7 +180,7 @@
                 id,
                 name,
                 case_ids,
-                system_id,
+                system_ids,
                 plan_id,
                 interface_ids,
                 case_count,
@@ -154,13 +190,14 @@
                 result,
                 begin_time,
                 end_time,
-                cost_time
+                cost_time,
+                environment_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.caseIds},#{item.systemId},#{item.planId},#{item.interfaceIds},
+            (#{item.id},#{item.name},#{item.caseIds},#{item.systemIds},#{item.planId},#{item.interfaceIds},
             #{item.caseCount},#{item.passCaseCount},#{item.failCaseCout},#{item.errorCaseCout},#{item.result},
-            #{item.beginTime},#{item.endTime},#{item.costTime})
+            #{item.beginTime},#{item.endTime},#{item.costTime},#{item.environmentId})
         </foreach>
     </insert>
     
@@ -174,8 +211,8 @@
                 <if test="caseIds != null">
                 	<![CDATA[ case_ids = #{caseIds} ]]>,
                 </if>
-                <if test="systemId != null">
-                	<![CDATA[ system_id = #{systemId} ]]>,
+                <if test="systemIds != null">
+                	<![CDATA[ system_ids = #{systemIds} ]]>,
                 </if>
                 <if test="planId != null">
                 	<![CDATA[ plan_id = #{planId} ]]>,
@@ -205,7 +242,10 @@
                     <![CDATA[ end_time = #{endTime} ]]>,
                 </if>
                 <if test="costTime != null">
-                    <![CDATA[ cost_time = #{costTime} ]]>
+                    <![CDATA[ cost_time = #{costTime} ]]>,
+                </if>
+                <if test="environmentId != null">
+                    <![CDATA[ environment_id = #{environmentId} ]]>
                 </if>
             </set>
             WHERE

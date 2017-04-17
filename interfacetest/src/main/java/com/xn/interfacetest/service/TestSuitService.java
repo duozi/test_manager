@@ -6,6 +6,7 @@ package com.xn.interfacetest.service;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.base.CommonResult;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
 import com.xn.interfacetest.dto.TestPlanDto;
@@ -143,5 +144,7 @@ public interface TestSuitService {
      * @param testSuitDtoList
      * @param testEnvironmentDto
      */
-    void excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto,Long planId) throws Exception;
+    CommonResult excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId) throws Exception;
+
+    List<TestSuitDto> listAll();
 }
