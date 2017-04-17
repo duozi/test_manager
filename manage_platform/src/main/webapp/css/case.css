@@ -359,6 +359,11 @@ form .choose-sys {
 
 .disabled { pointer-events: none; }
 
+label.error
+{
+    width: 1% !important;
+}
+
 .checkbox-class label{
     width: 30%;
     margin-bottom: 1em;

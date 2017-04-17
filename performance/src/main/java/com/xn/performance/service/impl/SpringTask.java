@@ -2,117 +2,130 @@ package com.xn.performance.service.impl;/**
  * Created by xn056839 on 2017/3/8.
  */
 
-import com.xn.performance.service.*;
+import com.alibaba.dubbo.config.annotation.Service;
+import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.dto.PerformanceResultDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.*;
 
 
 @Service
 public class SpringTask {
     private static final Logger logger = LoggerFactory.getLogger(SpringTask.class);
+    //key 是压力机id value 是结果id的队列
+    public static ConcurrentMap<Integer, ConcurrentLinkedQueue> PERFORMANCE_NOW_MAP = new ConcurrentHashMap<>();
 
-    public static ConcurrentMap<Integer, ConcurrentLinkedQueue> PERFORMANCE_NOW_MAP = new ConcurrentHashMap<Integer, ConcurrentLinkedQueue>();
+    public static ConcurrentMap<Integer, ConcurrentLinkedQueue> PERFORMANCE_SCHEDULE_MAP = new ConcurrentHashMap<>();
+    //0代表没有下一个任务，1代表下一个是立即执行的任务，2代表下一个是定时执行的任务
+    public static ConcurrentMap<Integer, Integer> STRESS_MACHINE_WAITING_MAP = new ConcurrentHashMap<>();
+    //0代表当前空闲，1代表当前在执行任务
+    public static ConcurrentMap<Integer, Integer> STRESS_MACHINE_STATUS = new ConcurrentHashMap<>();
 
-    public static ConcurrentMap<Integer, ConcurrentLinkedQueue> PERFORMANCE_SCHEDULE_MAP = new ConcurrentHashMap<Integer, ConcurrentLinkedQueue>();
-    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
-    @Autowired
-    PerformanceResultService performanceResultService;
 
-    @Autowired
-    PerformancePlanService performancePlanService;
-    @Autowired
-    JmeterService jmeterService;
+    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
+    @Resource
+    PerformanceResultServiceImpl performanceResultService;
 
-    @Autowired
-    PerformanceScriptService performanceScriptService;
+    @Resource
+    PerformancePlanServiceImpl performancePlanService;
 
-    @Autowired
-    PerformanceScenarioService performanceScenarioService;
-    @Autowired
-    PerformanceStressMachineService performanceStressMachineService;
+    @Resource
+    JmeterServiceImpl jmeterService;
+
+    @Resource
+    PerformanceScriptServiceImpl performanceScriptService;
+
+    @Resource
+    PerformanceScenarioServiceImpl performanceScenarioService;
+
+    @Resource
+    PerformanceStressMachineServiceImpl performanceStressMachineService;
 
     //获得要立即执行但是还没有执行的任务
     @PostConstruct
     public void getTask() {
-//        PerformanceResultDto performanceResultDto = new PerformanceResultDto();
-//        performanceResultDto.setExecuteStatus("未执行");
-//
-//        List<PerformancePlanShowDto> nowList = performanceResultService.getNowTask(performanceResultDto);
-//        jmeterService.addToNowQueue(nowList);
-//
-//        List<PerformancePlanShowDto> scheduleList = performanceResultService.getScheduleTask(performanceResultDto);
-//        jmeterService.addToScheduleQueue(scheduleList);
+        //获得当前时间五分钟之后的时间，为了防止启动起来之后已经过了定时任务的时间了
+        long current = System.currentTimeMillis();
+        current += 5 * 60 * 1000;
+        Date nowTime = new Date(current);
+        logger.info("get time 5 min after now =========" + nowTime);
 
-//        try {
-//            SchedulerFactory gSchedulerFactory = new StdSchedulerFactory();
-//            Scheduler scheduler = gSchedulerFactory.getScheduler();
-//
-//            String job_name = "动态任务调度";
-//            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//小写的mm表示的是分钟
-//            String dstr="2017-3-17 18:06:00";
-//            Date date=null;
-//            try {
-//                date=sdf.parse(dstr);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//            PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
-//            performancePlanShowDto.setId(2);
-//
-//            QuartzManager.addJob(scheduler, job_name, ExecuteScheduleQueue.class, date,performancePlanShowDto);
-//        } catch (SchedulerException e) {
-//            e.printStackTrace();
-//        }
+        List<PerformancePlanShowDto> nowList = performanceResultService.getNowTask(null);
+        jmeterService.addToNowQueue(nowList);
+
+        PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+
+        List<PerformancePlanShowDto> scheduleList = performanceResultService.getScheduleTask(null);
+
+        for (PerformancePlanShowDto item : scheduleList) {
+            Date setStartTime = item.getSetStartTime();
+            String status = item.getExecuteStatus();
+            //除去正在执行而中间被打断的任务
+            if (status.equals("执行中")) {
+                performanceResultDto = new PerformanceResultDto(item.getId());
+                performanceResultDto.setExecuteStatus("取消");
+                performanceResultService.update(performanceResultDto);
+            } else {
+
+                //如果是当前时间已经超过了设置的开始时间，就取消这个任务
+                if (nowTime.getTime() > setStartTime.getTime()) {
+                    performanceResultDto.setId(item.getId());
+                    performanceResultDto.setExecuteStatus("取消");
+                    performanceResultService.update(performanceResultDto);
+                    logger.info("当前时间大于设置的开始时间，取消执行这个任务，id:" + item.getId() + "  nowTime:" + nowTime.getTime() + "  setStartTime:" + setStartTime.getTime());
+                } else {
+                    jmeterService.scheduleJob(item);
+                }
+            }
+        }
+
     }
 
     @Scheduled(cron = "0 0/1 * * * ?")
     public void Schedule() {
 
-        logger.info(new Date() + Thread.currentThread().getName() + "============execute schedule task");
-//        for (Integer stressMachineId : PERFORMANCE_NOW_MAP.keySet()) {
-//            ConcurrentLinkedQueue queue = PERFORMANCE_NOW_MAP.get(stressMachineId);
-//            final PerformancePlanShowDto performancePlanShowDto = (PerformancePlanShowDto) queue.peek();
-////            获得压力机的状态
-//            PerformanceStressMachineDto performanceStressMachineDto=new PerformanceStressMachineDto();
-//            performanceStressMachineDto.setId(stressMachineId);
-//            performanceStressMachineDto=performanceStressMachineService.get(performanceStressMachineDto);
-//            String stressMachineStatus=performanceStressMachineDto.getStressMachineStatus();
-//            //压力机有空并且立即执行的队列第一个任务没有在执行，则执行该任务
-//            if (stressMachineStatus.equals("未执行")&&performancePlanShowDto.getExecuteStatus().equals("未执行")) {
-//
-//                //更新队列中的状态
-//                performancePlanShowDto.setExecuteStatus("执行中");
-//
-//                threadPool.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        logger.info("============" + Thread.currentThread().getName());
-//                        //更result表新数据库中的内容
-//                        jmeterService.executeOnce(performancePlanShowDto);
-//                    }
-//                });
-//            }
-//        }
-    }
 
-    public static void main(String[] args) {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//小写的mm表示的是分钟
-        String dstr="2017-3-16 15:00:00";
-        Date date=null;
-        try {
-            date=sdf.parse(dstr);
-            System.out.println(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        logger.info(new Date() + Thread.currentThread().getName() + "============execute schedule task");
+        for (Integer stressMachineId : PERFORMANCE_NOW_MAP.keySet()) {
+            ConcurrentLinkedQueue queue = PERFORMANCE_NOW_MAP.get(stressMachineId);
+            final Integer resultId = (Integer) queue.peek();
+            if (queue.isEmpty()) {
+                PERFORMANCE_NOW_MAP.remove(stressMachineId);
+            }
+
+            Integer nextTask = STRESS_MACHINE_WAITING_MAP.get(stressMachineId);
+            if (resultId != null) {
+                if (nextTask == null || nextTask == 1) {
+                    Integer stressMachineStatus = STRESS_MACHINE_STATUS.get(stressMachineId);
+
+                    if ((stressMachineStatus == null || stressMachineStatus == 0)) {
+
+                        STRESS_MACHINE_STATUS.put(stressMachineId, 1);
+                        //移除当前需要执行的任务
+                        queue.poll();
+
+                        threadPool.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                logger.info(new Date() + Thread.currentThread().getName() + "执行任务============ resultId:" + resultId);
+                                PerformanceResultDto performanceResultDto = new PerformanceResultDto(resultId);
+                                PerformancePlanShowDto performancePlanShowDto = performanceResultService.getShow(performanceResultDto);
+                                jmeterService.executeOnce(performancePlanShowDto);
+                            }
+                        });
+
+                    }
+                }
+            }
         }
     }
+
+
 }

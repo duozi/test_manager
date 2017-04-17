@@ -33,45 +33,7 @@
         </property>
     </bean>
 
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" lazy-init="false">
-        <property name="viewClass" value="com.xn.manage.filter.MyFreeMarkerView" />
-        <property name="contentType" value="text/html; charset=UTF-8"/>
-        <property name="exposeSpringMacroHelpers" value="true" />
-        <property name="requestContextAttribute" value="rc" />
-        <!-- <property name="prefix" value="/" />-->
-        <property name="suffix" value=".html" />
-    </bean>
 
-    <bean id="freemarkerConfig"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="freemarkerVariables">
-            <map>
-            </map>
-        </property>
-        <property name="templateLoaderPaths">
-            <list>
-                <value>/WEB-INF/</value>
-                <value>/WEB-INF/decorators/</value><!-- decorators ftl path -->
-            </list>
-        </property>
-        <property name="freemarkerSettings">
-            <props>
-                <prop key="tag_syntax">auto_detect</prop>
-                <prop key="template_update_delay">0</prop>
-                <prop key="defaultEncoding">UTF-8</prop>
-                <prop key="url_escaping_charset">UTF-8</prop>
-                <prop key="locale">zh_CN</prop>
-                <prop key="boolean_format">true,false</prop>
-                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
-                <prop key="date_format">yyyy-MM-dd</prop>
-                <prop key="time_format">HH:mm:ss</prop>
-                <prop key="number_format">0.######</prop>
-                <prop key="whitespace_stripping">true</prop>
-                <prop key="classic_compatible">true</prop>
-            </props>
-        </property>
-    </bean>
 
     <mvc:interceptors>
         <mvc:interceptor>
@@ -82,4 +44,7 @@
 
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
     <mvc:default-servlet-handler />
+
+    <mvc:resources mapping="/perpormance/report/result_52_20170324_134246/**" location="/WEB-INF/performance/report/result*" cache-period="2592000"/>
+
 </beans>

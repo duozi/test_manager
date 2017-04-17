@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
+    <script type="text/javascript" src="../../../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../vendor/bootstrap-select/bootstrap-select.css">
     <!-- fileinput -->
-    <link href="../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
     <!-- fileinput -->
-    <script src="../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+    <script src="../../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="../../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
 
     <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
     <script src="../../../vendor/jquery/messages_zh.js"></script>
@@ -227,7 +227,6 @@
                             <th>系统</th>
                             <th>脚本状态</th>
                             <th>创建人</th>
-
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -280,7 +279,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
-                <div class="modal-body modal-add" >
+                <div class="modal-body modal-add">
                     <!--<form role="form " class="col-lg-12 edit-form" id="script-show" name="script-save"-->
                     <!--enctype="multipart/form-data">-->
                     <div class="col-lg-14 form-div">
@@ -313,7 +312,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">新增脚本</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 800px">
+                <div class="modal-body modal-add" style="min-height: 1200px">
                     <form role="form " class="col-lg-12 edit-form" id="script-save" name="script-save"
                           enctype="multipart/form-data">
                         <div class="col-lg-14 form-div">
@@ -367,8 +366,14 @@
                             <div class="form-group ">
                                 <label class="control-label">上传脚本<span style="color:red">*</span></label>
                                 <input id="uploadScript" type="file" multiple class="file"
-                                       data-overwrite-initial="false" data-min-file-count="1" name="uploadScript">
-                                <input class="hidden" name="path" value="" required>
+                                       data-overwrite-initial="false" data-min-file-count="1" name="uploadScript">aaa
+                                <input class="hidden" name="scriptFileName" value="" required>
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label">上传脚本依赖文件</label>
+                                <input id="dependenceFile" type="file" multiple class="file"
+                                       data-overwrite-initial="false" data-min-file-count="0" name="dependenceFile">
+                                <input class="hidden" name="dependenceFileName" value="">
                             </div>
 
                         </div>
@@ -463,8 +468,8 @@
 <script type="text/javascript">
     $("#uploadScript").fileinput({
         showUpload: false,
-        uploadAsync:true,
-        uploadUrl: '${basePath}/performance/script/script_list/upload_script',
+        uploadAsync: true,
+        uploadUrl: '${basePath}/performance/script/script_list/upload_file',
         allowedFileExtensions: ['jmx'],
         overwriteInitial: false,
         language: 'zh', //设置语言
@@ -476,13 +481,13 @@
             var pos = filename.lastIndexOf("\\");
             var name = filename.substring(pos + 1);
 
-            $("input[name='path']").val(name);
+            $("input[name='scriptFileName']").val(name);
             return filename.replace('(', '_').replace(']', '_');
         }
     }).on("filebatchselected", function (event, files) {
         $(this).fileinput("upload").on("fileuploaded", function (event, data) {
             if (data.response.code == 0) {
-                $("input[name='path']").val(data.response.data);
+                $("input[name='scriptFileName']").val(data.response.data);
             } else {
                 alert("上传失败，请查看日志！");
             }
@@ -490,7 +495,40 @@
         });
     });
 
+    $("#dependenceFile").fileinput({
+        showUpload: false,
+        uploadAsync: true,
+        uploadUrl: '${basePath}/performance/script/script_list/upload_dependence_file',
+//        allowedFileExtensions: ['jmx'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFilesNum: 10,
+        showPreview: true,
+        previewFileIcon: "",
+        slugCallback: function (filename) {
 
+            var pos = filename.lastIndexOf("\\");
+            var name = filename.substring(pos + 1);
+
+//            $("input[name='dependenceFileName']").val(name);
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on("filebatchselected", function (event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function (event, data) {
+            var newName = data.response.data;
+            if (data.response.code == 0) {
+                var name = $("input[name='dependenceFileName']").val();
+                if (name.indexOf(newName)<0) {
+                    name = name + " " + newName;
+                    $("input[name='dependenceFileName']").val(name);
+                }
+                return
+            } else {
+                alert("上传失败，请查看日志！");
+            }
+
+        });
+    });
 </script>
 <!-- /.container-fluid -->
 </body>

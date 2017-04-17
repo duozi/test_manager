@@ -79,9 +79,18 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
      */
     private String createPerson;
 
-    
+    private String port;
 
-    
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -89,6 +98,16 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public Integer getId() {
         return this.id;
     }
+
+    public PerformanceMonitoredMachineDto() {
+
+    }
+
+    public PerformanceMonitoredMachineDto(Integer id) {
+        this.id = id;
+    }
+
+
 
     public void setMonitoredMachineName(String monitoredMachineName) {
         this.monitoredMachineName = monitoredMachineName;

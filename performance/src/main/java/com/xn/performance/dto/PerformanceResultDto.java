@@ -83,6 +83,22 @@ public class PerformanceResultDto extends BaseDto{
      * 执行状态
      */
     private String executeStatus;
+    private String resultPath;
+
+    public PerformanceResultDto(Integer id) {
+        this.id = id;
+    }
+    public PerformanceResultDto() {
+
+    }
+
+    public String getResultPath() {
+        return resultPath;
+    }
+
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
 
     public String getExecuteStatus() {
         return executeStatus;
@@ -211,6 +227,29 @@ public class PerformanceResultDto extends BaseDto{
 
     public void setActualEndTimeEnd(Date actualEndTimeEnd) {
         this.actualEndTimeEnd = actualEndTimeEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "PerformanceResultDto{" +
+                "id=" + id +
+                ", planId=" + planId +
+                ", setStartTime=" + setStartTime +
+                ", setStartTimeBegin=" + setStartTimeBegin +
+                ", setStartTimeEnd=" + setStartTimeEnd +
+                ", actualEndTime=" + actualEndTime +
+                ", actualEndTimeBegin=" + actualEndTimeBegin +
+                ", actualEndTimeEnd=" + actualEndTimeEnd +
+                ", executeTime=" + executeTime +
+                ", executePerson='" + executePerson + '\'' +
+                ", actualStartTime=" + actualStartTime +
+                ", actualStartTimeBegin=" + actualStartTimeBegin +
+                ", actualStartTimeEnd=" + actualStartTimeEnd +
+                ", stressMachineId=" + stressMachineId +
+                ", stressMachineName=" + stressMachineName +
+                ", executeStatus='" + executeStatus + '\'' +
+                ", resultPath='" + resultPath + '\'' +
+                '}';
     }
 }
 

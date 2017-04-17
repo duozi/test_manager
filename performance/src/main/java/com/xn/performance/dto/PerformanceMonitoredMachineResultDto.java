@@ -41,13 +41,13 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto{
      * 
      * 最小响应时长 
      */
-    private Integer min;
+    private Integer minTime;
 
     /**
      * 
      * 最大响应时长 
      */
-    private Integer max;
+    private Integer maxTime;
 
     /**
      * 
@@ -71,7 +71,7 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto{
      * 
      * 负载 
      */
-    private Integer load;
+    private Integer machineLoad;
 
     /**
      * 
@@ -85,8 +85,52 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto{
      */
     private Integer memory;
 
-    
 
+    private Integer planId;
+    private Integer resultId;
+    private  String monitoredMachineName;
+    private  Integer monitoredMachineId;
+    private String monitoredMachineIp;
+
+    public String getMonitoredMachineIp() {
+        return monitoredMachineIp;
+    }
+
+    public void setMonitoredMachineIp(String monitoredMachineIp) {
+        this.monitoredMachineIp = monitoredMachineIp;
+    }
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
+
+    public Integer getResultId() {
+        return resultId;
+    }
+
+    public void setResultId(Integer resultId) {
+        this.resultId = resultId;
+    }
+
+    public String getMonitoredMachineName() {
+        return monitoredMachineName;
+    }
+
+    public void setMonitoredMachineName(String monitoredMachineName) {
+        this.monitoredMachineName = monitoredMachineName;
+    }
+
+    public Integer getMonitoredMachineId() {
+        return monitoredMachineId;
+    }
+
+    public void setMonitoredMachineId(Integer monitoredMachineId) {
+        this.monitoredMachineId = monitoredMachineId;
+    }
     
     public void setId(Integer id) {
         this.id = id;
@@ -112,20 +156,20 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto{
         return this.average;
     }
 
-    public void setMin(Integer min) {
-        this.min = min;
+    public void setMinTime(Integer minTime) {
+        this.minTime = minTime;
     }
     
-    public Integer getMin() {
-        return this.min;
+    public Integer getMinTime() {
+        return this.minTime;
     }
 
-    public void setMax(Integer max) {
-        this.max = max;
+    public void setMaxTime(Integer maxTime) {
+        this.maxTime = maxTime;
     }
     
-    public Integer getMax() {
-        return this.max;
+    public Integer getMaxTime() {
+        return this.maxTime;
     }
 
     public void setError(Integer error) {
@@ -152,12 +196,12 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto{
         return this.kbsec;
     }
 
-    public void setLoad(Integer load) {
-        this.load = load;
+    public void setMachineLoad(Integer machineLoad) {
+        this.machineLoad = machineLoad;
     }
     
-    public Integer getLoad() {
-        return this.load;
+    public Integer getMachineLoad() {
+        return this.machineLoad;
     }
 
     public void setQps(Integer qps) {

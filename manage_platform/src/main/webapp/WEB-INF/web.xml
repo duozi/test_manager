@@ -62,6 +62,7 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
+
     <!-- springmvc -->
     <servlet>
         <servlet-name>springServlet</servlet-name>
@@ -70,12 +71,13 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:/spring/spring-mvc.xml</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <machineLoad-on-startup>1</machineLoad-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>springServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

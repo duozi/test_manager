@@ -16,6 +16,8 @@ public class CommonResult<T> extends BaseEntity implements Serializable {
     private T data;
 
    public CommonResult() {
+       this.code=0;
+       this.message="成功";
     }
 
    public CommonResult(Integer code, String message) {

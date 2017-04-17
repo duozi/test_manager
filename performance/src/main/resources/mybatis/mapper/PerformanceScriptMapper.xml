@@ -12,13 +12,14 @@
         <result property="department" column="department"/>
         <result property="psystem" column="psystem"/>
         <result property="scriptStatus" column="script_status"/>
-        <result property="path" column="path"/>
+        <result property="scriptFileName" column="script_file_name"/>
+        <result property="dependenceFileName" column="dependence_file_name"/>
         <result property="createPerson" column="create_person"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, script_name, remark, company, department, psystem, script_status, path, create_person
+        id, script_name, remark, company, department, psystem, script_status, script_file_name, create_person,dependence_file_name
         ]]>
     </sql>
     
@@ -45,8 +46,11 @@
            <if test="@Ognl@isNotEmpty(scriptStatus)">
                 AND script_status = #{scriptStatus}
             </if>
-           <if test="@Ognl@isNotEmpty(path)">
-                AND path = #{path}
+           <if test="@Ognl@isNotEmpty(scriptFileName)">
+                AND script_file_name = #{scriptFileName}
+            </if>
+            <if test="@Ognl@isNotEmpty(dependenceFileName)">
+                AND dependence_file_name = #{dependenceFileName}
             </if>
            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
@@ -92,7 +96,8 @@
                 department,
                 psystem,
                 script_status,
-                path,
+                script_file_name,
+                dependence_file_name,
                 create_person
             ) VALUES (
                 #{id},
@@ -102,7 +107,8 @@
                 #{department},
                 #{psystem},
                 #{scriptStatus},
-                #{path},
+                #{scriptFileName},
+                #{dependenceFileName},
                 #{createPerson}
             )
         ]]>
@@ -118,12 +124,13 @@
                 department,
                 psystem,
                 script_status,
-                path,
+                script_file_name,
+                dependence_file_name,
                 create_person
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.scriptName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.scriptStatus},#{item.path},#{item.createPerson})
+            (#{item.id},#{item.scriptName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.scriptStatus},#{item.scriptFileName},#{item.dependenceFileName},#{item.createPerson})
         </foreach>
     </insert>
     
@@ -149,8 +156,11 @@
                 <if test="scriptStatus != null">
                 	<![CDATA[ script_status = #{scriptStatus} ]]>,
                 </if>
-                <if test="path != null">
-                	<![CDATA[ path = #{path} ]]>,
+                <if test="scriptFileName != null">
+                	<![CDATA[ script_file_name = #{scriptFileName} ]]>,
+                </if>
+                <if test="dependenceFileName != null">
+                	<![CDATA[ dependence_file_name = #{dependenceFileName} ]]>,
                 </if>
                 <if test="createPerson != null">
                 	<![CDATA[ create_person = #{createPerson} ]]>

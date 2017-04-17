@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <!-- Custom Fonts -->
-    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!--datetimepicker-->
-    <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet"
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet"
           type="text/css">
-    <link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
           type="text/css">
-    <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-    <script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -24,7 +24,7 @@
 <div class="panel-heading">
     <ol class="breadcrumb">
         <li><a href="#">性能自动化</a></li>
-        <li><a href="report_list">测试报告管理</a></li>
+        <li><a href="report_list">测试结果管理</a></li>
         <li class="active">测试结果详情</li>
     </ol>
 </div>
@@ -37,7 +37,7 @@
                 <!--公共参数-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        公共参数
+                        结果详情
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -45,120 +45,147 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr class="alert-warning">
+                                    <th>结果id</th>
+                                    <th>计划名</th>
+                                    <th>执行人</th>
                                     <th>公司</th>
                                     <th>部门</th>
                                     <th>系统</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>执行时长(s)</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                <#if result_detail ?? && plan_detail ??>
+                                    <tr>
+                                        <td>${result_detail.id}</td>
+                                        <td>${plan_detail.planName}</td>
+                                        <td>${result_detail.executePerson}</td>
+                                        <td>${plan_detail.company}</td>
+                                        <td>${plan_detail.department}</td>
+                                        <td>${plan_detail.psystem}</td>
+                                        <td>${result_detail.actualStartTime?datetime}</td>
+                                        <td>${result_detail.actualEndTime?datetime}</td>
+                                        <td>${result_detail.executeTime}</td>
+                                    </tr>
 
-                                </tr>
+                                </#if>
+
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-                <!--执行信息-->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        执行信息
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive col-lg-12">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr class="alert-info">
-                                    <th>执行人</th>
-                                    <th>开始时间</th>
-                                    <th>花费时长（秒）</th>
                                     <th>压力机名</th>
                                     <th>压力机ip</th>
-                                    <th>监控机</th>
-                                    <th>监控机ip</th>
                                     <th>脚本名</th>
                                     <th>场景名</th>
                                     <th>并发数</th>
                                     <th>线程启动时间</th>
-                                    <th>执行时间</th>
-
-
+                                    <th>循环次数</th>
+                                    <th>持续时间(s)</th>
+                                    <th>启动延迟(s)</th>
+                                    <th>启动时间</th>
+                                    <th>结束时间</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Mark</td>
-                                    <td>2017-02-03 22:22:22</td>
-                                    <td>50</td>
-                                    <td>用户中心压力机</td>
-                                    <td>10.10.10.1</td>
-                                    <td>用户中心监控机</td>
-                                    <td>10.10.10.2</td>
-                                    <td>用户脚本</td>
-                                    <td>用户100并发场景</td>
-                                    <td>100</td>
-                                    <td>5</td>
-                                    <td>50</td>
+                                    <#if scenario_detail ?? && script_detail ?? && stress_machine_detail ??>
+                                        <td>${stress_machine_detail.stressMachineName}</td>
+                                        <td>${stress_machine_detail.ip}</td>
+                                        <td>${script_detail.scriptName}</td>
+                                        <td>${scenario_detail.scenarioName}</td>
+
+                                        <td>
+                                            <#if scenario_detail.concurrency ??>
+                                                ${scenario_detail.concurrency}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.startup ??>
+                                                ${scenario_detail.startup}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.cycle ??>
+                                                ${scenario_detail.cycle}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.executeTime ??>
+                                                ${scenario_detail.executeTime}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.delayTime ??>
+                                                ${scenario_detail.delayTime}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.setStartTime ??>
+                                                ${scenario_detail.setStartTime?datetime}
+                                            </#if>
+                                        </td>
+                                        <td>
+                                            <#if scenario_detail.setEndTime ??>
+                                                ${scenario_detail.setEndTime?datetime}
+                                            </#if>
+                                        </td>
+                                    </#if>
+
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!--结果-->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        执行详情
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-
-                        <div class="table-responsive col-lg-12">
                             <table class="table table-striped table-bordered table-hover report_detail_table">
                                 <thead>
                                 <tr class="alert-success">
+                                    <th>监控机名</th>
+                                    <th>监控机ip</th>
                                     <th>请求数</th>
-                                    <th>成功数</th>
-                                    <th>成功占比</th>
-                                    <th>失败数</th>
-                                    <th>失败占比</th>
                                     <th>平均响应时间(ms)</th>
                                     <th>最大响应时间(ms)</th>
                                     <th>最小响应时间(ms)</th>
-                                    <th>并发数</th>
-                                    <th>QPS</th>
+                                    <th>失败请求数</th>
+                                    <th>失败请求数</th>
+                                    <th>kb/sec</th>
                                     <th>负载</th>
+                                    <th>kps</th>
                                     <th>内存</th>
-                                    <th>cpu</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>100</td>
-                                    <td>90</td>
-                                    <td>90%</td>
-                                    <td>10</td>
-                                    <td>10%</td>
-                                    <td>20</td>
-                                    <td>25</td>
-                                    <td>10</td>
-                                    <td>100</td>
-                                    <td>5</td>
-                                    <td>5</td>
-                                    <td>5</td>
-                                    <td>5</td>
-                                </tr>
+
+                                <#if monitored_machine_detail_list ??>
+                                    <#list  monitored_machine_detail_list as item>
+                                        <tr>
+                                            <td>${item.monitoredMachineName}</td>
+                                            <td>${item.monitoredMachineIp}</td>
+                                            <td>${item.samples}</td>
+                                            <td>${item.average}</td>
+                                            <td>${item.minTime}</td>
+                                            <td>${item.maxTime}</td>
+                                            <td>${item.error}</td>
+                                            <td>${item.throughput}</td>
+                                            <td>${item.kbsec}</td>
+                                            <td>${item.machineLoad}</td>
+                                            <td>${item.qps}</td>
+                                            <td>${item.memory}</td>
+                                        </tr>
+                                    </#list>
+                                </#if>
+
                                 </tbody>
                             </table>
+                            <iframe style="width: 100%;height: 800px" frameborder="0" scrolling="auto"
+                                    src="http://10.17.2.137${result_detail.resultPath}">
+
+                            </iframe>
                         </div>
                     </div>
                 </div>
-                <!-- /.table-responsive -->
+
             </div>
             <!-- /.panel-body -->
         </div>

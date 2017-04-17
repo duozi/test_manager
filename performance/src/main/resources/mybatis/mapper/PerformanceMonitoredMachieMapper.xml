@@ -14,11 +14,12 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="createPerson" column="create_person"/>
+        <result property="port" column="port"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, monitored_machine_name, remark, company, department, psystem, ip, username, password, create_person
+        id, monitored_machine_name, remark, company, department, psystem, ip, username, password, create_person,port
         ]]>
     </sql>
     
@@ -53,6 +54,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(port)">
+                AND port = #{port}
             </if>
         </where>
     </sql>
@@ -97,7 +101,8 @@
                 ip,
                 username,
                 password,
-                create_person
+                create_person,
+                port
             ) VALUES (
                 #{id},
                 #{monitoredMachineName},
@@ -108,7 +113,8 @@
                 #{ip},
                 #{username},
                 #{password},
-                #{createPerson}
+                #{createPerson},
+                #{port}
             )
         ]]>
     </insert>
@@ -125,11 +131,12 @@
                 ip,
                 username,
                 password,
-                create_person
+                create_person,
+                port
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.monitoredMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson})
+            (#{item.id},#{item.monitoredMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson},#{item.port})
         </foreach>
     </insert>
     
@@ -163,6 +170,9 @@
                 </if>
                 <if test="createPerson != null">
                 	<![CDATA[ create_person = #{createPerson} ]]>
+                </if>
+                <if test="port != null">
+                	<![CDATA[ port = #{port} ]]>
                 </if>
             </set>
             WHERE

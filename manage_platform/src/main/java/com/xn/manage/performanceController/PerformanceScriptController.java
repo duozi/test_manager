@@ -12,10 +12,9 @@ import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.PublishEnum;
+import com.xn.manage.bean.CommonResult;
+import com.xn.performance.api.PerformanceScriptService;
 import com.xn.performance.dto.PerformanceScriptDto;
-import com.xn.performance.service.PerformanceScriptService;
-import com.xn.performance.util.CommonResult;
-import com.xn.performance.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,14 +27,19 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+
+import static com.xn.manage.utils.StartJMeterAgent_SSH.exec_command;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 @Controller
 @RequestMapping("/performance/script")
 public class PerformanceScriptController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PerformanceScriptController.class);
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
     @Resource
@@ -97,17 +101,22 @@ public class PerformanceScriptController {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
-//            String fileName = "e:\\\\upload\\\\" + performanceScriptDto.getPath();
-            performanceScriptDto.setPath(performanceScriptDto.getPath());
 
-            if (!ValidateUtil.validate(performanceScriptDto)) {
-                logger.warn(String.format("参数有误", performanceScriptDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
 
-            performanceScriptService.save(performanceScriptDto);
+
+            performanceScriptDto=performanceScriptService.save(performanceScriptDto);
+            Integer id=performanceScriptDto.getId();
+            String tempPath=PropertyUtil.getProperty("upload_path")+"temp"+File.separator;
+            String savePath=PropertyUtil.getProperty("upload_path")+id+File.separator;
+            final String command="mv "+tempPath+" "+savePath;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    logger.info("============" + Thread.currentThread().getName());
+                    exec_command("10.17.2.137", "root", "xnhack", 65300,command);
+                }
+            });
+
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
             commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
         } catch (Exception e) {
@@ -126,13 +135,6 @@ public class PerformanceScriptController {
     public CommonResult editScript(PerformanceScriptDto performanceScriptDto) {
         CommonResult commonResult = new CommonResult();
         try {
-            if (!ValidateUtil.validate(performanceScriptDto)) {
-                logger.warn(String.format("参数有误", performanceScriptDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
-
             performanceScriptService.update(performanceScriptDto);
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
             commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
@@ -173,22 +175,56 @@ public class PerformanceScriptController {
         }
     }
 
-    @RequestMapping(value = "/script_list/upload_script", method = RequestMethod.POST)
+    @RequestMapping(value = "/script_list/upload_file", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult uploadScript(@RequestParam("uploadScript") MultipartFile[] files, HttpServletRequest request) {
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
-        String path = "";
+        String fileName = "";
+        String path="";
         try {
             if (files != null && files.length > 0) {
                 for (int i = 0; i < files.length; i++) {
                     MultipartFile file = files[i];
                     // 保存文件
-                    path = PropertyUtil.getProperty("upload_path") + file.getOriginalFilename();
+                    String name=file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
                     FileUtil.saveFile(request, file,path);
-
-                    result.setData(path);
+                    fileName+=" "+file.getOriginalFilename();
                 }
+                result.setData(fileName.trim());
+            }
+        } catch (Exception e) {
+            int code = CommonResultEnum.ERROR.getReturnCode();
+            String message = e.getMessage();
+            result.setCode(code);
+            result.setMessage(message);
+            logger.error("上传文件操作异常｛｝", e);
+        }finally {
+            return  result;
+        }
+
+
+    }
+
+    @RequestMapping(value = "/script_list/upload_dependence_file", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult uploadDependenceFile(@RequestParam("dependenceFile") MultipartFile[] files, HttpServletRequest request) {
+        CommonResult result = new CommonResult();
+        result.setMessage("上传成功！");
+        String fileName = "";
+        String path="";
+        try {
+            if (files != null && files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    MultipartFile file = files[i];
+                    // 保存文件
+                    String name=file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
+                    FileUtil.saveFile(request, file,path);
+                    fileName+=" "+file.getOriginalFilename();
+                }
+                result.setData(fileName.trim());
             }
         } catch (Exception e) {
             int code = CommonResultEnum.ERROR.getReturnCode();
@@ -219,7 +255,7 @@ public class PerformanceScriptController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
-            logger.error("删除操作异常｛｝", e);
+            logger.error("查看脚本操作异常｛｝", e);
         } finally {
             return commonResult;
         }

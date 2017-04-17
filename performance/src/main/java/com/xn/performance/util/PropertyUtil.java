@@ -30,4 +30,8 @@ public class PropertyUtil extends PropertyPlaceholderConfigurer {
 		}
         return obj.toString(); 
     }
+
+    public static void setProperty(String name,Object value) {
+       ctxPropertiesMap.put(name,value);
+    }
 }

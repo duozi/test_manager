@@ -5,7 +5,7 @@ import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.service.*;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.DatabaseTypeEnum;
-import com.xn.performance.util.CommonResult;
+import com.xn.manage.bean.CommonResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

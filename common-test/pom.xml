@@ -4,10 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>test_manager</artifactId>
-        <groupId>test_manager</groupId>
+        <groupId>com.xn.test_manager</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.xn.test_manager</groupId>
     <artifactId>common-test</artifactId>
     <name>common-test</name>
     <url>http://maven.apache.org</url>
@@ -204,7 +205,6 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <finalName>common-test</finalName>
         <plugins>

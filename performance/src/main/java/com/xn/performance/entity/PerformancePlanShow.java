@@ -111,6 +111,34 @@ public class PerformancePlanShow {
     private Date actualStartTime;
     private String executeStatus;
     private Date setStartTime;
+    private String resultPath;
+    private String executePerson;
+    private Date actualStartTimeBegin;
+    private Date actualStartTimeEnd;
+
+    public Date getActualStartTimeBegin() {
+        return actualStartTimeBegin;
+    }
+
+    public void setActualStartTimeBegin(Date actualStartTimeBegin) {
+        this.actualStartTimeBegin = actualStartTimeBegin;
+    }
+
+    public String getExecutePerson() {
+        return executePerson;
+    }
+
+    public void setExecutePerson(String executePerson) {
+        this.executePerson = executePerson;
+    }
+
+    public String getResultPath() {
+        return resultPath;
+    }
+
+    public void setResultPath(String resultPath) {
+        this.resultPath = resultPath;
+    }
 
     public Date getSetStartTime() {
         return setStartTime;

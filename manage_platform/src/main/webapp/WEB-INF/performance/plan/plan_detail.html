@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="../../../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../vendor/bootstrap-select/bootstrap-select.css">
+    <!--datetimepicker-->
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet"
+          type="text/css">
+    <link href="../../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../../vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../../../vendor/jquery/messages_zh.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.selectpicker').selectpicker({
+                'selectedText': 'cat'
+            });
+            // 选择时间和日期
+            $(".form-datetime").datetimepicker(
+                    {
+                        weekStart: 1,
+                        todayBtn: 1,
+                        autoclose: 1,
+                        todayHighlight: 1,
+                        startView: 2,
+                        forceParse: 0,
+                        showMeridian: 1,
+                        format: "yyyy-mm-dd hh:ii:ss",
+                        language: "zh-CN"
+                    });
+
+            $("#plan-save").validate({
+                submitHandler: function () {
+                    var scriptId = $("select[name='scriptName'] option:selected").val();
+                    var scriptName = $("select[name='scriptName'] option:selected").text();
+
+                    var scenarioId = $("select[name='scenarioName'] option:selected").val();
+                    var scenarioName = $("select[name='scenarioName'] option:selected").text();
+
+                    var monitoredMachineId = "";
+                    var monitoredMachineName = "";
+                    var monitoredMachine = "";
+                    var monitoredMachineList = "";
+                    var data = $("#id_select").find("option:selected").selectpicker("val");
+                    for (var i = 0; i < data.length; i++) {
+                        monitoredMachineId = data[i].value;
+                        monitoredMachineName = data[i].text;
+                        monitoredMachine = '{"monitoredMachineId":' + monitoredMachineId + ',"monitoredMachineName":"' + monitoredMachineName + '"},';
+                        monitoredMachineList += monitoredMachine;
+                    }
+                    monitoredMachineList = '[' + monitoredMachineList + ']';
+
+                    var params = $("#plan-save").serializeArray();
+                    params.push({"name": "scriptId", "value": scriptId},
+                            {"name": "scenarioId", "value": scenarioId});
+                    params[6].value = scriptName;
+                    params[7].value = scenarioName;
+
+                    params.push({"name": "list", "value": monitoredMachineList});
+                    $.ajax({
+                        type: "POST",
+                        url: "/performance/plan/plan_list/save",
+                        data: params,
+                        success: function (data) {
+
+                            if (data.code != 0) {
+                                alert(data.message);
+
+                            }
+                            $("#addPlan").modal("hide");
+                            reload();
+                        },
+                        error: function (data) {
+                            alert("异常：" + data.message);
+                        }
+                    });
+                }
+            });
+
+            $("#execute-save").validate({
+                submitHandler: function () {
+                    var planId = $("#planId").val();
+                    var stressMachineId = $("#stress_machine_name").val();
+                    var stressMachineName= $("#stress_machine_name").find("option:selected").text();
+                    var executeType = $("#execute-time-type").val();
+                    var setStartTime = $("#set-start-time").val();
+                    var executePerson=$("#execute-person").val();
+
+                    $.post("/performance/plan/plan_list/execute_save", {
+                        planId: planId,
+                        stressMachineId: stressMachineId,
+                        stressMachineName:stressMachineName,
+                        executeType: executeType,
+                        setStartTime: setStartTime,
+                        executePerson:executePerson,
+                    }, function (data) {
+                        if (data.code == 0) {
+                            $("#execute").modal("hide");
+                            reload();
+                        } else if (data.code == 1) {
+                            alert("保存失败");
+                        } else if (data.code == 2) {
+                            alert(data.message);
+                        }
+                    });
+                }
+            });
+
+        });
+
+        //       逻辑删除计划
+        function deletePlan(id) {
+            $.post("/performance/plan/plan_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+        //        执行弹框根据公司部门系统查询可选压力机，然后弹出弹框
+        function execute(id,planId, company, department, psystem) {
+            $.post("/performance/plan/plan_list/show_stress_machine", {
+                company: company,
+                department: department,
+                psystem: psystem
+            }, function (data) {
+                if (data.code == 0) {
+                    var stress_machine_list = data.data;
+                    var stress_machine = "";
+                    if (stress_machine_list.length == 0) {
+                        stress_machine += "<option disabled selected>没有可选的压力机</option>";
+                    } else {
+                        for (var i = 0; i < stress_machine_list.length; i++) {
+                            stress_machine += "<option value='" + stress_machine_list[i].id + "'>" + stress_machine_list[i].stressMachineName + "</option>";
+                        }
+                    }
+
+                    $("#stress_machine_name").empty();
+                    $("#stress_machine_name").append(stress_machine);
+
+                    $("#planId").val(planId);
+                    $("#id").val(id);
+
+                    $("#execute").modal('show')
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function stop(id,planId,executeStatus) {
+            $.post("/performance/plan/plan_list/stop", {
+                id: id,
+                planId:planId,
+                executeStatus:executeStatus
+            }, function (data) {
+                if (data.code == 0) {
+                  reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+
+        }
+        function report(id) {
+            window.location.href = "/performance/report/report_detail?id=" +id
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">性能自动化</a></li>
+        <li><a href="active">计划管理</a></li>
+        <li class="active">测试计划详情</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default ">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <form role="form">
+                    <div class="col-lg-12">
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-company">
+                                <option value="" disabled selected>选择公司</option>
+                                <#if companyList ??>
+                                    <#list companyList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-department">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if departmentList ??>
+                                    <#list departmentList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-psystem">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if psystemList ??>
+                                    <#list psystemList as item>
+                                        <option value="${item.name}">${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-planName">
+                                <option value="" disabled selected>选择计划名称</option>
+                                <#if plan_list_all ??>
+                                    <#list plan_list_all as item>
+                                        <option value="${item.planName}">${item.planName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-scriptName">
+                                <option value="" disabled selected>选择脚本名称</option>
+                                <#if script_list_all ??>
+                                    <#list script_list_all as item>
+                                        <option value="${item.scriptName}">${item.scriptName}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2" style="width: 15%">
+                            <select class="form-control" id="search-planStatus">
+                                <option value="" disabled selected>选择计划状态</option>
+                                <#if publish_list ??>
+                                    <#list publish_list as item>
+                                        <option value="${item.getName()}">${item.getName()}</option>
+                                    </#list>
+                                </#if>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-1" style="width: 10%">
+                            <button type="submit" class="btn btn-default">查询</button>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPlan"><i
+                                    class=" fa-plus-circle fa"></i>新增计划</a>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive col-lg-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>计划ID</th>
+                            <th>计划名称</th>
+                            <th>计划描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
+                            <th>脚本</th>
+                            <th>场景</th>
+                            <th>压力机</th>
+                            <th>监控机</th>
+                            <th>执行状态</th>
+                            <th>开始时间</th>
+                            <th>创建人</th>
+                            <th>执行</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <#if plan_list ??>
+                            <#list plan_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.planName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.scriptName}</td>
+                                    <td>${item.scenarioName}</td>
+                                    <td>${item.stressMachineName}</td>
+                                    <td>
+                                        <#list item.performancePlanMonitoredDtoList as monitored_item>
+                                            ${monitored_item.monitoredMachineName}
+                                        </#list>
+                                    </td>
+                                    <td>${item.executeStatus}</td>
+                                    <td>
+                                        <#if item.actualStartTime ??>
+                                            ${(item.actualStartTime)?datetime}
+                                        </#if>
+
+                                    </td>
+                                    <td>${item.createPerson}</td>
+                                    <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
+                                           onclick="execute(${item.id},${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
+                                        <a type="button" name="stop" class="btn btn-warning"
+                                        <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" > onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
+                                            <#else> disabled
+                                        </#if>
+                                        >停止执行</a>
+                                    </td>
+
+                                    <td>
+                                        <a type="button" id="deletePlan" class="btn btn-danger"
+                                           onclick="deletePlan(${item.id})">删除计划</a>
+                                        <a  type="button" class="btn btn-info"
+                                        <#if item.executeStatus=="已执行"  >
+                                            onclick="report(${item.id})"
+                                            <#else> disabled
+                                        </#if>
+                                        >测试报告</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+
+
+    <!-- 执行配置 -->
+    <div class="modal fade" id="execute" tabindex="-1" role="dialog" aria-labelledby="timeListLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="timeListLabel">执行配置</h4>
+                </div>
+                <div class="modal-body modal-time">
+                    <form class="col-lg-14 edit-form time-form" id="execute-save">
+                        <div class="form-group">
+                            <label class="control-label">执行人<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="execute-person" placeholder="请输入您的姓名"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">压力机<span style="color:red">*</span></label>
+                            <input type="text" class="hidden" id="planId" >
+                            <input type="text" class="hidden" id="id" >
+                            <select class="form-control" id="stress_machine_name" required>
+
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">执行时间类型<span style="color:red">*</span></label>
+                            <select class="form-control" id="execute-time-type" required>
+                                <option value="now">立即加入执行队列</option>
+                                <option value="schedule">配置执行时间</option>
+                            </select>
+                        </div>
+                        <div class="form-group schedule hidden">
+                            <label class="control-label">执行时间<span style="color:red">*</span></label>
+                            <input type="text" class="form-control form-datetime" id="set-start-time" >
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary submit">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <!-- 新增测试计划弹框 -->
+    <div class="modal fade" id="addPlan" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addPlanLabel">新增测试计划</h4>
+                </div>
+                <div class="modal-body modal-add" style="min-height: 550px">
+                    <form role="form " class="col-lg-12 edit-form" id="plan-save">
+                        <div class="col-lg-14 form-div">
+                            <div class="form-group">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">计划名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="planName" name="planName"
+                                       placeholder="请输入测试计划名称" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">计划描述</label>
+                                <input type="text" class="form-control" name="remark" placeholder="请输入计划描述">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select class="form-control" name="company" required>
+                                    <option disabled selected>请选择公司</option>
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select class="form-control" name="department" required>
+                                    <option disabled selected>请选择部门</option>
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select class="form-control" name="psystem" required>
+                                    <option disabled selected>请选择系统</option>
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option value="${item.name}">${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">脚本<span style="color:red">*</span></label>
+                                <select class="form-control" name="scriptName" required>
+                                    <option disabled selected>请选择脚本</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">场景<span style="color:red">*</span></label>
+                                <select class="form-control" name="scenarioName" required>
+                                    <option disabled selected>请选择场景</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" style="margin-bottom: 4%">监控机<span
+                                        style="color:red">*</span></label>
+
+                                <select id="id_select" class="selectpicker bla bli" multiple
+                                        data-live-search="true" name="monitoredMachineName" required>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary submit">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<!-- /.row -->
+<script type="text/javascript">
+    $("#execute-time-type").change(
+            function () {
+                var value = $(this).val();
+                if (value == 'schedule') {
+                    $(".schedule").removeClass("hidden");
+                    $("#set-start-time").empty();
+                } else if (value == 'now') {
+                    $(".schedule").addClass("hidden");
+
+                }
+            }
+    );
+
+    $("select[name='company'],select[name='department'],select[name='psystem']").change(function () {
+        var company = $("select[name='company']").val();
+        var department = $("select[name='department']").val();
+        var psystem = $("select[name='psystem']").val();
+
+        $.get("/performance/plan/plan_list/show_script?company=" + company + "&department=" + department + "&psystem=" + psystem, function (data) {
+            if (data.code == 0) {
+                var script_list = data.data[0];
+                var scenario_list = data.data[1];
+                var monitored_machine_list = data.data[2];
+                var script_choose = " <option disabled selected>请选择脚本</option>";
+                for (var i = 0; i < script_list.length; i++) {
+                    script_choose += "<option value='" + script_list[i].id + "'>" + script_list[i].scriptName + "</option>";
+                }
+                $("select[name='scriptName']").empty();
+                $("select[name='scriptName']").append(script_choose);
+
+                var scenario_choose = "<option disabled selected>请选择场景</option>";
+                for (var i = 0; i < scenario_list.length; i++) {
+                    scenario_choose += "<option value='" + scenario_list[i].id + "'>" + scenario_list[i].scenarioName + "</option>";
+                }
+                $("select[name='scenarioName']").empty();
+                $("select[name='scenarioName']").append(scenario_choose);
+
+                var monitored_machine_choose = "";
+                for (var i = 0; i < monitored_machine_list.length; i++) {
+                    monitored_machine_choose += "<option value='" + monitored_machine_list[i].id + "'>" + monitored_machine_list[i].monitoredMachineName + "</option>";
+                }
+
+                $("#id_select").empty();
+                $("#id_select").append(monitored_machine_choose);
+                $("#id_select").selectpicker('refresh');
+
+            } else if (data.code == 1) {
+                alert("保存失败");
+            } else if (data.code == 2) {
+                alert(data.message);
+            }
+        });
+    })
+
+</script>
+<!-- /.container-fluid -->
+</body>
+</html>

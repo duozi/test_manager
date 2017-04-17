@@ -3,14 +3,15 @@
  */
 package com.xn.performance.service.impl;
 
+import com.xn.performance.api.PerformancePlanService;
 import com.xn.performance.dao.PerformancePlanMapper;
+import com.xn.performance.dao.PerformanceResultMapper;
 import com.xn.performance.dto.PerformancePlanDto;
 import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.entity.PerformancePlan;
 import com.xn.performance.entity.PerformancePlanShow;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.service.PerformancePlanService;
 import com.xn.performance.util.BeanUtils;
 import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,18 @@ public class PerformancePlanServiceImpl implements PerformancePlanService {
     @Autowired
     private PerformancePlanMapper performancePlanMapper;
 
+    @Autowired
+    private PerformanceResultMapper performanceResultMapper;
+
     @Override
     public List<PerformancePlanShowDto> show(Object condition) {
         List<PerformancePlanShow> list=performancePlanMapper.show(condition);
+        List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
+        return dtoList;
+    }
+    @Override
+    public List<PerformancePlanShowDto> resultList(Object condition) {
+        List<PerformancePlanShow> list=performanceResultMapper.resultList(condition);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
         return dtoList;
     }

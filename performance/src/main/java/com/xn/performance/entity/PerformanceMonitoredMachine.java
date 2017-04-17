@@ -82,7 +82,16 @@ public class PerformanceMonitoredMachine extends BaseEntity {
      */
     private String createPerson;
 
-    
+    private String port;
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
     private List<PerformanceResult> performanceResults = new ArrayList<PerformanceResult>();
 
 	

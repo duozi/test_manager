@@ -2,7 +2,7 @@ package com.xn.manage;/**
  * Created by xn056839 on 2017/2/22.
  */
 
-import com.xn.performance.service.PerformanceStressMachineService;
+import com.xn.performance.api.PerformanceStressMachineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

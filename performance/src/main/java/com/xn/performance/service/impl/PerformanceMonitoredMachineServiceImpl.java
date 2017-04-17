@@ -3,26 +3,21 @@
  */
 package com.xn.performance.service.impl;
 
+import com.xn.performance.api.PerformanceMonitoredMachineService;
 import com.xn.performance.dao.PerformanceMonitoredMachineMapper;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;
 import com.xn.performance.entity.PerformanceMonitoredMachine;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
-import com.xn.performance.service.PerformanceMonitoredMachineService;
 import com.xn.performance.util.BeanUtils;
 import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+
+import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.test_link;
 
 
 /**
@@ -116,15 +111,7 @@ public class PerformanceMonitoredMachineServiceImpl implements PerformanceMonito
     }
 
     @Override
-    public boolean testLink(String ip, String username, String password) {
-
-        try {
-            return InetAddress.getByName(ip).isReachable(2000);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean testLink(String ip, String username, String password,int port) {
+        return test_link(ip,username,password,port);
     }
 }

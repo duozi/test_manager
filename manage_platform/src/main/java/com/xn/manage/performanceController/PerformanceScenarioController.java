@@ -6,15 +6,14 @@ import com.xn.common.company.dto.CompanyDto;
 import com.xn.common.company.dto.DepartmentDto;
 import com.xn.common.company.service.CompanyService;
 import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.DateUtil;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.PublishEnum;
+import com.xn.manage.bean.CommonResult;
+import com.xn.performance.api.PerformanceScenarioService;
 import com.xn.performance.dto.PerformanceScenarioDto;
-import com.xn.performance.service.PerformanceScenarioService;
-import com.xn.performance.util.CommonResult;
-import com.xn.performance.util.DateUtil;
-import com.xn.performance.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @Controller
 @RequestMapping("/performance/scenario")
 public class PerformanceScenarioController {
-    private static final Logger logger = LoggerFactory.getLogger(ValidateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PerformanceScenarioController.class);
     @Resource
     PerformanceScenarioService performanceScenarioService;
     @Resource
@@ -90,16 +89,11 @@ public class PerformanceScenarioController {
 
     @RequestMapping(value = "/scenario_list/save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult saveScenario(PerformanceScenarioDto performanceScenarioDto,@RequestParam String startTime,@RequestParam String endTime) {
+    public CommonResult saveScenario(PerformanceScenarioDto performanceScenarioDto, @RequestParam String startTime, @RequestParam String endTime) {
         CommonResult commonResult = new CommonResult();
         try {
             performanceScenarioDto.setScenarioStatus(PublishEnum.UNPUBLISHED.getName());
-            if (!ValidateUtil.validate(performanceScenarioDto)) {
-                logger.warn(String.format("参数有误", performanceScenarioDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
+
             Date setStartTime = DateUtil.getStandardStringDate(startTime);
             Date setEndTime = DateUtil.getStandardStringDate(endTime);
             performanceScenarioDto.setSetStartTime(setStartTime);
@@ -128,12 +122,6 @@ public class PerformanceScenarioController {
     public CommonResult editScenario(PerformanceScenarioDto performanceScenarioDto) {
         CommonResult commonResult = new CommonResult();
         try {
-            if (!ValidateUtil.validate(performanceScenarioDto)) {
-                logger.warn(String.format("参数有误", performanceScenarioDto));
-                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
-                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
-                return commonResult;
-            }
 
             performanceScenarioService.update(performanceScenarioDto);
             commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());

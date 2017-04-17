@@ -40,23 +40,21 @@ public class PerformancePlanMonitored extends BaseEntity {
      */
     private String monitoredMachineName;
 
-    /**
-     * 结果id
-     */
-    private Integer resultId;
+    private String monitoredMachineIp;
 
-    public Integer getResultId() {
-        return resultId;
+    public String getMonitoredMachineIp() {
+        return monitoredMachineIp;
     }
 
-    public void setResultId(Integer resultId) {
-        this.resultId = resultId;
+    public void setMonitoredMachineIp(String monitoredMachineIp) {
+        this.monitoredMachineIp = monitoredMachineIp;
     }
 
     private PerformancePlan performancePlan;
 
 
     private PerformanceMonitoredMachine performanceMonitoredMachine;
+
 
 
     public PerformancePlanMonitored() {

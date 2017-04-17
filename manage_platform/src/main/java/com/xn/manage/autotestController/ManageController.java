@@ -1,29 +1,24 @@
 package com.xn.manage.autotestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.xn.common.utils.StringUtil;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
+import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.performance.util.CommonResult;
-import com.xn.performance.util.ValidateUtil;
+import com.xn.manage.bean.CommonResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/autotest/manage")

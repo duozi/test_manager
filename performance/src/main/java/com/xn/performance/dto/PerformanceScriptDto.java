@@ -8,78 +8,85 @@ import com.xn.performance.util.BaseDto;
 
 /**
  * PerformanceScript Dto 对象
- * 
+ *
  * @author zhouxi
  * @date 2017-02-21
  */
-public class PerformanceScriptDto extends BaseDto{
-    
+public class PerformanceScriptDto extends BaseDto {
+
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * 主键列
-     * id 
+     * id
      */
     private Integer id;
 
     /**
-     * 
-     * 脚本名 
+     * 脚本名
      */
     private String scriptName;
 
     /**
-     * 
-     * 脚本描述 
+     * 脚本描述
      */
     private String remark;
 
     /**
-     * 
-     * 公司 
+     * 公司
      */
     private String company;
 
     /**
-     * 
-     * 部门 
+     * 部门
      */
     private String department;
 
     /**
-     * 
-     * 系统 
+     * 系统
      */
     private String psystem;
 
     /**
-     * 
-     * 脚本状态，0，未发布，1，已发布 
+     * 脚本状态，0，未发布，1，已发布
      */
     private String scriptStatus;
 
     /**
-     * 
-     * 存放路径 
+     * 脚本名称
      */
-    private String path;
+    private String scriptFileName;
 
     /**
-     * 
-     * 创建人 
+     * 创建人
      */
     private String createPerson;
 
-    
 
-    
+
+    private String dependenceFileName;
+
+    public String getDependenceFileName() {
+        return dependenceFileName;
+    }
+
+    public void setDependenceFileName(String dependenceFileName) {
+        this.dependenceFileName = dependenceFileName;
+    }
+    public String getScriptFileName() {
+        return scriptFileName;
+    }
+
+    public void setScriptFileName(String scriptFileName) {
+        this.scriptFileName = scriptFileName;
+    }
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Integer getId() {
         return this.id;
     }
@@ -87,7 +94,7 @@ public class PerformanceScriptDto extends BaseDto{
     public void setScriptName(String scriptName) {
         this.scriptName = scriptName;
     }
-    
+
     public String getScriptName() {
         return this.scriptName;
     }
@@ -95,7 +102,7 @@ public class PerformanceScriptDto extends BaseDto{
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    
+
     public String getRemark() {
         return this.remark;
     }
@@ -103,7 +110,7 @@ public class PerformanceScriptDto extends BaseDto{
     public void setCompany(String company) {
         this.company = company;
     }
-    
+
     public String getCompany() {
         return this.company;
     }
@@ -111,7 +118,7 @@ public class PerformanceScriptDto extends BaseDto{
     public void setDepartment(String department) {
         this.department = department;
     }
-    
+
     public String getDepartment() {
         return this.department;
     }
@@ -119,7 +126,7 @@ public class PerformanceScriptDto extends BaseDto{
     public void setPsystem(String psystem) {
         this.psystem = psystem;
     }
-    
+
     public String getPsystem() {
         return this.psystem;
     }
@@ -127,27 +134,19 @@ public class PerformanceScriptDto extends BaseDto{
     public void setScriptStatus(String scriptStatus) {
         this.scriptStatus = scriptStatus;
     }
-    
+
     public String getScriptStatus() {
         return this.scriptStatus;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-    
-    public String getPath() {
-        return this.path;
-    }
 
     public void setCreatePerson(String createPerson) {
         this.createPerson = createPerson;
     }
-    
+
     public String getCreatePerson() {
         return this.createPerson;
     }
-
 
 
 }

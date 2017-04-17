@@ -17,6 +17,7 @@
         <result property="scenarioName" column="scenario_name"/>
         <result property="planStatus" column="plan_status"/>
         <result property="createPerson" column="create_person"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
 
 
@@ -38,6 +39,10 @@
         <result property="stressMachineId" column="stress_machine_id"/>
         <result property="stressMachineName" column="stress_machine_name"/>
         <result property="actualStartTime" column="actual_start_time"/>
+        <result property="executeStatus" column="execute_status"/>
+        <result property="resultPath" column="result_path"/>
+        <result property="executePerson" column="execute_person"/>
+
     </resultMap>
 
     <sql id="columns">
@@ -58,7 +63,7 @@
 
     <sql id="show_columns">
         <![CDATA[
-        id, plan_id,plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time
+        id, plan_id,plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time,execute_status,result_path,execute_person
 
         ]]>
     </sql>
@@ -109,13 +114,41 @@
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, R.plan_id,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.result_path,R.execute_person
         FROM
         performance_plan P LEFT JOIN performance_result R ON P.id=R.plan_id
+            <where>
+                <if test="@Ognl@isNotEmpty(id)">
+                    AND R.id = #{id}
+                </if>
+                <if test="@Ognl@isNotEmpty(planName)">
+                    AND R.plan_name = #{planName}
+                </if>
+                <if test="@Ognl@isNotEmpty(company)">
+                    AND P.company = #{company}
+                </if>
+                <if test="@Ognl@isNotEmpty(department)">
+                    AND P.department = #{department}
+                </if>
+                <if test="@Ognl@isNotEmpty(psystem)">
+                    AND P.psystem = #{psystem}
+                </if>
 
-        <include refid="where"/>
+                <if test="@Ognl@isNotEmpty(scriptName)">
+                    AND P.script_name = #{scriptName}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(planStatus)">
+                    AND P.plan_status = #{planStatus}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(isDelete)">
+                    AND P.is_delete = #{isDelete}
+                </if>
+            </where>
+
 
     </select>
 
@@ -250,7 +283,7 @@
                 <![CDATA[ plan_status = #{planStatus} ]]>,
             </if>
             <if test="createPerson != null">
-                <![CDATA[ create_person = #{createPerson} ]]>
+                <![CDATA[ create_person = #{createPerson} ]]>,
             </if>
             <if test="isDelete != null">
                 <![CDATA[ is_delete = #{isDelete} ]]>
