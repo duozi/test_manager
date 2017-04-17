@@ -13,7 +13,6 @@ import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.PerformancePlanStatusEnum;
-import com.xn.manage.Enum.PlanStatusEnum;
 import com.xn.manage.bean.CommonResult;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
@@ -143,7 +142,7 @@ public class PerformancePlanController {
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = (List) JSONArray.toCollection(jsonArray, PerformancePlanMonitoredDto.class);
 
 
-            performancePlanDto.setPlanStatus(PlanStatusEnum.UN_EXECUTE.getName());
+            performancePlanDto.setPlanStatus(PerformancePlanStatusEnum.UNEXECUTED.getName());
             performancePlanDto.setIsDelete("未删除");
 
 
