@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>interfacetest</artifactId>
     <groupId>com.xn.test_manager</groupId>
-    <name>interfacetest</name>
+
 
     <dependencies>
         <dependency>
@@ -87,11 +87,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>test_manager</groupId>
-            <artifactId>interfacetest</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
 
     </dependencies>
     <build>
@@ -133,7 +129,5 @@
             <id>snapshots</id>
             <url>http://10.17.2.209:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
-
-
     </distributionManagement>
 </project>

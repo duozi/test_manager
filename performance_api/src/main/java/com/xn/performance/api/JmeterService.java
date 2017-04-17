@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface JmeterService {
-    String execute(String stressMachineIp, String jmeterScriptPath, Integer id) throws Exception;
+    String execute(String stressMachineIp, String jmeterScriptPath, String scriptDependenceFile,Integer scriptId,Integer id) throws Exception;
 
     void executePlan(String executeType, PerformanceResultDto performanceResultDto);
 

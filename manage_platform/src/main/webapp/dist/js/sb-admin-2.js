@@ -44,6 +44,12 @@ $(function() {
         if(path=="/performance/report/report_detail" && herfurl==originurl +"/performance/report/report_list"){
             return true;
         }
+        if(path=="/performance/report/jmeter_log" && herfurl==originurl +"/performance/report/report_list"){
+            return true;
+        }
+        if(path=="/performance/report/grafana" && herfurl==originurl +"/performance/report/report_list"){
+            return true;
+        }
         if(path=="/autotest/case/case_item_single" && herfurl==originurl +"/autotest/case/case_item"){
             return true;
         }

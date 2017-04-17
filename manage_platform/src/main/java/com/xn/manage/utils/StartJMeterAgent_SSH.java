@@ -119,15 +119,15 @@ public class StartJMeterAgent_SSH {
         String user = "root";
         String psw = "jinrong";
         int port = 65300;
-        String command = "ls";
-        //String rult = exec(host, user, psw, port, command);
-        //System.out.println(rult);
+        String command = "tailf nohup.out";
+         exec_command(host, user, psw, port, command);
+
         //System.out.println(exec(host, user, psw, port, "pwd"));
         //System.out.println(exec(host, user, psw, port, "/tmp/apache-jmeter-3.1/bin/jmeter-server"));
 //        System.out.println(test_link(host,user,psw,port));
 //        exec_command(host, user, psw, port, command);
 //        exec_command(host, user, psw, port, "pwd");
-		exec_command(host, user, psw, port, "bash /data/apache-jmeter-3.1/bin/jmeter-server");
+//		exec_command(host, user, psw, port, "bash /data/apache-jmeter-3.1/bin/jmeter-server");
         Thread.currentThread().stop();
     }
 

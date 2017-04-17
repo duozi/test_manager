@@ -156,10 +156,10 @@
                 <if test="scriptStatus != null">
                 	<![CDATA[ script_status = #{scriptStatus} ]]>,
                 </if>
-                <if test="script_file_name != null">
+                <if test="scriptFileName != null">
                 	<![CDATA[ script_file_name = #{scriptFileName} ]]>,
                 </if>
-                <if test="dependence_file_name != null">
+                <if test="dependenceFileName != null">
                 	<![CDATA[ dependence_file_name = #{dependenceFileName} ]]>,
                 </if>
                 <if test="createPerson != null">

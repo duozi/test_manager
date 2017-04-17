@@ -91,7 +91,8 @@ public class PerformancePlanController {
         String planName = request.getParameter("planName");
         String planStatus = request.getParameter("planStatus");
         String scriptName = request.getParameter("scriptName");
-PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
+        PerformancePlanShowDto performancePlanShowDto = new PerformancePlanShowDto();
+        performancePlanShowDto.setIsDelete("未删除");
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
         }
@@ -130,8 +131,6 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
     }
 
 
-
-
     //保存计划
     @RequestMapping(value = "/plan_list/save", method = RequestMethod.POST)
     @ResponseBody
@@ -148,11 +147,17 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
             performancePlanDto.setIsDelete("未删除");
 
 
-
             performancePlanDto = performancePlanService.save(performancePlanDto);
 
             for (PerformancePlanMonitoredDto performancePlanMonitoredDto : performancePlanMonitoredDtoList) {
+                Integer id = performancePlanMonitoredDto.getMonitoredMachineId();
+                PerformanceMonitoredMachineDto performanceMonitoredMachineDto = new PerformanceMonitoredMachineDto();
+                performanceMonitoredMachineDto.setId(id);
+                performanceMonitoredMachineDto = performanceMonitoredMachineService.get(performanceMonitoredMachineDto);
                 performancePlanMonitoredDto.setPlanId(performancePlanDto.getId());
+
+                performancePlanMonitoredDto.setMonitoredMachineIp(performanceMonitoredMachineDto.getIp());
+
             }
 
             performancePlanMonitoredService.save(Lists.newArrayList(performancePlanMonitoredDtoList));
@@ -242,19 +247,19 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
             //先保存到执行结果
             performanceResultDto = performanceResultService.save(performanceResultDto);
             //保存到plan_monitored_result表
-            Integer resultId=performanceResultDto.getId();
-            PerformancePlanMonitoredDto performancePlanMonitoredDto=new PerformancePlanMonitoredDto();
+            Integer resultId = performanceResultDto.getId();
+            PerformancePlanMonitoredDto performancePlanMonitoredDto = new PerformancePlanMonitoredDto();
             performancePlanMonitoredDto.setPlanId(planId);
-            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList=performancePlanMonitoredService.list(performancePlanMonitoredDto);
-            for(PerformancePlanMonitoredDto item:performancePlanMonitoredDtoList){
-                Integer monitoredMachineId=item.getMonitoredMachineId();
-                String monitoredMachineName=item.getMonitoredMachineName();
-                PerformanceMonitoredMachineDto performanceMonitoredMachineDto=new PerformanceMonitoredMachineDto();
+            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(performancePlanMonitoredDto);
+            for (PerformancePlanMonitoredDto item : performancePlanMonitoredDtoList) {
+                Integer monitoredMachineId = item.getMonitoredMachineId();
+                String monitoredMachineName = item.getMonitoredMachineName();
+                PerformanceMonitoredMachineDto performanceMonitoredMachineDto = new PerformanceMonitoredMachineDto();
                 performanceMonitoredMachineDto.setId(monitoredMachineId);
-                performanceMonitoredMachineDto=performanceMonitoredMachineService.get(performanceMonitoredMachineDto);
+                performanceMonitoredMachineDto = performanceMonitoredMachineService.get(performanceMonitoredMachineDto);
 
-                String monitoredMachineIP=performanceMonitoredMachineDto.getIp();
-                PerformanceMonitoredMachineResultDto performanceMonitoredResultDto=new PerformanceMonitoredMachineResultDto();
+                String monitoredMachineIP = performanceMonitoredMachineDto.getIp();
+                PerformanceMonitoredMachineResultDto performanceMonitoredResultDto = new PerformanceMonitoredMachineResultDto();
                 performanceMonitoredResultDto.setPlanId(planId);
                 performanceMonitoredResultDto.setMonitoredMachineId(monitoredMachineId);
                 performanceMonitoredResultDto.setMonitoredMachineName(monitoredMachineName);
@@ -329,10 +334,11 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
         }
 
     }
+
     //停止执行
     @RequestMapping(value = "/plan_list/stop", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult stopPlan(@RequestParam final Integer id ,@RequestParam final Integer planId,@RequestParam final String executeStatus) {
+    public CommonResult stopPlan(@RequestParam final Integer id, @RequestParam final Integer planId, @RequestParam final String executeStatus) {
         CommonResult commonResult = new CommonResult();
         try {
 
@@ -340,7 +346,7 @@ PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
                 @Override
                 public void run() {
                     logger.info("stopPlan============" + Thread.currentThread().getName());
-                    jmeterService.stopPlan(id,planId,executeStatus);
+                    jmeterService.stopPlan(id, planId, executeStatus);
                 }
             });
 

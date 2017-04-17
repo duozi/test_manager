@@ -91,6 +91,7 @@ public class SpringTask {
     @Scheduled(cron = "0 0/1 * * * ?")
     public void Schedule() {
 
+
         logger.info(new Date() + Thread.currentThread().getName() + "============execute schedule task");
         for (Integer stressMachineId : PERFORMANCE_NOW_MAP.keySet()) {
             ConcurrentLinkedQueue queue = PERFORMANCE_NOW_MAP.get(stressMachineId);

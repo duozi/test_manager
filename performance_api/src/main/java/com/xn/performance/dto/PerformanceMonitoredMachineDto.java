@@ -8,78 +8,79 @@ import com.xn.performance.mybatis.BaseDto;
 
 /**
  * PerformanceMonitoredMachine Dto 对象
- * 
+ *
  * @author zhouxi
  * @date 2017-02-21
  */
 public class PerformanceMonitoredMachineDto extends BaseDto {
-    
+
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * 主键列
-     * id 
+     * id
      */
     private Integer id;
 
     /**
-     * 
-     * 监控机名 
+     * 监控机名
      */
     private String monitoredMachineName;
 
     /**
-     * 
-     * 备注 
+     * 备注
      */
     private String remark;
 
     /**
-     * 
-     * 公司 
+     * 公司
      */
     private String company;
 
     /**
-     * 
-     * 部门 
+     * 部门
      */
     private String department;
 
     /**
-     * 
-     * 系统 
+     * 系统
      */
     private String psystem;
 
     /**
-     * 
-     * ip 
+     * ip
      */
     private String ip;
 
     /**
-     * 
-     * 用户名 
+     * 用户名
      */
     private String username;
 
     /**
-     * 
-     * 密码 
+     * 密码
      */
     private String password;
 
     /**
-     * 
-     * 创建人 
+     * 创建人
      */
     private String createPerson;
 
     private String port;
+
+    public PerformanceMonitoredMachineDto() {
+
+    }
+
+    public PerformanceMonitoredMachineDto(Integer id) {
+        this.id = id;
+    }
+
+
 
     public String getPort() {
         return port;
@@ -90,11 +91,10 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     }
 
 
-
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Integer getId() {
         return this.id;
     }
@@ -102,7 +102,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setMonitoredMachineName(String monitoredMachineName) {
         this.monitoredMachineName = monitoredMachineName;
     }
-    
+
     public String getMonitoredMachineName() {
         return this.monitoredMachineName;
     }
@@ -110,7 +110,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    
+
     public String getRemark() {
         return this.remark;
     }
@@ -118,7 +118,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setCompany(String company) {
         this.company = company;
     }
-    
+
     public String getCompany() {
         return this.company;
     }
@@ -126,7 +126,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setDepartment(String department) {
         this.department = department;
     }
-    
+
     public String getDepartment() {
         return this.department;
     }
@@ -134,7 +134,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setPsystem(String psystem) {
         this.psystem = psystem;
     }
-    
+
     public String getPsystem() {
         return this.psystem;
     }
@@ -142,7 +142,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setIp(String ip) {
         this.ip = ip;
     }
-    
+
     public String getIp() {
         return this.ip;
     }
@@ -150,7 +150,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getUsername() {
         return this.username;
     }
@@ -158,7 +158,7 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getPassword() {
         return this.password;
     }
@@ -166,11 +166,10 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
     public void setCreatePerson(String createPerson) {
         this.createPerson = createPerson;
     }
-    
+
     public String getCreatePerson() {
         return this.createPerson;
     }
-
 
 
 }

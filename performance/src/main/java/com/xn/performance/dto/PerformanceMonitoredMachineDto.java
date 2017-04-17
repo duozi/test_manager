@@ -99,6 +99,16 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
         return this.id;
     }
 
+    public PerformanceMonitoredMachineDto() {
+
+    }
+
+    public PerformanceMonitoredMachineDto(Integer id) {
+        this.id = id;
+    }
+
+
+
     public void setMonitoredMachineName(String monitoredMachineName) {
         this.monitoredMachineName = monitoredMachineName;
     }

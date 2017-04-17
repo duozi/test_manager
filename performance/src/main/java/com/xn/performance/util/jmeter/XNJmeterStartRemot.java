@@ -74,7 +74,7 @@ public class XNJmeterStartRemot {
     String pwd;
     String port;
 
-    public XNJmeterStartRemot(Integer id,String ip,String username,String pwd,String port) {
+    public XNJmeterStartRemot(Integer id, String ip, String username, String pwd, String port) {
         setjmeterpros.put("setAsXml", true);
         setjmeterpros.put("setCode", true);
         setjmeterpros.put("setLatency", true);
@@ -95,10 +95,10 @@ public class XNJmeterStartRemot {
 
 
         this.id = id;
-        this.ip=ip;
-        this.username=username;
-        this.pwd=pwd;
-        this.port=port;
+        this.ip = ip;
+        this.username = username;
+        this.pwd = pwd;
+        this.port = port;
     }
 
     /**
@@ -334,7 +334,7 @@ public class XNJmeterStartRemot {
         // jtl报告文件名称
         SimpleDateFormat df = new SimpleDateFormat("_yyyyMMdd_HHmmss");
         String jtltime = df.format(new Date());
-        if (jmxfile == "") {
+        if (jmxfile.equals("")) {
             jmxfile = getProperty("jmxfile");
         }
         String reportPath = getProperty("reports");
@@ -539,16 +539,18 @@ public class XNJmeterStartRemot {
 
             logger.error("========jmeter server is lost ,retry agin");
 
-
             threadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    logger.info(new Date() + Thread.currentThread().getName() + "启动jmeter======");
-                    exec_command(ip, username, pwd, Integer.parseInt(port), "bash  /data/apache-jmeter-3.1/bin/jmeter-server");
-                }
-            });
+                                   @Override
+                                   public void run() {
 
-            Thread.sleep(5000);
+                                       logger.info(new Date() + Thread.currentThread().getName() + "启动jmeter======");
+                                       String command = getProperty("command");
+                                       exec_command(ip, username, pwd, Integer.parseInt(port), command);
+                                   }
+                               });
+
+
+                    Thread.sleep(5000);
 
             distributedRunner.init(hosts, testTree);
         }

@@ -127,7 +127,7 @@
             });
         }
         //        执行弹框根据公司部门系统查询可选压力机，然后弹出弹框
-        function execute(id, planId, company, department, psystem) {
+        function execute( planId, company, department, psystem) {
             $.post("/performance/plan/plan_list/show_stress_machine", {
                 company: company,
                 department: department,
@@ -324,7 +324,7 @@
                                     </td>
                                     <td>${item.createPerson}</td>
                                     <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
-                                           onclick="execute(${item.id},${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
+                                           onclick="execute(${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
                                         <a type="button" name="stop" class="btn btn-warning"
                                         <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" >
                                             onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
@@ -335,7 +335,7 @@
 
                                     <td>
                                         <a type="button" id="deletePlan" class="btn btn-danger"
-                                           onclick="deletePlan(${item.id})">删除计划</a>
+                                           onclick="deletePlan(${item.planId})">删除计划</a>
                                         <a type="button" class="btn btn-info"
                                         <#if item.executeStatus=="已执行"  >
                                             onclick="report(${item.id})"

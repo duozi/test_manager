@@ -37,9 +37,18 @@
             var scriptName = $("select[name='search-scriptName']").val();
             var executeStatus = $("select[name='search-executeStatus']").val();
             var planName = $("select[name='search-planName']").val();
-            var actualStartTimeBegin=$("input[name='actualStartTimeBegin']").val();
-            var actualStartTimeEnd=$("input[name='actualStartTimeEnd']").val();
-            window.location.href = "report_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&executeStatus=" + executeStatus + "&planName=" + planName+"&actualStartTimeBegin="+actualStartTimeBegin+"&actualStartTimeEnd="+actualStartTimeEnd
+            var actualStartTimeBegin = $("input[name='actualStartTimeBegin']").val();
+            var actualStartTimeEnd = $("input[name='actualStartTimeEnd']").val();
+            window.location.href = "report_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&scriptName=" + scriptName + "&executeStatus=" + executeStatus + "&planName=" + planName + "&actualStartTimeBegin=" + actualStartTimeBegin + "&actualStartTimeEnd=" + actualStartTimeEnd
+        }
+        function report(id) {
+            window.location.href = "/performance/report/report_detail?id=" + id
+        }
+        function grafana() {
+            window.location.href = "/performance/report/grafana"
+        }
+        function jmeterLog(id) {
+            window.location.href = "/performance/report/jmeter_log?id="+id
         }
 
     </script>
@@ -122,8 +131,9 @@
                         </div>
 
 
-                        <div class="form-group col-lg-2" style="width: 30%">
-                            <lable class="control-label" style="width:55%;margin-top: 2%;margin-right: 2%">执行开始时间</lable>
+                        <div class="form-group col-lg-2" style="width: 35%">
+                            <lable class="control-label" style="width:55%;margin-top: 2%;margin-right: 2%">执行开始时间
+                            </lable>
                             <input type="text" class="form-control form-datetime" name="actualStartTimeBegin">
                             <span style="width: 5%;margin-top: 2%;margin-left: 2%;margin-right: 2%"> — </span>
                             <input type="text" class="form-control form-datetime" name="actualStartTimeEnd">
@@ -185,6 +195,13 @@
 
 
                                     <td>
+                                        <a type="button" class="btn btn-warning" onclick="grafana()">实时数据</a>
+                                        <a type="button" class="btn btn-success"
+                                        <#if item.executeStatus=="执行中" >
+                                            onclick="jmeterLog(${item.id})"
+                                            <#else> disabled
+                                        </#if>
+                                        >jmeter日志</a>
                                         <a type="button" class="btn btn-info"
                                         <#if item.executeStatus=="已执行"  >
                                             onclick="report(${item.id})"

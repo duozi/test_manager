@@ -14,17 +14,20 @@ import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -32,32 +35,31 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @RequestMapping("/performance/report")
 public class PerformanceReportController {
     private static final Logger logger = LoggerFactory.getLogger(PerformanceReportController.class);
-    @Autowired
+    @Resource
     private CompanyService companyService;
-    @Autowired
+    @Resource
     private TestSystemService systemService;
-    @Autowired
+    @Resource
     private DepartmentService departmentService;
-    @Autowired
+    @Resource
     PerformanceResultService performanceResultService;
-    @Autowired
+    @Resource
     PerformancePlanMonitoredService performancePlanMonitoredService;
-    @Autowired
+    @Resource
     PerformancePlanService performancePlanService;
-    @Autowired
+    @Resource
     PerformanceStressMachineService performanceStressMachineService;
-    @Autowired
+    @Resource
     PerformanceScriptService performanceScriptService;
-    @Autowired
+    @Resource
     PerformanceScenarioService performanceScenarioService;
-    @Autowired
+    @Resource
     PerformanceMonitoredMachineResultService performanceMonitoredMachineResultService;
-
-    @Autowired
+    @Resource
     PerformancePlanShowService performancePlanShowService;
+    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
-
-    @RequestMapping(value="/{path}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
@@ -66,7 +68,7 @@ public class PerformanceReportController {
 
 
         PerformanceScriptDto performanceScriptDto = new PerformanceScriptDto();
-        List<PerformanceScriptDto> performanceScriptDtoList  = performanceScriptService.list(performanceScriptDto);
+        List<PerformanceScriptDto> performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
         model.put("script_list_all", performanceScriptDtoList);
 
 
@@ -74,11 +76,11 @@ public class PerformanceReportController {
         String department = request.getParameter("department");
         String psystem = request.getParameter("psystem");
         String planName = request.getParameter("planName");
-        String planStatus = request.getParameter("planStatus");
+        String executeStatus = request.getParameter("executeStatus");
         String scriptName = request.getParameter("scriptName");
-        String actualStartTimeBegin=request.getParameter("actualStartTimeBegin");
-        String actualStartTimeEnd=request.getParameter("actualStartTimeEnd");
-        PerformancePlanShowDto performancePlanShowDto=new PerformancePlanShowDto();
+        String actualStartTimeBegin = request.getParameter("actualStartTimeBegin");
+        String actualStartTimeEnd = request.getParameter("actualStartTimeEnd");
+        PerformancePlanShowDto performancePlanShowDto = new PerformancePlanShowDto();
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
         }
@@ -91,18 +93,18 @@ public class PerformanceReportController {
         if (isNotEmpty(planName) && !planName.equals("null")) {
             performancePlanShowDto.setPlanName(planName);
         }
-        if (isNotEmpty(planStatus) && !planStatus.equals("null")) {
-            performancePlanShowDto.setPlanStatus(planStatus);
+        if (isNotEmpty(executeStatus) && !executeStatus.equals("null")) {
+            performancePlanShowDto.setExecuteStatus(executeStatus);
         }
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performancePlanShowDto.setScriptName(scriptName);
         }
         if (isNotEmpty(actualStartTimeBegin) && !actualStartTimeBegin.equals("null")) {
-            Date begin= DateUtil.getStandardStringDate(actualStartTimeBegin);
+            Date begin = DateUtil.getStandardStringDate(actualStartTimeBegin);
             performancePlanShowDto.setActualStartTimeBegin(begin);
         }
         if (isNotEmpty(actualStartTimeEnd) && !actualStartTimeEnd.equals("null")) {
-            Date end= DateUtil.getStandardStringDate(actualStartTimeEnd);
+            Date end = DateUtil.getStandardStringDate(actualStartTimeEnd);
             performancePlanShowDto.setActualStartTimeEnd(end);
         }
 
@@ -184,5 +186,40 @@ public class PerformanceReportController {
             return "/performance/report/report_detail";
         }
     }
+
+    //获得机器实时数据
+    @RequestMapping(value = "/grafana", method = RequestMethod.GET)
+    public String getGrafana(HttpServletRequest request, HttpServletResponse response) {
+        try {
+        } catch (Exception e) {
+        } finally {
+            return "/performance/report/grafana";
+        }
+    }
+
+    //查看jmeter日志
+    @RequestMapping(value = "/jmeter_log", method = RequestMethod.GET)
+    public String getJmeterLog(HttpServletRequest request, ModelMap model) {
+        try {
+            //获得结果相关信息
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+            performanceResultDto.setId(id);
+            performanceResultDto = performanceResultService.get(performanceResultDto);
+
+            //压力机
+            Integer stressMachineId = performanceResultDto.getStressMachineId();
+            PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
+            performanceStressMachineDto.setId(stressMachineId);
+            performanceStressMachineDto = performanceStressMachineService.get(performanceStressMachineDto);
+            model.put("stress_machine_detail", performanceStressMachineDto);
+            } catch(Exception e){
+            }
+        finally {
+            return "/performance/report/jmeter_log";
+        }
+        }
+
+
 }
 

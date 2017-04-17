@@ -17,6 +17,7 @@
         <result property="scenarioName" column="scenario_name"/>
         <result property="planStatus" column="plan_status"/>
         <result property="createPerson" column="create_person"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
 
 
@@ -282,7 +283,7 @@
                 <![CDATA[ plan_status = #{planStatus} ]]>,
             </if>
             <if test="createPerson != null">
-                <![CDATA[ create_person = #{createPerson} ]]>
+                <![CDATA[ create_person = #{createPerson} ]]>,
             </if>
             <if test="isDelete != null">
                 <![CDATA[ is_delete = #{isDelete} ]]>

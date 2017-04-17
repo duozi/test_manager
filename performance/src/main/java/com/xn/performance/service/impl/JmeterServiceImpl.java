@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,6 +30,9 @@ import java.util.concurrent.ConcurrentMap;
 
 import static com.xn.performance.service.impl.SpringTask.*;
 import static com.xn.performance.util.DateUtil.lastedTime;
+import static com.xn.performance.util.PropertyUtil.getProperty;
+import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.upload;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 
 @Service
@@ -53,12 +55,12 @@ public class JmeterServiceImpl implements JmeterService {
     PerformanceStressMachineServiceImpl performanceStressMachineService;
 
 
-    public String execute(String stressMachineIp, String jmeterScriptPath, Integer id) throws Exception {
+    public String execute(String stressMachineIp, String jmeterScriptPath, String scriptDependenceFile, Integer scriptId, Integer id) throws Exception {
         logger.info(Thread.currentThread().getName() + "=============execute " + " id:" + id + " stressMachineIp:" + stressMachineIp + " jmeterScriptPath:" + jmeterScriptPath);
         String resultPath = "";
         try {
-            InetAddress addr = InetAddress.getLocalHost();
-            String ip = addr.getHostAddress();//获得本机IP
+            //这个方法只在windows 下有效
+            String ip = getProperty("localIp");
 
             //获得压力机的ip,用户名，密码，端口号
             PerformanceResultDto performanceResultDto = new PerformanceResultDto(id);
@@ -70,6 +72,16 @@ public class JmeterServiceImpl implements JmeterService {
             String user = performanceStressMachineDto.getUsername();
             String psw = performanceStressMachineDto.getPassword();
             String port = performanceStressMachineDto.getPort();
+            //把脚本依赖的文件上传到压力机的固定路径下
+            if (isNotEmpty(scriptDependenceFile)) {
+                String dependencePath = PropertyUtil.getProperty("jmeter_dependence_file_path");
+                String[] dependenceName = scriptDependenceFile.split(" ");
+                for (String name : dependenceName) {
+                    String dependenceFilePath = PropertyUtil.getProperty("upload_path") + scriptId + File.separator + name;
+                    upload(dependencePath, dependenceFilePath, host, user, psw, Integer.parseInt(port));
+                }
+            }
+
             XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot(id, host, user, psw, port);
             RUNNING_MAP.put(id, xnJmeterStartRemot);
             resultPath = xnJmeterStartRemot.rstart_csv(stressMachineIp, ip, jmeterScriptPath);
@@ -262,8 +274,11 @@ public class JmeterServiceImpl implements JmeterService {
         performanceScriptDto.setId(scriptId);
         performanceScriptDto = performanceScriptService.get(performanceScriptDto);
         //脚本的地址
-        String scriptName=performanceScriptDto.getScriptFileName();
-        String scriptPath = PropertyUtil.getProperty("upload_path")+scriptId+File.separator+scriptName;
+        String scriptName = performanceScriptDto.getScriptFileName();
+        String scriptPath = PropertyUtil.getProperty("upload_path") + scriptId + File.separator + scriptName;
+        //脚本依赖的文件
+        String dependenceFile = performanceScriptDto.getDependenceFileName();
+
         //更新脚本状态
         String scriptStatus = performanceScriptDto.getScriptStatus();
         if (scriptStatus.equals("未发布")) {
@@ -303,7 +318,7 @@ public class JmeterServiceImpl implements JmeterService {
 
         String resultPath = null;
         try {
-            resultPath = execute(stressMachineIp, jmeterScriptPath, id);
+            resultPath = execute(stressMachineIp, jmeterScriptPath, dependenceFile, scriptId,id);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info(new Date() + Thread.currentThread().getName() + "结束了===========" + id);

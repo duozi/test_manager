@@ -294,7 +294,12 @@
         <if test="@Ognl@isNotEmpty(planId)">
             AND plan_id = #{planId}
         </if>
-
+        <if test="@Ognl@isNotEmpty(planName)">
+            AND plan_name = #{planName}
+        </if>
+        <if test="@Ognl@isNotEmpty(scriptName)">
+            AND script_name = #{scriptName}
+        </if>
         <if test="@Ognl@isNotEmpty(actualStartTimeBegin)">
             AND actual_start_time >= #{actualStartTimeBegin}
         </if>
