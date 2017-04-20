@@ -159,11 +159,11 @@ public class StartJMeterAgent_SSH {
     }
 
     public static void main(String[] args) {
-        String host = "10.17.2.187";
-        String user = "root";
-        String psw = "jinrong";
-        int port = 65300;
-        String command = "ls";
+//        String host = "10.17.2.77";
+//        String user = "root";
+//        String psw = "xnhack";
+//        int port = 65300;
+//        String command = "ls";
         //String rult = exec(host, user, psw, port, command);
         //System.out.println(rult);
         //System.out.println(exec(host, user, psw, port, "pwd"));
@@ -171,9 +171,11 @@ public class StartJMeterAgent_SSH {
 //        System.out.println(test_link(host,user,psw,port));
 //        exec_command(host, user, psw, port, command);
 //        exec_command(host, user, psw, port, "pwd");
-        upload("/temp","D:\\test.properties",host,user,psw,port);
+//        upload("/temp/file","D:\\test.properties",host,user,psw,port);
 //        exec_command(host, user, psw, port, "bash /data/apache-jmeter-3.1/bin/jmeter-server");
 //        Thread.currentThread().stop();
+        String[] s=" aksjfldsfds".trim().split(" ");
+        System.out.println(s.length);
     }
 
 

@@ -247,8 +247,10 @@ public class PerformanceScriptController {
         CommonResult commonResult = new CommonResult();
         try {
 
-            String path = request.getParameter("path");
-            path.replace("/",File.separator);
+            String scriptId = request.getParameter("id");
+            String scriptFileName = request.getParameter("script_file_name");
+            String path= PropertyUtil.getProperty("upload_path") + scriptId + File.separator + scriptFileName;
+
             File file = new File(path);
             String content = FileUtil.fileReadeForStr(file);
             commonResult.setData(content);

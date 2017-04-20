@@ -309,9 +309,9 @@
                 <version>2.1.0</version>
             </dependency>
             <!--<dependency>-->
-                <!--<groupId>javax.servlet</groupId>-->
-                <!--<artifactId>javax.servlet-api</artifactId>-->
-                <!--<version>3.1.0</version>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+            <!--<version>3.1.0</version>-->
             <!--</dependency>-->
             <!--mysql 驱动-->
             <dependency>
@@ -430,7 +430,17 @@
                 <artifactId>jstl</artifactId>
                 <version>1.2</version>
             </dependency>
-
+            <!--sqlite-->
+            <dependency>
+                <groupId>org.xerial</groupId>
+                <artifactId>sqlite-jdbc</artifactId>
+                <version>3.16.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.influxdb</groupId>
+                <artifactId>influxdb-java</artifactId>
+                <version>2.5</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

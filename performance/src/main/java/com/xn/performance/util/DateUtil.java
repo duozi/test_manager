@@ -655,7 +655,15 @@ public class DateUtil {
 
 //    两个日期之间相差的秒数
 
-    public static int lastedTime(Date startDate,Date endDate) {
+    public static int lastSecond(Date startDate,Date endDate) {
+        long a = endDate.getTime();
+        long b = startDate.getTime();
+        int c = (int)((a - b) / 1000);
+        return c;
+    }
+    //    两个日期之间相差的秒数
+
+    public static int lastedMint(Date startDate,Date endDate) {
         long a = endDate.getTime();
         long b = startDate.getTime();
         int c = (int)((a - b) / 1000);
