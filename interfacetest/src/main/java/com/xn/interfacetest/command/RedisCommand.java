@@ -3,14 +3,13 @@ package com.xn.interfacetest.command;/**
  */
 
 
-import com.xn.interfacetest.service.GetPara;
-import com.xn.interfacetest.util.RedisUtil;
-import com.xn.interfacetest.util.StringUtil;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import java.util.Date;
+import com.xn.interfacetest.util.RedisUtil;
 
 public class RedisCommand implements Command {
 
@@ -23,18 +22,18 @@ public class RedisCommand implements Command {
     private Long caseId;
     private Long environmentId;
 
-    public static void main(String[] args) {
-        GetPara getPara = new GetPara();
-        getPara.setPath("");
-        RedisCommand redisCommand = new RedisCommand();
-//        redisCommand.setKey("UNIUSER-login-QGZ-77683f51-da44-4f2d-8120-e009ef3bf351");
-//        redisCommand.setValue("[{\"bid\":\"UNIUSER\",\"date\":1474513018036,\"source\":\"app\",\"tokenId\":\"77683f51-da44-4f2d-8120-e009ef3bf351\",\"uid\":\"login-QGZ-77683f51-da44-4f2d-8120-e009ef3bf351\"}]");
-//        redisCommand.del(redisCommand.getKey());
-
-
-        redisCommand.set("UNIUSER-loginPwd-QGZ-33333333335", "2", 0);
-
-    }
+//    public static void main(String[] args) {
+//        GetPara getPara = new GetPara();
+//        getPara.setPath("");
+//        RedisCommand redisCommand = new RedisCommand();
+////        redisCommand.setKey("UNIUSER-login-QGZ-77683f51-da44-4f2d-8120-e009ef3bf351");
+////        redisCommand.setValue("[{\"bid\":\"UNIUSER\",\"date\":1474513018036,\"source\":\"app\",\"tokenId\":\"77683f51-da44-4f2d-8120-e009ef3bf351\",\"uid\":\"login-QGZ-77683f51-da44-4f2d-8120-e009ef3bf351\"}]");
+////        redisCommand.del(redisCommand.getKey());
+//
+//
+//        redisCommand.set("UNIUSER-loginPwd-QGZ-33333333335", "2", 0);
+//
+//    }
 
     public Long getCaseId() {
         return caseId;

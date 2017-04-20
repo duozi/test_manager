@@ -1,17 +1,19 @@
 package com.xn.common.utils;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.multipart.MultipartFile;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**

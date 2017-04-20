@@ -83,69 +83,69 @@ public class PerformanceScriptDto extends BaseDto {
     public void setScriptFileName(String scriptFileName) {
         this.scriptFileName = scriptFileName;
     }
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getId() {
         return this.id;
     }
 
-    public void setScriptName(String scriptName) {
-        this.scriptName = scriptName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getScriptName() {
         return this.scriptName;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getCompany() {
         return this.company;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getDepartment() {
         return this.department;
     }
 
-    public void setPsystem(String psystem) {
-        this.psystem = psystem;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getPsystem() {
         return this.psystem;
     }
 
-    public void setScriptStatus(String scriptStatus) {
-        this.scriptStatus = scriptStatus;
+    public void setPsystem(String psystem) {
+        this.psystem = psystem;
     }
 
     public String getScriptStatus() {
         return this.scriptStatus;
     }
 
-
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
+    public void setScriptStatus(String scriptStatus) {
+        this.scriptStatus = scriptStatus;
     }
 
     public String getCreatePerson() {
         return this.createPerson;
+    }
+
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
     }
 
 

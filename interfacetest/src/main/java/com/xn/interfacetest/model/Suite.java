@@ -3,13 +3,14 @@ package com.xn.interfacetest.model;
  * Created by xn056839 on 2016/9/2.
  */
 
-import com.xn.interfacetest.command.Command;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.command.Command;
 
 
 public class Suite {

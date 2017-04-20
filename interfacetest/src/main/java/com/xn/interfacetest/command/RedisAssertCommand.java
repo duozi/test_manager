@@ -3,23 +3,24 @@ package com.xn.interfacetest.command;
  * Created by xn056839 on 2016/9/5.
  */
 
+import static com.xn.interfacetest.command.AssertCommand.convertKeyValueStoreToMap;
+import static com.xn.interfacetest.command.AssertCommand.deepAssert;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
+
 import com.xn.interfacetest.Exception.AssertNotEqualException;
 import com.xn.interfacetest.model.KeyValueStore;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.response.AssertItem;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.util.RedisUtil;
-import com.xn.interfacetest.util.StringUtil;
+
 import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
-
-import java.util.List;
-import java.util.Map;
-
-import static com.xn.interfacetest.command.AssertCommand.convertKeyValueStoreToMap;
-import static com.xn.interfacetest.command.AssertCommand.deepAssert;
 
 
 public class RedisAssertCommand implements Command {

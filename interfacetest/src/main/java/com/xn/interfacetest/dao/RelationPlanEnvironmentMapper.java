@@ -5,6 +5,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationPlanEnvironment;
+import org.springframework.stereotype.Service;
 
 /**
  * RelationPlanEnvironment Dao 接口
@@ -12,6 +13,7 @@ import com.xn.interfacetest.entity.RelationPlanEnvironment;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface RelationPlanEnvironmentMapper extends BaseMapper<RelationPlanEnvironment, Long> {
 
     void deleteByPlanId(Long planId);

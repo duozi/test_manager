@@ -87,7 +87,7 @@ public class RelationInterfaceResult extends BaseEntity {
     /**
      * 占用时间
      */
-    private Integer costTime;
+    private Long costTime;
 
     /**
      * 执行时间
@@ -182,11 +182,11 @@ public class RelationInterfaceResult extends BaseEntity {
         this.result = result;
     }
 
-    public Integer getCostTime() {
+    public Long getCostTime() {
         return costTime;
     }
 
-    public void setCostTime(Integer costTime) {
+    public void setCostTime(Long costTime) {
         this.costTime = costTime;
     }
 

@@ -3,12 +3,13 @@ package com.xn.interfacetest.util;/**
  */
 
 
-import org.apache.commons.dbcp.BasicDataSource;
-
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.BasicDataSource;
 
 public class ConnectionPool{
     private static BasicDataSource bds = null;

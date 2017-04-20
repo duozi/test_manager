@@ -3,33 +3,28 @@ package com.xn.interfacetest.command;
  * Created by xn056839 on 2016/9/5.
  */
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
+
 import com.xn.interfacetest.Exception.AssertNotEqualException;
+import com.xn.interfacetest.api.RelationAssertResultService;
+import com.xn.interfacetest.api.TestReportService;
 import com.xn.interfacetest.dto.RelationAssertResultDto;
 import com.xn.interfacetest.dto.TestReportDto;
-import com.xn.interfacetest.entity.RelationAssertResult;
-import com.xn.interfacetest.entity.TestReport;
-import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.model.KeyValueStore;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.response.AssertItem;
 import com.xn.interfacetest.response.Response;
 import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.service.RelationAssertResultService;
-import com.xn.interfacetest.service.TestDatabaseConfigService;
-import com.xn.interfacetest.service.TestReportService;
 import com.xn.interfacetest.util.SpringContextUtil;
-import com.xn.interfacetest.util.StringUtil;
-import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import net.sf.json.JSONObject;
 
 
 public class AssertCommand implements Command {
@@ -217,6 +212,7 @@ public class AssertCommand implements Command {
             testReportDto.setResult("fail");
             testReportService.update(testReportDto);
             ReportResult.failedPlus();
+            logger.info("断言校验的时候reportResult的值：" +  ReportResult.getReportResult().toString());
             logger.error(assertItem.getInterfaceName() + "/" + assertItem.getMethodName() + "/" + assertItem.getCaseName() + "=====[assert error]");
         } finally {
             ReportResult.getReportResult().assertAdd(assertItem);

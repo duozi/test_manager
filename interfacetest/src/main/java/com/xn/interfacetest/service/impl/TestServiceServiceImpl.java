@@ -6,22 +6,20 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestServiceService;
+import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dao.TestServiceMapper;
 import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.entity.TestService;
-import com.xn.interfacetest.service.TestServiceService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

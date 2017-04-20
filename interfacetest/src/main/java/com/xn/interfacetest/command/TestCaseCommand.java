@@ -2,11 +2,12 @@ package com.xn.interfacetest.command;/**
  * Created by xn056839 on 2016/9/5.
  */
 
-import com.xn.interfacetest.response.Response;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import com.xn.interfacetest.response.Response;
 
 public class TestCaseCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseCommand.class);

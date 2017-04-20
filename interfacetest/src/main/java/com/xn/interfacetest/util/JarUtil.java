@@ -2,16 +2,6 @@ package com.xn.interfacetest.util;/**
  * Created by xn056839 on 2016/10/27.
  */
 
-import com.xn.interfacetest.service.GetPara;
-import org.apache.commons.io.FileUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -24,6 +14,13 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarUtil {
     private static final Logger logger = LoggerFactory.getLogger(JarUtil.class);

@@ -1,21 +1,25 @@
 package com.xn.interfacetest.util;
 
 
-import com.xn.interfacetest.objectfactory.BeanUtils;
-import com.xn.interfacetest.objectfactory.BeanUtils;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.Arrays.asList;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.util.Arrays.asList;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.objectfactory.BeanUtils;
 
 public abstract class ReflectionUtils {
     private static final Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);

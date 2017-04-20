@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationServiceEnvironmentMapper">
 
@@ -22,7 +22,7 @@
     
     <sql id="where">
         <where>
-           <if test="id != null and id != 0">
+           <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
            <if test="@Ognl@isNotEmpty(serviceId)">
@@ -54,6 +54,13 @@
             WHERE 
                 id = #{id} 
         ]]>
+    </select>
+
+    <select id="getByCaseAndEnvironment" resultMap="RelationServiceEnvironmentMap">
+        SELECT <include refid="columns" />
+        FROM
+                relation_service_environment
+        WHERE service_id = #{serviceId} and environment_id = #{environmentId}
     </select>
     
     <select id="list" resultMap="RelationServiceEnvironmentMap">

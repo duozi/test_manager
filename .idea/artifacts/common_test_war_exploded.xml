@@ -5,6 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="common-test" />
+          <element id="module-output" name="common-test-api" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
@@ -54,6 +55,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.slf4j:log4j-over-slf4j:1.7.7" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="common-test/web/Web" />

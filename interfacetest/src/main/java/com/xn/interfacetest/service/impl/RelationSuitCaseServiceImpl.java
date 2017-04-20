@@ -7,24 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.service.TestInterfaceService;
 import org.apache.commons.lang.StringUtils;
-import org.apache.zookeeper.data.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationSuitCaseService;
+import com.xn.interfacetest.api.TestInterfaceService;
 import com.xn.interfacetest.dao.RelationSuitCaseMapper;
 import com.xn.interfacetest.dto.RelationSuitCaseDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
 import com.xn.interfacetest.entity.RelationSuitCase;
-import com.xn.interfacetest.service.RelationSuitCaseService;
-
-import javax.servlet.http.HttpServletRequest;
+import com.xn.interfacetest.util.CollectionUtils;
 
 /**
  * RelationSuitCase Service实现

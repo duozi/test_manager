@@ -1,15 +1,16 @@
 package com.xn.manage.objectfactory;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.xn.common.objectfactory.BeanUtils;
-import com.xn.common.objectfactory.InstanceFactory;
+import static org.apache.commons.lang.StringUtils.endsWith;
+import static org.apache.commons.lang.StringUtils.startsWith;
+import static org.apache.commons.lang.StringUtils.trim;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
-import static org.apache.commons.lang.StringUtils.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.xn.interfacetest.objectfactory.BeanUtils;
 
 
 public class ListFactory extends InstanceFactory {

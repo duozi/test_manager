@@ -4,31 +4,44 @@
 package com.xn.interfacetest.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.xn.common.base.CommonResult;
-import com.xn.interfacetest.Exception.AssertNotEqualException;
-import com.xn.interfacetest.dao.RelationSuitCaseMapper;
-import com.xn.interfacetest.dao.TestInterfaceMapper;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.*;
-import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.service.*;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.transaction.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xn.common.base.CommonResult;
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationSuitCaseService;
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestPlanService;
+import com.xn.interfacetest.api.TestReportService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dao.RelationSuitCaseMapper;
+import com.xn.interfacetest.dao.TestInterfaceMapper;
 import com.xn.interfacetest.dao.TestSuitMapper;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestReportDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.entity.TestSuit;
+import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**
@@ -205,7 +218,10 @@ public class TestSuitServiceImpl implements TestSuitService {
             TestPlanDto testPlanDto = testPlanService.get(planId);
             //计划执行过程中将所有的相关测试集、测试用例、测试环境锁定并且不允许修改和删除
             lockPlanIn(testSuitDtoList,testEnvironmentDto,planId);
+
+
             ReportResult.getReportResult().setStartTime(new Date());
+            logger.info("开始执行测试集的时候reportResult的值：" +  ReportResult.getReportResult().toString());
 
             //预保存执行结果：
             TestReportDto testReportDto = new TestReportDto();

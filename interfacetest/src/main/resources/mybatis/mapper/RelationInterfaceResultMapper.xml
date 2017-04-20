@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationInterfaceResultMapper">
 
@@ -9,16 +9,22 @@
         <result property="suitId" column="suit_id"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="caseId" column="case_id"/>
+        <result property="suitName" column="suit_name"/>
+        <result property="interfaceName" column="interface_name"/>
+        <result property="caseName" column="case_name"/>
         <result property="planId" column="plan_id"/>
         <result property="reportId" column="report_id"/>
         <result property="requestData" column="request_data"/>
         <result property="responseData" column="response_data"/>
+        <result property="costTime" column="cost_time"/>
+        <result property="excuteTime" column="excute_time"/>
         <result property="result" column="result"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, suit_id, interface_id, case_id, plan_id, report_id, request_data, response_data, result
+        id, suit_id, interface_id, case_id, plan_id, report_id, request_data, response_data, result,cost_time,case_name,
+        interface_name,suit_name,DATE_FORMAT(excute_time,'%Y-%m-%d %H:%i:%s') excute_time
         ]]>
     </sql>
     
@@ -51,6 +57,12 @@
            <if test="@Ognl@isNotEmpty(result)">
                 AND result = #{result}
             </if>
+            <if test="@Ognl@isNotEmpty(costTime)">
+                AND cost_time = #{costTime}
+            </if>
+            <if test="@Ognl@isNotEmpty(excuteTime)">
+                AND excute_time = #{excuteTime}
+            </if>
         </where>
     </sql>
     
@@ -70,6 +82,32 @@
         FROM
             relation_interface_result 
         <include refid="where"/>
+    </select>
+
+    <select id="getByReportId" resultMap="RelationInterfaceResultMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        relation_interface_result
+        <where>
+            plan_id is not NULL
+            <if test="@Ognl@isNotEmpty(suitId)">
+                AND suit_id = #{suitId}
+            </if>
+            <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(reportId)">
+                AND report_id = #{reportId}
+            </if>
+            <if test="@Ognl@isNotEmpty(result)">
+                AND result = #{result}
+            </if>
+        </where>
+        ORDER BY suit_id DESC
     </select>
         
     <select id="count" resultType="long">
@@ -93,7 +131,12 @@
                 report_id,
                 request_data,
                 response_data,
-                result
+                cost_time,
+                result,
+                case_name,
+                interface_name,
+                suit_name,
+                excute_time
             ) VALUES (
                 #{id},
                 #{suitId},
@@ -103,7 +146,12 @@
                 #{reportId},
                 #{requestData},
                 #{responseData},
-                #{result}
+                #{costTime},
+                #{result},
+                #{caseName},
+                #{interfaceName},
+                #{suitName},
+                #{excuteTime}
             )
         ]]>
     </insert>
@@ -119,11 +167,14 @@
                 report_id,
                 request_data,
                 response_data,
-                result
+                cost_time,
+                result,
+                excute_time
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.suitId},#{item.interfaceId},#{item.caseId},#{item.planId},#{item.reportId},#{item.requestData},#{item.responseData},#{item.result})
+            (#{item.id},#{item.suitId},#{item.interfaceId},#{item.caseId},#{item.planId},#{item.reportId},#{item.requestData},#{item.responseData},
+            #{item.costTime},#{item.result},#｛item.excuteTime｝)
         </foreach>
     </insert>
     
@@ -152,8 +203,14 @@
                 <if test="responseData != null">
                 	<![CDATA[ response_data = #{responseData} ]]>,
                 </if>
+                <if test="costTime != null">
+                    <![CDATA[ cost_time = #{costTime} ]]>,
+                </if>
                 <if test="result != null">
-                	<![CDATA[ result = #{result} ]]>
+                	<![CDATA[ result = #{result} ]]>,
+                </if>
+                <if test="excuteTime != null">
+                    <![CDATA[ excute_time = #{excuteTime} ]]>
                 </if>
             </set>
             WHERE

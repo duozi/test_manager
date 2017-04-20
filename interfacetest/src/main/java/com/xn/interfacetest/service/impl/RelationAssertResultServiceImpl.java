@@ -6,17 +6,18 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
-import com.xn.common.utils.PageInfo;
-import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.dao.RelationAssertResultMapper;
-import com.xn.interfacetest.dto.RelationAssertResultDto;
-import com.xn.interfacetest.entity.RelationAssertResult;
-import com.xn.interfacetest.service.RelationAssertResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.xn.common.utils.BeanUtils;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationAssertResultService;
+import com.xn.interfacetest.dao.RelationAssertResultMapper;
+import com.xn.interfacetest.dto.RelationAssertResultDto;
+import com.xn.interfacetest.entity.RelationAssertResult;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

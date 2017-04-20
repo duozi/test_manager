@@ -1,14 +1,12 @@
 package com.xn.manage.autotestController;
 
-import com.xn.interfacetest.dto.RelationSuitCaseDto;
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.dto.TestSuitDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.*;
-import com.xn.manage.Enum.CaseTypeEnum;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.InterfaceTypeEnum;
-import com.xn.manage.bean.CommonResult;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.api.RelationSuitCaseService;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestServiceService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.RelationSuitCaseDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.CaseTypeEnum;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.InterfaceTypeEnum;
 
 
 @Controller

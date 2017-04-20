@@ -1,28 +1,24 @@
 package com.xn.interfacetest.util;
 
-import com.xn.interfacetest.Enum.OperationTypeEnum;
-import com.xn.interfacetest.dto.RedisAssertDto;
-import com.xn.interfacetest.dto.RelationCaseRedisDto;
-import com.xn.interfacetest.dto.TestRedisConfigDto;
-import com.xn.interfacetest.entity.RedisAssert;
-import com.xn.interfacetest.entity.RelationCaseRedis;
-import com.xn.interfacetest.entity.TestRedisConfig;
-import com.xn.interfacetest.service.*;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Service;
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.JedisCluster;
-
-import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.Enum.OperationTypeEnum;
+import com.xn.interfacetest.api.RedisAssertService;
+import com.xn.interfacetest.api.RelationCaseRedisService;
+import com.xn.interfacetest.api.TestRedisConfigService;
+import com.xn.interfacetest.dto.RedisAssertDto;
+import com.xn.interfacetest.dto.RelationCaseRedisDto;
+import com.xn.interfacetest.dto.TestRedisConfigDto;
+
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
 
 
 public class RedisUtil {

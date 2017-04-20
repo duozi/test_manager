@@ -3,14 +3,15 @@ package com.xn.interfacetest.result;/**
  */
 
 
-import com.xn.interfacetest.response.Assert;
-import com.xn.interfacetest.util.FileUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.xn.interfacetest.response.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.util.FileUtil;
 
 public class ReportResult {
     private static final Logger logger = LoggerFactory.getLogger(ReportResult.class);

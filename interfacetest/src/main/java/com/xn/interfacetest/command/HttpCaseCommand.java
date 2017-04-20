@@ -2,28 +2,29 @@ package com.xn.interfacetest.command;/**
  * Created by xn056839 on 2016/10/31.
  */
 
-import com.alibaba.fastjson.JSON;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.api.RelationInterfaceResultService;
 import com.xn.interfacetest.dto.RelationInterfaceResultDto;
 import com.xn.interfacetest.dto.TestCaseDto;
 import com.xn.interfacetest.dto.TestInterfaceDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.response.Response;
 import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.service.RelationInterfaceResultService;
-import com.xn.interfacetest.util.FileUtil;
 import com.xn.interfacetest.util.HttpClientUtil;
 import com.xn.interfacetest.util.SpringContextUtil;
-import junit.framework.TestCase;
-import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
-import java.io.*;
-import java.net.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HttpCaseCommand implements CaseCommand {
     private static final Logger logger = LoggerFactory.getLogger(HttpCaseCommand.class);
@@ -193,8 +194,9 @@ public class HttpCaseCommand implements CaseCommand {
     public void httpRequest(){
         String responseStr = "";
         RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
+        Date beginTime = new Date();
         try {
-            relationInterfaceResultDto.setExcuteTime(format.format(new Date()));
+            relationInterfaceResultDto.setExcuteTime(format.format(beginTime));
             if(contentType.contains("json")){
                 responseStr =  HttpClientUtil.sendHttpPostJson(url,params);
             } else if(contentType.contains("form")){
@@ -205,6 +207,7 @@ public class HttpCaseCommand implements CaseCommand {
             result = "success";
         }catch (Exception e){
             ReportResult.errorPlus();
+            logger.info("执行测试用例发送请求异常的时候reportResult的值：" +  ReportResult.getReportResult().toString());
             logger.error("请求异常{}:",e);
             response.setException(e);
             result = "error";
@@ -222,6 +225,7 @@ public class HttpCaseCommand implements CaseCommand {
             relationInterfaceResultDto.setResponseData(responseStr);
             relationInterfaceResultDto.setResult(result);
             relationInterfaceResultDto.setReportId(reportId);
+            relationInterfaceResultDto.setCostTime((new Date()).getTime() - beginTime.getTime());
             relationInterfaceResultService.save(relationInterfaceResultDto);
         }
     }

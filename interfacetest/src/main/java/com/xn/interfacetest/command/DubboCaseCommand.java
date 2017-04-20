@@ -4,27 +4,28 @@ package com.xn.interfacetest.command;
  */
 
 
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ReferenceConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
-import com.alibaba.fastjson.JSON;
-import com.xn.interfacetest.objectfactory.BeanUtils;
-import com.xn.interfacetest.model.KeyValueStore;
-import com.xn.interfacetest.model.ServiceDesc;
-import com.xn.interfacetest.response.Response;
-import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.util.FileUtil;
-import com.xn.interfacetest.util.ReflectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.fastjson.JSON;
+import com.xn.interfacetest.model.KeyValueStore;
+import com.xn.interfacetest.model.ServiceDesc;
+import com.xn.interfacetest.objectfactory.BeanUtils;
+import com.xn.interfacetest.response.Response;
+import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.util.FileUtil;
+import com.xn.interfacetest.util.ReflectionUtils;
 
 
 public class DubboCaseCommand implements CaseCommand {

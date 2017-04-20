@@ -3,29 +3,28 @@
  */
 package com.xn.interfacetest.service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
-import com.xn.interfacetest.dao.TestParamsMapper;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.entity.TestParams;
-import com.xn.interfacetest.entity.TestService;
-import com.xn.interfacetest.service.TestParamsService;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestServiceService;
 import com.xn.interfacetest.dao.TestInterfaceMapper;
+import com.xn.interfacetest.dao.TestParamsMapper;
 import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestServiceDto;
 import com.xn.interfacetest.entity.TestInterface;
-import com.xn.interfacetest.service.TestInterfaceService;
+import com.xn.interfacetest.entity.TestParams;
+import com.xn.interfacetest.util.CollectionUtils;
 
 /**
  * TestInterface Service实现

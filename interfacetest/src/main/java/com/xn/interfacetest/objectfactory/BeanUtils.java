@@ -1,20 +1,19 @@
 package com.xn.interfacetest.objectfactory;
 
 
-
-import com.xn.common.utils.SignUtil;
-import com.xn.common.utils.StringUtil;
-import com.xn.interfacetest.model.KeyValueStore;
-import com.xn.interfacetest.objectfactory.*;
-import com.xn.interfacetest.util.ReflectionUtils;
-import org.apache.commons.lang.StringUtils;
+import static com.xn.interfacetest.util.SignUtil.beanToSortMap;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import static com.xn.common.utils.SignUtil.beanToSortMap;
+import org.apache.commons.lang.StringUtils;
+
+import com.xn.interfacetest.model.KeyValueStore;
+import com.xn.interfacetest.util.ReflectionUtils;
+import com.xn.interfacetest.util.SignUtil;
+import com.xn.interfacetest.util.StringUtil;
 
 
 public class BeanUtils {

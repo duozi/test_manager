@@ -3,12 +3,14 @@
  */
 package com.xn.interfacetest.dao;
 
-import com.xn.common.base.BaseMapper;
-import com.xn.interfacetest.entity.RelationSuitCase;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.entity.RelationSuitCase;
+import org.springframework.stereotype.Service;
 
 /**
  * RelationSuitCase Dao 接口
@@ -16,6 +18,7 @@ import java.util.Map;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface RelationSuitCaseMapper extends BaseMapper<RelationSuitCase, Long> {
 
     List<Long> listGroupByInterface(Map<String, Object> paramsMap);

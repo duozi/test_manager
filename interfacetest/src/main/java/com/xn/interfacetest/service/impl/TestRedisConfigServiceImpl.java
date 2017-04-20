@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestRedisConfigService;
 import com.xn.interfacetest.dao.TestRedisConfigMapper;
 import com.xn.interfacetest.dto.TestRedisConfigDto;
 import com.xn.interfacetest.entity.TestRedisConfig;
-import com.xn.interfacetest.service.TestRedisConfigService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**

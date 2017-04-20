@@ -5,6 +5,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationDatabaseEnvironment;
+import org.springframework.stereotype.Service;
 
 /**
  * RelationDatabaseEnvironment Dao 接口
@@ -12,6 +13,7 @@ import com.xn.interfacetest.entity.RelationDatabaseEnvironment;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface RelationDatabaseEnvironmentMapper extends BaseMapper<RelationDatabaseEnvironment, Long> {
 
 }

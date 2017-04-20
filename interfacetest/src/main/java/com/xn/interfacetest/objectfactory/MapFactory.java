@@ -1,16 +1,17 @@
 package com.xn.interfacetest.objectfactory;
 
-import com.alibaba.fastjson.JSON;
-import com.xn.interfacetest.model.KeyValueStore;
-import com.xn.interfacetest.util.MapUtils;
-import com.xn.interfacetest.util.ReflectionUtils;
-import org.apache.commons.lang.StringUtils;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.xn.interfacetest.model.KeyValueStore;
+import com.xn.interfacetest.util.MapUtils;
+import com.xn.interfacetest.util.ReflectionUtils;
 
 
 public class MapFactory extends InstanceFactory {

@@ -2,29 +2,35 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.bean.CommonResult;
-import com.xn.performance.api.PerformanceMonitoredMachineService;
-import com.xn.performance.api.PerformanceStressMachineService;
-import com.xn.performance.dto.PerformanceMonitoredMachineDto;
-import com.xn.performance.dto.PerformanceStressMachineDto;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.performance.api.PerformanceMonitoredMachineService;
+import com.xn.performance.api.PerformanceStressMachineService;
+import com.xn.performance.dto.PerformanceMonitoredMachineDto;
+import com.xn.performance.dto.PerformanceStressMachineDto;
 
 @Controller
 @RequestMapping("/performance/machine")

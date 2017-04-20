@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.service.*;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
+import com.xn.interfacetest.api.RelationInterfaceResultService;
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestPlanService;
+import com.xn.interfacetest.api.TestReportService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.RelationInterfaceResultDto;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestReportDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
 
 @Controller
 @RequestMapping("/autotest/report")

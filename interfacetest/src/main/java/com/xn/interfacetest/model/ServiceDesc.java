@@ -1,12 +1,13 @@
 package com.xn.interfacetest.model;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import com.google.common.collect.Lists;
 import com.xn.interfacetest.util.ReflectionUtils;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.Collections;
-import java.util.List;
 
 
 public class ServiceDesc {

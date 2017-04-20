@@ -6,25 +6,24 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.interfacetest.dto.TestEnvironmentDto;
-import com.xn.interfacetest.dto.TestPlanDto;
-import com.xn.interfacetest.dto.TestReportDto;
-import com.xn.interfacetest.dto.TestSuitDto;
-import com.xn.interfacetest.entity.TestEnvironment;
-import com.xn.interfacetest.entity.TestReport;
-import com.xn.interfacetest.service.TestEnvironmentService;
-import com.xn.interfacetest.service.TestPlanService;
-import com.xn.interfacetest.service.TestSuitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestPlanService;
+import com.xn.interfacetest.api.TestReportService;
+import com.xn.interfacetest.api.TestSuitService;
 import com.xn.interfacetest.dao.TestReportMapper;
-import com.xn.interfacetest.service.TestReportService;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestReportDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.entity.TestReport;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

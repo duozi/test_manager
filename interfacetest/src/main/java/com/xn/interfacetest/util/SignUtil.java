@@ -2,21 +2,16 @@ package com.xn.interfacetest.util;/**
  * Created by xn056839 on 2016/11/14.
  */
 
-import com.xn.interfacetest.Exception.CaseErrorEqualException;
-import com.xn.interfacetest.service.GetPara;
-import com.xn.interfacetest.sign.MessageAddSign;
-import com.xn.interfacetest.sign.PayAddSign;
-import com.xn.interfacetest.sign.UserAddSign;
-import org.apache.commons.beanutils.PropertyUtilsBean;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.beans.PropertyDescriptor;
 import java.security.MessageDigest;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SignUtil {
     private static final Logger logger = LoggerFactory.getLogger(SignUtil.class);

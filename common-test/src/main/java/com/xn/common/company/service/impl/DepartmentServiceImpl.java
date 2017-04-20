@@ -3,21 +3,22 @@
  */
 package com.xn.common.company.service.impl;
 
-import com.xn.common.company.dao.DepartmentMapper;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.entity.Department;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
-import com.xn.common.utils.PageInfo;
-import com.xn.common.utils.PageResult;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.company.dao.DepartmentMapper;
+import com.xn.common.company.entity.Department;
+import com.xn.common.dto.DepartmentDto;
+import com.xn.common.utils.BeanUtils;
+import com.xn.common.utils.CollectionUtils;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+
 
 
 /**

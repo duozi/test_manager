@@ -4,11 +4,12 @@
 package com.xn.interfacetest.dao;
 
 
-import com.xn.common.base.BaseMapper;
-import com.xn.interfacetest.entity.TestReport;
-
 import java.util.List;
 import java.util.Map;
+
+import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.entity.TestReport;
+import org.springframework.stereotype.Service;
 
 /**
  * TestReport Dao 接口
@@ -16,6 +17,7 @@ import java.util.Map;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface TestReportMapper extends BaseMapper<TestReport, Long> {
 
     List<TestReport> selectWithOtherInfo(Map<String, Object> params);

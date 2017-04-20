@@ -1,12 +1,14 @@
 package com.xn.manage.autotestController;
 
 
-import com.xn.common.company.service.CompanyService;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.service.*;
-import com.xn.manage.Enum.*;
-import com.xn.manage.bean.CommonResult;
-import com.xn.manage.utils.JsonValidator;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,25 +19,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.CompanyService;
+import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.api.DataAssertService;
+import com.xn.interfacetest.api.ParamsAssertService;
+import com.xn.interfacetest.api.RedisAssertService;
+import com.xn.interfacetest.api.RelationCaseDatabaseService;
+import com.xn.interfacetest.api.RelationCaseParamsService;
+import com.xn.interfacetest.api.RelationCaseRedisService;
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.api.TestDatabaseConfigService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestParamsService;
+import com.xn.interfacetest.api.TestRedisConfigService;
+import com.xn.interfacetest.api.TestServiceService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.DataAssertDto;
+import com.xn.interfacetest.dto.ParamsAssertDto;
+import com.xn.interfacetest.dto.RedisAssertDto;
+import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
+import com.xn.interfacetest.dto.RelationCaseParamsDto;
+import com.xn.interfacetest.dto.RelationCaseRedisDto;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestDatabaseConfigDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestParamsDto;
+import com.xn.interfacetest.dto.TestRedisConfigDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.AppendParamEnum;
+import com.xn.manage.Enum.CaseTypeEnum;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.ParamTypeEnum;
+import com.xn.manage.Enum.RedisAssertTypeEnum;
+import com.xn.manage.Enum.RedisOperationTypeEnum;
+import com.xn.manage.utils.JsonValidator;
 
 @Controller
 @RequestMapping("/autotest/case")
 public class CaseController {
 	private static final Logger logger = LoggerFactory.getLogger(InterfaceController.class);
 
-	@Resource
+	@Autowired
 	TestSystemService testSystemService;
 
-	@Resource
+	@Autowired
 	TestServiceService testServiceService;
 
-	@Resource
+	@Autowired
 	CompanyService companyService;
 
 	@Autowired

@@ -6,6 +6,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationCaseParams;
+import org.springframework.stereotype.Service;
 
 /**
  * RelationCaseParams Dao 接口
@@ -13,6 +14,7 @@ import com.xn.interfacetest.entity.RelationCaseParams;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface RelationCaseParamsMapper extends BaseMapper<RelationCaseParams, Long> {
 
 }

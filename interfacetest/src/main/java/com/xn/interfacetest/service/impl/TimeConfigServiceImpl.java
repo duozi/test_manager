@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TimeConfigService;
 import com.xn.interfacetest.dao.TimeConfigMapper;
 import com.xn.interfacetest.dto.TimeConfigDto;
 import com.xn.interfacetest.entity.TimeConfig;
-import com.xn.interfacetest.service.TimeConfigService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

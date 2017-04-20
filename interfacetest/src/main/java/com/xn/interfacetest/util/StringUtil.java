@@ -1,14 +1,12 @@
 package com.xn.interfacetest.util;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by zhouxi.zhou on 2016/3/9.
@@ -40,20 +38,20 @@ public class StringUtil {
         return str;
     }
 
-//    public static String getPro(String file, String properName) {
-//        Properties prop = new Properties();
-//        String value = null;
-//        InputStream in = Object.class.getResourceAsStream("/" + file);
-//        try {
-//            prop.load(in);
-//            value = prop.getProperty(properName).trim();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            logger.error("properties file is not exist");
-//        } finally {
-//            return value;
-//        }
-//    }
+    public static String getPro(String file, String properName) {
+        Properties prop = new Properties();
+        String value = null;
+        InputStream in = Object.class.getResourceAsStream("/" + file);
+        try {
+            prop.load(in);
+            value = prop.getProperty(properName).trim();
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("properties file is not exist");
+        } finally {
+            return value;
+        }
+    }
 //
 //
 //    public static Boolean isEmpty(Object value) {

@@ -6,20 +6,20 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.interfacetest.dto.ParamDto;
-import com.xn.interfacetest.entity.ParamEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestParamsService;
 import com.xn.interfacetest.dao.TestParamsMapper;
+import com.xn.interfacetest.dto.ParamDto;
 import com.xn.interfacetest.dto.TestParamsDto;
+import com.xn.interfacetest.entity.ParamEntity;
 import com.xn.interfacetest.entity.TestParams;
-import com.xn.interfacetest.service.TestParamsService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**

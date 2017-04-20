@@ -3,22 +3,22 @@
  */
 package com.xn.common.company.service.impl;
 
-import com.xn.common.company.dao.CompanyMapper;
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.entity.Company;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
+import java.util.List;
+import java.util.Map;
+
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.CompanyService;
+import com.xn.common.company.dao.CompanyMapper;
+import com.xn.common.company.entity.Company;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.utils.BeanUtils;
+import com.xn.common.utils.CollectionUtils;
+
 
 
 /**

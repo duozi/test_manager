@@ -1,12 +1,12 @@
 package com.xn.interfacetest.fastjson;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
+
 import com.alibaba.fastjson.serializer.DoubleSerializer;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
 
 
 public class TestDoubleSerializer extends DoubleSerializer {

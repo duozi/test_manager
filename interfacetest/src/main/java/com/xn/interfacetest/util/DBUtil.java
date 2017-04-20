@@ -1,27 +1,24 @@
 package com.xn.interfacetest.util;
 
 
-import com.xn.interfacetest.dto.DataAssertDto;
-import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
-import com.xn.interfacetest.dto.TestDatabaseConfigDto;
-import com.xn.interfacetest.entity.DataAssert;
-import com.xn.interfacetest.entity.RelationCaseDatabase;
-import com.xn.interfacetest.entity.TestDatabaseConfig;
-import com.xn.interfacetest.service.*;
-import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+
+import com.xn.interfacetest.service.impl.DBService;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xn.interfacetest.api.DataAssertService;
+import com.xn.interfacetest.api.RelationCaseDatabaseService;
+import com.xn.interfacetest.api.TestDatabaseConfigService;
+import com.xn.interfacetest.dto.DataAssertDto;
+import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
+import com.xn.interfacetest.dto.TestDatabaseConfigDto;
 
 /**
  * Created by xn056839 on 2016/8/30.

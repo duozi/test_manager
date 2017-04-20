@@ -3,17 +3,15 @@ package com.xn.interfacetest.command;
  * Created by xn056839 on 2016/9/5.
  */
 
-import com.xn.interfacetest.Exception.AssertNotEqualException;
-import com.xn.interfacetest.model.AssertKeyValueVo;
-import com.xn.interfacetest.model.KeyValueStore;
-import com.xn.interfacetest.response.Assert;
-import com.xn.interfacetest.response.Response;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.interfacetest.Exception.AssertNotEqualException;
+import com.xn.interfacetest.model.AssertKeyValueVo;
+import com.xn.interfacetest.response.Assert;
+import com.xn.interfacetest.response.Response;
 
 
 public class ParaAssertCommand implements Command {
@@ -32,7 +30,7 @@ public class ParaAssertCommand implements Command {
         this.assertItem = assertItem;
     }
 
-    protected void doExecuteParaAssert(Response preResult, List<AssertKeyValueVo> processedParams,Long reportId) throws AssertNotEqualException {
+    protected void doExecuteParaAssert(Response preResult, List<AssertKeyValueVo> processedParams, Long reportId) throws AssertNotEqualException {
 //        try {
 
             preResult.paraVerify(processedParams, assertItem,reportId);

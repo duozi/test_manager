@@ -5,9 +5,6 @@ package com.xn.interfacetest.entity;
 
 import com.xn.common.base.BaseEntity;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 /**
  * TimeConfig 实体类
  * 

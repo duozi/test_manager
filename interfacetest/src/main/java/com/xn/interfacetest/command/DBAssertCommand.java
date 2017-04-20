@@ -3,20 +3,17 @@ package com.xn.interfacetest.command;
  * Created by xn056839 on 2016/9/5.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.xn.interfacetest.Exception.AssertNotEqualException;
+import com.xn.interfacetest.api.RelationAssertResultService;
 import com.xn.interfacetest.dto.RelationAssertResultDto;
-import com.xn.interfacetest.entity.RelationAssertResult;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.response.AssertItem;
 import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.service.DataAssertService;
-import com.xn.interfacetest.service.RelationAssertResultService;
 import com.xn.interfacetest.util.DBUtil;
 import com.xn.interfacetest.util.SpringContextUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class DBAssertCommand implements Command {

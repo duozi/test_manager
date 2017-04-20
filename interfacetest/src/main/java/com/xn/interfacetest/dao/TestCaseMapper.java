@@ -3,11 +3,12 @@
  */
 package com.xn.interfacetest.dao;
 
-import com.xn.common.base.BaseMapper;
-import com.xn.interfacetest.entity.TestCase;
-
 import java.util.List;
 import java.util.Map;
+
+import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.entity.TestCase;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -16,7 +17,7 @@ import java.util.Map;
  * @author Carol
  * @date 2017-02-14
  */
-
+@Service
 public interface TestCaseMapper extends BaseMapper<TestCase, Long> {
 
     int updatePart(TestCase testCase);

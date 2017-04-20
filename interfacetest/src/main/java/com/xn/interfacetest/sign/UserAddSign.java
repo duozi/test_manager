@@ -2,18 +2,14 @@ package com.xn.interfacetest.sign;/**
  * Created by xn056839 on 2016/11/22.
  */
 
-import com.xn.interfacetest.Exception.CaseErrorEqualException;
-import com.xn.interfacetest.service.GetPara;
-import com.xn.interfacetest.util.StringUtil;
-import org.apache.commons.lang.StringUtils;
+import static com.xn.interfacetest.util.SignUtil.mapToString;
+
+import java.util.TreeMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.TreeMap;
-
-import static com.xn.interfacetest.util.SignUtil.mapToString;
-import static com.xn.interfacetest.util.SignUtil.md5;
+import com.xn.interfacetest.Exception.CaseErrorEqualException;
 
 public class UserAddSign {
     private static final Logger logger = LoggerFactory.getLogger(UserAddSign.class);

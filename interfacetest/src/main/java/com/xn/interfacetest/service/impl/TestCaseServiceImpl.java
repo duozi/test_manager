@@ -3,23 +3,12 @@
  */
 package com.xn.interfacetest.service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
-import com.google.common.collect.Lists;
-import com.xn.interfacetest.Enum.*;
-import com.xn.interfacetest.Exception.AssertNotEqualException;
-import com.xn.interfacetest.command.*;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.*;
-import com.xn.interfacetest.model.AssertKeyValueVo;
-import com.xn.interfacetest.model.KeyValueStore;
-import com.xn.interfacetest.response.Assert;
-import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.service.*;
-import com.xn.interfacetest.util.DBUtil;
-import com.xn.interfacetest.util.RedisUtil;
-import net.sf.json.JSONObject;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +17,53 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.Enum.HttpTypeEnum;
+import com.xn.interfacetest.Enum.InterfaceTypeEnum;
+import com.xn.interfacetest.Enum.OperationTypeEnum;
+import com.xn.interfacetest.Enum.RedisOperationTypeEnum;
+import com.xn.interfacetest.Enum.RequestTypeEnum;
+import com.xn.interfacetest.api.DataAssertService;
+import com.xn.interfacetest.api.ParamsAssertService;
+import com.xn.interfacetest.api.RelationCaseDatabaseService;
+import com.xn.interfacetest.api.RelationCaseRedisService;
+import com.xn.interfacetest.api.RelationServiceEnvironmentService;
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestInterfaceService;
+import com.xn.interfacetest.api.TestParamsService;
+import com.xn.interfacetest.api.TestReportService;
+import com.xn.interfacetest.command.AssertCommand;
+import com.xn.interfacetest.command.CaseCommand;
+import com.xn.interfacetest.command.Command;
+import com.xn.interfacetest.command.DBAssertCommand;
+import com.xn.interfacetest.command.DBCommand;
+import com.xn.interfacetest.command.HttpCaseCommand;
+import com.xn.interfacetest.command.ParaAssertCommand;
+import com.xn.interfacetest.command.RedisCommand;
+import com.xn.interfacetest.command.TestCaseCommand;
 import com.xn.interfacetest.dao.TestCaseMapper;
+import com.xn.interfacetest.dto.DataAssertDto;
+import com.xn.interfacetest.dto.ParamDto;
+import com.xn.interfacetest.dto.ParamsAssertDto;
+import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
+import com.xn.interfacetest.dto.RelationCaseRedisDto;
+import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestReportDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.entity.TestCase;
+import com.xn.interfacetest.model.AssertKeyValueVo;
+import com.xn.interfacetest.response.Assert;
+import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.util.CollectionUtils;
+import com.xn.interfacetest.util.DBUtil;
+import com.xn.interfacetest.util.RedisUtil;
+
+import net.sf.json.JSONObject;
 
 /**
  * TestCase Service实现
@@ -252,6 +284,7 @@ public class TestCaseServiceImpl implements TestCaseService {
      */
     private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
         ReportResult.totalPlus();
+        logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
         TestReportDto testReportDto = testReportService.get(reportId);
 
         //将执行的用例id保存到报告表
@@ -378,18 +411,18 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         //获取断言信息
         //1.数据库断言
-        List<DataAssertDto> dataAssertDtoList = dataAssertService.getByCaseId(caseDto.getId());
-        if(null != dataAssertDtoList && dataAssertDtoList.size() > 0){
-            for(DataAssertDto dataAssert:dataAssertDtoList){
-                dbAssertCommand =  new DBAssertCommand();
-                dbAssertCommand.setName(dataAssert.getDatabaseName());
-                dbAssertCommand.setSql(dataAssert.getSqlStr());
-                dbAssertCommand.setAssertItem(assertItem);
-                dbAssertCommand.setId(dataAssert.getId());
-                dbAssertCommandList.add(dbAssertCommand);
-                logger.info("数据库断言内容：" + dbAssertCommand.toString());
-            }
-        }
+//        List<DataAssertDto> dataAssertDtoList = dataAssertService.getByCaseId(caseDto.getId());
+//        if(null != dataAssertDtoList && dataAssertDtoList.size() > 0){
+//            for(DataAssertDto dataAssert:dataAssertDtoList){
+//                dbAssertCommand =  new DBAssertCommand();
+//                dbAssertCommand.setName(dataAssert.getDatabaseName());
+//                dbAssertCommand.setSql(dataAssert.getSqlStr());
+//                dbAssertCommand.setAssertItem(assertItem);
+//                dbAssertCommand.setId(dataAssert.getId());
+//                dbAssertCommandList.add(dbAssertCommand);
+//                logger.info("数据库断言内容：" + dbAssertCommand.toString());
+//            }
+//        }
 
 //        //2.redis断言-----暂时不做
 //        List<Command> redisAssertCommandList = new ArrayList();

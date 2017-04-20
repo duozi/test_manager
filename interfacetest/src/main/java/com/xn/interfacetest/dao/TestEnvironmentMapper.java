@@ -3,10 +3,11 @@
  */
 package com.xn.interfacetest.dao;
 
+import java.util.List;
+
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestEnvironment;
-
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * TestEnvironment Dao 接口
@@ -14,6 +15,7 @@ import java.util.List;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface TestEnvironmentMapper extends BaseMapper<TestEnvironment, Long> {
 
     List<TestEnvironment> getByPlanId(Long planId);

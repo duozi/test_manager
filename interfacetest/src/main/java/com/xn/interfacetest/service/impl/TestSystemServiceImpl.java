@@ -6,26 +6,22 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.common.company.dao.CompanyMapper;
-import com.xn.common.company.dao.DepartmentMapper;
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.common.company.service.impl.CompanyServiceImpl;
-import com.xn.common.company.service.impl.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dao.TestSystemMapper;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.entity.TestSystem;
-import com.xn.interfacetest.service.TestSystemService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

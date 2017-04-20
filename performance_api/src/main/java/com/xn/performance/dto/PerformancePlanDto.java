@@ -75,6 +75,22 @@ public class PerformancePlanDto extends BaseDto {
      * 场景名称
      */
     private String scenarioName;
+    /**
+     *
+     * 计划状态
+
+     */
+    private String planStatus;
+    /**
+     *
+     * 创建人
+     */
+    private String createPerson;
+    /**
+     * 是否已删除
+     */
+
+    private String isDelete;
 
     public String getScriptName() {
         return scriptName;
@@ -92,28 +108,6 @@ public class PerformancePlanDto extends BaseDto {
         this.scenarioName = scenarioName;
     }
 
-    /**
-     * 
-     * 计划状态
-
-     */
-    private String planStatus;
-
-    /**
-     * 
-     * 创建人 
-     */
-    private String createPerson;
-
-
-
-
-    /**
-     * 是否已删除
-     */
-
-    private String isDelete;
-
     public String getIsDelete() {
         return isDelete;
     }
@@ -122,84 +116,84 @@ public class PerformancePlanDto extends BaseDto {
         this.isDelete = isDelete;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
-
-    public void setPlanName(String planName) {
-        this.planName = planName;
-    }
     
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getPlanName() {
         return this.planName;
     }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
     
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+
     public String getRemark() {
         return this.remark;
     }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
     
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public String getCompany() {
         return this.company;
     }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
     
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     public String getDepartment() {
         return this.department;
     }
-
-    public void setPsystem(String psystem) {
-        this.psystem = psystem;
-    }
     
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public String getPsystem() {
         return this.psystem;
     }
-
-    public void setScriptId(Integer scriptId) {
-        this.scriptId = scriptId;
-    }
     
+    public void setPsystem(String psystem) {
+        this.psystem = psystem;
+    }
+
     public Integer getScriptId() {
         return this.scriptId;
     }
-
-    public void setScenarioId(Integer scenarioId) {
-        this.scenarioId = scenarioId;
-    }
     
+    public void setScriptId(Integer scriptId) {
+        this.scriptId = scriptId;
+    }
+
     public Integer getScenarioId() {
         return this.scenarioId;
     }
-
-    public void setPlanStatus(String planStatus) {
-        this.planStatus = planStatus;
-    }
     
+    public void setScenarioId(Integer scenarioId) {
+        this.scenarioId = scenarioId;
+    }
+
     public String getPlanStatus() {
         return this.planStatus;
     }
-
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
-    }
     
+    public void setPlanStatus(String planStatus) {
+        this.planStatus = planStatus;
+    }
+
     public String getCreatePerson() {
         return this.createPerson;
+    }
+    
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
     }
 
 

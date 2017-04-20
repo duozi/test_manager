@@ -1,20 +1,15 @@
 package com.xn.manage.autotestController;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.xn.common.base.CommonResult;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.service.*;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.ExcuteTypeEnum;
-import org.apache.commons.collections.map.HashedMap;
-import com.xn.manage.Enum.PlanStatusEnum;
-import com.xn.manage.bean.CommonResult;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,11 +20,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.api.RelationPlanEnvironmentService;
+import com.xn.interfacetest.api.RelationPlanSuitService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestPlanService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.api.TimeConfigService;
+import com.xn.interfacetest.dto.RelationPlanEnvironmentDto;
+import com.xn.interfacetest.dto.RelationPlanSuitDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.dto.TimeConfigDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.ExcuteTypeEnum;
+import com.xn.manage.Enum.PlanStatusEnum;
 
 @Controller
 @RequestMapping("/autotest/plan")
@@ -320,7 +330,7 @@ public class PlanController {
 	//执行测试计划
 	@RequestMapping(value="/excutePlan", method = RequestMethod.POST)
 	@ResponseBody
-	public CommonResult excutePlan(HttpServletRequest request) {
+	public com.xn.common.base.CommonResult excutePlan(HttpServletRequest request) {
 		CommonResult result = new CommonResult();
 		try{
 			String planIdStr = request.getParameter("planId");

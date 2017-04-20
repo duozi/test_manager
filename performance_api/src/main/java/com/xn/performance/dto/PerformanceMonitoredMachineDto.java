@@ -90,85 +90,84 @@ public class PerformanceMonitoredMachineDto extends BaseDto {
         this.port = port;
     }
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getId() {
         return this.id;
     }
 
-    public void setMonitoredMachineName(String monitoredMachineName) {
-        this.monitoredMachineName = monitoredMachineName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMonitoredMachineName() {
         return this.monitoredMachineName;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setMonitoredMachineName(String monitoredMachineName) {
+        this.monitoredMachineName = monitoredMachineName;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getCompany() {
         return this.company;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getDepartment() {
         return this.department;
     }
 
-    public void setPsystem(String psystem) {
-        this.psystem = psystem;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getPsystem() {
         return this.psystem;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setPsystem(String psystem) {
+        this.psystem = psystem;
     }
 
     public String getIp() {
         return this.ip;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public String getUsername() {
         return this.username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return this.password;
     }
 
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCreatePerson() {
         return this.createPerson;
+    }
+
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
     }
 
 

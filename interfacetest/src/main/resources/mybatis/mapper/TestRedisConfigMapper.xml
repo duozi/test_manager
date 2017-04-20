@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestRedisConfigMapper">
 
@@ -51,7 +51,17 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByRedisNameAndEnvironmentId" resultMap="TestRedisConfigMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_redis_config
+            WHERE
+                environment_id = #{environmentId}  and name = #{redisName}
+        ]]>
+    </select>
+
     <select id="list" resultMap="TestRedisConfigMap">
         SELECT
             <include refid="columns" />

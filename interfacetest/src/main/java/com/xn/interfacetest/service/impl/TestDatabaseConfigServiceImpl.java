@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestDatabaseConfigService;
 import com.xn.interfacetest.dao.TestDatabaseConfigMapper;
 import com.xn.interfacetest.dto.TestDatabaseConfigDto;
 import com.xn.interfacetest.entity.TestDatabaseConfig;
-import com.xn.interfacetest.service.TestDatabaseConfigService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**

@@ -17,7 +17,7 @@
 
     <context:annotation-config />
 
-    <context:component-scan base-package="com.xn.common" />
+    <context:component-scan base-package="com.xn.common.api" />
 
     <mvc:annotation-driven/>
 
@@ -73,7 +73,7 @@
     </bean>
 
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg ref="sqlSessionFactory"/>
+        <constructor-arg  ref="sqlSessionFactory"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

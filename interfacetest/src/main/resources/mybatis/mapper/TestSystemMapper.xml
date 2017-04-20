@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestSystemMapper">
 
@@ -51,6 +51,7 @@
             test_system ts
         left join department d on ts.department_id = d.id
         <where>
+            ts.is_delete = 0
             <if test="id != null and id != 0">
                 AND ts.id = #{id}
             </if>
@@ -74,7 +75,21 @@
         <include refid="columns" />
         FROM
         test_system
-        <include refid="where"/>
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="null != name">
+                AND name = #{name}
+            </if>
+            <if test="null != description">
+                AND description = #{description}
+            </if>
+            <if test="null != departmentId">
+                AND department_id = #{departmentId}
+            </if>
+        </where>
     </select>
         
     <select id="count" resultType="long">
@@ -137,11 +152,11 @@
     
     <delete id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+               update
                 test_system
+          set is_delete = 1
             WHERE
-                id = #{id} 
+                id = #{id}
         ]]>
     </delete>
     
@@ -164,5 +179,18 @@
         ]]>
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
     </delete>
+
+    <select id="getWithCompanyInfoBySystems" resultMap="TestSystemMap">
+        <![CDATA[
+        SELECT
+        ts.*
+        FROM
+        test_system ts
+        left join department d on ts.department_id = d.id
+          WHERE
+                ts.id IN
+        ]]>
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
 </mapper>
 

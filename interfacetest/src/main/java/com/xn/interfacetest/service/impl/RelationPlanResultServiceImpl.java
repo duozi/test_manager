@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationPlanResultService;
 import com.xn.interfacetest.dao.RelationPlanResultMapper;
 import com.xn.interfacetest.dto.RelationPlanResultDto;
 import com.xn.interfacetest.entity.RelationPlanResult;
-import com.xn.interfacetest.service.RelationPlanResultService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 /**
  * RelationPlanResult Service实现
