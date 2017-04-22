@@ -264,7 +264,15 @@
             <artifactId>velocity-dep</artifactId>
             <version>1.4</version>
         </dependency>
-
+        <!--sqlite-->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.influxdb</groupId>
+            <artifactId>influxdb-java</artifactId>
+        </dependency>
 
     </dependencies>
     <build>

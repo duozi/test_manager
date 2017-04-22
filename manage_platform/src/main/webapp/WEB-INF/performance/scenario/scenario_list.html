@@ -253,12 +253,10 @@
                                         <a type="button" name="editScenario" class="btn btn-info"
                                         <#if item.scenarioStatus="未发布">
 
-                                            onclick='showScenario(${item})'
+                                            onclick="showScenario(${item})"
+                                           <#else>
+                                               disabled
                                         </#if>
-                                        <#if item.scenarioStatus="已发布">
-                                            disabled
-                                        </#if>
-
 
                                         >编辑</a>
                                         <a type="button" name="deleteScenario" class="btn btn-danger"

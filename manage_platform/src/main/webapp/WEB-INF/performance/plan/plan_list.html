@@ -337,7 +337,7 @@
                                         <a type="button" id="deletePlan" class="btn btn-danger"
                                            onclick="deletePlan(${item.planId})">删除计划</a>
                                         <a type="button" class="btn btn-info"
-                                        <#if item.executeStatus=="已执行"  >
+                                        <#if item.executeStatus=="已执行" || item.executeStatus=="中断">
                                             onclick="report(${item.id})"
                                             <#else> disabled
                                         </#if>

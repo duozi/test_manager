@@ -3,6 +3,25 @@ package com.xn.manage.performanceController;/**
  */
 
 
+import com.google.common.collect.Lists;
+import com.xn.common.company.dto.CompanyDto;
+import com.xn.common.company.dto.DepartmentDto;
+import com.xn.common.company.service.CompanyService;
+import com.xn.common.company.service.DepartmentService;
+import com.xn.common.utils.DateUtil;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.service.TestSystemService;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.PerformancePlanStatusEnum;
+import com.xn.manage.bean.CommonResult;
+import com.xn.performance.api.*;
+import com.xn.performance.dto.*;
+import net.sf.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 import java.util.ArrayList;
@@ -61,9 +80,9 @@ import net.sf.json.JSONArray;
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
     private static final Logger logger = LoggerFactory.getLogger(PerformancePlanController.class);
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
-    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     private CompanyService companyService;
     @Resource
@@ -140,7 +159,7 @@ public class PerformancePlanController {
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
-        List<TestSystemDto> testSystemDtoList = testSystemService.list(new TestSystemDto());
+        List<TestSystemDto> testSystemDtoList = systemService.list(new TestSystemDto());
         model.put("companyList", companyDtoList);
         model.put("departmentList", departmentDtoList);
         model.put("psystemList", testSystemDtoList);
@@ -166,7 +185,7 @@ public class PerformancePlanController {
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = (List) JSONArray.toCollection(jsonArray, PerformancePlanMonitoredDto.class);
 
 
-            performancePlanDto.setPlanStatus(PerformancePlanStatusEnum.UNEXECUTED.getName());
+            performancePlanDto.setPlanStatus(PlanStatusEnum.UN_EXECUTE.getName());
             performancePlanDto.setIsDelete("未删除");
 
 

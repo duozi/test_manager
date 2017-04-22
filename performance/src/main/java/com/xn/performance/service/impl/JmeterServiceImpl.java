@@ -29,8 +29,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
 
 import static com.xn.performance.service.impl.SpringTask.*;
-import static com.xn.performance.util.DateUtil.lastedTime;
+import static com.xn.performance.util.DateUtil.lastSecond;
 import static com.xn.performance.util.PropertyUtil.getProperty;
+import static com.xn.performance.util.jmeter.InfluxDB_Act.influxdb_to_sqlite3;
 import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.upload;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -40,6 +41,7 @@ public class JmeterServiceImpl implements JmeterService {
     private static final Logger logger = LoggerFactory.getLogger(JmeterServiceImpl.class);
     public static ConcurrentMap<Integer, XNJmeterStartRemot> RUNNING_MAP = new ConcurrentHashMap<Integer, XNJmeterStartRemot>();
     public static ConcurrentMap<Integer, Scheduler> SCHEDULE_JOB_MAP = new ConcurrentHashMap<>();
+
     @Autowired
     PerformanceResultServiceImpl performanceResultService;
 
@@ -75,7 +77,7 @@ public class JmeterServiceImpl implements JmeterService {
             //把脚本依赖的文件上传到压力机的固定路径下
             if (isNotEmpty(scriptDependenceFile)) {
                 String dependencePath = PropertyUtil.getProperty("jmeter_dependence_file_path");
-                String[] dependenceName = scriptDependenceFile.split(" ");
+                String[] dependenceName = scriptDependenceFile.trim().split(" ");
                 for (String name : dependenceName) {
                     String dependenceFilePath = PropertyUtil.getProperty("upload_path") + scriptId + File.separator + name;
                     upload(dependencePath, dependenceFilePath, host, user, psw, Integer.parseInt(port));
@@ -84,7 +86,11 @@ public class JmeterServiceImpl implements JmeterService {
 
             XNJmeterStartRemot xnJmeterStartRemot = new XNJmeterStartRemot(id, host, user, psw, port);
             RUNNING_MAP.put(id, xnJmeterStartRemot);
+
             resultPath = xnJmeterStartRemot.rstart_csv(stressMachineIp, ip, jmeterScriptPath);
+
+
+
             return resultPath;
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,15 +157,27 @@ public class JmeterServiceImpl implements JmeterService {
             }
             //更新单次执行状态
             PerformanceResultDto performanceResultDto = new PerformanceResultDto(id);
-            performanceResultDto.setExecuteStatus("取消");
+            performanceResultDto.setExecuteStatus("中断");
             performanceResultService.update(performanceResultDto);
             //更新压力机的状态
             performanceResultDto = performanceResultService.get(performanceResultDto);
             Integer stressMachineId = performanceResultDto.getStressMachineId();
+            Date actualStartTime= performanceResultDto.getActualStartTime();
             PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
             performanceStressMachineDto.setId(stressMachineId);
             performanceStressMachineDto.setStressMachineStatus("未执行");
             performanceStressMachineService.update(performanceStressMachineDto);
+
+
+            Date actualEndTime = new Date();
+            performanceResultDto.setActualEndTime(actualEndTime);
+            String resultPath= getProperty("reports")+id;
+            performanceResultDto.setResultPath(resultPath);
+            performanceResultService.update(performanceResultDto);
+            Integer executeTime = lastSecond(actualStartTime, actualEndTime);
+            //时序数据保存到本地
+            influxdb_to_sqlite3("telegraf",executeTime,id);
+            influxdb_to_sqlite3("jmeter",executeTime,id);
 
             //更新压力机map
             STRESS_MACHINE_STATUS.put(stressMachineId, 0);
@@ -351,7 +369,10 @@ public class JmeterServiceImpl implements JmeterService {
             //更新结果
             Date actualEndTime = new Date();
             performanceResultDto.setActualEndTime(actualEndTime);
-            Integer executeTime = lastedTime(actualStartTime, actualEndTime);
+            Integer executeTime = lastSecond(actualStartTime, actualEndTime);
+            //时序数据保存到本地
+            influxdb_to_sqlite3("telegraf",executeTime,id);
+            influxdb_to_sqlite3("jmeter",executeTime,id);
             performanceResultDto.setExecuteTime(executeTime);
 
             performanceResultDto.setExecuteStatus("已执行");

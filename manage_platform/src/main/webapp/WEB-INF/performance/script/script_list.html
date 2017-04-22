@@ -99,12 +99,12 @@
             $("#editScript-path").val(item.path);
             $('#editScript').modal('show');
         }
-        function showScriptDetail(path, type) {
+        function showScriptDetail(id,scriptFileName, type) {
 
-            $.get("/performance/script/script_list/show_script?path=" + path, function (data) {
+            $.get("/performance/script/script_list/show_script?id=" + id+"&script_file_name="+scriptFileName, function (data) {
                 if (data.code == 0) {
                     $("#content").val(data.data);
-                    $("#path").val(path);
+                    $("#path").val("/data/source/upload_file/"+id+"/"+scriptFileName);
                     if (type == 1) {
                         $("#scriptDetailSave").addClass("hidden");
                         $("#content").attr("disabled", true);
@@ -251,8 +251,8 @@
                                         </#if>
                                         >编辑</a>
                                         <a type="button" class="btn btn-warning"
-                                        <#if item.scriptStatus="未发布"> onclick="showScriptDetail('${item.path}',2)"</#if>
-                                        <#if item.scriptStatus="已发布">onclick="showScriptDetail('${item.path}',1)"</#if>
+                                        <#if item.scriptStatus="未发布"> onclick="showScriptDetail('${item.id}','${item.scriptFileName}',2)"</#if>
+                                        <#if item.scriptStatus="已发布">onclick="showScriptDetail('${item.id}','${item.scriptFileName}',1)"</#if>
                                         >查看脚本内容</a>
                                         <a type="button" class="btn btn-danger"
                                            onclick="deleteScript(${item.id})">删除</a>

@@ -366,10 +366,10 @@ public class XNJmeterStartRemot {
         // 设置java rmi ip地址 （避免多个网卡时会找不到）
         System.getProperties().setProperty("java.rmi.server.hostname", rmi_server);
 
-        File fileFeports = new File(getProperty("reports"));
-        if (!fileFeports.exists()) {
-            fileFeports.mkdir();
-        }
+//        File fileFeports = new File(getProperty("reports"));
+//        if (!fileFeports.exists()) {
+//            fileFeports.mkdir();
+//        }
 
         // Load existing .jmx Test Plan
         /**
@@ -402,7 +402,7 @@ public class XNJmeterStartRemot {
             }
             Arguments arguments = new Arguments();
             arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");
-            arguments.addArgument("graphiteHost", "10.10.22.144");
+            arguments.addArgument("graphiteHost", "10.17.2.137");
             arguments.addArgument("graphitePort", "2003");
             arguments.addArgument("rootMetricsPrefix", "jmeter.");
             arguments.addArgument("summaryOnly", "true");
