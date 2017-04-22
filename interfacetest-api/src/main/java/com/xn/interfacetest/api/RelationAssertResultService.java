@@ -115,4 +115,11 @@ public interface RelationAssertResultService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationAssertResultDto> relationAssertResults);
+
+    /**
+     * 根据报告id和CaseId查询出断言结果
+     * @param reportId
+     * @return
+     */
+    List<RelationAssertResultDto> getByReportIdAndCaseId(Long reportId,Long caseId);
 }

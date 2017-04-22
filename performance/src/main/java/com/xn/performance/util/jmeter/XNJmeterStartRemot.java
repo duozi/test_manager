@@ -50,22 +50,12 @@ import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.exec_command;
 public class XNJmeterStartRemot {
     private static final Logger logger = LoggingManager.getLoggerForClass();
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
+    public Map<String, Boolean> setjmeterpros = new HashMap<String, Boolean>();
     boolean is_running = false; // 本地 distributedRunner 是否在运行
     boolean interrupt = false;//是否被打断而结束
-
-    public boolean is_running() {
-        return is_running;
-    }
-
-    public boolean isInterrupt() {
-        return interrupt;
-    }
-
     ListenToTest agentlisten = null;  // 监听器
     DistributedRunner distributedRunner = null; // Jmeter 远程测试执行控制器
     List<JMeterEngine> engines = new LinkedList<JMeterEngine>(); // 远程执行机列表
-    public Map<String, Boolean> setjmeterpros = new HashMap<String, Boolean>();
-
     String outputFileJtl = "";
     String outputFile = "";
     Integer id;
@@ -73,7 +63,6 @@ public class XNJmeterStartRemot {
     String username;
     String pwd;
     String port;
-
     public XNJmeterStartRemot(Integer id, String ip, String username, String pwd, String port) {
         setjmeterpros.put("setAsXml", true);
         setjmeterpros.put("setCode", true);
@@ -99,6 +88,36 @@ public class XNJmeterStartRemot {
         this.username = username;
         this.pwd = pwd;
         this.port = port;
+    }
+
+    /**
+     * 读取jmeter测试脚本jmx文件，返回值为jmeter需要的hashtree格式
+     *
+     * @param reader
+     * @return
+     * @throws Exception
+     */
+    private static HashTree loadJMX(File reader) throws Exception {
+        HashTree tree = SaveService.loadTree(reader);
+        if (tree == null) {
+            throw new RuntimeException("There was problems loading test plan. Please investigate error messages above.");
+        }
+        JMeter.convertSubTree(tree); // Remove the disabled items
+        //JMeterEngine engine = new StandardJMeterEngine();
+        //engine.configure(tree);
+        return tree;
+    }
+
+    private static void println(String str) {
+        System.out.println(str);
+    }
+
+    public boolean is_running() {
+        return is_running;
+    }
+
+    public boolean isInterrupt() {
+        return interrupt;
     }
 
     /**
@@ -150,7 +169,6 @@ public class XNJmeterStartRemot {
         distributedRunner.exit(addresses);
     }
 
-
     /**
      * Remote engines have been shut down
      *
@@ -159,7 +177,6 @@ public class XNJmeterStartRemot {
     public void shutdown(List<String> addresses) {
         distributedRunner.shutdown(addresses);
     }
-
 
     /**
      * 获取不含后缀的文件名
@@ -248,24 +265,6 @@ public class XNJmeterStartRemot {
         }
 
         System.out.println("*********CSV to HTML: html report generate end.");
-    }
-
-    /**
-     * 读取jmeter测试脚本jmx文件，返回值为jmeter需要的hashtree格式
-     *
-     * @param reader
-     * @return
-     * @throws Exception
-     */
-    private static HashTree loadJMX(File reader) throws Exception {
-        HashTree tree = SaveService.loadTree(reader);
-        if (tree == null) {
-            throw new RuntimeException("There was problems loading test plan. Please investigate error messages above.");
-        }
-        JMeter.convertSubTree(tree); // Remove the disabled items
-        //JMeterEngine engine = new StandardJMeterEngine();
-        //engine.configure(tree);
-        return tree;
     }
 
     /**
@@ -557,7 +556,6 @@ public class XNJmeterStartRemot {
 
     }
 
-
     private void startOptionalServers() {
         int bshport = JMeterUtils.getPropDefault("beanshell.server.port", 0);// $NON-NLS-1$
         String bshfile = JMeterUtils.getPropDefault("beanshell.server.file", "");// $NON-NLS-1$ $NON-NLS-2$
@@ -593,6 +591,37 @@ public class XNJmeterStartRemot {
                 logger.warn("Could not start Mirror server", e);
             }
         }
+    }
+
+    public void rstart_xml(String remote_hosts_string, String rmi_server) throws Exception {
+        remoteStart(remote_hosts_string, rmi_server);
+        generateReportXMLToHtml();
+    }
+
+    public void rstart_xml(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
+        remoteStart(remote_hosts_string, rmi_server, jmxfile);
+        generateReportXMLToHtml();
+    }
+
+    /**
+     * 测试用，使用配置文件配置的 jmx 测试文件，在配置的位置生成测试报告
+     *
+     * @param remote_hosts_string 远程负载机ip地址，多台用逗号分隔
+     * @param rmi_server          本地主控机 rmi 使用的 ip地址，防止多网卡连接不到负载机
+     * @throws Exception
+     */
+    public void rstart_csv(String remote_hosts_string, String rmi_server) throws Exception {
+        setjmeterpros.put("setAsXml", false);
+        remoteStart(remote_hosts_string, rmi_server);
+        generateReportCSVToHtml();
+    }
+
+    public String rstart_csv(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
+        logger.info(Thread.currentThread().getName() + "===========rstart_csv remote_hosts_string:" + remote_hosts_string + " rmi_server:" + rmi_server + " jmxfile:" + jmxfile);
+        setjmeterpros.put("setAsXml", false);
+        remoteStart(remote_hosts_string, rmi_server, jmxfile);
+        generateReportCSVToHtml();
+        return outputFile;
     }
 
     private static class ListenToTest implements TestStateListener, Runnable, Remoteable {
@@ -756,41 +785,6 @@ public class XNJmeterStartRemot {
             }
         }
 
-    }
-
-    private static void println(String str) {
-        System.out.println(str);
-    }
-
-    public void rstart_xml(String remote_hosts_string, String rmi_server) throws Exception {
-        remoteStart(remote_hosts_string, rmi_server);
-        generateReportXMLToHtml();
-    }
-
-    public void rstart_xml(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
-        remoteStart(remote_hosts_string, rmi_server, jmxfile);
-        generateReportXMLToHtml();
-    }
-
-    /**
-     * 测试用，使用配置文件配置的 jmx 测试文件，在配置的位置生成测试报告
-     *
-     * @param remote_hosts_string 远程负载机ip地址，多台用逗号分隔
-     * @param rmi_server          本地主控机 rmi 使用的 ip地址，防止多网卡连接不到负载机
-     * @throws Exception
-     */
-    public void rstart_csv(String remote_hosts_string, String rmi_server) throws Exception {
-        setjmeterpros.put("setAsXml", false);
-        remoteStart(remote_hosts_string, rmi_server);
-        generateReportCSVToHtml();
-    }
-
-    public String rstart_csv(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
-        logger.info(Thread.currentThread().getName() + "===========rstart_csv remote_hosts_string:" + remote_hosts_string + " rmi_server:" + rmi_server + " jmxfile:" + jmxfile);
-        setjmeterpros.put("setAsXml", false);
-        remoteStart(remote_hosts_string, rmi_server, jmxfile);
-        generateReportCSVToHtml();
-        return outputFile;
     }
 
 

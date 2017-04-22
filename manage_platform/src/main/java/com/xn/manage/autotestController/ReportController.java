@@ -170,6 +170,7 @@ public class ReportController {
 					List<TestInterfaceDto> interfaceDtoList  = testInterfaceService.getByInterfaceIds(testReportDto.getInterfaceIds());
 					model.put("interfaceDtoList",interfaceDtoList);
 				}
+
 			}
 		}
 
@@ -192,7 +193,7 @@ public class ReportController {
 		}
 
 		//查询每个接口的返回内容和校验内容
-		List<RelationInterfaceResultDto> relationInterfaceResultDtoList = relationInterfaceResultService.getByReportId(params);
+		List<RelationInterfaceResultDto> relationInterfaceResultDtoList = relationInterfaceResultService.getByParams(params);
 
 		model.put("relationInterfaceResultDtoList",relationInterfaceResultDtoList);
 		return "autotest/report/interface_case_result";

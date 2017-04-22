@@ -63,6 +63,19 @@ public class AssertCommand implements Command {
 
     public static void deepAssert(JSONObject jsonObject, String key, String value, Assert assertItem, Long reportId,Long assertId) throws AssertNotEqualException {
         RelationAssertResultDto relationAssertResultDto = new RelationAssertResultDto();
+        relationAssertResultDto.setAssertKey(key);
+        relationAssertResultDto.setExpectValue(value);
+        relationAssertResultDto.setExactValue(jsonObject.getString(key));
+        relationAssertResultDto.setReportId(reportId);
+        relationAssertResultDto.setParamsAssertId(assertId);
+        relationAssertResultDto.setCaseId(assertItem.getCaseDto().getId());
+        relationAssertResultDto.setInterfaceId(assertItem.getInterfaceDto().getId());
+        //默认设置为断言通过
+        relationAssertResultDto.setResult("match");
+
+        //是否抛出异常
+        Boolean exception = false;
+
         if (key.contains(".")) {
             String[] array = key.split("\\.", 2);
             if (jsonObject.containsKey(array[0])) {
@@ -70,15 +83,8 @@ public class AssertCommand implements Command {
             } else {
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
-                //保存断言结果
-                if(null != reportId){
-                    relationAssertResultDto.setReportId(reportId);
-                    relationAssertResultDto.setParamsAssertId(assertId);
-                    relationAssertResultDto.setResult("not match");
-                    relationAssertResultService.save(relationAssertResultDto);
-                }
-
-                throw new AssertNotEqualException("assert is not Equal");
+                relationAssertResultDto.setResult("not match");
+                exception = true;
             }
         } else {
             Set set = jsonObject.keySet();
@@ -88,47 +94,33 @@ public class AssertCommand implements Command {
                     if (StringUtils.isEmpty(returnValue)||!returnValue.equals("null")||!returnValue.equals("{}")) {
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
-                        //保存断言结果
-                        if(null != reportId){
-                            relationAssertResultDto.setReportId(reportId);
-                            relationAssertResultDto.setParamsAssertId(assertId);
-                            relationAssertResultDto.setResult("not match");
-                            relationAssertResultService.save(relationAssertResultDto);
-                        }
-                        throw new AssertNotEqualException("assert is not Equal");
+                        relationAssertResultDto.setResult("not match");
+                        exception = true;
                     }
                 } else {
                     if (!returnValue.equals(value)) {
                         AssertItem item = new AssertItem(key, value, returnValue);
                         assertItem.addDiff(item);
-
-                        //保存断言结果
-                        if(null != reportId){
-                            relationAssertResultDto.setReportId(reportId);
-                            relationAssertResultDto.setParamsAssertId(assertId);
-                            relationAssertResultDto.setResult("not match");
-                            relationAssertResultService.save(relationAssertResultDto);
-                        }
-
-                        throw new AssertNotEqualException("assert is not Equal");
-
+                        relationAssertResultDto.setResult("not match");
+                        exception = true;
                     }
                 }
             } else {
                 AssertItem item = new AssertItem(key, value, "校验字段不存在");
                 assertItem.addDiff(item);
 //                ReportResult.getReportResult().assertAdd(assertItem);
-
-                //保存断言结果
-                if(null != reportId){
-                    relationAssertResultDto.setReportId(reportId);
-                    relationAssertResultDto.setParamsAssertId(assertId);
-                    relationAssertResultDto.setResult("not match");
-                    relationAssertResultService.save(relationAssertResultDto);
-                }
-
-                throw new AssertNotEqualException("assert is not Equal");
+                relationAssertResultDto.setResult("not match");
+                exception = true;
             }
+        }
+
+        //保存断言结果
+        if(null != reportId){
+            relationAssertResultService.save(relationAssertResultDto);
+        }
+
+        if(exception){
+            throw new AssertNotEqualException("assert is not Equal");
         }
     }
 
@@ -213,7 +205,7 @@ public class AssertCommand implements Command {
             testReportService.update(testReportDto);
             ReportResult.failedPlus();
             logger.info("断言校验的时候reportResult的值：" +  ReportResult.getReportResult().toString());
-            logger.error(assertItem.getInterfaceName() + "/" + assertItem.getMethodName() + "/" + assertItem.getCaseName() + "=====[assert error]");
+            logger.error(assertItem.getInterfaceDto().getUrl() + "/" + assertItem.getInterfaceDto().getName() + "/" + assertItem.getCaseDto().getName() + "=====[assert error]");
         } finally {
             ReportResult.getReportResult().assertAdd(assertItem);
         }

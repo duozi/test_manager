@@ -84,7 +84,7 @@
         <include refid="where"/>
     </select>
 
-    <select id="getByReportId" resultMap="RelationInterfaceResultMap">
+    <select id="getByParams" resultMap="RelationInterfaceResultMap">
         SELECT
         <include refid="columns" />
         FROM

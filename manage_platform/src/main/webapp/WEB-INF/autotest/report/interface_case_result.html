@@ -129,11 +129,17 @@
                                 ${item.result}
                             </td>
                             <td>
-                                <#if asserItemList??>
-                                    <#list asserItemList as assertItem>
-                                        assertItem
+                                <ol>
+                                <#if item.assertItemList??>
+                                    <#list item.assertItemList as assertItem>
+                                        <li class="">
+                                            <span>校验字段:${assertItem.assertKey}</span>
+                                            <span>期望值:${assertItem.expectValue}</span>
+                                            <span >实际值:<i class="<#if assertItem.result = 'not match'>error</#if>">${assertItem.exactValue}</i></span>
+                                        </li>
                                     </#list>
                                 </#if>
+                                </ol>
                             </td>
                             <td>
                                 ${item.requestData}

@@ -145,7 +145,19 @@ public class TestDatabaseConfigDto extends BaseDto {
         this.environmentId = environmentId;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "TestDatabaseConfigDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", portAddress=" + portAddress +
+                ", databaseName='" + databaseName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", environmentId=" + environmentId +
+                '}';
+    }
 }
 

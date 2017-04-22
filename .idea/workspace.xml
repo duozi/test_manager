@@ -5,34 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_moshi_moshi_1_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_logging_interceptor_3_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_11_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_retrofit2_converter_moshi_2_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_retrofit2_retrofit_2_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_influxdb_influxdb_java_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_16_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/InfluxDB_Act.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/SQLite_Act.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_httpclient_commons_httpclient_3_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_7_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/performance_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties" afterPath="$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" afterPath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationAssertResultDto.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationAssertResultDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestDatabaseConfigDto.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestDatabaseConfigDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/AssertCommand.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/AssertCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBAssertCommand.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBAssertCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/RedisAssertCommand.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/RedisAssertCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationAssertResultMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationAssertResultMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationInterfaceResultMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationInterfaceResultMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/RelationAssertResult.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/RelationAssertResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/Assert.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/Assert.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/result/ReportResult.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/result/ReportResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationAssertResultServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationAssertResultServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationAssertResultMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationAssertResultMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationInterfaceResultMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationInterfaceResultMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScriptController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScriptController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/properties/log4j.properties" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/properties/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/grafana.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/grafana.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_detail.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/script/script_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/script/script_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/interface_case_result.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/interface_case_result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/pom.xml" afterPath="$PROJECT_DIR$/performance/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/DateUtil.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/DateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/StartJMeterAgent_SSH.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/StartJMeterAgent_SSH.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/XNJmeterStartRemot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/properties/jmeter.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/properties/jmeter.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,44 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="TestCaseServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+      <file leaf-file-name="DBAssertCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBAssertCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7350">
-              <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
-              <folding>
-                <element signature="method#getBeforeCommand#0;class#TestCaseServiceImpl#0" expanded="false" />
-                <element signature="method#formatParams#0;class#TestCaseServiceImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="58" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="-1001">
+              <caret line="64" column="159" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="159" />
               <folding />
             </state>
           </provider>
@@ -123,58 +100,104 @@
       <file leaf-file-name="ReportController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2250">
-              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+            <state relative-caret-position="258">
+              <caret line="195" column="113" selection-start-line="195" selection-start-column="113" selection-end-line="195" selection-end-column="113" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="report_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/report_list.html">
+      <file leaf-file-name="RelationInterfaceResultService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1150">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlanController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/PlanController.java">
+      <file leaf-file-name="RelationInterfaceResultServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7700">
-              <caret line="347" column="39" selection-start-line="347" selection-start-column="39" selection-end-line="347" selection-end-column="39" />
+            <state relative-caret-position="157">
+              <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestPlanServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java">
+      <file leaf-file-name="RelationAssertResultService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6950">
-              <caret line="324" column="0" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
+            <state relative-caret-position="273">
+              <caret line="123" column="56" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSuitServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java">
+      <file leaf-file-name="RelationAssertResultServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationAssertResultServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5750">
-              <caret line="278" column="0" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
+            <state relative-caret-position="157">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+              <folding>
+                <element signature="e#4529#4530#0" expanded="true" />
+                <element signature="e#4553#4554#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RelationAssertResultMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationAssertResultMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plan_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/plan/plan_list.html">
+      <file leaf-file-name="RelationAssertResultMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationAssertResultMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6775">
-              <caret line="271" column="62" selection-start-line="271" selection-start-column="62" selection-end-line="271" selection-end-column="62" />
+            <state relative-caret-position="333">
+              <caret line="87" column="56" selection-start-line="87" selection-start-column="56" selection-end-line="87" selection-end-column="56" />
+              <folding>
+                <marker date="1492857489847" expanded="true" signature="2614:2767" ph="SELECT FROM relation_assert_result" />
+                <marker date="1492857489847" expanded="true" signature="2862:2956" ph="SELECT FROM relation_assert_result" />
+                <marker date="1492857489847" expanded="true" signature="3090:3212" ph="SELECT FROM relation_assert_result" />
+                <marker date="1492857489847" expanded="true" signature="3090:3234" ph="SELECT FROM relation_assert_result" />
+                <marker date="1492857489847" expanded="true" signature="3322:3409" ph="SELECT count... relation_assert_result" />
+                <marker date="1492857489847" expanded="true" signature="3564:4278" ph="INSERT INTO relation_assert_result... " />
+                <marker date="1492857489847" expanded="true" signature="5179:6606" ph="UPDATE relat... " />
+                <marker date="1492857489847" expanded="true" signature="6681:6788" ph="DELETE FROM " />
+                <marker date="1492857489847" expanded="true" signature="6871:6933" ph="DELETE FROM " />
+                <marker date="1492857489847" expanded="true" signature="7058:7273" ph="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestCaseServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+              <folding>
+                <element signature="method#getBeforeCommand#0;class#TestCaseServiceImpl#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RedisAssertCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/RedisAssertCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="84" column="159" selection-start-line="84" selection-start-column="159" selection-end-line="84" selection-end-column="159" />
               <folding />
             </state>
           </provider>
@@ -210,33 +233,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationPlanEnvironmentMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationPlanResultMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationPlanSuitMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationPlanTimeMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationServiceEnvironmentMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationSuitCaseMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestEnvironmentMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestInterfaceMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestParamsMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestPlanMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestRedisConfigMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestReportMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestServiceMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSuitMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TimeConfigMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/AssertCommand.java" />
-        <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
-        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/RelationInterfaceResult.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestReportMapper.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_list.html" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestCaseMapper.xml" />
         <option value="$PROJECT_DIR$/common-test/src/main/resources/spring/spring-context.xml" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestDatabaseConfigMapper.xml" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml" />
         <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestDatabaseConfigService.java" />
@@ -247,20 +247,43 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
         <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationCaseDatabaseDto.java" />
         <option value="$PROJECT_DIR$/interfacetest/pom.xml" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/DBService.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/Enum/DatabaseTypeEnum.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/DBUtil.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/PlanController.java" />
         <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestPlanService.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/report_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/plan/plan_list.html" />
-        <option value="$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties" />
+        <option value="$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
+        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestDatabaseConfigDto.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java" />
+        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationInterfaceResultMapper.xml" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationInterfaceResultMapper.java" />
+        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/interface_case_result.html" />
+        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationAssertResultDto.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/RelationAssertResult.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/Assert.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/AssertCommand.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/result/ReportResult.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBAssertCommand.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/RedisAssertCommand.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.java" />
+        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationAssertResultServiceImpl.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationAssertResultMapper.xml" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationAssertResultMapper.java" />
       </list>
     </option>
   </component>
@@ -407,20 +430,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="performance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -444,15 +453,15 @@
     <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test-api\src\main\java\com.xn.common\company" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\spring" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\dubbo" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\manage_platform\src\main\resources\dubbo" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.xn.common" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test\src\main\resources\mybatis\mapper" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis\mapper" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest\util" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xn.interfacetest.util" />
@@ -461,12 +470,12 @@
       <recent name="com.xn.interfacetest.Enum" />
       <recent name="com.xn.interfacetest.dao" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test-api\src\main\java\com.xn.common\company" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\spring" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\dubbo" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\manage_platform\src\main\resources\dubbo" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test\src\main\resources\mybatis\mapper" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis\mapper" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest\util" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.interfacetest">
@@ -1521,7 +1530,7 @@
       <workItem from="1492655127397" duration="18758000" />
       <workItem from="1492685927127" duration="401000" />
       <workItem from="1492740928981" duration="24002000" />
-      <workItem from="1492830912043" duration="14000" />
+      <workItem from="1492830912043" duration="15698000" />
     </task>
     <task id="LOCAL-00001" summary="1.4&#10;">
       <created>1483496820689</created>
@@ -1838,7 +1847,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492686303847</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="合并提交">
+      <created>1492831041356</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1492831041356</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1874,7 +1890,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1469937000" />
+    <option name="totallyTimeSpent" value="1485621000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1890,43 +1906,43 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42841038" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3416009" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32641292" sideWeight="0.49570817" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24221453" sideWeight="0.1686551" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43404734" sideWeight="0.108905576" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33564013" sideWeight="0.4978355" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06616052" sideWeight="0.5056361" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41753173" sideWeight="0.5869099" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59413755" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4171364" sideWeight="0.5869099" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1048478" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06805075" sideWeight="0.49570817" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16798197" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.470124" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19957082" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26233906" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2274678" sideWeight="0.49436393" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26155582" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15292841" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6403608" sideWeight="0.89859" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41375422" sideWeight="0.89109445" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21727468" sideWeight="0.13025211" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6087937" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39797068" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18079399" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990981" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24221453" sideWeight="0.1686551" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43404734" sideWeight="0.108905576" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33564013" sideWeight="0.4978355" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06616052" sideWeight="0.5056361" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1936,22 +1952,22 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15292841" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45772266" sideWeight="0.89859" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6087937" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7632469" sideWeight="0.89109445" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42841038" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.470124" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32641292" sideWeight="0.49570817" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41753173" sideWeight="0.5869099" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59413755" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4171364" sideWeight="0.5869099" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1048478" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39797068" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06805075" sideWeight="0.49570817" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5952649" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19957082" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.470124" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26233906" sideWeight="0.8697479" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18079399" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990981" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26155582" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21727468" sideWeight="0.13025211" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1985,7 +2001,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增公司，删除公司" />
     <MESSAGE value="删除out模块" />
     <MESSAGE value="调用performance加上group" />
     <MESSAGE value="新增公共js" />
@@ -2010,15 +2025,30 @@
     <MESSAGE value="计划执行http3" />
     <MESSAGE value="计划执行http4" />
     <MESSAGE value="合并代码之后提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并代码之后提交" />
+    <MESSAGE value="合并提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并提交" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java</url>
+          <line>643</line>
+          <properties />
+          <option name="timeStamp" value="540" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java</url>
+          <line>646</line>
+          <properties />
+          <option name="timeStamp" value="541" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="537" />
+      <option name="time" value="590" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2027,332 +2057,20 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="881" column="16" selection-start-line="881" selection-start-column="16" selection-end-line="881" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/lang/Long.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="1157" column="5" selection-start-line="1157" selection-start-column="5" selection-end-line="1157" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="215" column="42" selection-start-line="215" selection-start-column="42" selection-end-line="215" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/TestCaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestDatabaseConfigMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/mapper/TestSystemMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/spring/spring-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="56" column="64" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="239" column="62" selection-start-line="239" selection-start-column="62" selection-end-line="239" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestDatabaseConfigService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestDatabaseConfigMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestDatabaseConfigMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="87" selection-start-line="6" selection-start-column="87" selection-end-line="6" selection-end-column="87" />
-          <folding>
-            <marker date="1492759729698" expanded="true" signature="2160:2312" ph="SELECT FROM test_database_config" />
-            <marker date="1492759729698" expanded="true" signature="2411:2566" ph="SELECT FROM test_database_config" />
-            <marker date="1492759729698" expanded="true" signature="3165:3257" ph="SELECT FROM test_database_config" />
-            <marker date="1492759729698" expanded="true" signature="3387:3472" ph="SELECT count... test_database_config" />
-            <marker date="1492759729698" expanded="true" signature="3627:4194" ph="INSERT INTO test_database_config... " />
-            <marker date="1492759729698" expanded="true" signature="4899:6019" ph="UPDATE test_... " />
-            <marker date="1492759729698" expanded="true" signature="6099:6204" ph="DELETE FROM " />
-            <marker date="1492759729698" expanded="true" signature="6292:6352" ph="DELETE FROM " />
-            <marker date="1492759729698" expanded="true" signature="6481:6694" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestDatabaseConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/EnvironmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="330" column="26" selection-start-line="330" selection-start-column="19" selection-end-line="330" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="200" column="69" selection-start-line="200" selection-start-column="69" selection-end-line="200" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestDatabaseConfigServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="133" column="77" selection-start-line="133" selection-start-column="77" selection-end-line="133" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationCaseDatabaseDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="65" column="44" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="49" column="41" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="99" column="13" selection-start-line="99" selection-start-column="11" selection-end-line="99" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/RedisUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="150" column="40" selection-start-line="150" selection-start-column="40" selection-end-line="150" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisCluster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="69" column="58" selection-start-line="69" selection-start-column="58" selection-end-line="69" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/GenericObjectPoolConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="177" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/test.jsp" />
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="200" column="0" selection-start-line="200" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/properties/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-dbcp/commons-dbcp/1.4/commons-dbcp-1.4-sources.jar!/org/apache/commons/dbcp/BasicDataSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="779" column="29" selection-start-line="779" selection-start-column="29" selection-end-line="779" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/DBService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/environment/environment_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="162" column="58" selection-start-line="162" selection-start-column="58" selection-end-line="162" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/Enum/DatabaseTypeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/DBUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestPlanService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="130" column="27" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/Enum/PlanStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6950">
-          <caret line="324" column="0" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/report_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5750">
-          <caret line="278" column="0" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/PlanController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7700">
           <caret line="347" column="39" selection-start-line="347" selection-start-column="39" selection-end-line="347" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2250">
-          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2697#2712#0" expanded="false" />
+            <element signature="e#2765#2780#0" expanded="false" />
+            <element signature="e#2931#2944#0" expanded="false" />
+            <element signature="e#3116#3136#0" expanded="false" />
+            <element signature="e#4114#4127#0" expanded="false" />
+            <element signature="e#5552#5567#0" expanded="false" />
+            <element signature="e#7232#7247#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2364,38 +2082,475 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7350">
-          <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
-          <folding>
-            <element signature="method#getBeforeCommand#0;class#TestCaseServiceImpl#0" expanded="false" />
-            <element signature="method#formatParams#0;class#TestCaseServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="50">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/properties/common.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="58" />
+        <state relative-caret-position="50">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/properties/common.properties">
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/properties/common.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="50">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="114" column="36" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestDatabaseConfigDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="155" column="58" selection-start-line="155" selection-start-column="58" selection-end-line="155" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/ParamsAssertService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/ParamsAssertServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="104" column="44" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="44" />
+          <folding>
+            <element signature="e#3417#3418#0" expanded="false" />
+            <element signature="e#3473#3474#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-843">
+          <caret line="286" column="26" selection-start-line="286" selection-start-column="16" selection-end-line="286" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/ParamTypeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/AppendParamEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestCaseDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1325">
+          <caret line="98" column="31" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="1029" column="77" selection-start-line="1029" selection-start-column="77" selection-end-line="1029" selection-end-column="77" />
+          <folding>
+            <marker date="1492845805338" expanded="false" signature="11064:11075" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11123:11136" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11336:11347" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11725:11735" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11811:11821" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11894:11904" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="11978:11988" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="15032:15045" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="15788:15799" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="15847:15860" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="16062:16073" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="16451:16461" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="16537:16547" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="16694:16704" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="16778:16788" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="20029:20042" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="25927:25937" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="29885:29898" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="35940:35950" ph="..." />
+            <marker date="1492845805338" expanded="false" signature="39601:39614" ph="..." />
+            <marker date="1492845805338" expanded="true" signature="44828:44869" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/ParamsAssertMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="761">
+          <caret line="156" column="17" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/DBUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestReportDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2232">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationInterfaceResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+          <folding>
+            <marker date="1492847509339" expanded="true" signature="2810:2967" ph="SELECT FROM relation_interface_result" />
+            <marker date="1492847509339" expanded="true" signature="3070:3167" ph="SELECT FROM relation_interface_result" />
+            <marker date="1492847509339" expanded="true" signature="3294:4033" ph="SELECT FROM relation_interface_result" />
+            <marker date="1492847509339" expanded="true" signature="4129:4219" ph="SELECT count... relation_interface_result" />
+            <marker date="1492847509339" expanded="true" signature="4374:5236" ph="INSERT INTO relation_interface_result... " />
+            <marker date="1492847509339" expanded="true" signature="6047:7423" ph="UPDATE relat... " />
+            <marker date="1492847509339" expanded="true" signature="7503:7613" ph="DELETE FROM " />
+            <marker date="1492847509339" expanded="true" signature="7701:7766" ph="DELETE FROM " />
+            <marker date="1492847509339" expanded="true" signature="7895:8113" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationInterfaceResultMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/AssertItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="219" column="78" selection-start-line="219" selection-start-column="64" selection-end-line="219" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="484" column="0" selection-start-line="484" selection-start-column="0" selection-end-line="484" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1299">
+          <caret line="221" column="73" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestReportService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="222" column="33" selection-start-line="222" selection-start-column="33" selection-end-line="222" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="269" column="1" selection-start-line="269" selection-start-column="1" selection-end-line="269" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/interface_case_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="132" column="59" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="109" column="15" selection-start-line="109" selection-start-column="15" selection-end-line="109" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/TestCaseCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="56" column="32" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/RelationAssertResultDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="41" selection-end-column="29" />
+          <folding>
+            <element signature="e#2604#2605#0" expanded="true" />
+            <element signature="e#2633#2634#0" expanded="true" />
+            <element signature="e#2675#2676#0" expanded="true" />
+            <element signature="e#2711#2712#0" expanded="true" />
+            <element signature="e#2747#2748#0" expanded="true" />
+            <element signature="e#2781#2782#0" expanded="true" />
+            <element signature="e#2833#2834#0" expanded="true" />
+            <element signature="e#2879#2880#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/Assert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+          <folding>
+            <element signature="e#1338#1339#0" expanded="true" />
+            <element signature="e#1389#1390#0" expanded="true" />
+            <element signature="e#1473#1474#0" expanded="true" />
+            <element signature="e#1539#1540#0" expanded="true" />
+            <element signature="e#1587#1588#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/ParaAssertCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/RelationAssertResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="159" column="29" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="29" />
+          <folding>
+            <element signature="e#2784#2785#0" expanded="true" />
+            <element signature="e#2826#2827#0" expanded="true" />
+            <element signature="e#2862#2863#0" expanded="true" />
+            <element signature="e#2898#2899#0" expanded="true" />
+            <element signature="e#2932#2933#0" expanded="true" />
+            <element signature="e#2984#2985#0" expanded="true" />
+            <element signature="e#3030#3031#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/response/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1708">
+          <caret line="81" column="21" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/AssertCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="207" column="35" selection-start-line="207" selection-start-column="35" selection-end-line="207" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/result/ReportResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="177" column="7" selection-start-line="131" selection-start-column="3" selection-end-line="177" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/DBAssertCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1001">
+          <caret line="64" column="159" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="159" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/RedisAssertCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="84" column="159" selection-start-line="84" selection-start-column="159" selection-end-line="84" selection-end-column="159" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+          <folding>
+            <element signature="method#getBeforeCommand#0;class#TestCaseServiceImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="195" column="113" selection-start-line="195" selection-start-column="113" selection-end-line="195" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationInterfaceResultServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="123" column="56" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationAssertResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="87" column="56" selection-start-line="87" selection-start-column="56" selection-end-line="87" selection-end-column="56" />
+          <folding>
+            <marker date="1492857489847" expanded="true" signature="2614:2767" ph="SELECT FROM relation_assert_result" />
+            <marker date="1492857489847" expanded="true" signature="2862:2956" ph="SELECT FROM relation_assert_result" />
+            <marker date="1492857489847" expanded="true" signature="3090:3212" ph="SELECT FROM relation_assert_result" />
+            <marker date="1492857489847" expanded="true" signature="3090:3234" ph="SELECT FROM relation_assert_result" />
+            <marker date="1492857489847" expanded="true" signature="3322:3409" ph="SELECT count... relation_assert_result" />
+            <marker date="1492857489847" expanded="true" signature="3564:4278" ph="INSERT INTO relation_assert_result... " />
+            <marker date="1492857489847" expanded="true" signature="5179:6606" ph="UPDATE relat... " />
+            <marker date="1492857489847" expanded="true" signature="6681:6788" ph="DELETE FROM " />
+            <marker date="1492857489847" expanded="true" signature="6871:6933" ph="DELETE FROM " />
+            <marker date="1492857489847" expanded="true" signature="7058:7273" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationAssertResultMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationAssertResultServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="e#4529#4530#0" expanded="true" />
+            <element signature="e#4553#4554#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

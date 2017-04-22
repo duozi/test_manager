@@ -20,5 +20,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RelationInterfaceResultMapper extends BaseMapper<RelationInterfaceResult, Long> {
 
-    List<RelationInterfaceResult> getByReportId(Map<String, Object> params);
+    List<RelationInterfaceResult> getByParams(Map<String, Object> params);
 }

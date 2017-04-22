@@ -31,6 +31,11 @@ public class RelationAssertResult extends BaseEntity {
      */
     private Long reportId;
 
+
+    private Long caseId;
+
+    private Long interfaceId;
+
     /**
      * 
      * 参数断言的id 
@@ -48,6 +53,21 @@ public class RelationAssertResult extends BaseEntity {
      * redis断言的id 
      */
     private Long redisAssertId;
+
+    /**
+     * 断言字段
+     */
+    private String assertKey;
+
+    /**
+     * 期望值
+     */
+    private String expectValue;
+
+    /**
+     * 实际值
+     */
+    private String exactValue;
 
     /**
      * 
@@ -112,7 +132,44 @@ public class RelationAssertResult extends BaseEntity {
     public void setResult(String result) {
         this.result = result;
     }
-    
 
+    public String getAssertKey() {
+        return assertKey;
+    }
 
+    public void setAssertKey(String assertKey) {
+        this.assertKey = assertKey;
+    }
+
+    public String getExpectValue() {
+        return expectValue;
+    }
+
+    public void setExpectValue(String expectValue) {
+        this.expectValue = expectValue;
+    }
+
+    public String getExactValue() {
+        return exactValue;
+    }
+
+    public void setExactValue(String exactValue) {
+        this.exactValue = exactValue;
+    }
+
+    public Long getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
+    }
+
+    public Long getInterfaceId() {
+        return interfaceId;
+    }
+
+    public void setInterfaceId(Long interfaceId) {
+        this.interfaceId = interfaceId;
+    }
 }

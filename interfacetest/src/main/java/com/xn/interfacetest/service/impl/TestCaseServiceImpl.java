@@ -269,46 +269,16 @@ public class TestCaseServiceImpl implements TestCaseService {
      */
     private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
         ReportResult.totalPlus();
+        logger.info("执行测试用例：" +  caseDto.getId() + "-" + caseDto.getName());
         logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
-        TestReportDto testReportDto = testReportService.get(reportId);
 
-        //将执行的用例id保存到报告表
-        String existCaseIds =  testReportDto.getCaseIds();
-        if(null != testReportDto && StringUtils.isNotBlank(existCaseIds)){
-            String[] caseIdsArray = existCaseIds.split(",|，");
-            List list = Arrays.asList(caseIdsArray);
-            //不存在当前测试集用例id的时候加进去，以免重复
-            if(!list.contains(caseDto.getId())){
-                String casesInReport = "," + existCaseIds  + caseDto.getId();
-                testReportDto.setCaseIds(casesInReport);
-                logger.info("==========即将更新的caseIds=" + casesInReport + "========");
-            }
-        } else if(null != testReportDto && StringUtils.isBlank(existCaseIds)){
-            //没有保存过用例则直接保存
-            testReportDto.setCaseIds(caseDto.getId() + "");
-        }
-
+        //更新结果集中的caseIds和interfaceIds
+        TestReportDto testReportDto = updateReport(caseDto,reportId);
 
         //查询用例所属接口的基本配置
         logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
         TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
-        String existInterfaceIds =  testReportDto.getInterfaceIds();
         if(null != interfaceDto){
-            logger.info("==========接口信息{}:" + interfaceDto.toString());
-            if(null != testReportDto && StringUtils.isNotBlank(existInterfaceIds)) {
-                String[] interfaceIdsArray = existInterfaceIds.split(",|，");
-                List list = Arrays.asList(interfaceIdsArray);
-                //不存在当前测试集用例id的时候加进去，以免重复
-                if(!list.contains(interfaceDto.getId())){
-                    String interfacesInReport = "," + existInterfaceIds  + interfaceDto.getId();
-                    testReportDto.setInterfaceIds(interfacesInReport);
-                    logger.info("==========即将更新的interfaceIds=" + interfacesInReport + "========");
-                }
-            } else if(null != testReportDto && StringUtils.isBlank(existInterfaceIds)){
-                //没有保存过用例则直接保存
-                testReportDto.setInterfaceIds(interfaceDto.getId() + "");
-            }
-            testReportService.update(testReportDto);
             if(InterfaceTypeEnum.DUBBO.getId() == interfaceDto.getType()){
                 //dubbo接口
                 this.excuteDubbo(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto);
@@ -320,6 +290,54 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         }
 
+    }
+
+    private TestReportDto updateReport(TestCaseDto caseDto, Long reportId) {
+        TestReportDto testReportDto = testReportService.get(reportId);
+
+        //将执行的用例id保存到报告表
+        String existCaseIds =  testReportDto.getCaseIds();
+        logger.info("testReportDto中本来存在的caseId有：" + existCaseIds);
+        if(null != testReportDto && StringUtils.isNotBlank(existCaseIds)){
+            String[] caseIdsArray = existCaseIds.split(",|，");
+            List list = Arrays.asList(caseIdsArray);
+            //不存在当前测试集用例id的时候加进去，以免重复
+            if(!list.contains(caseDto.getId())){
+                logger.info("新增caseId：" + caseDto.getId());
+                String casesInReport = existCaseIds + "," + caseDto.getId();
+                testReportDto.setCaseIds(casesInReport);
+                logger.info("==========即将更新的caseIds=" + casesInReport + "========");
+            }
+        } else if(null != testReportDto && StringUtils.isBlank(existCaseIds)){
+            //没有保存过用例则直接保存
+            logger.info("新增caseId：" + caseDto.getId());
+            testReportDto.setCaseIds(caseDto.getId() + "");
+        }
+
+        //查询用例所属接口的基本配置
+        TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
+        String existInterfaceIds =  testReportDto.getInterfaceIds();
+        logger.info("testReportDto中本来存在的interfaceId有：" + existInterfaceIds);
+        if(null != interfaceDto){
+            logger.info("==========接口信息{}:" + interfaceDto.toString());
+            if(null != testReportDto && StringUtils.isNotBlank(existInterfaceIds)) {
+                String[] interfaceIdsArray = existInterfaceIds.split(",|，");
+                List list = Arrays.asList(interfaceIdsArray);
+                //不存在当前测试集用例id的时候加进去，以免重复
+                if(!list.contains(interfaceDto.getId())){
+                    logger.info("新增interfaceId：" + interfaceDto.getId());
+                    String interfacesInReport = existInterfaceIds  + "," + interfaceDto.getId();
+                    testReportDto.setInterfaceIds(interfacesInReport);
+                    logger.info("==========即将更新的interfaceIds=" + interfacesInReport + "========");
+                }
+            } else if(null != testReportDto && StringUtils.isBlank(existInterfaceIds)){
+                //没有保存过用例则直接保存
+                testReportDto.setInterfaceIds(interfaceDto.getId() + "");
+            }
+        }
+
+        testReportService.update(testReportDto);
+        return testReportDto;
     }
 
     /**
@@ -390,7 +408,7 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     //初始化字段校验
     private AssertCommand getAssertCommand(TestCaseDto caseDto, TestInterfaceDto interfaceDto,Long reportId) {
-        Assert assertItem = new Assert(interfaceDto.getName(), interfaceDto.getName(), caseDto.getName());
+        Assert assertItem = new Assert(interfaceDto,caseDto);
         List<AssertKeyValueVo> paralist = new ArrayList();
        // List<KeyValueStore> redislist = new ArrayList();
 
@@ -407,6 +425,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //通过数据库配置名称拿到具体的数据库名称
                 TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(dataAssert.getDatabaseName());
                 if(null != testDatabaseConfigDto){
+                    logger.info("通过数据库配置名拿到的数据库配置：" +testDatabaseConfigDto.toString());
                     dbAssertCommand.setName(testDatabaseConfigDto.getDatabaseName());
                 }
                 dbAssertCommand.setSql(dataAssert.getSqlStr());
@@ -454,7 +473,12 @@ public class TestCaseServiceImpl implements TestCaseService {
                 for (RelationCaseDatabaseDto relationCaseDatbase : relationCaseDatabaseDtoList) {
                     //执行数据准备的sql
                     logger.info("==========数据准备执行sql：" + relationCaseDatbase.getSqlStr());
-                    list.add(new DBCommand(relationCaseDatbase.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    //通过数据库配置名称拿到具体的数据库名称
+                    TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(relationCaseDatbase.getDatabaseName());
+                    if(null != testDatabaseConfigDto) {
+                        logger.info("通过数据库配置名拿到的数据库配置：" +testDatabaseConfigDto.toString());
+                        list.add(new DBCommand(testDatabaseConfigDto.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    }
                 }
             }
             //数据准备---redis准备
@@ -522,6 +546,7 @@ public class TestCaseServiceImpl implements TestCaseService {
             //获取参数列表
             List<ParamDto> testParamsDtoList = testParamsService.listByCaseIdFromRelation(caseDto.getId());
             if(contentType.equals("application/json")){
+                logger.info("非自定义参数，转json"+testParamsDtoList.size() + "个参数");
                 //将参数转化为json字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     JSONObject jsonObject = new JSONObject();
@@ -534,6 +559,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 }
 
             } else {
+                logger.info("非自定义参数，转&拼接参数："+testParamsDtoList.size() + "个参数");
                 //将参数转化为字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     Iterator iterator = testParamsDtoList.iterator();
@@ -546,6 +572,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 }
             }
         } else if(null != caseDto.getCustomParams()){
+            logger.info("自定义参数："+caseDto.getCustomParams());
             paramsStr = caseDto.getCustomParams();
         }
         return paramsStr;

@@ -6,7 +6,10 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationAssertResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * RelationAssertResult Dao 接口
@@ -17,4 +20,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RelationAssertResultMapper extends BaseMapper<RelationAssertResult, Long> {
 
+    List<RelationAssertResult> getByReportIdAndCaseId(@Param("reportId") Long reportId,@Param("caseId") Long caseId);
 }

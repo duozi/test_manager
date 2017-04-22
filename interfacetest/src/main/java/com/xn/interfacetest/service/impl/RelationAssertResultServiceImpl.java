@@ -77,7 +77,11 @@ public class RelationAssertResultServiceImpl implements RelationAssertResultServ
     @Override
     public RelationAssertResultDto save(RelationAssertResultDto relationAssertResultDto) {
         RelationAssertResult relationAssertResult = BeanUtils.toBean(relationAssertResultDto,RelationAssertResult.class);
-        relationAssertResultMapper.save(relationAssertResult);
+        if(null != relationAssertResultDto.getId()){
+            relationAssertResultMapper.update(relationAssertResult);
+        } else {
+            relationAssertResultMapper.save(relationAssertResult);
+        }
         relationAssertResultDto.setId(relationAssertResult.getId());
         return relationAssertResultDto;
     }
@@ -116,6 +120,13 @@ public class RelationAssertResultServiceImpl implements RelationAssertResultServ
     @Override
     public int deleteBatch(List<RelationAssertResultDto> relationAssertResults) {
         return 0;
+    }
+
+    @Override
+    public List<RelationAssertResultDto> getByReportIdAndCaseId(Long reportId,Long caseId) {
+        List<RelationAssertResult> list = relationAssertResultMapper.getByReportIdAndCaseId(reportId,caseId);
+        List<RelationAssertResultDto> dtoList = CollectionUtils.transform(list, RelationAssertResultDto.class);
+        return dtoList;
     }
 
 }

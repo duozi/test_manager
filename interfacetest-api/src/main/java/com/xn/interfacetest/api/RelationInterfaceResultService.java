@@ -115,5 +115,5 @@ public interface RelationInterfaceResultService {
      */
     int deleteBatch(List<RelationInterfaceResultDto> relationInterfaceResults);
 
-    List<RelationInterfaceResultDto> getByReportId(Map<String, Object> condition);
+    List<RelationInterfaceResultDto> getByParams(Map<String, Object> condition);
 }

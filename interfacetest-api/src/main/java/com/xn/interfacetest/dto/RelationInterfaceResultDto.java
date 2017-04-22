@@ -107,7 +107,7 @@ public class RelationInterfaceResultDto extends BaseDto {
     /**
      * 断言结果，用来展示期望值和实际值
      */
-    private List<AssertItem> assertItemList;
+    private List<RelationAssertResultDto> assertItemList;
 
     public Long getId() {
         return this.id;
@@ -213,11 +213,11 @@ public class RelationInterfaceResultDto extends BaseDto {
         this.caseName = caseName;
     }
 
-    public List<AssertItem> getAssertItemList() {
+    public List<RelationAssertResultDto> getAssertItemList() {
         return assertItemList;
     }
 
-    public void setAssertItemList(List<AssertItem> assertItemList) {
+    public void setAssertItemList(List<RelationAssertResultDto> assertItemList) {
         this.assertItemList = assertItemList;
     }
 

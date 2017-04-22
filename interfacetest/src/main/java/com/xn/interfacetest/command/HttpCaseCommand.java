@@ -215,12 +215,24 @@ public class HttpCaseCommand implements CaseCommand {
             //保存请求结果
             response.setBody(responseStr);
             relationInterfaceResultDto.setPlanId(planId);
-            relationInterfaceResultDto.setSuitId(suitDto.getId());
-            relationInterfaceResultDto.setCaseId(caseDto.getId());
-            relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
-            relationInterfaceResultDto.setSuitName(suitDto.getName());
-            relationInterfaceResultDto.setInterfaceName(caseDto.getName());
-            relationInterfaceResultDto.setCaseName(interfaceDto.getName());
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitId(suitDto.getId());
+            }
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitName(suitDto.getName());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseId(caseDto.getId());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseName(caseDto.getName());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceName(interfaceDto.getName());
+            }
             relationInterfaceResultDto.setRequestData(params);
             relationInterfaceResultDto.setResponseData(responseStr);
             relationInterfaceResultDto.setResult(result);
