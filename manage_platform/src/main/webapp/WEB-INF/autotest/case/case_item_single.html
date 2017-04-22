@@ -195,7 +195,13 @@
                                                     <input type="hidden" name="id" value="${item.id}">
                                                     <div class="row">
                                                         <td>
-                                                            <input type="text" class="form-control" name="databaseName" value="${item.databaseName}">
+                                                            <select class="form-control case-select" name="databaseName">
+                                                                <#if testDatabaseConfigDtoList??>
+                                                                    <#list testDatabaseConfigDtoList as dbconfig>
+                                                                        <option value="${dbconfig.name}" <#if dbconfig.name == item.databaseName>selected</#if> >${dbconfig.name}</option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
                                                         </td>
                                                         <td><input type="text" class="form-control" name="sqlStr" value="${item.sqlStr}"></td>
                                                         <td><input type="text" class="form-control"  name="assertParam" value="${item.assertParam}"></td>
@@ -309,13 +315,20 @@
                                             </tr>
                                             </thead>
                                             <tbody class="database-body">
+                                            <input type="hidden" name="operateType" value="1">
                                             <#if prepareDatabaseDtoList??>
                                                 <#list prepareDatabaseDtoList as dbItem>
                                                 <tr>
                                                     <td>
                                                         <input type="hidden" name="id" value="${dbItem.id}">
                                                         <input type="hidden" name="operateType" value="${dbItem.operateType}">
-                                                        <input type="text" class="form-control" name="databaseName" value="${item.databaseName}">
+                                                        <select class="form-control case-select" name="databaseName">
+                                                            <#if testDatabaseConfigDtoList??>
+                                                                <#list testDatabaseConfigDtoList as dbconfig>
+                                                                    <option value="${dbconfig.name}" <#if dbconfig.name == item.databaseName>selected</#if> >${dbconfig.name}</option>
+                                                                </#list>
+                                                            </#if>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
@@ -365,6 +378,7 @@
                                                             <td>
                                                                 <input type="hidden" name="id" value="${redisItem.id}">
                                                                 <input type="text" name="redisName" value="${redisItem.redisName}">
+                                                                <input type="hidden" name="operateType" value="${redisItem.operateType}">
                                                             </td>
                                                             <td>
                                                                 <select class="form-control case-select" id="redisOperateType" name="redisOperateType">
@@ -625,7 +639,13 @@
 
 <script type="text/javascript">
     var dbhtml = '<tr><div class="row"><td><input type="hidden" name="id">';
-    dbhtml += '<input type="text" class="form-control" name="databaseName" value="">';
+    dbhtml += '<select class="form-control case-select" name="databaseName">';
+    dbhtml += '<#if testDatabaseConfigDtoList??>';
+    dbhtml += '<#list testDatabaseConfigDtoList as dbconfig>';
+    dbhtml += '<option value="${dbconfig.name}"  >${dbconfig.name}</option>';
+    dbhtml += '</#list>';
+    dbhtml += '</#if>';
+    dbhtml += ' </select>';
     dbhtml += '</td>';
     dbhtml += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
     dbhtml += '<td>';
@@ -749,15 +769,13 @@
     var dbAssertHtml = '<tr>  <input type="hidden" name="id" value="${item.id}">';
     dbAssertHtml += '<div class="row">';
     dbAssertHtml += '<td>';
-    dbAssertHtml += '<select class="form-control" name="databaseConfigId">';
-    dbAssertHtml += '<#if databaseConfigDtoList ??>';
-    dbAssertHtml += '<#list databaseConfigDtoList as dbItem>';
-    dbAssertHtml += '<option value="${dbItem.id}">';
-    dbAssertHtml += '${dbItem.name}';
-    dbAssertHtml += '</option>';
+    dbAssertHtml += '<select class="form-control case-select" name="databaseName">';
+    dbAssertHtml += '<#if testDatabaseConfigDtoList??>';
+    dbAssertHtml += '<#list testDatabaseConfigDtoList as dbconfig>';
+    dbAssertHtml += '<option value="${dbconfig.name}"  >${dbconfig.name}</option>';
     dbAssertHtml += '</#list>';
     dbAssertHtml += '</#if>';
-    dbAssertHtml += '</select>';
+    dbAssertHtml += ' </select>';
     dbAssertHtml += '</td>';
     dbAssertHtml += '<td><input type="text" class="form-control"  name="sqlStr"></td>';
     dbAssertHtml += '<td><input type="text" class="form-control"  name="assertParam"></td>';

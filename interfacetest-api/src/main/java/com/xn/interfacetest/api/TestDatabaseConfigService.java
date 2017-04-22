@@ -123,4 +123,7 @@ public interface TestDatabaseConfigService {
      * @return
      */
     TestDatabaseConfigDto getByEnvironmentAndDbName(String databaseName, Long environmentId);
+
+    //通过数据库配置名查找数据库
+    TestDatabaseConfigDto getByName(String name);
 }

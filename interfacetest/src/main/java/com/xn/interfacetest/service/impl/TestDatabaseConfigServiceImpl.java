@@ -129,4 +129,11 @@ public class TestDatabaseConfigServiceImpl implements TestDatabaseConfigService 
         return testDatabaseConfigDto;
     }
 
+    @Override
+    public TestDatabaseConfigDto getByName(String name) {
+        TestDatabaseConfig testDatabaseConfig = testDatabaseConfigMapper.getByName(name);
+        TestDatabaseConfigDto testDatabaseConfigDto = BeanUtils.toBean(testDatabaseConfig,TestDatabaseConfigDto.class);
+        return testDatabaseConfigDto;
+    }
+
 }

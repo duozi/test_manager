@@ -220,6 +220,7 @@ public class TestSuitServiceImpl implements TestSuitService {
             lockPlanIn(testSuitDtoList,testEnvironmentDto,planId);
 
 
+            ReportResult.resetReportResult();
             ReportResult.getReportResult().setStartTime(new Date());
             logger.info("开始执行测试集的时候reportResult的值：" +  ReportResult.getReportResult().toString());
 

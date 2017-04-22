@@ -225,7 +225,7 @@ public class HttpCaseCommand implements CaseCommand {
             relationInterfaceResultDto.setResponseData(responseStr);
             relationInterfaceResultDto.setResult(result);
             relationInterfaceResultDto.setReportId(reportId);
-            relationInterfaceResultDto.setCostTime((new Date()).getTime() - beginTime.getTime());
+            relationInterfaceResultDto.setCostTime((Long)new Date().getTime() - (Long)beginTime.getTime());
             relationInterfaceResultService.save(relationInterfaceResultDto);
         }
     }

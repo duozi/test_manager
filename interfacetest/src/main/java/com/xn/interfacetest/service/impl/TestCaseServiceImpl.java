@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.api.*;
+import com.xn.interfacetest.dto.*;
+import com.xn.interfacetest.entity.TestDatabaseConfig;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,16 +27,6 @@ import com.xn.interfacetest.Enum.InterfaceTypeEnum;
 import com.xn.interfacetest.Enum.OperationTypeEnum;
 import com.xn.interfacetest.Enum.RedisOperationTypeEnum;
 import com.xn.interfacetest.Enum.RequestTypeEnum;
-import com.xn.interfacetest.api.DataAssertService;
-import com.xn.interfacetest.api.ParamsAssertService;
-import com.xn.interfacetest.api.RelationCaseDatabaseService;
-import com.xn.interfacetest.api.RelationCaseRedisService;
-import com.xn.interfacetest.api.RelationServiceEnvironmentService;
-import com.xn.interfacetest.api.TestCaseService;
-import com.xn.interfacetest.api.TestEnvironmentService;
-import com.xn.interfacetest.api.TestInterfaceService;
-import com.xn.interfacetest.api.TestParamsService;
-import com.xn.interfacetest.api.TestReportService;
 import com.xn.interfacetest.command.AssertCommand;
 import com.xn.interfacetest.command.CaseCommand;
 import com.xn.interfacetest.command.Command;
@@ -44,17 +37,6 @@ import com.xn.interfacetest.command.ParaAssertCommand;
 import com.xn.interfacetest.command.RedisCommand;
 import com.xn.interfacetest.command.TestCaseCommand;
 import com.xn.interfacetest.dao.TestCaseMapper;
-import com.xn.interfacetest.dto.DataAssertDto;
-import com.xn.interfacetest.dto.ParamDto;
-import com.xn.interfacetest.dto.ParamsAssertDto;
-import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
-import com.xn.interfacetest.dto.RelationCaseRedisDto;
-import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
-import com.xn.interfacetest.dto.TestCaseDto;
-import com.xn.interfacetest.dto.TestEnvironmentDto;
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.dto.TestReportDto;
-import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
@@ -107,6 +89,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Autowired
     private RelationServiceEnvironmentService relationServiceEnvironmentService;
+
+    @Autowired
+    private TestDatabaseConfigService testDatabaseConfigService;
 
     @Override
     @Transactional(readOnly = true)
@@ -349,9 +334,13 @@ public class TestCaseServiceImpl implements TestCaseService {
         Long environmentId = testEnvironmentDto.getId();//环境id
         Long reportId = null != testReportDto?testReportDto.getId():null;
         logger.info("==========http接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseId + "," + interfaceId + "," + environmentId);
-            //初始化数据库
+        //初始化数据库，先把所有的数据库连接
         boolean flag = DBUtil.getDBInit(environmentId,caseId);
 
+        if(!flag){
+            logger.info("数据库初始化失败！" );
+            return;
+        }
 
         TestCaseCommand testCaseCommand = new TestCaseCommand();
         //进行执行用例之前的初始化工作
@@ -411,18 +400,22 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         //获取断言信息
         //1.数据库断言
-//        List<DataAssertDto> dataAssertDtoList = dataAssertService.getByCaseId(caseDto.getId());
-//        if(null != dataAssertDtoList && dataAssertDtoList.size() > 0){
-//            for(DataAssertDto dataAssert:dataAssertDtoList){
-//                dbAssertCommand =  new DBAssertCommand();
-//                dbAssertCommand.setName(dataAssert.getDatabaseName());
-//                dbAssertCommand.setSql(dataAssert.getSqlStr());
-//                dbAssertCommand.setAssertItem(assertItem);
-//                dbAssertCommand.setId(dataAssert.getId());
-//                dbAssertCommandList.add(dbAssertCommand);
-//                logger.info("数据库断言内容：" + dbAssertCommand.toString());
-//            }
-//        }
+        List<DataAssertDto> dataAssertDtoList = dataAssertService.getByCaseId(caseDto.getId());
+        if(null != dataAssertDtoList && dataAssertDtoList.size() > 0){
+            for(DataAssertDto dataAssert:dataAssertDtoList){
+                dbAssertCommand =  new DBAssertCommand();
+                //通过数据库配置名称拿到具体的数据库名称
+                TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(dataAssert.getDatabaseName());
+                if(null != testDatabaseConfigDto){
+                    dbAssertCommand.setName(testDatabaseConfigDto.getDatabaseName());
+                }
+                dbAssertCommand.setSql(dataAssert.getSqlStr());
+                dbAssertCommand.setAssertItem(assertItem);
+                dbAssertCommand.setId(dataAssert.getId());
+                dbAssertCommandList.add(dbAssertCommand);
+                logger.info("数据库断言内容：" + dbAssertCommand.toString());
+            }
+        }
 
 //        //2.redis断言-----暂时不做
 //        List<Command> redisAssertCommandList = new ArrayList();
@@ -498,7 +491,11 @@ public class TestCaseServiceImpl implements TestCaseService {
                 for (RelationCaseDatabaseDto relationCaseDatbase : relationCaseDatabaseDtoList) {
                     //执行数据准备的sql
                     logger.info("==========数据准备执行sql：" + relationCaseDatbase.getSqlStr());
-                    list.add(new DBCommand(relationCaseDatbase.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    //通过数据库配置名称拿到具体的数据库名称
+                    TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(relationCaseDatbase.getDatabaseName());
+                    if(null != testDatabaseConfigDto){
+                        list.add(new DBCommand(testDatabaseConfigDto.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    }
                 }
             }
             //数据准备---redis准备

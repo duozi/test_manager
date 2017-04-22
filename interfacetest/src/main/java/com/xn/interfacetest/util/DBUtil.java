@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.xn.interfacetest.Enum.DatabaseTypeEnum;
 import com.xn.interfacetest.service.impl.DBService;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.lang.StringUtils;
@@ -73,16 +74,27 @@ public class DBUtil {
         for(RelationCaseDatabaseDto databaseDto : relationCaseDatabaseList){
             //得到环境中数据库的地址信息和配置信息
             String dbName = databaseDto.getDatabaseName();
-            if(!setDbMap( dbName, environmentId)){
-                return false;
-            }
 
+            //通过数据库配置名称拿到具体的数据库名称
+            TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(dbName);
+            if(null != testDatabaseConfigDto){
+                dbName = testDatabaseConfigDto.getDatabaseName();
+                if(!setDbMap( dbName, environmentId)){
+                    return false;
+                }
+            }
         }
          for(DataAssertDto dataAssertDto : dataAssertDtoList){
              //得到环境中数据库的地址信息和配置信息
              String dbName = dataAssertDto.getDatabaseName();
-             if(!setDbMap( dbName, environmentId)){
-                 return false;
+
+             //通过数据库配置名称拿到具体的数据库名称
+             TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(dbName);
+             if(null != testDatabaseConfigDto) {
+                 dbName = testDatabaseConfigDto.getDatabaseName();
+                 if (!setDbMap(dbName, environmentId)) {
+                     return false;
+                 }
              }
          }
 
@@ -102,6 +114,9 @@ public class DBUtil {
             String user = testDatabaseConfigDto.getUserName();
             String pwd = testDatabaseConfigDto.getPassword();
             if (StringUtils.isNotBlank(url) && StringUtils.isNotBlank(user) && StringUtils.isNotBlank(pwd)) {
+                jdbc:mysql://10.17.2.114:3306/usernew?useUnicode=true&characterEncoding=utf-8
+                url = "jdbc:" + DatabaseTypeEnum.getName(testDatabaseConfigDto.getType()) + "://" + url + ":" + testDatabaseConfigDto.getPortAddress()
+                        + "/" + testDatabaseConfigDto.getDatabaseName() + "?useUnicode=true&characterEncoding=utf-8";
                 DBService dbService = new DBService(url, user, pwd);
                 try {
                     dbService.newDB();
@@ -113,6 +128,8 @@ public class DBUtil {
                 DbMap.put(dbName, dbService);
                 logger.info("new db ----{}", dbName);
             }
+        } else {
+            return false;
         }
         return true;
     }

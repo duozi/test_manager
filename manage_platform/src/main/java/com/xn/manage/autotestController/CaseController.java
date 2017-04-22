@@ -196,6 +196,10 @@ public class CaseController {
 			map.put("testParamsDtoList",testParamsDtoList);
 		}
 
+		//查询所有的数据库配置
+		List<TestDatabaseConfigDto> testDatabaseConfigDtoList = testDatabaseConfigService.list(new TestDatabaseConfigDto());
+		map.put("testDatabaseConfigDtoList",testDatabaseConfigDtoList);
+
 		//查询已添加的参数值
 		RelationCaseParamsDto relationCaseParamsDto = new RelationCaseParamsDto();
 		relationCaseParamsDto.setCaseId(testCaseDto.getId());

@@ -2,7 +2,7 @@ package com.xn.interfacetest.Enum;
 
 
 public enum DatabaseTypeEnum {
-	MYSQL("Mysql" ,1),POSTGRES("Postgres", 2),ORACLE("Oracle", 3),SQLSERVER("SqlServer",4),DB2("DB2",5);
+	MYSQL("mysql" ,1),POSTGRES("postgres", 2),ORACLE("oracle", 3),SQLSERVER("sqlServer",4),DB2("DB2",5);
     // 成员变量
     private String name;
     private int id;

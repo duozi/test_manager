@@ -165,6 +165,7 @@
                 AND tsy.id = #{systemId}
             </if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="listBySuitId" resultMap="TestCaseMap">

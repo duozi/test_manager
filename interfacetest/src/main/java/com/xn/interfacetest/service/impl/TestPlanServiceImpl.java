@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.Enum.PlanStatusEnum;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -169,7 +170,7 @@ public class TestPlanServiceImpl implements TestPlanService {
     }
 
     @Override
-    public void publishPlan(Integer status,Long id) {
+    public void changeStatusOfPlan(Integer status,Long id) {
         testPlanMapper.updateStatus(status,id);
     }
 
@@ -315,7 +316,8 @@ public class TestPlanServiceImpl implements TestPlanService {
             //执行测试集
             result = testSuitService.excuteSuitList(testSuitDtoList,testEnvironmentDto,planId);
         }
-
+        //执行完了，将测试计划的状态标记为已执行
+        this.changeStatusOfPlan(PlanStatusEnum.EXECUTED.getId(),planId);
         return result;
     }
 

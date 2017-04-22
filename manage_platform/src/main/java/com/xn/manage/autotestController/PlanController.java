@@ -189,7 +189,7 @@ public class PlanController {
 		String id = request.getParameter("id");
 		try{
 			if(StringUtils.isNotBlank(id)){
-				testPlanService.publishPlan(PlanStatusEnum.PUBLISHED.getId(),Long.parseLong(id));
+				testPlanService.changeStatusOfPlan(PlanStatusEnum.PUBLISHED.getId(),Long.parseLong(id));
 			}
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();

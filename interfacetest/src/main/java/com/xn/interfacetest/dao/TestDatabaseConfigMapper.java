@@ -19,4 +19,6 @@ import org.springframework.stereotype.Service;
 public interface TestDatabaseConfigMapper extends BaseMapper<TestDatabaseConfig, Long> {
 
     TestDatabaseConfig getByEnvironmentAndDbName(@Param("databaseName") String databaseName, @Param("environmentId") Long environmentId);
+
+    TestDatabaseConfig getByName(String name);
 }

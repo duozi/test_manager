@@ -128,7 +128,7 @@ public interface TestPlanService {
      * 发布计划
      * @param l
      */
-    void publishPlan(Integer status, Long id);
+    void changeStatusOfPlan(Integer status, Long id);
 
     /**
      * 根据计划Id执行测试计划

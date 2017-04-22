@@ -33,7 +33,7 @@ public class RelationCaseDatabaseDto extends BaseDto {
 
     /**
      *
-     * 数据库名称
+     * 数据库配置名称
      */
     private String databaseName;
 

@@ -269,7 +269,7 @@
                                             <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
                                             <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
                                             <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#excutePlan" onclick="excutePlan('${item.id}','${item.name}')">执行</a>
-                                            <a href="../reportResult/report_detail" type="button" class="btn btn-info">查看测试报告</a>
+                                            <a href="../report/report_list?planId=${item.id}" type="button" class="btn btn-info">查看测试报告</a>
                                         </#if>
 
                                     </td>
@@ -507,7 +507,7 @@
                     <div class="modal-body">
                         <h3  style="padding-left: 10%;"><i class="fa fa-spinner"></i>   计划正在执行,跳转到查看结果页面？</h3>
                         <a href="" type="button" class="result-path btn btn-primary" style="margin-left: 40%;">好的</a>
-                        <a type="button" class="result-path btn btn-default" data-dismiss="modal">留在当前页</a>
+                        <a type="button" class="result-path btn btn-default" data-dismiss="modal" onclick="reloadPlan();">留在当前页</a>
                     </div>
                 </div>
             <!-- /.modal-content -->

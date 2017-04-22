@@ -122,8 +122,8 @@
             <if test="@Ognl@isNotEmpty(toTime)">
                 <![CDATA[   AND begin_time <=  date_format(#{toTime}, '%YY-%mm-%dd HH:MM:DD') ]]>
             </if>
-
         </where>
+        ORDER BY begin_time DESC
     </select>
         
     <select id="count" resultType="long">
