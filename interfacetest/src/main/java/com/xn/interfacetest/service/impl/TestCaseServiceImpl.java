@@ -209,6 +209,7 @@ public class TestCaseServiceImpl implements TestCaseService {
     public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception{
         //遍历执行测试用例
         for(TestCaseDto caseDto:testCaseDtoList){
+            ReportResult.totalPlus();
             logger.info("==========遍历执行测试用例========");
             this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitDto);
         }
@@ -268,7 +269,6 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @param testEnvironmentDto 执行环境
      */
     private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
-        ReportResult.totalPlus();
         logger.info("执行测试用例：" +  caseDto.getId() + "-" + caseDto.getName());
         logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
 
