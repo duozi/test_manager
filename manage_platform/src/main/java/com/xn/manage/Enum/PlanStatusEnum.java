@@ -2,7 +2,7 @@ package com.xn.manage.Enum;
 
 
 public enum PlanStatusEnum {
-    EXECUTED("已执行", 0),EXECUTING("执行中", 1),UN_EXECUTE("未执行", 2),PUBLISHED("已发布",3);
+    UNPUBLISHED("未发布", 0),PUBLISHED("已发布", 1),EXECUTED("已执行", 2);
     // 成员变量
     private String name;
     private int id;

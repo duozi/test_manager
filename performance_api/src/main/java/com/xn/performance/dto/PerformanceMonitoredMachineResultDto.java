@@ -132,92 +132,92 @@ public class PerformanceMonitoredMachineResultDto extends BaseDto {
         this.monitoredMachineId = monitoredMachineId;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
-
-    public void setSamples(Integer samples) {
-        this.samples = samples;
-    }
     
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getSamples() {
         return this.samples;
     }
-
-    public void setAverage(Integer average) {
-        this.average = average;
-    }
     
+    public void setSamples(Integer samples) {
+        this.samples = samples;
+    }
+
     public Integer getAverage() {
         return this.average;
     }
-
-    public void setMinTime(Integer minTime) {
-        this.minTime = minTime;
-    }
     
+    public void setAverage(Integer average) {
+        this.average = average;
+    }
+
     public Integer getMinTime() {
         return this.minTime;
     }
-
-    public void setMaxTime(Integer maxTime) {
-        this.maxTime = maxTime;
-    }
     
+    public void setMinTime(Integer minTime) {
+        this.minTime = minTime;
+    }
+
     public Integer getMaxTime() {
         return this.maxTime;
     }
-
-    public void setError(Integer error) {
-        this.error = error;
-    }
     
+    public void setMaxTime(Integer maxTime) {
+        this.maxTime = maxTime;
+    }
+
     public Integer getError() {
         return this.error;
     }
-
-    public void setThroughput(Integer throughput) {
-        this.throughput = throughput;
-    }
     
+    public void setError(Integer error) {
+        this.error = error;
+    }
+
     public Integer getThroughput() {
         return this.throughput;
     }
-
-    public void setKbsec(Integer kbsec) {
-        this.kbsec = kbsec;
-    }
     
+    public void setThroughput(Integer throughput) {
+        this.throughput = throughput;
+    }
+
     public Integer getKbsec() {
         return this.kbsec;
     }
-
-    public void setMachineLoad(Integer machineLoad) {
-        this.machineLoad = machineLoad;
-    }
     
+    public void setKbsec(Integer kbsec) {
+        this.kbsec = kbsec;
+    }
+
     public Integer getMachineLoad() {
         return this.machineLoad;
     }
-
-    public void setQps(Integer qps) {
-        this.qps = qps;
-    }
     
+    public void setMachineLoad(Integer machineLoad) {
+        this.machineLoad = machineLoad;
+    }
+
     public Integer getQps() {
         return this.qps;
     }
-
-    public void setMemory(Integer memory) {
-        this.memory = memory;
-    }
     
+    public void setQps(Integer qps) {
+        this.qps = qps;
+    }
+
     public Integer getMemory() {
         return this.memory;
+    }
+    
+    public void setMemory(Integer memory) {
+        this.memory = memory;
     }
 
 

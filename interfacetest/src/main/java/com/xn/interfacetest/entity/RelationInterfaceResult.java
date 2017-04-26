@@ -43,6 +43,24 @@ public class RelationInterfaceResult extends BaseEntity {
     private Long caseId;
 
     /**
+     *
+     * suitId
+     */
+    private String suitName;
+
+    /**
+     *
+     * interfaceId
+     */
+    private String interfaceName;
+
+    /**
+     *
+     * caseId
+     */
+    private String caseName;
+
+    /**
      * 
      * planId 
      */
@@ -67,10 +85,20 @@ public class RelationInterfaceResult extends BaseEntity {
     private String responseData;
 
     /**
+     * 占用时间
+     */
+    private Long costTime;
+
+    /**
+     * 执行时间
+     */
+    private String excuteTime;
+
+    /**
      * 
      * 请求结果(通过，错误，失败) 
      */
-    private Integer result;
+    private String  result;
 
 
 	
@@ -146,14 +174,51 @@ public class RelationInterfaceResult extends BaseEntity {
         this.responseData = responseData;
     }
     
-    public Integer getResult() {
+    public String getResult() {
         return this.result;
     }
     
-    public void setResult(Integer result) {
+    public void setResult(String result) {
         this.result = result;
     }
-    
 
+    public Long getCostTime() {
+        return costTime;
+    }
 
+    public void setCostTime(Long costTime) {
+        this.costTime = costTime;
+    }
+
+    public String getSuitName() {
+        return suitName;
+    }
+
+    public void setSuitName(String suitName) {
+        this.suitName = suitName;
+    }
+
+    public String getInterfaceName() {
+        return interfaceName;
+    }
+
+    public void setInterfaceName(String interfaceName) {
+        this.interfaceName = interfaceName;
+    }
+
+    public String getCaseName() {
+        return caseName;
+    }
+
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public String getExcuteTime() {
+        return excuteTime;
+    }
+
+    public void setExcuteTime(String excuteTime) {
+        this.excuteTime = excuteTime;
+    }
 }

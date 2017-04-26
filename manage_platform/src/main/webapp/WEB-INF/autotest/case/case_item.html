@@ -33,15 +33,15 @@
                     <label>用例类型</label>
                     <#if testCaseDto.type==null>
                         <label class="radio-inline" style="margin-top: 0">
-                            <input type="radio" name="type" value="1" checked="true">单接口用例
+                            <input type="radio" name="type" value="SINGLE" checked="true">单接口用例
                         </label>
                         <!--<label class="radio-inline">-->
                             <!--<input type="radio" name="type" value="2" >集成用例-->
                         <!--</label>-->
                         <#else>
-                            <#if testCaseDto.type==1>
+                            <#if testCaseDto.type=='SINGLE'>
                                 <label class="radio-inline" style="margin-top: 0">
-                                    <input type="radio" name="type" value="1" checked="true">单接口用例
+                                    <input type="radio" name="type" value="SINGLE" checked="true">单接口用例
                                 </label>
                             </#if>
                             <!--<#if testCaseDto.type==2>-->
@@ -79,7 +79,6 @@
 
                 </div>
                 <!--所属接口-->
-                <#if testCaseDto.type != 2>
                     <div class="form-group ">
                         <label>所属接口</label>
                         <select class="form-control col-lg-5" name="interfaceId">
@@ -91,27 +90,30 @@
                             </#if>
                         </select>
                     </div>
-                </#if>
 
                 <!--参数校验-->
                 <div class="form-group ">
                     <label>期望</label>
                     <div class="choose-sys" style="margin-left: 1%">
-                        <label class="checkbox-inline select-first">
-                            <input type="checkbox" value="1" name="paramsAssert" <#if testCaseDto.paramsAssert==1>checked</#if>>返回参数校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="databaseAssert" <#if testCaseDto.databaseAssert==1>checked</#if>>数据库校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="redisAssert" <#if testCaseDto.redisAssert==1>checked</#if>>redis校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="dataPrepare" <#if testCaseDto.dataPrepare==1>checked</#if>>数据库校验
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="1" name="dataClear" <#if testCaseDto.dataClear==1>checked</#if>>redis校验
-                        </label>
+                        <div class="checkbox-class ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="paramsAssert" <#if testCaseDto.paramsAssert==1>checked</#if>>返回参数校验
+                            </label>
+                            <!--<label class="checkbox-inline">-->
+                                <!--<input type="checkbox" value="1" name="databaseAssert" <#if testCaseDto.databaseAssert==1>checked</#if>>数据库校验-->
+                            <!--</label>-->
+                            <!--<label class="checkbox-inline">-->
+                                <!--<input type="checkbox" value="1" name="redisAssert" <#if testCaseDto.redisAssert==1>checked</#if>>redis校验-->
+                            <!--</label>-->
+                        </div>
+                        <div class="checkbox-class ">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataPrepare" <#if testCaseDto.dataPrepare==1>checked</#if>>数据准备
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataClear" <#if testCaseDto.dataClear==1>checked</#if>>数据清除
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -246,7 +248,7 @@
         //跳转到单接口用例页面还是集成接口用例页面
         var urlStr = "${basePath}/autotest/case/case_item_";
         var type = $("input[name='type']").val();
-        if(type==1){
+        if(type=="SINGLE"){
             urlStr += "single";
             var caseId = $("input[name='id']").val();
             var interfaceId = $("select[name='interfaceId']").val();

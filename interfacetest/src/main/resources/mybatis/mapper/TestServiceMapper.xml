@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestServiceMapper">
 
@@ -10,6 +10,7 @@
         <result property="description" column="description"/>
         <result property="systemId" column="system_id"/>
         <result property="jarPath" column="jar_path"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
@@ -53,7 +54,25 @@
             <include refid="columns" />
         FROM
             test_service
-        <include refid="where"/>
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="null != name">
+                AND name = #{name}
+            </if>
+            <if test="null != description">
+                AND description = #{description}
+            </if>
+            <if test="null != systemId">
+                AND system_id = #{systemId}
+            </if>
+            <if test="null != jarPath">
+                AND jar_path = #{jarPath}
+            </if>
+        </where>
+
     </select>
 
     <select id="listByParams" resultMap="TestServiceMap">
@@ -64,6 +83,7 @@
         left join test_system sy on ts.system_id = sy.id
         left join department dd on dd.id = sy.department_id
         <where>
+            ts.is_delete = 0
             <if test="id != null and id != 0">
                 AND ts.id = #{id}
             </if>
@@ -140,7 +160,7 @@
                 	<![CDATA[ description = #{description} ]]>,
                 </if>
                 <if test="systemId != null">
-                	<![CDATA[ system_id = #{systemId} ]]>
+                	<![CDATA[ system_id = #{systemId} ]]>,
                 </if>
                 <if test="jarPath != null">
                     <![CDATA[ jar_path = #{jarPath} ]]>
@@ -150,15 +170,15 @@
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+            update
                 test_service
+          set is_delete = 1
             WHERE
-                id = #{id} 
+                id = #{id}
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

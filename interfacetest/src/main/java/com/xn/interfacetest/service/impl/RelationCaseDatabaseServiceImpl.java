@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationCaseDatabaseService;
 import com.xn.interfacetest.dao.RelationCaseDatabaseMapper;
 import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
 import com.xn.interfacetest.entity.RelationCaseDatabase;
-import com.xn.interfacetest.service.RelationCaseDatabaseService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 
@@ -121,6 +121,20 @@ public class RelationCaseDatabaseServiceImpl implements RelationCaseDatabaseServ
     @Override
     public int deleteBatch(List<RelationCaseDatabaseDto> relationCaseDatabases) {
         return 0;
+    }
+
+    @Override
+    public List<RelationCaseDatabaseDto> getByCaseId(Long caseId) {
+        List<RelationCaseDatabase> list = relationCaseDatabaseMapper.getByCaseId(caseId);
+        List<RelationCaseDatabaseDto> dtoList = CollectionUtils.transform(list, RelationCaseDatabaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<RelationCaseDatabaseDto> getByCaseIdAndOperateType(Long caseId, int operateType) {
+        List<RelationCaseDatabase> list = relationCaseDatabaseMapper.getByCaseIdAndOperateType(caseId,operateType);
+        List<RelationCaseDatabaseDto> dtoList = CollectionUtils.transform(list, RelationCaseDatabaseDto.class);
+        return dtoList;
     }
 
 }

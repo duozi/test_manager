@@ -33,9 +33,9 @@ public class RelationCaseDatabase extends BaseEntity {
 
     /**
      *
-     * databaseId
+     * 数据库名称
      */
-    private Long databaseId;
+    private String databaseName;
 
     /**
      *
@@ -90,12 +90,12 @@ public class RelationCaseDatabase extends BaseEntity {
         this.caseId = caseId;
     }
 
-    public Long getDatabaseId() {
-        return this.databaseId;
+    public String getDatabaseName() {
+        return databaseName;
     }
 
-    public void setDatabaseId(Long databaseId) {
-        this.databaseId = databaseId;
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
     }
 
     public Integer getOperateType() {

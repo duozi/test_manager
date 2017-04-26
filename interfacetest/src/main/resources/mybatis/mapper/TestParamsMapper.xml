@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestParamsMapper">
 
@@ -9,13 +9,16 @@
         <result property="name" column="name"/>
         <result property="formatType" column="format_type"/>
         <result property="interfaceId" column="interface_id"/>
-        <result property="dataType" column="data_type"/>
-        <result property="type" column="type"/>
+    </resultMap>
+
+    <resultMap id="ParamsMap" type="com.xn.interfacetest.entity.ParamEntity">
+        <result property="name" column="name"/>
+        <result property="value" column="value"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, format_type, interface_id, data_type, type
+        id, name, format_type, interface_id
         ]]>
     </sql>
     
@@ -33,11 +36,8 @@
            <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
             </if>
-           <if test="@Ognl@isNotEmpty(dataType)">
-                AND data_type = #{dataType}
-            </if>
-           <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
+            <if test="@Ognl@isNotEmpty(isDelete)">
+                AND is_delete = #{isDelete}
             </if>
         </where>
     </sql>
@@ -51,7 +51,16 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+
+    <select id="getParamsByInterfaceId" resultMap="TestParamsMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_params
+        where interface_id= #{interfaceId} and is_delete = 0
+    </select>
+
     <select id="list" resultMap="TestParamsMap">
         SELECT
             <include refid="columns" />
@@ -59,7 +68,23 @@
             test_params 
         <include refid="where"/>
     </select>
-        
+
+    <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
+        select tp.name ,rcp.`value`
+        from test_params tp
+        LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
+        where rcp.case_id = #{caseId} and rcp.is_delete = 0
+    </select>
+
+    <select id="getParamsByInterfaceIdAndName">
+        <![CDATA[
+            select *
+            from   test_params
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = #{isDlete}
+        ]]>
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -76,16 +101,12 @@
                 id,
                 name,
                 format_type,
-                interface_id,
-                data_type,
-                type
+                interface_id
             ) VALUES (
                 #{id},
                 #{name},
                 #{formatType},
-                #{interfaceId},
-                #{dataType},
-                #{type}
+                #{interfaceId}
             )
         ]]>
     </insert>
@@ -96,13 +117,11 @@
                 id,
                 name,
                 format_type,
-                interface_id,
-                data_type,
-                type
+                interface_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.formatType},#{item.interfaceId},#{item.dataType},#{item.type})
+            (#{item.id},#{item.name},#{item.formatType},#{item.interfaceId}
         </foreach>
     </insert>
     
@@ -117,28 +136,42 @@
                 	<![CDATA[ format_type = #{formatType} ]]>,
                 </if>
                 <if test="interfaceId != null">
-                	<![CDATA[ interface_id = #{interfaceId} ]]>,
-                </if>
-                <if test="dataType != null">
-                	<![CDATA[ data_type = #{dataType} ]]>,
-                </if>
-                <if test="type != null">
-                	<![CDATA[ type = #{type} ]]>
+                	<![CDATA[ interface_id = #{interfaceId} ]]>
                 </if>
             </set>
             WHERE
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+            UPDATE
                 test_params
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
+
+    <update id="deleteByInterfaceId">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId}
+        ]]>
+    </update>
+
+    <update id="deleteByInterfaceIdAndParamName">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = 0
+        ]]>
+    </update>
     
     <delete id="delete">
         <![CDATA[

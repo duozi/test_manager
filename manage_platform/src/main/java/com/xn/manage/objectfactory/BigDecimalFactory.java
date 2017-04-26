@@ -1,10 +1,10 @@
 package com.xn.manage.objectfactory;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
-import com.xn.common.utils.StringUtil;
-
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
+
+import com.alibaba.dubbo.common.utils.StringUtils;
+import com.xn.common.utils.StringUtil;
 
 
 public class BigDecimalFactory extends InstanceFactory {

@@ -70,6 +70,16 @@ public class PerformanceStressMachineDto extends BaseDto {
      */
     private String createPerson;
     private String port;
+    private String stressMachineStatus;
+
+    public PerformanceStressMachineDto(Integer id) {
+        this.id = id;
+    }
+
+
+    public PerformanceStressMachineDto() {
+
+    }
 
     public String getPort() {
         return port;
@@ -77,17 +87,6 @@ public class PerformanceStressMachineDto extends BaseDto {
 
     public void setPort(String port) {
         this.port = port;
-    }
-
-
-    private String stressMachineStatus;
-
-    public PerformanceStressMachineDto(Integer id) {
-        this.id = id;
-    }
-
-    public PerformanceStressMachineDto() {
-
     }
 
     public String getStressMachineStatus() {
@@ -98,85 +97,84 @@ public class PerformanceStressMachineDto extends BaseDto {
         this.stressMachineStatus = stressMachineStatus;
     }
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getId() {
         return this.id;
     }
 
-    public void setStressMachineName(String stressMachineName) {
-        this.stressMachineName = stressMachineName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStressMachineName() {
         return this.stressMachineName;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setStressMachineName(String stressMachineName) {
+        this.stressMachineName = stressMachineName;
     }
 
     public String getRemark() {
         return this.remark;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getCompany() {
         return this.company;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getDepartment() {
         return this.department;
     }
 
-    public void setPsystem(String psystem) {
-        this.psystem = psystem;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getPsystem() {
         return this.psystem;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setPsystem(String psystem) {
+        this.psystem = psystem;
     }
 
     public String getIp() {
         return this.ip;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public String getUsername() {
         return this.username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return this.password;
     }
 
-    public void setCreatePerson(String createPerson) {
-        this.createPerson = createPerson;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCreatePerson() {
         return this.createPerson;
+    }
+
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson;
     }
 
 

@@ -125,48 +125,45 @@ public class PerformanceResultDto extends BaseDto {
         this.stressMachineName = stressMachineName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
-
-    public void setPlanId(Integer planId) {
-        this.planId = planId;
-    }
     
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getPlanId() {
         return this.planId;
     }
-
-    public void setSetStartTime(Date setStartTime) {
-        this.setStartTime = setStartTime;
-    }
     
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
+
     public Date getSetStartTime() {
         return this.setStartTime;
     }
-
-
-
-    public void setExecuteTime(Integer executeTime) {
-        this.executeTime = executeTime;
-    }
     
+    public void setSetStartTime(Date setStartTime) {
+        this.setStartTime = setStartTime;
+    }
+
     public Integer getExecuteTime() {
         return this.executeTime;
     }
-
-    public void setExecutePerson(String executePerson) {
-        this.executePerson = executePerson;
-    }
     
+    public void setExecuteTime(Integer executeTime) {
+        this.executeTime = executeTime;
+    }
+
     public String getExecutePerson() {
         return this.executePerson;
     }
-
+    
+    public void setExecutePerson(String executePerson) {
+        this.executePerson = executePerson;
+    }
 
     public Date getSetStartTimeBegin() {
         return this.setStartTimeBegin;

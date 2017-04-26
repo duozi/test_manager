@@ -11,13 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestParamsService;
 import com.xn.interfacetest.dao.TestParamsMapper;
+import com.xn.interfacetest.dto.ParamDto;
 import com.xn.interfacetest.dto.TestParamsDto;
+import com.xn.interfacetest.entity.ParamEntity;
 import com.xn.interfacetest.entity.TestParams;
-import com.xn.interfacetest.service.TestParamsService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**
@@ -121,6 +123,13 @@ public class TestParamsServiceImpl implements TestParamsService {
     public List<TestParamsDto> getParamsByInterfaceId(String interfaceId) {
         List<TestParams> list = testParamsMapper.getParamsByInterfaceId(interfaceId);
         List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<ParamDto> listByCaseIdFromRelation(Long caseId) {
+        List<ParamEntity> list = testParamsMapper.listByCaseIdFromRelation(caseId);
+        List<ParamDto> dtoList = CollectionUtils.transform(list, ParamDto.class);
         return dtoList;
     }
 

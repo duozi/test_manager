@@ -6,18 +6,23 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.api.ParamsAssertService;
+import com.xn.interfacetest.api.RelationAssertResultService;
+import com.xn.interfacetest.dto.ParamsAssertDto;
+import com.xn.interfacetest.dto.RelationAssertResultDto;
+import com.xn.interfacetest.response.AssertItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationInterfaceResultService;
 import com.xn.interfacetest.dao.RelationInterfaceResultMapper;
 import com.xn.interfacetest.dto.RelationInterfaceResultDto;
 import com.xn.interfacetest.entity.RelationInterfaceResult;
-import com.xn.interfacetest.service.RelationInterfaceResultService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**
@@ -35,6 +40,9 @@ public class RelationInterfaceResultServiceImpl implements RelationInterfaceResu
      */
     @Autowired
     private RelationInterfaceResultMapper relationInterfaceResultMapper;
+
+    @Autowired
+    private RelationAssertResultService relationAssertResultService;
 
     @Override
     @Transactional(readOnly = true)
@@ -115,6 +123,20 @@ public class RelationInterfaceResultServiceImpl implements RelationInterfaceResu
     @Override
     public int deleteBatch(List<RelationInterfaceResultDto> relationInterfaceResults) {
         return 0;
+    }
+
+    @Override
+    public List<RelationInterfaceResultDto> getByParams(Map<String, Object> params) {
+        List<RelationInterfaceResult> list = relationInterfaceResultMapper.getByParams(params);
+        List<RelationInterfaceResultDto> dtoList = CollectionUtils.transform(list, RelationInterfaceResultDto.class);
+
+        //查询断言字段
+        for(RelationInterfaceResultDto relationInterfaceResultDto: dtoList){
+            List<RelationAssertResultDto> relationAssertResultDtos = relationAssertResultService.getByReportIdAndCaseId(relationInterfaceResultDto.getReportId(),relationInterfaceResultDto.getCaseId());
+            relationInterfaceResultDto.setAssertItemList(relationAssertResultDtos);
+        }
+
+        return dtoList;
     }
 
 }

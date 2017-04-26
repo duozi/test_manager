@@ -1,11 +1,13 @@
 package com.xn.manage.autotestController;
 
 
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.service.*;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.DatabaseTypeEnum;
-import com.xn.manage.bean.CommonResult;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +19,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.api.RelationDatabaseEnvironmentService;
+import com.xn.interfacetest.api.RelationServiceEnvironmentService;
+import com.xn.interfacetest.api.TestDatabaseConfigService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestRedisConfigService;
+import com.xn.interfacetest.api.TestServiceService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
+import com.xn.interfacetest.dto.TestDatabaseConfigDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestRedisConfigDto;
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.DatabaseTypeEnum;
 
 @Controller
 @RequestMapping("/autotest/environment")
@@ -93,17 +106,17 @@ public class EnvironmentController {
 				Map<String,Object> params = new HashMap<String,Object>();
 				params.put("environmentId",id);
 				//查询环境对应的配置信息
-				if(environmentDto.getServiceProperty()==1){
+				if(null != environmentDto.getServiceProperty() && environmentDto.getServiceProperty()==1){
 					//如果有服务配置则查询服务配置信息
 					List<RelationServiceEnvironmentDto> relationServiceEnvironmentDtoList = relationServiceEnvironmentService.list(params);
 					model.put("relationServiceEnvironmentDtoList",relationServiceEnvironmentDtoList);
 				}
-				if(environmentDto.getDbProperty()==1){
+				if(null != environmentDto.getDbProperty() && environmentDto.getDbProperty()==1){
 					//如果有数据库配置则查询数据库配置信息
 					List<TestDatabaseConfigDto> testDatabaseConfigDtoList = testDatabaseConfigService.list(params);
 					model.put("testDatabaseConfigDtoList",testDatabaseConfigDtoList);
 				}
-				if(environmentDto.getRedisProperty()==1){
+				if(null != environmentDto.getRedisProperty() && environmentDto.getRedisProperty()==1){
 					//如果有redis配置则查询redis配置信息
 					List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(params);
 					model.put("testRedisConfigDtoList",testRedisConfigDtoList);
@@ -310,7 +323,7 @@ public class EnvironmentController {
 			}
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(testDatabaseConfigDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getDbProperty() == 0){
+			if(null != environmentDto&& ((null != environmentDto.getDbProperty() && environmentDto.getDbProperty() == 0) || null == environmentDto.getDbProperty())){
 				environmentDto.setDbProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}
@@ -368,7 +381,7 @@ public class EnvironmentController {
 			}
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(testRedisConfigDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getRedisProperty() == 0){
+			if(null != environmentDto && ((null != environmentDto.getRedisProperty() && environmentDto.getRedisProperty() == 0) || null == environmentDto.getRedisProperty())){
 				environmentDto.setRedisProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}
@@ -429,7 +442,7 @@ public class EnvironmentController {
 
 			//如果查询到没有保存设置选项则保存一次
 			TestEnvironmentDto environmentDto = testEnvironmentService.get(relationServiceEnvironmentDto.getEnvironmentId());
-			if(null != environmentDto && environmentDto.getServiceProperty() == 0){
+			if(null != environmentDto  && ((null != environmentDto.getServiceProperty() && environmentDto.getServiceProperty() == 0) || null == environmentDto.getServiceProperty())){
 				environmentDto.setServiceProperty(1);
 				testEnvironmentService.update(environmentDto);
 			}
@@ -444,5 +457,35 @@ public class EnvironmentController {
 			logger.error("保存服务环境异常｛｝",e);
 		}
 		return  result;
+	}
+
+	/**
+	 * 得到所有的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getEnvironmentList")
+	@ResponseBody
+	public List<TestEnvironmentDto> getEnvironmentList(HttpServletRequest request) {
+		Map<String,Object> params = new HashMap<String, Object>();
+		//查询指定测试集的指定接口的用例
+		return testEnvironmentService.list(params);
+	}
+
+	/**
+	 * 得到指定测试计划的测试集
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/getPlanEnvironmentList")
+	@ResponseBody
+	public List<TestEnvironmentDto> getPlanEnvironmentList(HttpServletRequest request) {
+		//查询指定测试集的指定接口的用例
+		List<TestEnvironmentDto> list = new ArrayList<TestEnvironmentDto>();
+		String planId = request.getParameter("planId");
+		if(StringUtils.isNotBlank(planId) && !"null".equals(planId)){
+			list = testEnvironmentService.getByPlanId(Long.parseLong(planId));
+		}
+		return list;
 	}
 }

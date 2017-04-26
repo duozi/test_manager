@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestInterfaceMapper">
 
@@ -19,11 +19,14 @@
         <result property="dubboVersion" column="dubbo_version"/>
         <result property="dubboGroup" column="dubbo_group"/>
         <result property="dubboTimeout" column="dubbo_timeout"/>
+        <result property="zkOrNot" column="zk_or_not"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="contentType" column="content_type"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, service_id, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout
+        id, name, description, service_id, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
         ]]>
     </sql>
     
@@ -71,9 +74,23 @@
            <if test="@Ognl@isNotEmpty(dubboTimeout)">
                 AND dubbo_timeout = #{dubboTimeout}
             </if>
+            <if test="@Ognl@isNotEmpty(zkOrNot)">
+                AND zk_or_not = #{zkOrNot}
+            </if>
+            <if test="@Ognl@isNotEmpty(contentType)">
+                AND content_type = #{contentType}
+            </if>
         </where>
     </sql>
-    
+
+    <select id="getParamsByInterfaceId" resultType="String">
+        SELECT params
+            FROM
+                test_interface
+            WHERE
+                id = #{id}
+    </select>
+
     <select id="get" resultMap="TestInterfaceMap">
         SELECT <include refid="columns" />
         <![CDATA[
@@ -83,15 +100,73 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByCaseId" resultMap="TestInterfaceMap">
+        SELECT ti.*
+            FROM
+                test_interface ti,test_case tc
+            WHERE ti.id = tc.interface_id
+                and tc.id = #{caseId}
+    </select>
+
     <select id="list" resultMap="TestInterfaceMap">
         SELECT
             <include refid="columns" />
         FROM
-            test_interface 
-        <include refid="where"/>
+            test_interface
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+            <if test="@Ognl@isNotEmpty(description)">
+                AND description = #{description}
+            </if>
+            <if test="@Ognl@isNotEmpty(serviceId)">
+                AND service_id = #{serviceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{type}
+            </if>
+            <if test="@Ognl@isNotEmpty(url)">
+                AND url = #{url}
+            </if>
+            <if test="@Ognl@isNotEmpty(codeText)">
+                AND code_text = #{codeText}
+            </if>
+            <if test="@Ognl@isNotEmpty(jarPath)">
+                AND jar_path = #{jarPath}
+            </if>
+            <if test="@Ognl@isNotEmpty(requestType)">
+                AND request_type = #{requestType}
+            </if>
+            <if test="@Ognl@isNotEmpty(protocolType)">
+                AND protocol_type = #{protocolType}
+            </if>
+            <if test="@Ognl@isNotEmpty(params)">
+                AND params = #{params}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboVersion)">
+                AND dubbo_version = #{dubboVersion}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboGroup)">
+                AND dubbo_group = #{dubboGroup}
+            </if>
+            <if test="@Ognl@isNotEmpty(dubboTimeout)">
+                AND dubbo_timeout = #{dubboTimeout}
+            </if>
+            <if test="@Ognl@isNotEmpty(zkOrNot)">
+                AND zk_or_not = #{zkOrNot}
+            </if>
+            <if test="@Ognl@isNotEmpty(contentType)">
+                AND content_type = #{contentType}
+            </if>
+        </where>
     </select>
-        
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -118,7 +193,9 @@
                 params,
                 dubbo_version,
                 dubbo_group,
-                dubbo_timeout
+                dubbo_timeout,
+                zk_or_not,
+                content_type
             ) VALUES (
                 #{id},
                 #{name},
@@ -133,7 +210,9 @@
                 #{params},
                 #{dubboVersion},
                 #{dubboGroup},
-                #{dubboTimeout}
+                #{dubboTimeout},
+                #{zkOrNot},
+                #{contentType}
             )
         ]]>
     </insert>
@@ -154,11 +233,14 @@
                 params,
                 dubbo_version,
                 dubbo_group,
-                dubbo_timeout
+                dubbo_timeout,
+                zk_or_not,
+                content_type
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},#{item.requestType},#{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout})
+            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},#{item.requestType},
+            #{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout},#{item.zkOrNot},#{item.contentType})
         </foreach>
     </insert>
     
@@ -203,22 +285,28 @@
                 	<![CDATA[ dubbo_group = #{dubboGroup} ]]>,
                 </if>
                 <if test="dubboTimeout != null">
-                	<![CDATA[ dubbo_timeout = #{dubboTimeout} ]]>
+                	<![CDATA[ dubbo_timeout = #{dubboTimeout} ]]>,
+                </if>
+                <if test="zkOrNot != null">
+                    <![CDATA[ zk_or_not = #{zkOrNot} ]]>,
+                </if>
+                <if test="contentType != null">
+                    <![CDATA[ content_type = #{contentType} ]]>
                 </if>
             </set>
             WHERE
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
-                test_interface
+            UPDATE
+            test_interface
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[
@@ -239,5 +327,15 @@
         ]]>
         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
     </delete>
+
+    <select id="listWithInfoByIds" resultMap="TestInterfaceMap">
+        <![CDATA[
+        select *
+        from test_interface
+        WHERE
+        id IN
+        ]]>
+        <foreach collection="array " index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+    </select>
 </mapper>
 

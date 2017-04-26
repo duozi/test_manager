@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TimeConfigService;
 import com.xn.interfacetest.dao.TimeConfigMapper;
 import com.xn.interfacetest.dto.TimeConfigDto;
 import com.xn.interfacetest.entity.TimeConfig;
-import com.xn.interfacetest.service.TimeConfigService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 
@@ -116,6 +116,18 @@ public class TimeConfigServiceImpl implements TimeConfigService {
     @Override
     public int deleteBatch(List<TimeConfigDto> timeConfigs) {
         return 0;
+    }
+
+    @Override
+    public List<TimeConfigDto> getByPlanId(Long planId) {
+        List<TimeConfig> list = timeConfigMapper.getByPlanId(planId);
+        List<TimeConfigDto> dtoList = CollectionUtils.transform(list, TimeConfigDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public void deleteByPlanId(Long planId) {
+        timeConfigMapper.deleteByPlanId(planId);
     }
 
 }

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationCaseParamsService;
 import com.xn.interfacetest.dao.RelationCaseParamsMapper;
 import com.xn.interfacetest.dto.RelationCaseParamsDto;
 import com.xn.interfacetest.entity.RelationCaseParams;
-import com.xn.interfacetest.service.RelationCaseParamsService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 

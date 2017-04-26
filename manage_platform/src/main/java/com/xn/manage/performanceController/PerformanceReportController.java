@@ -2,16 +2,19 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.xn.common.utils.DateUtil;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.ExecuteStatusEnum;
-import com.xn.performance.api.*;
-import com.xn.performance.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,27 +23,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.ExecuteStatusEnum;
+import com.xn.performance.api.PerformanceMonitoredMachineResultService;
+import com.xn.performance.api.PerformancePlanMonitoredService;
+import com.xn.performance.api.PerformancePlanService;
+import com.xn.performance.api.PerformancePlanShowService;
+import com.xn.performance.api.PerformanceResultService;
+import com.xn.performance.api.PerformanceScenarioService;
+import com.xn.performance.api.PerformanceScriptService;
+import com.xn.performance.api.PerformanceStressMachineService;
+import com.xn.performance.dto.PerformanceMonitoredMachineResultDto;
+import com.xn.performance.dto.PerformancePlanDto;
+import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.dto.PerformanceResultDto;
+import com.xn.performance.dto.PerformanceScenarioDto;
+import com.xn.performance.dto.PerformanceScriptDto;
+import com.xn.performance.dto.PerformanceStressMachineDto;
 
 @Controller
 @RequestMapping("/performance/report")
 public class PerformanceReportController {
     private static final Logger logger = LoggerFactory.getLogger(PerformanceReportController.class);
-    @Resource
-    private CompanyService companyService;
-    @Resource
-    private TestSystemService systemService;
-    @Resource
-    private DepartmentService departmentService;
+    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceResultService performanceResultService;
     @Resource
@@ -57,7 +67,12 @@ public class PerformanceReportController {
     PerformanceMonitoredMachineResultService performanceMonitoredMachineResultService;
     @Resource
     PerformancePlanShowService performancePlanShowService;
-    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
+    @Resource
+    private CompanyService companyService;
+    @Resource
+    private TestSystemService testSystemService;
+    @Resource
+    private DepartmentService departmentService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
@@ -113,7 +128,7 @@ public class PerformanceReportController {
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
-        List<TestSystemDto> testSystemDtoList = systemService.list(new TestSystemDto());
+        List<TestSystemDto> testSystemDtoList = testSystemService.list(new TestSystemDto());
         model.put("companyList", companyDtoList);
         model.put("departmentList", departmentDtoList);
         model.put("psystemList", testSystemDtoList);

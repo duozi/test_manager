@@ -145,66 +145,17 @@ public class PageInfo implements Serializable {
     }
 
     /**
-     * @return
-     */
-    public boolean isHasNextPage() {
-        return hasNextPage;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isHasPreviousPage() {
-        return hasPreviousPage;
-    }
-
-    /**
-     * @return
-     */
-    public int getPageEndRow() {
-        return pageEndRow;
-    }
-
-    /**
-     * @return
-     */
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    /**
-     * @return
-     */
-    public int getPageStartRow() {
-        return pageStartRow;
-    }
-
-    /**
-     * @return
-     */
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    /**
-     * @return
-     */
-    public int getTotalRows() {
-        return totalRows;
-    }
-
-    /**
-     * @param i
-     */
-    public void setTotalPages(int i) {
-        totalPages = i;
-    }
-
-    /**
      * @param i
      */
     public void setCurrentPage(int i) {
         currentPage = i;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isHasNextPage() {
+        return hasNextPage;
     }
 
     /**
@@ -215,6 +166,13 @@ public class PageInfo implements Serializable {
     }
 
     /**
+     * @return
+     */
+    public boolean isHasPreviousPage() {
+        return hasPreviousPage;
+    }
+
+    /**
      * @param b
      */
     public void setHasPreviousPage(boolean b) {
@@ -222,10 +180,24 @@ public class PageInfo implements Serializable {
     }
 
     /**
+     * @return
+     */
+    public int getPageEndRow() {
+        return pageEndRow;
+    }
+
+    /**
      * @param i
      */
     public void setPageEndRow(int i) {
         pageEndRow = i;
+    }
+
+    /**
+     * @return
+     */
+    public int getPageSize() {
+        return pageSize;
     }
 
     /**
@@ -237,10 +209,38 @@ public class PageInfo implements Serializable {
     }
 
     /**
+     * @return
+     */
+    public int getPageStartRow() {
+        return pageStartRow;
+    }
+
+    /**
      * @param i
      */
     public void setPageStartRow(int i) {
         pageStartRow = i;
+    }
+
+    /**
+     * @return
+     */
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    /**
+     * @param i
+     */
+    public void setTotalPages(int i) {
+        totalPages = i;
+    }
+
+    /**
+     * @return
+     */
+    public int getTotalRows() {
+        return totalRows;
     }
 
     /**

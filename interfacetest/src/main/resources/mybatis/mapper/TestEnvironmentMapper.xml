@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.TestEnvironmentMapper">
 
@@ -55,7 +55,16 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByPlanId" resultMap="TestEnvironmentMap">
+        SELECT
+        te.*
+        FROM
+        test_environment te
+        LEFT join relation_plan_environment rpe on te.id = rpe.environment_id
+        where rpe.plan_id = #{planId}
+    </select>
+
     <select id="list" resultMap="TestEnvironmentMap">
         SELECT
             <include refid="columns" />

@@ -1,15 +1,12 @@
 package com.xn.manage.autotestController;
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.bean.CommonResult;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
+import com.xn.interfacetest.api.TestServiceService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestServiceDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.CommonResultEnum;
 
 @Controller
 @RequestMapping("/autotest/service")

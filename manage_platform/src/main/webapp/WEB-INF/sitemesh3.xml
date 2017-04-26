@@ -27,6 +27,7 @@
 
     <!-- 排除，不进行装饰的路径 -->
     <mapping path="/decorators/*" exclue="true"/>
+    <mapping path="/autotest/report/interface_case_result" exclue="true"/>
 
 
     <!-- 自定义 tag 规则 -->

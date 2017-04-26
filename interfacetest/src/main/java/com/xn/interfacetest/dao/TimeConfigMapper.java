@@ -4,8 +4,11 @@
 package com.xn.interfacetest.dao;
 
 
+import java.util.List;
+
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TimeConfig;
+import org.springframework.stereotype.Service;
 
 /**
  * TimeConfig Dao 接口
@@ -13,6 +16,10 @@ import com.xn.interfacetest.entity.TimeConfig;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface TimeConfigMapper extends BaseMapper<TimeConfig, Long> {
 
+    List<TimeConfig> getByPlanId(Long planId);
+
+    void deleteByPlanId(Long planId);
 }

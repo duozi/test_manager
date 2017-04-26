@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationPlanSuitMapper">
 
@@ -99,17 +99,17 @@
             WHERE
                 id = #{id} 
     </update>
-    
-    <delete id="deleteByPK">
+
+    <delete id="deleteByPlanId">
         <![CDATA[
-            DELETE
+            delete
             FROM
                 relation_plan_suit
             WHERE
-                id = #{id} 
+                plan_id = #{planId}
         ]]>
     </delete>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE

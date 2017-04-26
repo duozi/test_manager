@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.interfacetest.dao.RelationCaseParamsMapper">
 
@@ -10,12 +10,12 @@
         <result property="value" column="value"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="caseId" column="case_id"/>
-        <result property="type" column="type"/>
+        <result property="isDelete" column="is_delete"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, params_id, value, interface_id, case_id, type
+        id, params_id, value, interface_id, case_id
         ]]>
     </sql>
     
@@ -36,9 +36,6 @@
            <if test="@Ognl@isNotEmpty(caseId)">
                 AND case_id = #{caseId}
             </if>
-           <if test="@Ognl@isNotEmpty(type)">
-                AND type = #{type}
-            </if>
         </where>
     </sql>
     
@@ -56,8 +53,25 @@
         SELECT
             <include refid="columns" />
         FROM
-            relation_case_params 
-        <include refid="where"/>
+            relation_case_params
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(paramsId)">
+                AND params_id = #{paramsId}
+            </if>
+            <if test="@Ognl@isNotEmpty(value)">
+                AND value = #{value}
+            </if>
+            <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+        </where>
     </select>
         
     <select id="count" resultType="long">
@@ -77,15 +91,13 @@
                 params_id,
                 value,
                 interface_id,
-                case_id,
-                type
+                case_id
             ) VALUES (
                 #{id},
                 #{paramsId},
                 #{value},
                 #{interfaceId},
-                #{caseId},
-                #{type}
+                #{caseId}
             )
         ]]>
     </insert>
@@ -97,12 +109,11 @@
                 params_id,
                 value,
                 interface_id,
-                case_id,
-                type
+                case_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.paramsId},#{item.value},#{item.interfaceId},#{item.caseId},#{item.type})
+            (#{item.id},#{item.paramsId},#{item.value},#{item.interfaceId},#{item.caseId})
         </foreach>
     </insert>
     
@@ -120,25 +131,22 @@
                 	<![CDATA[ interface_id = #{interfaceId} ]]>,
                 </if>
                 <if test="caseId != null">
-                	<![CDATA[ case_id = #{caseId} ]]>,
-                </if>
-                <if test="type != null">
-                	<![CDATA[ type = #{type} ]]>
+                	<![CDATA[ case_id = #{caseId} ]]>
                 </if>
             </set>
             WHERE
                 id = #{id} 
     </update>
     
-    <delete id="deleteByPK">
+    <update id="deleteByPK">
         <![CDATA[
-            DELETE
-            FROM
+            UPDATE
                 relation_case_params
+            SET is_delete = 1
             WHERE
                 id = #{id} 
         ]]>
-    </delete>
+    </update>
     
     <delete id="delete">
         <![CDATA[

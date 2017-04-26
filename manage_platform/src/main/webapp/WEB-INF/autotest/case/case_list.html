@@ -131,7 +131,7 @@
                                     <td>
                                         <#if caseTypes??>
                                             <#list caseTypes as caseType>
-                                                <#if caseType.getId()=item.type>
+                                                <#if caseType=item.type>
                                                     ${caseType.getName()}
                                                 </#if>
                                             </#list>

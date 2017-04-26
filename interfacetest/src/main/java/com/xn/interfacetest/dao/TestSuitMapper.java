@@ -4,11 +4,13 @@
 package com.xn.interfacetest.dao;
 
 
-import com.xn.common.base.BaseMapper;
-import com.xn.interfacetest.entity.TestSuit;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.entity.TestSuit;
+import org.springframework.stereotype.Service;
 
 /**
  * TestSuit Dao 接口
@@ -16,6 +18,7 @@ import java.util.List;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface TestSuitMapper extends BaseMapper<TestSuit, Long> {
 
     List<TestSuit> getSuitByCaseId(@Param("caseId") Long caseId);

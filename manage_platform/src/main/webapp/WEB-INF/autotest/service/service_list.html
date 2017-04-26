@@ -152,9 +152,12 @@
                                     <input type="text" class="form-control" id="serviceDescription" name="description" placeholder="请输入服务描述">
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label" >测试dubbo需上传jar包：</label>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label" >上传jar包</label>
                                     <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
-                                    <input type="hidden" name="jarPath" value="">
+                                    <input type="hidden" name="jarPath" value="" placeholder="仅dubbo接口测试需要上传jar包">
                                     <em class="jar-notice"></em>
                                 </div>
                             </div>

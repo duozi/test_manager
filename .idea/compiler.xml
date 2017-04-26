@@ -22,9 +22,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="autotest" />
         <module name="common-test" />
+        <module name="common-test-api" />
         <module name="interfacetest" />
+        <module name="interfacetest-api" />
         <module name="manage_platform" />
         <module name="mock" />
         <module name="performance" />
@@ -33,7 +34,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
       <module name="common-test" target="1.7" />
+      <module name="common-test-api" target="1.7" />
       <module name="interfacetest" target="1.7" />
+      <module name="interfacetest-api" target="1.7" />
       <module name="manage_platform" target="1.7" />
       <module name="mock" target="1.7" />
       <module name="performance" target="1.7" />

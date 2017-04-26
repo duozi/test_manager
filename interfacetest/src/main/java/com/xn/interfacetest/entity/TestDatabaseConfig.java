@@ -53,7 +53,7 @@ public class TestDatabaseConfig extends BaseEntity {
 
     /**
      * 
-     * 数据库名 
+     * 数据库配置名
      */
     private String databaseName;
 

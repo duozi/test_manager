@@ -52,38 +52,36 @@ public class PerformancePlanMonitoredDto extends BaseDto {
         this.monitoredMachineIp = monitoredMachineIp;
     }
 
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
     public Integer getId() {
         return this.id;
     }
-
-    public void setPlanId(Integer planId) {
-        this.planId = planId;
-    }
     
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getPlanId() {
         return this.planId;
     }
-
-    public void setMonitoredMachineId(Integer monitoredMachineId) {
-        this.monitoredMachineId = monitoredMachineId;
-    }
     
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
+
     public Integer getMonitoredMachineId() {
         return this.monitoredMachineId;
     }
-
-    public void setMonitoredMachineName(String monitoredMachineName) {
-        this.monitoredMachineName = monitoredMachineName;
-    }
     
+    public void setMonitoredMachineId(Integer monitoredMachineId) {
+        this.monitoredMachineId = monitoredMachineId;
+    }
+
     public String getMonitoredMachineName() {
         return this.monitoredMachineName;
+    }
+    
+    public void setMonitoredMachineName(String monitoredMachineName) {
+        this.monitoredMachineName = monitoredMachineName;
     }
 
 

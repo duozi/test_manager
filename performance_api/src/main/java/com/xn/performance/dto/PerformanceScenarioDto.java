@@ -92,13 +92,13 @@ public class PerformanceScenarioDto extends BaseDto {
     private Integer delayTime;
     private String scheduler;
 
-    public void setScheduler(String scheduler) {
-        this.scheduler = scheduler;
-    }
-
     public String getScheduler() {
 
         return scheduler;
+    }
+
+    public void setScheduler(String scheduler) {
+        this.scheduler = scheduler;
     }
 
     public Date getSetStartTime() {
@@ -224,26 +224,5 @@ public class PerformanceScenarioDto extends BaseDto {
         this.createPerson = createPerson;
     }
 
-    @Override
-    public String toString() {
-        return "PerformanceScenarioDto{" +
-                "id=" + id +
-                ", scenarioName='" + scenarioName + '\'' +
-                ", remark='" + remark + '\'' +
-                ", psystem='" + psystem + '\'' +
-                ", department='" + department + '\'' +
-                ", company='" + company + '\'' +
-                ", concurrency=" + concurrency +
-                ", startup=" + startup +
-                ", executeTime=" + executeTime +
-                ", cycle=" + cycle +
-                ", scenarioStatus='" + scenarioStatus + '\'' +
-                ", createPerson='" + createPerson + '\'' +
-                ", setStartTime=" + setStartTime +
-                ", setEndTime=" + setEndTime +
-                ", delayTime=" + delayTime +
-                ", scheduler='" + scheduler + '\'' +
-                '}';
-    }
 }
 

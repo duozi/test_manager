@@ -6,6 +6,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationPlanSuit;
+import org.springframework.stereotype.Service;
 
 /**
  * RelationPlanSuit Dao 接口
@@ -13,6 +14,7 @@ import com.xn.interfacetest.entity.RelationPlanSuit;
  * @author Carol
  * @date 2017-02-14
  */
+@Service
 public interface RelationPlanSuitMapper extends BaseMapper<RelationPlanSuit, Long> {
 
     void deleteByPlanId(Long planId);

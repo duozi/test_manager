@@ -2,17 +2,17 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
+import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.PublishEnum;
-import com.xn.manage.bean.CommonResult;
 import com.xn.performance.api.PerformanceScriptService;
 import com.xn.performance.dto.PerformanceScriptDto;
 import org.slf4j.Logger;
@@ -30,26 +30,24 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 import static com.xn.manage.utils.StartJMeterAgent_SSH.exec_command;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
+
 
 @Controller
 @RequestMapping("/performance/script")
 public class PerformanceScriptController {
 
     private static final Logger logger = LoggerFactory.getLogger(PerformanceScriptController.class);
-    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceScriptService performanceScriptService;
     @Resource
     CompanyService companyService;
-
     @Resource
     DepartmentService departmentService;
-
     @Resource
     TestSystemService testSystemService;
+    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {

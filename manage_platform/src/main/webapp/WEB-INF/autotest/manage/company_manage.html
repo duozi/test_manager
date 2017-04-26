@@ -186,7 +186,7 @@
                         data = eval("(" + result + ")");
                         if (data.code == 0) {
                             $("#addCompany").modal("hide");
-                            reload();
+                            window.location.href="${basePath}/autotest/manage/company_manage";
                         } else {
                             $.MsgBox.Alert("保存失败："+data.message);
                         }
@@ -228,7 +228,7 @@
                         data = eval("(" + result + ")");
                         if (data.code == 0) {
                             $("#addDepartment").modal("hide");
-                            reload();
+                            window.location.href="${basePath}/autotest/manage/company_manage";
                         } else {
                             $.MsgBox.Alert("保存失败："+data.message);
                         }

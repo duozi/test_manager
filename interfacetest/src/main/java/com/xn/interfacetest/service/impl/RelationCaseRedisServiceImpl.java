@@ -6,17 +6,18 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
-import com.xn.common.utils.PageInfo;
-import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.dao.RelationCaseRedisMapper;
-import com.xn.interfacetest.dto.RelationCaseRedisDto;
-import com.xn.interfacetest.entity.RelationCaseRedis;
-import com.xn.interfacetest.service.RelationCaseRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.xn.common.utils.BeanUtils;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.RelationCaseRedisService;
+import com.xn.interfacetest.dao.RelationCaseRedisMapper;
+import com.xn.interfacetest.dto.RelationCaseRedisDto;
+import com.xn.interfacetest.entity.RelationCaseRedis;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**
@@ -119,6 +120,13 @@ public class RelationCaseRedisServiceImpl implements RelationCaseRedisService {
     @Override
     public int deleteBatch(List<RelationCaseRedisDto> relationCaseRediss) {
         return 0;
+    }
+
+    @Override
+    public List<RelationCaseRedisDto> getByCaseIdAndOperateType(Long caseId, int operateType) {
+        List<RelationCaseRedis> list = relationCaseRedisMapper.getByCaseIdAndOperateType(caseId,operateType);
+        List<RelationCaseRedisDto> dtoList = CollectionUtils.transform(list, RelationCaseRedisDto.class);
+        return dtoList;
     }
 
 }

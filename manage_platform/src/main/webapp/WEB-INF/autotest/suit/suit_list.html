@@ -77,6 +77,7 @@
                                             <th>测试集ID</th>
                                             <th>测试集名称</th>
                                             <th>测试集描述</th>
+                                            <th>测试系统</th>
                                             <th>测试接口</th>
                                             <th>创建人</th>
                                             <th>操作</th>
@@ -89,10 +90,11 @@
                                                 <td>${item.id}</td>
                                                 <td>${item.name}</td>
                                                 <td>${item.description}</td>
+                                                <td>${item.testSystemDto.name}</td>
                                                 <td>
                                                     <#if item.interfaceList??>
                                                         <#list item.interfaceList as interfaceDto>
-                                                            <a href="../interface/interface_item?id=${interfaceDto.id}" >${interfaceDto.name}</a>
+                                                            <a href="../interface/interface_item.html?id=${interfaceDto.id}" >${interfaceDto.name}</a>
                                                             <#if interfaceDto_has_next>
                                                                 ,
                                                             </#if>

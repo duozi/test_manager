@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateUtil {
-    private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
     public static final String STANDARD_TIME_FORMAT = "yyyy:MM:dd HH:mm:ss";
     public static final String STANDARD_DATE_FORMAT = "yyyy:MM:dd";
     public static final String STANDARD_DATE_FORMAT2 = "yyyy-MM-dd";
@@ -21,16 +20,13 @@ public class DateUtil {
      * 标准日期格式
      */
     public static final String STANDARD_TIME_FORMAT2 = "yyyy-MM-dd HH:mm:ss";
-
     public static final String STANDARD_TIME_FORMAT3 = "yyyy-MM-dd HH:mm";
-
     /**
      * 标准日期月格式
      */
     public static final String STANDARD_MONTH_FORMAT = "yyyy-MM";
-
     public static final String ISO_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
+    private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
     private static String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
 
     /**

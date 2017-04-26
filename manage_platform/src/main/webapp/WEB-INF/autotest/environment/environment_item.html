@@ -78,9 +78,9 @@
                                 <tr>
                                     <th style="width: 20%">服务名</th>
                                     <th style="width: 20%">ip</th>
-                                    <th style="width: 20%">http端口号</th>
-                                    <th style="width: 20%">dubbo端口号</th>
-                                    <th style="width: 20%">zk地址</th>
+                                    <th style="width: 10%">http端口号</th>
+                                    <th style="width: 15%">dubbo端口号</th>
+                                    <th style="width: 30%">zk地址</th>
                                     <th>操作</th>
                                     <th></th>
                                 </tr>
@@ -105,7 +105,7 @@
                                                 </td>
                                                 <td><input type="text" class="form-control" name="httpPort" value="${relationItem.httpPort}"  maxlength="30" digits></td>
                                                 <td><input type="text" class="form-control" name="dubboPort" value="${relationItem.dubboPort}"  maxlength="30" digits></td>
-                                                <td><input type="text" class="form-control" name="zkIpAddress" value="${relationItem.zkIpAddress}"   maxlength="300"></td>
+                                                <td><textarea type="text" class="form-control" name="zkIpAddress" value=""   maxlength="300">${relationItem.zkIpAddress}</textarea></td>
                                                 <td>
                                                     <a type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</a>
                                                 </td>
@@ -130,7 +130,7 @@
             <!--数据库配置-->
              <div id="db-form-div" class="panel panel-default panel-collapse collapse operation-width <#if environmentDto.dbProperty=1>in</#if>">
                 <!-- 数据库配置 -->
-                <label class="control-label col-lg-4 top-label">数据库配置</label>
+                <label class="control-label col-lg-4 top-label">数据准备和数据清除阶段数据库配置</label>
 
                 <div class="panel panel-default operation">
                     <div class="panel-body">
@@ -288,7 +288,7 @@
     servicePropertiesHtml += '<td><input type="hidden" name="id"><input type="text" class="form-control" name="ipAddress" required maxlength="30"></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="httpPort"   maxlength="30" digits></td>';
     servicePropertiesHtml += '<td><input type="text" class="form-control" name="dubboPort"   maxlength="30" digits></td>';
-    servicePropertiesHtml += '<td><input type="text" class="form-control" name="zkIpAddress"   maxlength="300"></td>';
+    servicePropertiesHtml += '<td><textarea type="text" class="form-control" name="zkIpAddress"   maxlength="300"></textarea></td>';
     servicePropertiesHtml += '<td>';
     servicePropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</button>';
     servicePropertiesHtml += '</td>';
@@ -326,7 +326,7 @@
     redisPropertiesHtml += '<td><input type="text" class="form-control" name="timeout" required maxlength="30" digits></td>';
     redisPropertiesHtml += '<td><input type="text" class="form-control" name="tryTime" required maxlength="30" digits></td>';
     redisPropertiesHtml += '<td >';
-    redisPropertiesHtml += '<input type="text" class="form-control" name="ipAddress" required maxlength="300" >';
+    redisPropertiesHtml += '<input type="text" class="form-control" name="ipAddress" required maxlength="300" placeholder="集群地址以分号隔开，如：10.17.2.151:8080;10.17.2.152:8012">';
     redisPropertiesHtml += '</td>';
     redisPropertiesHtml += '<td>';
     redisPropertiesHtml += '<button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>';
@@ -483,7 +483,7 @@
         var ipAddress = $(_this).parent().parent().find("input[name='ipAddress']").val();
         var httpPort = $(_this).parent().parent().find("input[name='httpPort']").val();
         var dubboPort = $(_this).parent().parent().find("input[name='dubboPort']").val();
-        var zkIpAddress = $(_this).parent().parent().find("input[name='zkIpAddress']").val();
+        var zkIpAddress = $(_this).parent().parent().find("textarea[name='zkIpAddress']").val();
         var environmentId = $("#add-environment").find("input[name='id']").val();
         var id = $(_this).parent().parent().find("input[name='id']").val();
         var AjaxURL= "${basePath}/autotest/environment/saveServiceProperties";

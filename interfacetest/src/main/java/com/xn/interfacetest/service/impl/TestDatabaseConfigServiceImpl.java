@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.CollectionUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.TestDatabaseConfigService;
 import com.xn.interfacetest.dao.TestDatabaseConfigMapper;
 import com.xn.interfacetest.dto.TestDatabaseConfigDto;
 import com.xn.interfacetest.entity.TestDatabaseConfig;
-import com.xn.interfacetest.service.TestDatabaseConfigService;
+import com.xn.interfacetest.util.CollectionUtils;
 
 
 /**
@@ -120,6 +120,20 @@ public class TestDatabaseConfigServiceImpl implements TestDatabaseConfigService 
     @Override
     public int deleteBatch(List<TestDatabaseConfigDto> testDatabaseConfigs) {
         return 0;
+    }
+
+    @Override
+    public TestDatabaseConfigDto getByEnvironmentAndDbName(String databaseName, Long environmentId) {
+        TestDatabaseConfig testDatabaseConfig = testDatabaseConfigMapper.getByEnvironmentAndDbName(databaseName,environmentId);
+        TestDatabaseConfigDto testDatabaseConfigDto = BeanUtils.toBean(testDatabaseConfig,TestDatabaseConfigDto.class);
+        return testDatabaseConfigDto;
+    }
+
+    @Override
+    public TestDatabaseConfigDto getByName(String name) {
+        TestDatabaseConfig testDatabaseConfig = testDatabaseConfigMapper.getByName(name);
+        TestDatabaseConfigDto testDatabaseConfigDto = BeanUtils.toBean(testDatabaseConfig,TestDatabaseConfigDto.class);
+        return testDatabaseConfigDto;
     }
 
 }

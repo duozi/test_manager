@@ -1,13 +1,15 @@
 package com.xn.manage.autotestController;
 
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.service.*;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.ExcuteTypeEnum;
-import com.xn.manage.Enum.PlanStatusEnum;
-import com.xn.manage.bean.CommonResult;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,16 +20,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.api.RelationPlanEnvironmentService;
+import com.xn.interfacetest.api.RelationPlanSuitService;
+import com.xn.interfacetest.api.TestEnvironmentService;
+import com.xn.interfacetest.api.TestPlanService;
+import com.xn.interfacetest.api.TestSuitService;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.api.TimeConfigService;
+import com.xn.interfacetest.dto.RelationPlanEnvironmentDto;
+import com.xn.interfacetest.dto.RelationPlanSuitDto;
+import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestPlanDto;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.interfacetest.dto.TimeConfigDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.ExcuteTypeEnum;
+import com.xn.manage.Enum.PlanStatusEnum;
 
 @Controller
 @RequestMapping("/autotest/plan")
 public class PlanController {
 	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
+
+	private static final SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
 	@Autowired
 	private CompanyService companyService;
@@ -139,67 +159,24 @@ public class PlanController {
 				result.setMessage("请填写计划名称");
 				return result;
 			}
-			testPlanDto = testPlanService.save(testPlanDto);
-			result.setData(testPlanDto);
 
+			Map<String,Object> params = new HashMap<String,Object>();
 			String[] suitIds = request.getParameterValues("suitIds");
-			Long suitId = 0L;
-			//先删除对应计划的所有测试集，再保存新的测试集关系
-			relationPlanSuitService.deleteByPlanId(testPlanDto.getId());
-			if(null != suitIds && suitIds.length > 0){
-				for(String suitIdStr : suitIds){
-					if(!"null".equals(suitIdStr) && StringUtils.isNotBlank(suitIdStr)){
-						RelationPlanSuitDto relationPlanSuitDto = new RelationPlanSuitDto();
-						relationPlanSuitDto.setPlanId(testPlanDto.getId());
-						relationPlanSuitDto.setSuitId(Long.parseLong(suitIdStr));
-						relationPlanSuitService.save(relationPlanSuitDto);
-					}
-				}
-			}
-
-			TimeConfigDto timeConfigDto = new TimeConfigDto();
-			timeConfigDto.setPlanId(testPlanDto.getId());
-			if(testPlanDto.getExcuteType() == ExcuteTypeEnum.once.getId()){
-				String[] excuteTimes =  request.getParameterValues("excuteTime");
-				if(null != excuteTimes && excuteTimes.length > 0){
-					for(String excuteTime : excuteTimes){
-						timeConfigDto.setTimeExpression(excuteTime);
-						timeConfigService.save(timeConfigDto);
-					}
-				}
-			} else if(testPlanDto.getExcuteType() == ExcuteTypeEnum.circulation.getId()){
-				String timeDescription =  request.getParameter("timeDescription");
-				if(StringUtils.isNotBlank(timeDescription)){
-					timeConfigDto.setDescription(timeDescription);
-				}
-
-				String cronExpression =  request.getParameter("cronExpression");
-				if(StringUtils.isNotBlank(cronExpression)){
-					timeConfigDto.setTimeExpression(cronExpression);
-				}
-				timeConfigService.save(timeConfigDto);
-			}
-
-			//保存测试计划与环境的关系
+			params.put("suitIds",suitIds);
+			String[] excuteTimes =  request.getParameterValues("excuteTime");
+			params.put("excuteTime",excuteTimes);
+			String timeDescription =  request.getParameter("timeDescription");
+			params.put("timeDescription",timeDescription);
+			String cronExpression =  request.getParameter("cronExpression");
+			params.put("cronExpression",cronExpression);
 			String[] environmentIds =  request.getParameterValues("environmentIds");
+			params.put("environmentIds",environmentIds);
 
-			//先删除对应计划的所有环境关系，再保存新的测试集关系
-			relationPlanEnvironmentService.deleteByPlanId(testPlanDto.getId());
-			if(null != environmentIds && environmentIds.length > 0){
-				for(String environmentIdStr : environmentIds){
-					if(!"null".equals(environmentIdStr) && StringUtils.isNotBlank(environmentIdStr)){
-						RelationPlanEnvironmentDto relationPlanEnvironmentDto = new RelationPlanEnvironmentDto();
-						relationPlanEnvironmentDto.setPlanId(testPlanDto.getId());
-						relationPlanEnvironmentDto.setEnvironmentId(Long.parseLong(environmentIdStr));
-						relationPlanEnvironmentService.save(relationPlanEnvironmentDto);
-					}
-				}
-			}
+			result = testPlanService.saveWithInfo(testPlanDto,params);
+
 		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message =e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
 			logger.error("保存接口异常｛｝",e);
 		}
 		return  result;
@@ -212,7 +189,7 @@ public class PlanController {
 		String id = request.getParameter("id");
 		try{
 			if(StringUtils.isNotBlank(id)){
-				testPlanService.publishPlan(PlanStatusEnum.PUBLISHED.getId(),Long.parseLong(id));
+				testPlanService.changeStatusOfPlan(PlanStatusEnum.PUBLISHED.getId(),Long.parseLong(id));
 			}
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();
@@ -220,6 +197,155 @@ public class PlanController {
 			result.setCode(code);
 			result.setMessage(message);
 			logger.error("发布操作异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/getPlanTime", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TimeConfigDto> getPlanTime(HttpServletRequest request) {
+		String planId = request.getParameter("planId");
+		List<TimeConfigDto> timeConfigDtos = new ArrayList<TimeConfigDto>();
+		try{
+			if(StringUtils.isNotBlank(planId)){
+				timeConfigDtos = timeConfigService.getByPlanId(Long.parseLong(planId));
+			}
+		}catch (Exception e){
+			logger.error("操作异常｛｝",e);
+		}
+		return  timeConfigDtos;
+	}
+
+	@RequestMapping(value="/savePlanSuit", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanSuit(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String[] suitIds = request.getParameterValues("suitIds[]");
+			Long suitId = 0L;
+			//先删除对应计划的所有测试集，再保存新的测试集关系
+			String planIdStr = request.getParameter("planId");
+			Long planId = Long.parseLong(planIdStr);
+			relationPlanSuitService.deleteByPlanId(planId);
+			if(null != suitIds && suitIds.length > 0){
+				for(String suitIdStr : suitIds){
+					if(!"null".equals(suitIdStr) && StringUtils.isNotBlank(suitIdStr)){
+						RelationPlanSuitDto relationPlanSuitDto = new RelationPlanSuitDto();
+						relationPlanSuitDto.setPlanId(planId
+						);
+						relationPlanSuitDto.setSuitId(Long.parseLong(suitIdStr));
+						relationPlanSuitService.save(relationPlanSuitDto);
+					}
+				}
+			}
+
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试集异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/savePlanEnvironment", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanEnvironment(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String[] environmentIds = request.getParameterValues("environmentIds[]");
+			Long suitId = 0L;
+			//先删除对应计划的所有测试集，再保存新的测试集关系
+			String planIdStr = request.getParameter("planId");
+			Long planId = Long.parseLong(planIdStr);
+			//先删除对应计划的所有环境关系，再保存新的测试集关系
+			relationPlanEnvironmentService.deleteByPlanId(planId);
+			if(null != environmentIds && environmentIds.length > 0){
+				for(String environmentIdStr : environmentIds){
+					if(!"null".equals(environmentIdStr) && StringUtils.isNotBlank(environmentIdStr)){
+						RelationPlanEnvironmentDto relationPlanEnvironmentDto = new RelationPlanEnvironmentDto();
+						relationPlanEnvironmentDto.setPlanId(planId);
+						relationPlanEnvironmentDto.setEnvironmentId(Long.parseLong(environmentIdStr));
+						relationPlanEnvironmentService.save(relationPlanEnvironmentDto);
+					}
+				}
+			}
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试环境异常｛｝",e);
+		}
+		return  result;
+	}
+
+	@RequestMapping(value="/savePlanTime", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult savePlanTime(TimeConfigDto timeConfigDto,HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			//先删除以前的配置
+			timeConfigService.deleteByPlanId(timeConfigDto.getPlanId());
+			String excuteTypeStr = request.getParameter("excuteType");
+			Integer excuteType = Integer.parseInt(excuteTypeStr);
+			if(excuteType == ExcuteTypeEnum.once.getId()){
+				String[] excuteTimes =  request.getParameterValues("excuteTime");
+				if(null != excuteTimes && excuteTimes.length > 0){
+					for(String excuteTime : excuteTimes){
+						boolean dateflag=true;
+						Date time = new Date();
+						try {
+							time = format.parse(excuteTime);
+						}catch (ParseException e){
+							dateflag=false;
+						}finally{
+							if(!dateflag){
+								result.setCode(CommonResultEnum.ERROR.getReturnCode());
+								result.setMessage("时间格式不正确！");
+								return result;
+							}
+							timeConfigDto.setExcuteTime(excuteTime);
+							timeConfigService.save(timeConfigDto);
+						}
+					}
+				}
+			} else if(excuteType == ExcuteTypeEnum.circulation.getId()){
+				String timeDescription =  request.getParameter("timeDescription");
+				if(StringUtils.isNotBlank(timeDescription)){
+					timeConfigDto.setDescription(timeDescription);
+				}
+
+				String cronExpression =  request.getParameter("cronExpression");
+				if(StringUtils.isNotBlank(cronExpression)){
+					timeConfigDto.setTimeExpression(cronExpression);
+				}
+				timeConfigService.save(timeConfigDto);
+			}
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("保存测试集异常｛｝",e);
+		}
+		return  result;
+	}
+
+	//执行测试计划
+	@RequestMapping(value="/excutePlan", method = RequestMethod.POST)
+	@ResponseBody
+	public com.xn.common.base.CommonResult excutePlan(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String planIdStr = request.getParameter("planId");
+			if(StringUtils.isBlank(planIdStr)){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("计划id为空");
+				return result;
+			}
+
+			Long planId = Long.parseLong(planIdStr);
+			result = testPlanService.excutePlan(planId);
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
+			logger.error("计划执行异常｛｝",e);
 		}
 		return  result;
 	}

@@ -1,11 +1,10 @@
 package com.xn.manage.autotestController;
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.bean.CommonResult;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.common.dto.CompanyDto;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.manage.Enum.CommonResultEnum;
 
 @Controller
 @RequestMapping("/autotest/manage")

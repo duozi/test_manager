@@ -50,12 +50,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-
-                                    </tr>
+                                    <#if testSystemDtoList??>
+                                        <#list testSystemDtoList as system>
+                                            <tr>
+                                                <td>${system.companyDto.name}</td>
+                                                <td>${system.departmentDto.name}</td>
+                                                <td>${system.name}</td>
+                                            </tr>
+                                        </#list>
+                                    </#if>
                                     </tbody>
                                 </table>
                             </div>
@@ -75,7 +78,6 @@
                                         <th>执行人</th>
                                         <th>执行时间</th>
                                         <th>花费时长</th>
-                                        <th>测试集</th>
                                         <th>总用例数</th>
                                         <th>通过用例数</th>
                                         <th>失败用例数</th>
@@ -84,14 +86,13 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
+                                        <td>${testReportDto.plan.createPerson}</td>
+                                        <td>${testReportDto.beginTime}</td>
+                                        <td>${testReportDto.costTime}ms</td>
+                                        <td>${testReportDto.caseCount}</td>
+                                        <td>${testReportDto.passCaseCount}</td>
+                                        <td>${testReportDto.failCaseCout}</td>
+                                        <td>${testReportDto.errorCaseCout}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -114,20 +115,20 @@
                                         <th>被测接口</th>
                                         <th>计划名称</th>
                                         <th>环境</th>
-                                        <th>redis</th>
-                                        <th>数据库</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                    </tr>
+                                    <#if interfaceDtoList??>
+                                        <#list interfaceDtoList as item>
+                                            <tr>
+                                                <td>${item.testServiceDto.systemDto.name}</td>
+                                                <td>${item.testServiceDto.name}</td>
+                                                <td>${item.name}</td>
+                                                <td>${testReportDto.plan.name}</td>
+                                                <td>${testReportDto.environment.name}</td>
+                                            </tr>
+                                        </#list>
+                                    </#if>
                                     </tbody>
                                 </table>
                             </div>
@@ -139,100 +140,9 @@
                             执行详情
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="form-group col-lg-2">
-                                <select class="form-control">
-                                    <option value="" disabled selected >选择接口名称</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-2">
-                                <select class="form-control">
-                                    <option value="" disabled selected >选择执行结果</option>
-                                    <option value="">通过</option>
-                                    <option value="">失败</option>
-                                    <option value="">异常</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-1">
-                                <button type="submit" class="btn btn-default">全部</button>
-                            </div>
-                            <div class="table-responsive col-lg-12">
-                                <table class="table table-striped table-bordered table-hover report_detail_table">
-                                    <thead>
-                                    <tr class="alert-success">
-                                        <th>用例ID</th>
-                                        <th>接口</th>
-                                        <th >执行时间</th>
-                                        <th>耗时</th>
-                                        <th >执行结果</th>
-                                        <th >请求参数</th>
-                                        <th >响应结果</th>
-                                        <th >断言</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>111</td>
-                                        <td>getAllFriend</td>
-                                        <td>2016-12-09 23:23:23</td>
-                                        <td>24s</td>
-                                        <td>
-                                            <a type="button" class="btn btn-success">通过</a>（第<em>0</em>次通过)
-                                        </td>
-                                        <td>
-                                            [{"appVersion":"2.4.0","currPage":1,"memberNo":"8e277dbf-fd2a-4282-966a-d1f946683129","mobile":"","pageSize":20,"sign":"5054ab67e09ae179373cf0725add9354","sourceType":"android","systemType":"QGZ","type":0}]
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>111</td>
-                                        <td>getAllFriend</td>
-                                        <td>2016-12-09 23:23:23</td>
-                                        <td>24s</td>
-                                        <td>
-                                            <a type="button" class="btn btn-warning">失败</a>
-                                        </td>
-                                        <td>
-                                            [{"appVersion":"2.4.0","currPage":1,"memberNo":"8e277dbf-fd2a-4282-966a-d1f946683129","mobile":"","pageSize":20,"sign":"5054ab67e09ae179373cf0725add9354","sourceType":"android","systemType":"QGZ","type":0}]
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>111</td>
-                                        <td>getAllFriend</td>
-                                        <td>2016-12-09 23:23:23</td>
-                                        <td>24s</td>
-                                        <td>
-                                            <a type="button" class="btn btn-danger">异常</a>
-                                        </td>
-                                        <td>
-                                            [{"appVersion":"2.4.0","currPage":1,"memberNo":"8e277dbf-fd2a-4282-966a-d1f946683129","mobile":"","pageSize":20,"sign":"5054ab67e09ae179373cf0725add9354","sourceType":"android","systemType":"QGZ","type":0}]
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                        <td>
-                                            Response{body='CommonRlt[returnCode=0,returnMsg=成功,data=Page[totalCount=0,result=[]]]', exception=null}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                       <iframe src="interface_case_result?id=${id}" width="100%;" frameborder="0" scrolling="auto" style="min-height: 400px">
+
+                       </iframe>
                     </div>
                     <!-- /.table-responsive -->
                 </div>
@@ -241,29 +151,6 @@
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
-        <!-- 新增测试计划弹框 -->
-        <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="emailLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="emailLabel">配置邮件收件人</h4>
-                    </div>
-                    <div class="modal-body modal-email">
-                        <form role="form " class="col-lg-12 ">
-                           <textarea type="text" name="emailAddress" placeholder="请输入邮箱地址，以分号隔开。例如：1234567@qq.com;xiaoming@sina.com"></textarea>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">发送</button>
-                        <button type="button" class="btn btn-info">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
     </div>
     </body>
   <!-- jQuery -->

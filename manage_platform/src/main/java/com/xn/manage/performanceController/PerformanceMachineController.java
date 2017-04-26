@@ -2,14 +2,14 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import com.xn.common.company.dto.CompanyDto;
-import com.xn.common.company.dto.DepartmentDto;
-import com.xn.common.company.service.CompanyService;
-import com.xn.common.company.service.DepartmentService;
+import com.xn.common.api.CompanyService;
+import com.xn.common.api.DepartmentService;
+import com.xn.common.base.CommonResult;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
+import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
 import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.bean.CommonResult;
 import com.xn.performance.api.PerformanceMonitoredMachineService;
 import com.xn.performance.api.PerformanceStressMachineService;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;

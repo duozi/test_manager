@@ -44,19 +44,10 @@ public class TestParams extends BaseEntity {
     private Long interfaceId;
 
     /**
-     * 
-     * 数据类型（int,string….） 
+     * 删除标记字段1-表示删除
      */
-    private String dataType;
+    private Integer isDelete;
 
-    /**
-     * 
-     * 1-Header参数，2-body参数 
-     */
-    private Integer type;
-
-
-    
     private TestInterface testInterface;
    
 	
@@ -100,27 +91,19 @@ public class TestParams extends BaseEntity {
         this.interfaceId = interfaceId;
     }
     
-    public String getDataType() {
-        return this.dataType;
-    }
-    
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-    
-    public Integer getType() {
-        return this.type;
-    }
-    
-    public void setType(Integer type) {
-        this.type = type;
-    }
-    
     public TestInterface getTestInterface() {
         return testInterface;
     }
     
     public void setTestInterface(TestInterface testInterface){
         this.testInterface = testInterface;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

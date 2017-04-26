@@ -1,12 +1,17 @@
 package com.xn.manage.autotestController;
 
-import com.xn.manage.bean.CommonResult;
-import com.xn.manage.utils.FileUpload;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import com.xn.common.base.CommonResult;
+import com.xn.manage.utils.FileUpload;
 
 @Controller
 @RequestMapping("/*")
