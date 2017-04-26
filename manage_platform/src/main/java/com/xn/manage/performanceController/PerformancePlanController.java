@@ -4,76 +4,34 @@ package com.xn.manage.performanceController;/**
 
 
 import com.google.common.collect.Lists;
-import com.xn.common.dto.CompanyDto;
-import com.xn.common.dto.DepartmentDto;
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
+import com.xn.common.dto.CompanyDto;
+import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.DateUtil;
-import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.api.TestSystemService;
-import com.xn.manage.Enum.*;
-import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.dto.TestSystemDto;
+import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.manage.Enum.PerformancePlanStatusEnum;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
+import com.xn.performance.mybatis.CommonResult;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import com.xn.common.utils.DateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.common.collect.Lists;
-import com.xn.common.api.CompanyService;
-import com.xn.common.api.DepartmentService;
-import com.xn.common.base.CommonResult;
-import com.xn.common.dto.CompanyDto;
-import com.xn.common.dto.DepartmentDto;
-import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.Enum.CommonResultEnum;
-import com.xn.manage.Enum.PerformancePlanStatusEnum;
-import com.xn.performance.api.JmeterService;
-import com.xn.performance.api.PerformanceMonitoredMachineResultService;
-import com.xn.performance.api.PerformanceMonitoredMachineService;
-import com.xn.performance.api.PerformancePlanMonitoredService;
-import com.xn.performance.api.PerformancePlanService;
-import com.xn.performance.api.PerformancePlanShowService;
-import com.xn.performance.api.PerformanceResultService;
-import com.xn.performance.api.PerformanceScenarioService;
-import com.xn.performance.api.PerformanceScriptService;
-import com.xn.performance.api.PerformanceStressMachineService;
-import com.xn.performance.dto.PerformanceMonitoredMachineDto;
-import com.xn.performance.dto.PerformanceMonitoredMachineResultDto;
-import com.xn.performance.dto.PerformancePlanDto;
-import com.xn.performance.dto.PerformancePlanMonitoredDto;
-import com.xn.performance.dto.PerformancePlanShowDto;
-import com.xn.performance.dto.PerformanceResultDto;
-import com.xn.performance.dto.PerformanceScenarioDto;
-import com.xn.performance.dto.PerformanceScriptDto;
-import com.xn.performance.dto.PerformanceStressMachineDto;
-
-import net.sf.json.JSONArray;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 @Controller
 @RequestMapping("/performance/plan")

@@ -2,23 +2,6 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
-
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
@@ -31,6 +14,17 @@ import com.xn.performance.api.PerformanceMonitoredMachineService;
 import com.xn.performance.api.PerformanceStressMachineService;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;
 import com.xn.performance.dto.PerformanceStressMachineDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 @Controller
 @RequestMapping("/performance/machine")

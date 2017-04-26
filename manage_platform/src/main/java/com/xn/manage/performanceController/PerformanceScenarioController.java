@@ -2,37 +2,31 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import com.xn.common.utils.DateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
+import com.xn.common.utils.DateUtil;
 import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.PublishEnum;
 import com.xn.performance.api.PerformanceScenarioService;
 import com.xn.performance.dto.PerformanceScenarioDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 @Controller
 @RequestMapping("/performance/scenario")

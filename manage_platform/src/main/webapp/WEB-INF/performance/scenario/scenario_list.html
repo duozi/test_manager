@@ -251,14 +251,11 @@
                                     <td>
 
                                         <a type="button" name="editScenario" class="btn btn-info"
-                                        <#if item.scenarioStatus="未发布">
 
-                                            onclick="showScenario(${item})"
-                                           <#else>
-                                               disabled
-                                        </#if>
-
-                                        >编辑</a>
+                                        <#if item.scenarioStatus="未发布"> onclick='showScenario(${item})'</#if>
+                                        <#if item.scenarioStatus="已发布">
+                                            disabled
+                                        </#if>>编辑</a>
                                         <a type="button" name="deleteScenario" class="btn btn-danger"
                                            onclick="deleteScenario(${item.id})">删除</a>
                                     </td>

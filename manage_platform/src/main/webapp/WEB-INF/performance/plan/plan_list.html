@@ -460,6 +460,7 @@
                             <div class="form-group">
                                 <label class="control-label">系统<span style="color:red">*</span></label>
                                 <select class="form-control" name="psystem" required>
+                                    <option disabled selected>请选择系统</option>
                                     <#if psystemList ??>
                                         <#list psystemList as item>
                                             <option value="${item.name}">${item.name}</option>
@@ -471,34 +472,25 @@
                             <div class="form-group">
                                 <label class="control-label">脚本<span style="color:red">*</span></label>
                                 <select class="form-control" name="scriptName" required>
-
+                                    <option disabled selected>请选择脚本</option>
 
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">场景<span style="color:red">*</span></label>
-                                <select class="form-control" name="scenarioName">
-                                    <#if plan_list_all ??>
-                                        <#list plan_list_all as item>
-                                            <option value="${item.scenarioName}">${item.scenarioName}</option>
-                                        </#list>
-                                    </#if>
+                                <select class="form-control" name="scenarioName" required>
+                                    <option disabled selected>请选择场景</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label" style="margin-bottom: 4%">监控机<span
                                         style="color:red">*</span></label>
-                                <select id="id_select" class="selectpicker bla bli" multiple
-                                        data-live-search="true">
-                                    <#if monitored_machine_list_all ??>
-                                        <#list monitored_machine_all as item>
-                                            <option value="${item.scenarioName}">${item.scenarioName}</option>
-                                        </#list>
-                                    </#if>
 
-                                    </optgroup>
+                                <select id="id_select" class="selectpicker bla bli" multiple
+                                        data-live-search="true" name="monitoredMachineName" required>
+
                                 </select>
                             </div>
                         </div>
@@ -517,13 +509,15 @@
 </div>
 <!-- /.row -->
 <script type="text/javascript">
-    $("select[name='excute-time-type']").change(
+    $("#execute-time-type").change(
             function () {
                 var value = $(this).val();
-                if (value == 'settime') {
-                    $(".settime").removeClass("hidden");
+                if (value == 'schedule') {
+                    $(".schedule").removeClass("hidden");
+                    $("#set-start-time").empty();
                 } else if (value == 'now') {
-                    $(".settime").addClass("hidden");
+                    $(".schedule").addClass("hidden");
+
                 }
             }
     );
@@ -533,15 +527,33 @@
         var department = $("select[name='department']").val();
         var psystem = $("select[name='psystem']").val();
 
-        $.get("/performance/plan/plan_list/show_script?company=" + company + "&department=" + department + "&psystem" + psystem, function (data) {
+        $.get("/performance/plan/plan_list/show_script?company=" + company + "&department=" + department + "&psystem=" + psystem, function (data) {
             if (data.code == 0) {
-                var list = data.data;
-                var choose = "";
-                for (var i = 0; i < list.length; i++) {
-                    choose += "<option>" + list[i].scriptName + "</option>";
+                var script_list = data.data[0];
+                var scenario_list = data.data[1];
+                var monitored_machine_list = data.data[2];
+                var script_choose = " <option disabled selected>请选择脚本</option>";
+                for (var i = 0; i < script_list.length; i++) {
+                    script_choose += "<option value='" + script_list[i].id + "'>" + script_list[i].scriptName + "</option>";
                 }
-                $("select[name='scriptName']").append(choose);
+                $("select[name='scriptName']").empty();
+                $("select[name='scriptName']").append(script_choose);
 
+                var scenario_choose = "<option disabled selected>请选择场景</option>";
+                for (var i = 0; i < scenario_list.length; i++) {
+                    scenario_choose += "<option value='" + scenario_list[i].id + "'>" + scenario_list[i].scenarioName + "</option>";
+                }
+                $("select[name='scenarioName']").empty();
+                $("select[name='scenarioName']").append(scenario_choose);
+
+                var monitored_machine_choose = "";
+                for (var i = 0; i < monitored_machine_list.length; i++) {
+                    monitored_machine_choose += "<option value='" + monitored_machine_list[i].id + "'>" + monitored_machine_list[i].monitoredMachineName + "</option>";
+                }
+
+                $("#id_select").empty();
+                $("#id_select").append(monitored_machine_choose);
+                $("#id_select").selectpicker('refresh');
 
             } else if (data.code == 1) {
                 alert("保存失败");
