@@ -22,11 +22,12 @@
         <result property="zkOrNot" column="zk_or_not"/>
         <result property="isDelete" column="is_delete"/>
         <result property="contentType" column="content_type"/>
+        <result property="status" column="status"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, service_id, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
+        id, name, description, service_id,status, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
         ]]>
     </sql>
     
@@ -109,6 +110,21 @@
                 and tc.id = #{caseId}
     </select>
 
+    <select id="listAllBySuitId" resultMap="TestInterfaceMap">
+       SELECT ti.*
+        from test_interface ti
+        LEFT JOIN relation_suit_case rsc on rsc.interface_id = ti.id
+        WHERE rsc.suit_id = #{suitId}
+    </select>
+
+    <select id="listAllBySuitList" resultMap="TestInterfaceMap">
+        SELECT DISTINCT ti.*
+        from test_interface ti
+        LEFT JOIN relation_suit_case rsc on rsc.interface_id = ti.id
+        WHERE rsc.suit_id in
+        <foreach collection="testSuitDtoList" index="index" item="item" open="(" separator="," close=")">#{item.id}</foreach>
+    </select>
+
     <select id="list" resultMap="TestInterfaceMap">
         SELECT
             <include refid="columns" />
@@ -176,6 +192,23 @@
         ]]>
         <include refid="where"/>
     </select>
+
+    <update id="changeStatus">
+        UPDATE
+        test_interface
+        SET status = #{status}
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="changeStatusList">
+        UPDATE
+        test_interface
+        SET status = #{status}
+        WHERE
+        id IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">#{item.id}</foreach>
+    </update>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[

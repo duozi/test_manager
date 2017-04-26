@@ -25,19 +25,19 @@
 						<input type="hidden" name="id" value="${testSuitDto.id}">
 						<div class="form-group">
 							<label class="control-label" for="createPerson" >创建人</label>
-							<input type="text" class="form-control" id="createPerson" value="${testSuitDto.createPerson}" name="createPerson" placeholder="请输入您的姓名">
+							<input type="text" class="form-control" id="createPerson" value="${testSuitDto.createPerson}" name="createPerson" placeholder="请输入您的姓名" <#if testSuitDto.status gt 0>readonly</#if>>
 						</div>
 				 		<div class="form-group">
 				             <label class="control-label">测试集名称</label>
-				             <input type="text" class="form-control" id="suitName" name="name"  value="${testSuitDto.name}" placeholder="请输入测试集名称">
+				             <input type="text" class="form-control" id="suitName" name="name"  value="${testSuitDto.name}" placeholder="请输入测试集名称" <#if testSuitDto.status gt 0>readonly</#if>>
 				         </div>
 						<div class="form-group">
 							<label class="control-label">测试集描述</label>
-							<input type="text" class="form-control" id="" name="description"  value="${testSuitDto.description}" placeholder="请输入测试集描述">
+							<input type="text" class="form-control" id="" name="description"  value="${testSuitDto.description}" placeholder="请输入测试集描述" <#if testSuitDto.status gt 0>readonly</#if>>
 						</div>
 						<div class="form-group">
 							<label class="control-label">选择系统</label>
-							<select class="form-control" name="systemId">
+							<select class="form-control" name="systemId" <#if testSuitDto.status gt 0>readonly</#if>>
 								<option value="" <#if testSuitDto.systemId = null>disabled selected</#if> >选择系统名称</option>
 								<#if systemList ??>
 									<#list systemList as item>
@@ -47,7 +47,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary suit-submit">保存</button>
+							<#if testSuitDto.status == 0 || testSuitDto == null><button type="submit" class="btn btn-primary suit-submit">保存</button></#if>
 						</div>
 					</div>
 					<div class="col-lg-7 suit-panel <#if testSuitDto.id=null>hidden</#if>">
@@ -138,7 +138,9 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-primary add-submit" onclick="saveRelationSuitCase();">保存</button>
+								<#if testSuitDto.status == 0 || testSuitDto == null>
+									<button type="button" class="btn btn-primary add-submit" onclick="saveRelationSuitCase();">保存</button>
+								</#if>
 								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 							</div>
 						</div>

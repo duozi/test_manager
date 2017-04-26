@@ -1,21 +1,21 @@
-package com.xn.manage.Enum;
+package com.xn.interfacetest.Enum;
 
 
-public enum ExcuteTypeEnum {
-    once("单次执行" ,1),circulation("循环执行", 2);
+public enum PlanStatusEnum {
+    UNPUBLISHED("未发布", 0),PUBLISHED("已发布", 1),EXECUTED("已执行", 2),EXCUTING("执行中",3);
     // 成员变量
     private String name;
     private int id;
 
     // 构造方法
-    private ExcuteTypeEnum(String name, int id) {
+    private PlanStatusEnum(String name, int id) {
         this.name = name;
         this.id = id;
     }
 
     // 普通方法
     public static String getName(int id) {
-        for (ExcuteTypeEnum c : ExcuteTypeEnum.values()) {
+        for (PlanStatusEnum c : PlanStatusEnum.values()) {
             if (c.getId() == id) {
                 return c.name;
             }

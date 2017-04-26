@@ -12,11 +12,12 @@
         <result property="serviceProperty" column="service_property"/>
         <result property="dbProperty" column="db_property"/>
         <result property="redisProperty" column="redis_property"/>
+        <result property="status" column="status"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, system_id,service_property,db_property,redis_property
+        id, name, description, system_id,service_property,db_property,redis_property,status
         ]]>
     </sql>
     
@@ -82,6 +83,14 @@
         ]]>
         <include refid="where"/>
     </select>
+
+    <update id="changeStatus">
+        UPDATE
+        test_environment
+        SET status = #{status}
+        WHERE
+        id = #{id}
+    </update>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[

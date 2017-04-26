@@ -2,7 +2,7 @@ package com.xn.manage.utils;
 
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
-import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.common.base.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

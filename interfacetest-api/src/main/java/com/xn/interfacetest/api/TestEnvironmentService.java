@@ -130,4 +130,6 @@ public interface TestEnvironmentService {
     TestEnvironmentDto getWithSystem(Long id);
 
     List<TestEnvironmentDto> getByPlanId(Long id);
+
+    void changeStatus(int status, Long id);
 }

@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.xn.common.base.BaseMapper;
+import com.xn.interfacetest.dto.TestCaseDto;
+import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.entity.TestCase;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -27,4 +30,10 @@ public interface TestCaseMapper extends BaseMapper<TestCase, Long> {
     List<TestCase> listBySuitId(Long suitId);
 
     List<TestCase> getByCaseIds(String[] ids);
+
+    void changeStatus(@Param("status")int status, @Param("id") Long id);
+
+    void changeStatusList(@Param("status")int status, @Param("ids") List<TestCaseDto> testCaseDtoList);
+
+    List<TestCase> listAllBySuitList(@Param("testSuitDtoList") List<TestSuitDto> testSuitDtoList);
 }

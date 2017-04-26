@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
 import com.xn.common.dto.DepartmentDto;
-import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 
 @Controller
 @RequestMapping("/autotest/manage/department")

@@ -113,6 +113,11 @@ public class TestCase extends BaseEntity {
      */
     private Integer isDelete;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     private List<DataAssert> dataAsserts = new ArrayList<DataAssert>();
     
     private List<RedisAssert> redisAsserts = new ArrayList<RedisAssert>();
@@ -270,5 +275,13 @@ public class TestCase extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

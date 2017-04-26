@@ -19,8 +19,8 @@ import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
 import com.xn.common.dto.CompanyDto;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.api.TestSystemService;
-import com.xn.manage.Enum.CommonResultEnum;
 
 @Controller
 @RequestMapping("/autotest/manage")

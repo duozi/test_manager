@@ -109,6 +109,11 @@ public class TestCaseDto extends BaseDto {
      */
     private Integer isDelete;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     private TestInterfaceDto interfaceDto;
 
     public Long getId() {
@@ -237,6 +242,14 @@ public class TestCaseDto extends BaseDto {
 
     public void setInterfaceDto(TestInterfaceDto interfaceDto) {
         this.interfaceDto = interfaceDto;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 

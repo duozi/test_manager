@@ -11,6 +11,7 @@
         <result property="systemIds" column="system_ids"/>
         <result property="planId" column="plan_id"/>
         <result property="interfaceIds" column="interface_ids"/>
+        <result property="suitIds" column="suit_ids"/>
         <result property="caseCount" column="case_count"/>
         <result property="passCaseCount" column="pass_case_count"/>
         <result property="failCaseCout" column="fail_case_cout"/>
@@ -24,7 +25,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, name, case_ids, system_ids, plan_id, interface_ids, case_count, pass_case_count, fail_case_cout, error_case_cout,
+        id, name, case_ids, system_ids, plan_id, interface_ids, suit_ids,case_count, pass_case_count, fail_case_cout, error_case_cout,
          result,DATE_FORMAT(begin_time,'%Y-%m-%d %H:%i:%s') begin_time, DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') end_time,cost_time,environment_id
         ]]>
     </sql>
@@ -48,6 +49,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(interfaceIds)">
                 AND interface_ids = #{interfaceIds}
+            </if>
+            <if test="@Ognl@isNotEmpty(suitIds)">
+                AND suit_ids = #{suitIds}
             </if>
            <if test="@Ognl@isNotEmpty(caseCount)">
                 AND case_count = #{caseCount}
@@ -145,6 +149,7 @@
                 system_ids,
                 plan_id,
                 interface_ids,
+                suit_ids,
                 case_count,
                 pass_case_count,
                 fail_case_cout,
@@ -161,6 +166,7 @@
                 #{systemIds},
                 #{planId},
                 #{interfaceIds},
+                #{suitIds},
                 #{caseCount},
                 #{passCaseCount},
                 #{failCaseCout},
@@ -219,6 +225,9 @@
                 </if>
                 <if test="interfaceIds != null">
                 	<![CDATA[ interface_ids = #{interfaceIds} ]]>,
+                </if>
+                <if test="suitIds != null">
+                    <![CDATA[ suit_ids = #{suitIds} ]]>,
                 </if>
                 <if test="caseCount != null">
                 	<![CDATA[ case_count = #{caseCount} ]]>,

@@ -119,6 +119,11 @@ public class TestInterfaceDto extends BaseDto {
     private String contentType;
 
     /**
+     * 状态
+     */
+    private int status;
+
+    /**
      * 系统
      */
     private TestServiceDto testServiceDto;
@@ -267,6 +272,14 @@ public class TestInterfaceDto extends BaseDto {
         this.contentType = contentType;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "TestInterfaceDto{" +
@@ -287,6 +300,7 @@ public class TestInterfaceDto extends BaseDto {
                 ", zkOrNot=" + zkOrNot +
                 ", isDelete=" + isDelete +
                 ", contentType='" + contentType + '\'' +
+                ", status=" + status +
                 ", testServiceDto=" + testServiceDto +
                 '}';
     }

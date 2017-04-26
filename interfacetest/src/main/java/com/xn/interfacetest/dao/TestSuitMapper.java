@@ -24,4 +24,6 @@ public interface TestSuitMapper extends BaseMapper<TestSuit, Long> {
     List<TestSuit> getSuitByCaseId(@Param("caseId") Long caseId);
 
     List<TestSuit> getByPlanId(Long planId);
+
+    void changeStatus(@Param("status")int status,@Param("id") Long id);
 }

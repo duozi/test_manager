@@ -20,11 +20,13 @@
         <result property="customParams" column="custom_params"/>
         <result property="customParamsType" column="custom_params_type"/>
         <result property="isDelete" column="is_delete"/>
+        <result property="status" column="status"/>
     </resultMap>
 
     <sql id="columns">
         <![CDATA[
-        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear, params_assert, database_assert, redis_assert, custom_params, custom_params_type
+        id, name, number, description, interface_id, type, create_person, data_prepare, data_clear,
+         params_assert, database_assert, redis_assert, custom_params, custom_params_type,status
         ]]>
     </sql>
 
@@ -175,6 +177,14 @@
         where rsc.suit_id = #{suitId}
     </select>
 
+    <select id="listAllBySuitList" resultMap="TestCaseMap">
+        SELECT tc.*
+        from test_case tc
+        left join relation_suit_case rsc on tc.id = rsc.case_id
+        where rsc.suit_id IN
+        <foreach collection="testSuitDtoList" index="index" item="item" open="(" separator="," close=")">#{item.id}</foreach>
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -284,6 +294,23 @@
         id = #{id}
     </update>
 
+    <update id="changeStatus">
+        UPDATE
+        test_case
+        SET status = #{status}
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="changeStatusList">
+        UPDATE
+        test_case
+        SET status = #{status}
+        WHERE
+        id IN
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">#{item.id}</foreach>
+    </update>
+
     <update id="updatePart">
         UPDATE
         test_case
@@ -344,7 +371,7 @@
             WHERE
                 id IN
         ]]>
-        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
     </delete>
 
     <select id="getByCaseIds" resultMap="TestCaseMap">

@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.interfacetest.Enum.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,12 +50,7 @@ import com.xn.interfacetest.dto.TestParamsDto;
 import com.xn.interfacetest.dto.TestRedisConfigDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.AppendParamEnum;
-import com.xn.manage.Enum.CaseTypeEnum;
-import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.ParamTypeEnum;
-import com.xn.manage.Enum.RedisAssertTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.utils.JsonValidator;
 
 @Controller
@@ -135,6 +130,9 @@ public class CaseController {
 	public String getCaseItemSingle(HttpServletRequest request, ModelMap map) {
 		String caseId = request.getParameter("caseId");
 		map.put("caseId",caseId);
+
+		TestCaseDto testCaseDto = testCaseService.get(caseId);
+		map.put("testCaseDto",testCaseDto);
 
 		String interfaceId = request.getParameter("interfaceId");
 		map.put("interfaceId",interfaceId);
@@ -450,6 +448,17 @@ public class CaseController {
 	public CommonResult saveCaseSimple(TestCaseDto testCaseDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testCaseDto.getId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(testCaseDto.getId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
+
 			if(StringUtils.isBlank(testCaseDto.getName()) || "null".equals(testCaseDto.getName())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请填写用例名称");
@@ -479,6 +488,16 @@ public class CaseController {
 	public CommonResult saveCustomParams(TestCaseDto testCaseDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testCaseDto.getId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(testCaseDto.getId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			testCaseService.updatePart(testCaseDto);
 			result.setData(testCaseDto);
 		}catch (Exception e){
@@ -518,6 +537,16 @@ public class CaseController {
 	public CommonResult saveParams(RelationCaseParamsDto relationCaseParamsDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != relationCaseParamsDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(relationCaseParamsDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			relationCaseParamsDto = relationCaseParamsService.save(relationCaseParamsDto);
 			result.setData(relationCaseParamsDto);
 		}catch (Exception e){
@@ -535,6 +564,16 @@ public class CaseController {
 	public CommonResult saveParamsValidation(ParamsAssertDto paramsAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != paramsAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(paramsAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			paramsAssertDto = paramsAssertService.save(paramsAssertDto);
 			result.setData(paramsAssertDto);
 		}catch (Exception e){
@@ -552,6 +591,16 @@ public class CaseController {
 	public CommonResult saveDBValidation(DataAssertDto dataAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != dataAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(dataAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			dataAssertDto = dataAssertService.save(dataAssertDto);
 			result.setData(dataAssertDto);
 		}catch (Exception e){
@@ -569,6 +618,16 @@ public class CaseController {
 	public CommonResult saveRedisValidation(RedisAssertDto redisAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != redisAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(redisAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			redisAssertDto = redisAssertService.save(redisAssertDto);
 			result.setData(redisAssertDto);
 		}catch (Exception e){

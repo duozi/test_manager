@@ -32,6 +32,7 @@
         <div class="panel-body">
             <!-- 计划基本配置 -->
             <form role="form " class="col-lg-12 edit-form" id="interface-form" enctype="multipart/form-data">
+                <#if interfaceDto.status gt 0><span style="background-color: orange; margin-left: 20%;">该接口正在执行中或者已执行过，不可以修改</span></#if>
                 <div class="col-lg-12 form-div-interface">
                     <div class="form-group">
                         <label class="control-label">接口ID</label>
@@ -41,12 +42,12 @@
                     <div class="form-group">
                         <label class="control-label">接口名</label>
                         <input type="text" class="form-control" id="interfaceName" name="name" placeholder="请填写接口名称"
-                               value="${interfaceDto.name}">
+                               value="${interfaceDto.name}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group">
                         <label class="control-label">接口描述</label>
                         <input type="text" class="form-control" id="interfaceDesc" name="description"
-                               placeholder="描述接口功能或业务特性" value="${interfaceDto.description}">
+                               placeholder="描述接口功能或业务特性" value="${interfaceDto.description}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <!--所属service-->
                     <div class="form-group ">
@@ -92,32 +93,32 @@
                             >不通过zookeeper注册中心</option>
                         </select>
                     </div>
-                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=nu>hidden</#if>">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">版本</label>
-                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion" value="${interfaceDto.dubboVersion}">
+                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion" value="${interfaceDto.dubboVersion}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=nu>hidden</#if>">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">分组</label>
-                        <input type="text" class="form-control" id="dubboGroup" name="dubboGroup" value="${interfaceDto.dubboGroup}">
+                        <input type="text" class="form-control" id="dubboGroup" name="dubboGroup" value="${interfaceDto.dubboGroup}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=nu>hidden</#if>">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">超时</label>
-                        <input type="text" class="form-control" id="dubboTimeout" name="dubboTimeout" value="${interfaceDto.dubboTimeout}">
+                        <input type="text" class="form-control" id="dubboTimeout" name="dubboTimeout" value="${interfaceDto.dubboTimeout}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
 
 
                     <!--http接口-->
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">请求路径</label>
-                        <input type="text" class="form-control" id="urlPath" name="url" value="${interfaceDto.url}">
+                        <input type="text" class="form-control" id="urlPath" name="url" value="${interfaceDto.url}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">参数名</label>
-                        <input type="text" class="form-control" id="params" name="params" placeholder="多个参数用“，”隔开" value="${interfaceDto.params}">
+                        <input type="text" class="form-control" id="params" name="params" placeholder="多个参数用“，”隔开" value="${interfaceDto.params}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">协议类型</label>
-                        <select class="form-control" id="protocolType" name="protocolType">
+                        <select class="form-control" id="protocolType" name="protocolType" <#if interfaceDto.status gt 0>readonly</#if>>
                             <#if httpTypeList ??>
                                 <#list httpTypeList as item>
                                     <option value="${item.getId()}"<#if interfaceDto.protocolType = item.getId()>selected</#if>>${item.getName()}</option>
@@ -128,7 +129,7 @@
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">请求方式</label>
                         <select class="form-control" id="requestType"
-                                name="requestType">
+                                name="requestType" <#if interfaceDto.status gt 0>readonly</#if>>
                             <#if requestTypeList ??>
                                 <#list requestTypeList as item>
                                     <option value="${item.getId()}"
@@ -141,7 +142,7 @@
                     </div>
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">Content-Type</label>
-                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}">
+                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group ">
                         <label class="control-label">加密jar包</label>
@@ -153,11 +154,13 @@
                     <div class="form-group ">
                         <label class="control-label">编写调用代码</label>
                         <textarea type="text" class="form-control" name="codeText"
-                                  placeholder="调用jar包内加密算法的demo">${interfaceDto.codeText}</textarea>
+                                  placeholder="调用jar包内加密算法的demo" <#if interfaceDto.status gt 0>readonly</#if>>${interfaceDto.codeText}</textarea>
                     </div>
 
                     <div class="form-group btn-div">
-                        <button type="submit" class="btn btn-primary interface-submit">保存</button>
+                        <#if interfaceDto.status == 0 || interfaceDto == null>
+                            <button type="submit" class="btn btn-primary interface-submit">保存</button>
+                        </#if>
                         <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare" onclick="showDataPrepare()">数据准备
                         </button>
                         <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-warning interface-clear" onclick="showDataClear()">数据清除
@@ -193,17 +196,22 @@
                                         <tr>
                                             <th style="width: 15%">数据库配置名</th>
                                             <th style="width: 75%">sql语句</th>
+                                            <#if interfaceDto.status == 0 || interfaceDto == null>
                                             <th>操作</th>
                                             <th></th>
+                                            </#if>
                                         </tr>
                                         </thead>
                                         <tbody class="database-body">
                                             <!--填充数据库数据-->
                                             <tr class="add-tr">
+                                                <#if interfaceDto.status == 0 || interfaceDto == null>
                                                 <td style=" border: none"><span id="prepareAddDbOperation"
                                                                                 class="btn btn-info"><i
                                                         class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                                </#if>
                                             </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -225,16 +233,22 @@
                                             <th style="width: 30%">key</th>
                                             <th style="width: 30%">value</th>
                                             <th style="width: 10%">time</th>
-                                            <th>操作</th>
-                                            <th></th>
+                                            <#if interfaceDto.status == 0 || interfaceDto == null>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </#if>
                                         </tr>
                                         </thead>
                                         <tbody class="redis-body">
+
                                             <tr class="add-tr">
+                                                <#if interfaceDto.status == 0 || interfaceDto == null>
                                                 <td style=" border: none"><span id="prepareAddRedisOperation"
                                                                                 class="btn btn-info"><i
                                                         class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                                </#if>
                                             </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -244,7 +258,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
+                        <#if interfaceDto.status == 0 || interfaceDto == null>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </#if>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
@@ -349,12 +365,12 @@
                         htmlStr += '</select>';
                         htmlStr += '</td>';
                         htmlStr += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">' + databaseitem.sqlStr + '</textarea></td>';
-                        htmlStr += '<td>';
+                        htmlStr += '<#if interfaceDto.status == 0 || interfaceDto == null><td>';
                         htmlStr += '<button type="submit" class="btn btn-info" onclick="addDatabaseSql(this)">保存</button>';
                         htmlStr += '</td>';
                         htmlStr += '<td>';
                         htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDatabaseData(this)">删除</button>';
-                        htmlStr += '</td>';
+                        htmlStr += '</td></#if>';
                         htmlStr += '</div>';
                         htmlStr += '</tr>';
                     }
@@ -394,12 +410,12 @@
                         htmlStr += '<td><input type="text" class="form-control" name="key" value="' + redisitem.key +'"></td>';
                         htmlStr += '<td><input type="text" class="form-control" name="value" value="' + redisitem.value +'"></td>';
                         htmlStr += '<td><input type="text" class="form-control" name="time" placeholder="ms数" value="' + redisitem.time +'"></td>';
-                        htmlStr += '<td>';
+                        htmlStr += '<#if interfaceDto.status == 0 || interfaceDto == null><td>';
                         htmlStr += '<button type="submit" class="btn btn-info"  onclick="addRedisOperation(this)">保存</button>';
                         htmlStr += '</td>';
                         htmlStr += '<td>';
                         htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>';
-                        htmlStr += '</td>';
+                        htmlStr += '</td></#if>';
                         htmlStr += '</div>';
                         htmlStr += '</tr>';
                     }

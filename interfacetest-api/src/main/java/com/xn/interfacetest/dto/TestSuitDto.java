@@ -55,6 +55,11 @@ public class TestSuitDto extends BaseDto {
      */
     private Integer isDelete;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     public Long getId() {
         return this.id;
     }
@@ -117,6 +122,14 @@ public class TestSuitDto extends BaseDto {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 

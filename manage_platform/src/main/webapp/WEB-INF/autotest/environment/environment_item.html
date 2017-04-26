@@ -29,16 +29,16 @@
             <input type="hidden" name="id" value="${environmentDto.id}">
                 <div class="form-group ">
                     <label>环境名</label>
-                    <input class="form-control col-lg-5" name="name" value="${environmentDto.name}" required>
+                    <input class="form-control col-lg-5" name="name" value="${environmentDto.name}" required <#if environmentDto.status gt 0>readonly</#if>>
                 </div>
                 <div class="form-group ">
                     <label>环境描述</label>
-                    <input class="form-control col-lg-5" name="description" value="${environmentDto.description}" maxlength="300">
+                    <input class="form-control col-lg-5" name="description" value="${environmentDto.description}" maxlength="300" <#if environmentDto.status gt 0>readonly</#if>>
                 </div>
                 <!--所属系统-->
                 <div class="form-group ">
                     <label>系统</label>
-                    <select class="form-control col-lg-5" name="systemId" required>
+                    <select class="form-control col-lg-5" name="systemId" required <#if environmentDto.status gt 0>readonly</#if>>
                         <option value="" <#if environmentDto.systemId = null>disabled selected</#if>>选择系统</option>
                         <#if systemList ??>
                             <#list systemList as item>
@@ -61,9 +61,11 @@
                         </label>
                     </div>
                 </div>
+                <#if environmentDto.status == 0 || environmentDto == null>
                 <div class="form-group upto-left">
-                    <button type="submit" class="btn btn-primary" >保存</button>
+                    <button type="submit" class="btn btn-primary <#if environmentDto.status gt 0>hidden</#if>"   >保存</button>
                 </div>
+                </#if>
         </form>
             <!--service配置-->
             <div id="service-form-div" class="panel panel-default panel-collapse collapse operation-width <#if environmentDto.serviceProperty=1>in</#if>">
@@ -81,8 +83,10 @@
                                     <th style="width: 10%">http端口号</th>
                                     <th style="width: 15%">dubbo端口号</th>
                                     <th style="width: 30%">zk地址</th>
-                                    <th>操作</th>
-                                    <th></th>
+                                    <#if environmentDto.status == 0 || environmentDto == null>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </#if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -106,21 +110,28 @@
                                                 <td><input type="text" class="form-control" name="httpPort" value="${relationItem.httpPort}"  maxlength="30" digits></td>
                                                 <td><input type="text" class="form-control" name="dubboPort" value="${relationItem.dubboPort}"  maxlength="30" digits></td>
                                                 <td><textarea type="text" class="form-control" name="zkIpAddress" value=""   maxlength="300">${relationItem.zkIpAddress}</textarea></td>
-                                                <td>
-                                                    <a type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" name="deleteService" onclick="deleteService(this)" class="btn btn-info">删除</button>
-                                                </td>
+
+                                                    <#if environmentDto.status == 0 || environmentDto == null>
+                                                        <td>
+                                                            <a type="submit" class="btn btn-info" onclick="saveServiceProperties(this)">保存</a>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" name="deleteService" onclick="deleteService(this)" class="btn btn-info">删除</button>
+                                                        </td>
+                                                    </#if>
+
+
                                             </form>
                                         </tr>
                                     </#list>
                                 </#if>
-                                <tr>
-                                    <td style=" border: none"><span id="addServiceProperties"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加服务配置</span></td>
-                                </tr>
+                                <#if environmentDto.status == 0 || environmentDto == null>
+                                    <tr>
+                                        <td style=" border: none"><span id="addServiceProperties"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加服务配置</span></td>
+                                    </tr>
+                                </#if>
                                 </tbody>
                             </table>
                         </div>
@@ -145,8 +156,10 @@
                                     <th style="width: 15%">库名</th>
                                     <th style="width: 15%">用户名</th>
                                     <th style="width: 15%">密码</th>
-                                    <th>操作</th>
-                                    <th></th>
+                                    <#if environmentDto.status == 0 || environmentDto == null>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </#if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -172,21 +185,25 @@
                                             <td><input type="text" class="form-control"  name="databaseName" value="${relationItem.databaseName}" required maxlength="30"></td>
                                             <td><input type="text" class="form-control"  name="userName" value="${relationItem.userName}"  required maxlength="30" ></td>
                                             <td><input type="password" class="form-control"  name="password" value="${relationItem.password}"  required maxlength="30"></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-info" onclick="saveDbProperties(this)">保存</button>
-                                            </td>
-                                            <td>
-                                                <button type="button" name="deleteDB" onclick="deleteDB(this)" class="btn btn-info">删除</button>
-                                            </td>
+                                            <#if environmentDto.status == 0 || environmentDto == null>
+                                                <td>
+                                                    <button type="submit" class="btn btn-info" onclick="saveDbProperties(this)">保存</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" name="deleteDB" onclick="deleteDB(this)" class="btn btn-info">删除</button>
+                                                </td>
+                                            </#if>
                                         </form>
                                      </tr>
                                     </#list>
                                 </#if>
-                                <tr>
-                                    <td style=" border: none"><span id="addDbProperties"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加数据库配置</span></td>
-                                </tr>
+                                <#if environmentDto.status == 0 || environmentDto == null>
+                                    <tr>
+                                        <td style=" border: none"><span id="addDbProperties"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加数据库配置</span></td>
+                                    </tr>
+                                </#if>
                                 </tbody>
                             </table>
                         </div>
@@ -208,8 +225,10 @@
                                     <th style="width: 10%">timeout</th>
                                     <th style="width: 10%">重试次数</th>
                                     <th style="width: 60%">集群</th>
-                                    <th>操作</th>
-                                    <th></th>
+                                    <#if environmentDto.status == 0 || environmentDto == null>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </#if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -226,22 +245,25 @@
                                                 <td>
                                                     <input class="form-control"  name="ipAddress" value="${relationItem.ipAddress}"  required maxlength="300">
                                                 </td>
-                                                <td>
-                                                    <button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" name="deleteRedis" onclick="deleteRedis(this)" class="btn btn-info">删除</button>
-                                                </td>
+                                                <#if environmentDto.status == 0 || environmentDto == null>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-info" onclick="saveRedisProperties(this)">保存</button>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" name="deleteRedis" onclick="deleteRedis(this)" class="btn btn-info">删除</button>
+                                                    </td>
+                                                </#if>
                                             </form>
                                         </tr>
                                     </#list>
                                 </#if>
-
-                                <tr>
-                                    <td style=" border: none"><span id="addRedisProperties"
-                                                                    class="btn btn-info"><i
-                                            class="icon icon-plus-sign"></i>添加redis配置</span></td>
-                                </tr>
+                                <#if environmentDto.status == 0 || environmentDto == null>
+                                    <tr>
+                                        <td style=" border: none"><span id="addRedisProperties"
+                                                                        class="btn btn-info"><i
+                                                class="icon icon-plus-sign"></i>添加redis配置</span></td>
+                                    </tr>
+                                </#if>
                                 </tbody>
                             </table>
                         </div>

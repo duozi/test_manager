@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.dto.TestSuitDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -201,9 +202,10 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     }
 
     @Override
-    public List<TestInterfaceDto> listAllBySuitId(Object o) {
-
-        return null;
+    public List<TestInterfaceDto> listAllBySuitId(Long suitId) {
+        List<TestInterface> list = testInterfaceMapper.listAllBySuitId(suitId);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        return dtoList;
     }
 
     @Override
@@ -244,6 +246,18 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     public List<TestInterfaceDto> getByInterfaceIds(String interfaceIds) {
         String[] interfaceArray = interfaceIds.split(",|，");
         List<TestInterface> list = testInterfaceMapper.listWithInfoByIds(interfaceArray);
+        List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public void changeStatusList(int status, List<TestInterfaceDto> interfaceIdList) {
+        testInterfaceMapper.changeStatusList(status, interfaceIdList);
+    }
+
+    @Override
+    public List<TestInterfaceDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList) {
+        List<TestInterface> list = testInterfaceMapper.listAllBySuitList(testSuitDtoList);
         List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
         return dtoList;
     }

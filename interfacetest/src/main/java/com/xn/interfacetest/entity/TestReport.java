@@ -42,6 +42,8 @@ public class TestReport extends BaseEntity {
      */
     private String systemIds;
 
+    private String suitIds;
+
     /**
      * 
      * 计划id 
@@ -231,5 +233,13 @@ public class TestReport extends BaseEntity {
 
     public void setEnvironmentId(Long environmentId) {
         this.environmentId = environmentId;
+    }
+
+    public String getSuitIds() {
+        return suitIds;
+    }
+
+    public void setSuitIds(String suitIds) {
+        this.suitIds = suitIds;
     }
 }

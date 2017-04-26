@@ -121,6 +121,11 @@ public class TestInterface extends BaseEntity {
      */
     private String contentType;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     private List<TestParams> testParamss = new ArrayList<TestParams>();
 
 	
@@ -274,5 +279,13 @@ public class TestInterface extends BaseEntity {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -92,7 +92,11 @@ public class TestReportServiceImpl implements TestReportService {
     @Override
     public TestReportDto save(TestReportDto testReportDto) {
         TestReport testReport = BeanUtils.toBean(testReportDto,TestReport.class);
-        testReportMapper.save(testReport);
+        if(null == testReportDto.getId()){
+            testReportMapper.save(testReport);
+        }else {
+            testReportMapper.update(testReport);
+        }
         testReportDto.setId(testReport.getId());
         return testReportDto;
     }

@@ -61,6 +61,11 @@ public class TestEnvironment extends BaseEntity {
      */
     private Integer redisProperty;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     
     private List<TestRedisConfig> testRedisConfigs = new ArrayList<TestRedisConfig>();
 
@@ -135,5 +140,13 @@ public class TestEnvironment extends BaseEntity {
 
     public void setRedisProperty(Integer redisProperty) {
         this.redisProperty = redisProperty;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

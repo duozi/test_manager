@@ -16,11 +16,11 @@ import com.xn.interfacetest.util.FileUtil;
 public class ReportResult {
     private static final Logger logger = LoggerFactory.getLogger(ReportResult.class);
     private static ReportResult reportResult;
-    private Date startTime;
-    private Date stopTime;
-    private int error;
-    private int failed;
-    private int total;
+    private static  Date startTime;
+    private static Date stopTime;
+    private static int error;
+    private static int failed;
+    private static int total;
     private ArrayList<Assert> assertList = new ArrayList();
     private ReportResult() {
     }
@@ -29,6 +29,7 @@ public class ReportResult {
         if (reportResult == null) {
             reportResult = new ReportResult();
         }
+        logger.info("reportResult:" + reportResult.toString());
         return reportResult;
     }
 
@@ -42,20 +43,22 @@ public class ReportResult {
         return reportResult;
     }
 
-    public static void errorPlus() {
+    public static synchronized void errorPlus() {
         int currentError = getReportResult().getError();
         getReportResult().setError(currentError + 1);
     }
 
-    public static void failedPlus() {
+    public static synchronized void failedPlus() {
         int currentFailed = getReportResult().getFailed();
         getReportResult().setFailed(currentFailed + 1);
     }
-
-    public static void totalPlus() {
-        int currentFailed = getReportResult().getTotal();
-        getReportResult().setTotal(currentFailed + 1);
-    }
+//
+//    public static  void totalPlus() {
+//        int currentFailed = getReportResult().getTotal();
+//        logger.info("total:" + currentFailed + "加1");
+//        getReportResult().setTotal(currentFailed + 1);
+//        logger.info("total加1之后:" + getReportResult().total);
+//    }
 
     public ArrayList<Assert> getAssertList() {
         return assertList;
@@ -98,7 +101,7 @@ public class ReportResult {
     }
 
     public synchronized void setTotal(int total) {
-        this.total += total;
+        this.total = total;
     }
 
     public synchronized void assertAdd(Assert assertItem) {

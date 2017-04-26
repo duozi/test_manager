@@ -8,25 +8,24 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.api.*;
 import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.TestDatabaseConfig;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xn.common.utils.BeanUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.Enum.HttpTypeEnum;
-import com.xn.interfacetest.Enum.InterfaceTypeEnum;
-import com.xn.interfacetest.Enum.OperationTypeEnum;
-import com.xn.interfacetest.Enum.RedisOperationTypeEnum;
-import com.xn.interfacetest.Enum.RequestTypeEnum;
 import com.xn.interfacetest.command.AssertCommand;
 import com.xn.interfacetest.command.CaseCommand;
 import com.xn.interfacetest.command.Command;
@@ -57,6 +56,9 @@ import net.sf.json.JSONObject;
 @Transactional
 public class TestCaseServiceImpl implements TestCaseService {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
+    //创建一个线程池
+    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
+
     /**
      *  Dao
      */
@@ -205,16 +207,55 @@ public class TestCaseServiceImpl implements TestCaseService {
         return dtoList;
     }
 
+
     @Override
-    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception{
-        //遍历执行测试用例
-        for(TestCaseDto caseDto:testCaseDtoList){
-            ReportResult.totalPlus();
-            logger.info("==========遍历执行测试用例========");
-            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitDto);
-        }
+    public List<TestCaseDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList) {
+        List<TestCase> list = testCaseMapper.listAllBySuitList(testSuitDtoList);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
     }
 
+    @Override
+    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception{
+        ReportResult.getReportResult().setTotal(ReportResult.getReportResult().getTotal() + testCaseDtoList.size());
+        excute( testCaseDtoList,testEnvironmentDto,planId, testReportDto,suitDto);
+
+    }
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
+        logger.info("==========线程池执行测试用例========");
+        //遍历执行测试用例
+        for(int i = 0; i < testCaseDtoList.size(); i++){
+            final int finalI = i;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        logger.info("========执行线程" + finalI);
+                        excuteCase( testCaseDtoList.get(finalI),testEnvironmentDto,planId,testReportDto,suitDto);
+                    } catch (Exception e) {
+                        logger.error("多线程执行用例异常：",e);
+                    }
+
+                }
+            });
+        }
+
+        try {
+            logger.info("sleep-----"+1000);
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            logger.info("InterruptedException-----"+e.getMessage());
+        }
+
+        threadPool.shutdown();
+        while (true) {
+            if (threadPool.isTerminated()) {
+                break;
+            }
+        }
+    }
     @Override
     public void testRun(Long caseId, Long environmentId) throws Exception{
         //判断是dubbo接口还是http接口
@@ -235,6 +276,11 @@ public class TestCaseServiceImpl implements TestCaseService {
         List<TestCase> testCaseList = testCaseMapper.getByCaseIds(ids);
         List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
         return dtoList;
+    }
+
+    @Override
+    public void changeStatusList(int status, List<TestCaseDto> testCaseDtoList) {
+        testCaseMapper.changeStatusList( status, testCaseDtoList);
     }
 
     /**
@@ -267,13 +313,12 @@ public class TestCaseServiceImpl implements TestCaseService {
      * 执行测试用例
      * @param caseDto 用例
      * @param testEnvironmentDto 执行环境
+     * @param testReportDto
      */
-    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
+//    @Transactional(propagation = TransactionDefinition.ISOLATION_READ_UNCOMMITTED)
+    private  void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception {
         logger.info("执行测试用例：" +  caseDto.getId() + "-" + caseDto.getName());
         logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
-
-        //更新结果集中的caseIds和interfaceIds
-        TestReportDto testReportDto = updateReport(caseDto,reportId);
 
         //查询用例所属接口的基本配置
         logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
@@ -286,58 +331,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //http接口
                 this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitDto);
             }
-
-
         }
 
-    }
-
-    private TestReportDto updateReport(TestCaseDto caseDto, Long reportId) {
-        TestReportDto testReportDto = testReportService.get(reportId);
-
-        //将执行的用例id保存到报告表
-        String existCaseIds =  testReportDto.getCaseIds();
-        logger.info("testReportDto中本来存在的caseId有：" + existCaseIds);
-        if(null != testReportDto && StringUtils.isNotBlank(existCaseIds)){
-            String[] caseIdsArray = existCaseIds.split(",|，");
-            List list = Arrays.asList(caseIdsArray);
-            //不存在当前测试集用例id的时候加进去，以免重复
-            if(!list.contains(caseDto.getId())){
-                logger.info("新增caseId：" + caseDto.getId());
-                String casesInReport = existCaseIds + "," + caseDto.getId();
-                testReportDto.setCaseIds(casesInReport);
-                logger.info("==========即将更新的caseIds=" + casesInReport + "========");
-            }
-        } else if(null != testReportDto && StringUtils.isBlank(existCaseIds)){
-            //没有保存过用例则直接保存
-            logger.info("新增caseId：" + caseDto.getId());
-            testReportDto.setCaseIds(caseDto.getId() + "");
-        }
-
-        //查询用例所属接口的基本配置
-        TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
-        String existInterfaceIds =  testReportDto.getInterfaceIds();
-        logger.info("testReportDto中本来存在的interfaceId有：" + existInterfaceIds);
-        if(null != interfaceDto){
-            logger.info("==========接口信息{}:" + interfaceDto.toString());
-            if(null != testReportDto && StringUtils.isNotBlank(existInterfaceIds)) {
-                String[] interfaceIdsArray = existInterfaceIds.split(",|，");
-                List list = Arrays.asList(interfaceIdsArray);
-                //不存在当前测试集用例id的时候加进去，以免重复
-                if(!list.contains(interfaceDto.getId())){
-                    logger.info("新增interfaceId：" + interfaceDto.getId());
-                    String interfacesInReport = existInterfaceIds  + "," + interfaceDto.getId();
-                    testReportDto.setInterfaceIds(interfacesInReport);
-                    logger.info("==========即将更新的interfaceIds=" + interfacesInReport + "========");
-                }
-            } else if(null != testReportDto && StringUtils.isBlank(existInterfaceIds)){
-                //没有保存过用例则直接保存
-                testReportDto.setInterfaceIds(interfaceDto.getId() + "");
-            }
-        }
-
-        testReportService.update(testReportDto);
-        return testReportDto;
     }
 
     /**

@@ -45,6 +45,8 @@ public class TestReportDto extends BaseDto {
      */
     private String systemIds;
 
+    private String suitIds;
+
     /**
      *
      * 计划id
@@ -256,6 +258,39 @@ public class TestReportDto extends BaseDto {
 
     public void setSuitList(List<TestSuitDto> suitList) {
         this.suitList = suitList;
+    }
+
+    public String getSuitIds() {
+        return suitIds;
+    }
+
+    public void setSuitIds(String suitIds) {
+        this.suitIds = suitIds;
+    }
+
+    @Override
+    public String toString() {
+        return "TestReportDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", caseIds='" + caseIds + '\'' +
+                ", systemIds='" + systemIds + '\'' +
+                ", suitIds='" + suitIds + '\'' +
+                ", planId=" + planId +
+                ", environmentId=" + environmentId +
+                ", interfaceIds='" + interfaceIds + '\'' +
+                ", caseCount=" + caseCount +
+                ", passCaseCount=" + passCaseCount +
+                ", failCaseCout=" + failCaseCout +
+                ", errorCaseCout=" + errorCaseCout +
+                ", result='" + result + '\'' +
+                ", beginTime='" + beginTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", costTime=" + costTime +
+                ", plan=" + plan +
+                ", environment=" + environment +
+                ", suitList=" + suitList +
+                '}';
     }
 }
 

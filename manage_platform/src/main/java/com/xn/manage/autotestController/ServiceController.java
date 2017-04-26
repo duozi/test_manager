@@ -22,11 +22,11 @@ import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.api.TestServiceService;
 import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestServiceDto;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.CommonResultEnum;
 
 @Controller
 @RequestMapping("/autotest/service")

@@ -63,6 +63,11 @@ public class TestEnvironmentDto extends BaseDto {
      */
     private  TestSystemDto systemDto;
 
+    /**
+     * 状态
+     */
+    private int status;
+
     public Long getId() {
         return this.id;
     }
@@ -125,6 +130,14 @@ public class TestEnvironmentDto extends BaseDto {
 
     public void setRedisProperty(Integer redisProperty) {
         this.redisProperty = redisProperty;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 
