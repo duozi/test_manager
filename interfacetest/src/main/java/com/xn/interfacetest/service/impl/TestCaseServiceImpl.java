@@ -573,6 +573,10 @@ public class TestCaseServiceImpl implements TestCaseService {
         return paramsStr;
     }
 
+    private void loadJar(){
+
+    }
+
     /**
      * dubbo接口的用例执行方法
      * @param caseDto

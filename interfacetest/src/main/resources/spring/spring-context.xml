@@ -21,7 +21,7 @@
 
     <mvc:annotation-driven/>
 
-    <bean id="propertyConfigurer" class="com.xn.interfacetest.util.PropertyUtil">
+    <bean id="propertyConfigurer" class="com.xn.common.utils.PropertyUtil">
         <property name="locations">
             <list>
                 <value>classpath:properties/*.properties</value>

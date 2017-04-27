@@ -207,17 +207,17 @@ public class JarUtil {
     }
     public static void main(String[] args) {
         try {
-            List<String[]> s=getJarMethod("D:\\jar\\user\\user-interface-2.0.0-20161115.095252-17.jar");
-            for (String[] s1:s
-                 ) {
-                for (String s2:s1
-                     ) {
+            List<String[]> s=getJarMethod("E:\\upload\\commons-codec-1.10.jar");
+            for (String[] s1:s) {
+                for (String s2:s1) {
                     System.out.println(s2);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
 //        URLClassLoader urlClassLoader=addJar("d:\\jar\\user\\");
 //        try {
 //            Class<?> c =urlClassLoader.loadClass("cn.xn.user.controller.IRegisterService");
