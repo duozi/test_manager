@@ -228,7 +228,7 @@ public class PerformancePlanController {
     //保存执行配置
     @RequestMapping(value = "/plan_list/execute_save", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam Integer stressMachineName, @RequestParam final String executeType, @RequestParam String setStartTime, @RequestParam String executePerson) {
+    public CommonResult executeSave(@RequestParam Integer planId, @RequestParam Integer stressMachineId, @RequestParam String stressMachineName, @RequestParam final String executeType, @RequestParam String setStartTime, @RequestParam String executePerson) {
         CommonResult commonResult = new CommonResult();
         try {
             PerformanceResultDto performanceResultDto = new PerformanceResultDto();

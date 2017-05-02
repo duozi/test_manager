@@ -75,7 +75,7 @@ public class PerformanceResultDto extends BaseDto{
 
     private Integer stressMachineId;
 
-    private Integer stressMachineName;
+    private String stressMachineName;
 
 
     /**
@@ -116,11 +116,11 @@ public class PerformanceResultDto extends BaseDto{
         this.stressMachineId = stressMachineId;
     }
 
-    public Integer getStressMachineName() {
+    public String getStressMachineName() {
         return stressMachineName;
     }
 
-    public void setStressMachineName(Integer stressMachineName) {
+    public void setStressMachineName(String stressMachineName) {
         this.stressMachineName = stressMachineName;
     }
 
