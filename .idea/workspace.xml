@@ -5,12 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b271d729-5f85-4aae-be1e-fdf1eba5396a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/maven/com.xn.test_manager/common-test-api/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/maven/com.xn.test_manager/common-test-api/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/application.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/mybatis/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/properties/common.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/properties/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/properties/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/properties/mail.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/properties/upload.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/resources/spring/spring-mvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/webapp/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/webapp/index.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test-api/common-test-api.iml" afterPath="$PROJECT_DIR$/common-test-api/common-test-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" afterPath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/application.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/application.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceScenarioDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceScenarioDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties" afterPath="$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties" afterPath="$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties" afterPath="$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,71 +73,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="TestInterfaceMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestInterfaceMapper.xml">
+      <file leaf-file-name="PerformanceScenarioMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state relative-caret-position="50">
+              <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
               <folding>
-                <marker date="1493177637728" expanded="true" signature="3531:3637" ph="SELECT param... test_interface" />
-                <marker date="1493177637728" expanded="true" signature="3712:3858" ph="SELECT FROM test_interface" />
-                <marker date="1493177637728" expanded="true" signature="3954:4109" ph="SELECT ti.* test_interface" />
-                <marker date="1493177637728" expanded="true" signature="4195:4344" ph="SELECT ti.* test_interface" />
-                <marker date="1493177637728" expanded="true" signature="4433:4582" ph="SELECT ti.* test_interface" />
-                <marker date="1493177637728" expanded="true" signature="4433:4698" ph="SELECT ti.* test_interface" />
-                <marker date="1493177637728" expanded="true" signature="6825:6904" ph="SELECT count... test_interface" />
-                <marker date="1493177637728" expanded="true" signature="7004:7097" ph="UPDATE test_... " />
-                <marker date="1493177637728" expanded="true" signature="7156:7244" ph="UPDATE test_... " />
-                <marker date="1493177637728" expanded="true" signature="7156:7348" ph="UPDATE test_... " />
-                <marker date="1493177637728" expanded="true" signature="7468:8424" ph="INSERT INTO test_interface... " />
-                <marker date="1493177637728" expanded="true" signature="9447:11433" ph="UPDATE test_... " />
-                <marker date="1493177637728" expanded="true" signature="11513:11621" ph="UPDATE test_... " />
-                <marker date="1493177637728" expanded="true" signature="11709:11763" ph="DELETE FROM " />
-                <marker date="1493177637728" expanded="true" signature="11892:12099" ph="DELETE FROM " />
-                <marker date="1493177637728" expanded="true" signature="12216:12396" ph="select * fro... test_interface" />
+                <marker date="1493707733504" expanded="true" signature="3522:3681" ph="SELECT FROM performance_scenario" />
+                <marker date="1493707733504" expanded="true" signature="3776:3859" ph="SELECT FROM performance_scenario" />
+                <marker date="1493707733504" expanded="true" signature="3980:4065" ph="SELECT count... performance_scenario" />
+                <marker date="1493707733504" expanded="true" signature="4222:5213" ph="INSERT INTO performance_scenario... " />
+                <marker date="1493707733504" expanded="true" signature="6248:8115" ph="UPDATE perfo... " />
+                <marker date="1493707733504" expanded="true" signature="8192:8297" ph="DELETE FROM " />
+                <marker date="1493707733504" expanded="true" signature="8383:8443" ph="DELETE FROM " />
+                <marker date="1493707733504" expanded="true" signature="8568:8781" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="case_item.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html">
+      <file leaf-file-name="PerformanceScriptMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScriptMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="28" column="132" selection-start-line="28" selection-start-column="132" selection-end-line="28" selection-end-column="132" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1492411613799" expanded="true" signature="2447:2597" ph="SELECT FROM performance_script" />
+                <marker date="1492411613799" expanded="true" signature="2694:2784" ph="SELECT FROM performance_script" />
+                <marker date="1492411613799" expanded="true" signature="2914:2997" ph="SELECT count... performance_script" />
+                <marker date="1492411613799" expanded="true" signature="3152:3812" ph="INSERT INTO performance_script... " />
+                <marker date="1492411613799" expanded="true" signature="4598:5897" ph="UPDATE perfo... " />
+                <marker date="1492411613799" expanded="true" signature="5977:6080" ph="DELETE FROM " />
+                <marker date="1492411613799" expanded="true" signature="6168:6226" ph="DELETE FROM " />
+                <marker date="1492411613799" expanded="true" signature="6355:6566" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interface_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_list.html">
+      <file leaf-file-name="PerformanceStressMachineMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1300">
-              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="interface_item.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_item.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="48" column="101" selection-start-line="48" selection-start-column="101" selection-end-line="48" selection-end-column="101" />
+            <state relative-caret-position="750">
+              <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1493187164430" expanded="true" signature="16488:16529" ph="..." />
-                <marker date="1493187164430" expanded="true" signature="20411:20452" ph="..." />
+                <marker date="1492411613801" expanded="true" signature="2751:2909" ph="SELECT FROM performance_stress_machine" />
+                <marker date="1492411613801" expanded="true" signature="3013:3111" ph="SELECT FROM performance_stress_machine" />
+                <marker date="1492411613801" expanded="true" signature="3241:3332" ph="SELECT count... performance_stress_machine" />
+                <marker date="1492411613801" expanded="true" signature="3487:4239" ph="INSERT INTO performance_stress_machine... " />
+                <marker date="1492411613801" expanded="true" signature="5083:6602" ph="UPDATE perfo... " />
+                <marker date="1492411613801" expanded="true" signature="6682:6793" ph="DELETE FROM " />
+                <marker date="1492411613801" expanded="true" signature="6881:6947" ph="DELETE FROM " />
+                <marker date="1492411613801" expanded="true" signature="7076:7295" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties">
+        <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/common.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -128,84 +140,62 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/beta/properties/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+            <state relative-caret-position="200">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="case_item_single.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item_single.html">
+      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="27" column="132" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="132" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1493186984862" expanded="true" signature="47033:47074" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CaseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2175">
-              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestCaseMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml">
+      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2625">
-              <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
-              <folding>
-                <marker date="1493177637639" expanded="true" signature="3297:3437" ph="SELECT FROM test_case" />
-                <marker date="1493177637639" expanded="true" signature="5379:6269" ph="SELECT tc.* test_case" />
-                <marker date="1493177637639" expanded="true" signature="6348:6487" ph="SELECT tc.* test_case" />
-                <marker date="1493177637639" expanded="true" signature="6571:6699" ph="SELECT tc.* test_case" />
-                <marker date="1493177637639" expanded="true" signature="6571:6817" ph="SELECT tc.* test_case" />
-                <marker date="1493177637639" expanded="true" signature="6915:6989" ph="SELECT count... test_case" />
-                <marker date="1493177637639" expanded="true" signature="7144:8029" ph="INSERT INTO test_case... " />
-                <marker date="1493177637639" expanded="true" signature="8986:10305" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="10360:10448" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="10507:10588" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="10507:10694" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="10757:11787" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="11862:11965" ph="UPDATE test_... " />
-                <marker date="1493177637639" expanded="true" signature="12049:12098" ph="DELETE FROM " />
-                <marker date="1493177637639" expanded="true" signature="12223:12426" ph="DELETE FROM " />
-                <marker date="1493177637639" expanded="true" signature="12533:12731" ph="SELECT * FRO... test_case" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSuitMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSuitMapper.xml">
+      <file leaf-file-name="common.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-              <folding>
-                <marker date="1493177637786" expanded="true" signature="1506:1647" ph="SELECT FROM test_suit" />
-                <marker date="1493177637786" expanded="true" signature="2508:2647" ph="select ts.* test_suit" />
-                <marker date="1493177637786" expanded="true" signature="2750:2952" ph="select ts.* test_suit" />
-                <marker date="1493177637786" expanded="true" signature="2825:2942" ph="select suit_... relation_suit_case" />
-                <marker date="1493177637786" expanded="true" signature="3040:3114" ph="SELECT count... test_suit" />
-                <marker date="1493177637786" expanded="true" signature="3269:3598" ph="INSERT INTO test_suit... " />
-                <marker date="1493177637786" expanded="true" signature="4097:4712" ph="UPDATE test_... " />
-                <marker date="1493177637786" expanded="true" signature="4768:4856" ph="UPDATE test_... " />
-                <marker date="1493177637786" expanded="true" signature="4933:5038" ph="update test_... " />
-                <marker date="1493177637786" expanded="true" signature="5125:5174" ph="DELETE FROM " />
-                <marker date="1493177637786" expanded="true" signature="5303:5505" ph="DELETE FROM " />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/prod/properties/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -240,15 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/result/ReportResult.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/resources/spring/spring-context.xml" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/plan/plan_list.html" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/Enum/PlanStatusEnum.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/Enum/PlanStatusEnum.java" />
-        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSuitService.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSuitMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestEnvironmentMapper.java" />
-        <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestEnvironmentService.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestEnvironmentServiceImpl.java" />
         <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java" />
@@ -291,6 +272,15 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_item.html" />
+        <option value="$PROJECT_DIR$/interfacetest/target/classes/properties/common.properties" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" />
+        <option value="$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties" />
+        <option value="$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties" />
+        <option value="$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties" />
       </list>
     </option>
   </component>
@@ -328,16 +318,46 @@
     </option>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState />
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="interfacetest" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="interfacetest" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
   </component>
   <component name="MavenRunner">
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="x" value="892" />
+    <option name="width" value="1918" />
+    <option name="height" value="1072" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -419,8 +439,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -439,9 +459,63 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -454,21 +528,21 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/工作/自动化测试平台/备份/test_manager/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java&#10;right&#9;null&#9;null" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../周茜的接口自动化/autotest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test-api\src\main\java\com.xn.common\company" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\spring" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\dubbo" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\manage_platform\src\main\resources\dubbo" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.xn.common" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest-api\src\main\java\com\xn\interfacetest" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test\src\main\resources\mybatis\mapper" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis\mapper" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xn.interfacetest.Enum" />
@@ -477,15 +551,15 @@
       <recent name="com.xn.interfacetest.model" />
       <recent name="com.xn.interfacetest.dao" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test-api\src\main\java\com.xn.common\company" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\spring" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\performance\src\main\resources\dubbo" />
-      <recent name="E:\工作\自动化测试平台\备份\test_manager\manage_platform\src\main\resources\dubbo" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest-api\src\main\java\com\xn\interfacetest" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\common-test\src\main\resources\mybatis\mapper" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis\mapper" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\resources\mybatis" />
+      <recent name="E:\工作\自动化测试平台\备份\test_manager\interfacetest\src\main\java\com\xn\interfacetest" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.platform">
+  <component name="RunManager" selected="Tomcat Server.common-test">
     <configuration default="false" name="TestCaseServiceImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1542,13 +1616,11 @@
       <workItem from="1493116971320" duration="10275000" />
       <workItem from="1493191134112" duration="185000" />
       <workItem from="1493191541340" duration="887000" />
-    </task>
-    <task id="LOCAL-00002" summary="页面去除时间js&#10;">
-      <created>1483683237551</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1483683237551</updated>
+      <workItem from="1493281825936" duration="2541000" />
+      <workItem from="1493344836642" duration="5482000" />
+      <workItem from="1493614821797" duration="595000" />
+      <workItem from="1493703812731" duration="6795000" />
+      <workItem from="1493792175732" duration="1863000" />
     </task>
     <task id="LOCAL-00003" summary="youhua">
       <created>1484809551345</created>
@@ -1886,7 +1958,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493191784019</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="合并之后提交">
+      <created>1493704607858</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1493704607859</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1922,7 +2001,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1542648000" />
+    <option name="totallyTimeSpent" value="1559924000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1934,36 +2013,36 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="892" y="0" width="1918" height="1072" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42841038" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10146561" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32641292" sideWeight="0.49570817" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43404734" sideWeight="0.108905576" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33564013" sideWeight="0.4978355" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06616052" sideWeight="0.5056361" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19414316" sideWeight="0.5056361" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37880495" sideWeight="0.5869099" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7643743" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.71947193" sideWeight="0.88611716" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06805075" sideWeight="0.49570817" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48478016" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25412542" sideWeight="0.8313449" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17113733" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22396964" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26770386" sideWeight="0.5070422" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2274678" sideWeight="0.49436393" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15292841" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23390558" sideWeight="0.2857143" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16554055" sideWeight="0.89109445" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.911188" sideWeight="0.89109445" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10146561" sideWeight="0.77819955" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39797068" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18079399" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2033,7 +2112,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增系统" />
     <MESSAGE value="还原" />
     <MESSAGE value="新增呢个" />
     <MESSAGE value="增加日志显示" />
@@ -2058,7 +2136,8 @@
     <MESSAGE value="多线程执行用例" />
     <MESSAGE value="合并代码" />
     <MESSAGE value="合并之后提交&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="合并之后提交&#10;" />
+    <MESSAGE value="合并之后提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="合并之后提交" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2119,180 +2198,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="168" column="20" selection-start-line="168" selection-start-column="20" selection-end-line="168" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="316" column="51" selection-start-line="316" selection-start-column="37" selection-end-line="316" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="259" column="72" selection-start-line="259" selection-start-column="55" selection-end-line="259" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestInterfaceMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestReportService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="95" column="33" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestReportDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="276" column="52" selection-start-line="276" selection-start-column="52" selection-end-line="276" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="147" column="9" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="390" column="27" selection-start-line="390" selection-start-column="27" selection-end-line="390" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#getBeforeCommand#0;class#TestCaseServiceImpl#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/TestCaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <element signature="e#569#570#0" expanded="false" />
-            <element signature="e#615#616#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/CaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="193" column="16" selection-start-line="193" selection-start-column="16" selection-end-line="193" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestReportMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="144" column="35" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="35" />
-          <folding>
-            <marker date="1493109669432" expanded="true" signature="3557:3700" ph="SELECT FROM test_report" />
-            <marker date="1493109669432" expanded="true" signature="3790:3873" ph="SELECT FROM test_report" />
-            <marker date="1493109669432" expanded="true" signature="3994:4909" ph="SELECT FROM test_report" />
-            <marker date="1493109669432" expanded="true" signature="5005:5081" ph="SELECT count... test_report" />
-            <marker date="1493109669432" expanded="true" signature="5236:6210" ph="INSERT INTO test_report... " />
-            <marker date="1493109669432" expanded="true" signature="7222:9243" ph="UPDATE test_... " />
-            <marker date="1493109669432" expanded="true" signature="9323:9419" ph="DELETE FROM " />
-            <marker date="1493109669432" expanded="true" signature="9507:9558" ph="DELETE FROM " />
-            <marker date="1493109669432" expanded="true" signature="9687:9891" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="377" column="45" selection-start-line="377" selection-start-column="45" selection-end-line="377" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestEnvironmentDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="134" column="28" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestInterfaceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="295" column="46" selection-start-line="295" selection-start-column="46" selection-end-line="295" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/dto/TestSuitDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestEnvironment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="144" column="28" selection-start-line="144" selection-start-column="28" selection-end-line="144" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="283" column="28" selection-start-line="283" selection-start-column="28" selection-end-line="283" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestPlan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestSuit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="652">
@@ -2311,9 +2216,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10625">
           <caret line="454" column="34" selection-start-line="454" selection-start-column="34" selection-end-line="454" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2321,7 +2223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9300">
           <caret line="399" column="47" selection-start-line="399" selection-start-column="47" selection-end-line="399" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2358,7 +2259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="53" column="27" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2366,7 +2266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2374,7 +2273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
           <caret line="38" column="55" selection-start-line="38" selection-start-column="55" selection-end-line="38" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2389,7 +2287,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
           <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2418,91 +2315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#5343#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1682#1694#0" expanded="false" />
-            <element signature="e#1761#1774#0" expanded="false" />
-            <element signature="e#1843#1857#0" expanded="false" />
-            <element signature="e#1948#1949#0" expanded="false" />
-            <element signature="e#1976#1977#0" expanded="false" />
-            <element signature="e#2003#2004#0" expanded="false" />
-            <element signature="e#2033#2034#0" expanded="false" />
-            <element signature="e#2071#2072#0" expanded="false" />
-            <element signature="e#2099#2100#0" expanded="false" />
-            <element signature="e#2134#2135#0" expanded="false" />
-            <element signature="e#2166#2167#0" expanded="false" />
-            <element signature="e#2210#2211#0" expanded="false" />
-            <element signature="e#2242#2243#0" expanded="false" />
-            <element signature="e#2279#2280#0" expanded="false" />
-            <element signature="e#2313#2314#0" expanded="false" />
-            <element signature="e#2361#2362#0" expanded="false" />
-            <element signature="e#2397#2398#0" expanded="false" />
-            <element signature="e#2439#2440#0" expanded="false" />
-            <element signature="e#2478#2479#0" expanded="false" />
-            <element signature="e#2536#2537#0" expanded="false" />
-            <element signature="e#2582#2583#0" expanded="false" />
-            <element signature="e#2622#2623#0" expanded="false" />
-            <element signature="e#2661#2662#0" expanded="false" />
-            <element signature="e#2717#2718#0" expanded="false" />
-            <element signature="e#2763#2764#0" expanded="false" />
-            <element signature="e#2798#2799#0" expanded="false" />
-            <element signature="e#2830#2831#0" expanded="false" />
-            <element signature="e#2874#2875#0" expanded="false" />
-            <element signature="e#2906#2907#0" expanded="false" />
-            <element signature="e#2949#2950#0" expanded="false" />
-            <element signature="e#2989#2990#0" expanded="false" />
-            <element signature="e#3049#3050#0" expanded="false" />
-            <element signature="e#3097#3098#0" expanded="false" />
-            <element signature="e#3140#3141#0" expanded="false" />
-            <element signature="e#3179#3180#0" expanded="false" />
-            <element signature="e#3238#3239#0" expanded="false" />
-            <element signature="e#3284#3285#0" expanded="false" />
-            <element signature="e#3325#3326#0" expanded="false" />
-            <element signature="e#3362#3363#0" expanded="false" />
-            <element signature="e#3417#3418#0" expanded="false" />
-            <element signature="e#3459#3460#0" expanded="false" />
-            <element signature="e#3503#3504#0" expanded="false" />
-            <element signature="e#3543#3544#0" expanded="false" />
-            <element signature="e#3604#3605#0" expanded="false" />
-            <element signature="e#3652#3653#0" expanded="false" />
-            <element signature="e#3698#3699#0" expanded="false" />
-            <element signature="e#3740#3741#0" expanded="false" />
-            <element signature="e#3805#3806#0" expanded="false" />
-            <element signature="e#3857#3858#0" expanded="false" />
-            <element signature="e#3900#3901#0" expanded="false" />
-            <element signature="e#3939#3940#0" expanded="false" />
-            <element signature="e#3998#3999#0" expanded="false" />
-            <element signature="e#4044#4045#0" expanded="false" />
-            <element signature="e#4096#4097#0" expanded="false" />
-            <element signature="e#4130#4131#0" expanded="false" />
-            <element signature="e#4197#4198#0" expanded="false" />
-            <element signature="e#4243#4244#0" expanded="false" />
-            <element signature="e#4297#4298#0" expanded="false" />
-            <element signature="e#4332#4333#0" expanded="false" />
-            <element signature="e#4402#4403#0" expanded="false" />
-            <element signature="e#4450#4451#0" expanded="false" />
-            <element signature="e#4506#4507#0" expanded="false" />
-            <element signature="e#4542#4543#0" expanded="false" />
-            <element signature="e#4615#4616#0" expanded="false" />
-            <element signature="e#4665#4666#0" expanded="false" />
-            <element signature="e#4704#4705#0" expanded="false" />
-            <element signature="e#4739#4740#0" expanded="false" />
-            <element signature="e#4795#4796#0" expanded="false" />
-            <element signature="e#4843#4844#0" expanded="false" />
-            <element signature="e#4887#4888#0" expanded="false" />
-            <element signature="e#4926#4927#0" expanded="false" />
-            <element signature="e#4991#4992#0" expanded="false" />
-            <element signature="e#5047#5048#0" expanded="false" />
-            <element signature="e#5083#5084#0" expanded="false" />
-            <element signature="e#5114#5115#0" expanded="false" />
-            <element signature="e#5163#5164#0" expanded="false" />
-            <element signature="e#5203#5204#0" expanded="false" />
-            <element signature="e#5233#5234#0" expanded="false" />
-            <element signature="e#5262#5263#0" expanded="false" />
-            <element signature="e#5303#5304#0" expanded="false" />
-            <element signature="e#5339#5340#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2510,18 +2322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-          <folding>
-            <marker date="1493177530566" expanded="true" signature="1896:2044" ph="SELECT FROM test_environment" />
-            <marker date="1493177530566" expanded="true" signature="2142:2318" ph="SELECT te.* test_environment" />
-            <marker date="1493177530566" expanded="true" signature="2396:2484" ph="SELECT FROM test_environment" />
-            <marker date="1493177530566" expanded="true" signature="2614:2695" ph="SELECT count... test_environment" />
-            <marker date="1493177530566" expanded="true" signature="2795:2890" ph="UPDATE test_... " />
-            <marker date="1493177530566" expanded="true" signature="3000:3468" ph="INSERT INTO test_environment... " />
-            <marker date="1493177530566" expanded="true" signature="4098:5002" ph="UPDATE test_... " />
-            <marker date="1493177530566" expanded="true" signature="5082:5183" ph="DELETE FROM " />
-            <marker date="1493177530566" expanded="true" signature="5271:5327" ph="DELETE FROM " />
-            <marker date="1493177530566" expanded="true" signature="5456:5665" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2529,24 +2329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
           <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
-          <folding>
-            <marker date="1493177637639" expanded="true" signature="3297:3437" ph="SELECT FROM test_case" />
-            <marker date="1493177637639" expanded="true" signature="5379:6269" ph="SELECT tc.* test_case" />
-            <marker date="1493177637639" expanded="true" signature="6348:6487" ph="SELECT tc.* test_case" />
-            <marker date="1493177637639" expanded="true" signature="6571:6699" ph="SELECT tc.* test_case" />
-            <marker date="1493177637639" expanded="true" signature="6571:6817" ph="SELECT tc.* test_case" />
-            <marker date="1493177637639" expanded="true" signature="6915:6989" ph="SELECT count... test_case" />
-            <marker date="1493177637639" expanded="true" signature="7144:8029" ph="INSERT INTO test_case... " />
-            <marker date="1493177637639" expanded="true" signature="8986:10305" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="10360:10448" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="10507:10588" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="10507:10694" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="10757:11787" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="11862:11965" ph="UPDATE test_... " />
-            <marker date="1493177637639" expanded="true" signature="12049:12098" ph="DELETE FROM " />
-            <marker date="1493177637639" expanded="true" signature="12223:12426" ph="DELETE FROM " />
-            <marker date="1493177637639" expanded="true" signature="12533:12731" ph="SELECT * FRO... test_case" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2554,24 +2336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="925">
           <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding>
-            <marker date="1493177637728" expanded="true" signature="3531:3637" ph="SELECT param... test_interface" />
-            <marker date="1493177637728" expanded="true" signature="3712:3858" ph="SELECT FROM test_interface" />
-            <marker date="1493177637728" expanded="true" signature="3954:4109" ph="SELECT ti.* test_interface" />
-            <marker date="1493177637728" expanded="true" signature="4195:4344" ph="SELECT ti.* test_interface" />
-            <marker date="1493177637728" expanded="true" signature="4433:4582" ph="SELECT ti.* test_interface" />
-            <marker date="1493177637728" expanded="true" signature="4433:4698" ph="SELECT ti.* test_interface" />
-            <marker date="1493177637728" expanded="true" signature="6825:6904" ph="SELECT count... test_interface" />
-            <marker date="1493177637728" expanded="true" signature="7004:7097" ph="UPDATE test_... " />
-            <marker date="1493177637728" expanded="true" signature="7156:7244" ph="UPDATE test_... " />
-            <marker date="1493177637728" expanded="true" signature="7156:7348" ph="UPDATE test_... " />
-            <marker date="1493177637728" expanded="true" signature="7468:8424" ph="INSERT INTO test_interface... " />
-            <marker date="1493177637728" expanded="true" signature="9447:11433" ph="UPDATE test_... " />
-            <marker date="1493177637728" expanded="true" signature="11513:11621" ph="UPDATE test_... " />
-            <marker date="1493177637728" expanded="true" signature="11709:11763" ph="DELETE FROM " />
-            <marker date="1493177637728" expanded="true" signature="11892:12099" ph="DELETE FROM " />
-            <marker date="1493177637728" expanded="true" signature="12216:12396" ph="select * fro... test_interface" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2579,19 +2343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-          <folding>
-            <marker date="1493177637786" expanded="true" signature="1506:1647" ph="SELECT FROM test_suit" />
-            <marker date="1493177637786" expanded="true" signature="2508:2647" ph="select ts.* test_suit" />
-            <marker date="1493177637786" expanded="true" signature="2750:2952" ph="select ts.* test_suit" />
-            <marker date="1493177637786" expanded="true" signature="2825:2942" ph="select suit_... relation_suit_case" />
-            <marker date="1493177637786" expanded="true" signature="3040:3114" ph="SELECT count... test_suit" />
-            <marker date="1493177637786" expanded="true" signature="3269:3598" ph="INSERT INTO test_suit... " />
-            <marker date="1493177637786" expanded="true" signature="4097:4712" ph="UPDATE test_... " />
-            <marker date="1493177637786" expanded="true" signature="4768:4856" ph="UPDATE test_... " />
-            <marker date="1493177637786" expanded="true" signature="4933:5038" ph="update test_... " />
-            <marker date="1493177637786" expanded="true" signature="5125:5174" ph="DELETE FROM " />
-            <marker date="1493177637786" expanded="true" signature="5303:5505" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2599,7 +2350,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
           <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4816#4840#0" expanded="false" />
+            <element signature="e#13419#13443#0" expanded="false" />
+            <element signature="e#14891#14906#0" expanded="false" />
+            <element signature="e#16906#16919#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2607,10 +2364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="27" column="132" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="132" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1493186984862" expanded="true" signature="47033:47074" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2618,9 +2371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="28" column="132" selection-start-line="28" selection-start-column="132" selection-end-line="28" selection-end-column="132" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2628,23 +2378,197 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
           <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
+        <state relative-caret-position="1200">
           <caret line="48" column="101" selection-start-line="48" selection-start-column="101" selection-end-line="48" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6725">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/target/classes/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/target/classes/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="377" column="1" selection-start-line="377" selection-start-column="1" selection-end-line="377" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/target/classes/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/beta/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/prod/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/DataAssertMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="52" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceMonitoredMachieMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceMonitoredMachineResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#\sif#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1493187164430" expanded="true" signature="16488:16529" ph="..." />
-            <marker date="1493187164430" expanded="true" signature="20411:20452" ph="..." />
+            <marker date="1493707733325" expanded="true" signature="6111:6266" ph="SELECT FROM performance_plan" />
+            <marker date="1493707733325" expanded="true" signature="6357:6436" ph="SELECT FROM performance_plan" />
+            <marker date="1493707733325" expanded="true" signature="6557:6638" ph="SELECT count... performance_plan" />
+            <marker date="1493707733325" expanded="true" signature="6798:7598" ph="INSERT INTO performance_plan... " />
+            <marker date="1493707733325" expanded="true" signature="8488:9979" ph="UPDATE perfo... " />
+            <marker date="1493707733325" expanded="true" signature="10054:10155" ph="DELETE FROM " />
+            <marker date="1493707733325" expanded="true" signature="10240:10296" ph="DELETE FROM " />
+            <marker date="1493707733325" expanded="true" signature="10421:10630" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties">
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMonitoredMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1492411613795" expanded="true" signature="1626:1784" ph="SELECT FROM performance_plan_monitored" />
+            <marker date="1492411613795" expanded="true" signature="1888:1986" ph="SELECT FROM performance_plan_monitored" />
+            <marker date="1492411613795" expanded="true" signature="2116:2207" ph="SELECT count... performance_plan_monitored" />
+            <marker date="1492411613795" expanded="true" signature="2362:2767" ph="INSERT INTO performance_plan_monitored... " />
+            <marker date="1492411613795" expanded="true" signature="3358:4075" ph="UPDATE perfo... " />
+            <marker date="1492411613795" expanded="true" signature="4155:4266" ph="DELETE FROM " />
+            <marker date="1492411613795" expanded="true" signature="4354:4420" ph="DELETE FROM " />
+            <marker date="1492411613795" expanded="true" signature="4549:4768" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding>
+            <marker date="1493707733373" expanded="true" signature="4631:4788" ph="SELECT FROM performance_result" />
+            <marker date="1493707733373" expanded="true" signature="4881:4962" ph="SELECT FROM performance_result" />
+            <marker date="1493707733373" expanded="true" signature="13751:13834" ph="SELECT count... performance_result" />
+            <marker date="1493707733373" expanded="true" signature="13991:14756" ph="INSERT INTO performance_result... " />
+            <marker date="1493707733373" expanded="true" signature="15632:17007" ph="UPDATE perfo... " />
+            <marker date="1493707733373" expanded="true" signature="17084:17187" ph="DELETE FROM " />
+            <marker date="1493707733373" expanded="true" signature="17273:17331" ph="DELETE FROM " />
+            <marker date="1493707733373" expanded="true" signature="17456:17667" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding>
+            <marker date="1493707733504" expanded="true" signature="3522:3681" ph="SELECT FROM performance_scenario" />
+            <marker date="1493707733504" expanded="true" signature="3776:3859" ph="SELECT FROM performance_scenario" />
+            <marker date="1493707733504" expanded="true" signature="3980:4065" ph="SELECT count... performance_scenario" />
+            <marker date="1493707733504" expanded="true" signature="4222:5213" ph="INSERT INTO performance_scenario... " />
+            <marker date="1493707733504" expanded="true" signature="6248:8115" ph="UPDATE perfo... " />
+            <marker date="1493707733504" expanded="true" signature="8192:8297" ph="DELETE FROM " />
+            <marker date="1493707733504" expanded="true" signature="8383:8443" ph="DELETE FROM " />
+            <marker date="1493707733504" expanded="true" signature="8568:8781" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScriptMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1492411613799" expanded="true" signature="2447:2597" ph="SELECT FROM performance_script" />
+            <marker date="1492411613799" expanded="true" signature="2694:2784" ph="SELECT FROM performance_script" />
+            <marker date="1492411613799" expanded="true" signature="2914:2997" ph="SELECT count... performance_script" />
+            <marker date="1492411613799" expanded="true" signature="3152:3812" ph="INSERT INTO performance_script... " />
+            <marker date="1492411613799" expanded="true" signature="4598:5897" ph="UPDATE perfo... " />
+            <marker date="1492411613799" expanded="true" signature="5977:6080" ph="DELETE FROM " />
+            <marker date="1492411613799" expanded="true" signature="6168:6226" ph="DELETE FROM " />
+            <marker date="1492411613799" expanded="true" signature="6355:6566" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding>
+            <marker date="1492411613801" expanded="true" signature="2751:2909" ph="SELECT FROM performance_stress_machine" />
+            <marker date="1492411613801" expanded="true" signature="3013:3111" ph="SELECT FROM performance_stress_machine" />
+            <marker date="1492411613801" expanded="true" signature="3241:3332" ph="SELECT count... performance_stress_machine" />
+            <marker date="1492411613801" expanded="true" signature="3487:4239" ph="INSERT INTO performance_stress_machine... " />
+            <marker date="1492411613801" expanded="true" signature="5083:6602" ph="UPDATE perfo... " />
+            <marker date="1492411613801" expanded="true" signature="6682:6793" ph="DELETE FROM " />
+            <marker date="1492411613801" expanded="true" signature="6881:6947" ph="DELETE FROM " />
+            <marker date="1492411613801" expanded="true" signature="7076:7295" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/prod/properties/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2652,10 +2576,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common-test/pom.xml">
+    <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+        <state relative-caret-position="425">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/beta/properties/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
           <folding />
         </state>
       </provider>
