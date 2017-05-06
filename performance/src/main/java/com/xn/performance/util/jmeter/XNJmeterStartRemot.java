@@ -1,6 +1,7 @@
 package com.xn.performance.util.jmeter;
 
 
+import com.xn.performance.util.PropertyUtil;
 import org.apache.jmeter.JMeter;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.engine.ClientJMeterEngine;
@@ -63,6 +64,7 @@ public class XNJmeterStartRemot {
     String username;
     String pwd;
     String port;
+
     public XNJmeterStartRemot(Integer id, String ip, String username, String pwd, String port) {
         setjmeterpros.put("setAsXml", true);
         setjmeterpros.put("setCode", true);
@@ -401,7 +403,7 @@ public class XNJmeterStartRemot {
             }
             Arguments arguments = new Arguments();
             arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");
-            arguments.addArgument("graphiteHost", "10.17.2.137");
+            arguments.addArgument("graphiteHost", PropertyUtil.getProperty("loacalIp"));
             arguments.addArgument("graphitePort", "2003");
             arguments.addArgument("rootMetricsPrefix", "jmeter.");
             arguments.addArgument("summaryOnly", "true");
@@ -460,8 +462,8 @@ public class XNJmeterStartRemot {
 
             //testTree.add(testTree.getArray()[0], new RemoteThreadsListenerTestElement());
 
-//            agentlisten = new ListenToTest(this,engines, reportGenerator); // 第二个参数会导致测试结束，负载机被关闭
-            agentlisten = new ListenToTest(this, null, reportGenerator);
+            agentlisten = new ListenToTest(this, engines, reportGenerator); // 第二个参数会导致测试结束，负载机被关闭
+//            agentlisten = new ListenToTest(this, null, reportGenerator);
             testTree.add(testTree.getArray()[0], agentlisten);
 
             java.util.StringTokenizer st = new java.util.StringTokenizer(remote_hosts_string, ",");
@@ -473,8 +475,9 @@ public class XNJmeterStartRemot {
             distributedRunner.setStdout(System.out);
             distributedRunner.setStdErr(System.err);
 
-
-            retry(hosts, testTree);
+            //执行之前启动远程机器
+            start(hosts, testTree);
+            distributedRunner.init(hosts, testTree);
 
             engines.addAll(distributedRunner.getEngines());
             /**
@@ -507,6 +510,8 @@ public class XNJmeterStartRemot {
                  */
                 if (agentlisten.isTestEnd == true) {
                     is_running = false;
+                    //删除  /temp/file/下面的所有文件
+                    deleteJarFile();
                     break;
                 }
                 while ((line = br.readLine()) != null) {
@@ -531,28 +536,34 @@ public class XNJmeterStartRemot {
         }
     }
 
-    private void retry(List<String> hosts, HashTree testTree) throws InterruptedException {
-        try {
-            distributedRunner.init(hosts, testTree);
-        } catch (Exception e) {
+    private void deleteJarFile() {
+        logger.info("=======delete file on remote stress machine");
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                String command = getProperty("delete_jar_command");
+                exec_command(ip, username, pwd, Integer.parseInt(port), command);
+            }
+        });
+    }
 
-            logger.error("========jmeter server is lost ,retry agin");
-
-            threadPool.execute(new Runnable() {
-                                   @Override
-                                   public void run() {
-
-                                       logger.info(new Date() + Thread.currentThread().getName() + "启动jmeter======");
-                                       String command = getProperty("command");
-                                       exec_command(ip, username, pwd, Integer.parseInt(port), command);
-                                   }
-                               });
+    private void start(List<String> hosts, HashTree testTree) throws InterruptedException {
 
 
-                    Thread.sleep(5000);
+        logger.error("========jmeter server start");
 
-            distributedRunner.init(hosts, testTree);
-        }
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                logger.info(new Date() + Thread.currentThread().getName() + "启动jmeter======");
+                String command = getProperty("command");
+                exec_command(ip, username, pwd, Integer.parseInt(port), command);
+            }
+        });
+
+
+        Thread.sleep(5000);
 
     }
 

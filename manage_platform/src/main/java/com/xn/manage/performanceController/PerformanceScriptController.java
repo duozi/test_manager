@@ -25,12 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static com.xn.manage.utils.StartJMeterAgent_SSH.exec_command;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 
@@ -101,22 +101,33 @@ public class PerformanceScriptController {
             performanceScriptDto.setScriptStatus(PublishEnum.UNPUBLISHED.getName());
 
 
+            performanceScriptDto = performanceScriptService.save(performanceScriptDto);
+            Integer id = performanceScriptDto.getId();
+            //转存脚本文件
+            String tempPath = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + performanceScriptDto.getScriptFileName();
 
-            performanceScriptDto=performanceScriptService.save(performanceScriptDto);
-            Integer id=performanceScriptDto.getId();
-            String tempPath=PropertyUtil.getProperty("upload_path")+"temp"+File.separator;
-            String savePath=PropertyUtil.getProperty("upload_path")+id+File.separator;
-            final String command="mv "+tempPath+" "+savePath;
-            threadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    logger.info("============" + Thread.currentThread().getName());
-                    exec_command("10.17.2.137", "root", "xnhack", 65300,command);
-                }
-            });
+            String savePath = PropertyUtil.getProperty("upload_path") + id + File.separator;
+            File file = new File(savePath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+            File saveFile = new File(savePath + performanceScriptDto.getScriptFileName());
+            File tempFile = new File(tempPath);
+            Files.move(tempFile.toPath(), saveFile.toPath());
 
-            commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
-            commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
+            //转存依赖文件
+            String dependenceFileName = performanceScriptDto.getDependenceFileName();
+            String[] dependenceNames = dependenceFileName.trim().split(" ");
+            for (String fileName : dependenceNames) {
+                tempPath = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + fileName;
+
+                savePath = PropertyUtil.getProperty("upload_path") + id + File.separator;
+
+                saveFile = new File(savePath + fileName);
+                tempFile = new File(tempPath);
+                Files.move(tempFile.toPath(), saveFile.toPath());
+
+            }
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
@@ -179,16 +190,16 @@ public class PerformanceScriptController {
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
         String fileName = "";
-        String path="";
+        String path = "";
         try {
             if (files != null && files.length > 0) {
                 for (int i = 0; i < files.length; i++) {
                     MultipartFile file = files[i];
                     // 保存文件
-                    String name=file.getOriginalFilename();
-                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
-                    FileUtil.saveFile(request, file,path);
-                    fileName+=" "+file.getOriginalFilename();
+                    String name = file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + name;
+                    FileUtil.saveFile(request, file, path);
+                    fileName += " " + file.getOriginalFilename();
                 }
                 result.setData(fileName.trim());
             }
@@ -198,8 +209,8 @@ public class PerformanceScriptController {
             result.setCode(code);
             result.setMessage(message);
             logger.error("上传文件操作异常｛｝", e);
-        }finally {
-            return  result;
+        } finally {
+            return result;
         }
 
 
@@ -211,16 +222,16 @@ public class PerformanceScriptController {
         CommonResult result = new CommonResult();
         result.setMessage("上传成功！");
         String fileName = "";
-        String path="";
+        String path = "";
         try {
             if (files != null && files.length > 0) {
                 for (int i = 0; i < files.length; i++) {
                     MultipartFile file = files[i];
                     // 保存文件
-                    String name=file.getOriginalFilename();
-                    path = PropertyUtil.getProperty("upload_path") +"temp"+File.separator+ name;
-                    FileUtil.saveFile(request, file,path);
-                    fileName+=" "+file.getOriginalFilename();
+                    String name = file.getOriginalFilename();
+                    path = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + name;
+                    FileUtil.saveFile(request, file, path);
+                    fileName += " " + file.getOriginalFilename();
                 }
                 result.setData(fileName.trim());
             }
@@ -230,8 +241,8 @@ public class PerformanceScriptController {
             result.setCode(code);
             result.setMessage(message);
             logger.error("上传文件操作异常｛｝", e);
-        }finally {
-            return  result;
+        } finally {
+            return result;
         }
 
 
@@ -247,7 +258,7 @@ public class PerformanceScriptController {
 
             String scriptId = request.getParameter("id");
             String scriptFileName = request.getParameter("script_file_name");
-            String path= PropertyUtil.getProperty("upload_path") + scriptId + File.separator + scriptFileName;
+            String path = PropertyUtil.getProperty("upload_path") + scriptId + File.separator + scriptFileName;
 
             File file = new File(path);
             String content = FileUtil.fileReadeForStr(file);
