@@ -9,7 +9,7 @@
 
     <dubbo:application name="common-test" />
 
-    <dubbo:registry protocol="zookeeper" address="10.17.2.151:2181,10.17.2.151:2182,10.17.2.151:2183" />
+    <dubbo:registry protocol="zookeeper" address="${zookeeper_ip}" />
 
     <dubbo:protocol name="dubbo" port="${dubbo_port}" />
 

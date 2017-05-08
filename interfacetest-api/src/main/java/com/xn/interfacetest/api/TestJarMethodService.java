@@ -7,15 +7,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.dto.RelationCaseParamsDto;
+import com.xn.interfacetest.dto.TestJarMethodDto;
 
 /**
- * RelationCaseParams Service
+ * TestJarMethod Service
  * 
  * @author Carol
- * @date 2017-02-14
+ * \
+ * @date 2017-05-05
  */
-public interface RelationCaseParamsService {
+public interface TestJarMethodService {
 
     /**
      * 查询单个记录
@@ -23,7 +24,7 @@ public interface RelationCaseParamsService {
      * @param condition 主键/Map/查询对象
      * @return 
      */
-    RelationCaseParamsDto get(Object condition);
+    TestJarMethodDto get(Object condition);
 
     /**
      * 统计数量
@@ -31,7 +32,7 @@ public interface RelationCaseParamsService {
      * @param condition 查询条件对象
      * @return 统计数量
      */
-    long count(RelationCaseParamsDto condition);
+    long count(TestJarMethodDto condition);
 
     /**
      * 根据组合条件查询
@@ -39,7 +40,7 @@ public interface RelationCaseParamsService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<RelationCaseParamsDto> list(RelationCaseParamsDto condition);
+    List<TestJarMethodDto> list(TestJarMethodDto condition);
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  
@@ -47,7 +48,7 @@ public interface RelationCaseParamsService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    List<RelationCaseParamsDto> list(Map<String, Object> condition);
+    List<TestJarMethodDto> list(Map<String, Object> condition);
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  
@@ -55,36 +56,36 @@ public interface RelationCaseParamsService {
      * @param condition 查询对象
      * @return 集合,如果不存在,返回Empty List
      */
-    PageResult<RelationCaseParamsDto> page(Map<String, Object> condition);
+    PageResult<TestJarMethodDto> page(Map<String, Object> condition);
     
 
     /**
      * 保存
      * 
-     * @param relationCaseParams 
+     * @param testJarMethod 
      * @return 带主键的DTO
      */
-    RelationCaseParamsDto save(RelationCaseParamsDto relationCaseParamsDto);
+    TestJarMethodDto save(TestJarMethodDto testJarMethodDto);
 
     /**
      * 批量保存
      * 
-     * @param relationCaseParamss 
+     * @param testJarMethods 
      * @return 带主键的DTO
      */
-    int save(List<RelationCaseParamsDto> relationCaseParamsDtos);
+    int save(List<TestJarMethodDto> testJarMethodDtos);
 
     /**
      * 更新
      * 
-     * @param relationCaseParams 
+     * @param testJarMethod 
      * @return 操作影响行数
      */
-    int update(RelationCaseParamsDto relationCaseParamsDto);
+    int update(TestJarMethodDto testJarMethodDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(RelationCaseParams relationCaseParams)
+     * 不建议，建议使用delete(TestJarMethod testJarMethod)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -96,11 +97,11 @@ public interface RelationCaseParamsService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int delete(RelationCaseParamsDto relationCaseParamsDto);
+    int delete(TestJarMethodDto testJarMethodDto);
     
     /**
      * 根据主键删除
-     * 不建议，建议使用delete(RelationCaseParamsDto relationCaseParams)
+     * 不建议，建议使用delete(TestJarMethodDto testJarMethod)
      * @param id 主键
      * @return 操作影响行数
      */
@@ -113,13 +114,7 @@ public interface RelationCaseParamsService {
      * @param id 主键
      * @return 操作影响行数
      */
-    int deleteBatch(List<RelationCaseParamsDto> relationCaseParamss);
+    int deleteBatch(List<TestJarMethodDto> testJarMethods);
 
-    /**
-     * 根据用例id和参数名查询参数信息
-     * @param valueName
-     * @param caseId
-     * @return
-     */
-    RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId);
+    TestJarMethodDto getByMethodNameAndInterfaceId(String methodName,Long intefaceId);
 }

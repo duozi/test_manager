@@ -13,6 +13,10 @@
         <result property="url" column="url"/>
         <result property="codeText" column="code_text"/>
         <result property="jarPath" column="jar_path"/>
+        <result property="className" column="class_name"/>
+        <result property="methodName" column="method_name"/>
+        <result property="paramsTypes" column="params_types"/>
+        <result property="paramsValues" column="params_values"/>
         <result property="requestType" column="request_type"/>
         <result property="protocolType" column="protocol_type"/>
         <result property="params" column="params"/>
@@ -27,7 +31,8 @@
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, service_id,status, type, url, code_text, jar_path, request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
+        id, name, description, service_id,status, type, url, code_text, jar_path,class_name, method_name,params_types,params_values,
+        request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
         ]]>
     </sql>
     
@@ -56,6 +61,18 @@
             </if>
            <if test="@Ognl@isNotEmpty(jarPath)">
                 AND jar_path = #{jarPath}
+            </if>
+            <if test="@Ognl@isNotEmpty(className)">
+                AND class_name = #{className}
+            </if>
+            <if test="@Ognl@isNotEmpty(methodName)">
+                AND method_name = #{methodName}
+            </if>
+            <if test="@Ognl@isNotEmpty(paramsTypes)">
+                AND params_types = #{paramsTypes}
+            </if>
+            <if test="@Ognl@isNotEmpty(paramsValues)">
+                AND params_values = #{paramsValues}
             </if>
            <if test="@Ognl@isNotEmpty(requestType)">
                 AND request_type = #{requestType}
@@ -156,6 +173,18 @@
             <if test="@Ognl@isNotEmpty(jarPath)">
                 AND jar_path = #{jarPath}
             </if>
+            <if test="@Ognl@isNotEmpty(className)">
+                AND class_name = #{className}
+            </if>
+            <if test="@Ognl@isNotEmpty(methodName)">
+                AND method_name = #{methodName}
+            </if>
+            <if test="@Ognl@isNotEmpty(paramsTypes)">
+                AND params_types = #{paramsTypes}
+            </if>
+            <if test="@Ognl@isNotEmpty(paramsValues)">
+                AND params_values = #{paramsValues}
+            </if>
             <if test="@Ognl@isNotEmpty(requestType)">
                 AND request_type = #{requestType}
             </if>
@@ -221,6 +250,10 @@
                 url,
                 code_text,
                 jar_path,
+                class_name,
+                method_name,
+                params_types,
+                params_values,
                 request_type,
                 protocol_type,
                 params,
@@ -238,6 +271,10 @@
                 #{url},
                 #{codeText},
                 #{jarPath},
+                #{className},
+                #{methodName},
+                #{paramsTypes},
+                #{paramsValues},
                 #{requestType},
                 #{protocolType},
                 #{params},
@@ -261,6 +298,10 @@
                 url,
                 code_text,
                 jar_path,
+                class_name,
+                method_name,
+                params_types,
+                params_values,
                 request_type,
                 protocol_type,
                 params,
@@ -272,7 +313,8 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},#{item.requestType},
+            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},
+            #{item.className},#{item.methodName}, #{item.paramsTypes}, #{item.paramsValues}, #{item.requestType},
             #{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout},#{item.zkOrNot},#{item.contentType})
         </foreach>
     </insert>
@@ -301,6 +343,18 @@
                 </if>
                 <if test="jarPath != null">
                 	<![CDATA[ jar_path = #{jarPath} ]]>,
+                </if>
+                <if test="className != null">
+                    <![CDATA[ class_name = #{className} ]]>,
+                </if>
+                <if test="methodName != null">
+                    <![CDATA[ method_name = #{methodName} ]]>,
+                </if>
+                <if test="paramsTypes != null">
+                    <![CDATA[ params_types = #{paramsTypes} ]]>,
+                </if>
+                <if test="paramsValues != null">
+                    <![CDATA[ params_values = #{paramsValues} ]]>,
                 </if>
                 <if test="requestType != null">
                 	<![CDATA[ request_type = #{requestType} ]]>,

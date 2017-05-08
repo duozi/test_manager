@@ -38,16 +38,16 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="<#if null == testCaseDto.customParamsType>active</#if>">
+                                <li class="<#if 1 == testCaseDto.paramsType>active</#if>">
                                     <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsType>true<#else>false</#if>">参数设置</a>
                                 </li>
-                                <li class="<#if null != testCaseDto.customParamsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
+                                <li class="<#if 2 == testCaseDto.paramsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
                                 </li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade <#if null == testCaseDto.customParamsType>active  in</#if>" id="gui-header">
+                                <div class="tab-pane fade <#if 1 == testCaseDto.paramsType>active  in</#if>" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
@@ -100,7 +100,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade <#if null != testCaseDto.customParamsType>active  in</#if>" id="source-header">
+                                <div class="tab-pane fade <#if 2 == testCaseDto.paramsType>active  in</#if>" id="source-header">
                                     <input type="hidden" name="type" value="1">
                                     <div class="form-group ">
                                         <label>参数格式</label>
@@ -874,14 +874,14 @@
     var paramAddHtml = '<tr>';
     paramAddHtml += '<td>';
     paramAddHtml += '<input type="hidden" name="id" value=""><select class="form-control" name="paramsId">';
-    paramAddHtml += '<#if testParamsDtoList ??>';
-    paramAddHtml += '<#list testParamsDtoList as item>';
+    paramAddHtml += '<#if testParamsDtoListNew ??>';
+    paramAddHtml += '<#list testParamsDtoListNew as item>';
     paramAddHtml += '<option value="${item.id}">${item.name}</option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';
     paramAddHtml += '</select>';
     paramAddHtml += '</td>';
-    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue"></td>';
+    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue" placeholder="加密则填加密方法名称"></td>';
     paramAddHtml += '<td>';
     paramAddHtml += '<a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a><button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除</button>  ';
     paramAddHtml += '</td>';

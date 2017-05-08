@@ -13,6 +13,8 @@
 
     <resultMap id="ParamsMap" type="com.xn.interfacetest.entity.ParamEntity">
         <result property="name" column="name"/>
+        <result property="formatType" column="format_type"/>
+        <result property="interfaceId" column="interface_id"/>
         <result property="value" column="value"/>
     </resultMap>
     
@@ -52,6 +54,24 @@
         ]]>
     </select>
 
+    <select id="listByInterfaceAndIds" resultMap="TestParamsMap">
+        SELECT <include refid="columns" />
+        FROM
+            test_params
+        <choose>
+            <when test="paramsIds != null">
+                where interface_id= #{interfaceId}
+                and id in
+                <foreach collection="paramsIds" item="item" index="index"  open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                where interface_id= #{interfaceId}
+                and is_delete = 0
+            </otherwise>
+        </choose>
+    </select>
 
     <select id="getParamsByInterfaceId" resultMap="TestParamsMap">
         SELECT
@@ -69,8 +89,8 @@
         <include refid="where"/>
     </select>
 
-    <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
-        select tp.name ,rcp.`value`
+    <select id="listByCaseIdFromRelation" resultMap="TestParamsMap">
+        select tp.name ,rcp.`value`,tp.format_type,tp.interface_id
         from test_params tp
         LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
         where rcp.case_id = #{caseId} and rcp.is_delete = 0

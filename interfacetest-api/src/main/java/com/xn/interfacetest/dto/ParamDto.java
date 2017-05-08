@@ -16,6 +16,10 @@ public class ParamDto  extends BaseDto {
 
     private String value;
 
+    private Integer formatType;
+
+    private Long interfaceId;
+
     public String getName() {
         return name;
     }
@@ -32,11 +36,29 @@ public class ParamDto  extends BaseDto {
         this.value = value;
     }
 
+    public Integer getFormatType() {
+        return formatType;
+    }
+
+    public void setFormatType(Integer formatType) {
+        this.formatType = formatType;
+    }
+
+    public Long getInterfaceId() {
+        return interfaceId;
+    }
+
+    public void setInterfaceId(Long interfaceId) {
+        this.interfaceId = interfaceId;
+    }
+
     @Override
     public String toString() {
         return "ParamDto{" +
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
+                ", formatType=" + formatType +
+                ", interfaceId=" + interfaceId +
                 '}';
     }
 }

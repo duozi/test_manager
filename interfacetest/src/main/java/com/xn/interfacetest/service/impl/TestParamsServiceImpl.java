@@ -120,7 +120,7 @@ public class TestParamsServiceImpl implements TestParamsService {
     }
 
     @Override
-    public List<TestParamsDto> getParamsByInterfaceId(String interfaceId) {
+    public List<TestParamsDto> getParamsByInterfaceId(Long interfaceId) {
         List<TestParams> list = testParamsMapper.getParamsByInterfaceId(interfaceId);
         List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
         return dtoList;
@@ -130,6 +130,13 @@ public class TestParamsServiceImpl implements TestParamsService {
     public List<ParamDto> listByCaseIdFromRelation(Long caseId) {
         List<ParamEntity> list = testParamsMapper.listByCaseIdFromRelation(caseId);
         List<ParamDto> dtoList = CollectionUtils.transform(list, ParamDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<TestParamsDto> listByInterfaceAndIds(Long interfaceId, Long[] paramsIds) {
+        List<TestParams> list = testParamsMapper.listByInterfaceAndIds(interfaceId, paramsIds);
+        List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
         return dtoList;
     }
 

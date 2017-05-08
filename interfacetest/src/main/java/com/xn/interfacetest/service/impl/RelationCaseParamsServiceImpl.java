@@ -7,6 +7,10 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.Enum.ParamsGroupTypeEnum;
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.dto.TestCaseDto;
+import org.apache.xmlbeans.impl.xb.ltgfmt.TestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +41,9 @@ public class RelationCaseParamsServiceImpl implements RelationCaseParamsService 
      */
     @Autowired
     private RelationCaseParamsMapper relationCaseParamsMapper;
+
+    @Autowired
+    private TestCaseService testCaseService;
 
     @Override
     @Transactional(readOnly = true)
@@ -85,6 +92,14 @@ public class RelationCaseParamsServiceImpl implements RelationCaseParamsService 
         }
 
         relationCaseParamsDto.setId(relationCaseParams.getId());
+
+        //更新用例参数类型为----配置的参数
+        TestCaseDto testCaseDto = testCaseService.get(relationCaseParamsDto.getCaseId());
+        if(null != testCaseDto && ((null != testCaseDto.getParamsType() && testCaseDto.getParamsType() != ParamsGroupTypeEnum.KEY.getId())|| null == testCaseDto.getParamsType())){
+            testCaseDto.setParamsType(ParamsGroupTypeEnum.KEY.getId());
+            testCaseService.updatePart(testCaseDto);
+        }
+
         return relationCaseParamsDto;
     }
 
@@ -122,6 +137,13 @@ public class RelationCaseParamsServiceImpl implements RelationCaseParamsService 
     @Override
     public int deleteBatch(List<RelationCaseParamsDto> relationCaseParamss) {
         return 0;
+    }
+
+    @Override
+    public RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId) {
+        RelationCaseParams relationCaseParams = relationCaseParamsMapper.getByCaseIdAndParamName( valueName,caseId);
+        RelationCaseParamsDto relationCaseParamsDto = BeanUtils.toBean(relationCaseParams,RelationCaseParamsDto.class);
+        return relationCaseParamsDto;
     }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <!-- fileinput -->
@@ -152,11 +152,30 @@
                         <input type="hidden" name="jarPath" value="${interfaceDto.jarPath}">
                     </div>
                     <div class="form-group ">
-                        <label class="control-label">编写调用代码</label>
-                        <textarea type="text" class="form-control" name="codeText"
-                                  placeholder="调用jar包内加密算法的demo" <#if interfaceDto.status gt 0>readonly</#if>>${interfaceDto.codeText}</textarea>
+                        <label class="control-label">jar包加密类名</label>
+                        <input type="text" class="form-control" name="className" value="${interfaceDto.className}" placeholder="jar包中加密类的全类名，如：com.xiaoniu.base.encode_main">
                     </div>
-
+                    <div class="form-group ">
+                        <label class="control-label">jar包加密方法名</label>
+                        <input type="text" class="form-control" name="methodName" value="${interfaceDto.methodName}" placeholder="多个方法以逗号隔开,如：encode,encrypt,getdata">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包参数类型</label>
+                        <input type="text" class="form-control" name="paramsTypes" value="${interfaceDto.paramsTypes}" placeholder="多个参数以逗号隔开,多个方法的参数以分号隔开，顺序遵循参数顺序：String,Integer,Double">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包参数值</label>
+                        <input type="text" class="form-control" name="paramsValues" value="${interfaceDto.paramsValues}" placeholder="使用?{}引用用例中的值,多个方法的参数以分号隔开，顺序遵循参数顺序： ?{appId},1324,12.5">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label" style="width: 13%;"></label>
+                        <div class="alert alert-warning" style="width: 90%;">
+                            注意：<br>
+                            如果有一个参数值是取当前用例中的参数的值可以用"?{}"来引用值,取当前时间戳用timestamp代替<br>
+                            例如其中一个参数是由多个用例参数组成：<br>
+                            appId=?{appId}&amp;nonce=?{nonce}&amp;reqId=?{nonce}&amp;timestamp=timestamp<br>
+                        </div>
+                    </div>
                     <div class="form-group btn-div">
                         <#if interfaceDto.status == 0 || interfaceDto == null>
                             <button type="submit" class="btn btn-primary interface-submit">保存</button>

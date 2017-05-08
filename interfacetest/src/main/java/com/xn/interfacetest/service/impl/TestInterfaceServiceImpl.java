@@ -8,7 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.Enum.ParamFormatTypeEnum;
+import com.xn.interfacetest.api.TestJarMethodService;
+import com.xn.interfacetest.dto.TestJarMethodDto;
 import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.entity.TestJarMethod;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +49,9 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
 
     @Autowired
     private TestServiceService testServiceService;
+
+    @Autowired
+    private TestJarMethodService testJarMethodService;
 
     @Autowired
     private TestParamsMapper testParamsMapper;
@@ -93,16 +100,80 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         if(null != testInterfaceDto.getId()){
             //保存参数字段到参数表
             saveParams(testInterface);
+
             testInterfaceMapper.update(testInterface);
+
+            //保存加密方法到方法表
+            saveMethodPropertis(testInterface);
         }else{
             testInterfaceMapper.save(testInterface);
             testInterfaceDto.setId(testInterface.getId());
             //保存参数字段到参数表
             saveParams(testInterface);
+            //保存加密方法到方法表
+            saveMethodPropertis(testInterface);
         }
         return testInterfaceDto;
     }
 
+    /**
+     * 保存加密方法和参数列表
+     * @param testInterface
+     */
+    private void saveMethodPropertis(TestInterface testInterface) {
+        TestInterface testInterfaceExist = testInterfaceMapper.get(testInterface.getId());
+        if(null != testInterfaceExist){
+            if(StringUtils.isBlank(testInterfaceExist.getClassName()) || StringUtils.isBlank(testInterfaceExist.getMethodName())){
+                return;
+            }
+
+            String className = testInterfaceExist.getClassName();
+            //如：encrypt,getdata
+            String methodName = testInterfaceExist.getMethodName();
+            //如：name,age;name,height;
+            String paramsTypes = testInterfaceExist.getParamsTypes();
+            //如：zhangsan,18;huhu,183
+            String paramsValues = testInterfaceExist.getParamsValues();
+
+            //取方法名
+            String[] methodNameArray = methodName.split(",|，");
+            String[] paramsTypesArray = new String[methodNameArray.length];
+            if(StringUtils.isNotBlank(paramsTypes)){
+                paramsTypesArray = paramsTypes.split(";|；");
+            }
+            String[] paramsValuesArray = new String[methodNameArray.length];
+            if(StringUtils.isNotBlank(paramsValues)){
+                paramsValuesArray = paramsValues.split(";|；");
+            }
+            //保存每一个方法名和对应的参数列表
+            for(int i=0;i<methodNameArray.length;i++){
+                //查询方法名是否存在
+                TestJarMethodDto testJarMethodDto = testJarMethodService.getByMethodNameAndInterfaceId(methodNameArray[i],testInterface.getId());
+                if(testJarMethodDto == null){
+                    testJarMethodDto = new TestJarMethodDto();
+                }
+                //保存方法的属性
+                testJarMethodDto.setClassName(className);
+                testJarMethodDto.setMethodName(methodNameArray[i]);
+                testJarMethodDto.setInterfaceId(testInterface.getId());
+
+                //可能有的方法没有参数，所以方法的个数不代表参数列表的个数，3个方法也许只有2个方法有参数
+                if(i<paramsTypesArray.length){
+                    testJarMethodDto.setParamsTypes(paramsTypesArray[i]);
+                }
+                if(i<paramsValuesArray.length){
+                    testJarMethodDto.setParamsValues(paramsValuesArray[i]);
+                }
+                //保存
+                testJarMethodService.save(testJarMethodDto);
+            }
+        }
+    }
+
+    /**
+     * 保存参数
+     * @param testInterface
+     */
     private void saveParams(TestInterface testInterface){
         TestInterface testInterfaceExist = testInterfaceMapper.get(testInterface.getId());
         if(null != testInterfaceExist){
@@ -139,11 +210,13 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
                             TestParams testParams = new TestParams();
                             testParams.setInterfaceId(testInterface.getId());
                             testParams.setName(newParam);
-                            //普通参数
-                            if(!newParam.equals("-d")){
-                                testParams.setFormatType(2);
+
+                            //特殊格式参数--加密
+                            if(newParam.endsWith("(-e)")){
+                                testParams.setFormatType(ParamFormatTypeEnum.ENCRYPT.getId());
                             } else {
-                                testParams.setFormatType(1);
+                                //普通参数
+                                testParams.setFormatType(ParamFormatTypeEnum.NORMAL.getId());
                             }
                             testParamsMapper.save(testParams);
                         }

@@ -94,6 +94,10 @@ public class TestCase extends BaseEntity {
      */
     private Integer redisAssert;
 
+    /**
+     * 参数是自动亿还是按照字段配的
+     */
+    private Integer paramsType;
 
     /**
      *
@@ -283,5 +287,13 @@ public class TestCase extends BaseEntity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Integer getParamsType() {
+        return paramsType;
+    }
+
+    public void setParamsType(Integer paramsType) {
+        this.paramsType = paramsType;
     }
 }

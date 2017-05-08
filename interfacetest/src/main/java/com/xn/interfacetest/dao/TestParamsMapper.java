@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TestParamsMapper extends BaseMapper<TestParams, Long> {
 
-    List<TestParams> getParamsByInterfaceId(String interfaceId);
+    List<TestParams> getParamsByInterfaceId(Long interfaceId);
 
     List<ParamEntity> listByCaseIdFromRelation(Long caseId);
 
@@ -37,4 +37,6 @@ public interface TestParamsMapper extends BaseMapper<TestParams, Long> {
      * @return
      */
     TestParams getParamsByInterfaceIdAndName(@Param("interfaceId") Long interfaceId, @Param("name") String name,@Param("isDelete") int isDelete);
+
+    List<TestParams> listByInterfaceAndIds(@Param("interfaceId") Long interfaceId, @Param("paramsIds") Long[] paramsIds);
 }
