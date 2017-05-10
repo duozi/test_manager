@@ -122,7 +122,7 @@ public interface TestParamsService {
      * @param interfaceId
      * @return
      */
-    List<TestParamsDto> getParamsByInterfaceId(String interfaceId);
+    List<TestParamsDto> getParamsByInterfaceId(Long interfaceId);
 
     /**
      * 根据用例id查询
@@ -130,4 +130,12 @@ public interface TestParamsService {
      * @return
      */
     List<ParamDto> listByCaseIdFromRelation(Long id);
+
+    /**
+     * 根据接口id和指定参数id查询参数
+     * @param interfaceId
+     * @param paramsIds
+     * @return
+     */
+    List<TestParamsDto> listByInterfaceAndIds(Long interfaceId, Long[] paramsIds);
 }

@@ -68,6 +68,26 @@ public class TestInterfaceDto extends BaseDto {
     private String jarPath;
 
     /**
+     *jar包中加密的类名，全称
+     */
+    private String className;
+
+    /**
+     * jar包中加密的方法名，可以为多个，以逗号隔开
+     */
+    private String methodName;
+
+    /**
+     * 方法的参数类型列表
+     */
+    private String paramsTypes;
+
+    /**
+     * 方法的参数值列表
+     */
+    private String paramsValues;
+
+    /**
      * 
      * 请求方式（1-get,2-post） 
      */
@@ -117,6 +137,11 @@ public class TestInterfaceDto extends BaseDto {
      * contentType
      */
     private String contentType;
+
+    /**
+     * 状态
+     */
+    private int status;
 
     /**
      * 系统
@@ -267,6 +292,46 @@ public class TestInterfaceDto extends BaseDto {
         this.contentType = contentType;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public String getParamsTypes() {
+        return paramsTypes;
+    }
+
+    public void setParamsTypes(String paramsTypes) {
+        this.paramsTypes = paramsTypes;
+    }
+
+    public String getParamsValues() {
+        return paramsValues;
+    }
+
+    public void setParamsValues(String paramsValues) {
+        this.paramsValues = paramsValues;
+    }
+
     @Override
     public String toString() {
         return "TestInterfaceDto{" +
@@ -278,6 +343,10 @@ public class TestInterfaceDto extends BaseDto {
                 ", url='" + url + '\'' +
                 ", codeText='" + codeText + '\'' +
                 ", jarPath='" + jarPath + '\'' +
+                ", className='" + className + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", paramsTypes='" + paramsTypes + '\'' +
+                ", paramsValues='" + paramsValues + '\'' +
                 ", requestType=" + requestType +
                 ", protocolType=" + protocolType +
                 ", params='" + params + '\'' +
@@ -287,6 +356,7 @@ public class TestInterfaceDto extends BaseDto {
                 ", zkOrNot=" + zkOrNot +
                 ", isDelete=" + isDelete +
                 ", contentType='" + contentType + '\'' +
+                ", status=" + status +
                 ", testServiceDto=" + testServiceDto +
                 '}';
     }

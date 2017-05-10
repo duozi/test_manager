@@ -146,4 +146,11 @@ public interface TestSuitService {
     CommonResult excuteSuitList(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId) throws Exception;
 
     List<TestSuitDto> listAll();
+
+    /**
+     * 修改状态
+     * @param id
+     * @param testSuitDtoList
+     */
+    void changeStatus(int status, List<TestSuitDto> testSuitDtoList);
 }

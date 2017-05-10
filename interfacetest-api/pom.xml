@@ -59,6 +59,10 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils-core</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>interfacetest_api</finalName>

@@ -91,13 +91,13 @@ public class PerformanceScenarioDto extends BaseDto {
     private Integer delayTime;
     private String scheduler;
 
-    public void setScheduler(String scheduler) {
-        this.scheduler = scheduler;
-    }
-
     public String getScheduler() {
 
         return scheduler;
+    }
+
+    public void setScheduler(String scheduler) {
+        this.scheduler = scheduler;
     }
 
     public Date getSetStartTime() {

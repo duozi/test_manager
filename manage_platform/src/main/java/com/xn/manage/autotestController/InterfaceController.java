@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.dto.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,18 +28,6 @@ import com.xn.interfacetest.api.TestInterfaceService;
 import com.xn.interfacetest.api.TestRedisConfigService;
 import com.xn.interfacetest.api.TestServiceService;
 import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.RelationCaseDatabaseDto;
-import com.xn.interfacetest.dto.RelationCaseRedisDto;
-import com.xn.interfacetest.dto.TestDatabaseConfigDto;
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.dto.TestRedisConfigDto;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.ContentTypeEnum;
-import com.xn.manage.Enum.HttpTypeEnum;
-import com.xn.manage.Enum.InterfaceTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
-import com.xn.manage.Enum.RequestTypeEnum;
 
 @Controller
 @RequestMapping("/autotest/interface")
@@ -181,6 +171,16 @@ public class InterfaceController {
 	public CommonResult saveInterface(TestInterfaceDto testInterfaceDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testInterfaceDto.getId()) {
+				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(testInterfaceDto.getId());
+				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该接口状态不支持修改！");
+					return result;
+				}
+			}
+
 			if(StringUtils.isBlank(testInterfaceDto.getName()) || "null".equals(testInterfaceDto.getName())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请填写接口名称");
@@ -205,6 +205,13 @@ public class InterfaceController {
 		String id = request.getParameter("id");
 		try{
 			if(StringUtils.isNotBlank(id)){
+				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(Long.parseLong(id));
+				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该接口状态不支持删除！");
+					return result;
+				}
 				testInterfaceService.deleteByPK(Long.parseLong(id));
 			}
 		}catch (Exception e){
@@ -229,6 +236,17 @@ public class InterfaceController {
 				result.setMessage("请先保存接口信息！");
 				return  result;
 			}
+
+			if(null != relationCaseDatabaseDto.getInterfaceId()) {
+				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(relationCaseDatabaseDto.getInterfaceId());
+				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该接口状态不支持修改！");
+					return result;
+				}
+			}
+
 			if(StringUtils.isBlank(relationCaseDatabaseDto.getSqlStr()) || "null".equals(relationCaseDatabaseDto.getSqlStr())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请填写sql语句！");
@@ -256,6 +274,16 @@ public class InterfaceController {
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请先保存接口信息！");
 				return  result;
+			}
+
+			if(null != relationCaseRedisDto.getInterfaceId()) {
+				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(relationCaseRedisDto.getInterfaceId());
+				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该接口状态不支持修改！");
+					return result;
+				}
 			}
 
 			if(StringUtils.isBlank(relationCaseRedisDto.getKey()) || "null".equals(relationCaseRedisDto.getKey())){

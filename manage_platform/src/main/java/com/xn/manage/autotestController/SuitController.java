@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.Enum.CaseTypeEnum;
+import com.xn.interfacetest.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.InterfaceTypeEnum;
 import com.xn.interfacetest.api.RelationSuitCaseService;
 import com.xn.interfacetest.api.TestInterfaceService;
 import com.xn.interfacetest.api.TestServiceService;
@@ -27,9 +30,6 @@ import com.xn.interfacetest.dto.RelationSuitCaseDto;
 import com.xn.interfacetest.dto.TestInterfaceDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.CaseTypeEnum;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.InterfaceTypeEnum;
 
 
 @Controller

@@ -9,7 +9,7 @@ import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.performance.api.PerformanceMonitoredMachineService;
 import com.xn.performance.api.PerformanceStressMachineService;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;

@@ -114,4 +114,12 @@ public interface RelationCaseParamsService {
      * @return 操作影响行数
      */
     int deleteBatch(List<RelationCaseParamsDto> relationCaseParamss);
+
+    /**
+     * 根据用例id和参数名查询参数信息
+     * @param valueName
+     * @param caseId
+     * @return
+     */
+    RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId);
 }

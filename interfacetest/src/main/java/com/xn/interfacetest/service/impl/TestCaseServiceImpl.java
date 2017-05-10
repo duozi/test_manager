@@ -3,49 +3,33 @@
  */
 package com.xn.interfacetest.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import com.xn.interfacetest.api.*;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.TestDatabaseConfig;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xn.common.utils.BeanUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.Enum.HttpTypeEnum;
-import com.xn.interfacetest.Enum.InterfaceTypeEnum;
-import com.xn.interfacetest.Enum.OperationTypeEnum;
-import com.xn.interfacetest.Enum.RedisOperationTypeEnum;
-import com.xn.interfacetest.Enum.RequestTypeEnum;
-import com.xn.interfacetest.command.AssertCommand;
-import com.xn.interfacetest.command.CaseCommand;
-import com.xn.interfacetest.command.Command;
-import com.xn.interfacetest.command.DBAssertCommand;
-import com.xn.interfacetest.command.DBCommand;
-import com.xn.interfacetest.command.HttpCaseCommand;
-import com.xn.interfacetest.command.ParaAssertCommand;
-import com.xn.interfacetest.command.RedisCommand;
-import com.xn.interfacetest.command.TestCaseCommand;
+import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.api.*;
+import com.xn.interfacetest.command.*;
 import com.xn.interfacetest.dao.TestCaseMapper;
+import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.util.CollectionUtils;
 import com.xn.interfacetest.util.DBUtil;
+import com.xn.interfacetest.util.JarUtil;
 import com.xn.interfacetest.util.RedisUtil;
-
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * TestCase Service实现
@@ -57,6 +41,27 @@ import net.sf.json.JSONObject;
 @Transactional
 public class TestCaseServiceImpl implements TestCaseService {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
+    //创建一个线程池
+    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
+
+    private static final String STRING_NAME = "java.lang.String";
+
+    private static final String INTEGER_NAME = "java.lang.Integer";
+
+    private static final String SHORT_NAME = "java.lang.Short";
+
+    private static final String BYTE_NAME = "java.lang.Byte";
+
+    private static final String LONG_NAME = "java.lang.Long";
+
+    private static final String FLOAT_NAME = "java.lang.Float";
+
+    private static final String DOUBLE_NAME = "java.lang.Double";
+
+    private static final String CHARACTER_NAME = "java.lang.Character";
+
+    private static final String BOOLEAN_NAME = "java.lang.Boolean";
+
     /**
      *  Dao
      */
@@ -92,6 +97,12 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Autowired
     private TestDatabaseConfigService testDatabaseConfigService;
+
+    @Autowired
+    private RelationCaseParamsService relationCaseParamsService;
+
+    @Autowired
+    private TestJarMethodService testJarMethodService;
 
     @Override
     @Transactional(readOnly = true)
@@ -205,16 +216,55 @@ public class TestCaseServiceImpl implements TestCaseService {
         return dtoList;
     }
 
+
     @Override
-    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception{
-        //遍历执行测试用例
-        for(TestCaseDto caseDto:testCaseDtoList){
-            ReportResult.totalPlus();
-            logger.info("==========遍历执行测试用例========");
-            this.excuteCase(caseDto,testEnvironmentDto,planId,reportId,suitDto);
-        }
+    public List<TestCaseDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList) {
+        List<TestCase> list = testCaseMapper.listAllBySuitList(testSuitDtoList);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
     }
 
+    @Override
+    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception{
+        ReportResult.getReportResult().setTotal(ReportResult.getReportResult().getTotal() + testCaseDtoList.size());
+        excute( testCaseDtoList,testEnvironmentDto,planId, testReportDto,suitDto);
+
+    }
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
+        logger.info("==========线程池执行测试用例========");
+        //遍历执行测试用例
+        for(int i = 0; i < testCaseDtoList.size(); i++){
+            final int finalI = i;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        logger.info("========执行线程" + finalI);
+                        excuteCase( testCaseDtoList.get(finalI),testEnvironmentDto,planId,testReportDto,suitDto);
+                    } catch (Exception e) {
+                        logger.error("多线程执行用例异常：",e);
+                    }
+
+                }
+            });
+        }
+
+        try {
+            logger.info("sleep-----"+1000);
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            logger.info("InterruptedException-----"+e.getMessage());
+        }
+
+        threadPool.shutdown();
+        while (true) {
+            if (threadPool.isTerminated()) {
+                break;
+            }
+        }
+    }
     @Override
     public void testRun(Long caseId, Long environmentId) throws Exception{
         //判断是dubbo接口还是http接口
@@ -235,6 +285,11 @@ public class TestCaseServiceImpl implements TestCaseService {
         List<TestCase> testCaseList = testCaseMapper.getByCaseIds(ids);
         List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
         return dtoList;
+    }
+
+    @Override
+    public void changeStatusList(int status, List<TestCaseDto> testCaseDtoList) {
+        testCaseMapper.changeStatusList( status, testCaseDtoList);
     }
 
     /**
@@ -267,13 +322,12 @@ public class TestCaseServiceImpl implements TestCaseService {
      * 执行测试用例
      * @param caseDto 用例
      * @param testEnvironmentDto 执行环境
+     * @param testReportDto
      */
-    private void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto,Long planId, Long reportId,TestSuitDto suitDto) throws Exception {
+//    @Transactional(propagation = TransactionDefinition.ISOLATION_READ_UNCOMMITTED)
+    private  void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception {
         logger.info("执行测试用例：" +  caseDto.getId() + "-" + caseDto.getName());
         logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
-
-        //更新结果集中的caseIds和interfaceIds
-        TestReportDto testReportDto = updateReport(caseDto,reportId);
 
         //查询用例所属接口的基本配置
         logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
@@ -286,58 +340,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //http接口
                 this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitDto);
             }
-
-
         }
 
-    }
-
-    private TestReportDto updateReport(TestCaseDto caseDto, Long reportId) {
-        TestReportDto testReportDto = testReportService.get(reportId);
-
-        //将执行的用例id保存到报告表
-        String existCaseIds =  testReportDto.getCaseIds();
-        logger.info("testReportDto中本来存在的caseId有：" + existCaseIds);
-        if(null != testReportDto && StringUtils.isNotBlank(existCaseIds)){
-            String[] caseIdsArray = existCaseIds.split(",|，");
-            List list = Arrays.asList(caseIdsArray);
-            //不存在当前测试集用例id的时候加进去，以免重复
-            if(!list.contains(caseDto.getId())){
-                logger.info("新增caseId：" + caseDto.getId());
-                String casesInReport = existCaseIds + "," + caseDto.getId();
-                testReportDto.setCaseIds(casesInReport);
-                logger.info("==========即将更新的caseIds=" + casesInReport + "========");
-            }
-        } else if(null != testReportDto && StringUtils.isBlank(existCaseIds)){
-            //没有保存过用例则直接保存
-            logger.info("新增caseId：" + caseDto.getId());
-            testReportDto.setCaseIds(caseDto.getId() + "");
-        }
-
-        //查询用例所属接口的基本配置
-        TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
-        String existInterfaceIds =  testReportDto.getInterfaceIds();
-        logger.info("testReportDto中本来存在的interfaceId有：" + existInterfaceIds);
-        if(null != interfaceDto){
-            logger.info("==========接口信息{}:" + interfaceDto.toString());
-            if(null != testReportDto && StringUtils.isNotBlank(existInterfaceIds)) {
-                String[] interfaceIdsArray = existInterfaceIds.split(",|，");
-                List list = Arrays.asList(interfaceIdsArray);
-                //不存在当前测试集用例id的时候加进去，以免重复
-                if(!list.contains(interfaceDto.getId())){
-                    logger.info("新增interfaceId：" + interfaceDto.getId());
-                    String interfacesInReport = existInterfaceIds  + "," + interfaceDto.getId();
-                    testReportDto.setInterfaceIds(interfacesInReport);
-                    logger.info("==========即将更新的interfaceIds=" + interfacesInReport + "========");
-                }
-            } else if(null != testReportDto && StringUtils.isBlank(existInterfaceIds)){
-                //没有保存过用例则直接保存
-                testReportDto.setInterfaceIds(interfaceDto.getId() + "");
-            }
-        }
-
-        testReportService.update(testReportDto);
-        return testReportDto;
     }
 
     /**
@@ -387,7 +391,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         }
         logger.info("url:" + url);
         //请求参数处理9
-        String paramsStr  = formatParams(caseDto,contentType);
+        String paramsStr  = formatParams(caseDto,contentType,interfaceDto);
         logger.info("paramsStr:" + paramsStr);
 
         testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseDto, interfaceDto, planId, reportId, suitDto));
@@ -466,7 +470,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
 
         //数据准备
-        if(testcaseDto.getDataPrepare() > 0) {
+        if(null != testcaseDto.getDataClear() && testcaseDto.getDataClear() > 0) {
             //数据准备---查询数据库准备
             List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.CLEAR.getId());
             if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
@@ -508,7 +512,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
 
         //数据准备
-        if(testcaseDto.getDataPrepare() > 0) {
+        if(null != testcaseDto.getDataPrepare() && testcaseDto.getDataPrepare() > 0) {
             //数据准备---查询数据库准备
             List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.PREPARE.getId());
             if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
@@ -539,23 +543,38 @@ public class TestCaseServiceImpl implements TestCaseService {
       return list;
     }
 
-    private String formatParams(TestCaseDto caseDto, String contentType) {
+    private String formatParams(TestCaseDto caseDto, String contentType,TestInterfaceDto interfaceDto) {
         //参数,如果没有配置自定义类型就说明是配置了参数,如果配置了就取自定义参数
-        String paramsStr = "";
-        if(null == caseDto.getCustomParams() && null == caseDto.getCustomParamsType()){
+        StringBuffer paramsStr = new StringBuffer("");
+        if(null != caseDto.getParamsType() && ParamsGroupTypeEnum.KEY.getId() == caseDto.getParamsType()){
             //获取参数列表
             List<ParamDto> testParamsDtoList = testParamsService.listByCaseIdFromRelation(caseDto.getId());
             if(contentType.equals("application/json")){
-                logger.info("非自定义参数，转json"+testParamsDtoList.size() + "个参数");
+                logger.info("非自定义参数，转json，共"+testParamsDtoList.size() + "个参数");
                 //将参数转化为json字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     JSONObject jsonObject = new JSONObject();
                     Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
+
                     while(iterator.hasNext()){
                         ParamDto param = (ParamDto) iterator.next();
-                        jsonObject.put(param.getName(),param.getValue());
+                        logger.info("参数：" + param.toString());
+                        String value = param.getValue();
+                        //如果是需要加密的参数就调用
+                        if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
+                            //是加密的参数就先进行加密,加密的参数的值是加密的方法名
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        } else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
+                        }
+                        jsonObject.put(param.getName(),value);
                     }
-                    paramsStr = jsonObject.toString();
+                    paramsStr = paramsStr.append(jsonObject.toString());
+                    logger.info("加密之后的所有参数："+paramsStr);
                 }
 
             } else {
@@ -563,19 +582,129 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //将参数转化为字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
                     while(iterator.hasNext()){
                         ParamDto param = (ParamDto) iterator.next();
-                        paramsStr += param.getName() + "=" + param.getValue();
-                        paramsStr += "&";
+                        String value = param.getValue();
+                        //如果是需要加密的参数就调用
+                        if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
+                            //是加密的参数就先进行加密,加密的参数的值是加密的方法名
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        }else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
+                        }
+                        paramsStr.append(param.getName() + "=" + param.getValue());
+                        paramsStr.append("&");
                     }
-                    paramsStr = paramsStr.substring(0,paramsStr.lastIndexOf("&"));
+                    paramsStr = new StringBuffer(paramsStr.substring(0,paramsStr.lastIndexOf("&")));
                 }
             }
-        } else if(null != caseDto.getCustomParams()){
+        } else if(null != caseDto.getParamsType() && ParamsGroupTypeEnum.CUSTOM.getId() == caseDto.getParamsType()){
+            //不处理加密
             logger.info("自定义参数："+caseDto.getCustomParams());
-            paramsStr = caseDto.getCustomParams();
+            paramsStr = new StringBuffer(caseDto.getCustomParams());
         }
-        return paramsStr;
+
+        return paramsStr.toString();
+    }
+
+    public String encrypt(String path, TestInterfaceDto interfaceDto,Long caseId,String methodName,Date date){
+        //查询出接口对应的加密方法和参数列表
+        TestJarMethodDto testJarMethodDto = testJarMethodService.getByMethodNameAndInterfaceId(methodName,interfaceDto.getId());
+        if(null == testJarMethodDto){
+            return null;
+        }
+
+        StringBuffer value = new StringBuffer("");
+        //取出需要用到的类、方法名称、参数关系
+        try {
+            String className = testJarMethodDto.getClassName();
+            String paramsTypes =testJarMethodDto.getParamsTypes();//如：String,int,double
+            String paramsValues =testJarMethodDto.getParamsValues();//如：?{appid},123,4556或者appid=?{appid}&req=123,ddddd
+
+            logger.info("开始加密的方法中初始化参数类型------");
+            //将参数类型加入参数列表
+            String[] typesArray = paramsTypes.split(",|，");
+            Class<?>[] types = new Class[typesArray.length];
+            for(int i=0;i<types.length;i++){
+                //将参数类型替换成完整的参数类型名称
+                String type = getTypeFullName(typesArray[i]);
+                logger.info("加密的方法中初始化参数类型------" +type);
+                types[i] = Class.forName(type);
+            }
+
+            logger.info("开始加密的方法中初始化参数值------，将问号参数值指定具体的值");
+            String[] values = paramsValues.split(",|，");
+            for(String oValue : values){
+                //处理组合参数,例如：appId=?&nonce=56412&reqId=timestamp&timestamp=timestamp
+                logger.info("参数值：" + oValue);
+                //多个参数和值的组合组成一个jar包的参数---appid=?{appid}&req=123
+                if(oValue.contains("&")){
+                    String[] valueItemArray = oValue.split("&");
+                    for(String itemValue : valueItemArray){
+                        logger.info("目前处理的参数和值：" + itemValue);
+                        //处理不指明参数值的参数
+                        if(itemValue.contains("?")){
+                            String[] valueItem = itemValue.split("=");//拿到的值会是valueItem[0] = "appid"，valueItem[1] = "?{appid}"
+                            //对valueItem[1] = "?{appid}"解析出参数名称
+                            String valueName = valueItem[1].substring(2,valueItem[1].length()-1);
+                            //拿到用例中的该参数的值
+                            RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                            if(null != relationCaseParams){
+                                paramsValues = paramsValues.replace(itemValue,valueItem[0] + "=" + relationCaseParams.getValue());
+                            }
+                        }
+
+                    }
+
+                } else if(oValue.contains("?")){
+                    //单个参数，并且取当前用例中的值做jar包的参数----例如：?{appid}
+                    //参数名称
+                    String valueName = oValue.substring(2,oValue.length()-1);;
+
+                    //拿到用例中的该参数的值
+                    RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                    if(null != relationCaseParams){
+                        paramsValues = paramsValues.replace(oValue, relationCaseParams.getValue());
+                    }
+                }
+            }
+
+            //将参数中的时间戳替换为真的时间戳
+            String timestamp = "=" + date.getTime();
+            //替换了不固定值的参数值之后再对参数进行转换
+            Object[] valusObject = paramsValues.replaceAll("=timestamp",timestamp).split(",|，");
+            //调用jar包进行加密
+            value = JarUtil.signature (path, className, methodName,types, valusObject);
+        } catch (Exception e) {
+            logger.error("类型未找到：" + e);
+        }
+        return (null == value?null:value.toString());
+    }
+
+    private static String getTypeFullName(String s) {
+        if(s.equalsIgnoreCase("string")){
+            return STRING_NAME;
+        } else if(s.equalsIgnoreCase("integer") || s.equalsIgnoreCase("int")){
+            return INTEGER_NAME;
+        } else if(s.equalsIgnoreCase("short")){
+            return SHORT_NAME;
+        } else if(s.equalsIgnoreCase("byte")){
+            return BYTE_NAME;
+        } else if(s.equalsIgnoreCase("long")){
+            return LONG_NAME;
+        } else if(s.equalsIgnoreCase("double")){
+            return DOUBLE_NAME;
+        } else if(s.equalsIgnoreCase("float")){
+            return FLOAT_NAME;
+        } else if(s.equalsIgnoreCase("boolean")){
+            return BOOLEAN_NAME;
+        } else {
+            return STRING_NAME;
+        }
     }
 
     /**
@@ -592,4 +721,10 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     }
 
+
+    public static void main(String[] s) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name","value");
+       System.out.println(jsonObject.toString());
+    }
 }

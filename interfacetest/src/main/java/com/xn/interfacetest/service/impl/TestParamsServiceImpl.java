@@ -6,6 +6,8 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,7 @@ import com.xn.interfacetest.util.CollectionUtils;
 @Service
 @Transactional
 public class TestParamsServiceImpl implements TestParamsService {
+    private static final Logger logger = LoggerFactory.getLogger(TestParamsService.class);
 
     /**
      *  Dao
@@ -120,7 +123,7 @@ public class TestParamsServiceImpl implements TestParamsService {
     }
 
     @Override
-    public List<TestParamsDto> getParamsByInterfaceId(String interfaceId) {
+    public List<TestParamsDto> getParamsByInterfaceId(Long interfaceId) {
         List<TestParams> list = testParamsMapper.getParamsByInterfaceId(interfaceId);
         List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
         return dtoList;
@@ -129,7 +132,17 @@ public class TestParamsServiceImpl implements TestParamsService {
     @Override
     public List<ParamDto> listByCaseIdFromRelation(Long caseId) {
         List<ParamEntity> list = testParamsMapper.listByCaseIdFromRelation(caseId);
+//        for(ParamEntity a:list){
+//            logger.info("查出来的值：" + a.getName() + ":" + a.getValue());
+//        }
         List<ParamDto> dtoList = CollectionUtils.transform(list, ParamDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<TestParamsDto> listByInterfaceAndIds(Long interfaceId, Long[] paramsIds) {
+        List<TestParams> list = testParamsMapper.listByInterfaceAndIds(interfaceId, paramsIds);
+        List<TestParamsDto> dtoList = CollectionUtils.transform(list, TestParamsDto.class);
         return dtoList;
     }
 

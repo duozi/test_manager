@@ -9,6 +9,7 @@ import java.util.Map;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestCaseDto;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
+import com.xn.interfacetest.dto.TestReportDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 
 
@@ -142,8 +143,9 @@ public interface TestCaseService {
      * 批量执行测试用例-指定执行环境
      * @param testCaseDtoList
      * @param testEnvironmentDto
+     * @param testReportDto
      */
-    void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, Long reportId, TestSuitDto suitDto) throws Exception;
+    void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception;
 
     /**
      * 测试用例调试--不保存测试结果
@@ -158,4 +160,8 @@ public interface TestCaseService {
      * @return
      */
     List<TestCaseDto> getByCaseIds(String caseIds);
+
+    void changeStatusList(int status, List<TestCaseDto> testCaseDtoList);
+
+    List<TestCaseDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList);
 }

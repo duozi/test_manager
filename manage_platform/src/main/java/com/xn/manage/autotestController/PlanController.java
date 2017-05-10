@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.ExcuteTypeEnum;
+import com.xn.interfacetest.Enum.PlanStatusEnum;
 import com.xn.interfacetest.api.RelationPlanEnvironmentService;
 import com.xn.interfacetest.api.RelationPlanSuitService;
 import com.xn.interfacetest.api.TestEnvironmentService;
@@ -37,9 +40,6 @@ import com.xn.interfacetest.dto.TestPlanDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.dto.TimeConfigDto;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.ExcuteTypeEnum;
-import com.xn.manage.Enum.PlanStatusEnum;
 
 @Controller
 @RequestMapping("/autotest/plan")

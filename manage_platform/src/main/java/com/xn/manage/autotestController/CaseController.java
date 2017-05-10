@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.Enum.ParamsGroupTypeEnum;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,12 +51,7 @@ import com.xn.interfacetest.dto.TestParamsDto;
 import com.xn.interfacetest.dto.TestRedisConfigDto;
 import com.xn.interfacetest.dto.TestSuitDto;
 import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.AppendParamEnum;
-import com.xn.manage.Enum.CaseTypeEnum;
-import com.xn.manage.Enum.CommonResultEnum;
 import com.xn.manage.Enum.ParamTypeEnum;
-import com.xn.manage.Enum.RedisAssertTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
 import com.xn.manage.utils.JsonValidator;
 
 @Controller
@@ -136,6 +132,9 @@ public class CaseController {
 		String caseId = request.getParameter("caseId");
 		map.put("caseId",caseId);
 
+		TestCaseDto testCaseDto = testCaseService.get(caseId);
+		map.put("testCaseDto",testCaseDto);
+
 		String interfaceId = request.getParameter("interfaceId");
 		map.put("interfaceId",interfaceId);
 
@@ -144,16 +143,16 @@ public class CaseController {
 			searchCaseDetail(Long.parseLong(caseId),map);
 		}
 
+		if(null != testCaseDto.getInterfaceId()){
+			//查询参数列表
+			List<TestParamsDto> testParamsDtoList = testParamsService.getParamsByInterfaceId(testCaseDto.getInterfaceId());
+			map.put("testParamsDtoListNew",testParamsDtoList);
+		}
+
 		//redis操作类型
 		List<RedisOperationTypeEnum> redisOperationTypeEnumList=new ArrayList<RedisOperationTypeEnum>();
 		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
 			redisOperationTypeEnumList.add(item);
-		}
-
-		//通过接口id查询接口的参数
-		if(StringUtils.isNotBlank(interfaceId)){
-			List<TestParamsDto> testParamsDtoList = testParamsService.getParamsByInterfaceId(interfaceId);
-			map.put("testParamsDtoList",testParamsDtoList);
 		}
 
 		//数据库配置
@@ -188,14 +187,6 @@ public class CaseController {
 		List<TestSuitDto> testSuitDtoList = testSuitService.getSuitByCaseId(caseId);
 		map.put("testSuitDtoList",testSuitDtoList);
 
-		if(null != testCaseDto.getInterfaceId()){
-			//查询参数列表
-			TestParamsDto testParamsDto = new TestParamsDto();
-			testParamsDto.setInterfaceId(testCaseDto.getInterfaceId());
-			List<TestParamsDto> testParamsDtoList = testParamsService.list(testParamsDto);
-			map.put("testParamsDtoList",testParamsDtoList);
-		}
-
 		//查询所有的数据库配置
 		List<TestDatabaseConfigDto> testDatabaseConfigDtoList = testDatabaseConfigService.list(new TestDatabaseConfigDto());
 		map.put("testDatabaseConfigDtoList",testDatabaseConfigDtoList);
@@ -205,6 +196,22 @@ public class CaseController {
 		relationCaseParamsDto.setCaseId(testCaseDto.getId());
 		List<RelationCaseParamsDto> paramsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
 		map.put("paramsDtoList",paramsDtoList);
+
+		if(null != testCaseDto.getInterfaceId()){
+			//当已经有添加的参数值，就只查询出已有的
+			if(null != paramsDtoList && paramsDtoList.size() > 0){
+				Long[] paramsIds = new Long[paramsDtoList.size()];
+				for(int i=0;i<paramsDtoList.size();i++){
+					paramsIds[i] = paramsDtoList.get(i).getParamsId();
+				}
+				List<TestParamsDto> testParamsDtoList = testParamsService.listByInterfaceAndIds(testCaseDto.getInterfaceId(),paramsIds);
+				map.put("testParamsDtoList",testParamsDtoList);
+			} else {
+				//若没有保存过，就查询出所有未删除的列表供选择
+				List<TestParamsDto> testParamsDtoList = testParamsService.listByInterfaceAndIds(testCaseDto.getInterfaceId(),null);
+				map.put("testParamsDtoList",testParamsDtoList);
+			}
+		}
 
 		//查询参数校验列表
 		ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
@@ -261,7 +268,7 @@ public class CaseController {
 
 		//通过接口id查询接口的参数
 		if(StringUtils.isNotBlank(interfaceId)){
-			List<TestParamsDto> testParamsDtoList = testParamsService.getParamsByInterfaceId(interfaceId);
+			List<TestParamsDto> testParamsDtoList = testParamsService.getParamsByInterfaceId(Long.parseLong(interfaceId));
 			map.put("testParamsDtoList",testParamsDtoList);
 		}
 
@@ -450,6 +457,17 @@ public class CaseController {
 	public CommonResult saveCaseSimple(TestCaseDto testCaseDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testCaseDto.getId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(testCaseDto.getId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
+
 			if(StringUtils.isBlank(testCaseDto.getName()) || "null".equals(testCaseDto.getName())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请填写用例名称");
@@ -479,6 +497,16 @@ public class CaseController {
 	public CommonResult saveCustomParams(TestCaseDto testCaseDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testCaseDto.getId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(testCaseDto.getId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+			testCaseDto.setParamsType(ParamsGroupTypeEnum.CUSTOM.getId());
 			testCaseService.updatePart(testCaseDto);
 			result.setData(testCaseDto);
 		}catch (Exception e){
@@ -518,8 +546,20 @@ public class CaseController {
 	public CommonResult saveParams(RelationCaseParamsDto relationCaseParamsDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != relationCaseParamsDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(relationCaseParamsDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			relationCaseParamsDto = relationCaseParamsService.save(relationCaseParamsDto);
 			result.setData(relationCaseParamsDto);
+
+
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();
 			String message =e.getMessage();
@@ -535,6 +575,16 @@ public class CaseController {
 	public CommonResult saveParamsValidation(ParamsAssertDto paramsAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != paramsAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(paramsAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			paramsAssertDto = paramsAssertService.save(paramsAssertDto);
 			result.setData(paramsAssertDto);
 		}catch (Exception e){
@@ -552,6 +602,16 @@ public class CaseController {
 	public CommonResult saveDBValidation(DataAssertDto dataAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != dataAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(dataAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			dataAssertDto = dataAssertService.save(dataAssertDto);
 			result.setData(dataAssertDto);
 		}catch (Exception e){
@@ -569,6 +629,16 @@ public class CaseController {
 	public CommonResult saveRedisValidation(RedisAssertDto redisAssertDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != redisAssertDto.getCaseId()) {
+				TestCaseDto testCaseDtoNew = testCaseService.get(redisAssertDto.getCaseId());
+				if(null != testCaseDtoNew && testCaseDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该用例状态不支持修改！");
+					return result;
+				}
+			}
+
 			redisAssertDto = redisAssertService.save(redisAssertDto);
 			result.setData(redisAssertDto);
 		}catch (Exception e){

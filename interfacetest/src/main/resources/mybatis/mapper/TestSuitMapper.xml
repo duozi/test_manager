@@ -10,11 +10,12 @@
         <result property="createPerson" column="create_person"/>
         <result property="systemId" column="system_id"/>
         <result property="isDelete" column="is_delete"/>
+        <result property="status" column="status"/>
     </resultMap>
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, create_person,system_id
+        id, name, description, create_person,system_id,status
         ]]>
     </sql>
     
@@ -152,6 +153,14 @@
             </set>
             WHERE
                 id = #{id} 
+    </update>
+
+    <update id="changeStatus">
+        UPDATE
+        test_suit
+        SET status = #{status}
+        WHERE
+        id = #{id}
     </update>
     
     <update id="deleteByPK">

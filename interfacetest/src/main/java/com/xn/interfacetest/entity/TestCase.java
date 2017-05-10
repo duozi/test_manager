@@ -94,6 +94,10 @@ public class TestCase extends BaseEntity {
      */
     private Integer redisAssert;
 
+    /**
+     * 参数是自动亿还是按照字段配的
+     */
+    private Integer paramsType;
 
     /**
      *
@@ -112,6 +116,11 @@ public class TestCase extends BaseEntity {
      * 是否被删除0-否，1-是
      */
     private Integer isDelete;
+
+    /**
+     * 状态
+     */
+    private int status;
 
     private List<DataAssert> dataAsserts = new ArrayList<DataAssert>();
     
@@ -270,5 +279,21 @@ public class TestCase extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Integer getParamsType() {
+        return paramsType;
+    }
+
+    public void setParamsType(Integer paramsType) {
+        this.paramsType = paramsType;
     }
 }

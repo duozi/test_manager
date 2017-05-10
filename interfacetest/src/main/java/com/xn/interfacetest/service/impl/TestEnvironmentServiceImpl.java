@@ -159,4 +159,9 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
         return dtoList;
     }
 
+    @Override
+    public void changeStatus(int status, Long id) {
+        testEnvironmentMapper.changeStatus(status,id);
+    }
+
 }

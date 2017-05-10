@@ -4,15 +4,47 @@
 <head>
     <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
     <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
-
+    <style>
+        .progressBar{
+            width:100%;
+            height:8px;
+            border:1px solid #98AFB7;
+            border-radius:5px;
+            margin-top:10px;
+        }
+        #bar{
+            width:0px;
+            height:8px;
+            border-radius:5px;
+            background:#5EC4EA;
+        }
+    </style>
     <script type="text/javascript">
+        function progressBar(){
+            //初始化js进度条
+            $("#bar").css("width","0px");
+            //进度条的速度，越小越快
+            var speed = 150;
+
+            bar = setInterval(function(){
+                nowWidth = parseInt($("#bar").width());
+                //宽度要不能大于进度条的总宽度
+                if(nowWidth<=200){
+                    barWidth = (nowWidth + 1)+"px";
+                    $("#bar").css("width",barWidth);
+                }else{
+                    //进度条读满后，停止
+                    clearInterval(bar);
+                }
+            },speed);
+        }
+
         $(document).ready(function() {
             $('.selectpicker').selectpicker({
                 'selectedText': 'cat'
             });
 
             initPlanForm();
-
 
             $('#suitList').on('hide.bs.modal', function () {
                 $(".popover").remove();
@@ -268,7 +300,7 @@
                                             <!--<a type="button"  data-toggle="modal" data-target="#suitList"  class="btn btn-warning" onclick="showSuitList(${item.id},${item.status})">查看测试集</a>-->
                                             <!--<a type="button" data-toggle="modal" data-target="#environmentList" class="btn btn-info" onclick="showEnvironmentList(${item.id},${item.status})">查看执行环境</a>-->
                                             <a type="button" data-toggle="modal" data-target="#timeList" class="btn btn-default" onclick="showTime(${item.id},${item.excuteType},${item.status})">查看执行时间</a>
-                                            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#excutePlan" onclick="excutePlan('${item.id}','${item.name}')">执行</a>
+                                            <a type="button"  class="btn btn-primary" data-toggle="modal" data-target="#excutePlan" onclick="excutePlan('${item.id}','${item.name}')">执行</a>
                                             <a href="../report/report_list?planId=${item.id}" type="button" class="btn btn-info">查看测试报告</a>
                                         </#if>
 
@@ -501,13 +533,19 @@
     </div>
 
     <!-- 执行计划弹框 -->
-    <div class="modal fade" id="excutePlan" tabindex="-1" role="dialog" aria-labelledby="excutePlanLabel" aria-hidden="true">
+    <div class="modal fade" id="excutePlan" tabindex="-1" role="dialog" aria-labelledby="excutePlanLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <h3  style="padding-left: 10%;"><i class="fa fa-spinner"></i>   计划正在执行,跳转到查看结果页面？</h3>
-                        <a href="" type="button" class="result-path btn btn-primary" style="margin-left: 40%;">好的</a>
-                        <a type="button" class="result-path btn btn-default" data-dismiss="modal" onclick="reloadPlan();">留在当前页</a>
+                        <h3  style="padding-left: 40%;" class="progressBar-title">计划执行中</h3>
+                        <div class="progressBar">
+                            <div id="bar"></div>
+                        </div>
+                        <div class="jump_report hidden">
+                            <h3  style="padding-left: 10%;">计划执行成功,跳转到查看结果页面？</h3>
+                            <a href="" type="button" class="result-path btn btn-primary" style="margin-left: 40%;">好的</a>
+                            <a type="button" class="result-path btn btn-default" data-dismiss="modal" onclick="reloadPlan();">留在当前页</a>
+                        </div>
                     </div>
                 </div>
             <!-- /.modal-content -->
@@ -779,10 +817,14 @@
 
     //执行计划
     function excutePlan(_id,_name) {
+        progressBar();
         $.post("${basePath}/autotest/plan/excutePlan",{planId:_id},function(data,status){
             if(0!=data.code){
                 alert(data.message);
             } else {
+                $(".jump_report").removeClass("hidden");
+                $("#bar").css("width","100%");
+                $(".progressBar-title").addClass("hidden");
                 var result = data.data;
                 $(".result-path").attr("href","${basePath}/autotest/report/report_detail?id=" + result.id);
             }

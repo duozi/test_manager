@@ -6,6 +6,7 @@ package com.xn.interfacetest.dao;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.RelationCaseParams;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RelationCaseParamsMapper extends BaseMapper<RelationCaseParams, Long> {
 
+    RelationCaseParams getByCaseIdAndParamName(@Param("name") String valueName,@Param("caseId") Long caseId);
 }

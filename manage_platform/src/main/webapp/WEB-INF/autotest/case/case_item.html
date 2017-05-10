@@ -26,6 +26,7 @@
     <div class="panel panel-default">
 
         <form id="case-form" role="form" class="case-form">
+            <#if testCaseDto.status gt 0><span style="background-color: orange; margin-left: 20%;">该用例正在执行中或者已执行过，不可以修改</span></#if>
             <input type="hidden" name="id" value="${testCaseDto.id}">
             <div id="case-form-div">
                 <!--用例类型-->
@@ -56,16 +57,16 @@
                 <!--用例名-->
                 <div class="form-group ">
                     <label>用例名</label>
-                    <input class="form-control col-lg-5" name="name" value="${testCaseDto.name}" placeholder="请输入用例名，必填">
+                    <input class="form-control col-lg-5" name="name" value="${testCaseDto.name}" placeholder="请输入用例名，必填" <#if testCaseDto.status gt 0>readonly</#if>>
                 </div>
                 <div class="form-group ">
                     <label>用例描述</label>
-                    <input class="form-control col-lg-5" name="description" value="${testCaseDto.description}"  placeholder="请输入用例描述">
+                    <input class="form-control col-lg-5" name="description" value="${testCaseDto.description}"  placeholder="请输入用例描述" <#if testCaseDto.status gt 0>readonly</#if>>
                 </div>
                 <!--用例id-->
                 <div class="form-group ">
                     <label>用例编号</label>
-                    <input class="form-control col-lg-5" name="number" value="${testCaseDto.number}"  placeholder="请输入用例编号，必填">
+                    <input class="form-control col-lg-5" name="number" value="${testCaseDto.number}"  placeholder="请输入用例编号，必填" <#if testCaseDto.status gt 0>readonly</#if>>
                     <#if testCaseDto.id??>
                         <!--id不为空表示是修改测试用例，则查询出所属测试集，作为显示-->
                         <a type="button" class="btn btn-success" data-toggle="modal" data-target="#suitList">查看所属测试集</a>
@@ -75,13 +76,13 @@
                 <!--创建人-->
                 <div class="form-group ">
                     <label>创建人</label>
-                    <input class="form-control col-lg-5" name="createPerson" value="${testCaseDto.createPerson}"  placeholder="请输入创建人，必填">
+                    <input class="form-control col-lg-5" name="createPerson" value="${testCaseDto.createPerson}"  placeholder="请输入创建人，必填" <#if testCaseDto.status gt 0>readonly</#if>>
 
                 </div>
                 <!--所属接口-->
                     <div class="form-group ">
                         <label>所属接口</label>
-                        <select class="form-control col-lg-5" name="interfaceId">
+                        <select class="form-control col-lg-5" name="interfaceId" <#if testCaseDto.status gt 0>readonly</#if>>
                             <option value=""  <#if testCaseDto.interfaceId = null>disabled selected</#if>>选择接口名称</option>
                             <#if interfaceList??>
                                 <#list interfaceList as item>
@@ -118,8 +119,10 @@
                 </div>
 
                 <div class="form-group" style="margin-left: 75%;">
-                    <button type="submit"class="btn btn-info">保存
+                    <#if testCaseDto.status == 0 || testCaseDto == null>
+                    <button type="submit"class="btn btn-info" >保存
                     </button>
+                    </#if>
                     <button type="button" onclick="nextStep()" class="btn btn-info">下一步
                     </button>
                 </div>

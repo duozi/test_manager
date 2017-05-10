@@ -82,7 +82,9 @@
                                     <td>${item.systemDto.name}</td>
                                     <td>
                                         <a href="environment_item?id=${item.id}" type="button" class="btn btn-success">查看详情</a>
-                                        <a type="button" class="btn btn-danger" onclick="deleteEnvironment(${item.id})">删除</a>
+                                        <#if item.status == 0>
+                                            <a type="button" class="btn btn-danger" onclick="deleteEnvironment(${item.id})">删除</a>
+                                        </#if>
                                     </td>
                                 </tr>
                             </#list>

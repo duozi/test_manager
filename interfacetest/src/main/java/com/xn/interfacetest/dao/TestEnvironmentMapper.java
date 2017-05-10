@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestEnvironment;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,4 +20,6 @@ import org.springframework.stereotype.Service;
 public interface TestEnvironmentMapper extends BaseMapper<TestEnvironment, Long> {
 
     List<TestEnvironment> getByPlanId(Long planId);
+
+    void changeStatus(@Param("status")int status, @Param("id") Long id);
 }

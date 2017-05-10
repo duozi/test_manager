@@ -21,7 +21,7 @@
 
     <mvc:annotation-driven/>
 
-    <bean id="propertyConfigurer" class="com.xn.interfacetest.util.PropertyUtil">
+    <bean id="propertyConfigurer" class="com.xn.common.utils.PropertyUtil">
         <property name="locations">
             <list>
                 <value>classpath:properties/*.properties</value>
@@ -82,7 +82,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xn.interfacetest.dao"/>

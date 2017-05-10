@@ -24,8 +24,8 @@
 </div>
 <div class="col-lg-14">
     <div class="panel panel-default">
-
         <form id="case-form" role="form" class="case-form">
+            <#if testCaseDto.status gt 0><span style="background-color: orange; margin-left: 20%;">该用例正在执行中或者已执行过，不可以修改</span></#if>
             <input type="hidden" name="id" value="${testCaseDto.id}">
             <div id="case-form-div">
                 <!--单接口用例-->
@@ -38,16 +38,16 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="<#if null == testCaseDto.customParamsType>active</#if>">
+                                <li class="<#if 1 == testCaseDto.paramsType || null == testCaseDto.paramsType>active</#if>">
                                     <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsType>true<#else>false</#if>">参数设置</a>
                                 </li>
-                                <li class="<#if null != testCaseDto.customParamsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
+                                <li class="<#if 2 == testCaseDto.paramsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
                                 </li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade <#if null == testCaseDto.customParamsType>active  in</#if>" id="gui-header">
+                                <div class="tab-pane fade <#if 1 == testCaseDto.paramsType || null == testCaseDto.paramsType>active  in</#if>" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>
@@ -55,7 +55,9 @@
                                                 <th style="width:30%">参数名</th>
                                                 <!--<th style="width:10%">参数类型</th>-->
                                                 <th style="width:40%">参数值</th>
-                                                <th>操作</th>
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
+                                                    <th>操作</th>
+                                                </#if>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -76,25 +78,29 @@
                                                             </select>
                                                         </td>
                                                         <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
+                                                        <#if testCaseDto.status == 0 || testCaseDto == null>
                                                         <td>
                                                             <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
                                                             <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
                                                             </button>
                                                         </td>
+                                                        </#if>
                                                     </tr>
                                                 </#list>
                                             </#if>
                                             <tr>
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
                                                 <td style=" border: none"><span name="addParam"
                                                                                 class="btn btn-info"><i
                                                         class="icon icon-plus-sign"></i>添加参数</span>
                                                 </td>
+                                                </#if>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade <#if null != testCaseDto.customParamsType>active  in</#if>" id="source-header">
+                                <div class="tab-pane fade <#if 2 == testCaseDto.paramsType>active  in</#if>" id="source-header">
                                     <input type="hidden" name="type" value="1">
                                     <div class="form-group ">
                                         <label>参数格式</label>
@@ -113,7 +119,9 @@
                                     <!--<input type="hidden" name="jarPath" value="">-->
                                     <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
                                     <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
+                                    <#if testCaseDto.status == 0 || testCaseDto == null>
                                     <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this)">保存</a>
+                                    </#if>
                                 </div>
                             </div>
                         </div>
@@ -134,8 +142,10 @@
                                         <tr>
                                             <th style="width:45%">校验字段</th>
                                             <th style="width: 45%">期望值</th>
-                                            <th>操作</th>
-                                            <th></th>
+                                            <#if testCaseDto.status == 0 || testCaseDto == null>
+                                                <th>操作</th>
+                                                <th></th>
+                                             </#if>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -148,20 +158,24 @@
                                                             <input type="text" class="form-control" name="assertParam" value="${item.assertParam}">
                                                         </td>
                                                         <td><input type="text" class="form-control" name="rightValue" value="${item.rightValue}"></td>
+                                                        <#if testCaseDto.status == 0 || testCaseDto == null>
                                                         <td>
                                                             <a type="button" name="delete" class="btn btn-info" onclick="saveParamsValidation(this)">保存</a>
                                                         </td>
                                                         <td>
                                                             <button type="button" name="delete" class="btn btn-info" onclick="deleteParamsValidation(this)">删除</button>
                                                         </td>
+                                                        </#if>
                                                     </div>
                                                 </tr>
                                             </#list>
                                         </#if>
                                         <tr>
+                                            <#if testCaseDto.status == 0 || testCaseDto == null>
                                             <td style=" border: none"><span name="addParamAssert"
                                                                             class="btn btn-info"><i
                                                     class="icon icon-plus-sign"></i>添加参数校验字段</span></td>
+                                            </#if>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -312,8 +326,10 @@
                                             <tr>
                                                 <th style="">数据库配置名</th>
                                                 <th style="">sql语句</th>
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
                                                 <th>操作</th>
                                                 <th></th>
+                                                </#if>
                                             </tr>
                                             </thead>
                                             <tbody class="database-body">
@@ -335,17 +351,21 @@
                                                     <td>
                                                         <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
                                                     </td>
+                                                    <#if testCaseDto.status == 0 || testCaseDto == null>
                                                     <td>
                                                         <a type="button" class="btn btn-info" onclick="addDatabaseSql(this)">保存</a>
                                                         <button type="button" name="delete" class="btn btn-info" onclick="deleteDb(this)">删除</button>
                                                     </td>
+                                                    </#if>
                                                 </tr>
                                                 </#list>
                                             </#if>
                                             <tr class="add-tr">
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
                                                 <td style=" border: none"><span id="prepareAddDbOperation"
                                                                                 class="btn btn-info"><i
                                                         class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                                    </#if>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -441,8 +461,10 @@
                                             <tr>
                                                 <th style="">数据库配置名</th>
                                                 <th style="">sql语句</th>
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
                                                 <th>操作</th>
                                                 <th></th>
+                                                    </#if>
                                             </tr>
                                             </thead>
                                             <tbody class="database-body">
@@ -463,17 +485,21 @@
                                                         <td>
                                                             <textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">${dbItem.sqlStr}</textarea>
                                                         </td>
+                                                        <#if testCaseDto.status == 0 || testCaseDto == null>
                                                         <td>
                                                             <a type="button" class="btn btn-info" onclick="addDatabaseSql(this)">保存</a>
                                                             <button type="button" name="delete" class="btn btn-info" onclick="deleteDb(this)">删除</button>
                                                         </td>
+                                                            </#if>
                                                     </tr>
                                                 </#list>
                                             </#if>
                                             <tr class="add-tr">
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
                                                 <td style=" border: none"><span id="clearAddDbOperation"
                                                                                 class="btn btn-info"><i
                                                         class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                                    </#if>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -848,14 +874,14 @@
     var paramAddHtml = '<tr>';
     paramAddHtml += '<td>';
     paramAddHtml += '<input type="hidden" name="id" value=""><select class="form-control" name="paramsId">';
-    paramAddHtml += '<#if testParamsDtoList ??>';
-    paramAddHtml += '<#list testParamsDtoList as item>';
+    paramAddHtml += '<#if testParamsDtoListNew ??>';
+    paramAddHtml += '<#list testParamsDtoListNew as item>';
     paramAddHtml += '<option value="${item.id}">${item.name}</option>';
     paramAddHtml += '</#list>';
     paramAddHtml += '</#if>';
     paramAddHtml += '</select>';
     paramAddHtml += '</td>';
-    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue"></td>';
+    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue" placeholder="加密则填加密方法名称"></td>';
     paramAddHtml += '<td>';
     paramAddHtml += '<a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a><button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除</button>  ';
     paramAddHtml += '</td>';

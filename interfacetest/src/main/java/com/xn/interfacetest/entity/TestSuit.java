@@ -48,6 +48,11 @@ public class TestSuit extends BaseEntity {
      */
     private Integer isDelete;
 
+    /**
+     * 状态
+     */
+    private int status;
+
 	public TestSuit(){
 	    // default constructor
 	}
@@ -102,5 +107,13 @@ public class TestSuit extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

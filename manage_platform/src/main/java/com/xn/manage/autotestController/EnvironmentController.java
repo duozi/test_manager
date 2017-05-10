@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.interfacetest.Enum.PlanStatusEnum;
+import com.xn.interfacetest.dto.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xn.common.base.CommonResult;
+import com.xn.interfacetest.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.DatabaseTypeEnum;
 import com.xn.interfacetest.api.RelationDatabaseEnvironmentService;
 import com.xn.interfacetest.api.RelationServiceEnvironmentService;
 import com.xn.interfacetest.api.TestDatabaseConfigService;
@@ -27,14 +31,6 @@ import com.xn.interfacetest.api.TestEnvironmentService;
 import com.xn.interfacetest.api.TestRedisConfigService;
 import com.xn.interfacetest.api.TestServiceService;
 import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.RelationServiceEnvironmentDto;
-import com.xn.interfacetest.dto.TestDatabaseConfigDto;
-import com.xn.interfacetest.dto.TestEnvironmentDto;
-import com.xn.interfacetest.dto.TestRedisConfigDto;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.manage.Enum.CommonResultEnum;
-import com.xn.manage.Enum.DatabaseTypeEnum;
 
 @Controller
 @RequestMapping("/autotest/environment")
@@ -142,6 +138,16 @@ public class EnvironmentController {
 	public CommonResult saveEnvironment(TestEnvironmentDto testEnvironmentDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(null != testEnvironmentDto.getId()) {
+				TestEnvironmentDto testEnvironmentDtoNew = testEnvironmentService.get(testEnvironmentDto.getId());
+				if(null != testEnvironmentDtoNew && testEnvironmentDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该环境状态不支持修改！");
+					return result;
+				}
+			}
+
 			if(StringUtils.isBlank(testEnvironmentDto.getName()) || "null".equals(testEnvironmentDto.getName())){
 				int code = CommonResultEnum.ERROR.getReturnCode();
 				String message ="name不能为空！";
@@ -177,6 +183,13 @@ public class EnvironmentController {
 		String id = request.getParameter("id");
 		try{
 			if(StringUtils.isNotBlank(id)){
+				TestEnvironmentDto testEnvironmentDtoNew = testEnvironmentService.get(Long.parseLong(id));
+				if(null != testEnvironmentDtoNew && testEnvironmentDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该环境状态不支持修改！");
+					return result;
+				}
 				testEnvironmentService.deleteByPK(Long.parseLong(id));
 			}
 		}catch (Exception e){
@@ -278,6 +291,16 @@ public class EnvironmentController {
 				return  result;
 			}
 
+			if(null != testDatabaseConfigDto.getEnvironmentId()) {
+				TestEnvironmentDto testEnvironmentDtoNew = testEnvironmentService.get(testDatabaseConfigDto.getEnvironmentId());
+				if(null != testEnvironmentDtoNew && testEnvironmentDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该环境状态不支持修改！");
+					return result;
+				}
+			}
+
 			if(null == testDatabaseConfigDto.getIpAddress()){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("ip不能为空！");
@@ -355,6 +378,15 @@ public class EnvironmentController {
 				result.setMessage("请先保存环境基础信息！");
 				return  result;
 			}
+			if(null != testRedisConfigDto.getEnvironmentId()) {
+				TestEnvironmentDto testEnvironmentDtoNew = testEnvironmentService.get(testRedisConfigDto.getEnvironmentId());
+				if(null != testEnvironmentDtoNew && testEnvironmentDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该环境状态不支持修改！");
+					return result;
+				}
+			}
 
 			if(null == testRedisConfigDto.getName()){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
@@ -412,6 +444,16 @@ public class EnvironmentController {
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请先保存环境基础信息！");
 				return  result;
+			}
+
+			if(null != relationServiceEnvironmentDto.getEnvironmentId()) {
+				TestEnvironmentDto testEnvironmentDtoNew = testEnvironmentService.get(relationServiceEnvironmentDto.getEnvironmentId());
+				if(null != testEnvironmentDtoNew && testEnvironmentDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+					//该状态不支持修改
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("该环境状态不支持修改！");
+					return result;
+				}
 			}
 
 			if(null == relationServiceEnvironmentDto.getServiceId()){

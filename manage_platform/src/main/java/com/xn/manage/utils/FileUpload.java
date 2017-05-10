@@ -2,21 +2,20 @@ package com.xn.manage.utils;
 
 import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PropertyUtil;
-import com.xn.manage.Enum.CommonResultEnum;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.common.base.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 /**
  * Created by xn058121 on 2017/3/2.
  */
 public class FileUpload {
     private static final Logger logger = LoggerFactory.getLogger(FileUpload.class);
-
-    private static final String file_separator = "/";
 
     public static CommonResult upload(MultipartFile[] files, String folderName, HttpServletRequest request){
         CommonResult result = new CommonResult();
@@ -33,7 +32,7 @@ public class FileUpload {
                         return result;
                     }
                     // 保存文件
-                    jarPath = PropertyUtil.getProperty("upload_path") + file_separator + folderName + file_separator + file.getOriginalFilename();
+                    jarPath = PropertyUtil.getProperty("upload_path") + folderName + File.separator  + file.getOriginalFilename();
                     FileUtil.saveFile(request, file,jarPath);
                     result.setData(jarPath);
                 }

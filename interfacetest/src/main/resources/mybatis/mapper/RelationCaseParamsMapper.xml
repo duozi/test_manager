@@ -48,6 +48,17 @@
                 id = #{id} 
         ]]>
     </select>
+
+    <select id="getByCaseIdAndParamName" resultMap="RelationCaseParamsMap">
+        SELECT tp.*
+        <![CDATA[
+            FROM
+                relation_case_params tcp
+                left join test_params tp on tp.id = tcp.params_id
+            WHERE
+                case_id = #{caseId} and  tp.name = #{name} and tcp.is_delete = 0
+        ]]>
+    </select>
     
     <select id="list" resultMap="RelationCaseParamsMap">
         SELECT
@@ -55,7 +66,7 @@
         FROM
             relation_case_params
         <where>
-            is_delete = 0
+                is_delete = 0
             <if test="id != null and id != 0">
                 AND id = #{id}
             </if>

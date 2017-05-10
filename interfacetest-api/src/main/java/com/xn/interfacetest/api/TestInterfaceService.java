@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestInterfaceDto;
+import com.xn.interfacetest.dto.TestSuitDto;
 
 /**
  * TestInterface Service
@@ -127,7 +128,7 @@ public interface TestInterfaceService {
      * @param o
      * @return
      */
-    List<TestInterfaceDto> listAllBySuitId(Object o);
+    List<TestInterfaceDto> listAllBySuitId(Long suitId);
 
     /**
      * 查询接口信息（含所属服务和系统）
@@ -162,4 +163,9 @@ public interface TestInterfaceService {
      * @return
      */
     List<TestInterfaceDto> getByInterfaceIds(String interfaceIds);
+
+    void changeStatusList(int status, List<TestInterfaceDto> interfaceIdList);
+
+    //通过测试集查询所有的接口信息
+    List<TestInterfaceDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList);
 }

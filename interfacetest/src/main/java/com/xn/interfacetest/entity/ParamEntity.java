@@ -9,6 +9,10 @@ public class ParamEntity {
 
     private String value;
 
+    private Integer formatType;
+
+    private Long interfaceId;
+
     public String getName() {
         return name;
     }
@@ -23,5 +27,21 @@ public class ParamEntity {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Integer getFormatType() {
+        return formatType;
+    }
+
+    public void setFormatType(Integer formatType) {
+        this.formatType = formatType;
+    }
+
+    public Long getInterfaceId() {
+        return interfaceId;
+    }
+
+    public void setInterfaceId(Long interfaceId) {
+        this.interfaceId = interfaceId;
     }
 }
