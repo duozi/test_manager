@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <!-- fileinput -->
@@ -31,260 +31,175 @@
 
         <div class="panel-body">
             <!-- 计划基本配置 -->
-            <form role="form " class="col-lg-12 edit-form">
-                <div class="col-lg-6 form-div">
+            <form role="form " class="col-lg-12 edit-form" id="interface-form" enctype="multipart/form-data">
+                <#if interfaceDto.status gt 0><span style="background-color: orange; margin-left: 20%;">该接口正在执行中或者已执行过，不可以修改</span></#if>
+                <div class="col-lg-12 form-div-interface">
+                    <div class="form-group">
+                        <label class="control-label">接口ID</label>
+                        <input type="text" class="form-control" id="interfaceId" name="id" placeholder="保存之后自动填充"
+                               value="${interfaceDto.id}" readonly>
+                    </div>
                     <div class="form-group">
                         <label class="control-label">接口名</label>
-                        <input type="text" class="form-control" id="interfaceName" name="interfaceName" placeholder="请填写接口名称">
+                        <input type="text" class="form-control" id="interfaceName" name="name" placeholder="请填写接口名称"
+                               value="${interfaceDto.name}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group">
                         <label class="control-label">接口描述</label>
-                        <input type="text" class="form-control" id="interfaceDesc" name="interfaceDesc" placeholder="描述接口功能或业务特性">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">接口ID</label>
-                        <input type="text" class="form-control" id="interfaceId" name="interfaceId"　placeholder="请填写接口唯一ID">
+                        <input type="text" class="form-control" id="interfaceDesc" name="description"
+                               placeholder="描述接口功能或业务特性" value="${interfaceDto.description}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <!--所属service-->
                     <div class="form-group ">
                         <label>所属service</label>
-                        <select class="form-control col-lg-5">
-                            <option value="" disabled selected>选择服务名称</option>
-                           <#if serviceList ??>
+                        <select class="form-control col-lg-5" name="serviceId">
+                            <option value=""<#if interfaceDto.serviceId=null>disabled selected</#if>>选择服务名称</option>
+                            <#if serviceList ??>
                                 <#list serviceList as item>
-                                    <option value="${item.id}" disabled selected>${item.serviceName}</option>
+                                    <option value="${item.id}"
+                                    <#if interfaceDto.serviceId=item.id>selected</#if>
+                                    >${item.name}</option>
                                 </#list>
-                           </#if>
+                            </#if>
                         </select>
                     </div>
                     <!--接口类型-->
                     <div class="form-group">
                         <label>接口类型</label>
-
-                        <label class="radio-inline" style="margin-top: 0">
-
-                            <input type="radio" name="interfaceType" value="dubbo接口" >dubbo接口
-
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="interfaceType" value="http接口" checked="true">http接口
-                        </label>
+                        <#if interfaceTypeEnumList??>
+                            <#list interfaceTypeEnumList as item>
+                                <label class="radio-inline" style="margin-top: 0">
+                                    <input type="radio" name="type" value="${item.getId()}"
+                                    <#if interfaceDto.type=item.getId() || (interfaceDto.type=null && item.getId()=1)>
+                                        checked="true"
+                                    </#if>
+                                    >${item.getName()}
+                                </label>
+                            </#list>
+                        </#if>
                     </div>
 
                     <!--dubbo接口-->
-                    <div class="form-group dubbo-interface hidden">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1 || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label" for="zkOrNot">调用方式</label>
                         <select class="form-control" id="zkOrNot" name="zkOrNot">
-                            <option values="true">通过zookeeper注册中心</option>
-                            <option values="false">不通过zookeeper注册中心</option>
+                            <option value="1"
+                            <#if interfaceDto.zkOrNot=1>selected</#if>
+                            >通过zookeeper注册中心</option>
+                            <option value="0"
+                            <#if interfaceDto.zkOrNot=0>selected</#if>
+                            >不通过zookeeper注册中心</option>
                         </select>
                     </div>
-                    <div class="form-group dubbo-interface hidden">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">版本</label>
-                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion">
+                        <input type="text" class="form-control" id="dubboVersion" name="dubboVersion" value="${interfaceDto.dubboVersion}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group dubbo-interface hidden">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">分组</label>
-                        <input type="text" class="form-control" id="group" name="group">
+                        <input type="text" class="form-control" id="dubboGroup" name="dubboGroup" value="${interfaceDto.dubboGroup}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group dubbo-interface hidden">
+                    <div class="form-group dubbo-interface  <#if interfaceDto.type=1  || interfaceDto.type=null>hidden</#if>">
                         <label class="control-label">超时</label>
-                        <input type="text" class="form-control" id="timeout" name="timeout">
+                        <input type="text" class="form-control" id="dubboTimeout" name="dubboTimeout" value="${interfaceDto.dubboTimeout}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
+
 
                     <!--http接口-->
-                    <div class="form-group http-interface ">
+                    <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">请求路径</label>
-                        <input type="text" class="form-control" id="urlPath" name="urlPath">
+                        <input type="text" class="form-control" id="urlPath" name="url" value="${interfaceDto.url}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group http-interface ">
+                    <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">参数名</label>
-                        <input type="text" class="form-control" id="param" name="param"  placeholder="多个参数用“，”隔开">
+                        <input type="text" class="form-control" id="params" name="params" placeholder="多个参数用“，”隔开" value="${interfaceDto.params}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <div class="form-group http-interface ">
+                    <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">协议类型</label>
-                        <select class="form-control" id="httpType" name="httpType">
+                        <select class="form-control" id="protocolType" name="protocolType" <#if interfaceDto.status gt 0>readonly</#if>>
                             <#if httpTypeList ??>
                                 <#list httpTypeList as item>
-                                    <option values="${item.getId()}">${item.getName()}
-                                    </option>
+                                    <option value="${item.getId()}"<#if interfaceDto.protocolType = item.getId()>selected</#if>>${item.getName()}</option>
                                 </#list>
                             </#if>
                         </select>
                     </div>
-                    <div class="form-group http-interface ">
+                    <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">请求方式</label>
                         <select class="form-control" id="requestType"
-                                name="requestType">
+                                name="requestType" <#if interfaceDto.status gt 0>readonly</#if>>
                             <#if requestTypeList ??>
                                 <#list requestTypeList as item>
-                                    <option values="${item.getId()}">${item.getName()}
+                                    <option value="${item.getId()}"
+                                    <#if interfaceDto.requestType = item.getId()>selected</#if>
+                                    >${item.getName()}
                                     </option>
                                 </#list>
                             </#if>
                         </select>
                     </div>
-                    <div class="form-group http-interface ">
+                    <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">Content-Type</label>
-                        <select class="form-control" id="contentType"
-                                name="contentType">
-                            <#if contentTypeList ??>
-                                <#list contentTypeList as item>
-                                    <option values="${item.getId()}">${item.getName()}
-                                    </option>
-                                </#list>
-                            </#if>
-                        </select>
+                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
-                    <!--<div class="form-group http-interface ">-->
-                        <!--<label class="control-label">附加参数</label>-->
-                        <!--<select class="form-control" id="appendParam"-->
-                                <!--name="appendParam">-->
-                            <!--<option value="" disabled selected ></option>-->
-                            <!--<#if appendParamList ??>-->
-                                <!--<#list appendParamList as item>-->
-                                    <!--<option values="${item.getId()}">${item.getName()}-->
-                                    <!--</option>-->
-                                <!--</#list>-->
-                            <!--</#if>-->
-                        <!--</select>-->
-                    <!--</div>-->
-                    <!--<div class="form-group  hidden" id="addParamString">-->
-                        <!--<label class="control-label"></label>-->
-                        <!--<textarea class=" form-control  text-control"></textarea>-->
-                    <!--</div>-->
-                    <!--<div class="form-group  hidden" id="addParamFile">-->
-                        <!--<label class="control-label"></label>-->
-                        <!--<input id="appendFile" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">-->
-                    <!--</div>-->
-
-              <!--      &lt;!&ndash;接口数据准备/数据清除&ndash;&gt;
-                    <div class="form-group interface-left" style="width: 70%">
-                        <label class="control-label">接口数据准备/接口数据清除</label>
-                        <div class="choose-sys case-choose" style="display: inline-flex">
-                            <label class="checkbox-inline" style="margin-top: 0">
-                                <input type="checkbox" value="prepare" name="operationType" >接口数据清除
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" value="clear" name="operationType">接口数据清除
-                            </label>
+                    <div class="form-group ">
+                        <label class="control-label">加密jar包</label>
+                        <!--<input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="file">-->
+                        <input id="file-0" type="file" multiple class="file" data-overwrite-initial="false"
+                               data-min-file-count="1" name="file" value="${interfaceDto.jarPath}">
+                        <input type="hidden" name="jarPath" value="${interfaceDto.jarPath}">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包加密类名</label>
+                        <input type="text" class="form-control" name="className" value="${interfaceDto.className}" placeholder="jar包中加密类的全类名，如：com.xiaoniu.base.encode_main">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包加密方法名</label>
+                        <input type="text" class="form-control" name="methodName" value="${interfaceDto.methodName}" placeholder="多个方法以逗号隔开,如：encode,encrypt,getdata">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包参数类型</label>
+                        <input type="text" class="form-control" name="paramsTypes" value="${interfaceDto.paramsTypes}" placeholder="多个参数以逗号隔开,多个方法的参数以分号隔开，顺序遵循参数顺序：String,Integer,Double">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label">jar包参数值</label>
+                        <input type="text" class="form-control" name="paramsValues" value="${interfaceDto.paramsValues}" placeholder="使用?{}引用用例中的值,多个方法的参数以分号隔开，顺序遵循参数顺序： ?{appId},1324,12.5">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label" style="width: 13%;"></label>
+                        <div class="alert alert-warning" style="width: 90%;">
+                            注意：<br>
+                            如果有一个参数值是取当前用例中的参数的值可以用"?{}"来引用值,取当前时间戳用timestamp代替<br>
+                            例如其中一个参数是由多个用例参数组成：<br>
+                            appId=?{appId}&amp;nonce=?{nonce}&amp;reqId=?{nonce}&amp;timestamp=timestamp<br>
                         </div>
-                    </div>-->
-
-  <!--                  &lt;!&ndash;数据清除&ndash;&gt;
-                    <div id="clear-form-div" class="panel panel-default panel-collapse collapse interface-left ">
-                        &lt;!&ndash; 数据清除 &ndash;&gt;
-                        <label class="control-label col-lg-4 top-label">数据清除</label>
-
-
-                    </div>-->
-
-                    <!--操作-->
+                    </div>
                     <div class="form-group btn-div">
-                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare">数据准备</button>
-                        <button type="button" data-toggle="modal" data-target="#dataClear" class="btn btn-warning interface-clear">数据清除</button>
-                        <button type="button" class="btn btn-primary interface-submit">保存</button>
+                        <#if interfaceDto.status == 0 || interfaceDto == null>
+                            <button type="submit" class="btn btn-primary interface-submit">保存</button>
+                        </#if>
+                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare" onclick="showDataPrepare()">数据准备
+                        </button>
+                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-warning interface-clear" onclick="showDataClear()">数据清除
+                        </button>
                         <button type="button" class="btn btn-success interface-reset">重置</button>
-                    </div>
-                </div>
-                <!--参数加密设置-->
-                <div class="col-lg-6 encrypt-panel-div">
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading">
-                            加密配置
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group ">
-                                <label class="control-label">加密jar包</label>
-                                <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
-                            </div>
-                            <div class="form-group ">
-                                <label class="control-label">编写调用代码</label>
-                                <textarea type="text" class="form-control" name="encryptCode" placeholder="调用jar包内加密算法的demo"></textarea>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </form>
         </div>
 
-     <!--   &lt;!&ndash;数据准备&ndash;&gt;
-        <div id="prepare-form-div" class="panel panel-default panel-collapse collapse interface-left">
-            &lt;!&ndash; 数据准备 &ndash;&gt;
-            <label class="control-label col-lg-4 top-label">数据准备</label>
-
-            <div class="panel panel-default operation">
-                <div class="panel-heading">
-                    数据库操作
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table case-table">
-                            <thead>
-                            <tr>
-                                <th style="width: 15%">数据库配置名</th>
-                                <th style="width: 75%">sql语句</th>
-                                <th>操作</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-
-                            <tr>
-                                <td style=" border: none"><span id="prepareAddDbOperation"
-                                                                class="btn btn-info"><i
-                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    &lt;!&ndash; /.table-responsive &ndash;&gt;
-                </div>
-                &lt;!&ndash; /.panel-body &ndash;&gt;
-            </div>
-            <div class="panel panel-default operation">
-                <div class="panel-heading">
-                    redis操作
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table case-table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10%">redis名</th>
-                                <th style="width: 10%">redis操作类型</th>
-                                <th style="width: 30%">key</th>
-                                <th style="width: 30%">value</th>
-                                <th style="width: 10%">time</th>
-                                <th>操作</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td style=" border: none"><span id="prepareAddRedisOperation"
-                                                                class="btn btn-info"><i
-                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    &lt;!&ndash; /.table-responsive &ndash;&gt;
-                </div>
-                &lt;!&ndash; /.panel-body &ndash;&gt;
-            </div>
-        </div>-->
-
-        <!-- 数据准备弹框 -->
-        <div class="modal fade" id="dataPrepare" tabindex="-1" role="dialog" aria-labelledby="dataPrepareLabel" aria-hidden="true">
+        <!-- 数据弹框 -->
+        <div class="modal fade" id="dataPrepare" tabindex="-1" role="dialog" aria-labelledby="dataPrepareLabel"
+             aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <input type="hidden" name="operateType" id="operateType" value="${operateType}">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="dataPrepareLabel">数据准备</h4>
+                        <h4 class="modal-title" id="dataPrepareLabel">
+                            <#if operateType=1>数据准备</#if>
+                            <#if operateType=2>数据清除</#if>
+                        </h4>
                     </div>
                     <div class="modal-body">
                         <div class="panel panel-default operation">
@@ -298,18 +213,22 @@
                                         <tr>
                                             <th style="width: 15%">数据库配置名</th>
                                             <th style="width: 75%">sql语句</th>
+                                            <#if interfaceDto.status == 0 || interfaceDto == null>
                                             <th>操作</th>
                                             <th></th>
+                                            </#if>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="database-body">
+                                            <!--填充数据库数据-->
+                                            <tr class="add-tr">
+                                                <#if interfaceDto.status == 0 || interfaceDto == null>
+                                                <td style=" border: none"><span id="prepareAddDbOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加数据库操作</span></td>
+                                                </#if>
+                                            </tr>
 
-
-                                        <tr>
-                                            <td style=" border: none"><span id="prepareAddDbOperation"
-                                                                            class="btn btn-info"><i
-                                                    class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -331,17 +250,22 @@
                                             <th style="width: 30%">key</th>
                                             <th style="width: 30%">value</th>
                                             <th style="width: 10%">time</th>
-                                            <th>操作</th>
-                                            <th></th>
+                                            <#if interfaceDto.status == 0 || interfaceDto == null>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </#if>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="redis-body">
 
-                                        <tr>
-                                            <td style=" border: none"><span id="prepareAddRedisOperation"
-                                                                            class="btn btn-info"><i
-                                                    class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                        </tr>
+                                            <tr class="add-tr">
+                                                <#if interfaceDto.status == 0 || interfaceDto == null>
+                                                <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                                </#if>
+                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -351,87 +275,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- 数据清除弹框 -->
-        <div class="modal fade" id="dataClear" tabindex="-1" role="dialog" aria-labelledby="dataClearLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="dataClearLabel">数据准备</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="panel panel-default operation">
-                            <div class="panel-heading">
-                                数据库操作
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table case-table">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 15%">数据库配置名</th>
-                                            <th style="width: 75%">sql语句</th>
-                                            <th>操作</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td style=" border: none"><span id="clearAddDbOperation"
-                                                                            class="btn btn-info"><i
-                                                    class="icon icon-plus-sign"></i>添加数据库操作</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.table-responsive -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <div class="panel panel-default operation">
-                            <div class="panel-heading">
-                                redis操作
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table case-table">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 10%">redis名</th>
-                                            <th style="width: 10%">redis操作类型</th>
-                                            <th style="width: 30%">key</th>
-                                            <th style="width: 30%">value</th>
-                                            <th style="width: 10%">time</th>
-                                            <th>操作</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                        <tr>
-                                            <td style=" border: none"><span id="clearAddRedisOperation"
-                                                                            class="btn btn-info"><i
-                                                    class="icon icon-plus-sign"></i>添加redis操作</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.table-responsive -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
+                        <#if interfaceDto.status == 0 || interfaceDto == null>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </#if>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
@@ -444,20 +290,14 @@
 
 <!-- /.container-fluid -->
 <script type="text/javascript">
-    var dbhtml = '<tr>';
-    dbhtml += '<div class="row">';
-    dbhtml += '<td>';
-    dbhtml += '<select class="form-control" >';
-    dbhtml += '<#if dbNameList ??>';
-    dbhtml += '<#list dbNameList as item>';
-    dbhtml += '<option values="${item.getId()}">${item.getName()} </option>';
-    dbhtml += '</#list>';
-    dbhtml += '</#if>';
-    dbhtml += '</select>';
+    var interfaceId = $("#interface-form input[name='id']").val();
+
+    var dbhtml = '<tr><div class="row"><td><input type="hidden" name="id">';
+    dbhtml += '<input type="text" class="form-control" name="databaseName" value="">';
     dbhtml += '</td>';
-    dbhtml += '<td><textarea type="text" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
+    dbhtml += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%"></textarea></td>';
     dbhtml += '<td>';
-    dbhtml += '<button type="submit" class="btn btn-info">保存</button>';
+    dbhtml += '<button type="submit" class="btn btn-info" onclick="addDatabaseSql(this)">保存</button>';
     dbhtml += '</td>';
     dbhtml += '<td>';
     dbhtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
@@ -465,117 +305,159 @@
     dbhtml += '</div>';
     dbhtml += '</tr>';
 
-    var redishtml = '<tr>';
-    redishtml += ' <div class="row">';
-
-    redishtml += '<td>';
-    redishtml += '<select class="form-control"  name="redisName">';
-    redishtml += '<#if redisNameList ??>';
-    redishtml += '<#list redisNameList as item>';
-    redishtml += '<option values="${item.getId()}"> ${item.getName()} </option>';
-    redishtml += '</#list>';
-    redishtml += '</#if>';
-    redishtml += '</select>';
+    var redishtml = '<tr><div class="row"><td><input type="hidden" name="id">';
+    redishtml += ' <input type="text" class="form-control" name="redisName" value="">';
     redishtml += '</td>';
     redishtml += '<td>';
-    redishtml += '<select class="form-control case-select" id="redisType" name="redisType">';
+    redishtml += '<select class="form-control case-select" id="redisOperateType" name="redisOperateType">';
     redishtml += '<#if redisOperationTypeEnumList ??>';
     redishtml += '<#list redisOperationTypeEnumList as item>';
-    redishtml += '<option value="${item.getName()}"> ${item.getName()} </option>';
+    redishtml += '<option value="${item.getId()}"> ${item.getName()} </option>';
     redishtml += '</#list>';
     redishtml += '</#if>';
     redishtml += '</select>';
     redishtml += '</td>';
     redishtml += '<td><input type="text" class="form-control" name="key"></td>';
     redishtml += '<td><input type="text" class="form-control" name="value"></td>';
-    redishtml += '<td><input type="text" class="form-control" name="time"></td>';
-
+    redishtml += '<td><input type="text" class="form-control" name="time" placeholder="ms数"></td>';
     redishtml += '<td>';
-    redishtml += '<button type="submit" class="btn btn-info">保存</button>';
+    redishtml += '<button type="submit" class="btn btn-info"  onclick="addRedisOperation(this)">保存</button>';
     redishtml += '</td>';
-
     redishtml += '<td>';
     redishtml += '<button type="button" name="delete" class="btn btn-info">删除</button>';
     redishtml += '</td>';
     redishtml += '</div>';
     redishtml += '</tr>';
-//
-//    $("input[name='operationType']").click(
-//            function () {
-//                var value = $(this).val();
-//                if (value == "prepare" && $(this).is(':checked')) {
-//                    $("#prepare-form-div").addClass("in");
-//                } else if (value == "prepare" && !$(this).is(':checked')) {
-//                    $("#prepare-form-div").removeClass("in");
-//                }
-//                if (value == "clear" && $(this).is(':checked')) {
-//                    $("#clear-form-div").addClass("in");
-//                } else if (value == "clear" && !$(this).is(':checked')) {
-//                    $("#clear-form-div").removeClass("in");
-//                }
-//            }
-//    );
-    $("#clearAddDbOperation").click(function () {
-        $(this).parent().parent().before(dbhtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
-    });
 
-    $("#clearAddRedisOperation").click(function () {
+    //显示数据准备
+    function showDataPrepare(){
+        $("#dataPrepareLabel").text("数据准备");
+        //把操作类型置为数据准备-1
+        var operateType = 1;
+        $("#operateType").val(operateType);
+        //发送请求查询数据准备的数据
+        getOperateData(operateType);
 
-        $(this).parent().parent().before(redishtml);
-        $("button[name='delete']").click(function () {
-            $(this).parent().parent().remove();
-        })
+    }
 
-        $("select[name='redisType']").change(function () {
-            var content = $(this).val();
-            var value;
-            var time;
-            if (content == 'del') {
-                value = $(this).parent().next().next().children()[0];
-                value.setAttribute("readOnly", "true");
-                value.setAttribute("placeholder", "不需要填");
-                time = $(this).parent().next().next().next().children()[0];
-                time.setAttribute("readOnly", "true");
-                time.setAttribute("placeholder", "不需要填");
-            } else if (content == 'set') {
-                value = $(this).parent().next().next().children()[0];
-                value.removeAttribute("readOnly");
-                value.removeAttribute("placeholder");
-                time = $(this).parent().next().next().next().children()[0];
-                time.removeAttribute("readOnly");
-                time.removeAttribute("placeholder");
-            } else if (content == 'expire') {
-                value = $(this).parent().next().next().children()[0];
-                value.setAttribute("readOnly", "true");
-                value.setAttribute("placeholder", "不需要填");
-                time = $(this).parent().next().next().next().children()[0];
-                time.removeAttribute("readOnly");
-                time.removeAttribute("placeholder");
-            }
+    //显示数据清除
+    function showDataClear(){
+        $("#dataPrepareLabel").text("数据清除");
+        //把操作类型置为数据清除-2
+        var operateType = 2;
+        $("#operateType").val(operateType);
+        //发送请求查询数据准备的数据
+        getOperateData(operateType);
+    }
 
-        })
-    });
+    function getOperateData(operateType){
+        //获取数据库数据
+        getDataBaseDataByOperateType(operateType);
 
+        //获取redis数据
+        getRedisDataByOperateType(operateType);
+    }
+
+    function getDataBaseDataByOperateType(operateType) {
+        if(interfaceId != null && "undefined" != interfaceId && "" != interfaceId){
+            $.post("${basePath}/autotest/interface/getDataBaseDataByOperateType",{"operateType":operateType,"interfaceId":interfaceId},function(data,status){
+                if(0!=data.code){
+                    alert("查询失败");
+                } else {
+                    var dataBaseDataList = data.data;
+                    var htmlStr = "";
+                    for(var i=0;i<dataBaseDataList.length;i++){
+                        var databaseitem = dataBaseDataList[i];
+                        htmlStr += '<tr><div class="row"><td><input type="hidden" name="id"  value="' + databaseitem.id +'">';
+                        htmlStr += '<select class="form-control" name="databaseId">';
+                        htmlStr += '<#if databaseConfigDtoList ??>';
+                        htmlStr += '<#list databaseConfigDtoList as item>';
+                        if( databaseitem.databaseId == ${item.id}){
+                            htmlStr += '<option value="${item.id}" selected>${item.name} </option>';
+                        } else {
+                            htmlStr += '<option value="${item.id}" >${item.name} </option>';
+                        }
+                        htmlStr += '</#list>';
+                        htmlStr += '</#if>';
+                        htmlStr += '</select>';
+                        htmlStr += '</td>';
+                        htmlStr += '<td><textarea type="text" name="sqlStr" class="form-control" style="height: 34px;resize: vertical;width: 100%">' + databaseitem.sqlStr + '</textarea></td>';
+                        htmlStr += '<#if interfaceDto.status == 0 || interfaceDto == null><td>';
+                        htmlStr += '<button type="submit" class="btn btn-info" onclick="addDatabaseSql(this)">保存</button>';
+                        htmlStr += '</td>';
+                        htmlStr += '<td>';
+                        htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDatabaseData(this)">删除</button>';
+                        htmlStr += '</td></#if>';
+                        htmlStr += '</div>';
+                        htmlStr += '</tr>';
+                    }
+                    $(".database-body .add-tr").before(htmlStr)
+                }
+            });
+        }
+
+    }
+
+    function  getRedisDataByOperateType(operateType) {
+        if(interfaceId != null && "undefined" != interfaceId && "" != interfaceId){
+            $.post("${basePath}/autotest/interface/getRedisDataByOperateType",{"operateType":operateType,"interfaceId":interfaceId},function(data,status){
+                if(0!=data.code){
+                    alert("查询失败");
+                } else {
+                    var redisDataList = data.data;
+                    var htmlStr = "";
+                    for(var i=0;i<redisDataList.length;i++){
+                        var redisitem = redisDataList[i];
+                        htmlStr = '<tr><div class="row"><td><input type="hidden" name="id" value="' + redisitem.id +'">';
+                        htmlStr += ' <input type="text" class="form-control" name="redisName" value="'+redisitem.redisName +'">';
+                        htmlStr += '</td>';
+                        htmlStr += '<td>';
+                        htmlStr += '<select class="form-control case-select" id="redisOperateType" name="redisOperateType">';
+                        htmlStr += '<#if redisOperationTypeEnumList ??>';
+                        htmlStr += '<#list redisOperationTypeEnumList as item>';
+                        if( redisitem.redisOperateType == ${item.getId()}){
+                            htmlStr += '<option value="${item.getId()}" selected>${item.getName()} </option>';
+                        } else {
+                            htmlStr += '<option value="${item.getId()}" >${item.getName()} </option>';
+                        }
+                        htmlStr += '</#list>';
+                        htmlStr += '</#if>';
+                        htmlStr += '</select>';
+                        htmlStr += '</td>';
+                        htmlStr += '<td><input type="text" class="form-control" name="key" value="' + redisitem.key +'"></td>';
+                        htmlStr += '<td><input type="text" class="form-control" name="value" value="' + redisitem.value +'"></td>';
+                        htmlStr += '<td><input type="text" class="form-control" name="time" placeholder="ms数" value="' + redisitem.time +'"></td>';
+                        htmlStr += '<#if interfaceDto.status == 0 || interfaceDto == null><td>';
+                        htmlStr += '<button type="submit" class="btn btn-info"  onclick="addRedisOperation(this)">保存</button>';
+                        htmlStr += '</td>';
+                        htmlStr += '<td>';
+                        htmlStr += '<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>';
+                        htmlStr += '</td></#if>';
+                        htmlStr += '</div>';
+                        htmlStr += '</tr>';
+                    }
+                    $(".redis-body .add-tr").before(htmlStr)
+                }
+            });
+        }
+    }
+
+    //点击新增数据库操作click事件
     $("#prepareAddDbOperation").click(function () {
         $(this).parent().parent().before(dbhtml);
-
         $("button[name='delete']").click(function () {
             $(this).parent().parent().remove();
         })
     });
 
+    //点击新增redis操作click事件
     $("#prepareAddRedisOperation").click(function () {
-
         $(this).parent().parent().before(redishtml);
-
         $("button[name='delete']").click(function () {
             $(this).parent().parent().remove();
         })
 
-        $("select[name='redisType']").change(function () {
+        $("select[name='redisOperateType']").change(function () {
             var content = $(this).val();
             var value;
             var time;
@@ -605,45 +487,252 @@
         })
     });
 
-
-
+    //切换接口类型的时候更换表单
     $(".radio-inline").change(
             function () {
-                var value = $("input[name='interfaceType']:checked").val();
-                if (value == "dubbo接口" ) {
+                var value = $("input[name='type']:checked").val();
+                if (value == "2") {
                     $(".dubbo-interface").removeClass("hidden");
                     $(".http-interface").addClass("hidden");
                 }
-                else if (value == "http接口" ) {
+                else if (value == "1") {
                     $(".http-interface").removeClass("hidden");
                     $(".dubbo-interface").addClass("hidden");
                 }
             }
     );
 
-
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
-        var control = $('#' + ctrlName);
-        control.fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-            showUpload: false, //是否显示上传按钮
-            showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+    $("#file-0").fileinput({
+        showUpload: false,
+        uploadAsync: true,
+        uploadUrl: '${basePath}/autotest/interface-jar/uploadJar', // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jar'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFileSize: 200000,
+        maxFilesNum: 1,
+        showPreview: true,
+        previewFileIcon: "",
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'other',
+        initialPreview:"${interfaceDto.jarPath}" , //要显示的文件的路径
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on("filebatchselected", function (event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function (event, data) {
+            if (data.response.code == 0) {
+                $("input[name='jarPath']").val(data.response.data);
+            } else {
+                alert("上传失败:" + data.response.message);
+            }
+
         });
-    }
-
-    $(document).ready(function () {
-
-
     });
 
+    $(document).ready(function () {
+        //初始化接口表单--指定校验规则
+        $("#interface-form").validate({
+            submitHandler: function () {  //验证通过后的执行方法
+                //当前的form通过ajax方式提交（用到jQuery.Form文件）
+                $.ajax({
+                    type: "POST",
+                    dataType: "html",
+                    url: "${basePath}/autotest/interface/saveInterface",
+                    data: $('#interface-form').serialize(),
+                    success: function (result) {
+                        data = eval("(" + result + ")");
+                        if (data.code == 0) {
+                            // $("#addService").modal("hide");
+                            alert("保存成功");
+                            $("#interface-form input[name='id']").val(data.data.id);
+                        } else {
+                            alert("保存失败：" + data.message);
+                        }
+                    },
+                    error: function (result) {
+                        alert(eval("(" + result + ")").message);
+                    }
+                });
+            },
+            focusInvalid: true,   //验证提示时，鼠标光标指向提示的input
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 30
+                },
+                description: {
+                    maxlength: 300
+                },
+                serviceId: {
+                    required: true
+                },
+                type: {
+                    required: true
+                },
+                url: {
+                    required: true,
+                    maxlength: 300
+                }
+            },
+            messages: {
+                name: {
+                    required: "请输入接口名称",
+                    maxlength: "接口名称不超过30个字符"
+                },
+                description: {
+                    maxlength: "接口描述不超过300个字符"
+                },
+                serviceId: {
+                    required: "请选择接口所属服务"
+                },
+                type: {
+                    required: "请选择接口类型"
+                },
+                url: {
+                    required: "请输入接口路径",
+                    maxlength: "接口路径不超过300个字符"
+                }
+            },
+            errorElement: "span",
+            errorClass: "error_info",
+            showErrors: function (errorMap, errorList) {
+                $.each(this.successList, function (index, value) {
+                    return $(value).popover("hide");
+                });
+                return $.each(errorList, function (index, value) {
+                    var _popover;
+                    _popover = $(value.element).popover({
+                        trigger: "manual",
+                        placement: "top",
+                        content: value.message,
+                        template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                    });
+                    _popover.data("bs.popover").options.content = value.message;
+                    return _popover.popover("show");
+                });
+            }
+
+        });
+
+        $("#dataPrepare").on('hide.bs.modal', function () {
+            // 弹框消失的时候还原
+            $('#dataPrepare .redis-body tr').not(".add-tr").remove();
+            $('#dataPrepare .database-body tr').not(".add-tr").remove();
+        })
+    });
+
+    //获取保存所属行的数据库操作信息
+    function getDatabaseData(_this){
+        var databaseId = $(_this).parent().parent().find("select[name='databaseId']").val();
+        var sqlStr = $(_this).parent().parent().find("textarea[name='sqlStr']").val();
+        var id  = $(_this).parent().parent().find("input[name='id']").val();
+        var operateType = $("#operateType").val();
+        //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
+        var type = 1;
+        var params = "databaseId=" + databaseId + "&sqlStr=" + sqlStr + "&id=" + id + "&operateType=" + operateType + "&type=" + type +"&interfaceId=" + interfaceId;
+        return params;
+
+    }
+
+   //发送请求保存数据库操作
+    function addDatabaseSql(_this) {
+        var params = getDatabaseData(_this);
+        $.ajax({
+            type: "POST",
+            url: "${basePath}/autotest/interface/saveDataBaseSql",
+            data: params,
+            success: function (result) {
+                if (result.code == 0) {
+                    data = result.data;
+                    alert("保存成功");
+                    $(_this).parent().parent().find("input[name='id']").val(data.id);
+                } else {
+                    alert("保存失败：" + result.message);
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        });
+
+    }
+
+    //获取保存所属行的redis操作信息
+    function getRedisData(_this){
+        var redisName = $(_this).parent().parent().find("input[name='redisName']").val();
+        var redisOperateType = $(_this).parent().parent().find("select[name='redisOperateType']").val();
+        var id  = $(_this).parent().parent().find("input[name='id']").val();
+        var operateType =  $("#operateType").val();
+        var key = $(_this).parent().parent().find("input[name='key']").val();
+        var value = $(_this).parent().parent().find("input[name='value']").val();
+        var time = $(_this).parent().parent().find("input[name='time']").val();
+        //表示是接口数据处理--与用例层面的数据清除数据准备操作区分
+        var type = 1;
+        var params = "redisName=" + redisName + "&redisOperateType=" + redisOperateType;
+        params += "&id=" + id + "&operateType=" + operateType + "&type=" + type ;
+        params += "&interfaceId=" + interfaceId + "&key=" + key + "&value=" + value + "&time=" + time;
+        return params;
+    }
+
+    //发送请求保存redis操作
+    function addRedisOperation(_this) {
+        var params = getRedisData(_this);
+        $.ajax({
+            type: "POST",
+            url: "${basePath}/autotest/interface/saveRedisOperation",
+            data: params,
+            success: function (result) {
+                if (result.code == 0) {
+                    data = result.data;
+                     alert("保存成功");
+                    $(_this).parent().parent().find("input[name='id']").val(data.id);
+                } else {
+                    alert("保存失败：" + result.message);
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        });
+
+    }
+
+    //删除数据库操作
+    function deleteDatabaseData(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        $.MsgBox.Confirm("删除提示","确定要删除该数据库操作吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post("${basePath}/autotest/interface/deleteDatabaseData",{id:id},function(data,status){
+                    if(0!=data.code){
+                        alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        })
+    }
+
+    //删除redis操作
+    function deleteRedisData(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        $.MsgBox.Confirm("删除提示","确定要删除该redis操作吗",function(){
+            if(null != id && "undefined"!= id ){
+                $.post("${basePath}/autotest/interface/deleteRedisData",{id:id},function(data,status){
+                    if(0!=data.code){
+                        alert(data.message);
+                    } else {
+                        $(_this).parent().parent().remove();
+                    }
+                });
+            }
+            $(_this).parent().parent().remove();
+        });
+    }
 </script>
-
-
 </body>
 
 </html>

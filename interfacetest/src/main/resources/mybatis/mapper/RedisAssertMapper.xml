@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.RedisAssertMapper">
+
+    <resultMap id="RedisAssertMap" type="com.xn.interfacetest.entity.RedisAssert">
+        <result property="id" column="id"/>
+        <result property="redisName" column="redis_name"/>
+        <result property="keyStr" column="key_str"/>
+        <result property="assertParam" column="assert_param"/>
+        <result property="rightValue" column="right_value"/>
+        <result property="caseId" column="case_id"/>
+        <result property="type" column="redis_assert_type"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, redis_name, key_str, assert_param, right_value, case_id,redis_assert_type
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
+            </if>
+           <if test="@Ognl@isNotEmpty(keyStr)">
+                AND key_str = #{keyStr}
+            </if>
+           <if test="@Ognl@isNotEmpty(assertParam)">
+                AND assert_param = #{assertParam}
+            </if>
+           <if test="@Ognl@isNotEmpty(rightValue)">
+                AND right_value = #{rightValue}
+            </if>
+           <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{redis_assert_type}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="RedisAssertMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                redis_assert
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+
+    <select id="getByCaseId" resultMap="RedisAssertMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+          redis_assert
+        where
+          is_delete=0 and case_id=#{caseId}
+    </select>
+    
+    <select id="list" resultMap="RedisAssertMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            redis_assert
+        <where>
+            is_delete=0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisName)">
+                AND redis_name = #{redisName}
+            </if>
+            <if test="@Ognl@isNotEmpty(keyStr)">
+                AND key_str = #{keyStr}
+            </if>
+            <if test="@Ognl@isNotEmpty(assertParam)">
+                AND assert_param = #{assertParam}
+            </if>
+            <if test="@Ognl@isNotEmpty(rightValue)">
+                AND right_value = #{rightValue}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(type)">
+                AND type = #{redis_assert_type}
+            </if>
+        </where>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                redis_assert
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO redis_assert (
+                id,
+                redis_name,
+                key_str,
+                assert_param,
+                right_value,
+                case_id,
+                redis_assert_type
+            ) VALUES (
+                #{id},
+                #{redisName},
+                #{keyStr},
+                #{assertParam},
+                #{rightValue},
+                #{caseId},
+                #{type}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO redis_assert (
+                id,
+                redis_name,
+                key_str,
+                assert_param,
+                right_value,
+                case_id,
+                redis_assert_type
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.redisName},#{item.keyStr},#{item.assertParam},#{item.rightValue},#{item.caseId},#{item.type})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                redis_assert
+            <set>
+                <if test="redisName != null">
+                	<![CDATA[ redis_name = #{redisName} ]]>,
+                </if>
+                <if test="keyStr != null">
+                	<![CDATA[ key_str = #{keyStr} ]]>,
+                </if>
+                <if test="assertParam != null">
+                	<![CDATA[ assert_param = #{assertParam} ]]>,
+                </if>
+                <if test="rightValue != null">
+                	<![CDATA[ right_value = #{rightValue} ]]>,
+                </if>
+                <if test="type != null">
+                    <![CDATA[ redis_assert_type = #{type} ]]>,
+                </if>
+                <if test="caseId != null">
+                	<![CDATA[ case_id = #{caseId} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <update id="deleteByPK">
+        <![CDATA[
+            update
+            redis_assert
+            SET is_delete = 1
+            WHERE
+                id = #{id} 
+        ]]>
+    </update>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                redis_assert
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                redis_assert
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

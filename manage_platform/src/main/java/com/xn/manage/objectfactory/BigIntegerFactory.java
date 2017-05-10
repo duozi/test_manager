@@ -1,7 +1,11 @@
 package com.xn.manage.objectfactory;
 
 
+<<<<<<< HEAD
 import com.xn.manage.utils.StringUtil;
+=======
+import com.xn.common.utils.StringUtil;
+>>>>>>> hezhouxiyiyangde
 
 import java.lang.reflect.Type;
 import java.math.BigInteger;

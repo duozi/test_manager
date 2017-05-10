@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.performance.dao.PerformancePlanMapper">
+
+    <resultMap id="PerformancePlanMap" type="com.xn.performance.entity.PerformancePlan">
+        <result property="id" column="id"/>
+        <result property="planName" column="plan_name"/>
+        <result property="remark" column="remark"/>
+        <result property="company" column="company"/>
+        <result property="department" column="department"/>
+        <result property="psystem" column="psystem"/>
+        <result property="scriptId" column="script_id"/>
+        <result property="scriptName" column="script_name"/>
+        <result property="scenarioId" column="scenario_id"/>
+        <result property="scenarioName" column="scenario_name"/>
+        <result property="planStatus" column="plan_status"/>
+        <result property="createPerson" column="create_person"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+
+
+    <resultMap id="PerformancePlanShowMap" type="com.xn.performance.entity.PerformancePlanShow">
+        <result property="id" column="id"/>
+        <result property="planId" column="plan_id"/>
+        <result property="planName" column="plan_name"/>
+        <result property="remark" column="remark"/>
+        <result property="company" column="company"/>
+        <result property="department" column="department"/>
+        <result property="psystem" column="psystem"/>
+        <result property="scriptId" column="script_id"/>
+        <result property="scriptName" column="script_name"/>
+        <result property="scenarioId" column="scenario_id"/>
+        <result property="scenarioName" column="scenario_name"/>
+        <result property="planStatus" column="plan_status"/>
+        <result property="createPerson" column="create_person"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="stressMachineId" column="stress_machine_id"/>
+        <result property="stressMachineName" column="stress_machine_name"/>
+        <result property="actualStartTime" column="actual_start_time"/>
+        <result property="executeStatus" column="execute_status"/>
+        <result property="resultPath" column="result_path"/>
+        <result property="executePerson" column="execute_person"/>
+
+    </resultMap>
+
+    <sql id="columns">
+        <![CDATA[
+
+
+
+
+
+        id, plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete
+
+
+
+
+
+        ]]>
+    </sql>
+
+    <sql id="show_columns">
+        <![CDATA[
+        id, plan_id,plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete,stress_machine_id,stress_machine_name,actual_start_time,execute_status,result_path,execute_person
+
+        ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+            <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(planName)">
+                AND plan_name = #{planName}
+            </if>
+            <if test="@Ognl@isNotEmpty(remark)">
+                AND remark = #{remark}
+            </if>
+            <if test="@Ognl@isNotEmpty(company)">
+                AND company = #{company}
+            </if>
+            <if test="@Ognl@isNotEmpty(department)">
+                AND department = #{department}
+            </if>
+            <if test="@Ognl@isNotEmpty(psystem)">
+                AND psystem = #{psystem}
+            </if>
+            <if test="@Ognl@isNotEmpty(scriptId)">
+                AND script_id = #{scriptId}
+            </if>
+            <if test="@Ognl@isNotEmpty(scriptName)">
+                AND script_name = #{scriptName}
+            </if>
+            <if test="@Ognl@isNotEmpty(scenarioId)">
+                AND scenario_id = #{scenarioId}
+            </if>
+            <if test="@Ognl@isNotEmpty(scenarioName)">
+                AND scenario_name = #{scenarioName}
+            </if>
+            <if test="@Ognl@isNotEmpty(planStatus)">
+                AND plan_status = #{planStatus}
+            </if>
+            <if test="@Ognl@isNotEmpty(createPerson)">
+                AND create_person = #{createPerson}
+            </if>
+            <if test="@Ognl@isNotEmpty(isDelete)">
+                AND is_delete = #{isDelete}
+            </if>
+        </where>
+    </sql>
+
+    <select id="show" resultMap="PerformancePlanShowMap">
+        SELECT
+        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
+        P.scenario_name,P.plan_status,
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.result_path,R.execute_person
+        FROM
+        performance_plan P LEFT JOIN performance_result R ON P.id=R.plan_id
+            <where>
+                <if test="@Ognl@isNotEmpty(id)">
+                    AND R.id = #{id}
+                </if>
+                <if test="@Ognl@isNotEmpty(planName)">
+                    AND R.plan_name = #{planName}
+                </if>
+                <if test="@Ognl@isNotEmpty(company)">
+                    AND P.company = #{company}
+                </if>
+                <if test="@Ognl@isNotEmpty(department)">
+                    AND P.department = #{department}
+                </if>
+                <if test="@Ognl@isNotEmpty(psystem)">
+                    AND P.psystem = #{psystem}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(scriptName)">
+                    AND P.script_name = #{scriptName}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(planStatus)">
+                    AND P.plan_status = #{planStatus}
+                </if>
+
+                <if test="@Ognl@isNotEmpty(isDelete)">
+                    AND P.is_delete = #{isDelete}
+                </if>
+            </where>
+
+
+    </select>
+
+    <select id="get" resultMap="PerformancePlanMap">
+        SELECT
+        <include refid="columns"/>
+        <![CDATA[
+            FROM
+                performance_plan
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+
+    <select id="list" resultMap="PerformancePlanMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        performance_plan
+        <include refid="where"/>
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                performance_plan
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+
+
+
+
+
+            INSERT INTO performance_plan (
+                id,
+                plan_name,
+                remark,
+                company,
+                department,
+                psystem,
+                script_id,
+                script_name,
+                scenario_id,
+                scenario_name,
+                plan_status,
+                create_person,
+                is_delete
+            ) VALUES (
+                #{id},
+                #{planName},
+                #{remark},
+                #{company},
+                #{department},
+                #{psystem},
+                #{scriptId},
+                #{scriptName},
+                #{scenarioId},
+                #{scenarioName},
+                #{planStatus},
+                #{createPerson},
+                #{isDelete}
+            )
+
+
+
+
+
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO performance_plan (
+                id,
+                plan_name,
+                remark,
+                company,
+                department,
+                psystem,
+                script_id,
+                script_name,
+                scenario_id,
+                scenario_name,
+                plan_status,
+                create_person,
+                is_delete
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.planName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.scriptId},#{item.scriptName},#{item.scenarioId},#{item.scenarioName},#{item.planStatus},#{item.createPerson}),#{item.isDelete}
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE
+        performance_plan
+        <set>
+            <if test="planName != null">
+                <![CDATA[ plan_name = #{planName} ]]>,
+            </if>
+            <if test="remark != null">
+                <![CDATA[ remark = #{remark} ]]>,
+            </if>
+            <if test="company != null">
+                <![CDATA[ company = #{company} ]]>,
+            </if>
+            <if test="department != null">
+                <![CDATA[ department = #{department} ]]>,
+            </if>
+            <if test="psystem != null">
+                <![CDATA[ psystem = #{psystem} ]]>,
+            </if>
+            <if test="scriptId != null">
+                <![CDATA[ script_id = #{scriptId} ]]>,
+            </if>
+            <if test="scriptName != null">
+                <![CDATA[ script_name = #{scriptName} ]]>,
+            </if>
+            <if test="scenarioId != null">
+                <![CDATA[ scenario_id = #{scenarioId} ]]>,
+            </if>
+            <if test="scenarioName != null">
+                <![CDATA[ scenario_name= #{scenarioName} ]]>,
+            </if>
+            <if test="planStatus != null">
+                <![CDATA[ plan_status = #{planStatus} ]]>,
+            </if>
+            <if test="createPerson != null">
+                <![CDATA[ create_person = #{createPerson} ]]>,
+            </if>
+            <if test="isDelete != null">
+                <![CDATA[ is_delete = #{isDelete} ]]>
+            </if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_plan
+            WHERE
+                id = #{id} 
+
+        ]]>
+    </delete>
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_plan
+        ]]>
+        <include refid="where"/>
+    </delete>
+
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                performance_plan
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

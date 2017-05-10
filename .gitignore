@@ -1,22 +1,34 @@
-<<<<<<< HEAD
+﻿# kdiff3 ignore
+*.orig
 
-autotest/target/*
+# maven ignore
+target/
 
-.project
+# eclipse ignore
 .settings/
-autotest/.classpath
-autotest/.project
-autotest/.settings/
-manage_platform/.classpath
-manage_platform/.project
-mock/.classpath
-mock/.gitignore
-mock/.project
-mock/.settings/
+.project
+.classpath
 
-=======
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
 
-autotest/target/*
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
 
+# system ignore
+.DS_Store
+Thumbs.db
 
->>>>>>> c53a5f45b9574537220966b15bceb4de70d1c6ea
+# package ignore (optional)
+# *.jar
+# *.war
+# *.zip
+# *.tar
+# *.tar.gz

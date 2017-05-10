@@ -1,6 +1,10 @@
 package com.xn.manage.objectfactory;
 
+<<<<<<< HEAD
 import org.apache.commons.lang.StringUtils;
+=======
+import static org.apache.commons.lang.StringUtils.isBlank;
+>>>>>>> hezhouxiyiyangde
 
 import java.lang.reflect.Type;
 import java.sql.Time;
@@ -11,7 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+<<<<<<< HEAD
 import static org.apache.commons.lang.StringUtils.isBlank;
+=======
+import org.apache.commons.lang.StringUtils;
+>>>>>>> hezhouxiyiyangde
 
 
 public class DateTimeFactory extends InstanceFactory {

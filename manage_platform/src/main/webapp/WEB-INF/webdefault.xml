@@ -18,8 +18,8 @@
   <!--                                                                       -->
   <!-- ===================================================================== -->
 <web-app
-  xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   metadata-complete="true"
   version="2.5"
@@ -151,7 +151,7 @@
       <param-value>max-age=3600,public</param-value>
     </init-param>
     -->
-    <load-on-startup>0</load-on-startup>
+    <machineLoad-on-startup>0</machineLoad-on-startup>
   </servlet>
 
   <servlet-mapping>
@@ -268,7 +268,7 @@
         <param-value>?</param-value>
     </init-param>
     -->
-    <load-on-startup>0</load-on-startup>
+    <machineLoad-on-startup>0</machineLoad-on-startup>
   </servlet>
 
   <servlet-mapping>
@@ -292,7 +292,7 @@
   <!-- This servlet is normally mapped to /servlet/*                        -->
   <!-- This servlet support the following initParams:                       -->
   <!--                                                                      -->
-  <!--  nonContextServlets       If false, the invoker can only load        -->
+  <!--  nonContextServlets       If false, the invoker can only machineLoad        -->
   <!--                           servlets from the contexts classloader.    -->
   <!--                           This is false by default and setting this  -->
   <!--                           to true may have security implications.    -->
@@ -305,7 +305,7 @@
   <!--
     Uncomment for dynamic invocation <servlet> <servlet-name>invoker</servlet-name> <servlet-class>org.eclipse.jetty.servlet.Invoker</servlet-class> <init-param> <param-name>verbose</param-name>
     <param-value>false</param-value> </init-param> <init-param> <param-name>nonContextServlets</param-name> <param-value>false</param-value> </init-param> <init-param>
-    <param-name>dynamicParam</param-name> <param-value>anyValue</param-value> </init-param> <load-on-startup>0</load-on-startup> </servlet> <servlet-mapping> <servlet-name>invoker</servlet-name>
+    <param-name>dynamicParam</param-name> <param-value>anyValue</param-value> </init-param> <machineLoad-on-startup>0</machineLoad-on-startup> </servlet> <servlet-mapping> <servlet-name>invoker</servlet-name>
     <url-pattern>/servlet/*</url-pattern> </servlet-mapping>
   -->
 

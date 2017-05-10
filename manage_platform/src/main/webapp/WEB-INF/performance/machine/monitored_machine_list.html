@@ -3,16 +3,101 @@
 
 <head>
     <!-- DataTables JavaScript -->
-    <script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="../../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../../../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="../../../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../../../vendor/jquery/messages_zh.js"></script>
+    <script src="../../../js/common.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
                 responsive: true
             });
+
+            $("#monitoredMachine-save").validate();
         });
+        $.validator.setDefaults({
+            submitHandler: function () {
+//                alert("提交事件!");
+                var params = $("form[name='monitoredMachine-save']").serializeArray();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/performance/machine/monitored_machine_list/save",
+                    data: params,
+                    success: function (data) {
+
+                        if (data.code == 1) {
+                            alert(data.message);
+
+                        }
+                        $("#addMonitoredMachine").modal("hide");
+                        reload();
+                    },
+                    error: function (data) {
+                        alert("异常：" + data.message);
+                    }
+                });
+            }
+        });
+        function deleteMonitoredMachine(id) {
+            $.post("/performance/machine/monitored_machine_list/delete", {id: id}, function (data) {
+                if (data.code == 0) {
+                    reload();
+                } else if (data.code == 1) {
+                    alert("删除失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+            });
+        }
+
+        function searchMonitoredMachine() {
+            var company = $("select[name='search-company']").val();
+            var department = $("select[name='search-department']").val();
+            var psystem = $("select[name='search-psystem']").val();
+            var monitoredMachineName = $("select[name='search-monitoredMachineName']").val();
+            window.location.href = "monitored_machine_list?company=" + company + "&department=" + department + "&psystem=" + psystem + "&monitoredMachineName=" + monitoredMachineName
+        }
+
+        function test() {
+            var ip = $("input[name='ip']").val();
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+            var port = $("input[name='port']").val();
+            if (ip == '') {
+                alert("ip为空");
+            } else if (username == '') {
+                alert("用户名为空");
+            } else if (password == '') {
+                alert('密码为空');
+            } else if(port == ''){
+                alert('端口号为空');
+            }else{
+                $.post("/performance/machine/monitored_machine_list/test", {
+                    ip: ip,
+                    username: username,
+                    password: password,
+                    port:port
+                }, function (data) {
+                    if (data.code == 0) {
+                        $("input[name=islink]").val(data.data);
+                        if (data.data == true) {
+                            alert("连接成功");
+                        } else if (data.data == false) {
+                            alert("连接失败");
+                        }
+                    } else if (data.code == 1) {
+                        alert(data.message);
+                    } else if (data.code == 2) {
+                        alert("测试失败");
+                    }
+                });
+            }
+
+        }
     </script>
 </head>
 
@@ -32,18 +117,50 @@
             <div class="panel-body">
                 <form role="form">
                     <div class="col-lg-12">
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-company">
+                                <option value="" disabled selected>选择公司</option>
+                                <#if companyList ??>
+                                    <#list companyList as item>
+                                        <option>${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-department">
+                                <option value="" disabled selected>选择部门</option>
+                                <#if departmentList ??>
+                                    <#list departmentList as item>
+                                        <option>${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <select class="form-control" name="search-psystem">
+                                <option value="" disabled selected>选择系统</option>
+                                <#if psystemList ??>
+                                    <#list psystemList as item>
+                                        <option>${item.name}</option>
+                                    </#list>
+                                </#if>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-2">
-                            <select class="form-control">
+                            <select class="form-control" name="search-monitoredMachineName">
                                 <option value="" disabled selected>选择监控机名称</option>
-                                <option value="1">监控机1</option>
-                                <option value="2">监控机2</option>
-                                <option value="3">监控机3</option>
+                                <#if monitored_machine_list_all ??>
+                                    <#list monitored_machine_list_all as item>
+                                        <option>${item.monitoredMachineName}</option>
+                                    </#list>
+                                </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-3">
-                            <button type="submit" class="btn btn-default">查询</button>
-                            <button type="reset" class="btn btn-default">导出</button>
-                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPressMachine"><i
+                            <a class="btn btn-default" onclick="searchMonitoredMachine()">查询</a>
+                            <a class="btn btn-outline btn-success" data-toggle="modal"
+                               data-target="#addMonitoredMachine"><i
                                     class=" fa-plus-circle fa"></i>新增监控机</a>
                         </div>
                     </div>
@@ -55,24 +172,39 @@
                             <th>监控机ID</th>
                             <th>监控机名称</th>
                             <th>监控机描述</th>
+                            <th>公司</th>
+                            <th>部门</th>
+                            <th>系统</th>
                             <th>ip</th>
                             <th>用户名</th>
+                            <th>端口号</th>
                             <th>创建人</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>注册接口监控机</td>
-                            <td>在测试环境</td>
-                            <td>10.10.10.1</td>
-                            <td>user</td>
-                            <td>小明</td>
-                            <td>
-                                <a type="button" name="deletePressMachine" class="btn btn-danger">删除</a>
-                            </td>
-                        </tr>
+                        <#if monitored_machine_list ??>
+                            <#list monitored_machine_list as item>
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.monitoredMachineName}</td>
+                                    <td>${item.remark}</td>
+                                    <td>${item.company}</td>
+                                    <td>${item.department}</td>
+                                    <td>${item.psystem}</td>
+                                    <td>${item.ip}</td>
+                                    <td>${item.username}</td>
+                                    <td>${item.port}</td>
+                                    <td>${item.createPerson}</td>
+                                    <td>
+                                        <a type="button" name="deleteMonitoredMachine" class="btn btn-danger"
+                                           onclick="deleteMonitoredMachine(${item.id})">删除</a>
+                                    </td>
+                                </tr>
+                                <!--<option value="${item.id}">${item.name}</option>-->
+                            </#list>
+                        </#if>
+
                         </tbody>
                     </table>
                 </div>
@@ -85,51 +217,94 @@
     <!-- /.col-lg-12 -->
 
 
-
-    <!-- 新增压力机 -->
-    <div class="modal fade" id="addPressMachine" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel" aria-hidden="true">
+    <!-- 新增监控机 -->
+    <div class="modal fade" id="addMonitoredMachine" tabindex="-1" role="dialog" aria-labelledby="addPlanLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addPress">新增监控机</h4>
                 </div>
-                <div class="modal-body modal-add">
-                    <form role="form " class="col-lg-12 edit-form">
+                <div class="modal-body modal-add" style="min-height: 600px">
+                    <form role="form " class="col-lg-12 edit-form" id="monitoredMachine-save"
+                          name="monitoredMachine-save">
                         <div class="col-lg-14 form-div">
                             <div class="form-group">
-                                <label class="control-label">创建人</label>
-                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                                <label class="control-label">创建人<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名"
+                                       required>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">监控机名称</label>
-                                <input type="text" class="form-control" id="planName" name="monitoredMachineName"
-                                       placeholder="请输入压力机名称">
+                                <label class="control-label ">监控机名称<span style="color:red">*</span></label>
+                                <input type="text" class="form-control " name="monitoredMachineName"
+                                       placeholder="请输入监控机名称" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">监控机描述</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入监控机描述">
+                                <input type="text" class="form-control" name="remark" placeholder="请输入监控机描述">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">ip</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入ip地址">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">用户名</label>
-                                <input type="text" class="form-control" name="createDescription" placeholder="请输入用户名">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">密码</label>
-                                <input type="password" class="form-control" name="createDescription" placeholder="请输入密码">
-                            </div>
+                                <label class="control-label">公司<span style="color:red">*</span></label>
+                                <select class="form-control " name="company">
+                                    <#if companyList ??>
+                                        <#list companyList as item>
+                                            <option>${item.name}</option>
+                                        </#list>
+                                    </#if>
 
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门<span style="color:red">*</span></label>
+                                <select class="form-control " name="department">
+                                    <#if departmentList ??>
+                                        <#list departmentList as item>
+                                            <option>${item.name}</option>
+                                        </#list>
+                                    </#if>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">系统<span style="color:red">*</span></label>
+                                <select class="form-control " name="psystem">
+                                    <#if psystemList ??>
+                                        <#list psystemList as item>
+                                            <option>${item.name}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">ip<span style="color:red">*</span></label>
+                                <input type="text" class="form-control " name="ip"
+                                       placeholder="请输入ip地址" required>
+                                <input type="text" class="hidden" name="islink">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">用户名<span style="color:red">*</span></label>
+                                <input type="text" class="form-control " name="username"
+                                       placeholder="请输入用户名" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">密码<span style="color:red">*</span></label>
+                                <input type="password" class="form-control " name="password"
+                                       placeholder="请输入密码" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">端口号<span style="color:red">*</span></label>
+                                <input type="text" class="form-control " name="port"
+                                       placeholder="请输入端口号" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a type="button" class="btn btn-primary" id="test" onclick="test()">测试</a>
+                            <input class="btn btn-primary submit" type="submit" name="saveButton" value="保存">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">测试</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
             <!-- /.modal-content -->

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.RelationAssertResultMapper">
+
+    <resultMap id="RelationAssertResultMap" type="com.xn.interfacetest.entity.RelationAssertResult">
+        <result property="id" column="id"/>
+        <result property="reportId" column="report_id"/>
+        <result property="caseId" column="case_id"/>
+        <result property="interfaceId" column="interface_id"/>
+        <result property="paramsAssertId" column="params_assert_id"/>
+        <result property="dbAssertId" column="db_assert_id"/>
+        <result property="redisAssertId" column="redis_assert_id"/>
+        <result property="assertKey" column="assert_key"/>
+        <result property="expectValue" column="expect_value"/>
+        <result property="exactValue" column="exact_value"/>
+        <result property="result" column="result"/>
+    </resultMap>
+
+    <sql id="columns">
+        <![CDATA[
+        id, report_id, params_assert_id, db_assert_id, redis_assert_id,case_id,interface_id, result,assert_key,expect_value,exact_value
+        ]]>
+    </sql>
+
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(reportId)">
+                AND report_id = #{reportId}
+            </if>
+            <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(caseId)">
+                AND case_id = #{caseId}
+            </if>
+           <if test="@Ognl@isNotEmpty(paramsAssertId)">
+                AND params_assert_id = #{paramsAssertId}
+            </if>
+           <if test="@Ognl@isNotEmpty(dbAssertId)">
+                AND db_assert_id = #{dbAssertId}
+            </if>
+           <if test="@Ognl@isNotEmpty(redisAssertId)">
+                AND redis_assert_id = #{redisAssertId}
+            </if>
+            <if test="@Ognl@isNotEmpty(exactValue)">
+                AND exact_value = #{exactValue}
+            </if>
+            <if test="@Ognl@isNotEmpty(assertKey)">
+                AND assert_key = #{assertKey}
+            </if>
+            <if test="@Ognl@isNotEmpty(expectValue)">
+                AND expect_value = #{expectValue}
+            </if>
+           <if test="@Ognl@isNotEmpty(result)">
+                AND result = #{result}
+            </if>
+        </where>
+    </sql>
+
+    <select id="get" resultMap="RelationAssertResultMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                relation_assert_result
+            WHERE
+                id = #{id}
+        ]]>
+    </select>
+
+    <select id="list" resultMap="RelationAssertResultMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            relation_assert_result
+        <include refid="where"/>
+    </select>
+
+    <select id="getByReportIdAndCaseId" resultMap="RelationAssertResultMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        relation_assert_result
+        where report_id=#{reportId} and case_id=#{caseId}
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                relation_assert_result
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO relation_assert_result (
+                id,
+                report_id,
+                case_id,
+                interface_id,
+                params_assert_id,
+                db_assert_id,
+                redis_assert_id,
+                result,
+                assert_key,
+                expect_value,
+                exact_value
+            ) VALUES (
+                #{id},
+                #{reportId},
+                 #{caseId},
+                 #{interfaceId},
+                #{paramsAssertId},
+                #{dbAssertId},
+                #{redisAssertId},
+                #{result},
+                #{assertKey},
+                #{expectValue},
+                #{exactValue}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO relation_assert_result (
+                id,
+                report_id,
+                 case_id,
+                interface_id,
+                params_assert_id,
+                db_assert_id,
+                redis_assert_id,
+                result,
+                assert_key,
+                expect_value,
+                exact_value
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.reportId},
+            #{item.caseId},
+            #{item.interfaceId},
+            #{item.paramsAssertId},#{item.dbAssertId},#{item.redisAssertId},#{item.result},
+            #{item.assertKey},
+            #{item.expectValue},
+            #{item.exactValue})
+        </foreach>
+    </insert>
+
+    <update id="update">
+        	UPDATE
+                relation_assert_result
+            <set>
+                <if test="reportId != null">
+                	<![CDATA[ report_id = #{reportId} ]]>,
+                </if>
+                <if test="caseId != null">
+                    <![CDATA[ case_id = #{caseId} ]]>,
+                </if>
+                <if test="interfaceId != null">
+                    <![CDATA[ interface_id = #{interfaceId} ]]>,
+                </if>
+                <if test="paramsAssertId != null">
+                	<![CDATA[ params_assert_id = #{paramsAssertId} ]]>,
+                </if>
+                <if test="dbAssertId != null">
+                	<![CDATA[ db_assert_id = #{dbAssertId} ]]>,
+                </if>
+                <if test="redisAssertId != null">
+                	<![CDATA[ redis_assert_id = #{redisAssertId} ]]>,
+                </if>
+                <if test="exactValue != null">
+                    <![CDATA[ exact_value = #{exactValue} ]]>,
+                </if>
+                <if test="assertKey != null">
+                    <![CDATA[ assert_key = #{assertKey} ]]>,
+                </if>
+                <if test="expectValue != null">
+                    <![CDATA[ expect_value = #{expectValue} ]]>,
+                </if>
+                <if test="result != null">
+                	<![CDATA[ result = #{result} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id}
+    </update>
+
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                relation_assert_result
+            WHERE
+                id = #{id}
+        ]]>
+    </delete>
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                relation_assert_result
+        ]]>
+        <include refid="where"/>
+    </delete>
+
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                relation_assert_result
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

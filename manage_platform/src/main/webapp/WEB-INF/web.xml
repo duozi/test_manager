@@ -2,11 +2,16 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
-    <display-name>autotest</display-name>
+    <display-name>manage_platform</display-name>
     <context-param>
         <param-name>log4jRefreshInterval</param-name>
         <param-value>60000</param-value>
     </context-param>
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:logback.xml</param-value>
+    </context-param>
+
     <!--<context-param>-->
     <!--<param-name>logbackConfigLocation</param-name>-->
     <!--<param-value>-->
@@ -57,6 +62,7 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
+
     <!-- springmvc -->
     <servlet>
         <servlet-name>springServlet</servlet-name>
@@ -65,13 +71,14 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:/spring/spring-mvc.xml</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <machineLoad-on-startup>1</machineLoad-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>springServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
     <welcome-file-list>
-        <welcome-file>autotest/plan/plan_list</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

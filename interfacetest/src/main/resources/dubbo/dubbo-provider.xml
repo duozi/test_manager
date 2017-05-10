@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+    <dubbo:application name="interfacetest" />
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper_ip}" />
+
+    <dubbo:protocol name="dubbo" port="${dubbo_port}"  />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.xn.interfacetest.api.DataAssertService" ref="dataAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.ParamsAssertService" ref="paramsAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RedisAssertService" ref="redisAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationCaseRedisService" ref="relationCaseRedisService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationCaseDatabaseService" ref="relationCaseDatabaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationDatabaseEnvironmentService" ref="relationDatabaseEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationInterfaceResultService" ref="relationInterfaceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationPlanEnvironmentService" ref="relationPlanEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationPlanResultService" ref="relationPlanResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationPlanSuitService" ref="relationPlanSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationPlanTimeService" ref="relationPlanTimeService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationServiceEnvironmentService" ref="relationServiceEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationSuitCaseService" ref="relationSuitCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestCaseService" ref="testCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestDatabaseConfigService" ref="testDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestServiceService" ref="testServiceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestSystemService" ref="testSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestEnvironmentService" ref="testEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestRedisConfigService" ref="testRedisConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestInterfaceService" ref="testInterfaceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestSuitService" ref="testSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestParamsService" ref="testParamsService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestPlanService" ref="testPlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TimeConfigService" ref="timeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationCaseParamsService" ref="relationCaseParamsService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.RelationAssertResultService" ref="relationAssertResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+    <dubbo:service interface="com.xn.interfacetest.api.TestReportService" ref="testReportService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}"/>
+
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="testSystemService" class="com.xn.interfacetest.service.impl.TestSystemServiceImpl"/>
+    <bean id="testServiceService" class="com.xn.interfacetest.service.impl.TestServiceServiceImpl"/>
+    <bean id="testCaseService" class="com.xn.interfacetest.service.impl.TestCaseServiceImpl"/>
+    <bean id="testEnvironmentService" class="com.xn.interfacetest.service.impl.TestEnvironmentServiceImpl"/>
+    <bean id="testRedisConfigService" class="com.xn.interfacetest.service.impl.TestRedisConfigServiceImpl"/>
+    <bean id="testDatabaseConfigService" class="com.xn.interfacetest.service.impl.TestDatabaseConfigServiceImpl"/>
+    <bean id="testInterfaceService" class="com.xn.interfacetest.service.impl.TestInterfaceServiceImpl"/>
+    <bean id="testSuitService" class="com.xn.interfacetest.service.impl.TestSuitServiceImpl"/>
+    <bean id="testPlanService" class="com.xn.interfacetest.service.impl.TestPlanServiceImpl"/>
+    <bean id="testParamsService" class="com.xn.interfacetest.service.impl.TestParamsServiceImpl"/>
+    <bean id="relationDatabaseEnvironmentService" class="com.xn.interfacetest.service.impl.RelationDatabaseEnvironmentServiceImpl"/>
+    <bean id="relationCaseDatabaseService" class="com.xn.interfacetest.service.impl.RelationCaseDatabaseServiceImpl"/>
+    <bean id="relationServiceEnvironmentService" class="com.xn.interfacetest.service.impl.RelationServiceEnvironmentServiceImpl"/>
+    <bean id="relationCaseRedisService" class="com.xn.interfacetest.service.impl.RelationCaseRedisServiceImpl"/>
+    <bean id="relationSuitCaseService" class="com.xn.interfacetest.service.impl.RelationSuitCaseServiceImpl"/>
+    <bean id="relationCaseParamsService" class="com.xn.interfacetest.service.impl.RelationCaseParamsServiceImpl"/>
+    <bean id="redisAssertService" class="com.xn.interfacetest.service.impl.RedisAssertServiceImpl"/>
+    <bean id="paramsAssertService" class="com.xn.interfacetest.service.impl.ParamsAssertServiceImpl"/>
+    <bean id="dataAssertService" class="com.xn.interfacetest.service.impl.DataAssertServiceImpl"/>
+    <bean id="relationInterfaceResultService" class="com.xn.interfacetest.service.impl.RelationInterfaceResultServiceImpl"/>
+    <bean id="relationPlanEnvironmentService" class="com.xn.interfacetest.service.impl.RelationPlanEnvironmentServiceImpl"/>
+    <bean id="relationPlanResultService" class="com.xn.interfacetest.service.impl.RelationPlanResultServiceImpl"/>
+    <bean id="relationPlanSuitService" class="com.xn.interfacetest.service.impl.RelationPlanSuitServiceImpl"/>
+    <bean id="relationPlanTimeService" class="com.xn.interfacetest.service.impl.RelationPlanTimeServiceImpl"/>
+    <bean id="timeConfigService" class="com.xn.interfacetest.service.impl.TimeConfigServiceImpl"/>
+    <bean id="relationAssertResultService" class="com.xn.interfacetest.service.impl.RelationAssertResultServiceImpl"/>
+    <bean id="testReportService" class="com.xn.interfacetest.service.impl.TestReportServiceImpl"/>
+
+
+    <!--调用的服务-->
+    <dubbo:reference id="companyService" interface="com.xn.common.api.CompanyService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="departmentService" interface="com.xn.common.api.DepartmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
+    <dubbo:monitor protocol="registry" />
+
+</beans>

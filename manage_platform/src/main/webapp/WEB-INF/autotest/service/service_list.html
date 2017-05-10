@@ -38,40 +38,43 @@
                  </div>
 
                  <div class="panel-body">
-                       <form role="form">
+                       <form role="form" accept-charset="utf-8">
                            <div class="col-lg-12">
                                <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择公司名称</option>
+                                   <select class="form-control" name="selectCompanyId">
+                                       <option value=""  <#if companyId = null>disabled selected</#if> >选择公司名称</option>
                                        <#if companyList ??>
                                            <#list companyList as company>
-                                               <option value="${company.id}">${company.name}</option>
+                                               <option value="${company.id}" <#if companyId = company.id>selected</#if>>${company.name}</option>
                                            </#list>
                                        </#if>
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择部门名称</option>
+                                   <select class="form-control" name="selectDepartmentId">
+                                       <option value=""  <#if departmentId = null>disabled selected</#if> >选择部门名称</option>
                                        <#if departmentList ??>
                                            <#list departmentList as item>
-                                               <option value="${item.id}">${item.name}</option>
+                                               <option value="${item.id}" <#if departmentId = item.id>selected</#if>>${item.name}</option>
                                            </#list>
                                        </#if>
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择系统</option>
+                                   <select class="form-control" name="selectSystemId">
+                                       <option value=""  <#if systemId = null>disabled selected</#if> >选择系统名称</option>
                                        <#if systemList ??>
                                            <#list systemList as item>
-                                               <option value="${item.id}">${item.name}</option>
+                                               <option value="${item.id}" <#if systemId = item.id>selected</#if>>${item.name}</option>
                                            </#list>
                                        </#if>
                                    </select>
                                </div>
+                               <div class="form-group col-lg-2">
+                                   <input placeholder="请输入服务名称" class="form-control" name="serviceName" <#if name??>value="${name}"</#if>/>
+                               </div>
                                <div class="form-group col-lg-3">
-                                   <button type="submit" class="btn btn-default">查询</button>
+                                   <a type="button" class="btn btn-default" onclick="reloadService()">查询</a>
                                   <!-- <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增系统</a>-->
                                    <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addService"><i class=" fa-plus-circle fa"></i>新增服务</a>
                                </div>
@@ -82,55 +85,32 @@
                                <thead>
                                <tr>
                                    <th>服务ID</th>
+                                   <th>服务</th>
                                    <th>服务描述</th>
                                    <th>公司</th>
                                    <th>部门</th>
                                    <th>系统</th>
-                                   <th>服务</th>
-                                   <th>创建人</th>
                                    <th>操作</th>
                                </tr>
                                </thead>
                                <tbody>
-                               <tr>
-                                   <td>1</td>
-                                   <td>华征征信服务</td>
-                                   <td>牛鼎丰</td>
-                                   <td>大数据</td>
-                                   <td>征信公司</td>
-                                   <td>huaZhengCreditService</td>
-                                   <td>高珊</td>
-                                   <td>
-                                       <a type="button"  class="btn btn-success" onclick="editService()">编辑</a>
-                                       <a type="button" class="btn btn-danger">删除</a>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td>1</td>
-                                   <td>风控规则引擎服务</td>
-                                   <td>牛鼎丰</td>
-                                   <td>大数据</td>
-                                   <td>风控规则</td>
-                                   <td>ruleengineService</td>
-                                   <td>高珊</td>
-                                   <td>
-                                       <a type="button"  class="btn btn-success" onclick="editService()">编辑</a>
-                                       <a type="button"  class="btn btn-danger">删除</a>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td>1</td>
-                                   <td>风控规则牛贷后台</td>
-                                   <td>牛鼎丰</td>
-                                   <td>平台开发部</td>
-                                   <td>牛贷</td>
-                                   <td>riskWeb</td>
-                                   <td>高珊</td>
-                                   <td>
-                                       <a type="button"  class="btn btn-success" onclick="editService()">编辑</a>
-                                       <a type="button"  class="btn btn-danger">删除</a>
-                                   </td>
-                               </tr>
+                               <#if serviceList ??>
+                                   <#list serviceList as item>
+                                       <tr>
+                                           <td>${item.id}</td>
+                                           <td>${item.name}</td>
+                                           <td>${item.description}</td>
+                                           <td>${item.systemDto.companyDto.name}</td>
+                                           <td>${item.systemDto.departmentDto.name}</td>
+                                           <td>${item.systemDto.name}</td>
+                                           <td>
+                                               <a type="button"  class="btn btn-success" onclick="editService(${item.id},'${item.name}','${item.description}',${item.systemId},'${item.jarPath}')">编辑</a>
+                                               <a type="button" class="btn btn-danger" onclick="deleteService(${item.id})">删除</a>
+                                           </td>
+                                       </tr>
+
+                                   </#list>
+                               </#if>
                                </tbody>
                            </table>
                        </div>
@@ -150,11 +130,12 @@
                         <h4 class="modal-title" id="addServiceLabel">新增服务</h4>
                     </div>
                     <div class="modal-body modal-add-service">
-                        <form role="form " class="col-lg-12 edit-form add-service-form">
+                        <form role="form " class="col-lg-12 edit-form add-service-form" id="add-service"  enctype="multipart/form-data">
                             <div class="col-lg-14 form-div">
+                                <input type="hidden" value="" name="id">
                                 <div class="form-group">
                                     <label class="control-label" >选择系统</label>
-                                    <select class="form-control" >
+                                    <select class="form-control" name="systemId">
                                         <#if systemList ??>
                                             <#list systemList as item>
                                                 <option value="${item.id}">${item.name}</option>
@@ -164,73 +145,211 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" >服务名称</label>
-                                    <input type="text" class="form-control" id="planName" name="planName" placeholder="请输入服务名称">
+                                    <input type="text" class="form-control" id="serviceName" name="name" placeholder="请输入服务名称">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" >服务描述</label>
+                                    <input type="text" class="form-control" id="serviceDescription" name="description" placeholder="请输入服务描述">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" >测试dubbo需上传jar包：</label>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" >上传jar包</label>
-                                    <input id="file-0" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">
+                                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
+                                    <input type="hidden" name="jarPath" value="" placeholder="仅dubbo接口测试需要上传jar包">
+                                    <em class="jar-notice"></em>
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" >保存</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
         </div>
-      <!--  &lt;!&ndash; 新增项目弹框 &ndash;&gt;
-        <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="addProjectLabel">新增系统</h4>
-                    </div>
-                    <div class="modal-body modal-add-project">
-                        <form role="form " class="col-lg-12 edit-form add-project-form">
-                                <div class="form-group">
-                                    <label class="control-label" >系统名称</label>
-                                    <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入系统名称">
-                                </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-                &lt;!&ndash; /.modal-content &ndash;&gt;
-            </div>
-            &lt;!&ndash; /.modal-dialog &ndash;&gt;
-        </div>-->
-
      </div>
    <!-- /.container-fluid -->
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        initServiceForm();
+    });
+
     //初始化fileinput控件（第一次初始化）
-    function initFileInput(ctrlName, uploadUrl) {
-        var control = $('#' + ctrlName);
-        control.fileinput({
+    $("#file-1").fileinput({
+        showUpload: false,
+        uploadAsync:true,
+//        dropZoneEnabled:false,
+        uploadUrl: '${basePath}/autotest/service/uploadJar', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['jar'],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        maxFileSize: 200000,
+        maxFilesNum: 1,
+        showPreview:true,
+        previewFileIcon: "",
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+            if(data.response.code==0){
+                $("input[name='jarPath']").val(data.response.data);
+            } else {
+                alert("上传失败，请查看日志！");
+            }
+
+        });
+    });
+
+    function editService(id,name,description,systemId,jarPath){
+        $("#addService").modal();
+        $("#addServiceLabel").text("修改服务");
+        $("#addService select[name='systemId']").val(systemId);
+        $("#addService input[name='name']").val(name);
+        $("#addService input[name='description']").val(description);
+        $("#addService input[name='id']").val(id);
+        $("#addService input[name='jarPath']").val(jarPath);
+        //再次初始化文件信息
+        $("#file-1").fileinput('refresh', {
+            initialPreviewAsData: true,
+            initialPreviewFileType: 'other',
+            initialPreview: jarPath,
+            showUpload: false,
+            uploadAsync:true,
+//        dropZoneEnabled:false,
+            uploadUrl: '${basePath}/autotest/service/uploadJar', // you must set a valid URL here else you will get an error
+            allowedFileExtensions : ['jar'],
+            overwriteInitial: false,
             language: 'zh', //设置语言
-            uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
-            showUpload: false, //是否显示上传按钮
-            showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            maxFileSize: 200000,
+            maxFilesNum: 1,
+            showPreview:true,
+            previewFileIcon: "",
+            slugCallback: function(filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        }).on("filebatchselected", function(event, files) {
+            $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+                if(data.response.code==0){
+                    $("input[name='jarPath']").val(data.response.data);
+                } else {
+                    alert("上传失败，请查看日志！");
+                }
+
+            });
         });
     }
 
-    function editService(){
-        $("#addService").modal();
+
+    function reloadService(){
+        var companyId = $("select[name='selectCompanyId']").val();
+        var departmentId = $("select[name='selectDepartmentId']").val();
+        var systemId = $("select[name='selectSystemId']").val();
+        var serviceName = $("input[name='serviceName']").val();
+        var url = "${basePath}/autotest/service/service_list?"
+        url += "selectCompanyId=" + companyId;
+        url += "&selectDepartmentId=" + departmentId ;
+        url +="&selectSystemId=" + systemId;
+        url += "&serviceName=" + serviceName;
+        window.location.href = url;
     }
 
+    function initServiceForm() {
+        var validator =$("#add-service").validate({
+            submitHandler : function() {  //验证通过后的执行方法
+                //当前的form通过ajax方式提交（用到jQuery.Form文件）
+                $.ajax({
+                    type: "POST",
+                    dataType: "html",
+                    url: "${basePath}/autotest/service/saveService",
+                    data: $('#add-service').serialize(),
+                    success: function(result) {
+                        data = eval("(" + result + ")");
+                        if (data.code == 0) {
+                            // $("#addService").modal("hide");
+                            alert("保存成功");
+                            reload();
+                        } else {
+                            alert("保存失败："+data.message);
+                        }
+                    },
+                    error: function(result) {
+                        alert(eval("(" + result + ")").message);
+                    }
+                });
+            },
+            focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+            rules: {
+                name: {
+                    required:true,
+                    maxlength:30
+                },
+                description:  {
+                    maxlength:300
+                },
+                systemId: {
+                    required: true
+                }
+            },
+            messages: {
+                name: {
+                    required:"请输入接口名称",
+                    maxlength:"接口名称不超过30个字符"
+                },
+                description:  {
+                    maxlength:"接口描述不超过300个字符"
+                },
+                systemId: {
+                    required: "请选择系统"
+                }
+            },
+            errorElement : "span",
+            errorClass : "error_info",
+            showErrors: function(errorMap, errorList) {
+                $.each(this.successList, function(index, value) {
+                    return $(value).popover("hide");
+                });
+                return $.each(errorList, function(index, value) {
+                    var _popover;
+                    _popover = $(value.element).popover({
+                        trigger: "manual",
+                        placement: "top",
+                        content: value.message,
+                        template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                    });
+                    _popover.data("bs.popover").options.content = value.message;
+                    return _popover.popover("show");
+                });
+            }
 
+        });
+
+        $('#addService').on('hide.bs.modal', function () {
+            // 弹框变比的时候reset校验.
+            validator.resetForm();
+            $('#add-service')[0].reset();
+            $("#addServiceLabel").text("新增服务");
+            $(".popover").remove();
+        })
+    }
+
+    function deleteService(id){
+        $.MsgBox.Confirm("删除提示","确定要删除该服务吗",function(){
+            $.post("${basePath}/autotest/service/deleteService",{id:id},function(data,status){
+                if(0!=data.code){
+                    $.MsgBox.Alert(data.message);
+                } else {
+                    reload();
+                }
+            });
+        })
+    }
 </script>
 
 </body>

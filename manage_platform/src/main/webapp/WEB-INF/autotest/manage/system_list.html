@@ -39,27 +39,30 @@
                        <form role="form">
                            <div class="col-lg-12">
                                <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择公司名称</option>
+                                   <select class="form-control" name="selectCompanyId">
+                                       <option value=""  <#if companyId = null>disabled selected</#if> >选择公司名称</option>
                                            <#if companyList ??>
                                                <#list companyList as company>
-                                                   <option value="${company.id}">${company.name}</option>
+                                                   <option value="${company.id}" <#if companyId = company.id>selected</#if>>${company.name}</option>
                                                </#list>
                                            </#if>
                                    </select>
                                </div>
                                <div class="form-group col-lg-2">
-                                   <select class="form-control">
-                                       <option value="" disabled selected >选择部门名称</option>
+                                   <select class="form-control" name="selectDepartmentId">
+                                       <option value=""  <#if departmentId = null>disabled selected</#if> >选择部门名称</option>
                                        <#if departmentList ??>
                                            <#list departmentList as item>
-                                               <option value="${item.id}">${item.name}</option>
+                                               <option value="${item.id}" <#if departmentId = item.id>selected</#if>>${item.name}</option>
                                            </#list>
                                        </#if>
                                    </select>
                                </div>
+                               <div class="form-group col-lg-2">
+                                  <input placeholder="请输入系统名称" class="form-control" name="systemName" <#if name??>value="${name}"</#if>/>
+                               </div>
                                <div class="form-group col-lg-3">
-                                   <button type="submit" class="btn btn-default">查询</button>
+                                   <a type="button" class="btn btn-default" onclick="reloadSystem()">查询</a>
                                    <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addProject"><i class=" fa-plus-circle fa"></i>新增系统</a>
                                  <!--  <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addSystem"><i class=" fa-plus-circle fa"></i>新增service</a>-->
                                </div>
@@ -74,22 +77,25 @@
                                    <th>部门</th>
                                    <th>系统名称</th>
                                    <th>描述</th>
-                                   <th>创建人</th>
                                    <th>操作</th>
                                </tr>
                                </thead>
                                <tbody>
-                               <tr>
-                                   <td>1</td>
-                                   <td>牛鼎丰</td>
-                                   <td>平台部</td>
-                                   <td>支付中心</td>
-                                   <td>test</td>
-                                   <td>无敌的老大</td>
-                                   <td>
-                                   <a type="button" id="deletePlan"  class="btn btn-danger">删除</a>
-                               </td>
-                               </tr>
+                               <#if systemList ??>
+                                   <#list systemList as item>
+                                       <tr>
+                                           <td>${item.id}</td>
+                                           <td>${item.companyDto.name}</td>
+                                           <td>${item.departmentDto.name}</td>
+                                           <td>${item.name}</td>
+                                           <td>${item.description}</td>
+                                           <td>
+                                               <a type="button" id="deletePlan"  class="btn btn-danger" onclick="deleteSystem(${item.id})">删除</a>
+                                           </td>
+                                       </tr>
+                                   </#list>
+                               </#if>
+
                                </tbody>
                            </table>
                        </div>
@@ -109,10 +115,10 @@
                         <h4 class="modal-title" id="addProjectLabel">新增系统</h4>
                     </div>
                     <div class="modal-body modal-add-service">
-                        <form role="form " class="col-lg-12 edit-form add-service-form">
+                        <form role="form " class="col-lg-12 edit-form " id="add-system">
                             <div class="form-group">
                                 <label class="control-label" >选择公司</label>
-                                <select class="form-control" id="">
+                                <select class="form-control" id="" name="companyId">
                                     <#if companyList ??>
                                         <#list companyList as company>
                                             <option value="${company.id}">${company.name}</option>
@@ -122,7 +128,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >选择部门</label>
-                                <select class="form-control" >
+                                <select class="form-control" name="departmentId" >
                                     <#if departmentList ??>
                                         <#list departmentList as item>
                                             <option value="${item.id}">${item.name}</option>
@@ -131,19 +137,20 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" >创建人</label>
-                                <input type="text" class="form-control" name="createPerson" placeholder="请输入您的姓名">
+                                <label class="control-label" >系统名称</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="请输入系统名称">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" >系统名称</label>
-                                <input type="text" class="form-control" id="projectName" name="projectName" placeholder="请输入系统名称">
+                                <label class="control-label" >系统描述</label>
+                                <textarea type="text" class="form-control"  name="description" placeholder="请输入系统描述"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <a type="submit" class="btn btn-primary" onclick="saveSystem()">保存</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
+
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -153,6 +160,48 @@
      </div>
    <!-- /.container-fluid -->
 <script type="text/javascript">
+    function reloadSystem(){
+        var companyId = $("select[name='selectCompanyId']").val();
+        var departmentId = $("select[name='selectDepartmentId']").val();
+        var systemName = $("input[name='systemName']").val();
+        var url = "${basePath}/autotest/manage/system_list?" + "selectCompanyId=" + companyId + "&selectDepartmentId=" + departmentId + "&systemName=" + systemName;
+        window.location.href = url;
+    }
+
+    //ajax提交form表单的方式
+    function saveSystem(){
+        var AjaxURL= "${basePath}/autotest/manage/saveSystem";
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: AjaxURL,
+            data: $('#add-system').serialize(),
+            success: function (result) {
+                data = eval("(" + result + ")");
+                if (data.code == 0) {
+                    $("#addProject").modal("hide");
+                    reload();
+                } else {
+                    alert("保存失败："+data.message);
+                }
+            },
+            error: function(result) {
+                alert(eval("(" + result + ")").message);
+            }
+        });
+    }
+
+    function deleteSystem(id) {
+        $.MsgBox.Confirm("删除提示", "确定要删除该系统吗", function () {
+            $.post("${basePath}/autotest/manage/deleteSystem", {id: id}, function (data, status) {
+                if (0 != data.code) {
+                    $.MsgBox.Alert(data.message);
+                } else {
+                    reload();
+                }
+            });
+        });
+    }
 
 </script>
 

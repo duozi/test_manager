@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.TestEnvironmentMapper">
+
+    <resultMap id="TestEnvironmentMap" type="com.xn.interfacetest.entity.TestEnvironment">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="systemId" column="system_id"/>
+        <result property="serviceProperty" column="service_property"/>
+        <result property="dbProperty" column="db_property"/>
+        <result property="redisProperty" column="redis_property"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, name, description, system_id,service_property,db_property,redis_property,status
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+           <if test="@Ognl@isNotEmpty(description)">
+                AND description = #{description}
+            </if>
+           <if test="@Ognl@isNotEmpty(systemId)">
+                AND system_id = #{systemId}
+            </if>
+            <if test="@Ognl@isNotEmpty(serviceProperty)">
+                AND service_property = #{serviceProperty}
+            </if>
+            <if test="@Ognl@isNotEmpty(dbProperty)">
+                AND db_property = #{dbProperty}
+            </if>
+            <if test="@Ognl@isNotEmpty(redisProperty)">
+                AND redis_property = #{redisProperty}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="TestEnvironmentMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_environment
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+
+    <select id="getByPlanId" resultMap="TestEnvironmentMap">
+        SELECT
+        te.*
+        FROM
+        test_environment te
+        LEFT join relation_plan_environment rpe on te.id = rpe.environment_id
+        where rpe.plan_id = #{planId}
+    </select>
+
+    <select id="list" resultMap="TestEnvironmentMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            test_environment 
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                test_environment
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <update id="changeStatus">
+        UPDATE
+        test_environment
+        SET status = #{status}
+        WHERE
+        id = #{id}
+    </update>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO test_environment (
+                id,
+                name,
+                description,
+                system_id,
+                service_property,
+                db_property,
+                redis_property
+            ) VALUES (
+                #{id},
+                #{name},
+                #{description},
+                #{systemId},
+                #{serviceProperty},
+                #{dbProperty},
+                #{redisProperty}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO test_environment (
+                id,
+                name,
+                description,
+                system_id,
+                service_property,
+                db_property,
+                redis_property
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.name},#{item.description},#{item.systemId},#{item.serviceProperty},#{item.dbProperty},#{item.redisProperty})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                test_environment
+            <set>
+                <if test="name != null">
+                	<![CDATA[ name = #{name} ]]>,
+                </if>
+                <if test="description != null">
+                	<![CDATA[ description = #{description} ]]>,
+                </if>
+                <if test="systemId != null">
+                	<![CDATA[ system_id = #{systemId} ]]>,
+                </if>
+                <if test="serviceProperty != null">
+                    <![CDATA[ service_property = #{serviceProperty} ]]>,
+                </if>
+                <if test="dbProperty != null">
+                    <![CDATA[ db_property = #{dbProperty} ]]>,
+                </if>
+                <if test="redisProperty != null">
+                    <![CDATA[ redis_property = #{redisProperty} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_environment
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                test_environment
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_environment
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

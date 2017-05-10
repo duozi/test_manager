@@ -39,9 +39,10 @@
     </properties>
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/autotest" />
+    <file type="web" url="file://$PROJECT_DIR$/common-test" />
+    <file type="web" url="file://$PROJECT_DIR$/interfacetest" />
     <file type="web" url="file://$PROJECT_DIR$/manage_platform" />
-    <file type="web" url="file://$PROJECT_DIR$/mock" />
+    <file type="web" url="file://$PROJECT_DIR$/performance" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -60,6 +61,7 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
@@ -79,4 +81,9 @@
       </state>
     </states>
   </component>
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" assert-keyword="false" jdk-15="false" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+>>>>>>> hezhouxiyiyangde
 </project>

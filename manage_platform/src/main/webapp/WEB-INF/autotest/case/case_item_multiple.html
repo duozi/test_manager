@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+</head>
+
+<body>
+<!-- 	 -->
+<div class="panel-heading">
+    <ol class="breadcrumb">
+        <li><a href="#">接口自动化</a></li>
+        <li><a href="#">测试用例管理</a></li>
+        <li class="active">新增测试用例-集成用例</li>
+    </ol>
+</div>
+<div class="col-lg-14">
+    <div class="panel panel-default">
+        <form id="case-form" role="form" class="case-form">
+            <input type="hidden" name="id" value="${testCaseDto.id}">
+            <div id="case-form-div">
+                <!--集成用例-->
+                <div class="" id='integration' style="">
+                    <!--参数-->
+                    <!--header-->
+                    <div class="form-group" id='single-header' style="width: 140%">
+                        <label style="margin-top:1%">请求参数header</label>
+                        <div class="panel panel-default" style="width: 125%">
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="<#if null == testCaseDto.customParamsHeaderType>active</#if>">
+                                        <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsHeaderType>true<#else>false</#if>">参数设置</a>
+                                    </li>
+                                    <li class="<#if null != testCaseDto.customParamsHeaderType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsHeaderType>true<#else>false</#if>">自定义参数</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade <#if null == testCaseDto.customParamsHeaderType>active  in</#if>" id="gui-header">
+                                        <div class="table-responsive">
+                                            <table class="table case-table">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:30%">参数名</th>
+                                                    <!--<th style="width:10%">参数类型</th>-->
+                                                    <th style="width:40%">参数值</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <input type="hidden" name="type" value="1">
+                                                <#if headerParamsDtoList??>
+                                                    <#list headerParamsDtoList as item>
+                                                        <tr>
+                                                            <input type="hidden" name="id" value="${item.id}">
+                                                            <td>
+                                                                <select class="form-control" name="paramsId">
+                                                                    <#if testParamsDtoList ??>
+                                                                        <#list testParamsDtoList as paramsItem>
+                                                                            <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
+                                                                            ${paramsItem.name}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </#list>
+                                                </#if>
+                                                <tr>
+                                                    <td style=" border: none"><span name="addParam"
+                                                                                    class="btn btn-info"><i
+                                                            class="icon icon-plus-sign"></i>添加参数</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade <#if null != testCaseDto.customParamsHeaderType>active  in</#if>" id="source-header">
+                                        <input type="hidden" name="type" value="1">
+                                        <div class="form-group ">
+                                            <label>参数格式</label>
+                                            <select class="form-control" name="appendParam">
+                                                <#if appendParamList ??>
+                                                    <#list appendParamList as item>
+                                                        <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsHeaderType>selected</#if>>
+                                                        ${item.getName()}
+                                                        </option>
+                                                    </#list>
+                                                </#if>
+                                            </select>
+                                        </div>
+                                        <textarea class=" form-control  text-control">${testCaseDto.customParamsHeader}</textarea>
+                                        <!--<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">-->
+                                        <!--<input type="hidden" name="jarPath" value="">-->
+                                        <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
+                                        <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
+                                        <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'header')">保存</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                    <!--body-->
+                    <div class="form-group" id='single-body' style="width: 140%">
+                        <label style="margin-top:1%">请求参数body</label>
+                        <div class="panel panel-default" style="width: 125%">
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs">
+                                    <li class="<#if null == testCaseDto.customParamsBodyType>active</#if>">
+                                        <a href="#gui-body" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsBodyType>true<#else>false</#if>">参数设置</a>
+                                    </li>
+                                    <li class="<#if null != testCaseDto.customParamsBodyType>active</#if>">
+                                        <a href="#source-body" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsBodyType>true<#else>false</#if>">自定义参数</a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade <#if null == testCaseDto.customParamsBodyType>active  in</#if>" id="gui-body">
+                                        <div class="table-responsive">
+                                            <table class="table case-table">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:30%">参数名</th>
+                                                    <!--<th style="width:10%">参数类型</th>-->
+                                                    <th style="width:40%">参数值</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <input type="hidden" name="type" value="2">
+                                                <#if bodyParamsDtoList??>
+                                                    <#list bodyParamsDtoList as item>
+                                                        <tr>
+                                                            <input type="hidden" name="id" value="${item.id}">
+                                                            <td>
+                                                                <select class="form-control" name="paramsId">
+                                                                    <#if testParamsDtoList ??>
+                                                                        <#list testParamsDtoList as paramsItem>
+                                                                            <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
+                                                                            ${paramsItem.name}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="text" class="form-control" name="paramValue" value="${item.value}"></td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </#list>
+                                                </#if>
+                                                <tr>
+                                                    <td style=" border: none"><span name="addParam"
+                                                                                    class="btn btn-info"><i
+                                                            class="icon icon-plus-sign"></i>添加参数</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="form-group  hidden" style="margin-left: 2%">
+                                            <label class="control-label"></label>
+                                            <textarea class=" form-control  text-control"></textarea>
+                                        </div>
+                                        <div class="form-group  hidden">
+                                            <label class="control-label"></label>
+                                            <input class="file form-control" type="file" multiple data-min-file-count="1"
+                                                   name="encryptJar">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade <#if null != testCaseDto.customParamsBodyType>active  in</#if>" id="source-body">
+                                        <div class="form-group ">
+                                            <label>参数格式</label>
+                                            <select class="form-control" name="appendParam">
+                                                <#if appendParamList ??>
+                                                    <#list appendParamList as item>
+                                                        <option value="${item.getId()}" <#if item.getId() == testCaseDto.customParamsBodyType>selected</#if>>
+                                                        ${item.getName()}
+                                                        </option>
+                                                    </#list>
+                                                </#if>
+                                            </select>
+                                        </div>
+                                        <textarea class=" form-control  text-control">${testCaseDto.customParamsBody}</textarea>
+                                        <a type="button" class="btn btn-success test-format" onclick="testFormatParams(this)">格式校验</a>
+                                        <a type="button" class="btn btn-warning clear-content" onclick="ClearCustomParams(this)">清空</a>
+                                        <a type="button" class="btn btn-info save-content" onclick="saveCustomParams(this,'body')">保存</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                    <!--返回参数校验-->
+                    <#if testCaseDto.paramsAssert==1>
+
+                        <div class="form-group" style="width: 140%">
+                            <label style="margin-top:1%">返回参数校验</label>
+                            <!--<textarea class=" form-control  text-control "></textarea>-->
+                            <div class="panel panel-default" style="width: 125%">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width:45%">校验字段</th>
+                                                <th style="width: 45%">期望值</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#if paramsAssertDtoList??>
+                                                <#list paramsAssertDtoList as item>
+                                                    <tr>
+                                                        <div class="row">
+                                                            <input type="hidden" name="id" class="form-control" value="${item.id}">
+                                                            <td><input type="text" class="form-control" name="assertParam" value="${item.assertParam}"></td>
+                                                            <td><input type="text" class="form-control" name="rightValue" value="${item.rightValue}"></td>
+                                                            <td>
+                                                                <a type="button" name="delete" class="btn btn-info" onclick="saveParamsValidation(this)">保存</a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteParamsValidation(this)">删除</button>
+                                                            </td>
+                                                        </div>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr>
+                                                <td style=" border: none"><span name="addParamAssert"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加参数校验字段</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+
+                    <!--db校验-->
+                    <#if testCaseDto.databaseAssert==1>
+                        <div class="form-group"  style="width: 140%">
+                            <label style="margin-top:1%">数据库校验</label>
+                            <!--<textarea class=" form-control  text-control "></textarea>-->
+                            <div class="panel panel-default" style="width: 125%">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 10%">数据库配置名</th>
+                                                <th style="width: 60%">sql</th>
+                                                <th style="width: 10%">校验字段</th>
+                                                <th style="width: 10%">期望值</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#if dataAssertDtoList??>
+                                                <#list dataAssertDtoList as item>
+                                                    <tr>
+                                                        <input type="hidden" name="id" value="${item.id}">
+                                                        <div class="row">
+                                                            <td>
+                                                                <select class="form-control" name="databaseConfigId">
+                                                                    <#if databaseConfigDtoList ??>
+                                                                        <#list databaseConfigDtoList as dbItem>
+                                                                            <option value="${dbItem.id}" <#if item.databaseConfigId == dbItem.id>selected</#if>>
+                                                                            ${dbItem.name}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="text" class="form-control" name="sqlStr" value="${item.sqlStr}"></td>
+                                                            <td><input type="text" class="form-control"  name="assertParam" value="${item.assertParam}"></td>
+                                                            <td><input type="text" class="form-control"  name="rightValue" value="${item.rightValue}"></td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="saveDBValidation(this)">保存</a>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteDBValidation(this)">删除</button>
+                                                            </td>
+                                                        </div>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr>
+                                                <td style=" border: none"><span name="addDbAssert"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加数据库校验</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+
+                    <!--redis校验-->
+                    <#if testCaseDto.redisAssert==1>
+
+                        <div class="form-group" style="width: 140%">
+                            <label style="margin-top:1%">redis校验</label>
+                            <!--<textarea class=" form-control  text-control "></textarea>-->
+                            <div class="panel panel-default" style="width: 125%">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 10%">redis名</th>
+                                                <th style="width: 10%">校验类型</th>
+                                                <th style="">key</th>
+                                                <th style="width: 10%">校验字段</th>
+                                                <th style="width: 10%">期望值</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#if redisAssertDtoList??>
+                                                <#list redisAssertDtoList as assertItem>
+                                                    <tr>
+                                                        <div class="row">
+                                                            <td>
+                                                                <input type="hidden" name="id" value="${assertItem.id}">
+                                                                <select class="form-control" name="redisConfigId">
+                                                                    <#if testRedisConfigDtoList ??>
+                                                                        <#list testRedisConfigDtoList as item>
+                                                                            <option value="${item.id}" <#if item.id == assertItem.redisConfigId>selected</#if>>
+                                                                            ${item.name}
+                                                                            </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control case-select" name="redisAssertType">
+                                                                    <#if redisAssertTypeEnumList??>
+                                                                        <#list redisAssertTypeEnumList as item>
+                                                                            <option value="${item.getId()}" <#if item.getId() == assertItem.type>selected</#if> >${item.getName()}</option>
+                                                                        </#list>
+
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="text" class="form-control" name="keyStr" value="${assertItem.keyStr}"></td>
+                                                            <td><input type="text" class="form-control"  name="assertParam" value="${assertItem.assertParam}"></td>
+                                                            <td><input type="text" class="form-control"  name="rightValue" value="${assertItem.rightValue}"></td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="saveRedisValidation(this)">保存</a>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisValidation(this)">删除</button>
+                                                            </td>
+                                                        </div>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <tr>
+                                                <td style=" border: none"><span name="addRedisAssert"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加redis校验</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </#if>
+                </div>
+
+                <div class="form-group ">
+                    <button type="button" name="integration-add" class="btn btn-info" style="margin-left: 29%">添加步骤
+                    </button>
+                    <button type="button" name="do" class="btn btn-success" style="margin-left: 2%" data-toggle="modal"
+                            data-target="#environmentList">联调
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--联调弹框-->
+<div class="modal fade" id="environmentList" tabindex="-1" role="dialog" aria-labelledby="suitListLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title">选择运行环境</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>环境ID</th>
+                        <th>环境名称</th>
+                        <th>环境描述</th>
+                        <th>创建人</th>
+                        <th>选择</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>牛贷系统查询联系人测试</td>
+                        <th>你猜你猜</th>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="../environment/environment_item" type="button" class="btn btn-info">详情</a>
+                            <label>
+                                <input type="radio" name="chose" value="">
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="../reportResult/report_detail" type="button" class="btn btn-primary">运行</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    var paramAssertHtml = '<tr><input type="hidden" name="id" class="form-control">';
+    paramAssertHtml += '<div class="row">';
+    paramAssertHtml += '<td><input type="text" class="form-control" name="assertParam"></td>';
+    paramAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
+    paramAssertHtml += '<td>';
+    paramAssertHtml += '<a type="button" class="btn btn-info" onclick="saveParamsValidation(this)">保存</a>';
+    paramAssertHtml += '</td>';
+    paramAssertHtml += '<td>';
+    paramAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteParamsValidation(this)">删除</button>';
+    paramAssertHtml += '</td>';
+    paramAssertHtml += '</div>';
+    paramAssertHtml += '</tr>';
+
+    var dbAssertHtml = '<tr>  <input type="hidden" name="id" value="${item.id}">';
+    dbAssertHtml += '<div class="row">';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<select class="form-control" name="databaseConfigId">';
+    dbAssertHtml += '<#if databaseConfigDtoList ??>';
+    dbAssertHtml += '<#list databaseConfigDtoList as dbItem>';
+    dbAssertHtml += '<option value="${dbItem.id}">';
+    dbAssertHtml += '${dbItem.name}';
+    dbAssertHtml += '</option>';
+    dbAssertHtml += '</#list>';
+    dbAssertHtml += '</#if>';
+    dbAssertHtml += '</select>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '<td><input type="text" class="form-control"  name="sqlStr"></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control"  name="assertParam"></td>';
+    dbAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<a type="button" class="btn btn-info" onclick="saveDBValidation(this)">保存</a>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '<td>';
+    dbAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteDBValidation(this)">删除</button>';
+    dbAssertHtml += '</td>';
+    dbAssertHtml += '</div>';
+    dbAssertHtml += '</tr>';
+
+    var redisAssertHtml = '<tr>';
+    redisAssertHtml += '<div class="row">';
+    redisAssertHtml += '<td><input type="hidden" name="id" value="">';
+    redisAssertHtml += '<select class="form-control" name="redisConfigId">';
+    redisAssertHtml += ' <#if testRedisConfigDtoList ??>';
+    redisAssertHtml += '<#list testRedisConfigDtoList as item>';
+    redisAssertHtml += '<option value="${item.id}">';
+    redisAssertHtml += '${item.name}';
+    redisAssertHtml += '</option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
+    redisAssertHtml += '</select>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<select class="form-control case-select" name="redisAssertType">';
+    redisAssertHtml += '<#if redisAssertTypeEnumList ??>';
+    redisAssertHtml += '<#list redisAssertTypeEnumList as item>';
+    redisAssertHtml += '<option value="${item.getId()}">${item.getName()}</option>';
+    redisAssertHtml += '</#list>';
+    redisAssertHtml += '</#if>';
+    redisAssertHtml += '</select>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '<td><input type="text" class="form-control"  name="keyStr"></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" name="assertParam"></td>';
+    redisAssertHtml += '<td><input type="text" class="form-control" name="rightValue"></td>';
+    redisAssertHtml += '<td>';
+    redisAssertHtml += '<a type="button" class="btn btn-info" onclick="saveRedisValidation(this)">保存</a>';
+    redisAssertHtml += '<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisValidation(this)">删除</button>';
+    redisAssertHtml += '</td>';
+    redisAssertHtml += '</div>';
+    redisAssertHtml += '</tr>';
+
+    $("span[name='addParamAssert']").click(function () {
+        $(this).parent().parent().before(paramAssertHtml);
+        $("button[name='delete']").click(function () {
+            $(this).parent().parent().remove();
+        });
+
+    });
+    $("span[name='addDbAssert']").click(function () {
+        $(this).parent().parent().before(dbAssertHtml);
+    });
+
+    $("span[name='addRedisAssert']").click(function () {
+        $(this).parent().parent().before(redisAssertHtml);
+
+        $("select[name='redisAssertType']").change(function () {
+            var content = $(this).val();
+            var value = $(this).parent().next().next().children()[0];
+            if (content == '缓存值') {
+
+                value.removeAttribute("readOnly");
+                value.removeAttribute("placeholder");
+
+            } else if (content == '缓存时间') {
+                value.setAttribute("readOnly", "true");
+                value.setAttribute("placeholder", "time");
+            }
+        });
+    });
+    var paramAddHtml = '<tr>';
+    paramAddHtml += '<td>';
+    paramAddHtml += '<input type="hidden" name="id" value=""><select class="form-control" name="paramsId">';
+    paramAddHtml += '<#if testParamsDtoList ??>';
+    paramAddHtml += '<#list testParamsDtoList as item>';
+    paramAddHtml += '<option value="${item.id}">${item.name}</option>';
+    paramAddHtml += '</#list>';
+    paramAddHtml += '</#if>';
+    paramAddHtml += '</select>';
+    paramAddHtml += '</td>';
+    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue"></td>';
+    paramAddHtml += '<td>';
+    paramAddHtml += '<a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a><button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除</button>  ';
+    paramAddHtml += '</td>';
+    paramAddHtml += '</tr>';
+
+    $("span[name='addParam']").click(function () {
+        $(this).parent().parent().before(paramAddHtml);
+    });
+
+    $("select[name='appendParam']").change(function () {
+        var content = $(this).val();
+        if (content == 'FILE') {
+            $(this).parent().parent().find(".test-format").addClass("hidden");
+        } else if (content == 'JSON' || content == 'XML') {
+            $(this).parent().parent().find(".test-format").removeClass("hidden");
+        }
+
+    });
+
+    var count = 1;
+
+    $("button[name='integration-add']").click(function () {
+        var stepAddHtml =  '<!--参数-->';
+        stepAddHtml += ' <div class=""  style="">';
+        stepAddHtml += '<div class="form-group " style="width: 140%">';
+        stepAddHtml += '<label style="margin-top:1%">请求参数header</label>';
+        stepAddHtml += '<!--<textarea class=" form-control  text-control "></textarea>-->';
+        stepAddHtml += '<div class="panel panel-default" style="width: 95%">';
+        stepAddHtml += '<!-- /.panel-heading -->';
+        stepAddHtml += '<div class="panel-body">';
+        stepAddHtml += '<!-- Nav tabs -->';
+        stepAddHtml += '<ul class="nav nav-tabs">';
+        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + 'header" data-toggle="tab" aria-expanded="true">参数设置</a>';
+        stepAddHtml += '</li>';
+        stepAddHtml += '<li class=""><a href="#integration-source-' + count + 'header" data-toggle="tab" aria-expanded="false">自定义参数</a>';
+        stepAddHtml += '</li>';
+        stepAddHtml += ' </ul>';
+        stepAddHtml += '<!-- Tab panes -->';
+        stepAddHtml += '<div class="tab-content">';
+        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-' + count + '">';
+        stepAddHtml += '<div class="table-responsive">';
+        stepAddHtml += '<table class="table case-table">';
+        stepAddHtml += '<thead>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<th style="width:30%">参数名</th>';
+        stepAddHtml += '<th style="width:20%">参数类型</th>';
+        stepAddHtml += '<th style="width:40%">参数值</th>';
+        stepAddHtml += '<th>操作</th>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</thead>';
+        stepAddHtml += '<tbody>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<select class="form-control">';
+        stepAddHtml += '<#if paramTypeList ??>';
+        stepAddHtml += '<#list paramTypeList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">删除';
+        stepAddHtml += '</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td style=" border: none"><span name="addParam" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加参数</span>';
+        stepAddHtml += ' <button type="submit" class="btn btn-info">保存';
+        stepAddHtml += '</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</tbody>';
+        stepAddHtml += '</table>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + 'header">';
+        stepAddHtml += '<div class="form-group "> <label>参数格式</label> <select class="form-control">';
+        stepAddHtml += '<option values="1"> xml格式 </option>';
+        stepAddHtml += '<option values="1">json格式 </option>';
+        stepAddHtml += ' </select> </div>';
+        stepAddHtml += '<textarea class=" form-control  text-control"></textarea>';
+        stepAddHtml += ' <button type="submit" class="btn btn-success">格式校验</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-warning">清空</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!-- /.panel-body -->';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!--参数-->';
+        stepAddHtml += '<div class="form-group " style="width: 140%">';
+        stepAddHtml += '<label style="margin-top:1%">请求参数body</label>';
+        stepAddHtml += '<!--<textarea class=" form-control  text-control "></textarea>-->';
+        stepAddHtml += '<div class="panel panel-default" style="width: 95%">';
+        stepAddHtml += '<!-- /.panel-heading -->';
+        stepAddHtml += '<div class="panel-body">';
+        stepAddHtml += '<!-- Nav tabs -->';
+        stepAddHtml += '<ul class="nav nav-tabs">';
+        stepAddHtml += '<li class="active"><a href="#integration-gui-' + count + 'body" data-toggle="tab" aria-expanded="true">参数设置</a>';
+        stepAddHtml += '</li>';
+        stepAddHtml += '<li class=""><a href="#integration-source-' + count + 'body" data-toggle="tab" aria-expanded="false">自定义参数</a>';
+        stepAddHtml += '</li>';
+        stepAddHtml += ' </ul>';
+        stepAddHtml += '<!-- Tab panes -->';
+        stepAddHtml += '<div class="tab-content">';
+        stepAddHtml += '<div class="tab-pane fade active in" id="integration-gui-' + count + 'body">';
+        stepAddHtml += '<div class="table-responsive">';
+        stepAddHtml += '<table class="table case-table">';
+        stepAddHtml += '<thead>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<th style="width:30%">参数名</th>';
+        stepAddHtml += '<th style="width:20%">参数类型</th>';
+        stepAddHtml += '<th style="width:40%">参数值</th>';
+        stepAddHtml += '<th>操作</th>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</thead>';
+        stepAddHtml += '<tbody>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<select class="form-control">';
+        stepAddHtml += '<#if paramTypeList ??>';
+        stepAddHtml += '<#list paramTypeList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">删除';
+        stepAddHtml += '</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td style=" border: none"><span name="addParam" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加参数</span>';
+        stepAddHtml += ' <button type="submit" class="btn btn-info">保存';
+        stepAddHtml += '</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</tbody>';
+        stepAddHtml += '</table>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group http-interface ">';
+        stepAddHtml += '<label class="control-label">附加参数</label>';
+        stepAddHtml += '<select class="form-control" id="appendParam" name="appendParam">';
+        stepAddHtml += '<option value="" disabled selected ></option>';
+        stepAddHtml += '<#if appendParamList ??>';
+        stepAddHtml += '<#list appendParamList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group  hidden" >';
+        stepAddHtml += '<label class="control-label"></label>';
+        stepAddHtml += '<textarea class=" form-control  text-control" style="margin-left: 2%"></textarea>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="form-group  hidden" >';
+        stepAddHtml += '<label class="control-label"></label>';
+        stepAddHtml += '<input id="appendFile" class="file form-control" type="file" multiple data-min-file-count="1" name="encryptJar">';
+        stepAddHtml += '</div>';
+
+        stepAddHtml += '</div>';
+        stepAddHtml += '<div class="tab-pane fade" id="integration-source-' + count + 'body">';
+        stepAddHtml += '<div class="form-group "> <label>参数格式</label> <select class="form-control">';
+        stepAddHtml += '<option values="1"> xml格式 </option>';
+        stepAddHtml += '<option values="1">json格式 </option>';
+        stepAddHtml += ' </select> </div>';
+        stepAddHtml += '<textarea class=" form-control  text-control"></textarea>';
+        stepAddHtml += ' <button type="submit" class="btn btn-success">格式校验</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-warning">清空</button>';
+        stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!-- /.panel-body -->';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!--返回校验-->';
+        stepAddHtml += '<div lass="form-group " style="width: 140%;display: inline-flex;">';
+        stepAddHtml += '<!-- 返回参数校验 -->';
+        stepAddHtml += '<label style="margin-top:1%;width:18.2%;">返回参数校验</label>';
+        stepAddHtml += ' <div class="panel panel-default" style="">';
+        stepAddHtml += '<div class="panel-body">';
+        stepAddHtml += '<div class="table-responsive">';
+        stepAddHtml += '<table class="table case-table">';
+        stepAddHtml += '<thead>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<th style="width:45%">校验字段</th>';
+        stepAddHtml += '<th style="width: 45%">期望值</th>';
+        stepAddHtml += '<th>操作</th>';
+        stepAddHtml += '<th></th>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</thead>';
+        stepAddHtml += '<tbody>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<div class="row">';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">保存 </button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">删除 </button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += ' <td style=" border: none"><span name="addParamAssert" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加参数校验字段</span></td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</tbody>';
+        stepAddHtml += '</table>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!--db校验-->';
+        stepAddHtml += '<div lass="form-group " style="width: 140%;display: inline-flex;">';
+        stepAddHtml += '<!-- db校验 -->';
+        stepAddHtml += '<label style="margin-top:1%;width:27.5%;">数据库校验</label>';
+        stepAddHtml += ' <div class="panel panel-default" style="">';
+        stepAddHtml += '<div class="panel-body">';
+        stepAddHtml += '<div class="table-responsive">';
+        stepAddHtml += '<table class="table case-table">';
+        stepAddHtml += '<thead>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<th style="width: 10%">数据库配置名</th>';
+        stepAddHtml += '<th style="width: 60%">sql</th>';
+        stepAddHtml += '<th style="width: 10%">校验字段</th>';
+        stepAddHtml += '<th style="width: 10%">期望值</th>';
+        stepAddHtml += '<th>操作</th>';
+        stepAddHtml += '<th></th>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</thead>';
+        stepAddHtml += '<tbody>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<div class="row">';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<select class="form-control" id="dbAssert" name="dbAssert">';
+        stepAddHtml += '<#if contentTypeList ??>';
+        stepAddHtml += '<#list contentTypeList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="submit" class="btn btn-info">保存';
+        stepAddHtml += '</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">删除 </button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td style=" border: none"><span name="addDbAssert" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加数据库校验</span></td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += ' </tbody>';
+        stepAddHtml += '</table>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '<!--redis校验-->';
+        stepAddHtml += '<div lass="form-group " style="width: 140%;display: inline-flex;">';
+        stepAddHtml += '<!-- redis校验 -->';
+        stepAddHtml += '<label style="margin-top:1%;width:27.5%;">redis校验</label>';
+        stepAddHtml += ' <div class="panel panel-default" style="">';
+        stepAddHtml += '<div class="panel-body">';
+        stepAddHtml += '<div class="table-responsive">';
+        stepAddHtml += '<table class="table case-table">';
+        stepAddHtml += '<thead>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<th style="width: 10%">redis名</th>';
+        stepAddHtml += '<th style="width: 15%">校验类型</th>';
+        stepAddHtml += '<th style="width: 40%">key</th>';
+        stepAddHtml += '<th style="width: 10%">校验字段</th>';
+        stepAddHtml += '<th style="width: 15%">期望值</th>';
+        stepAddHtml += '<th>操作</th>';
+        stepAddHtml += '<th></th>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</thead>';
+        stepAddHtml += '<tbody>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<div class="row">';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<select class="form-control">';
+        stepAddHtml += '<#if contentTypeList ??>';
+        stepAddHtml += '<#list contentTypeList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<select class="form-control case-select" name="redisAssertType">';
+        stepAddHtml += '<#if redisAssertTypeEnumList ??>';
+        stepAddHtml += '<#list redisAssertTypeEnumList as item>';
+        stepAddHtml += '<option values="${item}">${item.getName()}</option>';
+        stepAddHtml += '</#list>';
+        stepAddHtml += '</#if>';
+        stepAddHtml += '</select>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td><input type="text" class="form-control"></td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="submit" class="btn btn-info">保存</button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '<td>';
+        stepAddHtml += '<button type="button" name="delete" class="btn btn-info">删除 </button>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '<tr>';
+        stepAddHtml += '<td style=" border: none"><span name="addRedisAssert" class="btn btn-info"><i class="icon icon-plus-sign"></i>添加redis校验</span>';
+        stepAddHtml += '</td>';
+        stepAddHtml += '</tr>';
+        stepAddHtml += '</tbody>';
+        stepAddHtml += '</table>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += '</div>';
+        stepAddHtml += "</div>";
+        stepAddHtml += "</div>";
+
+        $(this).parent().before(stepAddHtml);
+        count++;
+        $("span[name='addParam']").click(function () {
+            $(this).parent().parent().before(paramAddHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+        });
+        $("select[name='appendParam']").change(function () {
+            var content = $(this).val();
+
+            if (content == '上传文件') {
+
+                $(this).parent().next().addClass("hidden");
+                $(this).parent().next().next().removeClass("hidden");
+            } else if (content == 'JSON' || content == 'XML') {
+                $(this).parent().next().removeClass("hidden");
+                $(this).parent().next().next().addClass("hidden");
+            }
+
+        });
+        $("span[name='addParamAssert']").click(function () {
+            $(this).parent().parent().before(paramAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+
+        });
+        $("span[name='addDbAssert']").click(function () {
+            $(this).parent().parent().before(dbAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+        });
+        $("span[name='addRedisAssert']").click(function () {
+            $(this).parent().parent().before(redisAssertHtml);
+            $("button[name='delete']").click(function () {
+                $(this).parent().parent().remove();
+            });
+            $("select[name='redisAssertType']").change(function () {
+                var content = $(this).val();
+                var value = $(this).parent().next().next().children()[0];
+                if (content == '缓存值') {
+
+                    value.removeAttribute("readOnly");
+                    value.removeAttribute("placeholder");
+
+                } else if (content == '缓存时间') {
+                    value.setAttribute("readOnly", "true");
+                    value.setAttribute("placeholder", "time");
+                }
+            });
+        });
+        $("button[name='integration-delete']").click(function () {
+            $(this).parent().parent().parent().remove();
+        });
+    });
+
+    $("select[name='appendParam']").change(function () {
+        var content = $(this).val();
+
+        if (content == '上传文件') {
+
+            $(this).parent().next().addClass("hidden");
+            $(this).parent().next().next().removeClass("hidden");
+        } else if (content == 'JSON' || content == 'XML') {
+            $(this).parent().next().removeClass("hidden");
+            $(this).parent().next().next().addClass("hidden");
+        }
+
+    });
+
+    $(document).ready(function () {
+
+    });
+
+    function saveParams(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var paramsId = $(_this).parent().parent().find("select[name='paramsId']").val();
+        var paramValue = $(_this).parent().parent().find("input[name='paramValue']").val();
+        var type = $(_this).parent().parent().parent().find("input[name='type']").val();
+        var urlParamStr =  "id="+ id  + "&paramsId="+ paramsId  + "&type=" + type;
+        urlParamStr += "&value=" + paramValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveParams",urlParamStr,_this);
+    }
+
+    //保存参数校验
+    function saveParamsValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveParamsValidation",urlParamStr,_this);
+    }
+    //保存数据库校验
+    function saveDBValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var databaseConfigId = $(_this).parent().parent().find("select[name='databaseConfigId']").val();
+        var sqlStr = $(_this).parent().parent().find("input[name='sqlStr']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&databaseConfigId=" + databaseConfigId + "&sqlStr=" + sqlStr+ "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveDBValidation",urlParamStr,_this);
+    }
+    //保存redis校验
+    function saveRedisValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        var redisConfigId = $(_this).parent().parent().find("select[name='redisConfigId']").val();
+        var redisAssertType = $(_this).parent().parent().find("select[name='redisAssertType']").val();
+        var keyStr = $(_this).parent().parent().find("input[name='keyStr']").val();
+        var assertParam = $(_this).parent().parent().find("input[name='assertParam']").val();
+        var rightValue = $(_this).parent().parent().find("input[name='rightValue']").val();
+        var urlParamStr = "id="+ id  + "&redisConfigId=" + redisConfigId + "&keyStr=" + keyStr+ "&assertParam=" + assertParam;
+        urlParamStr += "&rightValue=" + rightValue + "&type=" + redisAssertType +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        savePost("${basePath}/autotest/case/saveRedisValidation",urlParamStr,_this);
+    }
+
+    //删除数据库校验
+    function deleteDBValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteDbValidation",_this);
+    }
+
+    //删除redis校验
+    function deleteRedisValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteRedisValidation",_this);
+    }
+
+    //删除参数校验
+    function deleteParamsValidation(_this){
+        var id = $(_this).parent().parent().find("input[name='id']").val();
+        deletePost(id,"${basePath}/autotest/case/deleteParamsValidation",_this);
+    }
+
+    function saveCustomParams(_this,paramsType){
+        if("header" == paramsType){
+            var customParamsHeaderType = $(_this).parent().find("select[name='appendParam']").val();
+            var customParamsHeader = $(_this).parent().find("textarea").val();
+            var params = "customParamsHeaderType=" + customParamsHeaderType + "&customParamsHeader=" + customParamsHeader
+                    +"&id=${caseId}&interfaceId=${interfaceId}";
+        } else {
+            var customParamsBodyType = $(_this).parent().find("select[name='appendParam']").val();
+            var customParamsBody = $(_this).parent().find("textarea").val();
+            var params = "customParamsBodyType=" + customParamsBodyType + "&customParamsBody=" + customParamsBody
+                    +"&id=${caseId}&interfaceId=${interfaceId}";
+        }
+        savePost("${basePath}/autotest/case/saveCustomParams",params,_this);
+    }
+
+    function testFormatParams(_this){
+        var jsonStr =$(_this).parent().find("textarea").val();
+        var dataType = $(_this).parent().find("select[name='appendParam']").val();
+        $.ajax({
+            type: "POST",
+            url: "${basePath}/autotest/case/testFormatParams",
+            data: {"jsonStr":jsonStr,"dataType":dataType},
+            success: function (result) {
+                if (result.code == 0) {
+                    data = result.data;
+                    alert("校验结果：" + data);
+                } else {
+                    alert("校验失败：" + result.message);
+                }
+            },
+            error: function (result) {
+                alert(result.message);
+            }
+        });
+
+    }
+
+    function ClearCustomParams(_this){
+        $(_this).parent().find("textarea").val("");
+
+    }
+
+</script>
+</body>
+
+</html>

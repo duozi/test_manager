@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.TestParamsMapper">
+
+    <resultMap id="TestParamsMap" type="com.xn.interfacetest.entity.TestParams">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="formatType" column="format_type"/>
+        <result property="interfaceId" column="interface_id"/>
+    </resultMap>
+
+    <resultMap id="ParamsMap" type="com.xn.interfacetest.entity.ParamEntity">
+        <result property="name" column="name"/>
+        <result property="formatType" column="format_type"/>
+        <result property="interfaceId" column="interface_id"/>
+        <result property="value" column="value"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, name, format_type, interface_id
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+           <if test="@Ognl@isNotEmpty(formatType)">
+                AND format_type = #{formatType}
+            </if>
+           <if test="@Ognl@isNotEmpty(interfaceId)">
+                AND interface_id = #{interfaceId}
+            </if>
+            <if test="@Ognl@isNotEmpty(isDelete)">
+                AND is_delete = #{isDelete}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="TestParamsMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_params
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+
+    <select id="listByInterfaceAndIds" resultMap="TestParamsMap">
+        SELECT <include refid="columns" />
+        FROM
+            test_params
+        <choose>
+            <when test="paramsIds != null">
+                where interface_id= #{interfaceId}
+                and id in
+                <foreach collection="paramsIds" item="item" index="index"  open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                where interface_id= #{interfaceId}
+                and is_delete = 0
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getParamsByInterfaceId" resultMap="TestParamsMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_params
+        where interface_id= #{interfaceId} and is_delete = 0
+    </select>
+
+    <select id="list" resultMap="TestParamsMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            test_params 
+        <include refid="where"/>
+    </select>
+
+    <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
+        select tp.name ,rcp.`value` value,tp.format_type,tp.interface_id
+        from test_params tp
+        LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
+        where rcp.case_id = #{caseId} and rcp.is_delete = 0
+    </select>
+
+    <select id="getParamsByInterfaceIdAndName" resultMap="TestParamsMap">
+        <![CDATA[
+            select *
+            from   test_params
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = #{isDelete}
+        ]]>
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                test_params
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO test_params (
+                id,
+                name,
+                format_type,
+                interface_id
+            ) VALUES (
+                #{id},
+                #{name},
+                #{formatType},
+                #{interfaceId}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO test_params (
+                id,
+                name,
+                format_type,
+                interface_id
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.name},#{item.formatType},#{item.interfaceId}
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                test_params
+            <set>
+                <if test="name != null">
+                	<![CDATA[ name = #{name} ]]>,
+                </if>
+                <if test="formatType != null">
+                	<![CDATA[ format_type = #{formatType} ]]>,
+                </if>
+                <if test="interfaceId != null">
+                	<![CDATA[ interface_id = #{interfaceId} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <update id="deleteByPK">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                id = #{id} 
+        ]]>
+    </update>
+
+    <update id="deleteByInterfaceId">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId}
+        ]]>
+    </update>
+
+    <update id="deleteByInterfaceIdAndParamName">
+        <![CDATA[
+            UPDATE
+                test_params
+            SET is_delete = 1
+            WHERE
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = 0
+        ]]>
+    </update>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                test_params
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_params
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

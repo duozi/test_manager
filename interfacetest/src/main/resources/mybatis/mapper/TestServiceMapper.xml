@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.interfacetest.dao.TestServiceMapper">
+
+    <resultMap id="TestServiceMap" type="com.xn.interfacetest.entity.TestService">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="systemId" column="system_id"/>
+        <result property="jarPath" column="jar_path"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, name, description, system_id,jar_path
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+           <if test="null != name">
+                AND name = #{name}
+            </if>
+           <if test="null != description">
+                AND description = #{description}
+            </if>
+           <if test="null != systemId">
+                AND system_id = #{systemId}
+            </if>
+            <if test="null != jarPath">
+                AND jar_path = #{jarPath}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="TestServiceMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_service
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="TestServiceMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            test_service
+        <where>
+            is_delete = 0
+            <if test="id != null and id != 0">
+                AND id = #{id}
+            </if>
+            <if test="null != name">
+                AND name = #{name}
+            </if>
+            <if test="null != description">
+                AND description = #{description}
+            </if>
+            <if test="null != systemId">
+                AND system_id = #{systemId}
+            </if>
+            <if test="null != jarPath">
+                AND jar_path = #{jarPath}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="listByParams" resultMap="TestServiceMap">
+        SELECT
+          ts.*
+        FROM
+        test_service ts
+        left join test_system sy on ts.system_id = sy.id
+        left join department dd on dd.id = sy.department_id
+        <where>
+            ts.is_delete = 0
+            <if test="id != null and id != 0">
+                AND ts.id = #{id}
+            </if>
+            <if test="null != name">
+                AND ts.name = #{name}
+            </if>
+            <if test="null != description">
+                AND ts.description = #{description}
+            </if>
+            <if test="null != systemId">
+                AND ts.system_id = #{systemId}
+            </if>
+            <if test="null != departmentId">
+                AND sy.department_id = #{departmentId}
+            </if>
+            <if test="null != companyId">
+                AND dd.company_id = #{companyId}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                test_service
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO test_service (
+                id,
+                name,
+                description,
+                system_id,
+                jar_path
+            ) VALUES (
+                #{id},
+                #{name},
+                #{description},
+                #{systemId},
+                #{jarPath}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO test_service (
+                id,
+                name,
+                description,
+                system_id,
+                jar_path
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.name},#{item.description},#{item.systemId}),#{item.jarPath}
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                test_service
+            <set>
+                <if test="name != null">
+                	<![CDATA[ name = #{name} ]]>,
+                </if>
+                <if test="description != null">
+                	<![CDATA[ description = #{description} ]]>,
+                </if>
+                <if test="systemId != null">
+                	<![CDATA[ system_id = #{systemId} ]]>,
+                </if>
+                <if test="jarPath != null">
+                    <![CDATA[ jar_path = #{jarPath} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <update id="deleteByPK">
+        <![CDATA[
+            update
+                test_service
+          set is_delete = 1
+            WHERE
+                id = #{id}
+        ]]>
+    </update>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                test_service
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                test_service
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

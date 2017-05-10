@@ -1,0 +1,730 @@
+/*
+ * Copyright (c) 2014-2015, Yunnex and/or its affiliates. All rights reserved. Use, Copy is subject to authorized license.
+ */
+package com.xn.interfacetest.service.impl;
+
+import com.xn.common.utils.BeanUtils;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.api.*;
+import com.xn.interfacetest.command.*;
+import com.xn.interfacetest.dao.TestCaseMapper;
+import com.xn.interfacetest.dto.*;
+import com.xn.interfacetest.entity.TestCase;
+import com.xn.interfacetest.model.AssertKeyValueVo;
+import com.xn.interfacetest.response.Assert;
+import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.util.CollectionUtils;
+import com.xn.interfacetest.util.DBUtil;
+import com.xn.interfacetest.util.JarUtil;
+import com.xn.interfacetest.util.RedisUtil;
+import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/**
+ * TestCase Service实现
+ * 
+ * @author Carol
+ * @date 2017-02-14
+ */
+@Service
+@Transactional
+public class TestCaseServiceImpl implements TestCaseService {
+    private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
+    //创建一个线程池
+    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
+
+    private static final String STRING_NAME = "java.lang.String";
+
+    private static final String INTEGER_NAME = "java.lang.Integer";
+
+    private static final String SHORT_NAME = "java.lang.Short";
+
+    private static final String BYTE_NAME = "java.lang.Byte";
+
+    private static final String LONG_NAME = "java.lang.Long";
+
+    private static final String FLOAT_NAME = "java.lang.Float";
+
+    private static final String DOUBLE_NAME = "java.lang.Double";
+
+    private static final String CHARACTER_NAME = "java.lang.Character";
+
+    private static final String BOOLEAN_NAME = "java.lang.Boolean";
+
+    /**
+     *  Dao
+     */
+    @Autowired
+    private TestCaseMapper testCaseMapper;
+
+    @Autowired
+    private TestInterfaceService testInterfaceService;
+
+    @Autowired
+    private TestParamsService testParamsService;
+
+    @Autowired
+    private RelationCaseRedisService relationCaseRedisService;
+
+    @Autowired
+    private  RelationCaseDatabaseService relationCaseDatabaseService;
+
+    @Autowired
+    private  DataAssertService dataAssertService;
+
+    @Autowired
+    private  ParamsAssertService paramsAssertService;
+
+    @Autowired
+    private TestReportService testReportService;
+
+    @Autowired
+    private TestEnvironmentService testEnvironmentService;
+
+    @Autowired
+    private RelationServiceEnvironmentService relationServiceEnvironmentService;
+
+    @Autowired
+    private TestDatabaseConfigService testDatabaseConfigService;
+
+    @Autowired
+    private RelationCaseParamsService relationCaseParamsService;
+
+    @Autowired
+    private TestJarMethodService testJarMethodService;
+
+    @Override
+    @Transactional(readOnly = true)
+    public TestCaseDto get(Object condition)
+	{  
+        TestCase testCase = testCaseMapper.get(condition);
+        TestCaseDto testCaseDto = BeanUtils.toBean(testCase,TestCaseDto.class);
+	    return testCaseDto;  
+	}  
+
+    @Override
+    @Transactional(readOnly = true)
+    public long count(TestCaseDto condition) {
+        return testCaseMapper.count(condition);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TestCaseDto> list(TestCaseDto condition) {
+        List<TestCase> list = testCaseMapper.list(condition);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TestCaseDto> list(Map<String,Object> condition) {
+        List<TestCase> list = testCaseMapper.list(condition);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public PageResult<TestCaseDto> page(Map<String,Object> condition){
+        return PageResult.wrap((PageInfo) condition.get("page"), list(condition));
+    }
+
+    @Override
+    public TestCaseDto save(TestCaseDto testCaseDto) {
+        TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
+        if(null == testCaseDto.getId()){
+            testCaseMapper.save(testCase);
+        } else {
+            testCaseMapper.update(testCase);
+        }
+
+        testCaseDto.setId(testCase.getId());
+        return testCaseDto;
+    }
+
+    @Override
+    public int save(List<TestCaseDto> testCaseDtos) {
+        if (testCaseDtos == null || testCaseDtos.isEmpty()) {
+            return 0;
+        }
+        List<TestCase> testCases = CollectionUtils.transform(testCaseDtos, TestCase.class);
+        return testCaseMapper.saveBatch(testCases);
+    }
+
+    @Override
+    public int update(TestCaseDto testCaseDto) {
+        TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
+        return testCaseMapper.update(testCase);
+    }
+    
+    @Override
+    public int deleteByPK(Long id) {
+        return testCaseMapper.deleteByPK(id);
+    }
+
+    @Override
+    public int delete(TestCaseDto testCaseDto) {
+        TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
+        return testCaseMapper.delete(testCase);
+    }
+    
+    @Override
+    public int deleteBatchByPK(List<Long> ids) {
+        return testCaseMapper.deleteBatchByPK(ids);
+    }
+    
+    @Override
+    public int deleteBatch(List<TestCaseDto> testCases) {
+        return 0;
+    }
+
+    @Override
+    public int updatePart(TestCaseDto testCaseDto) {
+        TestCase testCase = BeanUtils.toBean(testCaseDto,TestCase.class);
+        return testCaseMapper.updatePart(testCase);
+    }
+
+    @Override
+    public List<TestCaseDto> listByParams(Map<String, Object> params) {
+        List<TestCase> list = testCaseMapper.listByParams(params);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        for(TestCaseDto testCaseDto: dtoList ){
+            if(null != testCaseDto.getInterfaceId()){
+                TestInterfaceDto testInterfaceDto = testInterfaceService.get(testCaseDto.getInterfaceId());
+                testCaseDto.setInterfaceDto(testInterfaceDto);
+            }
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<TestCaseDto> listBySuitId(Long suitId) {
+        List<TestCase> list = testCaseMapper.listBySuitId(suitId);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
+    }
+
+
+    @Override
+    public List<TestCaseDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList) {
+        List<TestCase> list = testCaseMapper.listAllBySuitList(testSuitDtoList);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public void excuteCaseList(List<TestCaseDto> testCaseDtoList, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception{
+        ReportResult.getReportResult().setTotal(ReportResult.getReportResult().getTotal() + testCaseDtoList.size());
+        excute( testCaseDtoList,testEnvironmentDto,planId, testReportDto,suitDto);
+
+    }
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
+        logger.info("==========线程池执行测试用例========");
+        //遍历执行测试用例
+        for(int i = 0; i < testCaseDtoList.size(); i++){
+            final int finalI = i;
+            threadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        logger.info("========执行线程" + finalI);
+                        excuteCase( testCaseDtoList.get(finalI),testEnvironmentDto,planId,testReportDto,suitDto);
+                    } catch (Exception e) {
+                        logger.error("多线程执行用例异常：",e);
+                    }
+
+                }
+            });
+        }
+
+        try {
+            logger.info("sleep-----"+1000);
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            logger.info("InterruptedException-----"+e.getMessage());
+        }
+
+        threadPool.shutdown();
+        while (true) {
+            if (threadPool.isTerminated()) {
+                break;
+            }
+        }
+    }
+    @Override
+    public void testRun(Long caseId, Long environmentId) throws Exception{
+        //判断是dubbo接口还是http接口
+        logger.info("==========联调测试用例========");
+        TestInterfaceDto testInterfaceDto = testInterfaceService.getByCaseId(caseId);
+        if(null != testInterfaceDto){
+            if(InterfaceTypeEnum.HTTP.getId() == testInterfaceDto.getType()){
+                testRunHttp(testInterfaceDto,caseId,environmentId);
+            } else if(InterfaceTypeEnum.DUBBO.getId() == testInterfaceDto.getType()){
+                testRunDubbo(testInterfaceDto,caseId,environmentId);
+            }
+        }
+    }
+
+    @Override
+    public List<TestCaseDto> getByCaseIds(String caseIds) {
+        String[] ids = caseIds.split(",|，");
+        List<TestCase> testCaseList = testCaseMapper.getByCaseIds(ids);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public void changeStatusList(int status, List<TestCaseDto> testCaseDtoList) {
+        testCaseMapper.changeStatusList( status, testCaseDtoList);
+    }
+
+    /**
+     * dubbo接口联调
+     * @param testInterfaceDto
+     * @param caseId
+     * @param environmentId
+     */
+    private void testRunDubbo(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId) {
+        logger.info("==========联调测试用例DUBBO========");
+        TestCaseDto testCaseDto = this.get(caseId);
+        TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(environmentId);
+        this.excuteDubbo(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null);
+    }
+
+    /**
+     * http接口联调
+     * @param testInterfaceDto
+     * @param caseId
+     * @param environmentId
+     */
+    private void testRunHttp(TestInterfaceDto testInterfaceDto, Long caseId, Long environmentId)throws Exception {
+        logger.info("==========联调测试用例HTTP========");
+        TestCaseDto testCaseDto = this.get(caseId);
+        TestEnvironmentDto testEnvironmentDto = testEnvironmentService.get(environmentId);
+        this.excuteHttp(testCaseDto,testInterfaceDto,testEnvironmentDto,null,null,null);
+    }
+
+    /**
+     * 执行测试用例
+     * @param caseDto 用例
+     * @param testEnvironmentDto 执行环境
+     * @param testReportDto
+     */
+//    @Transactional(propagation = TransactionDefinition.ISOLATION_READ_UNCOMMITTED)
+    private  void excuteCase(TestCaseDto caseDto, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto, TestSuitDto suitDto) throws Exception {
+        logger.info("执行测试用例：" +  caseDto.getId() + "-" + caseDto.getName());
+        logger.info("开始执行测试用例的时候reportResult的值：" +  ReportResult.getReportResult().toString());
+
+        //查询用例所属接口的基本配置
+        logger.info("==========查询用例id=" + caseDto.getId() + "所属接口信息========");
+        TestInterfaceDto interfaceDto = testInterfaceService.getByCaseId(caseDto.getId());
+        if(null != interfaceDto){
+            if(InterfaceTypeEnum.DUBBO.getId() == interfaceDto.getType()){
+                //dubbo接口
+                this.excuteDubbo(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto);
+            } else if(InterfaceTypeEnum.HTTP.getId() == interfaceDto.getType()){
+                //http接口
+                this.excuteHttp(caseDto,interfaceDto,testEnvironmentDto,planId,testReportDto,suitDto);
+            }
+        }
+
+    }
+
+    /**
+     * http接口的用例执行方法
+     * @param caseDto
+     * @param interfaceDto
+     * @param testEnvironmentDto
+     */
+    private void excuteHttp(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto,Long planId,TestReportDto testReportDto,TestSuitDto suitDto) throws Exception{
+        Long caseId = caseDto.getId(); //用例id
+        Long interfaceId = interfaceDto.getId();//接口id
+        Long environmentId = testEnvironmentDto.getId();//环境id
+        Long reportId = null != testReportDto?testReportDto.getId():null;
+        logger.info("==========http接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseId + "," + interfaceId + "," + environmentId);
+        //初始化数据库，先把所有的数据库连接
+        boolean flag = DBUtil.getDBInit(environmentId,caseId);
+
+        if(!flag){
+            logger.info("数据库初始化失败！" );
+            return;
+        }
+
+        TestCaseCommand testCaseCommand = new TestCaseCommand();
+        //进行执行用例之前的初始化工作
+        testCaseCommand.setBeforeCommand(getBeforeCommand(testEnvironmentDto,caseDto));
+        //数据清除
+        testCaseCommand.setAfterCommand(getAfterCommand(testEnvironmentDto,caseDto));
+        //断言初始化
+        testCaseCommand.setAssertCommand(getAssertCommand(caseDto, interfaceDto,reportId));
+
+        //========================发送http请求初始化===============================
+        //取超时时间---默认200000
+        String timeout = "200000";
+        //请求方式get/post
+        String requestType = RequestTypeEnum.getName(interfaceDto.getRequestType());
+        //协议类型
+        String propType = HttpTypeEnum.getName(interfaceDto.getProtocolType());
+        //取http接口的url
+        String url = interfaceDto.getUrl();
+        //contentType
+        String contentType = interfaceDto.getContentType();
+        logger.info("contentType:" + contentType);
+        //http请求的服务器地址
+        RelationServiceEnvironmentDto relationServiceEnvironmentDto = relationServiceEnvironmentService.getByCaseAndEnvironment(interfaceDto.getServiceId(),environmentId);
+        if(null != relationServiceEnvironmentDto){
+            url = propType + "://" + relationServiceEnvironmentDto.getIpAddress() + ":" + relationServiceEnvironmentDto.getHttpPort() + "/" + url;
+        }
+        logger.info("url:" + url);
+        //请求参数处理9
+        String paramsStr  = formatParams(caseDto,contentType,interfaceDto);
+        logger.info("paramsStr:" + paramsStr);
+
+        testCaseCommand.setCaseCommand(getCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseDto, interfaceDto, planId, reportId, suitDto));
+
+        //执行测试用例
+        testCaseCommand.execute();
+
+        if (flag) {
+            DBUtil.DBClose();
+        }
+    }
+
+    //初始化用例的执行
+    private CaseCommand getCaseCommand(String requestType,String url,String paramsStr,String contentType,String timeout,String propType,
+                                       TestCaseDto caseDto,TestInterfaceDto interfaceDto,Long planId,Long reportId,TestSuitDto suitDto) {
+        return new HttpCaseCommand(requestType,url,paramsStr,contentType,timeout,propType, caseDto, interfaceDto, planId, reportId, suitDto);
+    }
+
+    //初始化字段校验
+    private AssertCommand getAssertCommand(TestCaseDto caseDto, TestInterfaceDto interfaceDto,Long reportId) {
+        Assert assertItem = new Assert(interfaceDto,caseDto);
+        List<AssertKeyValueVo> paralist = new ArrayList();
+       // List<KeyValueStore> redislist = new ArrayList();
+
+        List<Command> dbAssertCommandList = new ArrayList();
+        ParaAssertCommand paraAssertCommand=null;
+        DBAssertCommand dbAssertCommand = null;
+
+        //获取断言信息
+        //1.数据库断言
+        List<DataAssertDto> dataAssertDtoList = dataAssertService.getByCaseId(caseDto.getId());
+        if(null != dataAssertDtoList && dataAssertDtoList.size() > 0){
+            for(DataAssertDto dataAssert:dataAssertDtoList){
+                dbAssertCommand =  new DBAssertCommand();
+                //通过数据库配置名称拿到具体的数据库名称
+                TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(dataAssert.getDatabaseName());
+                if(null != testDatabaseConfigDto){
+                    logger.info("通过数据库配置名拿到的数据库配置：" +testDatabaseConfigDto.toString());
+                    dbAssertCommand.setName(testDatabaseConfigDto.getDatabaseName());
+                }
+                dbAssertCommand.setSql(dataAssert.getSqlStr());
+                dbAssertCommand.setAssertItem(assertItem);
+                dbAssertCommand.setId(dataAssert.getId());
+                dbAssertCommandList.add(dbAssertCommand);
+                logger.info("数据库断言内容：" + dbAssertCommand.toString());
+            }
+        }
+
+//        //2.redis断言-----暂时不做
+//        List<Command> redisAssertCommandList = new ArrayList();
+//        List<RedisAssertDto> redisAssertDtoList = redisAssertService.getByCaseId(caseDto.getId());
+
+        //3.响应字段断言
+        List<ParamsAssertDto> paramsAssertDtoList = paramsAssertService.getByCaseId(caseDto.getId());
+        if(null != paramsAssertDtoList && paramsAssertDtoList.size() > 0){
+            for(ParamsAssertDto paramsDto : paramsAssertDtoList){
+                AssertKeyValueVo keyValueStore = new AssertKeyValueVo(paramsDto.getAssertParam(),paramsDto.getRightValue(),paramsDto.getId());
+                paralist.add(keyValueStore);
+                logger.info("响应字段断言内容：" + keyValueStore.toString());
+            }
+            paraAssertCommand = new ParaAssertCommand(paralist);
+            paraAssertCommand.setAssertItem(assertItem);
+        }
+        AssertCommand assertCommand = new AssertCommand(paraAssertCommand, null, dbAssertCommandList, assertItem,reportId);
+        return assertCommand;
+
+    }
+
+    //初始化执行用例之后要做的事情
+    private List<Command> getAfterCommand(TestEnvironmentDto testEnvironmentDto, TestCaseDto testcaseDto) {
+        List<Command> list = new ArrayList();
+        Long caseId = testcaseDto.getId(); //用例id
+        Long environmentId = testEnvironmentDto.getId();//环境id
+
+        //初始化redis
+        RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
+
+        //数据准备
+        if(null != testcaseDto.getDataClear() && testcaseDto.getDataClear() > 0) {
+            //数据准备---查询数据库准备
+            List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.CLEAR.getId());
+            if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
+                for (RelationCaseDatabaseDto relationCaseDatbase : relationCaseDatabaseDtoList) {
+                    //执行数据准备的sql
+                    logger.info("==========数据准备执行sql：" + relationCaseDatbase.getSqlStr());
+                    //通过数据库配置名称拿到具体的数据库名称
+                    TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(relationCaseDatbase.getDatabaseName());
+                    if(null != testDatabaseConfigDto) {
+                        logger.info("通过数据库配置名拿到的数据库配置：" +testDatabaseConfigDto.toString());
+                        list.add(new DBCommand(testDatabaseConfigDto.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    }
+                }
+            }
+            //数据准备---redis准备
+            List<RelationCaseRedisDto> relationCaseRedisDtoList = relationCaseRedisService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.CLEAR.getId());
+            if(null != relationCaseRedisDtoList && relationCaseRedisDtoList.size() > 0 ){
+                for(RelationCaseRedisDto relationCaseRedisDto : relationCaseRedisDtoList){
+                    RedisCommand redisCommand = new RedisCommand();
+                    redisCommand.setKey(relationCaseRedisDto.getKey());
+                    redisCommand.setMethodName(RedisOperationTypeEnum.getName(relationCaseRedisDto.getRedisOperateType()));
+                    redisCommand.setTime(relationCaseRedisDto.getTime());
+                    redisCommand.setValue(relationCaseRedisDto.getValue());
+                    list.add(redisCommand);
+                }
+            }
+        }
+        return list;
+    }
+
+    //初始化执行用例之前要做的事情
+    private List<Command> getBeforeCommand(TestEnvironmentDto testEnvironmentDto,TestCaseDto testcaseDto) {
+        List<Command> list = new ArrayList();
+
+        Long caseId = testcaseDto.getId(); //用例id
+        Long environmentId = testEnvironmentDto.getId();//环境id
+
+        //初始化redis
+        RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
+
+        //数据准备
+        if(null != testcaseDto.getDataPrepare() && testcaseDto.getDataPrepare() > 0) {
+            //数据准备---查询数据库准备
+            List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.PREPARE.getId());
+            if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
+                for (RelationCaseDatabaseDto relationCaseDatbase : relationCaseDatabaseDtoList) {
+                    //执行数据准备的sql
+                    logger.info("==========数据准备执行sql：" + relationCaseDatbase.getSqlStr());
+                    //通过数据库配置名称拿到具体的数据库名称
+                    TestDatabaseConfigDto testDatabaseConfigDto = testDatabaseConfigService.getByName(relationCaseDatbase.getDatabaseName());
+                    if(null != testDatabaseConfigDto){
+                        list.add(new DBCommand(testDatabaseConfigDto.getDatabaseName(), relationCaseDatbase.getSqlStr()));
+                    }
+                }
+            }
+            //数据准备---redis准备
+            List<RelationCaseRedisDto> relationCaseRedisDtoList = relationCaseRedisService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.PREPARE.getId());
+            if(null != relationCaseRedisDtoList && relationCaseRedisDtoList.size() > 0 ){
+                for(RelationCaseRedisDto relationCaseRedisDto : relationCaseRedisDtoList){
+                    RedisCommand redisCommand = new RedisCommand();
+                    redisCommand.setKey(relationCaseRedisDto.getKey());
+                    redisCommand.setMethodName(RedisOperationTypeEnum.getName(relationCaseRedisDto.getRedisOperateType()));
+                    redisCommand.setTime(relationCaseRedisDto.getTime());
+                    redisCommand.setValue(relationCaseRedisDto.getValue());
+                    list.add(redisCommand);
+                }
+            }
+        }
+
+      return list;
+    }
+
+    private String formatParams(TestCaseDto caseDto, String contentType,TestInterfaceDto interfaceDto) {
+        //参数,如果没有配置自定义类型就说明是配置了参数,如果配置了就取自定义参数
+        StringBuffer paramsStr = new StringBuffer("");
+        if(null != caseDto.getParamsType() && ParamsGroupTypeEnum.KEY.getId() == caseDto.getParamsType()){
+            //获取参数列表
+            List<ParamDto> testParamsDtoList = testParamsService.listByCaseIdFromRelation(caseDto.getId());
+            if(contentType.equals("application/json")){
+                logger.info("非自定义参数，转json，共"+testParamsDtoList.size() + "个参数");
+                //将参数转化为json字符串类型
+                if(null != testParamsDtoList && testParamsDtoList.size() > 0){
+                    JSONObject jsonObject = new JSONObject();
+                    Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
+
+                    while(iterator.hasNext()){
+                        ParamDto param = (ParamDto) iterator.next();
+                        logger.info("参数：" + param.toString());
+                        String value = param.getValue();
+                        //如果是需要加密的参数就调用
+                        if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
+                            //是加密的参数就先进行加密,加密的参数的值是加密的方法名
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        } else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
+                        }
+                        jsonObject.put(param.getName(),value);
+                    }
+                    paramsStr = paramsStr.append(jsonObject.toString());
+                    logger.info("加密之后的所有参数："+paramsStr);
+                }
+
+            } else {
+                logger.info("非自定义参数，转&拼接参数："+testParamsDtoList.size() + "个参数");
+                //将参数转化为字符串类型
+                if(null != testParamsDtoList && testParamsDtoList.size() > 0){
+                    Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
+                    while(iterator.hasNext()){
+                        ParamDto param = (ParamDto) iterator.next();
+                        String value = param.getValue();
+                        //如果是需要加密的参数就调用
+                        if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
+                            //是加密的参数就先进行加密,加密的参数的值是加密的方法名
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        }else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
+                        }
+                        paramsStr.append(param.getName() + "=" + param.getValue());
+                        paramsStr.append("&");
+                    }
+                    paramsStr = new StringBuffer(paramsStr.substring(0,paramsStr.lastIndexOf("&")));
+                }
+            }
+        } else if(null != caseDto.getParamsType() && ParamsGroupTypeEnum.CUSTOM.getId() == caseDto.getParamsType()){
+            //不处理加密
+            logger.info("自定义参数："+caseDto.getCustomParams());
+            paramsStr = new StringBuffer(caseDto.getCustomParams());
+        }
+
+        return paramsStr.toString();
+    }
+
+    public String encrypt(String path, TestInterfaceDto interfaceDto,Long caseId,String methodName,Date date){
+        //查询出接口对应的加密方法和参数列表
+        TestJarMethodDto testJarMethodDto = testJarMethodService.getByMethodNameAndInterfaceId(methodName,interfaceDto.getId());
+        if(null == testJarMethodDto){
+            return null;
+        }
+
+        StringBuffer value = new StringBuffer("");
+        //取出需要用到的类、方法名称、参数关系
+        try {
+            String className = testJarMethodDto.getClassName();
+            String paramsTypes =testJarMethodDto.getParamsTypes();//如：String,int,double
+            String paramsValues =testJarMethodDto.getParamsValues();//如：?{appid},123,4556或者appid=?{appid}&req=123,ddddd
+
+            logger.info("开始加密的方法中初始化参数类型------");
+            //将参数类型加入参数列表
+            String[] typesArray = paramsTypes.split(",|，");
+            Class<?>[] types = new Class[typesArray.length];
+            for(int i=0;i<types.length;i++){
+                //将参数类型替换成完整的参数类型名称
+                String type = getTypeFullName(typesArray[i]);
+                logger.info("加密的方法中初始化参数类型------" +type);
+                types[i] = Class.forName(type);
+            }
+
+            logger.info("开始加密的方法中初始化参数值------，将问号参数值指定具体的值");
+            String[] values = paramsValues.split(",|，");
+            for(String oValue : values){
+                //处理组合参数,例如：appId=?&nonce=56412&reqId=timestamp&timestamp=timestamp
+                logger.info("参数值：" + oValue);
+                //多个参数和值的组合组成一个jar包的参数---appid=?{appid}&req=123
+                if(oValue.contains("&")){
+                    String[] valueItemArray = oValue.split("&");
+                    for(String itemValue : valueItemArray){
+                        logger.info("目前处理的参数和值：" + itemValue);
+                        //处理不指明参数值的参数
+                        if(itemValue.contains("?")){
+                            String[] valueItem = itemValue.split("=");//拿到的值会是valueItem[0] = "appid"，valueItem[1] = "?{appid}"
+                            //对valueItem[1] = "?{appid}"解析出参数名称
+                            String valueName = valueItem[1].substring(2,valueItem[1].length()-1);
+                            //拿到用例中的该参数的值
+                            RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                            if(null != relationCaseParams){
+                                paramsValues = paramsValues.replace(itemValue,valueItem[0] + "=" + relationCaseParams.getValue());
+                            }
+                        }
+
+                    }
+
+                } else if(oValue.contains("?")){
+                    //单个参数，并且取当前用例中的值做jar包的参数----例如：?{appid}
+                    //参数名称
+                    String valueName = oValue.substring(2,oValue.length()-1);;
+
+                    //拿到用例中的该参数的值
+                    RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                    if(null != relationCaseParams){
+                        paramsValues = paramsValues.replace(oValue, relationCaseParams.getValue());
+                    }
+                }
+            }
+
+            //将参数中的时间戳替换为真的时间戳
+            String timestamp = "=" + date.getTime();
+            //替换了不固定值的参数值之后再对参数进行转换
+            Object[] valusObject = paramsValues.replaceAll("=timestamp",timestamp).split(",|，");
+            //调用jar包进行加密
+            value = JarUtil.signature (path, className, methodName,types, valusObject);
+        } catch (Exception e) {
+            logger.error("类型未找到：" + e);
+        }
+        return (null == value?null:value.toString());
+    }
+
+    private static String getTypeFullName(String s) {
+        if(s.equalsIgnoreCase("string")){
+            return STRING_NAME;
+        } else if(s.equalsIgnoreCase("integer") || s.equalsIgnoreCase("int")){
+            return INTEGER_NAME;
+        } else if(s.equalsIgnoreCase("short")){
+            return SHORT_NAME;
+        } else if(s.equalsIgnoreCase("byte")){
+            return BYTE_NAME;
+        } else if(s.equalsIgnoreCase("long")){
+            return LONG_NAME;
+        } else if(s.equalsIgnoreCase("double")){
+            return DOUBLE_NAME;
+        } else if(s.equalsIgnoreCase("float")){
+            return FLOAT_NAME;
+        } else if(s.equalsIgnoreCase("boolean")){
+            return BOOLEAN_NAME;
+        } else {
+            return STRING_NAME;
+        }
+    }
+
+    /**
+     * dubbo接口的用例执行方法
+     * @param caseDto
+     * @param interfaceDto
+     * @param testEnvironmentDto
+     * @param testReportDto
+     */
+    private void excuteDubbo(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto) {
+        logger.info("==========dubbo接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseDto.getId() + "," + interfaceDto.getId() + "," + testEnvironmentDto.getId());
+
+
+
+    }
+
+
+    public static void main(String[] s) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name","value");
+       System.out.println(jsonObject.toString());
+    }
+}

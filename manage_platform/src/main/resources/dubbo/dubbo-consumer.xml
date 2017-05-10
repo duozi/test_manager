@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="manage_platform" />
+
+    <dubbo:registry protocol="zookeeper" address="${zookeeper_ip}" />
+
+    <dubbo:protocol name="dubbo" port="${dubbo_port}" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <!--<dubbo:service interface="" ref="ruleEngineServiceImpl" timeout="${dubbo_ruleengine_timeout}" group="${dubbo_ruleengine_group}" version="${dubbo_ruleengine_version}"/>-->
+
+    <!-- 声明调用的服务接口 -->
+    <dubbo:reference id="companyService" interface="com.xn.common.api.CompanyService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="departmentService" interface="com.xn.common.api.DepartmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
+    <!--interfacetest的服务-->
+    <dubbo:reference id="testEnvironmentService" interface="com.xn.interfacetest.api.TestEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationServiceEnvironmentService" interface="com.xn.interfacetest.api.RelationServiceEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationDatabaseEnvironmentService" interface="com.xn.interfacetest.api.RelationDatabaseEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testRedisConfigService" interface="com.xn.interfacetest.api.TestRedisConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testDatabaseConfigService" interface="com.xn.interfacetest.api.TestDatabaseConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testInterfaceService" interface="com.xn.interfacetest.api.TestInterfaceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationCaseDatabaseService" interface="com.xn.interfacetest.api.RelationCaseDatabaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationCaseRedisService" interface="com.xn.interfacetest.api.RelationCaseRedisService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testSuitService" interface="com.xn.interfacetest.api.TestSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationSuitCaseService" interface="com.xn.interfacetest.api.RelationSuitCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testServiceService" interface="com.xn.interfacetest.api.TestServiceService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testCaseService" interface="com.xn.interfacetest.api.TestCaseService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testSystemService" interface="com.xn.interfacetest.api.TestSystemService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testParamsService" interface="com.xn.interfacetest.api.TestParamsService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testPlanService" interface="com.xn.interfacetest.api.TestPlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationCaseParamsService" interface="com.xn.interfacetest.api.RelationCaseParamsService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="redisAssertService" interface="com.xn.interfacetest.api.RedisAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="dataAssertService" interface="com.xn.interfacetest.api.DataAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="paramsAssertService" interface="com.xn.interfacetest.api.ParamsAssertService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationInterfaceResultService" interface="com.xn.interfacetest.api.RelationInterfaceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationPlanEnvironmentService" interface="com.xn.interfacetest.api.RelationPlanEnvironmentService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationPlanResultService" interface="com.xn.interfacetest.api.RelationPlanResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationPlanSuitService" interface="com.xn.interfacetest.api.RelationPlanSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="relationPlanTimeService" interface="com.xn.interfacetest.api.RelationPlanTimeService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="timeConfigService" interface="com.xn.interfacetest.api.TimeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testReportService" interface="com.xn.interfacetest.api.TestReportService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
+    <!--performance的服务-->
+    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceMonitoredMachineService" interface="com.xn.performance.api.PerformanceMonitoredMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScenarioService" interface="com.xn.performance.api.PerformanceScenarioService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceScriptService" interface="com.xn.performance.api.PerformanceScriptService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanService" interface="com.xn.performance.api.PerformancePlanService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanMonitoredService" interface="com.xn.performance.api.PerformancePlanMonitoredService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceResultService" interface="com.xn.performance.api.PerformanceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceMonitoredMachineResultService" interface="com.xn.performance.api.PerformanceMonitoredMachineResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performancePlanShowService" interface="com.xn.performance.api.PerformancePlanShowService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
+    <dubbo:monitor protocol="registry" />
+</beans>

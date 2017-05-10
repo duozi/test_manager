@@ -149,10 +149,6 @@ form .choose-sys {
     margin-top: 1%;
 }
 
-.case-form label {
-    width: 30%;
-}
-
 .modal-suit-list {
     width: 50% !important;
 }
@@ -198,10 +194,6 @@ form .choose-sys {
 #dubbo-form-div .bootstrap-select {
     margin-left: -2% !important;
     width: 90% !important;
-}
-
-.add-service-form , .add-project-form{
-    margin-left: 10%;
 }
 
 .modal-add-project {
@@ -252,15 +244,11 @@ form .choose-sys {
 }
 
 .modal-add-department{
-    min-height: 150px;
+    min-height: 200px;
 }
 
 .modal-add-company {
-    min-height: 100px;
-}
-
-.add-company-form,.add-department-form {
-margin-left: 10%;
+    min-height: 150px;
 }
 
 .modal-email {
@@ -282,7 +270,7 @@ margin-left: 10%;
 }
 
 #addService .modal-add-service {
-    height:340px;
+    min-height: 700px;
 }
 
 .suit-panel {
@@ -342,4 +330,49 @@ margin-left: 10%;
 
 #col-xs-2{
     width: 15% !important;
+}
+
+.error{
+    color: red;
+}
+
+#db-form-div,#zk-form-div,#service-form-div,#redis-form-div {
+    width: 80%;
+    margin-left: 2%;
+}
+
+.upto-left {
+    margin-left: 70%;
+}
+
+#addService .modal-dialog ,#addScript .modal-dialog{
+    width: 700px;
+}
+
+ .popover-content {
+    background-color: #ec971f;
+}
+
+.form-div-interface .form-group {
+    width:70%;
+}
+
+.disabled { pointer-events: none; }
+
+label.error
+{
+    width: 1% !important;
+}
+
+.checkbox-class label{
+    width: 30%;
+    margin-bottom: 1em;
+}
+
+.report-form .form-group label {
+    width: 30%;
+}
+
+.modal-dialog {
+    display: grid;
 }
