@@ -28,8 +28,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -47,7 +45,8 @@ public class PerformanceScriptController {
     DepartmentService departmentService;
     @Resource
     TestSystemService testSystemService;
-    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
+
+
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {

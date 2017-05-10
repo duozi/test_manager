@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -159,9 +158,13 @@ public class PerformanceReportController {
             performanceScriptDto = performanceScriptService.get(performanceScriptDto);
             //场景
             Integer scenarioId = performancePlanDto.getScenarioId();
-            PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
-            performanceScenarioDto.setId(scenarioId);
-            performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+            if (scenarioId != 0) {
+                //如果场景未修改，就不传入场景到后台
+                PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+                performanceScenarioDto.setId(scenarioId);
+                performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+                model.put("scenario_detail", performanceScenarioDto);
+            }
 
 
             //暂时修改对应报告的地址
@@ -171,15 +174,15 @@ public class PerformanceReportController {
                 resultPath = resultPath.substring(i);
                 performanceResultDto.setResultPath(resultPath);
             }
-            String localIp= getProperty("localIp");
+            String localIp = getProperty("localIp");
             model.put("result_detail", performanceResultDto);
             model.put("plan_detail", performancePlanDto);
             model.put("monitored_machine_detail_list", performanceMonitoredMachineResultDtoList);
             model.put("stress_machine_detail", performanceStressMachineDto);
             model.put("script_detail", performanceScriptDto);
-            model.put("scenario_detail", performanceScenarioDto);
-            model.put("localIp", localIp);
 
+
+            model.put("localIp", localIp);
 
 
         } catch (Exception e) {
@@ -192,9 +195,12 @@ public class PerformanceReportController {
 
     //获得机器实时数据
     @RequestMapping(value = "/grafana", method = RequestMethod.GET)
-    public String getGrafana(HttpServletRequest request, HttpServletResponse response) {
+    public String getGrafana(ModelMap model) {
         try {
+            String localIp = getProperty("localIp");
+            model.put("localIp", localIp);
         } catch (Exception e) {
+
         } finally {
             return "/performance/report/grafana";
         }
@@ -216,12 +222,11 @@ public class PerformanceReportController {
             performanceStressMachineDto.setId(stressMachineId);
             performanceStressMachineDto = performanceStressMachineService.get(performanceStressMachineDto);
             model.put("stress_machine_detail", performanceStressMachineDto);
-            } catch(Exception e){
-            }
-        finally {
+        } catch (Exception e) {
+        } finally {
             return "/performance/report/jmeter_log";
         }
-        }
+    }
 
 
 }

@@ -127,7 +127,7 @@
             });
         }
         //        执行弹框根据公司部门系统查询可选压力机，然后弹出弹框
-        function execute( planId, company, department, psystem) {
+        function execute(planId, company, department, psystem) {
             $.post("/performance/plan/plan_list/show_stress_machine", {
                 company: company,
                 department: department,
@@ -287,12 +287,8 @@
                             <th>系统</th>
                             <th>脚本</th>
                             <th>场景</th>
-                            <th>压力机</th>
                             <th>监控机</th>
-                            <th>执行状态</th>
-                            <th>开始时间</th>
                             <th>创建人</th>
-                            <th>执行</th>
                             <th>操作</th>
 
                         </tr>
@@ -324,25 +320,25 @@
 
                                     </td>
                                     <td>${item.createPerson}</td>
-                                    <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
-                                           onclick="execute(${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
-                                        <a type="button" name="stop" class="btn btn-warning"
-                                        <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" >
-                                            onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
-                                            <#else> disabled
-                                        </#if>
-                                        >停止执行</a>
-                                    </td>
+                                    <!--<td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"-->
+                                           <!--onclick="execute(${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>-->
+                                        <!--<a type="button" name="stop" class="btn btn-warning"-->
+                                        <!--<#if item.executeStatus=="执行中" || item.executeStatus=="等待中" >-->
+                                            <!--onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"-->
+                                            <!--<#else> disabled-->
+                                        <!--</#if>-->
+                                        <!--&gt;停止执行</a>-->
+                                    <!--</td>-->
 
                                     <td>
                                         <a type="button" id="deletePlan" class="btn btn-danger"
                                            onclick="deletePlan(${item.planId})">删除计划</a>
-                                        <a type="button" class="btn btn-info"
-                                        <#if item.executeStatus=="已执行" || item.executeStatus=="中断">
-                                            onclick="report(${item.id})"
-                                            <#else> disabled
-                                        </#if>
-                                        >测试报告</a>
+                                        <!--<a type="button" class="btn btn-info"-->
+                                        <!--<#if item.executeStatus=="已执行" || item.executeStatus=="中断">-->
+                                            <!--onclick="report(${item.id})"-->
+                                            <!--<#else> disabled-->
+                                        <!--</#if>-->
+                                        <!--&gt;测试报告</a>-->
                                     </td>
                                 </tr>
                                 <!--<option value="${item.id}">${item.name}</option>-->
@@ -539,7 +535,7 @@
                 $("select[name='scriptName']").empty();
                 $("select[name='scriptName']").append(script_choose);
 
-                var scenario_choose = "<option disabled selected>请选择场景</option>";
+                var scenario_choose = "<option disabled selected>请选择场景</option> <option value='0'>不修改场景</option>";
                 for (var i = 0; i < scenario_list.length; i++) {
                     scenario_choose += "<option value='" + scenario_list[i].id + "'>" + scenario_list[i].scenarioName + "</option>";
                 }

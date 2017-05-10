@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -43,6 +46,8 @@ public class PerformanceMachineController {
 
     @Resource
     TestSystemService testSystemService;
+    Set<String> set = new HashSet<>(); // 非同步，非线程安全的Set
+    Set<String> linkedMachine = Collections.synchronizedSet(set); // 返回了一个线程安全的Set
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
@@ -113,12 +118,20 @@ public class PerformanceMachineController {
     public CommonResult saveStressMachine(PerformanceStressMachineDto performanceStressMachineDto) {
         CommonResult commonResult = new CommonResult();
         try {
-            performanceStressMachineDto.setStressMachineStatus("未执行");
+            String ip=performanceStressMachineDto.getIp();
+            String username=performanceStressMachineDto.getUsername();
+            String password=performanceStressMachineDto.getPassword();
+            String port=performanceStressMachineDto.getPort();
+            String key=ip+"_"+username+"_"+password+"_"+port;
+            if(linkedMachine.contains(key)){
+                performanceStressMachineDto.setStressMachineStatus("未执行");
+                performanceStressMachineService.save(performanceStressMachineDto);
+            }else{
+                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
+                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
 
+            }
 
-            performanceStressMachineService.save(performanceStressMachineDto);
-            commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
-            commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
@@ -133,10 +146,20 @@ public class PerformanceMachineController {
     public CommonResult saveMonitoredMachine(PerformanceMonitoredMachineDto performanceMonitoredMachineDto) {
         CommonResult commonResult = new CommonResult();
         try {
+            String ip=performanceMonitoredMachineDto.getIp();
+            String username=performanceMonitoredMachineDto.getUsername();
+            String password=performanceMonitoredMachineDto.getPassword();
+            String port=performanceMonitoredMachineDto.getPort();
+            String key=ip+"_"+username+"_"+password+"_"+port;
+            if(linkedMachine.contains(key)){
 
-            performanceMonitoredMachineService.save(performanceMonitoredMachineDto);
-            commonResult.setCode(CommonResultEnum.SUCCESS.getReturnCode());
-            commonResult.setMessage(CommonResultEnum.SUCCESS.getReturnMsg());
+                performanceMonitoredMachineService.save(performanceMonitoredMachineDto);
+            }else{
+                commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());
+                commonResult.setMessage(CommonResultEnum.FAILED.getReturnMsg());
+
+            }
+
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
@@ -186,17 +209,26 @@ public class PerformanceMachineController {
 
     @RequestMapping(value = "/{path}/test", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult testLink(@PathVariable final String path, @RequestParam final String ip, @RequestParam final String username, @RequestParam final String password,@RequestParam final Integer port) {
+    public CommonResult testLink(@PathVariable final String path, @RequestParam final String ip, @RequestParam final String username, @RequestParam final String password, @RequestParam final Integer port) {
         final CommonResult commonResult = new CommonResult();
         try {
             if (isNotEmpty(ip) && isNotEmpty(username) && isNotEmpty(password)) {
 
-                        if (path.equals("stress_machine_list")) {
-                            commonResult.setData(performanceStressMachineService.testLink(ip, username, password,port));
-                        } else if (path.equals("monitored_machine_list")) {
-                            boolean canLink = performanceMonitoredMachineService.testLink(ip, username, password,port);
-                            commonResult.setData(canLink);
-                        }
+                if (path.equals("stress_machine_list")) {
+                    boolean canLink = performanceStressMachineService.testLink(ip, username, password, port);
+                    commonResult.setData(canLink);
+                    if(canLink){
+                        String key=ip+"_"+username+"_"+password+"_"+port;
+                        linkedMachine.add(key);
+                    }
+                } else if (path.equals("monitored_machine_list")) {
+                    boolean canLink = performanceMonitoredMachineService.testLink(ip, username, password, port);
+                    commonResult.setData(canLink);
+                    if(canLink){
+                        String key=ip+"_"+username+"_"+password+"_"+port;
+                        linkedMachine.add(key);
+                    }
+                }
 
             } else {
                 commonResult.setCode(CommonResultEnum.FAILED.getReturnCode());

@@ -90,7 +90,7 @@ public class PerformancePlanController {
         String planName = request.getParameter("planName");
         String planStatus = request.getParameter("planStatus");
         String scriptName = request.getParameter("scriptName");
-        PerformancePlanShowDto performancePlanShowDto = new PerformancePlanShowDto();
+        PerformancePlanDto performancePlanShowDto = new PerformancePlanDto();
         performancePlanShowDto.setIsDelete("未删除");
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
@@ -111,7 +111,7 @@ public class PerformancePlanController {
             performancePlanShowDto.setScriptName(scriptName);
         }
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getPlanShow(performancePlanShowDto);
+        List<PerformancePlanDto> performancePlanShowDtoList = performancePlanService.list(performancePlanShowDto);
         model.put("plan_list", performancePlanShowDtoList);
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());

@@ -303,17 +303,8 @@ public class JmeterServiceImpl implements JmeterService {
             performanceScriptDto.setScriptStatus("已发布");
             performanceScriptService.update(performanceScriptDto);
         }
-        //获得场景，为了更新状态
-        Integer scenarioId = performancePlanShowDto.getScenarioId();
-        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
-        performanceScenarioDto.setId(scenarioId);
 
-        performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
-        String scenarioStatus = performanceScenarioDto.getScenarioStatus();
-        if (scenarioStatus.equals("未发布")) {
-            performanceScenarioDto.setScenarioStatus("已发布");
-            performanceScenarioService.update(performanceScenarioDto);
-        }
+
 
 
         //更新压力机的状态为执行中
@@ -327,7 +318,20 @@ public class JmeterServiceImpl implements JmeterService {
         String stressMachineIp = performanceStressMachineDto.getIp();
         //获得结果的id用来标识jemeter脚本
 
+        //获得场景，为了更新状态
+        Integer scenarioId = performancePlanShowDto.getScenarioId();
+        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+        performanceScenarioDto.setId(scenarioId);
+        if(scenarioId!=0){
 
+
+            performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+            String scenarioStatus = performanceScenarioDto.getScenarioStatus();
+            if (scenarioStatus.equals("未发布")) {
+                performanceScenarioDto.setScenarioStatus("已发布");
+                performanceScenarioService.update(performanceScenarioDto);
+            }
+        }
         String jmeterScriptPath = generateJmeterScript(scriptPath, performanceScenarioDto, id);
 
         logger.info(Thread.currentThread().getName() + "==========jmeterScriptPath:" + jmeterScriptPath);
@@ -395,121 +399,135 @@ public class JmeterServiceImpl implements JmeterService {
 
         logger.info(Thread.currentThread().getName() + "=============generateJmeterScript " + " id:" + id + " scriptPath:" + scriptPath + " performanceScenarioDto:" + performanceScenarioDto.toString());
         String jmeterScriptPath = "";
-        try {
-
-            File script = new File(scriptPath);
-            SAXReader saxReader = new SAXReader();
-
-            //读取脚本
-            org.dom4j.Document document = null;
+        File script = new File(scriptPath);
+        //上传脚本名称
+        String fileName = script.getName();
+        //除名称之外的路径
+        String path = scriptPath.split(fileName)[0];
+        //jmeter脚本的名称
+        String jmeterScriptFileName = "jmeter_script_" + id + "_" + fileName;
+        jmeterScriptPath = path + jmeterScriptFileName;
+        Integer scenarioId=performanceScenarioDto.getId();
 
             try {
-                document = saxReader.read(new File(scriptPath));
-            } catch (DocumentException e) {
-                e.printStackTrace();
-            }
 
+                SAXReader saxReader = new SAXReader();
 
-            Element scenario = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup");
-            // 获取所有子元素
-            List<Element> list = scenario.elements();
-            for (Element element : list) {
-                String name = element.attribute("name").getValue();
-                //线程数
-                if (name.equals("ThreadGroup.num_threads")) {
-                    element.setText(String.valueOf(performanceScenarioDto.getConcurrency()));
-                }
-                //所有线程在多少时间内启动完毕
-                else if (name.equals("ThreadGroup.ramp_time")) {
+                //读取脚本
+                org.dom4j.Document document = null;
 
-                    element.setText(String.valueOf(performanceScenarioDto.getStartup()));
-                }
-
-                //是否调用执行器
-                else if (name.equals("ThreadGroup.scheduler")) {
-                    String scheduler = String.valueOf(performanceScenarioDto.getScheduler());
-                    element.setText(scheduler);
-                }
-
-                //开始时间
-                else if (name.equals("ThreadGroup.start_time")) {
-                    Date startTime = performanceScenarioDto.getSetStartTime();
-                    if (startTime != null) {
-                        String setStartTime = String.valueOf(startTime.getTime());
-                        element.setText(setStartTime);
-                    }
-
-                }
-                //结束时间
-                else if (name.equals("ThreadGroup.end_time")) {
-                    Date endTime = performanceScenarioDto.getSetEndTime();
-                    if (endTime != null) {
-                        String setEndTime = String.valueOf(endTime.getTime());
-                        element.setText(setEndTime);
-                    }
-
-                }
-                //持续时间
-                else if (name.equals("ThreadGroup.duration")) {
-                    String executeTime = String.valueOf(performanceScenarioDto.getExecuteTime());
-                    if (!executeTime.equals("null")) {
-                        element.setText(executeTime);
-                    }
-
-                }
-                //延迟时间
-                else if (name.equals("ThreadGroup.delay")) {
-                    String delayTime = String.valueOf(performanceScenarioDto.getDelayTime());
-                    if (!delayTime.equals("null")) {
-                        element.setText(delayTime);
-                    }
-
-                }
-
-
-            }
-
-            //循环数
-            String cycleString = String.valueOf(performanceScenarioDto.getCycle());
-            if (!cycleString.equals("null")) {
-                Element cycle = null;
                 try {
-                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/stringProp");
-                } catch (Exception e) {
-                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
+                    document = saxReader.read(new File(scriptPath));
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
-                cycle.setText(cycleString);
+                //不修该场景
+                if(scenarioId!=0) {
+
+                    Element scenario = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup");
+                    // 获取所有子元素
+                    List<Element> list = scenario.elements();
+                    for (Element element : list) {
+                        String name = element.attribute("name").getValue();
+                        //线程数
+                        if (name.equals("ThreadGroup.num_threads")) {
+                            element.setText(String.valueOf(performanceScenarioDto.getConcurrency()));
+                        }
+                        //所有线程在多少时间内启动完毕
+                        else if (name.equals("ThreadGroup.ramp_time")) {
+
+                            element.setText(String.valueOf(performanceScenarioDto.getStartup()));
+                        }
+
+                        //是否调用执行器
+                        else if (name.equals("ThreadGroup.scheduler")) {
+                            String scheduler = String.valueOf(performanceScenarioDto.getScheduler());
+                            element.setText(scheduler);
+                        }
+
+                        //开始时间
+                        else if (name.equals("ThreadGroup.start_time")) {
+                            Date startTime = performanceScenarioDto.getSetStartTime();
+                            if (startTime != null) {
+                                String setStartTime = String.valueOf(startTime.getTime());
+                                element.setText(setStartTime);
+                            }
+
+                        }
+                        //结束时间
+                        else if (name.equals("ThreadGroup.end_time")) {
+                            Date endTime = performanceScenarioDto.getSetEndTime();
+                            if (endTime != null) {
+                                String setEndTime = String.valueOf(endTime.getTime());
+                                element.setText(setEndTime);
+                            }
+
+                        }
+                        //持续时间
+                        else if (name.equals("ThreadGroup.duration")) {
+                            String executeTime = String.valueOf(performanceScenarioDto.getExecuteTime());
+                            if (!executeTime.equals("null")) {
+                                element.setText(executeTime);
+                            }
+
+                        }
+                        //延迟时间
+                        else if (name.equals("ThreadGroup.delay")) {
+                            String delayTime = String.valueOf(performanceScenarioDto.getDelayTime());
+                            if (!delayTime.equals("null")) {
+                                element.setText(delayTime);
+                            }
+
+                        }
+
+
+                    }
+
+                    //循环数
+                    String cycleString = String.valueOf(performanceScenarioDto.getCycle());
+                    if (!cycleString.equals("null")) {
+                        Element cycle = null;
+                        try {
+                            cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/stringProp");
+                        } catch (Exception e) {
+                            cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
+                        }
+                        cycle.setText(cycleString);
+                    }
+                }
+                // 输出格式
+                OutputFormat outformat = new OutputFormat();
+                // 指定XML编码
+                outformat.setEncoding("UTF-8");
+
+                outformat.setNewLineAfterDeclaration(false);
+                outformat.setNewlines(false);
+
+                outformat.setIndent(true);
+                //不替换文件中的空行和空格
+                outformat.setTrimText(false);
+
+                OutputStream out = new FileOutputStream(jmeterScriptPath);
+                XMLWriter xmlwriter = new XMLWriter(out, outformat);
+                xmlwriter.write(document);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                return jmeterScriptPath;
             }
-            // 输出格式
-            OutputFormat outformat = new OutputFormat();
-            // 指定XML编码
-            outformat.setEncoding("UTF-8");
-            outformat.setNewlines(true);
-            outformat.setIndent(true);
-            outformat.setTrimText(true);
-
-            //上传脚本名称
-            String fileName = script.getName();
-            //除名称之外的路径
-            String path = scriptPath.split(fileName)[0];
-            //jmeter脚本的名称
-            String jmeterScriptFileName = "jmeter_script_" + id + "_" + fileName;
-            jmeterScriptPath = path + jmeterScriptFileName;
-
-            OutputStream out = new FileOutputStream(jmeterScriptPath);
-            XMLWriter xmlwriter = new XMLWriter(out, outformat);
-            xmlwriter.write(document);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return jmeterScriptPath;
         }
 
+    public static void main(String[] args) {
+        JmeterServiceImpl jmeterService=new JmeterServiceImpl();
+        PerformanceScenarioDto performanceScenarioDto=new PerformanceScenarioDto();
+        performanceScenarioDto.setCycle(1);
+        performanceScenarioDto.setScheduler("false");
+        performanceScenarioDto.setStartup(5);
+        performanceScenarioDto.setConcurrency(5);
+        jmeterService.generateJmeterScript("D:\\origin.jmx",performanceScenarioDto,5);
     }
-
-
 }
