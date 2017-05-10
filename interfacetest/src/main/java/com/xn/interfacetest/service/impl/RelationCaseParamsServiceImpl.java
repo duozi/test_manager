@@ -10,7 +10,6 @@ import java.util.Map;
 import com.xn.interfacetest.Enum.ParamsGroupTypeEnum;
 import com.xn.interfacetest.api.TestCaseService;
 import com.xn.interfacetest.dto.TestCaseDto;
-import org.apache.xmlbeans.impl.xb.ltgfmt.TestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

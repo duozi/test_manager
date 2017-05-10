@@ -11,7 +11,6 @@
         <result property="serviceId" column="service_id"/>
         <result property="type" column="type"/>
         <result property="url" column="url"/>
-        <result property="codeText" column="code_text"/>
         <result property="jarPath" column="jar_path"/>
         <result property="className" column="class_name"/>
         <result property="methodName" column="method_name"/>
@@ -31,7 +30,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, name, description, service_id,status, type, url, code_text, jar_path,class_name, method_name,params_types,params_values,
+        id, name, description, service_id,status, type, url, jar_path,class_name, method_name,params_types,params_values,
         request_type, protocol_type, params, dubbo_version, dubbo_group, dubbo_timeout,zk_or_not,content_type
         ]]>
     </sql>
@@ -55,9 +54,6 @@
             </if>
            <if test="@Ognl@isNotEmpty(url)">
                 AND url = #{url}
-            </if>
-           <if test="@Ognl@isNotEmpty(codeText)">
-                AND code_text = #{codeText}
             </if>
            <if test="@Ognl@isNotEmpty(jarPath)">
                 AND jar_path = #{jarPath}
@@ -167,9 +163,6 @@
             <if test="@Ognl@isNotEmpty(url)">
                 AND url = #{url}
             </if>
-            <if test="@Ognl@isNotEmpty(codeText)">
-                AND code_text = #{codeText}
-            </if>
             <if test="@Ognl@isNotEmpty(jarPath)">
                 AND jar_path = #{jarPath}
             </if>
@@ -248,7 +241,6 @@
                 service_id,
                 type,
                 url,
-                code_text,
                 jar_path,
                 class_name,
                 method_name,
@@ -269,7 +261,6 @@
                 #{serviceId},
                 #{type},
                 #{url},
-                #{codeText},
                 #{jarPath},
                 #{className},
                 #{methodName},
@@ -296,7 +287,6 @@
                 service_id,
                 type,
                 url,
-                code_text,
                 jar_path,
                 class_name,
                 method_name,
@@ -313,7 +303,7 @@
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.codeText},#{item.jarPath},
+            (#{item.id},#{item.name},#{item.description},#{item.serviceId},#{item.type},#{item.url},#{item.jarPath},
             #{item.className},#{item.methodName}, #{item.paramsTypes}, #{item.paramsValues}, #{item.requestType},
             #{item.protocolType},#{item.params},#{item.dubboVersion},#{item.dubboGroup},#{item.dubboTimeout},#{item.zkOrNot},#{item.contentType})
         </foreach>
@@ -337,9 +327,6 @@
                 </if>
                 <if test="url != null">
                 	<![CDATA[ url = #{url} ]]>,
-                </if>
-                <if test="codeText != null">
-                	<![CDATA[ code_text = #{codeText} ]]>,
                 </if>
                 <if test="jarPath != null">
                 	<![CDATA[ jar_path = #{jarPath} ]]>,

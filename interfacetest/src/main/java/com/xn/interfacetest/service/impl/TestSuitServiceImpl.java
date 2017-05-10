@@ -310,7 +310,7 @@ public class TestSuitServiceImpl implements TestSuitService {
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    private void excute(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId,TestReportDto testReportDto){
+    private void excute(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId,TestReportDto testReportDto) throws Exception{
         String systemIds = "";
         for (int i = 0; i < testSuitDtoList.size(); i++) {
             try {

@@ -77,7 +77,12 @@ public class TestJarMethodServiceImpl implements TestJarMethodService {
     @Override
     public TestJarMethodDto save(TestJarMethodDto testJarMethodDto) {
         TestJarMethod testJarMethod = BeanUtils.toBean(testJarMethodDto,TestJarMethod.class);
-        testJarMethodMapper.save(testJarMethod);
+        if(null == testJarMethodDto.getId()){
+            testJarMethodMapper.save(testJarMethod);
+        } else {
+            testJarMethodMapper.update(testJarMethod);
+        }
+
         testJarMethodDto.setId(testJarMethod.getId());
         return testJarMethodDto;
     }

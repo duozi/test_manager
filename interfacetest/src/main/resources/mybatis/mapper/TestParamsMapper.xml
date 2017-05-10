@@ -89,19 +89,19 @@
         <include refid="where"/>
     </select>
 
-    <select id="listByCaseIdFromRelation" resultMap="TestParamsMap">
-        select tp.name ,rcp.`value`,tp.format_type,tp.interface_id
+    <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
+        select tp.name ,rcp.`value` value,tp.format_type,tp.interface_id
         from test_params tp
         LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
         where rcp.case_id = #{caseId} and rcp.is_delete = 0
     </select>
 
-    <select id="getParamsByInterfaceIdAndName">
+    <select id="getParamsByInterfaceIdAndName" resultMap="TestParamsMap">
         <![CDATA[
             select *
             from   test_params
             WHERE
-                interface_id = #{interfaceId} and name  = #{name} and is_delete = #{isDlete}
+                interface_id = #{interfaceId} and name  = #{name} and is_delete = #{isDelete}
         ]]>
     </select>
 

@@ -38,7 +38,7 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="<#if 1 == testCaseDto.paramsType>active</#if>">
+                                <li class="<#if 1 == testCaseDto.paramsType || null == testCaseDto.paramsType>active</#if>">
                                     <a href="#gui-header" data-toggle="tab" aria-expanded="<#if null == testCaseDto.customParamsType>true<#else>false</#if>">参数设置</a>
                                 </li>
                                 <li class="<#if 2 == testCaseDto.paramsType>active</#if>"><a href="#source-header" data-toggle="tab" aria-expanded="<#if null != testCaseDto.customParamsType>true<#else>false</#if>">自定义参数</a>
@@ -47,7 +47,7 @@
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane fade <#if 1 == testCaseDto.paramsType>active  in</#if>" id="gui-header">
+                                <div class="tab-pane fade <#if 1 == testCaseDto.paramsType || null == testCaseDto.paramsType>active  in</#if>" id="gui-header">
                                     <div class="table-responsive">
                                         <table class="table case-table">
                                             <thead>

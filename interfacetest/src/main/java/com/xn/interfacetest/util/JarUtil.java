@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import com.xn.common.utils.PropertyUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -233,52 +234,14 @@ public class JarUtil {
 //    }
 
 
-    public static void main(String[] args){
-        try
-        {
-            URL  url  = new URL("file:\\C:\\Users\\Administrator\\Downloads\\apache-jmeter-3.0\\apache-jmeter-3.0\\lib\\ext\\Signature.jar");
-            URLClassLoader loader = new URLClassLoader(new URL[]{url},Thread.currentThread().getContextClassLoader());
-
-            Class<?> clazz = loader.loadClass("com.xiaoniu.base.encode_main");
-
-            //传入参数类型
-            Class<?>[] typesB = new Class[3];
-            typesB[0] = String.class;
-            typesB[1] = String.class;
-            typesB[2] = String.class;
-
-            //传入参数值
-            Object[] ObjsB = new Object[3];
-            ObjsB[0] = new String("appId=credit-ndf&nonce=56412&reqId=201705031812249926&timestamp=20170503181224");
-            ObjsB[1] = new String("6C0F32CB2C6CA27A9DF864CF7B6129A49CFB2251D1BC02345E93624D9AB561C7");
-            ObjsB[2] = new String("HmacSHA1");
-
-            //指定加密方法
-            Method newMethod = clazz.getDeclaredMethod("encode", typesB);
-            //调用方法拿到返回值
-            String res = newMethod.invoke(clazz, ObjsB).toString();
-
-            System.out.println(res);
-
-            loader.close();  //关闭类的加载器
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    //利用jar包加密，返回加密结果
-    public static StringBuffer signature (String filePath,String className,String methodName,Class<?>[] types,Object[] values) throws Exception{
-        StringBuffer result = new StringBuffer("");
-        String pathUrl = "file:" + File.separator + filePath;
-        try
-        {
-            URL  url  = new URL(pathUrl);
-            URLClassLoader loader = new URLClassLoader(new URL[]{url},Thread.currentThread().getContextClassLoader());
-
-            Class<?> clazz = loader.loadClass(className);
-
+//    public static void main(String[] args){
+//        try
+//        {
+//            URL  url  = new URL("file:\\C:\\Users\\Administrator\\Downloads\\apache-jmeter-3.0\\apache-jmeter-3.0\\lib\\ext\\Signature.jar");
+//            URLClassLoader loader = new URLClassLoader(new URL[]{url},Thread.currentThread().getContextClassLoader());
+//
+//            Class<?> clazz = loader.loadClass("com.xiaoniu.base.encode_main");
+//
 //            //传入参数类型
 //            Class<?>[] typesB = new Class[3];
 //            typesB[0] = String.class;
@@ -290,6 +253,33 @@ public class JarUtil {
 //            ObjsB[0] = new String("appId=credit-ndf&nonce=56412&reqId=201705031812249926&timestamp=20170503181224");
 //            ObjsB[1] = new String("6C0F32CB2C6CA27A9DF864CF7B6129A49CFB2251D1BC02345E93624D9AB561C7");
 //            ObjsB[2] = new String("HmacSHA1");
+//
+//            //指定加密方法
+//            Method newMethod = clazz.getDeclaredMethod("encode", typesB);
+//            //调用方法拿到返回值
+//            String res = newMethod.invoke(clazz, ObjsB).toString();
+//
+//            System.out.println(res);
+//
+//            loader.close();  //关闭类的加载器
+//
+//        } catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+
+    //利用jar包加密，返回加密结果
+    public static StringBuffer signature (String filePath,String className,String methodName,Class<?>[] types,Object[] values) throws Exception{
+        StringBuffer result = new StringBuffer("");
+        String pathUrl = PropertyUtil.getProperty("upload_ip") + filePath;
+        logger.info("加密jar包所在路径：" + pathUrl);
+        try
+        {
+            URL  url  = new URL(pathUrl);
+            URLClassLoader loader = new URLClassLoader(new URL[]{url},Thread.currentThread().getContextClassLoader());
+
+            Class<?> clazz = loader.loadClass(className);
 
             //指定加密方法
             Method newMethod = clazz.getDeclaredMethod(methodName, types);

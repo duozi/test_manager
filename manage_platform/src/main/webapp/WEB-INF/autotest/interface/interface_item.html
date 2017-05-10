@@ -53,9 +53,7 @@
                     <div class="form-group ">
                         <label>所属service</label>
                         <select class="form-control col-lg-5" name="serviceId">
-                            <option value=""
-                            <#if interfaceDto.serviceId=null>disabled selected</#if>
-                            >选择服务名称</option>
+                            <option value=""<#if interfaceDto.serviceId=null>disabled selected</#if>>选择服务名称</option>
                             <#if serviceList ??>
                                 <#list serviceList as item>
                                     <option value="${item.id}"

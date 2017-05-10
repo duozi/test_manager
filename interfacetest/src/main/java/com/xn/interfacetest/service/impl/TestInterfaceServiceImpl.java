@@ -10,8 +10,8 @@ import java.util.Map;
 
 import com.xn.interfacetest.Enum.ParamFormatTypeEnum;
 import com.xn.interfacetest.api.TestJarMethodService;
-import com.xn.interfacetest.dto.TestJarMethodDto;
-import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.interfacetest.api.TestParamsService;
+import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.TestJarMethod;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,6 @@ import com.xn.interfacetest.api.TestInterfaceService;
 import com.xn.interfacetest.api.TestServiceService;
 import com.xn.interfacetest.dao.TestInterfaceMapper;
 import com.xn.interfacetest.dao.TestParamsMapper;
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.dto.TestServiceDto;
 import com.xn.interfacetest.entity.TestInterface;
 import com.xn.interfacetest.entity.TestParams;
 import com.xn.interfacetest.util.CollectionUtils;
@@ -44,6 +42,7 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     /**
      *  Dao
      */
+
     @Autowired
     private TestInterfaceMapper testInterfaceMapper;
 
@@ -55,6 +54,9 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
 
     @Autowired
     private TestParamsMapper testParamsMapper;
+
+    @Autowired
+    private TestParamsService testParamsService;
 
     @Override
     @Transactional(readOnly = true)
@@ -179,7 +181,7 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         if(null != testInterfaceExist){
             String existParams = testInterfaceExist.getParams();
             String newParams = testInterface.getParams();
-            if(StringUtils.isNotBlank(newParams) && !newParams.equals(existParams)){
+         //   if(StringUtils.isNotBlank(newParams) && !newParams.equals(existParams)){
                 String[] existArray = existParams.split(",|，");
                 //把字符串数组转为集合
                 List<String> existlist = new ArrayList<String>();
@@ -207,24 +209,25 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
                         TestParams paramsExist = testParamsMapper.getParamsByInterfaceIdAndName(testInterface.getId(),newParam,0);
                         //同一接口下不能存在同名的参数，不存在再保存
                         if(null == paramsExist){
-                            TestParams testParams = new TestParams();
+                            TestParamsDto testParams = new TestParamsDto();
                             testParams.setInterfaceId(testInterface.getId());
                             testParams.setName(newParam);
 
                             //特殊格式参数--加密
                             if(newParam.endsWith("(-e)")){
                                 testParams.setFormatType(ParamFormatTypeEnum.ENCRYPT.getId());
+                                testParams.setName(newParam.substring(0,newParam.indexOf("(-e)")));
                             } else {
                                 //普通参数
                                 testParams.setFormatType(ParamFormatTypeEnum.NORMAL.getId());
                             }
-                            testParamsMapper.save(testParams);
+                            testParamsService.save(testParams);
                         }
                     }
 
                 }
             }
-        }
+        //}
     }
 
     @Override

@@ -3,51 +3,33 @@
  */
 package com.xn.interfacetest.service.impl;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import com.xn.interfacetest.Enum.*;
-import com.xn.interfacetest.api.*;
-import com.xn.interfacetest.dto.*;
-import com.xn.interfacetest.entity.RelationCaseParams;
-import com.xn.interfacetest.entity.TestJarMethod;
-import com.xn.interfacetest.util.JarUtil;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xn.common.utils.BeanUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
-import com.xn.interfacetest.command.AssertCommand;
-import com.xn.interfacetest.command.CaseCommand;
-import com.xn.interfacetest.command.Command;
-import com.xn.interfacetest.command.DBAssertCommand;
-import com.xn.interfacetest.command.DBCommand;
-import com.xn.interfacetest.command.HttpCaseCommand;
-import com.xn.interfacetest.command.ParaAssertCommand;
-import com.xn.interfacetest.command.RedisCommand;
-import com.xn.interfacetest.command.TestCaseCommand;
+import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.api.*;
+import com.xn.interfacetest.command.*;
 import com.xn.interfacetest.dao.TestCaseMapper;
+import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
 import com.xn.interfacetest.util.CollectionUtils;
 import com.xn.interfacetest.util.DBUtil;
+import com.xn.interfacetest.util.JarUtil;
 import com.xn.interfacetest.util.RedisUtil;
-
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * TestCase Service实现
@@ -488,7 +470,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
 
         //数据准备
-        if(testcaseDto.getDataPrepare() > 0) {
+        if(null != testcaseDto.getDataClear() && testcaseDto.getDataClear() > 0) {
             //数据准备---查询数据库准备
             List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.CLEAR.getId());
             if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
@@ -530,7 +512,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
 
         //数据准备
-        if(testcaseDto.getDataPrepare() > 0) {
+        if(null != testcaseDto.getDataPrepare() && testcaseDto.getDataPrepare() > 0) {
             //数据准备---查询数据库准备
             List<RelationCaseDatabaseDto> relationCaseDatabaseDtoList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.PREPARE.getId());
             if (null != relationCaseDatabaseDtoList && relationCaseDatabaseDtoList.size() > 0) {
@@ -562,29 +544,37 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     private String formatParams(TestCaseDto caseDto, String contentType,TestInterfaceDto interfaceDto) {
-        StringBuffer value = new StringBuffer("");
         //参数,如果没有配置自定义类型就说明是配置了参数,如果配置了就取自定义参数
         StringBuffer paramsStr = new StringBuffer("");
         if(null != caseDto.getParamsType() && ParamsGroupTypeEnum.KEY.getId() == caseDto.getParamsType()){
             //获取参数列表
             List<ParamDto> testParamsDtoList = testParamsService.listByCaseIdFromRelation(caseDto.getId());
             if(contentType.equals("application/json")){
-                logger.info("非自定义参数，转json"+testParamsDtoList.size() + "个参数");
+                logger.info("非自定义参数，转json，共"+testParamsDtoList.size() + "个参数");
                 //将参数转化为json字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     JSONObject jsonObject = new JSONObject();
                     Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
+
                     while(iterator.hasNext()){
                         ParamDto param = (ParamDto) iterator.next();
+                        logger.info("参数：" + param.toString());
+                        String value = param.getValue();
                         //如果是需要加密的参数就调用
                         if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
                             //是加密的参数就先进行加密,加密的参数的值是加密的方法名
-                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue());
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
                             logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        } else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
                         }
                         jsonObject.put(param.getName(),value);
                     }
                     paramsStr = paramsStr.append(jsonObject.toString());
+                    logger.info("加密之后的所有参数："+paramsStr);
                 }
 
             } else {
@@ -592,8 +582,20 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //将参数转化为字符串类型
                 if(null != testParamsDtoList && testParamsDtoList.size() > 0){
                     Iterator iterator = testParamsDtoList.iterator();
+                    //时间戳类型则转化为时间戳---保证是同一个时间戳
+                    Date date = new Date();
                     while(iterator.hasNext()){
                         ParamDto param = (ParamDto) iterator.next();
+                        String value = param.getValue();
+                        //如果是需要加密的参数就调用
+                        if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
+                            //是加密的参数就先进行加密,加密的参数的值是加密的方法名
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
+                        }else if(value.equals("timestamp")){
+                            //时间戳类型则转化为时间戳
+                            value = (date.getTime()) + "";
+                        }
                         paramsStr.append(param.getName() + "=" + param.getValue());
                         paramsStr.append("&");
                     }
@@ -605,10 +607,11 @@ public class TestCaseServiceImpl implements TestCaseService {
             logger.info("自定义参数："+caseDto.getCustomParams());
             paramsStr = new StringBuffer(caseDto.getCustomParams());
         }
+
         return paramsStr.toString();
     }
 
-    public StringBuffer encrypt(String path, TestInterfaceDto interfaceDto,Long caseId,String methodName){
+    public String encrypt(String path, TestInterfaceDto interfaceDto,Long caseId,String methodName,Date date){
         //查询出接口对应的加密方法和参数列表
         TestJarMethodDto testJarMethodDto = testJarMethodService.getByMethodNameAndInterfaceId(methodName,interfaceDto.getId());
         if(null == testJarMethodDto){
@@ -622,7 +625,7 @@ public class TestCaseServiceImpl implements TestCaseService {
             String paramsTypes =testJarMethodDto.getParamsTypes();//如：String,int,double
             String paramsValues =testJarMethodDto.getParamsValues();//如：?{appid},123,4556或者appid=?{appid}&req=123,ddddd
 
-            logger.info("加密的方法中初始化参数类型------");
+            logger.info("开始加密的方法中初始化参数类型------");
             //将参数类型加入参数列表
             String[] typesArray = paramsTypes.split(",|，");
             Class<?>[] types = new Class[typesArray.length];
@@ -633,7 +636,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 types[i] = Class.forName(type);
             }
 
-            logger.info("加密的方法中初始化参数值------，将问号参数值指定具体的值");
+            logger.info("开始加密的方法中初始化参数值------，将问号参数值指定具体的值");
             String[] values = paramsValues.split(",|，");
             for(String oValue : values){
                 //处理组合参数,例如：appId=?&nonce=56412&reqId=timestamp&timestamp=timestamp
@@ -661,6 +664,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                     //单个参数，并且取当前用例中的值做jar包的参数----例如：?{appid}
                     //参数名称
                     String valueName = oValue.substring(2,oValue.length()-1);;
+
                     //拿到用例中的该参数的值
                     RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
                     if(null != relationCaseParams){
@@ -670,7 +674,7 @@ public class TestCaseServiceImpl implements TestCaseService {
             }
 
             //将参数中的时间戳替换为真的时间戳
-            String timestamp = "=" + new Date().getTime();
+            String timestamp = "=" + date.getTime();
             //替换了不固定值的参数值之后再对参数进行转换
             Object[] valusObject = paramsValues.replaceAll("=timestamp",timestamp).split(",|，");
             //调用jar包进行加密
@@ -678,7 +682,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         } catch (Exception e) {
             logger.error("类型未找到：" + e);
         }
-        return value;
+        return (null == value?null:value.toString());
     }
 
     private static String getTypeFullName(String s) {
@@ -719,7 +723,8 @@ public class TestCaseServiceImpl implements TestCaseService {
 
 
     public static void main(String[] s) {
-
-        System.out.println("?{appid}".substring(2,"?{appid}".length()-1));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name","value");
+       System.out.println(jsonObject.toString());
     }
 }
