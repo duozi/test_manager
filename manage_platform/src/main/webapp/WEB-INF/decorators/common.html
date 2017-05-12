@@ -15,7 +15,7 @@
 			<#assign lastPageUrl=url+"?currentPage="+pagination.totalPages+pagination.params>
 			<div class="col-lg-7 text-right">
 			<ul class="pagination">
-				<li class="firstPage ${(page.currentPage==1)?string('disabled','')}">
+				<li class="firstPage ${(pagination.currentPage==1)?string('disabled','')}">
 					<a href="${firstPageUrl}">首页</a>
 				</li>
 			

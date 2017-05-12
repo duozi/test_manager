@@ -1,10 +1,9 @@
 package com.xn.interfacetest.util;
 
-/**
- * Created by xn058121 on 2017/5/11.
- */
-public class MySql5Dialect extends Dialect
+public class MySql5Dialect
+    extends Dialect
 {
+
     protected static final String SQL_END_DELIMITER = ";";
 
     public String getLimitString( String sql, boolean hasOffset )
@@ -21,5 +20,4 @@ public class MySql5Dialect extends Dialect
     {
         return true;
     }
-
 }

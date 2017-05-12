@@ -54,11 +54,6 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <property name="plugins">
-            <list>
-                <bean class="com.xn.manage.filter.PaginationInterceptor"></bean>
-            </list>
-        </property>
         <!--<property name="plugins">-->
             <!--<array>-->
                 <!--<bean class="com.github.pagehelper.PageInterceptor">-->

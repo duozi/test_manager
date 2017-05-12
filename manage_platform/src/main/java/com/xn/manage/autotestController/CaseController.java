@@ -411,15 +411,15 @@ public class CaseController {
 		if (pageInfo.getCurrentPage() < 1) {
 			pageInfo.setCurrentPage(1);
 		}
-		pageInfo.setPagination(true);
+ 		pageInfo.setPagination(true);
 		pageInfo.setPageSize(10);
 		params.put("page", pageInfo);
 
 		PageResult<TestCaseDto> testCaseDtoList = testCaseService.listByParams(params);
 
-		ModelUtils.setResult(map, testCaseDtoList.getPage(), testCaseDtoList.getList());
-//		map.put("page", pageInfo);
-//		map.put("testCaseDtoList",testCaseDtoList);
+		//ModelUtils.setResult(map, testCaseDtoList.getPage(), testCaseDtoList.getList());
+		map.put("page", testCaseDtoList.getPage());
+		map.put("testCaseDtoList",testCaseDtoList.getList());
 		map.put("caseTypes",CaseTypeEnum.values());
 		return "/autotest/case/case_list";
 	}

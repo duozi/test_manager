@@ -3,10 +3,8 @@ package com.xn.interfacetest.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by xn058121 on 2017/5/11.
- */
-public class MySql5PageHepler {
+public class MySql5PageHepler
+{
     /**
      * 得到查询总数的sql
      */
@@ -32,7 +30,7 @@ public class MySql5PageHepler {
 
     /**
      * 得到最后一个Order By的插入点位置
-     *
+     * 
      * @return 返回最后一个Order By插入点的位置
      */
     private static int getLastOrderInsertPoint( String querySelect )
@@ -47,7 +45,7 @@ public class MySql5PageHepler {
 
     /**
      * 得到分页的SQL
-     *
+     * 
      * @param offset 偏移量
      * @param limit 位置
      * @return 分页SQL
@@ -65,7 +63,7 @@ public class MySql5PageHepler {
 
     /**
      * 将SQL语句变成一条语句，并且每个单词的间隔都是1个空格
-     *
+     * 
      * @param sql SQL语句
      * @return 如果sql是NULL返回空，否则返回转化后的SQL
      */
@@ -96,7 +94,7 @@ public class MySql5PageHepler {
 
     /**
      * 判断括号"()"是否匹配,并不会判断排列顺序是否正确
-     *
+     * 
      * @param text 要判断的文本
      * @return 如果匹配返回TRUE,否则返回FALSE
      */
@@ -111,7 +109,7 @@ public class MySql5PageHepler {
 
     /**
      * 得到一个字符在另一个字符串中出现的次数
-     *
+     * 
      * @param text 文本
      * @param ch 字符
      */
@@ -124,5 +122,4 @@ public class MySql5PageHepler {
         }
         return count;
     }
-
 }
