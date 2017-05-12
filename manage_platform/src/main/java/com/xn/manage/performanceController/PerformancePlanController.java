@@ -90,7 +90,7 @@ public class PerformancePlanController {
         String planName = request.getParameter("planName");
         String planStatus = request.getParameter("planStatus");
         String scriptName = request.getParameter("scriptName");
-        PerformancePlanDto performancePlanShowDto = new PerformancePlanDto();
+        PerformancePlanShowDto performancePlanShowDto = new PerformancePlanShowDto();
         performancePlanShowDto.setIsDelete("未删除");
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
@@ -111,7 +111,7 @@ public class PerformancePlanController {
             performancePlanShowDto.setScriptName(scriptName);
         }
 
-        List<PerformancePlanDto> performancePlanShowDtoList = performancePlanService.list(performancePlanShowDto);
+        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getPlanShow(performancePlanShowDto);
         model.put("plan_list", performancePlanShowDtoList);
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
@@ -327,6 +327,27 @@ public class PerformancePlanController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+
+    }
+
+    //    新增计划，根据公司，部门，系统，展示可选的脚本，场景和监控机
+    @RequestMapping(value = "/plan_list/show_plan_detail", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult getResult(@RequestParam Integer planId) {
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+            performanceResultDto.setPlanId(planId);
+            List<PerformanceResultDto> performanceResultDtoList = performanceResultService.list(performanceResultDto);
+            commonResult.setData(performanceResultDtoList);
+        } catch (Exception e) {
+            commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             logger.error("查询操作异常｛｝", e);
         } finally {
             return commonResult;

@@ -29,7 +29,6 @@ public class SpringTask {
     public static ConcurrentMap<Integer, Integer> STRESS_MACHINE_STATUS = new ConcurrentHashMap<>();
 
 
-    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Resource
     PerformanceResultServiceImpl performanceResultService;
 
@@ -90,41 +89,10 @@ public class SpringTask {
 
     @Scheduled(cron = "0 0/1 * * * ?")
     public void Schedule() {
+//判断压力机和执行状态执行计划
+        jmeterService.doJob();
 
 
-        logger.info(new Date() + Thread.currentThread().getName() + "============execute schedule task");
-        for (Integer stressMachineId : PERFORMANCE_NOW_MAP.keySet()) {
-            ConcurrentLinkedQueue queue = PERFORMANCE_NOW_MAP.get(stressMachineId);
-            final Integer resultId = (Integer) queue.peek();
-            if (queue.isEmpty()) {
-                PERFORMANCE_NOW_MAP.remove(stressMachineId);
-            }
-
-            Integer nextTask = STRESS_MACHINE_WAITING_MAP.get(stressMachineId);
-            if (resultId != null) {
-                if (nextTask == null || nextTask == 1) {
-                    Integer stressMachineStatus = STRESS_MACHINE_STATUS.get(stressMachineId);
-
-                    if ((stressMachineStatus == null || stressMachineStatus == 0)) {
-
-                        STRESS_MACHINE_STATUS.put(stressMachineId, 1);
-                        //移除当前需要执行的任务
-                        queue.poll();
-
-                        threadPool.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                logger.info(new Date() + Thread.currentThread().getName() + "执行任务============ resultId:" + resultId);
-                                PerformanceResultDto performanceResultDto = new PerformanceResultDto(resultId);
-                                PerformancePlanShowDto performancePlanShowDto = performanceResultService.getShow(performanceResultDto);
-                                jmeterService.executeOnce(performancePlanShowDto);
-                            }
-                        });
-
-                    }
-                }
-            }
-        }
     }
 
 

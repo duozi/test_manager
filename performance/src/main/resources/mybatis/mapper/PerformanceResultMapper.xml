@@ -117,6 +117,7 @@
         FROM
         performance_result
         <include refid="where"/>
+        order by id desc
     </select>
 
     <select id="getNowTask" resultMap="PerformancePlanShowMap">
@@ -328,6 +329,7 @@
         <if test="@Ognl@isNotEmpty(psystem)">
             AND P.psystem = #{psystem}
         </if>
+         order by R.id DESC
     </select>
     <select id="count" resultType="long">
         <![CDATA[
