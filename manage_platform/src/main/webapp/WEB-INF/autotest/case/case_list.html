@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +48,29 @@
                 });
             })
         }
+
+        function copyCaseItem(_id){
+            $("#chooseCopyPart").modal("show");
+            $("input[name=caseId]").val(_id);
+        }
+
+        function sendCopyRequest(){
+            var caseId =   $("input[name=caseId]").val();
+//            var baseInfo =  $("input[name=baseInfo]:checked").val();
+            var dataClear =  $("input[name=dataClear]:checked").val();
+            var dataPrepare =  $("input[name=dataPrepare]:checked").val();
+            var dataAssert =  $("input[name=dataAssert]:checked").val();
+            var dataParams =  $("input[name=dataParams]:checked").val();
+            $.post("${basePath}/autotest/case/copyCase",{caseId:caseId,dataClear:dataClear,dataPrepare:dataPrepare,dataAssert:dataAssert,dataParams:dataParams},function(data,status){
+                if(0!=data.code){
+                    alert(data.message);
+                } else {
+                    alert("复制成功");
+                    reload();
+                }
+            });
+        }
+
     </script>
 </head>
 
@@ -122,8 +146,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#if testCaseDtoList ??>
-                            <#list testCaseDtoList as item>
+                        <#if list ??>
+                            <#list list as item>
                                 <tr>
                                     <td>${item.number}</td>
                                     <td>${item.name}</td>
@@ -143,12 +167,16 @@
                                         <#if item.status == 0>
                                             <a type="button" class="btn btn-danger" onclick="deleteCase(${item.id})">删除</a>
                                         </#if>
+                                        <button type="button" class="btn btn-info" onclick="copyCaseItem(${item.id})">复制用例</button>
                                     </td>
                                 </tr>
                             </#list>
                         </#if>
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/autotest/case/case_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>
@@ -158,7 +186,46 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
 <!-- /.row -->
+<!--复制用例弹框-->
+<div class="modal fade" id="chooseCopyPart" tabindex="-1" role="dialog" aria-labelledby="chooseCopyPartLabel" aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <input type="hidden" name="planId" value="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="chooseCopyPartLabel">选择要复制的模块</h4>
+                <input type="hidden" name="caseId">
+            </div>
+            <div class="modal-body">
+                <div class="checkbox-class ">
+                    <!--<label class="checkbox-inline">-->
+                        <!--<input type="checkbox" value="1" name="baseInfo">基本信息-->
+                    <!--</label>-->
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="1" name="dataParams" >请求参数
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="1" name="dataPrepare" >数据准备
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="1" name="dataClear">数据清除
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="1" name="dataAssert">响应参数校验
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="sendCopyRequest()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 <!-- /.container-fluid -->
 </body>

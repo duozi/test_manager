@@ -1,0 +1,203 @@
+<#--
+	分页标签：用于显示数据分页链接。
+	pagination：分页对象。
+	url：链接地址
+	showPageLinkCount:显示的页数链接数
+	isShowMoreLI:是否显示“<li>...</li>”提示更多还有更多页数
+	isNeedPageTo：是否显示转到指定页数的表单
+-->
+<#macro pager pagination url="#" showPageLinkCount=10 isShowMoreLI=true isNeedPageTo=true>
+	<#if (pagination.totalPages)??>
+		<#if (pagination.totalPages>1)>
+			<#assign firstPageUrl=url+"?currentPage=1"+pagination.params>
+			<#assign prePageUrl=url+"?currentPage="+(pagination.currentPage-1)+pagination.params>
+			<#assign nextPageUrl=url+"?currentPage="+(pagination.currentPage+1)+pagination.params>
+			<#assign lastPageUrl=url+"?currentPage="+pagination.totalPages+pagination.params>
+			<div class="col-lg-7 text-right">
+			<ul class="pagination">
+				<li class="firstPage ${(page.currentPage==1)?string('disabled','')}">
+					<a href="${firstPageUrl}">首页</a>
+				</li>
+			
+				<li class="prePage <#if (pagination.currentPage<=1)>disabled</#if>">
+						<a href="${prePageUrl}">上一页</a>
+				</li>
+				
+				<@outPutcurrentPage pagination=pagination url=url showPageLinkCount=showPageLinkCount isShowMoreLI=isShowMoreLI/>
+		    
+				<li class="nextPage <#if (pagination.currentPage>=pagination.totalPages)>disabled</#if>">
+						<a href="${nextPageUrl}">下一页</a>
+				</li>
+			
+				<li class="lastPage <#if (pagination.currentPage>=pagination.totalPages)>disabled</#if>">
+					<a href="${lastPageUrl}">尾页</a>
+				</li>
+				</ul>
+				</div>
+				<div class="col-lg-5" style="padding-top: 2px;">
+					&nbsp;共 ${pagination.totalPages} 页, ${ pagination.totalRows}条记录
+				
+				<#if isNeedPageTo>
+							第&nbsp;<input type="text" id="__pageNum" name="currentPage" class="__pageNum input" onkeydown="__go();" style="width: 50px;">&nbsp;页
+							<input type="button" id="__pagebtn" class="formButton" onclick="return __pagerValidator();" value="确定" hidefocus="">
+						<script type="text/javascript">
+							var __totalPages =  ${pagination.totalPages};
+							var __url = "${url+"?"+pagination.params}";
+							function __pagerValidator(){
+								var pageNum = document.getElementById("__pageNum").value;
+								if(!pageNum){ alert("请输入要转到的页数！");return false; }
+								if(!/^[0-9]*$/g.test(pageNum)){ alert("页数只能是正整数！");return false; }
+								if((parseInt(pageNum) > __totalPages) || parseInt(pageNum)<=0){ alert("没有该页数！");return false; }
+								
+								__url=__url+"&currentPage="+pageNum;
+								location.href = __url;
+								return true;
+							}
+							
+							function __go(e) {
+							    if (window.event) e = window.event;
+							    var int_keycode = e.charCode || e.keyCode;
+							    if (int_keycode == 13) {
+							        $('#__pagebtn').click();
+							    }
+							}
+						</script>
+				</#if>
+			</div>
+		</#if>
+	</#if>
+</#macro>
+
+<#--
+	输出分页链接。如果当前页超过 显示的页数链接数 的一半，则当前页居中显示。例如：当前第10页，总共20页，那么显示第6~第15页分页链接，且第10页居中。
+	pagination：分页对象。
+	url：链接地址
+	showPageLinkCount:显示的页数链接数
+	isShowMoreLI:是否显示“<li>...</li>”提示更多还有更多页数0
+-->
+<#macro outPutcurrentPage pagination url showPageLinkCount isShowMoreLI>
+	<#--
+		└────────────────────────────────────────────────┘
+		A												              B
+		
+		└───────┴────────┘
+		A1		currentPage	B1
+		
+		A->B:totalPages
+		A1:startIndex
+		B1:endIndex
+		A1->B1:showPageLinkCount
+		A1->currentPage:spaceOFStartIndexTocurrentPage
+		A1->B1 -1:spaceOFStartIndexToPageLinkCount
+	-->
+
+	<#if (showPageLinkCount%2==1)>
+		<#assign spaceOFStartIndexTocurrentPage=((showPageLinkCount+1)/2)-1>
+	<#else>
+		<#assign spaceOFStartIndexTocurrentPage=(showPageLinkCount/2)-1>
+	</#if>
+	
+	<#assign spaceOFStartIndexToPageLinkCount=(showPageLinkCount-1)>
+	
+	<#if ((pagination.currentPage-spaceOFStartIndexTocurrentPage) <= 1) || (pagination.totalPages<=showPageLinkCount)>
+		<#assign startIndex=1>
+		<#assign isNeedStartMore=false>
+	<#else>
+		<#assign startIndex=(pagination.currentPage-spaceOFStartIndexTocurrentPage)>
+		<#assign isNeedStartMore=true>
+	</#if>
+	
+	<#if ((startIndex+spaceOFStartIndexToPageLinkCount) < pagination.totalPages)>
+		<#assign endIndex=startIndex+spaceOFStartIndexToPageLinkCount>
+		<#assign isNeedEndMore=true>
+	<#else>
+		<#assign endIndex=(pagination.totalPages)>
+		<#assign isNeedEndMore=false>
+	</#if>
+
+	<#if isNeedStartMore&&isShowMoreLI><li><a href="#" onclick="return false;">...</a></li></#if>
+	<#list startIndex..endIndex as i>
+		<#if pagination.currentPage != i>
+			<li >
+				<a href="${url+"?currentPage="+i+pagination.params}">${i}</a>
+			</li>
+		<#else>
+			<li class="currentPage disabled">
+				<a href="#">${i}</a>
+			</li>
+		</#if>
+	</#list>
+	<#if isNeedEndMore&&isShowMoreLI><li><a href="#" onclick="return false;">...</a></li></#if>
+</#macro>
+
+
+<#--
+	select 下拉列表标签：
+	coll:用来输出的集合对象,必填
+	type:enum ,如果为“enum”时则标识coll为枚举类型的集合，选填
+	value:下拉列表的值，如果传入则默认选中该值对应的选项
+	name:下拉列表name属性
+	id:下拉列表id属性
+	class:下拉列表class属性
+	headkey:下拉列表的初始选项的值，适用于提示、默认值等场景
+	headtext：下拉列表的初始选项的文本显示，适用于提示、默认值等场景
+	onchange：下拉列表的onchange事件
+-->
+<#macro select coll=[] type="" value="" name="" id="" class="" headkey="" headtext="" onchange="">
+	<select name="${name}" id="${id}" class="${class}" onchange="${onchange}">
+	<#if headkey!="" || headtext!="">
+		<option value="${headkey}">${headtext}</option>
+	</#if>
+	
+	<#if coll?is_hash_ex>
+		<#local keys=coll?keys/>
+		<#list keys as key>
+			<option value="${key}" ${key==value?string("selected","")}>${coll[key]}</option>
+		</#list>
+	<#else>
+		<#list coll as item>
+			<#if type=="enum">
+			<option value='${item.id}' ${(item.id==value)?string("selected","")}>${item.getName()}</option>
+			<#else>
+			<option value='${item.id}' ${(item.id==value)?string("selected","")}>${item.name}</option>
+			</#if>
+		</#list>
+	</#if>
+	</select>
+</#macro>
+
+<#-- 
+输出集合中的某个值对应的文本：
+coll:集合，可以使Array、Map
+type: enum:枚举,其他类型不填
+value:具体的值
+default:找不到对应文本时的默认输出
+-->
+<#macro out coll=[] type=""  value="" default="">
+	<#assign outputed = false >
+	<#if coll?is_hash_ex>
+		<#local keys=coll?keys/>
+		<#list keys as key>
+			<#if key == value>
+				${coll[key]}
+				<#assign outputed = true >
+				<#break />
+			</#if>
+		</#list>
+	<#else>
+		<#list coll as item>
+			<#if item.id == value>
+				<#if type=="enum">
+					${item.getName()}
+					<#assign outputed = true >
+					<#break />
+				<#else>
+				</#if>
+			</#if>
+		</#list>
+	</#if>
+	
+	<#if !outputed>
+		${default}
+	</#if>
+</#macro>
