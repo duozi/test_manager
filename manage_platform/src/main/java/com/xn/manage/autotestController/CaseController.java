@@ -8,8 +8,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.Enum.ParamsGroupTypeEnum;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -368,7 +371,7 @@ public class CaseController {
 	}
 
 	@RequestMapping(value="/case_list", method = RequestMethod.GET)
-	public String getCasePage(HttpServletRequest request, ModelMap map) {
+	public String getCasePage(HttpServletRequest request, ModelMap map,PageInfo pageInfo) {
 		TestSystemDto systemDto = new TestSystemDto();
 		List<TestSystemDto> systemList = testSystemService.list(systemDto );
 		map.put("systemList", systemList);
@@ -405,9 +408,18 @@ public class CaseController {
 			map.put("createPerson",createPerson);
 		}
 
-		List<TestCaseDto> testCaseDtoList = testCaseService.listByParams(params);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
 
-		map.put("testCaseDtoList",testCaseDtoList);
+		PageResult<TestCaseDto> testCaseDtoList = testCaseService.listByParams(params);
+
+		ModelUtils.setResult(map, testCaseDtoList.getPage(), testCaseDtoList.getList());
+//		map.put("page", pageInfo);
+//		map.put("testCaseDtoList",testCaseDtoList);
 		map.put("caseTypes",CaseTypeEnum.values());
 		return "/autotest/case/case_list";
 	}
@@ -759,4 +771,53 @@ public class CaseController {
 		}
 		return  result;
 	}
+
+	@RequestMapping(value = "/copyCase")
+	@ResponseBody
+	public CommonResult copyCase(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		Map<String,Object> params = new HashMap<String, Object>();
+
+		String caseId = request.getParameter("caseId");
+		if(StringUtils.isNotBlank(caseId) && !"null".equals(caseId)){
+			params.put("caseId",caseId);
+		} else {
+			result.setCode(CommonResultEnum.FAILED.getReturnCode());
+			result.setMessage("用例id不能为空");
+			return result;
+		}
+
+//		String baseInfo = request.getParameter("baseInfo");
+//		if(StringUtils.isNotBlank(baseInfo) && !"null".equals(baseInfo)){
+//			params.put("baseInfo",baseInfo);
+//		}
+
+		String dataClear = request.getParameter("dataClear");
+		if(StringUtils.isNotBlank(dataClear) && !"null".equals(dataClear)){
+			params.put("dataClear",dataClear);
+		}
+
+		String dataPrepare = request.getParameter("dataPrepare");
+		if(StringUtils.isNotBlank(dataPrepare) && !"null".equals(dataPrepare)){
+			params.put("dataPrepare",dataPrepare);
+		}
+		String dataAssert = request.getParameter("dataAssert");
+		if(StringUtils.isNotBlank(dataAssert) && !"null".equals(dataAssert)){
+			params.put("dataPrepare",dataAssert);
+		}
+		String dataParams = request.getParameter("dataParams");
+		if(StringUtils.isNotBlank(dataParams) && !"null".equals(dataParams)){
+			params.put("dataParams",dataParams);
+		}
+		try{
+			testCaseService.copyCase(params);
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("复制用例产生异常，请查看日志" + e.getMessage());
+			logger.error("复制用例异常：",e);
+		}
+
+		return result;
+	}
+
 }

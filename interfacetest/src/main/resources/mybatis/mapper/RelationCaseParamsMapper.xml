@@ -66,7 +66,9 @@
         FROM
             relation_case_params
         <where>
-                is_delete = 0
+            <if test="isDelete != null">
+                AND is_delete = #{isDelete}
+            </if>
             <if test="id != null and id != 0">
                 AND id = #{id}
             </if>

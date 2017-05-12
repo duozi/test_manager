@@ -401,6 +401,9 @@
                         </#if>
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/performance/plan/plan_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>
@@ -420,7 +423,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">计划执行列表</h4>
                 </div>
-                <div class="modal-body modal-add" style="min-height: 550px">
+                <div class="modal-body modal-add" style="min-height: 600px;overflow: scroll;">
                     <div class="table-responsive col-lg-12">
                         <table class="table table-striped">
                             <thead>
@@ -440,6 +443,7 @@
 
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>

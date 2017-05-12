@@ -102,6 +102,7 @@
         </where>
     </sql>
 
+
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
         id as planId,plan_name, remark, company, department, psystem,script_name,

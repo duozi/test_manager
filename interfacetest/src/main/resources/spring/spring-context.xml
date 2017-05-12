@@ -55,6 +55,11 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
+        <property name="plugins">
+            <list>
+                <bean class="com.xn.interfacetest.filter.PaginationInterceptor"></bean>
+            </list>
+        </property>
         <!--&lt;!&ndash; Mybatis_PageHelper 分页插件配置 &ndash;&gt;-->
         <!--<property name="plugins">-->
         <!--<array>-->

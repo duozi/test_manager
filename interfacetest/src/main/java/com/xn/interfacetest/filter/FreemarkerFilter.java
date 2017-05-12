@@ -1,4 +1,4 @@
-package com.xn.manage.filter;
+package com.xn.interfacetest.filter;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
