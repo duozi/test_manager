@@ -54,11 +54,6 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <property name="plugins">
-            <list>
-                <bean class="com.xn.manage.filter.PaginationInterceptor"></bean>
-            </list>
-        </property>
         <!--<property name="plugins">-->
             <!--<array>-->
                 <!--<bean class="com.github.pagehelper.PageInterceptor">-->
@@ -119,7 +114,7 @@
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver" lazy-init="false">
-        <property name="viewClass" value="com.xn.manage.filter.MyFreeMarkerView" />
+        <!--<property name="viewClass" value="com.xn.manage.filter.MyFreeMarkerView" />-->
         <property name="contentType" value="text/html; charset=UTF-8"/>
         <property name="exposeSpringMacroHelpers" value="true" />
         <property name="requestContextAttribute" value="rc" />

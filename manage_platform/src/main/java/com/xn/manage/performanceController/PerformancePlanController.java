@@ -9,13 +9,15 @@ import com.xn.common.api.DepartmentService;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.DateUtil;
-import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.PerformancePlanStatusEnum;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
 import com.xn.performance.mybatis.CommonResult;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +73,7 @@ public class PerformancePlanController {
     private PerformancePlanShowService performancePlanShowService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         performancePlanDto.setIsDelete("未删除");
@@ -110,8 +112,14 @@ public class PerformancePlanController {
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performancePlanShowDto.setScriptName(scriptName);
         }
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
+        }
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(10);
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getPlanShow(performancePlanShowDto);
+
+        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.performancePlanShowListByParams(performancePlanShowDto,pageInfo);
         model.put("plan_list", performancePlanShowDtoList);
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());

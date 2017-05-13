@@ -139,5 +139,15 @@ public class PerformancePlanShowServiceImpl implements PerformancePlanShowServic
         }
         return performancePlanShowDtoList;
     }
-
+    @Override
+    public PageResult<PerformancePlanShowDto>  performancePlanShowListByParams(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo){
+        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanShowDto);
+        for (PerformancePlanShowDto item : performancePlanShowDtoList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("planId", item.getPlanId());
+            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
+            item.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
+        }
+        return PageResult.wrap(pageInfo, performancePlanShowDtoList);
+    }
 }

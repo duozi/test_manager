@@ -5,6 +5,7 @@ package com.xn.performance.api;
 
 import com.xn.performance.dto.PerformancePlanDto;
 import com.xn.performance.dto.PerformancePlanShowDto;
+import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
 
 import java.util.List;
@@ -120,5 +121,5 @@ public interface PerformancePlanShowService {
 
      List<PerformancePlanShowDto> getResultList(PerformancePlanShowDto performancePlanShowDto);
 
-
+    PageResult<PerformancePlanShowDto>  performancePlanShowListByParams(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo);
 }

@@ -1,9 +1,12 @@
 package com.xn.interfacetest.util;
 
 /**
- * Created by xn058121 on 2017/5/11.
+ * 类似hibernate的Dialect,但只精简出分页部分
+ * 
+ * @author tajo
  */
-public class Dialect {
+public class Dialect
+{
     public static enum Type
     {
         MYSQL, ORACLE
@@ -30,13 +33,13 @@ public class Dialect {
 
     /**
      * 将sql变成分页sql语句,提供将offset及limit使用占位符(placeholder)替换.
-     *
+     * 
      * <pre>
      * 如mysql
      * dialect.getLimitString("select * from user", 12, ":offset",0,":limit") 将返回
      * select * from user limit :offset,:limit
      * </pre>
-     *
+     * 
      * @return 包含占位符的分页sql
      */
     public String getLimitString( String sql, int offset, String offsetPlaceholder, int limit, String limitPlaceholder )

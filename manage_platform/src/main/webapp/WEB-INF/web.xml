@@ -51,16 +51,16 @@
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
-    <filter>
-        <filter-name>freemarkerFilter</filter-name>
-        <filter-class>com.xn.manage.filter.FreemarkerFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>freemarkerFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>freemarkerFilter</filter-name>-->
+        <!--<filter-class>com.xn.manage.filter.FreemarkerFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>freemarkerFilter</filter-name>-->
+        <!--<url-pattern>*.html</url-pattern>-->
+        <!--<dispatcher>REQUEST</dispatcher>-->
+        <!--<dispatcher>FORWARD</dispatcher>-->
+    <!--</filter-mapping>-->
 
 
     <!-- springmvc -->
