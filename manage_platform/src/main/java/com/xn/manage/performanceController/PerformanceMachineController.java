@@ -14,6 +14,8 @@ import com.xn.performance.api.PerformanceMonitoredMachineService;
 import com.xn.performance.api.PerformanceStressMachineService;
 import com.xn.performance.dto.PerformanceMonitoredMachineDto;
 import com.xn.performance.dto.PerformanceStressMachineDto;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +54,9 @@ public class PerformanceMachineController {
     Set<String> linkedMachine = Collections.synchronizedSet(set); // 返回了一个线程安全的Set
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
         if (path.equals("stress_machine_list")) {
             List<PerformanceStressMachineDto> performanceStressMachineDtoList = null;
             PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
@@ -73,8 +79,18 @@ public class PerformanceMachineController {
             if (isNotEmpty(stressMachineName) && !stressMachineName.equals("null")) {
                 performanceStressMachineDto.setStressMachineName(stressMachineName);
             }
-            performanceStressMachineDtoList = performanceStressMachineService.list(performanceStressMachineDto);
-            model.put("stress_machine_list", performanceStressMachineDtoList);
+            PageResult<PerformanceStressMachineDto> stressMachineList=null;
+            try {
+                stressMachineList = performanceStressMachineService.listByPage(performanceStressMachineDto,pageInfo);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (IntrospectionException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            model.put("stress_machine_list", stressMachineList.getList());
+            model.put("page", stressMachineList.getPage());
 
         } else if (path.equals("monitored_machine_list")) {
             List<PerformanceMonitoredMachineDto> performanceMonitoredMachineDtoList = null;
@@ -98,11 +114,22 @@ public class PerformanceMachineController {
             if (isNotEmpty(stressMachineName) && !stressMachineName.equals("null")) {
                 performanceMonitoredMachineDto.setMonitoredMachineName(stressMachineName);
             }
-            performanceMonitoredMachineDtoList = performanceMonitoredMachineService.list(performanceMonitoredMachineDto);
-            model.put("monitored_machine_list", performanceMonitoredMachineDtoList);
+            PageResult<PerformanceMonitoredMachineDto> monitoredMachineList=null;
+            try {
+                monitoredMachineList = performanceMonitoredMachineService.listByPage(performanceMonitoredMachineDto,pageInfo);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (IntrospectionException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            model.put("monitored_machine_list", monitoredMachineList.getList());
+            model.put("page", monitoredMachineList.getPage());
 
 
         }
+
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());

@@ -8,6 +8,8 @@ import com.xn.performance.dto.PerformancePlanShowDto;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -117,9 +119,9 @@ public interface PerformancePlanShowService {
      */
     int deleteBatch(List<PerformancePlanShowDto> performancePlanShows);
 
-     List<PerformancePlanShowDto> getPlanShow(PerformancePlanShowDto performancePlanShowDto);
+//     List<PerformancePlanShowDto> getPlanShow(PerformancePlanShowDto performancePlanShowDto);
 
-     List<PerformancePlanShowDto> getResultList(PerformancePlanShowDto performancePlanShowDto);
+    PageResult<PerformancePlanShowDto> getResultListByPage(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo)throws IllegalAccessException, IntrospectionException, InvocationTargetException;;
 
-    PageResult<PerformancePlanShowDto>  performancePlanShowListByParams(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo);
+    PageResult<PerformancePlanShowDto> performancePlanShowListByPage(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException;
 }

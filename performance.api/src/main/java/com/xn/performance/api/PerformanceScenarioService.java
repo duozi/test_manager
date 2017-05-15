@@ -3,8 +3,12 @@
  */
 package com.xn.performance.api;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
+
+import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
 
 import com.xn.performance.dto.PerformanceScenarioDto;
@@ -40,6 +44,14 @@ public interface PerformanceScenarioService {
      * @return 集合,如果不存在,返回Empty List
      */
     List<PerformanceScenarioDto> list(PerformanceScenarioDto condition);
+
+    /**
+     * 根据组合条件查询
+     *
+     * @param condition 查询对象
+     * @return 集合,如果不存在,返回Empty List
+     */
+    PageResult<PerformanceScenarioDto> listByPage(PerformanceScenarioDto condition, PageInfo pageInfo) throws IntrospectionException, InvocationTargetException, IllegalAccessException;
 
     /**
      * 根据组合条件查询,不建议用该方法进行分页  

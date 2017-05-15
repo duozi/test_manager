@@ -41,13 +41,13 @@ public class PerformancePlanServiceImpl implements PerformancePlanService {
     private PerformanceResultMapper performanceResultMapper;
 
     @Override
-    public List<PerformancePlanShowDto> show(Object condition) {
+    public List<PerformancePlanShowDto> show(Map<String,Object> condition) {
         List<PerformancePlanShow> list=performancePlanMapper.show(condition);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
         return dtoList;
     }
     @Override
-    public List<PerformancePlanShowDto> resultList(Object condition) {
+    public List<PerformancePlanShowDto> resultList(Map<String,Object> condition) {
         List<PerformancePlanShow> list=performanceResultMapper.resultList(condition);
         List<PerformancePlanShowDto> dtoList=CollectionUtils.transform(list, PerformancePlanShowDto.class);
         return dtoList;

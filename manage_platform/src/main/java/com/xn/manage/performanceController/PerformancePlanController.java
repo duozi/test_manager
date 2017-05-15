@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,11 +118,21 @@ public class PerformancePlanController {
             pageInfo.setCurrentPage(1);
         }
         pageInfo.setPagination(true);
-        pageInfo.setPageSize(10);
+        pageInfo.setPageSize(15);
 
 
-        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.performancePlanShowListByParams(performancePlanShowDto,pageInfo);
-        model.put("plan_list", performancePlanShowDtoList);
+        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
+        try {
+            performancePlanShowDtoList = performancePlanShowService.performancePlanShowListByPage(performancePlanShowDto,pageInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        model.put("page", performancePlanShowDtoList.getPage());
+        model.put("plan_list", performancePlanShowDtoList.getList());
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());

@@ -27,7 +27,9 @@
         <![CDATA[
 
 
+
         id, scenario_name, remark, psystem, department, company, concurrency, startup, execute_time, cycle, scenario_status, create_person,set_start_time,set_end_time,delay_time,scheduler
+
 
 
         ]]>
@@ -104,6 +106,14 @@
         performance_scenario
         <include refid="where"/>
     </select>
+    <select id="listByPage" resultMap="PerformanceScenarioMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        performance_scenario
+        <include refid="where"/>
+        order by id asc
+    </select>
 
     <select id="count" resultType="long">
         <![CDATA[
@@ -117,6 +127,7 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
+
 
 
             INSERT INTO performance_scenario (
@@ -155,6 +166,7 @@
                 #{delayTime},
                 #{scheduler}
             )
+
 
 
         ]]>
@@ -245,11 +257,13 @@
         <![CDATA[
 
 
+
             DELETE
             FROM
                 performance_scenario
             WHERE
                 id = #{id} 
+
 
 
         ]]>

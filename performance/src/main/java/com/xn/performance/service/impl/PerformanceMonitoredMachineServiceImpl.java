@@ -14,9 +14,12 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import static com.xn.performance.util.BeanToMapUtil.convertBean;
 import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.test_link;
 
 
@@ -52,6 +55,14 @@ public class PerformanceMonitoredMachineServiceImpl implements PerformanceMonito
         List<PerformanceMonitoredMachine> list = performanceMonitoredMachineMapper.list(condition);
         List<PerformanceMonitoredMachineDto> dtoList = CollectionUtils.transform(list, PerformanceMonitoredMachineDto.class);
         return dtoList;
+    }
+    @Override
+    public PageResult<PerformanceMonitoredMachineDto> listByPage(PerformanceMonitoredMachineDto condition,PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+        Map beanMap=convertBean(condition);
+        beanMap.put("page",pageInfo);
+        List<PerformanceMonitoredMachine> list = performanceMonitoredMachineMapper.listByPage(beanMap);
+        List<PerformanceMonitoredMachineDto> dtoList = CollectionUtils.transform(list, PerformanceMonitoredMachineDto.class);
+        return PageResult.wrap(pageInfo, dtoList);
     }
 
     @Override

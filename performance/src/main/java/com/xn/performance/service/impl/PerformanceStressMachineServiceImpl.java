@@ -14,9 +14,12 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import static com.xn.performance.util.BeanToMapUtil.convertBean;
 import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.test_link;
 
 
@@ -60,6 +63,14 @@ public class PerformanceStressMachineServiceImpl implements PerformanceStressMac
         List<PerformanceStressMachine> list = performanceStressMachineMapper.list(condition);
         List<PerformanceStressMachineDto> dtoList = CollectionUtils.transform(list, PerformanceStressMachineDto.class);
         return dtoList;
+    }
+    @Override
+    public PageResult<PerformanceStressMachineDto> listByPage(PerformanceStressMachineDto condition,PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+        Map beanMap=convertBean(condition);
+        beanMap.put("page",pageInfo);
+        List<PerformanceStressMachine> list = performanceStressMachineMapper.listByPage(beanMap);
+        List<PerformanceStressMachineDto> dtoList = CollectionUtils.transform(list, PerformanceStressMachineDto.class);
+        return PageResult.wrap(pageInfo, dtoList);
     }
     
     @Override

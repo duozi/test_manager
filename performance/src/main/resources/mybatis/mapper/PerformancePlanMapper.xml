@@ -105,7 +105,7 @@
 
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        id as planId,plan_name, remark, company, department, psystem,script_name,
+        id as plan_id,plan_name, remark, company, department, psystem,script_name,
         scenario_name,plan_status,
         create_person,is_delete
         FROM
@@ -137,6 +137,7 @@
                     AND is_delete = #{isDelete}
                 </if>
             </where>
+        order by plan_id ASC
 
 
     </select>

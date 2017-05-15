@@ -78,6 +78,14 @@
             performance_monitored_machine
         <include refid="where"/>
     </select>
+    <select id="listByPage" resultMap="PerformanceMonitoredMachineMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            performance_monitored_machine
+        <include refid="where"/>
+        order by id asc
+    </select>
         
     <select id="count" resultType="long">
         <![CDATA[

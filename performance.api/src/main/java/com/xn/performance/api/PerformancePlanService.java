@@ -24,7 +24,7 @@ public interface PerformancePlanService {
      * @param condition 主键/Map/查询对象
      * @return
      */
-    List<PerformancePlanShowDto>  show(Object condition);
+    List<PerformancePlanShowDto>  show(Map<String,Object> condition);
 
     /**
      * 查询计划记录
@@ -32,7 +32,7 @@ public interface PerformancePlanService {
      * @param condition 主键/Map/查询对象
      * @return
      */
-    List<PerformancePlanShowDto>  resultList(Object condition);
+    List<PerformancePlanShowDto>  resultList(Map<String,Object> condition);
     /**
      * 查询单个记录
      * 主键：id 

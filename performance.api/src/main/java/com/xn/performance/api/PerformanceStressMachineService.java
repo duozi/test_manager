@@ -4,8 +4,11 @@
 package com.xn.performance.api;
 
 import com.xn.performance.dto.PerformanceStressMachineDto;
+import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +52,13 @@ public interface PerformanceStressMachineService {
      * @return 集合,如果不存在,返回Empty List
      */
     List<PerformanceStressMachineDto> list(Map<String, Object> condition);
+    /**
+     * 根据组合条件查询,不建议用该方法进行分页
+     *
+     * @param condition 查询对象
+     * @return 集合,如果不存在,返回Empty List
+     */
+   PageResult<PerformanceStressMachineDto> listByPage(PerformanceStressMachineDto condition, PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException;
     
     /**
      * 根据组合条件做分页查询,需要condition中包含分页对象page  

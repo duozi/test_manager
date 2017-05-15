@@ -353,9 +353,18 @@ public class JmeterServiceImpl implements JmeterService {
             //更新压力机
             performanceStressMachineDto.setStressMachineStatus("未执行");
             performanceStressMachineService.update(performanceStressMachineDto);
-
+            //更新计划，如果是第一次执行的计划，但是失败了，就还原为未执行，这样还可以修改
+            PerformancePlanDto performancePlanDto2 = new PerformancePlanDto();
+            performancePlanDto2.setId(performancePlanShowDto.getPlanId());
+            performancePlanDto2 = performancePlanService.get(performancePlanDto);
+            planStatus = performancePlanDto2.getPlanStatus();
+            if (planStatus.equals("执行中")) {
+                performancePlanDto2.setPlanStatus("未执行");
+                performancePlanService.update(performancePlanDto2);
+            }
             //更新压力机map
             STRESS_MACHINE_STATUS.put(stressMachineId, 0);
+
             return;
 
         }

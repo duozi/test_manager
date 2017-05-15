@@ -12,6 +12,8 @@ import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.manage.Enum.ExecuteStatusEnum;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +64,7 @@ public class PerformanceReportController {
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
@@ -107,9 +111,21 @@ public class PerformanceReportController {
             Date end = DateUtil.getStandardStringDate(actualStartTimeEnd);
             performancePlanShowDto.setActualStartTimeEnd(end);
         }
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getResultList(performancePlanShowDto);
-        model.put("result_list", performancePlanShowDtoList);
+        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
+        try {
+            performancePlanShowDtoList = performancePlanShowService.getResultListByPage(performancePlanShowDto,pageInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        model.put("page",performancePlanShowDtoList.getPage());
+        model.put("result_list", performancePlanShowDtoList.getList());
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
