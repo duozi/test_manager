@@ -7,6 +7,9 @@ import com.xn.performance.entity.PerformanceMonitoredMachine;
 import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * PerformanceMonitoredMachine Dao 接口
  * 
@@ -15,5 +18,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface PerformanceMonitoredMachineMapper extends BaseMapper<PerformanceMonitoredMachine, Integer> {
-
+    List<PerformanceMonitoredMachine> listByPage(Map<String, Object> parameters);
 }

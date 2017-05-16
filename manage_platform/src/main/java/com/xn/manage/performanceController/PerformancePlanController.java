@@ -9,13 +9,15 @@ import com.xn.common.api.DepartmentService;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.DateUtil;
-import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.PerformancePlanStatusEnum;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
 import com.xn.performance.mybatis.CommonResult;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +75,7 @@ public class PerformancePlanController {
     private PerformancePlanShowService performancePlanShowService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         performancePlanDto.setIsDelete("未删除");
@@ -110,9 +114,25 @@ public class PerformancePlanController {
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performancePlanShowDto.setScriptName(scriptName);
         }
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
+        }
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getPlanShow(performancePlanShowDto);
-        model.put("plan_list", performancePlanShowDtoList);
+
+        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
+        try {
+            performancePlanShowDtoList = performancePlanShowService.performancePlanShowListByPage(performancePlanShowDto,pageInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        model.put("page", performancePlanShowDtoList.getPage());
+        model.put("plan_list", performancePlanShowDtoList.getList());
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
@@ -327,6 +347,27 @@ public class PerformancePlanController {
         } catch (Exception e) {
             commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             commonResult.setMessage(e.getMessage());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+
+    }
+
+    //    新增计划，根据公司，部门，系统，展示可选的脚本，场景和监控机
+    @RequestMapping(value = "/plan_list/show_plan_detail", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult getResult(@RequestParam Integer planId) {
+        CommonResult commonResult = new CommonResult();
+        try {
+
+            PerformanceResultDto performanceResultDto = new PerformanceResultDto();
+            performanceResultDto.setPlanId(planId);
+            List<PerformanceResultDto> performanceResultDtoList = performanceResultService.list(performanceResultDto);
+            commonResult.setData(performanceResultDtoList);
+        } catch (Exception e) {
+            commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
             logger.error("查询操作异常｛｝", e);
         } finally {
             return commonResult;

@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,7 +152,6 @@
                             <th>结果ID</th>
                             <th>计划名称</th>
                             <th>计划描述</th>
-                            <th>计划状态</th>
                             <th>公司</th>
                             <th>部门</th>
                             <th>系统</th>
@@ -172,7 +172,6 @@
                                     <td>${item.id}</td>
                                     <td>${item.planName}</td>
                                     <td>${item.remark}</td>
-                                    <td>${item.planStatus}</td>
                                     <td>${item.company}</td>
                                     <td>${item.department}</td>
                                     <td>${item.psystem}</td>
@@ -220,6 +219,7 @@
                         </#if>
                         </tbody>
                     </table>
+                    <@pager pagination=page url="${basePath}/performance/report/report_list"/>
                 </div>
                 <!-- /.table-responsive -->
             </div>

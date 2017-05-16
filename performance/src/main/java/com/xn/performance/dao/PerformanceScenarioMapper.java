@@ -7,6 +7,9 @@ import com.xn.performance.entity.PerformanceScenario;
 import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * PerformanceScenario Dao 接口
  * 
@@ -15,5 +18,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface PerformanceScenarioMapper extends BaseMapper<PerformanceScenario, Integer> {
+    List<PerformanceScenario> listByPage(Map<String, Object> parameters);
 
 }

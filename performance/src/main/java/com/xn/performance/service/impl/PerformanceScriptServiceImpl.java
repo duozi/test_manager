@@ -14,8 +14,12 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
+
+import static com.xn.performance.util.BeanToMapUtil.convertBean;
 
 
 /**
@@ -51,6 +55,14 @@ public class PerformanceScriptServiceImpl implements PerformanceScriptService {
         List<PerformanceScript> list = performanceScriptMapper.list(condition);
         List<PerformanceScriptDto> dtoList = CollectionUtils.transform(list, PerformanceScriptDto.class);
         return dtoList;
+    }
+    @Override
+    public PageResult<PerformanceScriptDto> listByPage(PerformanceScriptDto condition,PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+        Map beanMap=convertBean(condition);
+        beanMap.put("page",pageInfo);
+        List<PerformanceScript> list = performanceScriptMapper.listByPage(beanMap);
+        List<PerformanceScriptDto> dtoList = CollectionUtils.transform(list, PerformanceScriptDto.class);
+        return  PageResult.wrap(pageInfo, dtoList);
     }
 
     @Override

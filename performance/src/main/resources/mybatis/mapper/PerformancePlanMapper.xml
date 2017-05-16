@@ -47,17 +47,7 @@
 
     <sql id="columns">
         <![CDATA[
-
-
-
-
-
         id, plan_name, remark, company, department, psystem, script_id,script_name, scenario_id, scenario_name,plan_status, create_person,is_delete
-
-
-
-
-
         ]]>
     </sql>
 
@@ -112,42 +102,42 @@
         </where>
     </sql>
 
+
     <select id="show" resultMap="PerformancePlanShowMap">
         SELECT
-        R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name, P.scenario_id,
-        P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.result_path,R.execute_person
+        id as plan_id,plan_name, remark, company, department, psystem,script_name,
+        scenario_name,plan_status,
+        create_person,is_delete
         FROM
-        performance_plan P LEFT JOIN performance_result R ON P.id=R.plan_id
+        performance_plan
             <where>
-                <if test="@Ognl@isNotEmpty(id)">
-                    AND R.id = #{id}
-                </if>
+
                 <if test="@Ognl@isNotEmpty(planName)">
-                    AND R.plan_name = #{planName}
+                    AND plan_name = #{planName}
                 </if>
                 <if test="@Ognl@isNotEmpty(company)">
-                    AND P.company = #{company}
+                    AND company = #{company}
                 </if>
                 <if test="@Ognl@isNotEmpty(department)">
-                    AND P.department = #{department}
+                    AND department = #{department}
                 </if>
                 <if test="@Ognl@isNotEmpty(psystem)">
-                    AND P.psystem = #{psystem}
+                    AND psystem = #{psystem}
                 </if>
 
                 <if test="@Ognl@isNotEmpty(scriptName)">
-                    AND P.script_name = #{scriptName}
+                    AND script_name = #{scriptName}
                 </if>
 
                 <if test="@Ognl@isNotEmpty(planStatus)">
-                    AND P.plan_status = #{planStatus}
+                    AND plan_status = #{planStatus}
                 </if>
 
                 <if test="@Ognl@isNotEmpty(isDelete)">
-                    AND P.is_delete = #{isDelete}
+                    AND is_delete = #{isDelete}
                 </if>
             </where>
+        order by plan_id ASC
 
 
     </select>
@@ -183,10 +173,6 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
-
-
-
-
 
             INSERT INTO performance_plan (
                 id,

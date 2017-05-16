@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.xn.performance.dao.PerformanceStressMachineMapper">
 
@@ -18,43 +18,45 @@
         <result property="stressMachineStatus" column="stress_machine_status"/>
         <result property="port" column="port"/>
     </resultMap>
-    
+
     <sql id="columns">
         <![CDATA[
+
         id, stress_machine_name, remark, company, department, psystem, ip, username, password, create_person,stress_machine_status,port
+
         ]]>
     </sql>
-    
+
     <sql id="where">
         <where>
-           <if test="@Ognl@isNotEmpty(id)">
+            <if test="@Ognl@isNotEmpty(id)">
                 AND id = #{id}
             </if>
-           <if test="@Ognl@isNotEmpty(stressMachineName)">
+            <if test="@Ognl@isNotEmpty(stressMachineName)">
                 AND stress_machine_name = #{stressMachineName}
             </if>
-           <if test="@Ognl@isNotEmpty(remark)">
+            <if test="@Ognl@isNotEmpty(remark)">
                 AND remark = #{remark}
             </if>
-           <if test="@Ognl@isNotEmpty(company)">
+            <if test="@Ognl@isNotEmpty(company)">
                 AND company = #{company}
             </if>
-           <if test="@Ognl@isNotEmpty(department)">
+            <if test="@Ognl@isNotEmpty(department)">
                 AND department = #{department}
             </if>
-           <if test="@Ognl@isNotEmpty(psystem)">
+            <if test="@Ognl@isNotEmpty(psystem)">
                 AND psystem = #{psystem}
             </if>
-           <if test="@Ognl@isNotEmpty(ip)">
+            <if test="@Ognl@isNotEmpty(ip)">
                 AND ip = #{ip}
             </if>
-           <if test="@Ognl@isNotEmpty(username)">
+            <if test="@Ognl@isNotEmpty(username)">
                 AND username = #{username}
             </if>
-           <if test="@Ognl@isNotEmpty(password)">
+            <if test="@Ognl@isNotEmpty(password)">
                 AND password = #{password}
             </if>
-           <if test="@Ognl@isNotEmpty(createPerson)">
+            <if test="@Ognl@isNotEmpty(createPerson)">
                 AND create_person = #{createPerson}
             </if>
             <if test="@Ognl@isNotEmpty(stressMachineStatus)">
@@ -65,9 +67,10 @@
             </if>
         </where>
     </sql>
-    
+
     <select id="get" resultMap="PerformanceStressMachineMap">
-        SELECT <include refid="columns" />
+        SELECT
+        <include refid="columns"/>
         <![CDATA[
             FROM
                 performance_stress_machine
@@ -75,15 +78,24 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
     <select id="list" resultMap="PerformanceStressMachineMap">
         SELECT
-            <include refid="columns" />
+        <include refid="columns"/>
         FROM
-            performance_stress_machine 
+        performance_stress_machine
         <include refid="where"/>
     </select>
-        
+
+    <select id="listByPage" resultMap="PerformanceStressMachineMap">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        performance_stress_machine
+        <include refid="where"/>
+        order by id asc
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -96,6 +108,7 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         <![CDATA[
+
             INSERT INTO performance_stress_machine (
                 id,
                 stress_machine_name,
@@ -123,6 +136,7 @@
                 #{stressMachineStatus},
                 #{port}
             )
+
         ]]>
     </insert>
 
@@ -147,59 +161,61 @@
             (#{item.id},#{item.stressMachineName},#{item.remark},#{item.company},#{item.department},#{item.psystem},#{item.ip},#{item.username},#{item.password},#{item.createPerson},#{stressMachineStatus},#{port})
         </foreach>
     </insert>
-    
+
     <update id="update">
-        	UPDATE
-                performance_stress_machine
-            <set>
-                <if test="stressMachineName != null">
-                	<![CDATA[ stress_machine_name = #{stressMachineName} ]]>,
-                </if>
-                <if test="remark != null">
-                	<![CDATA[ remark = #{remark} ]]>,
-                </if>
-                <if test="company != null">
-                	<![CDATA[ company = #{company} ]]>,
-                </if>
-                <if test="department != null">
-                	<![CDATA[ department = #{department} ]]>,
-                </if>
-                <if test="psystem != null">
-                	<![CDATA[ psystem = #{psystem} ]]>,
-                </if>
-                <if test="ip != null">
-                	<![CDATA[ ip = #{ip} ]]>,
-                </if>
-                <if test="username != null">
-                	<![CDATA[ username = #{username} ]]>,
-                </if>
-                <if test="password != null">
-                	<![CDATA[ password = #{password} ]]>,
-                </if>
-                <if test="createPerson != null">
-                	<![CDATA[ create_person = #{createPerson} ]]>,
-                </if>
-                <if test="stressMachineStatus != null">
-                    <![CDATA[ stress_machine_status = #{stressMachineStatus} ]]>,
-                </if>
-                <if test="port != null">
-                    <![CDATA[ port = #{port} ]]>
-                </if>
-            </set>
-            WHERE
-                id = #{id} 
+        UPDATE
+        performance_stress_machine
+        <set>
+            <if test="stressMachineName != null">
+                <![CDATA[ stress_machine_name = #{stressMachineName} ]]>,
+            </if>
+            <if test="remark != null">
+                <![CDATA[ remark = #{remark} ]]>,
+            </if>
+            <if test="company != null">
+                <![CDATA[ company = #{company} ]]>,
+            </if>
+            <if test="department != null">
+                <![CDATA[ department = #{department} ]]>,
+            </if>
+            <if test="psystem != null">
+                <![CDATA[ psystem = #{psystem} ]]>,
+            </if>
+            <if test="ip != null">
+                <![CDATA[ ip = #{ip} ]]>,
+            </if>
+            <if test="username != null">
+                <![CDATA[ username = #{username} ]]>,
+            </if>
+            <if test="password != null">
+                <![CDATA[ password = #{password} ]]>,
+            </if>
+            <if test="createPerson != null">
+                <![CDATA[ create_person = #{createPerson} ]]>,
+            </if>
+            <if test="stressMachineStatus != null">
+                <![CDATA[ stress_machine_status = #{stressMachineStatus} ]]>,
+            </if>
+            <if test="port != null">
+                <![CDATA[ port = #{port} ]]>
+            </if>
+        </set>
+        WHERE
+        id = #{id}
     </update>
-    
+
     <delete id="deleteByPK">
         <![CDATA[
+
             DELETE
             FROM
                 performance_stress_machine
             WHERE
                 id = #{id} 
+
         ]]>
     </delete>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE
@@ -208,7 +224,7 @@
         ]]>
         <include refid="where"/>
     </delete>
-    
+
     <delete id="deleteBatchByPK">
         <![CDATA[
             DELETE

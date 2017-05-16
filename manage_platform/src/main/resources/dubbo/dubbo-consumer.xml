@@ -56,7 +56,7 @@
     <dubbo:reference id="performanceResultService" interface="com.xn.performance.api.PerformanceResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performanceMonitoredMachineResultService" interface="com.xn.performance.api.PerformanceMonitoredMachineResultService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performancePlanShowService" interface="com.xn.performance.api.PerformancePlanShowService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_group}" check="false"/>
 
     <dubbo:monitor protocol="registry" />
 </beans>

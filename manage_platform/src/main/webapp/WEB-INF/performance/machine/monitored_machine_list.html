@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +30,16 @@
                     data: params,
                     success: function (data) {
 
-                        if (data.code == 1) {
+                        if (data.code == 0) {
+                            $("#addStressMachine").modal("hide");
+                            reload();
+
+                        } else if (data.code == 1) {
                             alert(data.message);
 
+                        } else if (data.code == 2) {
+                            alert("请验证连接成功才能保存");
                         }
-                        $("#addMonitoredMachine").modal("hide");
-                        reload();
                     },
                     error: function (data) {
                         alert("异常：" + data.message);
@@ -207,6 +212,9 @@
 
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/performance/machine/monitored_machine_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>

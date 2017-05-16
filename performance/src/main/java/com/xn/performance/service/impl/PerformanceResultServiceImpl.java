@@ -35,8 +35,7 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
     @Autowired
     private PerformanceResultMapper performanceResultMapper;
 
-    @Autowired
-    private PerformanceScenarioServiceImpl performanceScenarioService;
+
 
     @Override
     public PerformanceResultDto get(Object condition)  

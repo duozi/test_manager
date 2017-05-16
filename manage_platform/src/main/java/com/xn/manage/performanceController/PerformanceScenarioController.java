@@ -8,12 +8,14 @@ import com.xn.common.base.CommonResult;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.DateUtil;
-import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.PublishEnum;
+import com.xn.interfacetest.api.TestSystemService;
+import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.performance.api.PerformanceScenarioService;
 import com.xn.performance.dto.PerformanceScenarioDto;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +48,7 @@ public class PerformanceScenarioController {
     TestSystemService testSystemService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
         List<PerformanceScenarioDto> performanceScenarioDtoList = null;
         PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
         performanceScenarioDtoList = performanceScenarioService.list(performanceScenarioDto);
@@ -70,8 +74,20 @@ public class PerformanceScenarioController {
         if (isNotEmpty(scenarioStatus) && !scenarioStatus.equals("null")) {
             performanceScenarioDto.setScenarioStatus(scenarioStatus);
         }
-        performanceScenarioDtoList = performanceScenarioService.list(performanceScenarioDto);
-        model.put("scenario_list", performanceScenarioDtoList);
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
+        PageResult<PerformanceScenarioDto> scenarioList=null;
+        try {
+            scenarioList = performanceScenarioService.listByPage(performanceScenarioDto,pageInfo);
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        model.put("page", scenarioList.getPage());
+        model.put("scenario_list", scenarioList.getList());
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
         List<TestSystemDto> testSystemDtoList = testSystemService.list(new TestSystemDto());

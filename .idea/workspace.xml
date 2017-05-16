@@ -2,8 +2,202 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663b4a83-fd74-4744-9d00-d5bbeb175e1e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/test_manager.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/json/HttpConstants.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/json/JsonDateValueProcessor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/mybatis/PageInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/filter/PaginationInterceptor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/BeanToMapUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/Dialect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/MySql5Dialect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/MySql5PageHepler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/ReflectionUtil.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test-api/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test-api/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest-api/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest-api/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/mvn" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mock/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/maven/com.xn.test_manager/common-test-api/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/META-INF/maven/com.xn.test_manager/common-test-api/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/application.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/api/CompanyService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/api/DepartmentService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/base/BaseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/base/BaseEntity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/base/BaseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/base/CommonResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/commonMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/dao/CompanyMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/dao/DepartmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/dto/CompanyDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/dto/DepartmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/entity/Company.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/entity/Department.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/service/impl/CompanyServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/company/service/impl/DepartmentServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/dto/CompanyDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/dto/DepartmentDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/BeanUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/CollectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/DateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/FileUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/PageInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/PageResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/PropertyUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/ReflectionUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/SignUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/com/xn/common/utils/StringUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/mybatis/mapper/CompanyMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/mybatis/mapper/DepartmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/mybatis/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/properties/common.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/properties/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/properties/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/properties/mail.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/properties/upload.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/classes/spring/spring-mvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-beanutils-core-1.8.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-codec-1.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-io-1.3.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-lang-2.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/commons-pool2-2.4.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/druid-1.0.14.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/dubbo-2.5.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/fastjson-1.1.35.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/freemarker-2.3.23.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/guava-10.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/httpclient-4.5.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/httpcore-4.4.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jackson-annotations-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jackson-core-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jackson-databind-2.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/javassist-3.18.2-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jedis-2.9.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jline-0.9.94.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/jsr305-1.3.9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/log4j-1.2.17.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/log4j-over-slf4j-1.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/mybatis-3.2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/mybatis-spring-1.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/mysql-connector-java-5.1.29.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/netty-3.2.5.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/netty-3.7.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/sitemesh-3.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/slf4j-api-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-aop-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-beans-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-context-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-context-support-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-core-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-expression-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-jdbc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-oxm-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-test-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-tx-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-web-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/spring-webmvc-4.1.4.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/tomcat-jdbc-7.0.42.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/tomcat-juli-7.0.42.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/zkclient-0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/lib/zookeeper-3.4.6.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/common_test_war_exploded/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/performance_api/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/performance_api/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/performance_api/performance_api.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/mybatis/PageInfo.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test-api/common-test-api.iml" afterPath="$PROJECT_DIR$/common-test-api/common-test-api.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/common-test.iml" afterPath="$PROJECT_DIR$/common-test/common-test.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" afterPath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/interfacetest.iml" afterPath="$PROJECT_DIR$/interfacetest/interfacetest.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/pom.xml" afterPath="$PROJECT_DIR$/manage_platform/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScenarioController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScenarioController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScriptController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScriptController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/beta/properties/common.properties" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/beta/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/monitored_machine_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/monitored_machine_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_detail.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/grafana.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/grafana.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/script/script_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/script/script_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/pom.xml" afterPath="$PROJECT_DIR$/performance/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceMonitoredMachineMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceMonitoredMachineMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformancePlanMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformancePlanMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceScenarioMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceScenarioMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceScriptMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceScriptMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceStressMachineMapper.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceStressMachineMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceMonitoredMachineServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceMonitoredMachineServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanShowServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanShowServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScenarioServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScriptServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceScriptServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceStressMachineServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceStressMachineServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/BeanUtils.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/BeanUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/beta/properties/jmeter.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/beta/properties/jmeter.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceMonitoredMachieMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceMonitoredMachieMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScriptMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScriptMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceStressMachineMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mybatis-config.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mybatis-config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/prod/properties/common.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/prod/properties/common.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/spring/spring-context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_manager.iml" afterPath="$PROJECT_DIR$/test_manager.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/pom.xml" afterPath="$PROJECT_DIR$/performance.api/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/JmeterService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/JmeterService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceMonitoredMachineResultService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceMonitoredMachineResultService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceMonitoredMachineService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceMonitoredMachineService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformancePlanMonitoredService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanMonitoredService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformancePlanService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceResultService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceResultService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceScenarioService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceScenarioService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceScriptService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceScriptService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/api/PerformanceStressMachineService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceStressMachineService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceMonitoredMachineDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceMonitoredMachineDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceMonitoredMachineResultDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceMonitoredMachineResultDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformancePlanDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformancePlanMonitoredDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanMonitoredDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceResultDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceScenarioDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceScenarioDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceScriptDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceScriptDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformanceStressMachineDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/mybatis/BaseDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/mybatis/BaseDto.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/mybatis/CommonResult.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/mybatis/CommonResult.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/performance_api/src/main/java/com/xn/performance/mybatis/PageResult.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/mybatis/PageResult.java" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +225,7 @@
     <favorites_list name="test_manager" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="TestCaseServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -108,9 +302,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -131,6 +324,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -368,6 +562,7 @@
       <setting name="cmdLine" value="run-app" />
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
+      <setting name="depsClasspath" value="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
@@ -533,6 +728,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -560,43 +761,44 @@
       <option name="presentableId" value="Default" />
       <updated>1494918877374</updated>
       <workItem from="1494918884800" duration="159000" />
+      <workItem from="1494919267482" duration="63000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159000" />
+    <option name="totallyTimeSpent" value="222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -615,6 +817,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">

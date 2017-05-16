@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -263,6 +264,9 @@
                         </#if>
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/performance/script/script_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>

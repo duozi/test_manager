@@ -15,9 +15,13 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.xn.performance.util.BeanToMapUtil.convertBean;
 
 
 /**
@@ -116,28 +120,42 @@ public class PerformancePlanShowServiceImpl implements PerformancePlanShowServic
         return 0;
     }
 
+//    @Override
+//    public List<PerformancePlanShowDto> getPlanShow(PerformancePlanShowDto performancePlanShowDto) {
+//        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanShowDto);
+//        for (PerformancePlanShowDto item : performancePlanShowDtoList) {
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("planId", item.getPlanId());
+//            List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
+//            item.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
+//        }
+//        return performancePlanShowDtoList;
+//    }
+
     @Override
-    public List<PerformancePlanShowDto> getPlanShow(PerformancePlanShowDto performancePlanShowDto) {
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(performancePlanShowDto);
+    public PageResult<PerformancePlanShowDto> getResultListByPage(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException{
+        Map beanMap=convertBean(performancePlanShowDto);
+        beanMap.put("page",pageInfo);
+        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.resultList(beanMap);
         for (PerformancePlanShowDto item : performancePlanShowDtoList) {
             Map<String, Object> map = new HashMap<>();
             map.put("planId", item.getPlanId());
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
             item.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
         }
-        return performancePlanShowDtoList;
+        return PageResult.wrap(pageInfo, performancePlanShowDtoList);
     }
-
     @Override
-    public List<PerformancePlanShowDto> getResultList(PerformancePlanShowDto performancePlanShowDto) {
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.resultList(performancePlanShowDto);
+    public PageResult<PerformancePlanShowDto> performancePlanShowListByPage(PerformancePlanShowDto performancePlanShowDto, PageInfo pageInfo) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+        Map beanMap=convertBean(performancePlanShowDto);
+        beanMap.put("page",pageInfo);
+        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanService.show(beanMap);
         for (PerformancePlanShowDto item : performancePlanShowDtoList) {
             Map<String, Object> map = new HashMap<>();
             map.put("planId", item.getPlanId());
             List<PerformancePlanMonitoredDto> performancePlanMonitoredDtoList = performancePlanMonitoredService.list(map);
             item.setPerformancePlanMonitoredDtoList(performancePlanMonitoredDtoList);
         }
-        return performancePlanShowDtoList;
+        return PageResult.wrap(pageInfo, performancePlanShowDtoList);
     }
-
 }

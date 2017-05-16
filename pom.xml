@@ -9,11 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>manage_platform</module>
-        <module>mock</module>
         <module>interfacetest</module>
         <module>common-test</module>
         <module>performance</module>
-        <module>performance_api</module>
+        <module>performance.api</module>
         <module>common-test-api</module>
         <module>interfacetest-api</module>
     </modules>
@@ -458,6 +457,12 @@
                 <groupId>org.influxdb</groupId>
                 <artifactId>influxdb-java</artifactId>
                 <version>2.5</version>
+            </dependency>
+            <!-- 添加分布插件的包pagehelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
