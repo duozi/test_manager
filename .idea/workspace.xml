@@ -1,46 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="849b9839-e6d4-4458-ac2c-5a6f9267c476" name="Default" comment="分页+复制用例">
+    <list default="true" id="849b9839-e6d4-4458-ac2c-5a6f9267c476" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestEnvironmentService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestEnvironmentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestPlanService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestPlanService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestReportService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestReportService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestServiceService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestServiceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestEnvironmentServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestEnvironmentServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestPlanServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestServiceServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestServiceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestEnvironmentMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestEnvironmentMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestInterfaceMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestInterfaceMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestPlanMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestPlanMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestServiceMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestServiceMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSuitMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSuitMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSystemMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSystemMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/EnvironmentController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/EnvironmentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/PlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/PlanController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ServiceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ServiceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SuitController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SuitController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/environment/environment_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/environment/environment_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/plan/plan_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/report_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/report/report_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/service/service_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/service/service_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/suit/suit_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/suit/suit_list.html" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -170,8 +132,8 @@
       <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="625">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1074,7 +1036,7 @@
       <updated>1494384757695</updated>
       <workItem from="1494384763515" duration="35154000" />
       <workItem from="1494554799798" duration="25256000" />
-      <workItem from="1494817086663" duration="19606000" />
+      <workItem from="1494817086663" duration="20107000" />
     </task>
     <task id="LOCAL-00001" summary="分页">
       <created>1494570200053</created>
@@ -1090,11 +1052,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494584639201</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="分页+复制用例">
+      <created>1494901171805</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1494901171805</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80016000" />
+    <option name="totallyTimeSpent" value="80517000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1121,10 +1090,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.686584" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36076662" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36076662" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26448497" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26448497" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1184,7 +1153,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="分页" />
-    <option name="LAST_COMMIT_MESSAGE" value="分页" />
+    <MESSAGE value="分页+复制用例" />
+    <option name="LAST_COMMIT_MESSAGE" value="分页+复制用例" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1755,8 +1725,8 @@
         <state relative-caret-position="316">
           <caret line="247" column="59" selection-start-line="247" selection-start-column="59" selection-end-line="247" selection-end-column="59" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1867,8 +1837,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="625">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
