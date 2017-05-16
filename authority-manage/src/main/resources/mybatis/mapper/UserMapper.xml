@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.authority.dao.UserMapper">
+
+    <resultMap id="UserMap" type="com.xn.authority.entity.User">
+        <result property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="status" column="status"/>
+        <result property="primary" column="primary"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, account, password, status, `primary`, create_time, update_time
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(account)">
+                AND account = #{account}
+            </if>
+           <if test="@Ognl@isNotEmpty(password)">
+                AND password = #{password}
+            </if>
+           <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+           <if test="@Ognl@isNotEmpty(primary)">
+                AND primary = #{primary}
+            </if>
+           <if test="@Ognl@isNotEmpty(createTimeBegin)">
+                AND create_time >= #{createTimeBegin}
+           </if>
+           <if test="@Ognl@isNotEmpty(createTimeEnd)">
+                AND create_time &lt;= #{createTimeEnd}
+           </if>
+           <if test="@Ognl@isNotEmpty(updateTimeBegin)">
+                AND update_time >= #{updateTimeBegin}
+           </if>
+           <if test="@Ognl@isNotEmpty(updateTimeEnd)">
+                AND update_time &lt;= #{updateTimeEnd}
+           </if>
+        </where>
+    </sql>
+    
+    <select id="get" resultMap="UserMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                sys_user
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+
+    <select id="list" resultMap="UserMap" parameterType="list">
+        SELECT
+        su.id,su.account,su.password ,su.`primary`,su.status,su.create_time,su.update_time,sr.`name`
+        FROM
+        sys_user su
+        left join sys_user_role ur on su.id = ur.user_id
+        LEFT JOIN sys_role sr ON ur.role_id = sr.id
+        <where>
+
+            <if test="account != null">
+                AND su.account like CONCAT('%',#{account},'%')
+            </if>
+            <if test="name != null">
+                AND sr.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="primary != null">
+                AND `primary` = #{primary}
+            </if>
+            <if test="status != null">
+                AND su.status = #{status}
+            </if>
+        </where>
+        order by su.id desc , su.create_time desc
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                sys_user
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO sys_user (
+                id,
+                account,
+                password,
+                status,
+                primary,
+                create_time,
+                update_time
+            ) VALUES (
+                #{id},
+                #{account},
+                #{password},
+                #{status},
+                #{primary},
+                #{createTime},
+                #{updateTime}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO sys_user (
+                id,
+                account,
+                password,
+                status,
+                primary,
+                create_time,
+                update_time
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.account},#{item.password},#{item.status},#{item.primary},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                sys_user
+            <set>
+                <if test="account != null">
+                	<![CDATA[ account = #{account} ]]>,
+                </if>
+                <if test="password != null">
+                	<![CDATA[ password = #{password} ]]>,
+                </if>
+                <if test="status != null">
+                	<![CDATA[ status = #{status} ]]>,
+                </if>
+                <if test="primary != null">
+                	<![CDATA[ primary = #{primary} ]]>,
+                </if>
+                <if test="createTime != null">
+                	<![CDATA[ create_time = #{createTime} ]]>,
+                </if>
+                <if test="updateTime != null">
+                	<![CDATA[ update_time = #{updateTime} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_user
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_user
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_user
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+

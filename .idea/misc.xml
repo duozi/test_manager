@@ -42,6 +42,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/authority-manage" />
     <file type="web" url="file://$PROJECT_DIR$/common-test" />
     <file type="web" url="file://$PROJECT_DIR$/interfacetest" />
     <file type="web" url="file://$PROJECT_DIR$/manage_platform" />
@@ -51,7 +52,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/performance/pom.xml" />
+        <option value="$PROJECT_DIR$/authority-manage/pom.xml" />
+        <option value="$PROJECT_DIR$/authority-manage-api/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

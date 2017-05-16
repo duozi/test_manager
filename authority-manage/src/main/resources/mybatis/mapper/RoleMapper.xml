@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xn.authority.dao.RoleMapper">
+
+    <resultMap id="RoleMap" type="com.xn.authority.entity.Role">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    
+    <sql id="columns">
+        <![CDATA[
+        id, name, status, remark, create_time, update_time
+        ]]>
+    </sql>
+    
+    <sql id="where">
+        <where>
+           <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+           <if test="@Ognl@isNotEmpty(name)">
+                AND name = #{name}
+            </if>
+           <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+           <if test="@Ognl@isNotEmpty(remark)">
+                AND remark = #{remark}
+            </if>
+           <if test="@Ognl@isNotEmpty(createTimeBegin)">
+                AND create_time >= #{createTimeBegin}
+           </if>
+           <if test="@Ognl@isNotEmpty(createTimeEnd)">
+                AND create_time &lt;= #{createTimeEnd}
+           </if>
+           <if test="@Ognl@isNotEmpty(updateTimeBegin)">
+                AND update_time >= #{updateTimeBegin}
+           </if>
+           <if test="@Ognl@isNotEmpty(updateTimeEnd)">
+                AND update_time &lt;= #{updateTimeEnd}
+           </if>
+        </where>
+    </sql>
+
+    <select id="listAllRoleByUserId" resultMap="RoleMap">
+        SELECT
+        r.id, r.name,  status, remark, create_time, update_time
+        FROM
+        sys_role r
+        LEFT JOIN sys_user_role ur ON r.`id` = ur.`role_id`
+        WHERE ur.user_id = #{userId}
+        and r.status = #{status}
+    </select>
+
+    <select id="get" resultMap="RoleMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                sys_role
+            WHERE 
+                id = #{id} 
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="RoleMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            sys_role 
+        <include refid="where"/>
+    </select>
+        
+    <select id="count" resultType="long">
+        <![CDATA[
+            SELECT
+                count(1)
+            FROM
+                sys_role
+        ]]>
+        <include refid="where"/>
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+            INSERT INTO sys_role (
+                id,
+                name,
+                status,
+                remark,
+                create_time,
+                update_time
+            ) VALUES (
+                #{id},
+                #{name},
+                #{status},
+                #{remark},
+                #{createTime},
+                #{updateTime}
+            )
+        ]]>
+    </insert>
+
+    <insert id="saveBatch">
+        <![CDATA[
+            INSERT INTO sys_role (
+                id,
+                name,
+                status,
+                remark,
+                create_time,
+                update_time
+            ) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.name},#{item.status},#{item.remark},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+    
+    <update id="update">
+        	UPDATE
+                sys_role
+            <set>
+                <if test="name != null">
+                	<![CDATA[ name = #{name} ]]>,
+                </if>
+                <if test="status != null">
+                	<![CDATA[ status = #{status} ]]>,
+                </if>
+                <if test="remark != null">
+                	<![CDATA[ remark = #{remark} ]]>,
+                </if>
+                <if test="createTime != null">
+                	<![CDATA[ create_time = #{createTime} ]]>,
+                </if>
+                <if test="updateTime != null">
+                	<![CDATA[ update_time = #{updateTime} ]]>
+                </if>
+            </set>
+            WHERE
+                id = #{id} 
+    </update>
+    
+    <delete id="deleteByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_role
+            WHERE
+                id = #{id} 
+        ]]>
+    </delete>
+    
+    <delete id="delete">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_role
+        ]]>
+        <include refid="where"/>
+    </delete>
+    
+    <delete id="deleteBatchByPK">
+        <![CDATA[
+            DELETE
+            FROM
+                sys_role
+            WHERE
+                id IN
+        ]]>
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{ids}</foreach>
+    </delete>
+</mapper>
+
