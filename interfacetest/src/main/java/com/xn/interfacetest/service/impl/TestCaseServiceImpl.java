@@ -233,6 +233,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         //复制基础信息
        TestCase testCase = this.copyBaseInfo(caseId,(String) params.get("caseNum"));
 
+        //被选择了要复制的部门的标志才会置为1
         testCase.setParamsAssert(0);
         logger.info("是否复制响应参数的断言" + params.get("dataAssert"));
         if("1".equals(params.get("dataAssert"))&& testCase.getParamsAssert() == 1){
