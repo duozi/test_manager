@@ -2,7 +2,282 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="849b9839-e6d4-4458-ac2c-5a6f9267c476" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_14.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_dubbo_2_5_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_10_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_core_1_8_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_1_3_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_23.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_15_0_GA.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_netty_netty_3_2_5_Final.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_sitemesh_sitemesh_3_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_1_4_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test-api/common-test-api.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common-test/common-test.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/common.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/BaseMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BaseDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BaseEntity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/BeanUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/CommonResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/entity/KeyValueStore.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ArrayFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BeanUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BigDecimalFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BigIntegerFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/BooleanFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/CharFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/DateTimeFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/DoubleFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/EnumFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/FloatFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/InstanceFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/IntFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ListFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/LongFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/MapFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/ObjectFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/StreamFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/objectfactory/StringFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/CollectionUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/DateUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/FileUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/MapUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PageInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PageResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/PropertyUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/ReflectionUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/SignUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/common/utils/StringUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dao/CompanyMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dao/DepartmentMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dto/CompanyDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/dto/DepartmentDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/entity/Company.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/entity/Department.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/mapper/CompanyMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/mapper/DepartmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/CompanyService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/DepartmentService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/impl/CompanyServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/main/java/com/xn/company/service/impl/DepartmentServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/common/src/test/java/TestMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/interface_test.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/DataAssertMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/ParamsAssertMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RedisAssertMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationCaseDatabaseMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationCaseParamsMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationDatabaseEnvironmentMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationInterfaceResultMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationPlanEnvironmentMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationPlanResultMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationPlanSuitMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationPlanTimeMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationServiceEnvironmentMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/RelationSuitCaseMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestCaseMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestDatabaseConfigMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestEnvironmentMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestInterfaceMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestParamsMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestPlanMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestRedisConfigMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestResultMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestServiceMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestSuitMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TestSystemMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dao/TimeConfigMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/DataAssertDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/ParamsAssertDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RedisAssertDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationCaseDatabaseDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationCaseParamsDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationDatabaseEnvironmentDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationInterfaceResultDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationPlanEnvironmentDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationPlanResultDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationPlanSuitDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationPlanTimeDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationServiceEnvironmentDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/RelationSuitCaseDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestCaseDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestDatabaseConfigDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestEnvironmentDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestInterfaceDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestParamsDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestPlanDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestRedisConfigDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestResultDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestServiceDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestSuitDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TestSystemDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/dto/TimeConfigDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/DataAssert.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/ParamsAssert.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RedisAssert.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationCaseDatabase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationCaseParams.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationDatabaseEnvironment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationInterfaceResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationPlanEnvironment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationPlanResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationPlanSuit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationPlanTime.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationServiceEnvironment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/RelationSuitCase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestCase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestDatabaseConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestEnvironment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestInterface.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestParams.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestPlan.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestRedisConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestSuit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TestSystem.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/entity/TimeConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/DataAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/ParamsAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RedisAssertMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationCaseDatabaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationCaseParamsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationDatabaseEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationInterfaceResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationPlanEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationPlanResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationPlanSuitMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationPlanTimeMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationServiceEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/RelationSuitCaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestCaseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestDatabaseConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestEnvironmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestInterfaceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestParamsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestPlanMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestRedisConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestResultMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestServiceMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestSuitMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TestSystemMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/mapper/TimeConfigMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/DataAssertService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/ParamsAssertService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RedisAssertService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationCaseDatabaseService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationCaseParamsService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationDatabaseEnvironmentService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationInterfaceResultService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationPlanEnvironmentService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationPlanResultService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationPlanSuitService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationPlanTimeService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationServiceEnvironmentService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/RelationSuitCaseService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestCaseService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestDatabaseConfigService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestEnvironmentService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestInterfaceService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestParamsService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestPlanService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestRedisConfigService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestResultService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestServiceService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestSuitService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TestSystemService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/TimeConfigService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/DataAssertServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/ParamsAssertServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RedisAssertServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationCaseDatabaseServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationCaseParamsServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationDatabaseEnvironmentServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationInterfaceResultServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationPlanEnvironmentServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationPlanResultServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationPlanSuitServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationPlanTimeServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationServiceEnvironmentServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/RelationSuitCaseServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestDatabaseConfigServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestEnvironmentServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestInterfaceServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestParamsServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestPlanServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestRedisConfigServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestResultServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestServiceServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestSuitServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TestSystemServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/service/impl/TimeConfigServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/utils/BeanFactoryUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/utils/PropertyUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/java/com.xn.interfacetest/utils/SystemDetails.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/application.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/dubbo/dubbo-provider.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/log/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mapper/DbPropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mapper/PlanMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mapper/RedisPropertiesMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mapper/ago/DBPropertiesMapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mapper/ago/PlanMapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/mybatis/mybatis-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/properties/common.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/properties/jdbc.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/properties/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/properties/mail.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/spring/spring-context.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/main/resources/spring/spring-mvc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_test/src/test/java/TestMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interfacetest/interfacetest.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mock/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mock/mock.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/manage_platform_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_1_35.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_1_35.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_manager.iml" afterPath="$PROJECT_DIR$/test_manager.iml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -15,6 +290,8 @@
     <ignored path="$PROJECT_DIR$/interfacetest/target/" />
     <ignored path="$PROJECT_DIR$/common-test/target/" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/common/target/" />
+    <ignored path="$PROJECT_DIR$/interface_test/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,101 +316,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CaseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="815" column="0" selection-start-line="815" selection-start-column="0" selection-end-line="815" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestCaseServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
-              <folding />
+              <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#37111#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3688#3689#0" expanded="false" />
+                <element signature="e#3742#3743#0" expanded="false" />
+                <element signature="e#5485#5486#0" expanded="false" />
+                <element signature="e#5537#5538#0" expanded="false" />
+                <element signature="e#5797#5798#0" expanded="false" />
+                <element signature="e#5855#5856#0" expanded="false" />
+                <element signature="e#5932#5933#0" expanded="false" />
+                <element signature="e#5956#5957#0" expanded="false" />
+                <element signature="e#9319#9334#0" expanded="false" />
+                <element signature="e#13736#14169#0" expanded="false" />
+                <element signature="e#14168#14169#0" expanded="false" />
+                <element signature="e#36979#36994#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestCase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="300" column="18" selection-start-line="300" selection-start-column="18" selection-end-line="300" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/beta/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest/src/main/resources/prod/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/dev/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/prod/properties/common.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/prod/properties/jdbc.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common-test/src/main/resources/beta/properties/jdbc.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="25">
+              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -160,7 +372,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/Dialect.java" />
         <option value="$PROJECT_DIR$/common-test-api/src/main/java/com/xn/common/utils/PageInfo.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/PageContext.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/model/Page.java" />
@@ -209,8 +420,9 @@
         <option value="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml" />
-        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
         <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java" />
+        <option value="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -235,9 +447,22 @@
         <option name="userSettingsFile" value="D:\apache-maven-3.3.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="prod" />
+        <option value="beta" />
+      </list>
+    </option>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState />
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
   </component>
   <component name="MavenRunner">
     <option name="jreName" value="1.7" />
@@ -273,8 +498,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -295,11 +518,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="E:/trunk/trunk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/performance" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -1037,6 +1262,8 @@
       <workItem from="1494384763515" duration="35154000" />
       <workItem from="1494554799798" duration="25256000" />
       <workItem from="1494817086663" duration="20107000" />
+      <workItem from="1494904303641" duration="436000" />
+      <workItem from="1494904844212" duration="182000" />
     </task>
     <task id="LOCAL-00001" summary="分页">
       <created>1494570200053</created>
@@ -1063,7 +1290,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80517000" />
+    <option name="totallyTimeSpent" value="81135000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1076,21 +1303,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34385568" sideWeight="0.50214595" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45885006" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17489271" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.686584" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17489271" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32356256" sideWeight="0.49570817" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34385568" sideWeight="0.49785408" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36076662" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36076662" sideWeight="0.49785408" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26448497" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
@@ -1099,12 +1325,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38669673" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37429538" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1337,19 +1564,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/utils/ModelUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSystemService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1357,7 +1575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="83" column="62" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1365,17 +1582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-          <folding>
-            <marker date="1494819433239" expanded="true" signature="1196:1339" ph="SELECT FROM test_system" />
-            <marker date="1494819433239" expanded="true" signature="1438:2178" ph="SELECT ts.* test_system" />
-            <marker date="1494819433239" expanded="true" signature="2893:2969" ph="SELECT count... test_system" />
-            <marker date="1494819433239" expanded="true" signature="3124:3399" ph="INSERT INTO test_system... " />
-            <marker date="1494819433239" expanded="true" signature="3872:4363" ph="UPDATE test_... " />
-            <marker date="1494819433239" expanded="true" signature="4446:4553" ph="update test_... " />
-            <marker date="1494819433239" expanded="true" signature="4640:4691" ph="DELETE FROM " />
-            <marker date="1494819433239" expanded="true" signature="4820:5024" ph="DELETE FROM " />
-            <marker date="1494819433239" expanded="true" signature="5148:5417" ph="SELECT ts.* test_system" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1383,7 +1589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="59" column="28" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,20 +1604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
           <caret line="74" column="25" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="25" />
-          <folding>
-            <marker date="1494819543150" expanded="true" signature="1506:1647" ph="SELECT FROM test_suit" />
-            <marker date="1494819543150" expanded="true" signature="1735:2455" ph="SELECT FROM test_suit" />
-            <marker date="1494819543150" expanded="true" signature="2533:2672" ph="select ts.* test_suit" />
-            <marker date="1494819543150" expanded="true" signature="2775:2977" ph="select ts.* test_suit" />
-            <marker date="1494819543150" expanded="true" signature="2850:2967" ph="select suit_... relation_suit_case" />
-            <marker date="1494819543150" expanded="true" signature="3065:3139" ph="SELECT count... test_suit" />
-            <marker date="1494819543150" expanded="true" signature="3294:3623" ph="INSERT INTO test_suit... " />
-            <marker date="1494819543150" expanded="true" signature="4122:4737" ph="UPDATE test_... " />
-            <marker date="1494819543150" expanded="true" signature="4793:4881" ph="UPDATE test_... " />
-            <marker date="1494819543150" expanded="true" signature="4958:5063" ph="update test_... " />
-            <marker date="1494819543150" expanded="true" signature="5150:5199" ph="DELETE FROM " />
-            <marker date="1494819543150" expanded="true" signature="5328:5530" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1420,7 +1611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="122" column="31" selection-start-line="122" selection-start-column="31" selection-end-line="122" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,16 +1626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="733">
           <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
-          <folding>
-            <marker date="1494819549786" expanded="true" signature="1397:1541" ph="SELECT FROM test_service" />
-            <marker date="1494819549786" expanded="true" signature="2358:3262" ph="SELECT ts.* test_service" />
-            <marker date="1494819549786" expanded="true" signature="3350:3427" ph="SELECT count... test_service" />
-            <marker date="1494819549786" expanded="true" signature="3582:3904" ph="INSERT INTO test_service... " />
-            <marker date="1494819549786" expanded="true" signature="4412:5015" ph="UPDATE test_... " />
-            <marker date="1494819549786" expanded="true" signature="5095:5203" ph="update test_... " />
-            <marker date="1494819549786" expanded="true" signature="5290:5342" ph="DELETE FROM " />
-            <marker date="1494819549786" expanded="true" signature="5471:5676" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1453,7 +1633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="605">
           <caret line="123" column="30" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1461,7 +1640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="141" column="68" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1469,17 +1647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-339">
           <caret line="104" column="35" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="35" />
-          <folding>
-            <marker date="1494384235631" expanded="true" signature="3557:3700" ph="SELECT FROM test_report" />
-            <marker date="1494384235631" expanded="true" signature="3790:3873" ph="SELECT FROM test_report" />
-            <marker date="1494384235631" expanded="true" signature="3994:4909" ph="SELECT FROM test_report" />
-            <marker date="1494384235631" expanded="true" signature="5005:5081" ph="SELECT count... test_report" />
-            <marker date="1494384235631" expanded="true" signature="5236:6210" ph="INSERT INTO test_report... " />
-            <marker date="1494384235631" expanded="true" signature="7222:9243" ph="UPDATE test_... " />
-            <marker date="1494384235631" expanded="true" signature="9323:9419" ph="DELETE FROM " />
-            <marker date="1494384235631" expanded="true" signature="9507:9558" ph="DELETE FROM " />
-            <marker date="1494384235631" expanded="true" signature="9687:9891" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1487,7 +1654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="136" column="67" selection-start-line="136" selection-start-column="67" selection-end-line="136" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1495,7 +1661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="124" column="28" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,7 +1668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="158" column="49" selection-start-line="158" selection-start-column="45" selection-end-line="158" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1511,17 +1675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="461">
           <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
-          <folding>
-            <marker date="1494819660188" expanded="true" signature="1568:1709" ph="SELECT FROM test_plan" />
-            <marker date="1494819660188" expanded="true" signature="1797:2629" ph="SELECT FROM test_plan" />
-            <marker date="1494819660188" expanded="true" signature="2725:2799" ph="SELECT count... test_plan" />
-            <marker date="1494819660188" expanded="true" signature="2954:3338" ph="INSERT INTO test_plan... " />
-            <marker date="1494819660188" expanded="true" signature="3897:3977" ph="update test_... " />
-            <marker date="1494819660188" expanded="true" signature="4027:4761" ph="UPDATE test_... " />
-            <marker date="1494819660188" expanded="true" signature="4841:4948" ph="UPDATE test_... " />
-            <marker date="1494819660188" expanded="true" signature="5036:5085" ph="DELETE FROM " />
-            <marker date="1494819660188" expanded="true" signature="5214:5416" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1529,7 +1682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="123" column="33" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1545,23 +1697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="611">
           <caret line="205" column="25" selection-start-line="205" selection-start-column="25" selection-end-line="205" selection-end-column="25" />
-          <folding>
-            <marker date="1494819698001" expanded="true" signature="4140:4246" ph="SELECT param... test_interface" />
-            <marker date="1494819698001" expanded="true" signature="4321:4467" ph="SELECT FROM test_interface" />
-            <marker date="1494819698001" expanded="true" signature="4563:4718" ph="SELECT ti.* test_interface" />
-            <marker date="1494819698001" expanded="true" signature="4804:4953" ph="SELECT ti.* test_interface" />
-            <marker date="1494819698001" expanded="true" signature="5042:5307" ph="SELECT DISTI... test_interface" />
-            <marker date="1494819698001" expanded="true" signature="5393:7740" ph="SELECT FROM test_interface" />
-            <marker date="1494819698001" expanded="true" signature="7828:7907" ph="SELECT count... test_interface" />
-            <marker date="1494819698001" expanded="true" signature="8007:8100" ph="UPDATE test_... " />
-            <marker date="1494819698001" expanded="true" signature="8159:8351" ph="UPDATE test_... " />
-            <marker date="1494819698001" expanded="true" signature="8471:9615" ph="INSERT INTO test_interface... " />
-            <marker date="1494819698001" expanded="true" signature="10806:13203" ph="UPDATE test_... " />
-            <marker date="1494819698001" expanded="true" signature="13283:13391" ph="UPDATE test_... " />
-            <marker date="1494819698001" expanded="true" signature="13479:13533" ph="DELETE FROM " />
-            <marker date="1494819698001" expanded="true" signature="13662:13869" ph="DELETE FROM " />
-            <marker date="1494819698001" expanded="true" signature="13986:14166" ph="select * fro... test_interface" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1569,7 +1704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
           <caret line="162" column="74" selection-start-line="162" selection-start-column="74" selection-end-line="162" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1577,7 +1711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1585,7 +1718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="129" column="63" selection-start-line="129" selection-start-column="59" selection-end-line="129" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1593,18 +1725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
-          <folding>
-            <marker date="1494819705449" expanded="true" signature="1896:2044" ph="SELECT FROM test_environment" />
-            <marker date="1494819705449" expanded="true" signature="2142:2318" ph="SELECT te.* test_environment" />
-            <marker date="1494819705449" expanded="true" signature="2396:2543" ph="SELECT FROM test_environment" />
-            <marker date="1494819705449" expanded="true" signature="2639:2720" ph="SELECT count... test_environment" />
-            <marker date="1494819705449" expanded="true" signature="2820:2915" ph="UPDATE test_... " />
-            <marker date="1494819705449" expanded="true" signature="3025:3493" ph="INSERT INTO test_environment... " />
-            <marker date="1494819705449" expanded="true" signature="4123:5027" ph="UPDATE test_... " />
-            <marker date="1494819705449" expanded="true" signature="5107:5208" ph="DELETE FROM " />
-            <marker date="1494819705449" expanded="true" signature="5296:5352" ph="DELETE FROM " />
-            <marker date="1494819705449" expanded="true" signature="5481:5690" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1612,7 +1732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
           <caret line="106" column="81" selection-start-line="106" selection-start-column="81" selection-end-line="106" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1620,7 +1739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1628,7 +1746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="53" column="93" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1636,7 +1753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
           <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1644,7 +1760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1652,7 +1767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1660,7 +1774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1668,7 +1781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1676,7 +1788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1684,7 +1795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="88" column="50" selection-start-line="82" selection-start-column="4" selection-end-line="88" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1700,7 +1810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="96" column="37" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1708,7 +1817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="23" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1716,7 +1824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="405" column="62" selection-start-line="405" selection-start-column="53" selection-end-line="405" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1724,10 +1831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="247" column="59" selection-start-line="247" selection-start-column="59" selection-end-line="247" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1735,7 +1838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="179" column="4" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1743,47 +1845,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="291" column="62" selection-start-line="291" selection-start-column="62" selection-end-line="291" selection-end-column="62" />
-          <folding>
-            <marker date="1494900666442" expanded="true" signature="3489:3629" ph="SELECT FROM test_case" />
-            <marker date="1494900666442" expanded="true" signature="3720:3886" ph="SELECT FROM test_case" />
-            <marker date="1494900666442" expanded="true" signature="5947:6840" ph="SELECT tc.* test_case" />
-            <marker date="1494900666442" expanded="true" signature="6919:7058" ph="SELECT tc.* test_case" />
-            <marker date="1494900666442" expanded="true" signature="7142:7388" ph="SELECT tc.* test_case" />
-            <marker date="1494900666442" expanded="true" signature="7486:7560" ph="SELECT count... test_case" />
-            <marker date="1494900666442" expanded="true" signature="7715:8660" ph="INSERT INTO test_case... " />
-            <marker date="1494900666442" expanded="true" signature="9691:11463" ph="UPDATE test_... " />
-            <marker date="1494900666442" expanded="true" signature="11518:11606" ph="UPDATE test_... " />
-            <marker date="1494900666442" expanded="true" signature="11665:11852" ph="UPDATE test_... " />
-            <marker date="1494900666442" expanded="true" signature="11915:13065" ph="UPDATE test_... " />
-            <marker date="1494900666442" expanded="true" signature="13140:13243" ph="UPDATE test_... " />
-            <marker date="1494900666442" expanded="true" signature="13327:13376" ph="DELETE FROM " />
-            <marker date="1494900666442" expanded="true" signature="13501:13704" ph="DELETE FROM " />
-            <marker date="1494900666442" expanded="true" signature="13811:14009" ph="SELECT * FRO... test_case" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="20375">
           <caret line="815" column="0" selection-start-line="815" selection-start-column="0" selection-end-line="815" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/entity/TestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
+        <state relative-caret-position="5325">
           <caret line="300" column="18" selection-start-line="300" selection-start-column="18" selection-end-line="300" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1791,7 +1868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1799,7 +1875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1807,7 +1882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1815,7 +1889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1823,7 +1896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1831,7 +1903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1839,6 +1910,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#37111#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3688#3689#0" expanded="false" />
+            <element signature="e#3742#3743#0" expanded="false" />
+            <element signature="e#5485#5486#0" expanded="false" />
+            <element signature="e#5537#5538#0" expanded="false" />
+            <element signature="e#5797#5798#0" expanded="false" />
+            <element signature="e#5855#5856#0" expanded="false" />
+            <element signature="e#5932#5933#0" expanded="false" />
+            <element signature="e#5956#5957#0" expanded="false" />
+            <element signature="e#9319#9334#0" expanded="false" />
+            <element signature="e#13736#14169#0" expanded="false" />
+            <element signature="e#14168#14169#0" expanded="false" />
+            <element signature="e#36979#36994#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1897,7 +1998,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>interfacetest</last-edited>
+          <last-edited>manage_platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1921,7 +2022,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <last-edited>Maven: com.alibaba:fastjson:1.1.35</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
