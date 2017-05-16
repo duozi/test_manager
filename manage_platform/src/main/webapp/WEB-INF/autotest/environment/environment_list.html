@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,8 +74,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#if environmentDtoList??>
-                            <#list environmentDtoList as item>
+                        <#if list??>
+                            <#list list as item>
                                 <tr>
                                     <td>${item.id}</td>
                                     <td>${item.name}</td>
@@ -91,6 +92,9 @@
                         </#if>
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/autotest/environment/environment_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>

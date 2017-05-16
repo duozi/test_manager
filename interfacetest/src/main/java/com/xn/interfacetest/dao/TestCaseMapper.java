@@ -36,4 +36,6 @@ public interface TestCaseMapper extends BaseMapper<TestCase, Long> {
     void changeStatusList(@Param("status")int status, @Param("ids") List<TestCaseDto> testCaseDtoList);
 
     List<TestCase> listAllBySuitList(@Param("testSuitDtoList") List<TestSuitDto> testSuitDtoList);
+
+    List<TestCase> getByCaseNum(String number);
 }

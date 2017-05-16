@@ -92,7 +92,7 @@ public class TestSystemServiceImpl implements TestSystemService {
     @Override
     @Transactional(readOnly = true)
     public PageResult<TestSystemDto> page(Map<String,Object> condition){
-        return PageResult.wrap((PageInfo) condition.get("page"), list(condition));
+        return PageResult.wrap((PageInfo) condition.get("page"), listByCompany(condition));
     }
 
     @Override

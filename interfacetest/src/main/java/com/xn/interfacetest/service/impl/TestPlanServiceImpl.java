@@ -155,7 +155,7 @@ public class TestPlanServiceImpl implements TestPlanService {
     }
 
     @Override
-    public List<TestPlanDto> listWithOtherInformation(Map<String, Object> params) {
+    public PageResult<TestPlanDto> listWithOtherInformation(Map<String, Object> params) {
         List<TestPlan> list = testPlanMapper.list(params);
         List<TestPlanDto> dtoList = CollectionUtils.transform(list, TestPlanDto.class);
         for(TestPlanDto testPlanDto:dtoList){
@@ -166,7 +166,7 @@ public class TestPlanServiceImpl implements TestPlanService {
             List<TestSuitDto> testSuitDtoList = testSuitService.getByPlanId(testPlanDto.getId());
             testPlanDto.setSuitList(testSuitDtoList);
         }
-        return dtoList;
+        return PageResult.wrap((PageInfo) params.get("page"), dtoList);
     }
 
     @Override

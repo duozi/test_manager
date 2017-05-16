@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,8 +85,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <#if testSuitDtoList??>
-                                        <#list testSuitDtoList as item>
+                                    <#if list??>
+                                        <#list list as item>
                                             <tr>
                                                 <td>${item.id}</td>
                                                 <td>${item.name}</td>

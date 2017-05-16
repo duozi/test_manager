@@ -72,6 +72,7 @@
         FROM
             test_environment 
         <include refid="where"/>
+        ORDER BY id DESC
     </select>
         
     <select id="count" resultType="long">

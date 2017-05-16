@@ -1,14 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.ContentTypeEnum;
-import com.xn.manage.Enum.HttpTypeEnum;
-import com.xn.manage.Enum.RequestTypeEnum;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +7,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,24 +38,13 @@ import com.xn.interfacetest.dto.TestSystemDto;
 @Controller
 @RequestMapping("/autotest/suit")
 public class SuitController {
-<<<<<<< HEAD
-=======
 	private static final Logger logger = LoggerFactory.getLogger(SuitController.class);
 
->>>>>>> hezhouxiyiyangde
 	@Autowired
 	private TestServiceService serviceService;
 
 	@Autowired
 	private TestSystemService systemService;
-<<<<<<< HEAD
-	
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getSuitPage(@PathVariable String  path, ModelMap map) {
-		List<ContentTypeEnum> contentTypeList = new ArrayList<ContentTypeEnum>();
-		for(ContentTypeEnum item : ContentTypeEnum.values()){
-			contentTypeList.add(item);
-=======
 
 	@Autowired
 	private TestSuitService testSuitService;
@@ -74,7 +56,9 @@ public class SuitController {
 	private RelationSuitCaseService relationSuitCaseService;
 
 	@RequestMapping(value="/suit_list", method = RequestMethod.GET)
-	public String getSuitPage(HttpServletRequest request, ModelMap map) {
+	public String getSuitPage(HttpServletRequest request, ModelMap map, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
@@ -85,18 +69,29 @@ public class SuitController {
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			map.put("systemId",systemId);
->>>>>>> hezhouxiyiyangde
+			pageParams.append("&selectSystemId=").append(systemId);
 		}
 
 		String name = request.getParameter("name");
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			map.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 
-		List<TestSuitDto> testSuitDtoList = testSuitService.listWithSystemAndInterface(params);
 
-		map.put("testSuitDtoList",testSuitDtoList);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
+
+
+		PageResult<TestSuitDto> testSuitDtoList = testSuitService.page(params);
+		ModelUtils.setResult(map, testSuitDtoList.getPage(), testSuitDtoList.getList());
+
 		map.put("systemList",systemList);
 		return "/autotest/suit/suit_list";
 	}
@@ -113,15 +108,6 @@ public class SuitController {
 			interfaceTypeEnumList.add(item);
 		}
 
-<<<<<<< HEAD
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		TestServiceDto serviceDto = new TestServiceDto();
-		serviceList = serviceService.list(serviceDto);
-=======
 		//id
 		String id = request.getParameter("id");
 		if(StringUtils.isNotBlank(id) && !"null".equals(id)){
@@ -132,7 +118,6 @@ public class SuitController {
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
->>>>>>> hezhouxiyiyangde
 
 		map.put("caseTypeEnums",CaseTypeEnum.values());
 		map.put("interfaceTypeList", interfaceTypeEnumList);

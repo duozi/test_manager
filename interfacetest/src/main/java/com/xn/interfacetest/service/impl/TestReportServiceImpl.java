@@ -138,7 +138,7 @@ public class TestReportServiceImpl implements TestReportService {
     }
 
     @Override
-    public List<TestReportDto> selectWithOtherInfo(Map<String, Object> params) {
+    public PageResult<TestReportDto> selectWithOtherInfo(Map<String, Object> params) {
         List<TestReport> list = testReportMapper.selectWithOtherInfo(params);
         List<TestReportDto> dtoList = CollectionUtils.transform(list, TestReportDto.class);
         for(TestReportDto testReportDto:dtoList){
@@ -158,7 +158,7 @@ public class TestReportServiceImpl implements TestReportService {
                 testReportDto.setSuitList(testSuitDtoList);
             }
         }
-        return dtoList;
+        return PageResult.wrap((PageInfo) params.get("page"),dtoList);
     }
 
     @Override

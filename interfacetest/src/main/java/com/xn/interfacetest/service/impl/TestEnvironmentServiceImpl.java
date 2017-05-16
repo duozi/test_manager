@@ -126,7 +126,7 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
     }
 
     @Override
-    public List<TestEnvironmentDto> listWithSystem(Map<String, Object> params) {
+    public PageResult<TestEnvironmentDto> listWithSystem(Map<String, Object> params) {
         List<TestEnvironment> list = testEnvironmentMapper.list(params);
         List<TestEnvironmentDto> dtoList = CollectionUtils.transform(list, TestEnvironmentDto.class);
         //查询对应的系统，保存在dto中
@@ -136,7 +136,7 @@ public class TestEnvironmentServiceImpl implements TestEnvironmentService {
                 dto.setSystemDto(systemDto);
             }
         }
-        return dtoList;
+        return PageResult.wrap((PageInfo) params.get("page"), dtoList);
     }
 
     @Override

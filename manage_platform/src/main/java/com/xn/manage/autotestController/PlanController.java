@@ -1,16 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.company.dto.CompanyDto;
-import com.xn.company.dto.DepartmentDto;
-import com.xn.company.service.CompanyService;
-import com.xn.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestPlanDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestPlanService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.PlanStatusEnum;
-=======
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,10 +10,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -80,47 +71,6 @@ public class PlanController {
 	private TestSuitService testSuitService;
 
 	@Autowired
-<<<<<<< HEAD
-	private CompanyService companyService;
-
-	@Autowired
-	private TestSystemService systemService;
-
-	@Autowired
-	private DepartmentService departmentService;
-
-	@Autowired
-	private TestPlanService planService;
-
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getPlanPage(@PathVariable String  path, ModelMap model) {
-		List<PlanStatusEnum> planStatusEnumList=new ArrayList<PlanStatusEnum>();
-		for(PlanStatusEnum item:PlanStatusEnum.values()){
-			planStatusEnumList.add(item);
-		}
-		model.put("planStatusEnumList",planStatusEnumList);
-
-		//公司名称
-		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
-		CompanyDto dto = new CompanyDto();
-		companyList = companyService.list(dto);
-
-
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-
-		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
-		DepartmentDto departmentDto = new DepartmentDto();
-		departmentList = departmentService.list(departmentDto);
-
-
-		//计划状态
-		List<PlanStatusEnum> planStatusList = new ArrayList<PlanStatusEnum>();
-		for(PlanStatusEnum item : PlanStatusEnum.values()){
-			planStatusList.add(item);
-=======
 	private TestEnvironmentService testEnvironmentService;
 
 	@Autowired
@@ -130,7 +80,9 @@ public class PlanController {
 	private TimeConfigService timeConfigService;
 
 	@RequestMapping(value="/plan_list", method = RequestMethod.GET)
-	public String getPlanPage(HttpServletRequest request, ModelMap model) {
+	public String getPlanPage(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		Map<String,Object> params = new HashMap<String,Object>();
 
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
@@ -149,39 +101,43 @@ public class PlanController {
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			model.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 
 		String createPerson = request.getParameter("createPerson");
 		if(StringUtils.isNotBlank(createPerson) && !"null".equals(createPerson)){
 			params.put("createPerson",createPerson);
 			model.put("createPerson",createPerson);
+			pageParams.append("&createPerson=").append(createPerson);
 		}
 
 		String systemId = request.getParameter("systemId");
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			model.put("systemId",systemId);
+			pageParams.append("&systemId=").append(systemId);
 		}
 
 		String status = request.getParameter("status");
 		if(StringUtils.isNotBlank(status) && !"null".equals(status)){
 			params.put("status",status);
 			model.put("status",status);
->>>>>>> hezhouxiyiyangde
+			pageParams.append("&status=").append(status);
 		}
 
 		//测试计划
-		List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
-<<<<<<< HEAD
-		TestPlanDto planDto = new TestPlanDto();
-		planList = planService.list(planDto);
-=======
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		planList = testPlanService.listWithOtherInformation(params);
->>>>>>> hezhouxiyiyangde
+		PageResult<TestPlanDto> result = testPlanService.listWithOtherInformation(params);
+		ModelUtils.setResult(model, result.getPage(), result.getList());
 
 		model.put("planStatusList",PlanStatusEnum.values());
-		model.put("planList",planList);
 		model.put("systemList", systemList);
 		model.put("testSuitDtoList", testSuitDtoList);
 		model.put("excuteList", ExcuteTypeEnum.values());

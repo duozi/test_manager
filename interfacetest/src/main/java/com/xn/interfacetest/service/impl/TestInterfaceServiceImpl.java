@@ -267,14 +267,14 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
     }
 
     @Override
-    public List<TestInterfaceDto> listByParams(Map<String, Object> params) {
+    public PageResult<TestInterfaceDto> listByParams(Map<String, Object> params) {
         List<TestInterface> list = testInterfaceMapper.list(params);
         List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
         for(TestInterfaceDto testInterfaceDto: dtoList){
             TestServiceDto serviceDto = testServiceService.get(testInterfaceDto.getServiceId());
             testInterfaceDto.setTestServiceDto(serviceDto);
         }
-        return dtoList;
+        return  PageResult.wrap((PageInfo) params.get("page"),dtoList);
     }
 
     @Override

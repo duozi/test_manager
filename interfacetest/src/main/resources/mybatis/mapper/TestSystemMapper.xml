@@ -68,6 +68,7 @@
                 AND d.company_id = #{companyId}
             </if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="list" resultMap="TestSystemMap">

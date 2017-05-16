@@ -1,12 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.DatabaseTypeEnum;
-=======
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +8,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.Enum.PlanStatusEnum;
 import com.xn.interfacetest.dto.*;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -43,21 +38,14 @@ import com.xn.interfacetest.api.TestSystemService;
 @Controller
 @RequestMapping("/autotest/environment")
 public class EnvironmentController {
-<<<<<<< HEAD
-=======
 	private static final Logger logger = LoggerFactory.getLogger(EnvironmentController.class);
 
->>>>>>> hezhouxiyiyangde
 	@Autowired
 	private TestSystemService systemService;
 
 	@Autowired
 	private TestServiceService serviceService;
 
-<<<<<<< HEAD
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getEnvironmentmPage(@PathVariable String  path, ModelMap model) {
-=======
 	@Autowired
 	private TestEnvironmentService testEnvironmentService;
 
@@ -74,8 +62,7 @@ public class EnvironmentController {
 	private TestRedisConfigService testRedisConfigService;
 
 	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getEnvironmentmPage(@PathVariable String  path, HttpServletRequest request, ModelMap model) {
->>>>>>> hezhouxiyiyangde
+	public String getEnvironmentmPage(@PathVariable String  path, HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
@@ -90,6 +77,8 @@ public class EnvironmentController {
 		}
 
 		if("environment_list".equals(path)){
+			StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 			//如果是列表页，则查询环境list数据
 			String selectSystemId = request.getParameter("selectSystemId");
 			String environmentName = request.getParameter("environmentName");
@@ -98,15 +87,25 @@ public class EnvironmentController {
 			if(StringUtils.isNotBlank(selectSystemId) && !"null".equals(selectSystemId)){
 				params.put("systemId",selectSystemId);
 				model.put("systemId",selectSystemId);
+				pageParams.append("&selectSystemId=").append(selectSystemId);
 			}
 
 			if(StringUtils.isNotBlank(environmentName) && !"null".equals(environmentName)){
 				params.put("name",environmentName);
 				model.put("name",environmentName);
+				pageParams.append("&environmentName=").append(environmentName);
 			}
 
-			List<TestEnvironmentDto> environmentDtoList = testEnvironmentService.listWithSystem(params);
-			model.put("environmentDtoList",environmentDtoList);
+			if (pageInfo.getCurrentPage() < 1) {
+				pageInfo.setCurrentPage(1);
+			}
+			pageInfo.setPagination(true);
+			pageInfo.setPageSize(10);
+			params.put("page", pageInfo);
+			pageInfo.setParams(pageParams.toString());
+
+			PageResult<TestEnvironmentDto> result = testEnvironmentService.listWithSystem(params);
+			ModelUtils.setResult(model, result.getPage(), result.getList());
 		} else if("environment_item".equals(path)){
 			//如果是详情页面，则查询指定环境信息
 			String id = request.getParameter("id");

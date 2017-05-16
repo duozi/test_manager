@@ -6,6 +6,7 @@ package com.xn.interfacetest.api;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.common.base.CommonResult;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.dto.TestCaseDto;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
@@ -130,7 +131,7 @@ public interface TestCaseService {
      * @param params
      * @return
      */
-    List<TestCaseDto> listByParams(Map<String, Object> params);
+    PageResult<TestCaseDto> listByParams(Map<String, Object> params);
 
     /**
      * 通过测试集查询测试用例
@@ -164,4 +165,17 @@ public interface TestCaseService {
     void changeStatusList(int status, List<TestCaseDto> testCaseDtoList);
 
     List<TestCaseDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList);
+
+    /**
+     * 复制用例
+     * @param params
+     */
+    void copyCase(Map<String, Object> params);
+
+    /**
+     * 根据用例编号查询用例
+     * @param number
+     * @return
+     */
+    List<TestCaseDto> getByCaseNum(String number);
 }

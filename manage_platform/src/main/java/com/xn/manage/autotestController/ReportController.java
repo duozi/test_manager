@@ -1,11 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.interfacetest.dto.TestPlanDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestPlanService;
-import com.xn.interfacetest.service.TestSystemService;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +7,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -43,21 +39,12 @@ import com.xn.interfacetest.dto.TestSystemDto;
 @Controller
 @RequestMapping("/autotest/report")
 public class ReportController {
-<<<<<<< HEAD
-=======
 	private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
 
->>>>>>> hezhouxiyiyangde
 	@Autowired
 	private TestSystemService systemService;
 
 	@Autowired
-<<<<<<< HEAD
-	private TestPlanService planService;
-
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getReportPage(@PathVariable String  path, ModelMap model) {
-=======
 	private TestPlanService testPlanService;
 
 	@Autowired
@@ -79,8 +66,9 @@ public class ReportController {
 	private TestCaseService testCaseService;
 
 	@RequestMapping(value="/report_list", method = RequestMethod.GET)
-	public String getReportPage(HttpServletRequest request, ModelMap model) {
->>>>>>> hezhouxiyiyangde
+	public String getReportPage(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
@@ -88,9 +76,6 @@ public class ReportController {
 		//测试计划
 		List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
 		TestPlanDto planDto = new TestPlanDto();
-<<<<<<< HEAD
-		planList = planService.list(planDto);
-=======
 		planList = testPlanService.list(planDto);
 
 		//测试环境
@@ -104,37 +89,50 @@ public class ReportController {
 		if(StringUtils.isNotBlank(environmentId) && !"null".equals(environmentId)){
 			params.put("environmentId",environmentId);
 			model.put("environmentId",environmentId);
+			pageParams.append("&environmentId=").append(environmentId);
 		}
 		String planId = request.getParameter("planId");
 		if(StringUtils.isNotBlank(planId) && !"null".equals(planId)){
 			params.put("planId",planId);
 			model.put("planId",planId);
+			pageParams.append("&planId=").append(planId);
 		}
 		String name = request.getParameter("name");
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			model.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 		String beginTime = request.getParameter("beginTime");
 		if(StringUtils.isNotBlank(beginTime) && !"null".equals(beginTime)){
 			params.put("beginTime",beginTime);
 			model.put("beginTime",beginTime);
+			pageParams.append("&beginTime=").append(beginTime);
 		}
 		String toTime = request.getParameter("endTime");
 		if(StringUtils.isNotBlank(toTime) && !"null".equals(toTime)){
 			params.put("toTime",toTime);
 			model.put("toTime",toTime);
+			pageParams.append("&endTime=").append(toTime);
 		}
 		String result = request.getParameter("result");
 		if(StringUtils.isNotBlank(result) && !"null".equals(result)){
 			params.put("result",result);
 			model.put("result",result);
+			pageParams.append("&result=").append(result);
 		}
->>>>>>> hezhouxiyiyangde
 
-		List<TestReportDto> testReportDtoList = testReportService.selectWithOtherInfo(params);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		model.put("testReportDtoList",testReportDtoList);
+		PageResult<TestReportDto> resultList = testReportService.selectWithOtherInfo(params);
+		ModelUtils.setResult(model, resultList.getPage(), resultList.getList());
+
 		model.put("testEnvironmentDtoList",testEnvironmentDtoList);
 		model.put("planList",planList);
 		model.put("systemList",systemList);

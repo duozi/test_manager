@@ -3,6 +3,7 @@
  */
 package com.xn.interfacetest.service.impl;
 
+import com.xn.common.base.CommonResult;
 import com.xn.common.utils.BeanUtils;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
@@ -11,6 +12,7 @@ import com.xn.interfacetest.api.*;
 import com.xn.interfacetest.command.*;
 import com.xn.interfacetest.dao.TestCaseMapper;
 import com.xn.interfacetest.dto.*;
+import com.xn.interfacetest.entity.RelationCaseDatabase;
 import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
@@ -197,7 +199,7 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public List<TestCaseDto> listByParams(Map<String, Object> params) {
+    public PageResult<TestCaseDto> listByParams(Map<String, Object> params) {
         List<TestCase> list = testCaseMapper.listByParams(params);
         List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
         for(TestCaseDto testCaseDto: dtoList ){
@@ -206,7 +208,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 testCaseDto.setInterfaceDto(testInterfaceDto);
             }
         }
-        return dtoList;
+        return PageResult.wrap((PageInfo) params.get("page"), dtoList);
     }
 
     @Override
@@ -222,6 +224,137 @@ public class TestCaseServiceImpl implements TestCaseService {
         List<TestCase> list = testCaseMapper.listAllBySuitList(testSuitDtoList);
         List<TestCaseDto> dtoList = CollectionUtils.transform(list, TestCaseDto.class);
         return dtoList;
+    }
+
+    @Override
+    public void copyCase(Map<String, Object> params) {
+        Long caseId = Long.parseLong((String)params.get("caseId"));
+
+        //复制基础信息
+       TestCase testCase = this.copyBaseInfo(caseId,(String) params.get("caseNum"));
+
+        testCase.setParamsAssert(0);
+        logger.info("是否复制响应参数的断言" + params.get("dataAssert"));
+        if("1".equals(params.get("dataAssert"))&& testCase.getParamsAssert() == 1){
+            //复制响应参数的断言
+            this.copyParamsAssert(caseId,testCase.getId());
+            testCase.setParamsAssert(1);
+        }
+
+        logger.info("是否复制数据清除" + params.get("dataClear"));
+        testCase.setDataClear(0);
+        if("1".equals(params.get("dataClear"))  && testCase.getDataClear() == 1){
+            //复制数据清除
+            this.copyDataClear(caseId,testCase.getId());
+            testCase.setDataClear(1);
+        }
+
+        logger.info("是否复制数据准备" + params.get("dataPrepare") );
+        testCase.setDataPrepare(0);
+        if("1".equals(params.get("dataPrepare"))  && testCase.getDataPrepare() == 1){
+            //复制数据准备
+            this.copyDataPrepare(caseId,testCase.getId());
+            testCase.setDataPrepare(1);
+        }
+        testCaseMapper.update(testCase);
+
+        logger.info("是否复制请求参数" + (params.get("dataParams")) );
+        if("1".equals(params.get("dataParams"))){
+            //复制请求参数
+            this.copyDataParams(testCase,caseId,testCase.getId());
+        }
+    }
+
+    @Override
+    public List<TestCaseDto> getByCaseNum(String number) {
+        List<TestCase> testCaseList = testCaseMapper.getByCaseNum(number);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        return dtoList;
+    }
+
+    private void copyDataParams(TestCase testCase, Long caseId, Long newCaseId) {
+        //判断是自定义参数还是配置的参数
+        if(testCase.getParamsType() == ParamsGroupTypeEnum.KEY.getId()){
+            //不是自定义参数就需要复制参数表的该用例的字段
+            Map<String,Object> params = new HashMap<String,Object>();
+            params.put("caseId",caseId);
+            params.put("idDelete",0);
+            List<RelationCaseParamsDto> relationCaseParamsDtoList = relationCaseParamsService.list(params);
+            if(null != relationCaseParamsDtoList && relationCaseParamsDtoList.size() > 0 ){
+                logger.info("有参数｛｝个" + relationCaseParamsDtoList.size());
+                for(RelationCaseParamsDto relationCaseParams : relationCaseParamsDtoList){
+                    relationCaseParams.setId(null);
+                    relationCaseParams.setIsDelete(0);
+                    relationCaseParams.setCaseId(newCaseId);
+                    relationCaseParamsService.save(relationCaseParams);
+                }
+            }
+        }
+
+    }
+
+    //数据准备
+    private void copyDataPrepare(Long caseId, Long newCaseId) {
+        copyDataOperate( caseId,  newCaseId, OperationTypeEnum.PREPARE.getId());
+    }
+
+    //数据清除
+    private void copyDataClear(Long caseId, Long newCaseId) {
+        copyDataOperate( caseId,  newCaseId, OperationTypeEnum.CLEAR.getId());
+    }
+
+    //复制响应参数断言
+    private void copyParamsAssert(Long caseId, Long newCaseId) {
+        List<ParamsAssertDto> paramsAssertDtoList = paramsAssertService.getByCaseId(caseId);
+        if(null != paramsAssertDtoList && paramsAssertDtoList.size() > 0){
+            logger.info("有参数断言｛｝个" + paramsAssertDtoList.size());
+            for(ParamsAssertDto paramsAssertDto:paramsAssertDtoList){
+                paramsAssertDto.setId(null);
+                paramsAssertDto.setCaseId(newCaseId);
+                paramsAssertDto.setIsDelete(0);
+                paramsAssertService.save(paramsAssertDto);
+            }
+        }
+    }
+
+    //复制基础信息
+    private TestCase copyBaseInfo(Long caseId,String caseNum) {
+        TestCase testCase = testCaseMapper.get(caseId);
+        //把id设置为空，就可以新增一个参数值都一样的用例了
+        testCase.setId(null);
+        testCase.setIsDelete(0);
+        testCase.setStatus(0);
+        testCase.setNumber(caseNum);
+        testCaseMapper.save(testCase);//保存完了就有用例id写入了testCase
+        logger.info("复制之后新的用例信息：" + testCase.toString());
+        return testCase;
+    }
+
+    //复制数据处理
+    private void copyDataOperate(Long caseId, Long newCaseId,Integer operateType){
+        //数据库
+        List<RelationCaseDatabaseDto> relationCaseDatabaseList = relationCaseDatabaseService.getByCaseIdAndOperateType(caseId,operateType);
+        if(null != relationCaseDatabaseList && relationCaseDatabaseList.size() > 0) {
+            logger.info("有数据库操作｛｝个" + relationCaseDatabaseList.size());
+            for(RelationCaseDatabaseDto relationCaseDatabaseDto : relationCaseDatabaseList){
+                relationCaseDatabaseDto.setId(null);
+                relationCaseDatabaseDto.setIsDelete(0);
+                relationCaseDatabaseDto.setCaseId(newCaseId);
+                relationCaseDatabaseService.save(relationCaseDatabaseDto);
+            }
+        }
+
+        //redis
+        List<RelationCaseRedisDto> relationCaseRedisList = relationCaseRedisService.getByCaseIdAndOperateType(caseId,operateType);
+        if(null != relationCaseRedisList && relationCaseRedisList.size() > 0) {
+            logger.info("有redis操作｛｝个" + relationCaseRedisList.size());
+            for(RelationCaseRedisDto relationCaseRedisDto : relationCaseRedisList){
+                relationCaseRedisDto.setId(null);
+                relationCaseRedisDto.setIsDelete(0);
+                relationCaseRedisDto.setCaseId(newCaseId);
+                relationCaseRedisService.save(relationCaseRedisDto);
+            }
+        }
     }
 
     @Override
@@ -723,8 +856,10 @@ public class TestCaseServiceImpl implements TestCaseService {
 
 
     public static void main(String[] s) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name","value");
-       System.out.println(jsonObject.toString());
+        Map<String,Object> params = new HashMap<String,Object>();
+        String ss = "s";
+        params.put("id",ss);
+
+       System.out.println("s"==params.get("id"));
     }
 }

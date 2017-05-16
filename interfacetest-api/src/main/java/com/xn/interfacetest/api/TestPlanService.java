@@ -122,7 +122,7 @@ public interface TestPlanService {
      * @param params
      * @return
      */
-    List<TestPlanDto> listWithOtherInformation(Map<String, Object> params);
+    PageResult<TestPlanDto> listWithOtherInformation(Map<String, Object> params);
 
     /**
      * 发布计划

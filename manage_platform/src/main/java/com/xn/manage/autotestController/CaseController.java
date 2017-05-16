@@ -18,8 +18,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.Enum.ParamsGroupTypeEnum;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -417,7 +420,9 @@ public class CaseController {
 	}
 
 	@RequestMapping(value="/case_list", method = RequestMethod.GET)
-	public String getCasePage(HttpServletRequest request, ModelMap map) {
+	public String getCasePage(HttpServletRequest request, ModelMap map,PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		TestSystemDto systemDto = new TestSystemDto();
 		List<TestSystemDto> systemList = testSystemService.list(systemDto );
 		map.put("systemList", systemList);
@@ -431,32 +436,45 @@ public class CaseController {
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			map.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 		String systemId = request.getParameter("systemId");
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",Long.parseLong(systemId));
 			map.put("systemId",Long.parseLong(systemId));
+			pageParams.append("&systemId=").append(systemId);
 		}
 		String type = request.getParameter("type");
 		if(StringUtils.isNotBlank(type) && !"null".equals(type)){
 			params.put("type",Integer.parseInt(type));
 			map.put("type",Integer.parseInt(type));
+			pageParams.append("&type=").append(type);
 		}
 
 		String interfaceId = request.getParameter("interfaceId");
 		if(StringUtils.isNotBlank(interfaceId) && !"null".equals(interfaceId)){
 			params.put("interfaceId",interfaceId);
 			map.put("interfaceId",interfaceId);
+			pageParams.append("&interfaceId=").append(interfaceId);
 		}
 		String createPerson = request.getParameter("createPerson");
 		if(StringUtils.isNotBlank(createPerson) && !"null".equals(createPerson)){
 			params.put("createPerson",createPerson);
 			map.put("createPerson",createPerson);
+			pageParams.append("&createPerson=").append(createPerson);
 		}
 
-		List<TestCaseDto> testCaseDtoList = testCaseService.listByParams(params);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+ 		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		map.put("testCaseDtoList",testCaseDtoList);
+		PageResult<TestCaseDto> result = testCaseService.listByParams(params);
+
+		ModelUtils.setResult(map, result.getPage(), result.getList());
 		map.put("caseTypes",CaseTypeEnum.values());
 		return "/autotest/case/case_list";
 	}
@@ -526,6 +544,14 @@ public class CaseController {
 			if(StringUtils.isBlank(testCaseDto.getNumber()) || "null".equals(testCaseDto.getNumber())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("请填写用例编号");
+				return result;
+			}
+
+			//校验用例编号的唯一性
+			List<TestCaseDto> testCaseDtoExist = testCaseService.getByCaseNum(testCaseDto.getNumber());
+			if(null != testCaseDtoExist){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("用例编号已存在，请保证用例编号的唯一性");
 				return result;
 			}
 
@@ -808,4 +834,71 @@ public class CaseController {
 		}
 		return  result;
 	}
+
+	@RequestMapping(value = "/copyCase")
+	@ResponseBody
+	public CommonResult copyCase(HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		Map<String,Object> params = new HashMap<String, Object>();
+
+		String caseId = request.getParameter("caseId");
+		if(StringUtils.isNotBlank(caseId) && !"null".equals(caseId)){
+			params.put("caseId",caseId);
+		} else {
+			result.setCode(CommonResultEnum.FAILED.getReturnCode());
+			result.setMessage("用例id不能为空");
+			return result;
+		}
+
+		if(StringUtils.isBlank(request.getParameter("caseNum")) || "null".equals(request.getParameter("caseNum"))){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("请填写用例编号");
+			return result;
+		}
+
+		String caseNum = request.getParameter("caseNum");
+		if(StringUtils.isNotBlank(caseNum) && !"null".equals(caseNum)){
+			params.put("caseNum",caseNum);
+		}
+
+		//校验用例编号的唯一性
+		List<TestCaseDto>testCaseDtoExist = testCaseService.getByCaseNum(request.getParameter("caseNum"));if(null != testCaseDtoExist && testCaseDtoExist.size() > 0){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("用例编号已存在，请保证用例nida编号的唯一性");
+			return result;
+		}
+
+//		String baseInfo = request.getParameter("baseInfo");
+//		if(StringUtils.isNotBlank(baseInfo) && !"null".equals(baseInfo)){
+//			params.put("baseInfo",baseInfo);
+//		}
+
+		String dataClear = request.getParameter("dataClear");
+		if(StringUtils.isNotBlank(dataClear) && !"null".equals(dataClear)){
+			params.put("dataClear",dataClear);
+		}
+
+		String dataPrepare = request.getParameter("dataPrepare");
+		if(StringUtils.isNotBlank(dataPrepare) && !"null".equals(dataPrepare)){
+			params.put("dataPrepare",dataPrepare);
+		}
+		String dataAssert = request.getParameter("dataAssert");
+		if(StringUtils.isNotBlank(dataAssert) && !"null".equals(dataAssert)){
+			params.put("dataAssert",dataAssert);
+		}
+		String dataParams = request.getParameter("dataParams");
+		if(StringUtils.isNotBlank(dataParams) && !"null".equals(dataParams)){
+			params.put("dataParams",dataParams);
+		}
+		try{
+			testCaseService.copyCase(params);
+		}catch (Exception e){
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage("复制用例产生异常，请查看日志" + e.getMessage());
+			logger.error("复制用例异常：",e);
+		}
+
+		return result;
+	}
+
 }

@@ -120,7 +120,7 @@ public interface TestEnvironmentService {
      * @param params
      * @return
      */
-    List<TestEnvironmentDto> listWithSystem(Map<String, Object> params);
+    PageResult<TestEnvironmentDto> listWithSystem(Map<String, Object> params);
 
     /**
      *查询环境（含系统信息）

@@ -15,8 +15,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.dto.*;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -156,7 +159,9 @@ public class InterfaceController {
 	}
 
 	@RequestMapping(value="/interface_list", method = RequestMethod.GET)
-	public String getInterfacePage(HttpServletRequest request, ModelMap map) {
+	public String getInterfacePage(HttpServletRequest request, ModelMap map, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
 		TestServiceDto serviceDto = new TestServiceDto();
 		serviceList = serviceService.list(serviceDto);
@@ -167,21 +172,31 @@ public class InterfaceController {
 		if(StringUtils.isNotBlank(interfaceName) && !"null".equals(interfaceName)){
 			params.put("name",interfaceName);
 			map.put("name",interfaceName);
+			pageParams.append("&name=").append(interfaceName);
 		}
 		String serviceId = request.getParameter("serviceId");
 		if(StringUtils.isNotBlank(serviceId) && !"null".equals(serviceId)){
 			params.put("serviceId",Long.parseLong(serviceId));
 			map.put("serviceId",Long.parseLong(serviceId));
+			pageParams.append("&serviceId=").append(serviceId);
 		}
 		String type = request.getParameter("type");
 		if(StringUtils.isNotBlank(type) && !"null".equals(type)){
 			params.put("type",Integer.parseInt(type));
 			map.put("type",Integer.parseInt(type));
+			pageParams.append("&type=").append(type);
 		}
-		List<TestInterfaceDto> testInterfaceDtoList = testInterfaceService.listByParams(params);
 
-		map.put("testInterfaceDtoList",testInterfaceDtoList);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
+		PageResult<TestInterfaceDto> result = testInterfaceService.listByParams(params);
 
+		ModelUtils.setResult(map, result.getPage(), result.getList());
 
 		//接口类型--http，dubbo
 		List<InterfaceTypeEnum> interfaceTypeEnumList=new ArrayList<InterfaceTypeEnum>();

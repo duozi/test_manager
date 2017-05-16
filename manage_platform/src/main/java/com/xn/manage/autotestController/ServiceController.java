@@ -1,15 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.company.dto.CompanyDto;
-import com.xn.company.dto.DepartmentDto;
-import com.xn.company.service.CompanyService;
-import com.xn.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +7,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.dubbo.container.page.Page;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,11 +35,8 @@ import com.xn.interfacetest.dto.TestSystemDto;
 @Controller
 @RequestMapping("/autotest/service")
 public class ServiceController {
-<<<<<<< HEAD
-=======
 	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
 
->>>>>>> hezhouxiyiyangde
 	@Autowired
 	private CompanyService companyService;
 
@@ -54,16 +44,6 @@ public class ServiceController {
 	private DepartmentService departmentService;
 
 	@Autowired
-<<<<<<< HEAD
-	private TestServiceService serviceService;
-
-	@Autowired
-	private TestSystemService systemService;
-
-
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getSystemPage(@PathVariable String  path, ModelMap model) {
-=======
 	private TestServiceService testServiceService;
 
 	@Autowired
@@ -71,37 +51,24 @@ public class ServiceController {
 
 
 	@RequestMapping(value="/service_list", method = RequestMethod.GET)
-	public String getSystemPage(HttpServletRequest request, ModelMap model) {
+	public String getSystemPage(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		//查询公司
->>>>>>> hezhouxiyiyangde
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
 		companyList = companyService.list(dto);
 
-<<<<<<< HEAD
-
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-
-=======
 		//查询系统
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = testSystemService.list(systemDto);
 
 		//查询部门
->>>>>>> hezhouxiyiyangde
 		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
 		DepartmentDto departmentDto = new DepartmentDto();
 		departmentList = departmentService.list(departmentDto);
 
-<<<<<<< HEAD
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		TestServiceDto serviceDto = new TestServiceDto();
-		serviceList = serviceService.list(serviceDto);
-=======
 		//查询服务-获取参数
 		String companyId = request.getParameter("selectCompanyId");
 		String departmentId = request.getParameter("selectDepartmentId");
@@ -112,29 +79,38 @@ public class ServiceController {
 		if(StringUtils.isNotBlank(companyId) && !"null".equals(companyId)){
 			params.put("companyId",companyId);
 			model.put("companyId",companyId);
+			pageParams.append("&selectCompanyId=").append(companyId);
 		}
 
 		if(StringUtils.isNotBlank(departmentId) && !"null".equals(departmentId)){
 			params.put("departmentId",departmentId);
 			model.put("departmentId",departmentId);
+			pageParams.append("&selectDepartmentId=").append(departmentId);
 		}
 
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			model.put("systemId",systemId);
+			pageParams.append("&selectSystemId=").append(systemId);
 		}
 
 		if(StringUtils.isNotBlank(serviceName) && !"null".equals(serviceName)){
 			params.put("name",serviceName);
 			model.put("name",serviceName);
+			pageParams.append("&serviceName=").append(serviceName);
 		}
 
 
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		serviceList = testServiceService.listByParams(params);
->>>>>>> hezhouxiyiyangde
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		model.put("serviceList", serviceList);
+		PageResult<TestServiceDto> serviceList = testServiceService.listByParams(params);
+		ModelUtils.setResult(model, serviceList.getPage(), serviceList.getList());
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);
