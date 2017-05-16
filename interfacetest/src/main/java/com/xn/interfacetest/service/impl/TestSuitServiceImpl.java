@@ -120,7 +120,7 @@ public class TestSuitServiceImpl implements TestSuitService {
     @Override
     @Transactional(readOnly = true)
     public PageResult<TestSuitDto> page(Map<String,Object> condition){
-        return PageResult.wrap((PageInfo) condition.get("page"), list(condition));
+        return PageResult.wrap((PageInfo) condition.get("page"), listWithSystemAndInterface(condition));
     }
 
     @Override

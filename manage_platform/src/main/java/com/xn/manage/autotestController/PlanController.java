@@ -10,6 +10,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +80,9 @@ public class PlanController {
 	private TimeConfigService timeConfigService;
 
 	@RequestMapping(value="/plan_list", method = RequestMethod.GET)
-	public String getPlanPage(HttpServletRequest request, ModelMap model) {
+	public String getPlanPage(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		Map<String,Object> params = new HashMap<String,Object>();
 
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
@@ -96,33 +101,43 @@ public class PlanController {
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			model.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 
 		String createPerson = request.getParameter("createPerson");
 		if(StringUtils.isNotBlank(createPerson) && !"null".equals(createPerson)){
 			params.put("createPerson",createPerson);
 			model.put("createPerson",createPerson);
+			pageParams.append("&createPerson=").append(createPerson);
 		}
 
 		String systemId = request.getParameter("systemId");
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			model.put("systemId",systemId);
+			pageParams.append("&systemId=").append(systemId);
 		}
 
 		String status = request.getParameter("status");
 		if(StringUtils.isNotBlank(status) && !"null".equals(status)){
 			params.put("status",status);
 			model.put("status",status);
+			pageParams.append("&status=").append(status);
 		}
 
 		//测试计划
-		List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		planList = testPlanService.listWithOtherInformation(params);
+		PageResult<TestPlanDto> result = testPlanService.listWithOtherInformation(params);
+		ModelUtils.setResult(model, result.getPage(), result.getList());
 
 		model.put("planStatusList",PlanStatusEnum.values());
-		model.put("planList",planList);
 		model.put("systemList", systemList);
 		model.put("testSuitDtoList", testSuitDtoList);
 		model.put("excuteList", ExcuteTypeEnum.values());

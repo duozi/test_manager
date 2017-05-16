@@ -296,4 +296,30 @@ public class TestCase extends BaseEntity {
     public void setParamsType(Integer paramsType) {
         this.paramsType = paramsType;
     }
+
+    @Override
+    public String toString() {
+        return "TestCase{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", description='" + description + '\'' +
+                ", interfaceId=" + interfaceId +
+                ", type='" + type + '\'' +
+                ", createPerson='" + createPerson + '\'' +
+                ", dataPrepare=" + dataPrepare +
+                ", dataClear=" + dataClear +
+                ", paramsAssert=" + paramsAssert +
+                ", databaseAssert=" + databaseAssert +
+                ", redisAssert=" + redisAssert +
+                ", paramsType=" + paramsType +
+                ", customParams='" + customParams + '\'' +
+                ", customParamsType=" + customParamsType +
+                ", isDelete=" + isDelete +
+                ", status=" + status +
+                ", dataAsserts=" + dataAsserts +
+                ", redisAsserts=" + redisAsserts +
+                ", paramsAsserts=" + paramsAsserts +
+                '}';
+    }
 }

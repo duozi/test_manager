@@ -171,4 +171,11 @@ public interface TestCaseService {
      * @param params
      */
     void copyCase(Map<String, Object> params);
+
+    /**
+     * 根据用例编号查询用例
+     * @param number
+     * @return
+     */
+    List<TestCaseDto> getByCaseNum(String number);
 }

@@ -8,6 +8,13 @@
     <script src="../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!-- fileinput -->
+    <link href="../../vendor/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
+
+     <!-- fileinput -->
+    <script src="../../vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="../../vendor/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("select[name='type']" ).change(
@@ -61,7 +68,8 @@
             var dataPrepare =  $("input[name=dataPrepare]:checked").val();
             var dataAssert =  $("input[name=dataAssert]:checked").val();
             var dataParams =  $("input[name=dataParams]:checked").val();
-            $.post("${basePath}/autotest/case/copyCase",{caseId:caseId,dataClear:dataClear,dataPrepare:dataPrepare,dataAssert:dataAssert,dataParams:dataParams},function(data,status){
+            var caseNum = $("input[name=caseNum]").val();
+            $.post("${basePath}/autotest/case/copyCase",{caseId:caseId,dataClear:dataClear,dataPrepare:dataPrepare,dataAssert:dataAssert,dataParams:dataParams,caseNum:caseNum},function(data,status){
                 if(0!=data.code){
                     alert(data.message);
                 } else {
@@ -71,6 +79,32 @@
             });
         }
 
+        //初始化fileinput控件（第一次初始化）
+        $("#file-1").fileinput({
+            showUpload: false,
+            uploadAsync:true,
+//        dropZoneEnabled:false,
+            uploadUrl: '${basePath}/autotest/case/uploadCases', // you must set a valid URL here else you will get an error
+            allowedFileExtensions : ['xlsx',"xls"],
+            overwriteInitial: false,
+            language: 'zh', //设置语言
+            maxFileSize: 200000,
+            maxFilesNum: 1,
+            showPreview:true,
+            previewFileIcon: "",
+            slugCallback: function(filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        }).on("filebatchselected", function(event, files) {
+//            $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+//                if(data.response.code==0){
+//                    $("input[name='jarPath']").val(data.response.data);
+//                } else {
+//                    alert("上传失败，请查看日志！");
+//                }
+//
+//            });
+        });
     </script>
 </head>
 
@@ -130,6 +164,7 @@
                             <button type="submit" class="btn btn-default" onclick="reloadCase()">查询</button>
                             <!--<button type="reset" class="btn btn-default">导出</button>-->
                             <a href="case_item" class="btn btn-outline btn-success"><i class=" fa-plus-circle fa"></i>新增用例</a>
+                            <a class="btn btn-outline btn-info" data-toggle="modal" data-target="#importCases" ><i class=" fa-file-excel-o fa"></i>用例导入</a>
                         </div>
                     </div>
                 </form>
@@ -146,8 +181,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#if testCaseDtoList ??>
-                            <#list testCaseDtoList as item>
+                        <#if list ??>
+                            <#list list as item>
                                 <tr>
                                     <td>${item.number}</td>
                                     <td>${item.name}</td>
@@ -199,23 +234,33 @@
                 <input type="hidden" name="caseId">
             </div>
             <div class="modal-body">
-                <div class="checkbox-class ">
-                    <!--<label class="checkbox-inline">-->
-                        <!--<input type="checkbox" value="1" name="baseInfo">基本信息-->
-                    <!--</label>-->
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="1" name="dataParams" >请求参数
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="1" name="dataPrepare" >数据准备
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="1" name="dataClear">数据清除
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="1" name="dataAssert">响应参数校验
-                    </label>
-                </div>
+                <form class="col-lg-14 edit-form time-form">
+                    <div class="form-group ">
+                        <label class="control-label" >输入新的用例编号</label>
+                        <input type="text" class="form-control" id="caseNum" name="caseNum" placeholder="请输入用例编号">
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label" >选择模块</label>
+                        <div class="checkbox-class " style="width:100%;">
+                            <!--<label class="checkbox-inline">-->
+                                <!--<input type="checkbox" value="1" name="baseInfo">基本信息-->
+                            <!--</label>-->
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataParams" >请求参数
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataPrepare" >数据准备
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataClear">数据清除
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="1" name="dataAssert">响应参数校验
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendCopyRequest()">保存</button>
@@ -227,6 +272,36 @@
     <!-- /.modal-dialog -->
 </div>
 
+<!--导入用例弹框-->
+<div class="modal fade" id="importCases" tabindex="-1" role="dialog" aria-labelledby="importCasesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-suit-list">
+        <div class="modal-content">
+            <input type="hidden" name="planId" value="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="importCasesLabel">上传用例Excel文件</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label" >上传用例文件</label>
+                        <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
+                        <input type="hidden" name="jarPath" value="" placeholder="">
+                        <file href=""></file><a href="" style="width: 40%;top: 2em;margin-top: 0.5em;">点击此处下载用例模板</a>
+
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!-- /.container-fluid -->
 </body>
 </html>

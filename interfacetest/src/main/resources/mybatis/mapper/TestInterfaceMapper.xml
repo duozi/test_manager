@@ -203,6 +203,7 @@
                 AND content_type = #{contentType}
             </if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="count" resultType="long">

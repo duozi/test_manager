@@ -1,4 +1,4 @@
-
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -141,8 +141,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <#if testReportDtoList??>
-                                <#list testReportDtoList as item>
+                            <#if list??>
+                                <#list list as item>
                                     <tr>
                                         <td>${item.name}</td>
                                         <!--<td>-->
@@ -179,6 +179,9 @@
                             </#if>
                             </tbody>
                         </table>
+                        <div class="row row-reset">
+                            <@pager pagination=page url="${basePath}/autotest/report/report_list"/>
+                        </div>
                     </div>
                     <!-- /.table-responsive -->
                 </div>

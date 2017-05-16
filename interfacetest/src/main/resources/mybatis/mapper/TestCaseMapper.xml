@@ -92,6 +92,16 @@
         ]]>
     </select>
 
+    <select id="getByCaseNum" resultMap="TestCaseMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_case
+            WHERE
+                number = #{number} and is_delete = 0
+        ]]>
+    </select>
+
     <select id="list" resultMap="TestCaseMap">
         SELECT
         <include refid="columns" />
@@ -272,11 +282,21 @@
         UPDATE
         test_case
         <set>
-            <![CDATA[ data_prepare = #{dataPrepare} ]]>,
-            <![CDATA[ data_clear = #{dataClear} ]]>,
-            <![CDATA[ params_assert = #{paramsAssert} ]]>,
-            <![CDATA[ database_assert = #{databaseAssert} ]]>,
-            <![CDATA[ redis_assert = #{redisAssert} ]]>,
+            <if test="dataPrepare != null">
+                <![CDATA[ data_prepare = #{dataPrepare} ]]>,
+            </if>
+            <if test="dataClear != null">
+                <![CDATA[ data_clear = #{dataClear} ]]>,
+            </if>
+            <if test="paramsAssert != null">
+                <![CDATA[ params_assert = #{paramsAssert} ]]>,
+            </if>
+            <if test="databaseAssert != null">
+                <![CDATA[ database_assert = #{databaseAssert} ]]>,
+            </if>
+            <if test="redisAssert != null">
+                 <![CDATA[ redis_assert = #{redisAssert} ]]>,
+            </if>
             <if test="createPerson != null">
                 <![CDATA[ create_person = #{createPerson} ]]>,
             </if>
