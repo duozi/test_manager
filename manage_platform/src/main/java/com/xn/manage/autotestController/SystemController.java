@@ -1,10 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +15,6 @@ import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +33,7 @@ import com.xn.interfacetest.dto.TestSystemDto;
 @Controller
 @RequestMapping("/autotest/manage")
 public class SystemController {
-<<<<<<< HEAD
-	@Autowired
-	private TestSystemService systemService;
-=======
+
 	private static final Logger logger = LoggerFactory.getLogger(SystemController.class);
 	@Resource
 	private CompanyService companyService;
@@ -104,18 +95,13 @@ public class SystemController {
 		model.put("companyList", companyList);
 		return "/autotest/manage/system_list";
 	}
->>>>>>> hezhouxiyiyangde
 
 	@RequestMapping(value="/getSystem")
 	@ResponseBody
 	public List<TestSystemDto> getSystemPage(String id) {
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
-<<<<<<< HEAD
-		systemList = systemService.list(systemDto);
-=======
 		systemList = testSystemService.list(systemDto);
->>>>>>> hezhouxiyiyangde
 		return systemList;
 	}
 

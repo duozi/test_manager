@@ -1,14 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.company.dto.CompanyDto;
-import com.xn.company.dto.DepartmentDto;
-import com.xn.company.service.CompanyService;
-import com.xn.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestSystemService;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +8,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,20 +25,6 @@ import com.xn.interfacetest.api.TestSystemService;
 @Controller
 @RequestMapping("/autotest/manage")
 public class ManageController {
-<<<<<<< HEAD
-
-	@Autowired
-	private CompanyService companyService;
-
-	@Autowired
-	private TestSystemService systemService;
-
-	@Autowired
-	private DepartmentService departmentService;
-
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getSystemPage(@PathVariable String  path, ModelMap model) {
-=======
 	private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
 
 
@@ -63,32 +39,15 @@ public class ManageController {
 
 	@RequestMapping(value="/company_manage", method = RequestMethod.GET)
 	public String getCompanyPage(ModelMap model) {
->>>>>>> hezhouxiyiyangde
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
 		companyList = companyService.list(dto);
 
-<<<<<<< HEAD
-
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-
-		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
-		DepartmentDto departmentDto = new DepartmentDto();
-		departmentList = departmentService.list(departmentDto);
-
-
-		model.put("systemList", systemList);
-		model.put("departmentList", departmentList);
-=======
 //		List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
 //		DepartmentDto departmentDto = new DepartmentDto();
 //		departmentList = departmentService.list(departmentDto);
 //
 //		model.put("departmentList", departmentList);
->>>>>>> hezhouxiyiyangde
 		model.put("companyList", companyList);
 		return "/autotest/manage/company_manage";
 	}

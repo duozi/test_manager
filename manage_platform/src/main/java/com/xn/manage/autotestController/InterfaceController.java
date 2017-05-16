@@ -1,13 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.*;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +15,6 @@ import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,19 +35,7 @@ import com.xn.interfacetest.api.TestSystemService;
 @Controller
 @RequestMapping("/autotest/interface")
 public class InterfaceController {
-<<<<<<< HEAD
-	@Autowired
-	private TestSystemService systemService;
 
-	@Autowired
-	private DepartmentService departmentService;
-
-	@Autowired
-	private TestServiceService serviceService;
-
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getPlanPage(@PathVariable String  path , ModelMap map) {
-=======
 	private static final Logger logger = LoggerFactory.getLogger(InterfaceController.class);
 	@Autowired
 	private TestSystemService systemService;
@@ -85,7 +64,6 @@ public class InterfaceController {
 	@RequestMapping(value="/interface_item", method = RequestMethod.GET)
 	public String getInterfaceItem(HttpServletRequest request, ModelMap map) {
 		//获取http的contentType类型
->>>>>>> hezhouxiyiyangde
 		List<ContentTypeEnum> contentTypeList = new ArrayList<ContentTypeEnum>();
 		for(ContentTypeEnum item : ContentTypeEnum.values()){
 			contentTypeList.add(item);
@@ -113,16 +91,6 @@ public class InterfaceController {
 		TestDatabaseConfigDto databaseConfigDto = new TestDatabaseConfigDto();
 		List<TestDatabaseConfigDto> databaseConfigDtoList = testDatabaseConfigService.list(databaseConfigDto);
 
-<<<<<<< HEAD
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		TestServiceDto serviceDto = new TestServiceDto();
-		serviceList = serviceService.list(serviceDto);
-
-=======
 		//redis配置
 		TestRedisConfigDto redisConfigDto = new TestRedisConfigDto();
 		List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(redisConfigDto);
@@ -130,7 +98,6 @@ public class InterfaceController {
 		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
 		TestServiceDto serviceDto = new TestServiceDto();
 		serviceList = serviceService.list(serviceDto);
->>>>>>> hezhouxiyiyangde
 
 		map.put("serviceList", serviceList);
 		map.put("requestTypeList",requestTypeList);

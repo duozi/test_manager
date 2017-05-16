@@ -2,20 +2,6 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-<<<<<<< HEAD
-import com.xn.company.dto.CompanyDto;
-import com.xn.company.dto.DepartmentDto;
-import com.xn.company.service.CompanyService;
-import com.xn.company.service.DepartmentService;
-import com.xn.interfacetest.dto.TestPlanDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestPlanService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.PerformancePlanStatusEnum;
-import com.xn.manage.Enum.PlanStatusEnum;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
-
 import com.google.common.collect.Lists;
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;
@@ -32,7 +18,6 @@ import com.xn.performance.mybatis.CommonResult;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -50,19 +35,6 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 @Controller
 @RequestMapping("/performance/plan")
 public class PerformancePlanController {
-<<<<<<< HEAD
-    @Autowired
-    private CompanyService companyService;
-
-    @Autowired
-    private TestSystemService systemService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
-    private TestPlanService planService;
-=======
     private static final Logger logger = LoggerFactory.getLogger(PerformancePlanController.class);
     @Resource
     PerformanceScriptService performanceScriptService;
@@ -75,7 +47,6 @@ public class PerformancePlanController {
     private DepartmentService departmentService;
     @Resource
     private PerformancePlanService performancePlanService;
->>>>>>> hezhouxiyiyangde
 
     @Resource
     private PerformanceScenarioService performanceScenarioService;
@@ -129,36 +100,6 @@ public class PerformancePlanController {
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
             performancePlanShowDto.setPsystem(psystem);
         }
-<<<<<<< HEAD
-        model.put("performancePlanStatusEnumList",performancePlanStatusEnumList);
-
-        //公司名称
-        List<CompanyDto> companyList = new ArrayList<CompanyDto>();
-        CompanyDto dto = new CompanyDto();
-        companyList = companyService.list(dto);
-
-
-        List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-        TestSystemDto systemDto = new TestSystemDto();
-        systemList = systemService.list(systemDto);
-
-
-        List<DepartmentDto> departmentList = new ArrayList<DepartmentDto>();
-        DepartmentDto departmentDto = new DepartmentDto();
-        departmentList = departmentService.list(departmentDto);
-
-
-        //计划状态
-        List<PlanStatusEnum> planStatusList = new ArrayList<PlanStatusEnum>();
-        for(PlanStatusEnum item : PlanStatusEnum.values()){
-            planStatusList.add(item);
-        }
-
-        //测试计划
-        List<TestPlanDto> planList = new ArrayList<TestPlanDto>();
-        TestPlanDto planDto = new TestPlanDto();
-        planList = planService.list(planDto);
-=======
         if (isNotEmpty(planName) && !planName.equals("null")) {
             performancePlanShowDto.setPlanName(planName);
         }
@@ -183,7 +124,6 @@ public class PerformancePlanController {
             performancePlanStatusEnumList.add(item);
         }
         model.put("plan_status_list", performancePlanStatusEnumList);
->>>>>>> hezhouxiyiyangde
 
         return "/performance/plan/" + path;
     }

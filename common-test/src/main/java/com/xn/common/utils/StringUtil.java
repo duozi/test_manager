@@ -1,8 +1,4 @@
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/StringUtil.java
-package com.xn.manage.utils;
-=======
 package com.xn.common.utils;
->>>>>>> hezhouxiyiyangde:common-test/src/main/java/com/xn/common/utils/StringUtil.java
 
 
 import org.slf4j.Logger;

@@ -1,16 +1,5 @@
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/SignUtil.java
-package com.xn.manage.utils;/**
-=======
-package com.xn.common.utils;/**
->>>>>>> hezhouxiyiyangde:common-test/src/main/java/com/xn/common/utils/SignUtil.java
- * Created by xn056839 on 2016/11/14.
- */
+package com.xn.common.utils;
 
-//import com.xn.common.Exception.CaseErrorEqualException;
-//import com.xn.common.autotestService.GetPara;
-//import com.xn.common.sign.MessageAddSign;
-//import com.xn.common.sign.PayAddSign;
-//import com.xn.common.sign.UserAddSign;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

@@ -1,30 +1,17 @@
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/FileUtil.java
-package com.xn.manage.utils;
+package com.xn.interfacetest.util;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-=======
-package com.xn.interfacetest.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
->>>>>>> hezhouxiyiyangde:interfacetest-api/src/main/java/com/xn/interfacetest/util/FileUtil.java
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/FileUtil.java
-import static com.google.common.base.Preconditions.checkNotNull;
-=======
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
->>>>>>> hezhouxiyiyangde:interfacetest-api/src/main/java/com/xn/interfacetest/util/FileUtil.java
 
 
 /**
@@ -54,7 +41,6 @@ public class FileUtil {
         }
     }
 
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/FileUtil.java
     public static List fileReadeForList(File file) {
 
         List<String> lines = null;
@@ -66,19 +52,6 @@ public class FileUtil {
         }
         return lines;
     }
-=======
-//    public static List fileReadeForList(File file) {
-//
-//        List<String> lines = null;
-//
-//        try {
-//            lines = Files.readLines(file, Charsets.UTF_8);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return lines;
-//    }
->>>>>>> hezhouxiyiyangde:interfacetest-api/src/main/java/com/xn/interfacetest/util/FileUtil.java
 
     public static String fileReadeForStr(File file) {
 

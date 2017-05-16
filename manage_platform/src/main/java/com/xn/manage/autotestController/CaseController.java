@@ -1,16 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.interfacetest.dto.TestServiceDto;
-import com.xn.interfacetest.dto.TestSystemDto;
-import com.xn.interfacetest.service.TestServiceService;
-import com.xn.interfacetest.service.TestSystemService;
-import com.xn.manage.Enum.AppendParamEnum;
-import com.xn.manage.Enum.ParamTypeEnum;
-import com.xn.manage.Enum.RedisAssertTypeEnum;
-import com.xn.manage.Enum.RedisOperationTypeEnum;
-=======
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +15,6 @@ import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -71,18 +59,6 @@ import com.xn.manage.utils.JsonValidator;
 @Controller
 @RequestMapping("/autotest/case")
 public class CaseController {
-<<<<<<< HEAD
-
-	@Autowired
-	private TestSystemService systemService;
-
-	@Autowired
-	private TestServiceService testServiceService;
-	
-	@RequestMapping(value="/{path}", method = RequestMethod.GET)
-	public String getCasePage(@PathVariable String  path, HttpServletRequest request, ModelMap map) {
-		String type=request.getParameter("caseType");
-=======
 	private static final Logger logger = LoggerFactory.getLogger(InterfaceController.class);
 
 	@Autowired
@@ -111,7 +87,6 @@ public class CaseController {
 
 	@Autowired
 	private TestDatabaseConfigService testDatabaseConfigService;
->>>>>>> hezhouxiyiyangde
 
 	@Autowired
 	private TestRedisConfigService testRedisConfigService;
@@ -376,30 +351,6 @@ public class CaseController {
 		for(RedisOperationTypeEnum item:RedisOperationTypeEnum.values()){
 			redisOperationTypeEnumList.add(item);
 		}
-<<<<<<< HEAD
-		List<AppendParamEnum> appendParamEnumList=new ArrayList<AppendParamEnum>();
-		for(AppendParamEnum item:AppendParamEnum.values()){
-			appendParamEnumList.add(item);
-		}
-		List<String> dbNameList=new ArrayList<String>();
-		List<String> redisNameList=new ArrayList<String>();
-		map.put("paramTypeList",paramTypeList);
-
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		TestSystemDto systemDto = new TestSystemDto();
-		systemList = systemService.list(systemDto);
-
-
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		TestServiceDto serviceDto = new TestServiceDto();
-		serviceList = testServiceService.list(serviceDto);
-
-		map.put("serviceList", serviceList);
-		map.put("systemList",systemList);
-		map.put("dbNameList",dbNameList);
-		map.put("redisNameList",redisNameList);
-		map.put("redisAssertTypeEnumList",redisAssertTypeEnumList);
-=======
 
 		//数据库配置
 		TestDatabaseConfigDto databaseConfigDto = new TestDatabaseConfigDto();
@@ -409,7 +360,6 @@ public class CaseController {
 		TestRedisConfigDto redisConfigDto = new TestRedisConfigDto();
 		List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(redisConfigDto);
 
->>>>>>> hezhouxiyiyangde
 		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
 		map.put("testRedisConfigDtoList", testRedisConfigDtoList);
 		map.put("databaseConfigDtoList", databaseConfigDtoList);

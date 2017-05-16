@@ -1,10 +1,5 @@
 package com.xn.manage.autotestController;
 
-<<<<<<< HEAD
-import com.xn.company.dto.DepartmentDto;
-import com.xn.company.service.DepartmentService;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,32 +10,22 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> hezhouxiyiyangde
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-=======
 import com.xn.common.api.DepartmentService;
 import com.xn.common.base.CommonResult;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.interfacetest.Enum.CommonResultEnum;
->>>>>>> hezhouxiyiyangde
 
 @Controller
 @RequestMapping("/autotest/manage/department")
 public class DepartmentController {
     private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
-
-    @Resource
-    private DepartmentService departmentService;
 
     @Autowired
     private DepartmentService departmentService;
