@@ -10,6 +10,7 @@ import com.xn.interfacetest.api.*;
 import com.xn.interfacetest.dto.*;
 import com.xn.manage.Enum.ParamTypeEnum;
 import com.xn.manage.utils.JsonValidator;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
