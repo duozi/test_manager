@@ -78,6 +78,7 @@
                 AND create_person = #{createPerson}
             </if>
         </where>
+        ORDER BY id DESC
     </select>
         
     <select id="count" resultType="long">

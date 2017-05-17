@@ -120,7 +120,7 @@ public interface TestServiceService {
     /*
     根据公司信息、系统信息查询服务
      */
-    List<TestServiceDto> listByParams(Map<String, Object> params);
+    PageResult<TestServiceDto> listByParams(Map<String, Object> params);
 
     /**
      * 查询服务，包含系统信息

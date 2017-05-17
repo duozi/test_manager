@@ -103,7 +103,7 @@
                 AND dd.company_id = #{companyId}
             </if>
         </where>
-
+        ORDER BY ts.id DESC
     </select>
 
     <select id="count" resultType="long">

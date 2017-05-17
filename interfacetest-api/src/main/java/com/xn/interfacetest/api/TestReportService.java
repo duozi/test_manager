@@ -121,7 +121,7 @@ public interface TestReportService {
      * @param params
      * @return
      */
-    List<TestReportDto> selectWithOtherInfo(Map<String, Object> params);
+    PageResult<TestReportDto> selectWithOtherInfo(Map<String, Object> params);
 
     TestReportDto getWithInfo(long l);
 }

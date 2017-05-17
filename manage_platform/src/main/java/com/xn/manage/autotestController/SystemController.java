@@ -8,6 +8,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.dto.TestSuitDto;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +44,9 @@ public class SystemController {
 	private DepartmentService departmentService;
 
 	@RequestMapping(value="/system_list", method = RequestMethod.GET)
-	public String getSystem(HttpServletRequest request, ModelMap model) {
+	public String getSystem(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
 		companyList = companyService.list(dto);
@@ -57,22 +63,33 @@ public class SystemController {
 		if(StringUtils.isNotBlank(companyId) && !"null".equals(companyId)){
 			params.put("companyId",companyId);
 			model.put("companyId",companyId);
+			pageParams.append("&selectCompanyId=").append(companyId);
 		}
 
 		if(StringUtils.isNotBlank(departmentId) && !"null".equals(departmentId)){
 			params.put("departmentId",departmentId);
 			model.put("departmentId",departmentId);
+			pageParams.append("&selectDepartmentId=").append(departmentId);
 		}
 
 		if(StringUtils.isNotBlank(systenmName) && !"null".equals(systenmName)){
 			params.put("name",systenmName);
 			model.put("name",systenmName);
+			pageParams.append("&systemName=").append(systenmName);
 		}
 
-		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
-		systemList = testSystemService.listByCompany(params);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		model.put("systemList", systemList);
+		PageResult<TestSystemDto> systemList = testSystemService.page(params);
+		ModelUtils.setResult(model, systemList.getPage(), systemList.getList());
+
+
 		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);
 		return "/autotest/manage/system_list";

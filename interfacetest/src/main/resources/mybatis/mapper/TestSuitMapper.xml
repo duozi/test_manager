@@ -72,6 +72,7 @@
                 AND system_id = #{systemId}
             </if>
         </where>
+        ORDER BY id DESC
     </select>
 
     <select id="getByPlanId" resultMap="TestSuitMap">

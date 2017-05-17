@@ -7,6 +7,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.dubbo.container.page.Page;
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +51,9 @@ public class ServiceController {
 
 
 	@RequestMapping(value="/service_list", method = RequestMethod.GET)
-	public String getSystemPage(HttpServletRequest request, ModelMap model) {
+	public String getSystemPage(HttpServletRequest request, ModelMap model, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		//查询公司
 		List<CompanyDto> companyList = new ArrayList<CompanyDto>();
 		CompanyDto dto = new CompanyDto();
@@ -73,28 +79,38 @@ public class ServiceController {
 		if(StringUtils.isNotBlank(companyId) && !"null".equals(companyId)){
 			params.put("companyId",companyId);
 			model.put("companyId",companyId);
+			pageParams.append("&selectCompanyId=").append(companyId);
 		}
 
 		if(StringUtils.isNotBlank(departmentId) && !"null".equals(departmentId)){
 			params.put("departmentId",departmentId);
 			model.put("departmentId",departmentId);
+			pageParams.append("&selectDepartmentId=").append(departmentId);
 		}
 
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			model.put("systemId",systemId);
+			pageParams.append("&selectSystemId=").append(systemId);
 		}
 
 		if(StringUtils.isNotBlank(serviceName) && !"null".equals(serviceName)){
 			params.put("name",serviceName);
 			model.put("name",serviceName);
+			pageParams.append("&serviceName=").append(serviceName);
 		}
 
 
-		List<TestServiceDto> serviceList = new ArrayList<TestServiceDto>();
-		serviceList = testServiceService.listByParams(params);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
 
-		model.put("serviceList", serviceList);
+		PageResult<TestServiceDto> serviceList = testServiceService.listByParams(params);
+		ModelUtils.setResult(model, serviceList.getPage(), serviceList.getList());
 		model.put("systemList", systemList);
 		model.put("departmentList", departmentList);
 		model.put("companyList", companyList);

@@ -7,6 +7,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.xn.common.utils.PageInfo;
+import com.xn.common.utils.PageResult;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +56,9 @@ public class SuitController {
 	private RelationSuitCaseService relationSuitCaseService;
 
 	@RequestMapping(value="/suit_list", method = RequestMethod.GET)
-	public String getSuitPage(HttpServletRequest request, ModelMap map) {
+	public String getSuitPage(HttpServletRequest request, ModelMap map, PageInfo pageInfo) {
+		StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
 		systemList = systemService.list(systemDto);
@@ -64,17 +69,29 @@ public class SuitController {
 		if(StringUtils.isNotBlank(systemId) && !"null".equals(systemId)){
 			params.put("systemId",systemId);
 			map.put("systemId",systemId);
+			pageParams.append("&selectSystemId=").append(systemId);
 		}
 
 		String name = request.getParameter("name");
 		if(StringUtils.isNotBlank(name) && !"null".equals(name)){
 			params.put("name",name);
 			map.put("name",name);
+			pageParams.append("&name=").append(name);
 		}
 
-		List<TestSuitDto> testSuitDtoList = testSuitService.listWithSystemAndInterface(params);
 
-		map.put("testSuitDtoList",testSuitDtoList);
+		if (pageInfo.getCurrentPage() < 1) {
+			pageInfo.setCurrentPage(1);
+		}
+		pageInfo.setPagination(true);
+		pageInfo.setPageSize(10);
+		params.put("page", pageInfo);
+		pageInfo.setParams(pageParams.toString());
+
+
+		PageResult<TestSuitDto> testSuitDtoList = testSuitService.page(params);
+		ModelUtils.setResult(map, testSuitDtoList.getPage(), testSuitDtoList.getList());
+
 		map.put("systemList",systemList);
 		return "/autotest/suit/suit_list";
 	}

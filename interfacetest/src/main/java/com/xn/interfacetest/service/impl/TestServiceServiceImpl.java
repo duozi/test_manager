@@ -130,14 +130,14 @@ public class TestServiceServiceImpl implements TestServiceService {
     }
 
     @Override
-    public List<TestServiceDto> listByParams(Map<String, Object> params) {
+    public PageResult<TestServiceDto> listByParams(Map<String, Object> params) {
         List<TestService> list = testServiceMapper.listByParams(params);
         List<TestServiceDto> dtoList = CollectionUtils.transform(list, TestServiceDto.class);
         for(TestServiceDto serviceDto: dtoList){
             TestSystemDto systemDto = testSystemService.getWithCompanyInfo(serviceDto.getSystemId());
             serviceDto.setSystemDto(systemDto);
         }
-        return dtoList;
+        return  PageResult.wrap((PageInfo) params.get("page"), dtoList);
     }
 
     @Override
