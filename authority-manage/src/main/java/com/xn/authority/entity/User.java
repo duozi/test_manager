@@ -47,7 +47,7 @@ public class User extends BaseEntity {
      * 
      * 0、子账号 1、主账号 
      */
-    private Boolean primary;
+    private Integer primary;
 
     /**
      * 
@@ -102,15 +102,15 @@ public class User extends BaseEntity {
     public String getStatus() {
         return this.status;
     }
-    
-    public void setPrimary(Boolean primary) {
+
+    public Integer getPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(Integer primary) {
         this.primary = primary;
     }
-    
-    public Boolean getPrimary() {
-        return this.primary;
-    }
-    
+
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }

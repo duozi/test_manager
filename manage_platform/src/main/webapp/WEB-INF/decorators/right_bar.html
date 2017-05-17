@@ -62,6 +62,11 @@
 	    <div class="alert alert-info col-lg-14">
 			<a class="alert-link cm-title" href="#"><i class="fa-bar-chart-o fa"></i>小牛集团-测试管理平台</a>
 	    </div>
+        <div>
+            欢迎您，<span class="dl-log-user">${(USER.account)!''}</span><a
+                href="/logout" title="退出系统"
+                class="dl-log-quit">[退出]</a>
+        </div>
     </div>
         <!-- Navigation -->
 	 <div class="navigation">
@@ -74,185 +79,265 @@
                                  <a href="#"> admin</a>
                              </div>
                          </li>
+
+                         <@shiro.hasPermission name="autotest">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-info fa-fw"></i>自动化测试<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
+                                 <@shiro.hasPermission name="autoplanmg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa"></i>计划管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
-                                         <!--<li>
-                                             <a href="../plan/excute_config">执行设置</a>
-
-                                         </li>-->
+                                         <@shiro.hasPermission name="autoplanmgtestplan">
                                          <li>
                                              <a href="../../autotest/plan/plan_list">测试计划</a>
-
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="servicemg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa"></i>服务管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="servicemgservicelist">
                                          <li>
                                              <a href="../../autotest/service/service_list">服务列表</a>
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+
+                                 <@shiro.hasPermission name="environmentmg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa"></i>环境管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="environmentmglist">
                                          <li>
                                              <a href="../../autotest/environment/environment_list">测试环境列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="environmentmgadd">
                                          <li>
                                              <a href="../../autotest/environment/environment_item">新增测试环境</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="suitmg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa  "></i>测试集管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="suitmglist">
                                          <li>
                                              <a href="../../autotest/suit/suit_list">测试集列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="suitmgadd">
                                          <li>
                                              <a href="../../autotest/suit/suit_item">新增测试集</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="interfacemg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa  "></i>接口管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="interfacemglist">
                                          <li>
                                              <a href="../../autotest/interface/interface_list">接口列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="interfacemgadd">
                                          <li>
                                              <a href="../../autotest/interface/interface_item">新增接口</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="casemg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa  " ></i>用例管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="casemglist">
                                          <li>
                                              <a href="../../autotest/case/case_list">测试用例列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="casemgadd">
                                          <li>
                                              <a href="../../autotest/case/case_item">新增测试用例</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="casemg">
                                          <li>
                                              <a href="#" class="hidden">用例统计</a>
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="reportmg">
                                  <li>
                                      <a href="#" class="second-level"><i class=" fa"></i>报告管理<span class="fa arrow"></span> </a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="reportmgmg">
                                          <li>
                                              <a href="../../autotest/report/report_list">测试结果管理</a>
                                          </li>
+                                         </@shiro.hasPermission>
                                          <!--<li>-->
                                              <!--<a href="../../autotest/report/report_statistic">测试结果统计</a>-->
 
                                          <!--</li>-->
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                              </ul>
                              <!-- /.nav-second-level -->
                          </li>
+                        </@shiro.hasPermission>
+                        <@shiro.hasPermission name="mock">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-table fa-fw"></i>mock</a>
 
                          </li>
+                         </@shiro.hasPermission>
+                         <@shiro.hasPermission name="performance">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-signal fa-fw"></i>性能测试<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                  <!--计划-->
+                                 <@shiro.hasPermission name="planmg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa"></i>计划管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
-
+                                         <@shiro.hasPermission name="planmglist">
                                          <li>
                                              <a href="../../performance/plan/plan_list">测试计划</a>
-
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                                  <!--环境-->
+                                 <@shiro.hasPermission name="machinemg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa"></i>机器管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="machinemglist">
                                          <li>
                                              <a href="../../performance/machine/stress_machine_list">压力机列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="monitoredmglist">
                                          <li>
                                              <a href="../../performance/machine/monitored_machine_list">被监控机列表</a>
 
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                                  <!--脚本-->
+                                 <@shiro.hasPermission name="scriptmg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa  " ></i>脚本管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="scriptmglist">
                                          <li>
                                              <a href="../../performance/script/script_list">脚本列表</a>
-
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                                  <!--场景-->
+                                 <@shiro.hasPermission name="scenariomg">
                                  <li>
                                      <a href="#" class="second-level"><i class="fa  " ></i>场景管理<span class="fa arrow"></span></a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="scenariomglist">
                                          <li>
                                              <a href="../../performance/scenario/scenario_list">场景列表</a>
 
                                          </li>
-
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                                  <!--结果-->
+                                 <@shiro.hasPermission name="testreportmg">
                                  <li>
                                      <a href="#" class="second-level"><i class=" fa"></i>测试结果管理<span class="fa arrow"></span> </a>
                                      <ul class="nav nav-third-level">
+                                         <@shiro.hasPermission name="testreportmglist">
                                          <li>
                                              <a href="../../performance/report/report_list">测试结果列表</a>
                                          </li>
+                                         </@shiro.hasPermission>
+                                         <@shiro.hasPermission name="reportmgstatistic">
                                          <li>
                                              <a href="../../performance/report/report_statistic">测试报告</a>
-
                                          </li>
+                                         </@shiro.hasPermission>
                                      </ul>
                                  </li>
+                                 </@shiro.hasPermission>
                              </ul>
                          </li>
+                         </@shiro.hasPermission>
+                         <@shiro.hasPermission name="safetest">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-html5 fa-fw"></i>安全测试</a>
                          </li>
+                         </@shiro.hasPermission>
+                         <@shiro.hasPermission name="continue">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-cogs fa-fw"></i>持续集成</a>
                          </li>
+                         </@shiro.hasPermission>
+                         <@shiro.hasPermission name="system">
                          <li>
                              <a href="#" class="first-level"><i class="fa fa-group fa-fw"></i>系统设置<span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
+                                 <@shiro.hasPermission name="companymg">
                                  <li>
                                      <a href="../../autotest/manage/company_manage" class="second-level"><i class="fa "></i>组织结构管理</a>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="systemmg">
                                  <li>
                                      <a href="../../autotest/manage/system_list" class="second-level"><i class="fa "></i>系统管理</a>
                                  </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="accountmg">
+                                 <li>
+                                     <a href="../../account/account_list" class="second-level"><i class="fa "></i>账号管理</a>
+                                 </li>
+                                 </@shiro.hasPermission>
+                                 <@shiro.hasPermission name="rolemg">
+                                 <li>
+                                     <a href="../../role/role_list" class="second-level"><i class="fa "></i>角色管理</a>
+                                 </li>
+                                 </@shiro.hasPermission>
                              </ul>
                          </li>
+                         </@shiro.hasPermission>
                      </ul>
                  </div>
                  <!-- /.sidebar-collapse -->

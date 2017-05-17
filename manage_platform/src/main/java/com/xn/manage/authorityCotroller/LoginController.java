@@ -88,4 +88,18 @@ public class LoginController {
         }
         return resultPageURL;
     }
+
+    /**
+     * 退出
+     *
+     * @param request
+     */
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request) {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject != null) {
+            subject.logout();
+        }
+        return "/login";
+    }
 }

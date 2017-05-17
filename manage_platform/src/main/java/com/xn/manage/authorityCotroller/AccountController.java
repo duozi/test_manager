@@ -158,7 +158,7 @@ public class AccountController  {
                 user.setCreateTime(new Date());
                 user.setUpdateTime(new Date());
                 // 默认为子账号
-                user.setPrimary(false);
+                user.setPrimary(RightConstants.AccountTypeStatus.SUB.getId());
                 user.setStatus(RightConstants.RoleStatus.Y.name());
                 userService.saveUser(user, rid);
                 result.setMessage("新增账户成功");

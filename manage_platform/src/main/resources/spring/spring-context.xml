@@ -124,7 +124,7 @@
     </bean>
 
     <bean id="freemarkerConfig"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+          class="com.xn.manage.utils.ShiroTagFreeMarkerConfigurer">
         <property name="freemarkerVariables">
             <map>
             </map>

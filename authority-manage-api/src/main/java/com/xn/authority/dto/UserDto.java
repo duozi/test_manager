@@ -48,7 +48,7 @@ public class UserDto extends BaseDto{
      * 
      * 0、子账号 1、主账号 
      */
-    private Boolean primary;
+    private Integer primary;
 
     /**
      * 
@@ -117,12 +117,12 @@ public class UserDto extends BaseDto{
         return this.status;
     }
 
-    public void setPrimary(Boolean primary) {
-        this.primary = primary;
+    public Integer getPrimary() {
+        return primary;
     }
-    
-    public Boolean getPrimary() {
-        return this.primary;
+
+    public void setPrimary(Integer primary) {
+        this.primary = primary;
     }
 
     public void setCreateTime(Date createTime) {
