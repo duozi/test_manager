@@ -1,11 +1,12 @@
-<!--<#include  "/decorators/common.html" />-->
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../../vendor/datatables/js/common.js"></script>
-    <script src="../../vendor/datatables/js/jquery.easyui.form.js"></script>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../vendor/bootstrap-select/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../../vendor/jquery/jquery.form.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-select/bootstrap-select.css">
     <script type="text/javascript">
 
     </script>
@@ -15,7 +16,7 @@
 <div class="panel-heading">
     <ol class="breadcrumb">
         <li><a href="#">权限管理</a></li>
-        <li><a href="active">角色管理</a></li>
+        <li><a href="">角色管理</a></li>
     </ol>
 </div>
 
@@ -30,21 +31,19 @@
                             <input placeholder="请输入角色名称" class="form-control" name="name" />
                         </div>
                         <div class="form-group col-lg-3">
-                            <button type="submit" class="btn btn-default" onclick="reload();">查询</button>
+                            <button type="submit" class="btn btn-default" onclick="reload();">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <!--<button type="reset" class="btn btn-default">导出</button>-->
-                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addPlan"><i class=" fa-plus-circle fa"></i>新增角色</a>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addRode"><i class=" fa-plus-circle fa"></i>新增角色</a>
                         </div>
                     </div>
                 </form>
                 <div class="table-responsive col-lg-12" >
                     <table class="table table-striped" id="package_table">
-                        <!--<thead>
+                        <thead>
                         <tr>
                             <th>角色名称</th>
-                            <th>用例名称</th>
-                            <th>接口</th>
-                            <th>用例类型</th>
-                            <th>创建人</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -52,34 +51,23 @@
                         <#if list ??>
                             <#list list as item>
                                 <tr>
-                                    <td>${item.number}</td>
                                     <td>${item.name}</td>
-                                    <td>${item.interfaceDto.name}</td>
+                                    <td>${item.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+                                    <td>${item.updateTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                                     <td>
-                                        <#if caseTypes??>
-                                            <#list caseTypes as caseType>
-                                                <#if caseType=item.type>
-                                                    ${caseType.getName()}
-                                                </#if>
-                                            </#list>
+                                        <a href="${basePath}/role/edit_role_right?id=${item.id}" type="button"  class="btn btn-success">修改权限</a>
+                                        <#if item.status == 'Y'>
+                                            <a type="button" class="btn btn-danger" onclick="deleteRole(${item.id})">删除</a>
                                         </#if>
-                                    </td>
-                                    <td>${item.createPerson}</td>
-                                    <td>
-                                        <a href="case_item?id=${item.id}" type="button" class="btn btn-success">查看详情</a>
-                                        <#if item.status == 0>
-                                            <a type="button" class="btn btn-danger" onclick="deleteCase(${item.id})">删除</a>
-                                        </#if>
-                                        <button type="button" class="btn btn-info" onclick="copyCaseItem(${item.id})">复制用例</button>
                                     </td>
                                 </tr>
                             </#list>
                         </#if>
-                        </tbody>-->
+                        </tbody>
                     </table>
-                    <!--<div class="row row-reset">
-                        <@pager pagination=page url="${basePath}/autotest/case/case_list"/>
-                    </div>-->
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/role/rolelist"/>
+                    </div>
                 </div>
 
             </div>
@@ -90,7 +78,7 @@
     <!-- /.col-lg-12 -->
 
     <!-- 新增角色弹框 -->
-    <div class="modal fade" id="agent-add-package" tabindex="-1" role="dialog" aria-labelledby="environmentListLabel" aria-hidden="true">
+    <div class="modal fade" id="addRode" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -98,13 +86,13 @@
                     <h4 class="modal-title" >新建角色</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="addPackage-form" method="post">
+                    <form id="addRoleform" method="post">
                         <span>角色名称</span>
-                        <input type="text" class="package-name" name = "name" maxlength="9" placeholder="请输入角色名称">
+                        <input type="text" class="form-control" name = "name" maxlength="9" placeholder="请输入角色名称">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id = "addpackage-form-submit-button" onclick="$('#addPackage-form').submit();">保存</button>
+                    <button type="button" class="btn btn-primary" id = "addRoleform-submit-button" onclick="$('#addRoleform').submit();">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -113,195 +101,47 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <!-- 删除角色弹框 -->
-    <div class="modal fade" id="agent-del-package" tabindex="-1" role="dialog" aria-labelledby="environmentListLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >删除角色</h4>
-                    <input type="hidden" id = "packageId" val = "" />
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="del($('#packageId').val());">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 </div>
 <!-- /.row -->
 <script type="text/javascript">
-    var oTable = null;
-    function initSettings() {
-        var columns = [];
-        columns.push({
-            "sTitle": "角色名称",
-            "mData": "name",
-            "sName": "name",
-            "sWidth": "8%"
-        });
-        columns.push({
-            "sTitle": "创建时间",
-            "mData": "createTime",
-            "sName": "createTime",
-            "sWidth": "10%",
-            "mRender": function (data, type, full) {
-                if(data != null && data != "" && data != undefined)
-                    return new Date(data).format("yyyy-MM-dd HH:mm:ss");
-                else
-                    return "";
-            }
-        });
-        columns.push({
-            "sTitle": "修改时间",
-            "mData": "updateTime",
-            "sName": "updateTime",
-            "sWidth": "10%",
-            "mRender": function (data, type, full) {
-                if(data != null && data != "" && data != undefined)
-                    return new Date(data).format("yyyy-MM-dd HH:mm:ss");
-                else
-                    return "";
-            }
-        });
-        columns.push({
-            "sTitle": "操作",
-            "mData": null,
-            "sWidth": "10%",
-            "mRender": function (data, type, full) {
-                var htm = "";
-                htm += "<a class='table-actions' href='#' onclick='editRoleRight(" + full.id + ")'>" + "修改权限" + "</a>";
-                htm += "<a id='delPackage' class='table-actions j-modal' href='#' onclick='modal.openModal(this),initPackageId("+full.id+")'>" + "删除" + "</a>";
-                return htm;
-            }
-        });
-        return columns;
-    }
-
-    function createTable() {
-        oTable = createDataTable("package_table", {
-            "sAjaxSource": '${basePath}/role/rolelist',
-            "aoColumns": initSettings(),
-            "fnServerParams": function (params) {
-                var fields = $('#query_form').serializeArray();
-                $.each(fields, function (i, field) {
-                    if (field.name && field.value) {
-                        params.push({"name": field.name, "value": field.value});
-                    }
-                });
-            }
-        });
-    }
 
     function reload() {
-        oTable.fnDraw();
+        var name = $("input[name='name']").val();
+        var url = "${basePath}/role/role_list?"
+        url += "&name=" + name;
+        window.location.href = url;
     }
 
-    function resetForm(){
-        $("#addPackage-form").get(0).reset();
-    }
 
     $(document).ready(function(){
-        createTable();
         initForm();
-        $("#addPackage-form").form({
-            url : "${basePath}/role/save",
-            onSubmit : function() {
-                var name = $("#addPackage-form input[name='name']").val();
-                var valid = validator.form();
-                if(valid) {
-                    $("#addpackage-form-submit-button").attr("disabled","disabled");
-                }
-                return valid;
-            },
-            success : function(response) {
-                $("#addpackage-form-submit-button").removeAttr("disabled");
-                var data = eval('(' + response + ')');
-                if (!data.success) {
-                    alert(data.message);
-                    return;
-                }else{
-                    location.reload();
-                }
-            }
-        });
+        $('#addRode').on('hide.bs.modal', function () {
+            // 弹框变比的时候reset校验.
+            validator.resetForm();
+            $('#addRoleform')[0].reset();
+        })
     });
 
-
-    //删除角色
-    function del(id) {
-        $("#pack-del-btn").attr("disabled","disabled");
-        var html = "";
-        $.post("${basePath}/role/delete", {'id':id}, function(result){
-            $("#pack-del-btn").removeAttr("disabled");
-            if (!result.success) {
-                if(result.code == "hasRelation") {
-                    html += '<div class="bodyContentTip">'+result.message+'</div>';
-                    $(".bodyContentTip").html(html);
-                    $(".del-btn-primary").hide();
-                    $(".j-del-close").addClass("del-btn-close");
-                    return;
+    function deleteRole(id){
+        $.MsgBox.Confirm("删除提示","确定要删除该角色吗",function(){
+            $.post("${basePath}/role/delete",{id:id},function(data){
+                if(!data.success){
+                    alert(data.message);
                 } else {
-                    html += '<div class="bodyContentTip">'+result.message+'</div>';
-                    $(".bodyContentTip").html(html);
-                    $(".del-btn-primary").hide();
-                    $(".j-del-close").addClass("del-btn-close");
-                    return;
+                    reload();
                 }
-            } else {
-                alert("删除成功");
-            }
-            modal.del.modal('hide');
-            reload();
-        },"json");
-    }
-    function editRoleRight(id) {
-        window.location.href = "${basePath}/role/edit_role_right?m=ri/ro&id="+id;
+            });
+        })
     }
 
-    //新建，删除角色弹框
-    var modal = {
-        add: $("#agent-add-package"),
-        del: $("#agent-del-package"),
-        openModal: function(el) {
-            var thisId = $(el).attr("id"),
-                    html = "";
 
-            if(thisId == "addPackage") {
-                this.add.modal('show');
-            }
-            if(thisId == "delPackage") {
-                $(".del-btn-primary").show();
-                $(".j-del-close").removeClass("del-btn-close");
-                html += '<div class="bodyContentTip">确定要删除此<span>角色</span>吗？</div>';
-                this.del.find(".bodyContent").html(html);
-                this.del.modal('show');
-            }
-        },
+//    function editRoleRight(id) {
+//        window.location.href = "${basePath}/role/edit_role_right?id="+id;
+//    }
 
-        agentCloseModal: function(el) {
-            var thisId = $(el).attr("id");
-            if(thisId == "close-add-package") {
-                this.add.modal('hide');
-                resetForm();
-            }
-            if(thisId == "close-del-package") {
-                this.del.modal('hide');
-            }
-        }
-    };
-    function initPackageId(id) {
-        $('#packageId').val(id);
-    }
 
     function initForm() {
-        validator = $('#addPackage-form').validate({
+        validator = $('#addRoleform').validate({
             rules: {
                 name: {
                     required: true,
@@ -310,7 +150,7 @@
                         type:"POST",
                         url:"${basePath}/role/checkexist",
                         data:{
-                            name:function() {return $.trim($("#addPackage-form input[name='name']").val());}
+                            name:function() {return $.trim($("#addRoleform input[name='name']").val());}
                         },
                         cache:false,
                         async:false
@@ -324,7 +164,27 @@
                     remote: "角色名称不可重复"
                 }
             },
-            submitHandler:function(form){
+            submitHandler:function(form){//验证通过后的执行方法
+                //当前的form通过ajax方式提交（用到jQuery.Form文件）
+                $.ajax({
+                    type: "POST",
+                    dataType: "html",
+                    url: "${basePath}/role/save",
+                    data: $('#addRoleform').serialize() ,
+                    success: function(result) {
+                        data = eval("(" + result + ")");
+                        if (data.success) {
+                            $("#addRoleform").modal("hide");
+                            $.MsgBox.Alert("提示","保存成功");
+                            reload();
+                        } else {
+                            $.MsgBox.Alert("提示",result.message);
+                        }
+                    },
+                    error: function(result) {
+                        alert(eval("(" + result + ")").message);
+                    }
+                });
             }
         });
     }

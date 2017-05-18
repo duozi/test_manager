@@ -1,5 +1,6 @@
 package com.xn.manage.authorityCotroller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.SecurityUtils;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by chenhening on 2017/5/15.
@@ -44,16 +48,25 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/sure_login")
-    public String login(HttpServletRequest request) {
-        String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/403";
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+    @ResponseBody
+    public Object login(HttpServletRequest request) {
+        //String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/403";
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
+//        String rememberme = request.getParameter("rememberme");
 
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        //token.setRememberMe(true);
+//        if (StringUtils.isNotBlank(rememberme)) {
+//            token.setRememberMe(true);
+//        } else {
+//            token.setRememberMe(false);
+//        }
         logger.debug("为了验证登录用户而封装的token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("status", -1);
         try {
             //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
             //每个Realm都能在必要时对提交的AuthenticationTokens作出反应
@@ -61,24 +74,28 @@ public class LoginController {
             logger.debug("对用户[" + username + "]进行登录验证..验证开始");
             currentUser.login(token);
             logger.debug("对用户[" + username + "]进行登录验证..验证通过");
-            resultPageURL = "redirect:/index";
+            map.put("status", 0);
+            map.put("msg", "登陆成功");
+            return map;
         } catch (UnknownAccountException uae) {
             logger.debug("对用户[" + username + "]进行登录验证..验证未通过,未知账户");
-            request.setAttribute("message_login", "未知账户");
+            map.put("msg", "账号不存在!");
         } catch (IncorrectCredentialsException ice) {
             logger.debug("对用户[" + username + "]进行登录验证..验证未通过,错误的凭证");
-            request.setAttribute("message_login", "密码不正确");
+            token.clear();
+            map.put("msg", "用户名或密码错误");
         } catch (LockedAccountException lae) {
             logger.debug("对用户[" + username + "]进行登录验证..验证未通过,账户已锁定");
-            request.setAttribute("message_login", "账户已锁定");
+            map.put("msg", "账号被锁定!");
         } catch (ExcessiveAttemptsException eae) {
             logger.debug("对用户[" + username + "]进行登录验证..验证未通过,错误次数过多");
-            request.setAttribute("message_login", "用户名或密码错误次数过多");
+            token.clear();
+            map.put("msg", "输入用户名密码或次数过多,账户已被锁定,半小时后解锁");
         } catch (AuthenticationException ae) {
             //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
             logger.debug("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
             logger.debug("",ae);
-            request.setAttribute("message_login", "用户名或密码不正确");
+            map.put("msg", "未知错误,请联系管理员.");
         }
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
@@ -86,7 +103,7 @@ public class LoginController {
         } else {
             token.clear();
         }
-        return resultPageURL;
+        return map;
     }
 
     /**

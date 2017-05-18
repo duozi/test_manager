@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>小牛测试管理平台</title>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.validate.min.js"></script>
+    <script src="../vendor/jquery/jquery.form.js"></script>
+    <script src="../vendor/jquery/messages_zh.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
 </head>
 <body>
 <div class="container">
-    <form class="form-signin login-form" action="${basePath}/sure_login" id="fm"
+    <form class="form-signin login-form"  id="login_form"
           method="post">
         <h2 class="form-signin-heading">小牛测试管理平台</h2>
         <div class="alert alert-error hide">
@@ -15,13 +19,13 @@
         </div>
         <div>
             <input type="text" name="username" class="input-block-level"
-                   placeholder="账号" value="admin" datatype="*" nullmsg="请输入用户名！" /> <span
+                   placeholder="请输入账号" value="admin" datatype="*" nullmsg="请输入用户名！" /> <span
                 class="Validform_checktip"></span>
         </div>
         <div>
 
             <input type="password" name="password" class="input-block-level"
-                   placeholder="密码" value="123456" datatype="*" nullmsg="密码不能为空！" />
+                   placeholder="请输入密码" value="123456" datatype="*" nullmsg="密码不能为空！" />
             <span class="Validform_checktip"></span>
         </div>
         <div style="display: none;">
@@ -30,9 +34,66 @@
         </div>
 
         <p>
-            <button class="btn btn-large btn-primary" type="submit">登录</button>
+            <button class="btn btn-large btn-primary" type="button" onclick="$('#login_form').submit();">登录</button>
         </p>
     </form>
 </div>
+<script type="text/javascript">
+//    var callback = function(data) {
+//        if (data.status == "0") {
+//            window.location.href = "${baseBath}/index";
+//        } else {
+//            $('.alert-error', $('.login-form')).find("span").html(data.msg);
+//            $('.alert-error', $('.login-form')).show();
+//        }
+//    }
+//    $("#login_form").validFrom(callback);
+    $(document).ready(function(){
+        loginForm();
+    });
+
+    function loginForm() {
+        $('#login_form').validate({
+            rules: {
+                account: {
+                    required: true
+
+                },
+                password: {
+                    required: true
+
+                }
+            },
+            messages: {
+                account: {
+                    required:"请输入账号"
+                },
+                password: {
+                    required:"请输入密码"
+                }
+            },
+            submitHandler:function(form){//验证通过后的执行方法
+                //当前的form通过ajax方式提交（用到jQuery.Form文件）
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "${basePath}/sure_login",
+                    data: $('#login_form').serialize() ,
+                    success: function(result) {
+                        if (result.status == 0) {
+                            window.location.href = "${baseBath}/index";
+                        } else {
+                            $('.alert-error', $('.login-form')).find("span").html(result.msg);
+                            $('.alert-error', $('.login-form')).show();
+                        }
+                    },
+                    error: function(result) {
+                        alert(result.msg);
+                    }
+                });
+            }
+        });
+    }
+</script>
 </body>
 </html>

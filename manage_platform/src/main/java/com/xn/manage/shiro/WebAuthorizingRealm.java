@@ -64,15 +64,13 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
                     session.setAttribute("isSon", true);
                 }
                 session.setAttribute("USER", userDto);
-                return new SimpleAuthenticationInfo(username, userDto.getPassword(), getName());
+                return new SimpleAuthenticationInfo(username, password, getName());
             }
-//            if ("admin".equals(username)&&"123456".equals(password)){
-//                return new SimpleAuthenticationInfo(username, "123456", getName());
-//            }
+
         }
 
         // 认证没有通过
-        throw new UnknownAccountException();// 没帐号
+        throw new IncorrectCredentialsException();// 没帐号
     }
 
     /**
@@ -83,10 +81,9 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
      * @return
      */
     private boolean isAuthenticationed(String username, String dbPassword, String inputPassword) {
-        //TODO 测试
-        if (dbPassword.equals(inputPassword)){
-            return true;
-        }
+//        if (dbPassword.equals(inputPassword)) {
+//            return true;
+//        }
         String md5Pwd = MD5Util.MD5(username + inputPassword).toLowerCase();
         if (dbPassword.equals(md5Pwd)) {
             return true;

@@ -21,6 +21,7 @@ import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
 import com.xn.common.utils.PageUtil;
 import com.xn.manage.performanceController.PerformanceScenarioController;
+import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -29,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,25 +67,35 @@ public class RoleController  {
      * @date 
      * @author chenhening
      */
-    @RequestMapping(value = "/role_list")
+   /* @RequestMapping(value = "/role_list")
     public String toRole() {
         return "authority/role_list";
-    }
+    }*/
 
 
-    @RequestMapping(value = "/rolelist")
-    @ResponseBody
-    public Map<String, Object> roleList(HttpServletRequest request) {
+    @RequestMapping(value = "/role_list")
+    public String roleList(HttpServletRequest request, ModelMap map, PageInfo pageInfo) {
+        StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
+
         Map<String, Object> params = new HashMap<String, Object>();
         String name = request.getParameter("name");
         if (StringUtils.isNotBlank(name)) {
             params.put("name", name);
+            pageParams.append("&name=").append(name);
         }
-        PageInfo pageInfo = PageUtil.getPageInfo(request);
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
+        }
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(10);
         params.put("page", pageInfo);
         params.put("status", RightConstants.RoleStatus.Y.name());
+        pageInfo.setParams(pageParams.toString());
+
         PageResult<RoleDto> pageResult = roleService.page(params);
-        return PageUtil.getPageResult(pageResult.getList(), pageResult.getPage());
+        ModelUtils.setResult(map, pageResult.getPage(), pageResult.getList());
+
+        return "authority/role_list";
     }
 
     /**
@@ -177,10 +189,35 @@ public class RoleController  {
     public String editShopRight(Model model, Long id) {
         Assert.notNull(id, "角色ID不能为空");
         // 查询当前角色的权限集合
-        List<ResourcesDto> allRightTree = resourcesService.listAllRightTree(id);
-        model.addAttribute("tree", allRightTree);
+//        List<ResourcesDto> allRightTree = resourcesService.listAllRightTree(id);
+//        model.addAttribute("tree", allRightTree);
         model.addAttribute("roleId", id);
-        return "permission/edit_role_right";
+        return "authority/edit_role_right";
+    }
+
+    /**
+     * 查询当前角色的权限集合
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/getTree", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getTree(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        Assert.notNull(id, "角色ID不能为空");
+
+        Result result = new Result();
+        List<ResourcesDto> allRightTree ;
+        try {
+            allRightTree = resourcesService.listAllRightTree(Long.parseLong(id));
+            result.setAttach(allRightTree);
+            result.setMessage("成功");
+        } catch (Exception e) {
+            logger.error("失败", e);
+            result.error("失败");
+            return result;
+        }
+        return result;
     }
 
     @RequestMapping("/right_save")

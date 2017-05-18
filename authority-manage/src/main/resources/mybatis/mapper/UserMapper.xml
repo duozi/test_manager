@@ -12,6 +12,7 @@
         <result property="primary" column="primary"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="name" column="name"/>
     </resultMap>
     
     <sql id="columns">
@@ -104,7 +105,7 @@
                 account,
                 password,
                 status,
-                primary,
+                `primary`,
                 create_time,
                 update_time
             ) VALUES (
@@ -150,7 +151,7 @@
                 	<![CDATA[ status = #{status} ]]>,
                 </if>
                 <if test="primary != null">
-                	<![CDATA[ primary = #{primary} ]]>,
+                	<![CDATA[ `primary` = #{primary} ]]>,
                 </if>
                 <if test="createTime != null">
                 	<![CDATA[ create_time = #{createTime} ]]>,

@@ -26,8 +26,22 @@
 </div>
 <div class="col-lg-14">
     <div class="panel panel-default">
-        <div id="case-form-div">
+        <div id="">
+            <div class="heading">
+                <i class="icon-home"></i>修改权限
+            </div>
 
+            <div class="widget-content" style="padding: 0px 15px;">
+                <div class="ibox-wp">
+                    <div class="ibox-content">
+                        <ul id="treeDemo" class="ztree"></ul>
+                        <div class="ibox-groupBtn">
+                            <input type="button" class="btn btn-primary" value="保存" onclick="saveRights();"/>
+                            <a class="btn btn-primary" href="javascript:history.go(-1)">返回</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -46,14 +60,14 @@
         }
     };
 
-    var rightlist = ${tree};
+    var rightlist = getTree();
     var arr = new Array();
     for(var i=0; i<rightlist.length; i++) {
         var	id = rightlist[i].id,
                 pId = 0,
                 name = rightlist[i].name,
                 open = true,
-                checked = ${true ==rightlist[i].checked ? "true":"false"};
+                checked = rightlist[i].checked ? "true":"false";
 
         arr.push({id:id,pId:pId,name:name,open:true,checked:rightlist[i].checked});
 
@@ -89,6 +103,23 @@
         }
     }
 
+    function getTree() {
+        var arr ;
+        $.ajax({
+            type: "POST",
+            async : false,
+            dataType: "json",
+            url: "${basePath}/role/getTree",
+            data: {"id":"${roleId}"},
+            success: function (result) {
+                //console.log(result);
+                if(result.success){
+                    arr = result.attach;
+                }
+            }
+        });
+        return arr;
+    }
     var zNodes =arr;
     var code;
 
@@ -110,14 +141,11 @@
                 rightCodes.push(nodes[i].id);
             }
         }
-        if(rightCodes.length == 0) {
-            $("#agent-no-package").modal('show');
-            return;
-        }
-        $("#agent-save-package").modal('show');
-        $(".save-btn-primary").click(function() {
+
+        $.MsgBox.Confirm("修改权限","确定要修改此角色权限吗？",function(){
             $.post("${basePath}/role/right_save",{"codes":rightCodes,"roleId":"${roleId}"},function(result){
-                result = eval('('+result+')');
+                //result = eval('('+result+')');
+                //console.log(result);
                 if(result.success) {
                     alert("保存成功");
                     location.href="${ctx}/role/role_list?m=ri/ro";
@@ -128,9 +156,9 @@
         });
     }
 
-    function closeAlert() {
+/*    function closeAlert() {
         $(".modal").modal('hide');
-    }
+    }*/
 
 </script>
 </body>
