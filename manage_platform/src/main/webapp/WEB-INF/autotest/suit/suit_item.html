@@ -19,7 +19,7 @@
         <div class="panel panel-default" >
 			<div class="panel-body">
 				<!-- 计划基本配置 -->
-				<form role="form " class="edit-form col-lg-7" id="suit-form">
+				<form role="form " class="edit-form" id="suit-form">
 					<input type="hidden" name="id" value="${testSuitDto.id}">
 					<div class="form-group">
 						<label class="control-label" for="createPerson" >创建人</label>
@@ -50,6 +50,7 @@
 							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#caseList" >添加测试用例</button>
 						</#if>
 					</div>
+					<#if testCaseDtoList??>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="modal-title" id="">含有测试用例</h4>
@@ -67,7 +68,6 @@
 									</tr>
 									</thead>
 									<tbody>
-									<#if testCaseDtoList??>
 										<#list testCaseDtoList as item>
 											<tr>
 												<td>${item.interfaceDto.name}</td>
@@ -76,12 +76,12 @@
 												<td>${item.number}</td>
 											</tr>
 										</#list>
-									</#if>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
+					</#if>
 				</form>
 			</div>
 		</div>
@@ -115,7 +115,7 @@
 										<td>${item.description}</td>
 										<td>${item.number}</td>
 										<td>
-											<input type="checkbox" disabled="disabled"
+											<input type="checkbox"
 											<#if testCaseDtoList??>
 												<#list testCaseDtoList as caseDto>
 													<#if caseDto.id = item.id>
@@ -123,7 +123,7 @@
 													</#if>
 												</#list>
 											</#if>
-											value="${caseDto.id}" name="caseIds">
+											value="${item.id}" name="caseIds">
 										</td>
 									</tr>
 								</#list>
@@ -244,25 +244,25 @@
 					caseId += $(this).val() + ",";
 				}
 			});
-
 			var suitId = $("#suit-form input[name='id']").val();
-			var interfaceId = $("input[name='interfaceId']").val();
 
 			//发送请求保存测试用例和测试集的关系
-			submitRelationSuitCase(caseId,suitId,interfaceId);
+			submitRelationSuitCase(caseId,suitId);
 		}
 
-		function submitRelationSuitCase(caseId,suitId,interfaceId ){
+		function submitRelationSuitCase(caseId,suitId ){
 			$.ajax({
 				type: "POST",
 				dataType: "html",
 				url: "${basePath}/autotest/suit/saveSuitCaseRelation",
-				data: {"caseIds":caseId,"suitId":suitId,"interfaceId":interfaceId},
+				data: {"caseIds":caseId,"suitId":suitId},
 				success: function(result) {
 					data = eval("(" + result + ")");
 					if (data.code == 0) {
 						alert("保存成功");
-						$("#caseList").modal("hide");
+						reload();
+						//$("#caseList").modal("hide");
+
 					} else {
 						alert("保存失败："+data.message);
 					}

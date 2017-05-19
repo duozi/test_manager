@@ -183,19 +183,13 @@ public class SuitController {
 	public CommonResult saveSuitCaseRelation(HttpServletRequest request) {
 		CommonResult result = new CommonResult();
 		try{
-			String interfaceIdStr = request.getParameter("interfaceId");
-			Long interfaceId = null;
-			if (StringUtils.isNotBlank(interfaceIdStr) && !"null".equals(interfaceIdStr)) {
-				interfaceId = Long.parseLong(interfaceIdStr);
-			}
-
 			String suitIdStr = request.getParameter("suitId");
 			Long suitId = null;
 			if (StringUtils.isNotBlank(suitIdStr) && !"null".equals(suitIdStr)) {
 				suitId = Long.parseLong(suitIdStr);
 			}
-//
-			relationSuitCaseService.saveRelation(interfaceId,suitId,request.getParameter("caseIds"));
+
+			relationSuitCaseService.saveRelation(suitId,request.getParameter("caseIds"));
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();
 			String message =e.getMessage();

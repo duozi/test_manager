@@ -26,4 +26,6 @@ public interface RelationSuitCaseMapper extends BaseMapper<RelationSuitCase, Lon
     void deleteByInterfaceAndSuit(@Param("suitId") Long suitId, @Param("interfaceId")Long interfaceId);
 
     RelationSuitCase selectBySuitAndCase(@Param("caseId")Long caseId,@Param("suitId") Long suitId);
+
+    List<RelationSuitCase> getBySuitId(Long suitId);
 }

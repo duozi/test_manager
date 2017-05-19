@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.xn.interfacetest.api.TestCaseService;
+import com.xn.interfacetest.dto.TestCaseDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,9 @@ public class RelationSuitCaseServiceImpl implements RelationSuitCaseService {
 
     @Autowired
     private TestInterfaceService testInterfaceService;
+
+    @Autowired
+    private TestCaseService testCaseService;
 
     @Override
     @Transactional(readOnly = true)
@@ -139,32 +144,91 @@ public class RelationSuitCaseServiceImpl implements RelationSuitCaseService {
     }
 
     @Override
-    public void saveRelation(Long interfaceId, Long suitId, String caseIds) {
-        //保存新的测试用例到测试集
-        if(StringUtils.isNotBlank(caseIds) && !"null".equals(caseIds)){
+    public void saveRelation(Long suitId, String caseIds) {
+        //如果保存的测试用例id是空的，就把原先保存的关系数据删除
+        if(StringUtils.isBlank(caseIds) || "null".equals(caseIds)){
+            //删除该测试集的所有关系
+            relationSuitCaseMapper.deleteByInterfaceAndSuit(suitId,null);
+        } else {
+            List<RelationSuitCaseDto> relationSuitCaseDtoList = this.getBySuitId(suitId);
             //解析出每一个caseId
             String[] caseArray = caseIds.split(",|，");
+
+            //检测是否要新增
+            this.saveNewRelation(suitId,caseArray,relationSuitCaseDtoList);
+
+            //检测是否需要删除旧的caseId
+            this.deleteOldRelation(suitId,caseArray,relationSuitCaseDtoList);
+
+        }
+    }
+
+    private void deleteOldRelation(Long suitId, String[] caseArray, List<RelationSuitCaseDto> relationSuitCaseDtoList) {
+        for(RelationSuitCaseDto relation : relationSuitCaseDtoList){
+            boolean flag = false; //标志是否已存在当前caseId
             for(String caseidStr : caseArray) {
+                if (Long.parseLong(caseidStr) == relation.getCaseId()) {
+                    flag = true;
+                }
+            }
+            if(!flag){
+                this.delete(relation);
+
+            }
+        }
+    }
+
+    private void saveNewRelation(Long suitId, String[] caseArray, List<RelationSuitCaseDto> relationSuitCaseDtoList) {
+        //遍历要加入的caseID，看是否需要新增进去
+        for(String caseidStr : caseArray) {
+            boolean flag = false; //标志是否已存在当前caseId
+            for(RelationSuitCaseDto relation : relationSuitCaseDtoList){
+                if(Long.parseLong(caseidStr) == relation.getCaseId()){
+                    flag = true;
+                }
+            }
+
+            //如果不存在就插入新的，存在就不插入
+            if(!flag){
                 RelationSuitCaseDto relationSuitCaseDto = new RelationSuitCaseDto();
                 //用例id
                 Long caseId = Long.parseLong(caseidStr);
                 relationSuitCaseDto.setCaseId(caseId);
 
-                //接口id
-                relationSuitCaseDto.setInterfaceId(interfaceId);
+                //查询用例
+                TestCaseDto caseDto = testCaseService.get(caseId);
 
-                //根据接口查询服务--服务id
-                TestInterfaceDto testInterface = testInterfaceService.get(interfaceId);
-                if(null != testInterface){
-                    relationSuitCaseDto.setServiceId(testInterface.getServiceId());
+                if(null != caseDto){
+                    //接口id
+                    relationSuitCaseDto.setInterfaceId(caseDto.getInterfaceId());
+
+                    //根据接口查询服务--服务id
+                    TestInterfaceDto testInterface = testInterfaceService.get(caseDto.getInterfaceId());
+                    if(null != testInterface){
+                        relationSuitCaseDto.setServiceId(testInterface.getServiceId());
+                    }
                 }
 
                 //测试集id
                 relationSuitCaseDto.setSuitId(suitId);
+
                 //保存测试集和用例的关系
                 relationSuitCaseDto = this.save(relationSuitCaseDto);
             }
         }
+    }
+
+    private List<RelationSuitCaseDto> getBySuitId(Long suitId) {
+        List<RelationSuitCase> list = relationSuitCaseMapper.getBySuitId(suitId);
+        List<RelationSuitCaseDto> dtoList = CollectionUtils.transform(list, RelationSuitCaseDto.class);
+        return dtoList;
+    }
+
+    public static void main(String[] s){
+        Long a = 1L;
+        String b =  "1";
+        System.out.println(Long.parseLong(b) == a);
+
     }
 
 }
