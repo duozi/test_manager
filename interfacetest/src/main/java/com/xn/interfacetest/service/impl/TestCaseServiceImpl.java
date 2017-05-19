@@ -273,6 +273,32 @@ public class TestCaseServiceImpl implements TestCaseService {
         return dtoList;
     }
 
+    @Override
+    public List<TestCaseDto> listBySuitIdOrderByInterfaceId(Long suitId) {
+        List<TestCase> testCaseList = testCaseMapper.listBySuitIdOrderByInterfaceId( suitId);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        if(null != dtoList && dtoList.size() > 0){
+            for(TestCaseDto caseDto: dtoList){
+                //查询接口信息
+                caseDto.setInterfaceDto(testInterfaceService.get(caseDto.getInterfaceId()));
+            }
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<TestCaseDto> listAllOrderByInterface() {
+        List<TestCase> testCaseList = testCaseMapper.listAllOrderByInterface();
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        if(null != dtoList && dtoList.size() > 0){
+            for(TestCaseDto caseDto: dtoList){
+                //查询接口信息
+                caseDto.setInterfaceDto(testInterfaceService.get(caseDto.getInterfaceId()));
+            }
+        }
+        return dtoList;
+    }
+
     private void copyDataParams(TestCase testCase, Long caseId, Long newCaseId) {
         //判断是自定义参数还是配置的参数
         if(testCase.getParamsType() == ParamsGroupTypeEnum.KEY.getId()){

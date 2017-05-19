@@ -38,4 +38,8 @@ public interface TestCaseMapper extends BaseMapper<TestCase, Long> {
     List<TestCase> listAllBySuitList(@Param("testSuitDtoList") List<TestSuitDto> testSuitDtoList);
 
     List<TestCase> getByCaseNum(String number);
+
+    List<TestCase> listBySuitIdOrderByInterfaceId(@Param("suitId") Long suitId);
+
+    List<TestCase> listAllOrderByInterface();
 }

@@ -120,11 +120,13 @@
 
                 <div class="form-group" style="margin-left: 75%;">
                     <#if testCaseDto.status == 0 || testCaseDto == null>
-                    <button type="submit"class="btn btn-info" >保存
-                    </button>
+                        <button type="submit"class="btn btn-info" >保存
+                        </button>
                     </#if>
-                    <button type="button" onclick="nextStep()" class="btn btn-info">下一步
-                    </button>
+                    <#if testCaseDto !=null || testCaseDto.id != null>
+                        <button type="button" onclick="nextStep()" class="btn btn-info">下一步
+                        </button>
+                    </#if>
                 </div>
             </div>
         </form>

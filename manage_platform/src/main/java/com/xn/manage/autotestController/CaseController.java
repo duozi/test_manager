@@ -470,7 +470,7 @@ public class CaseController {
 
 			//校验用例编号的唯一性
 			List<TestCaseDto> testCaseDtoExist = testCaseService.getByCaseNum(testCaseDto.getNumber());
-			if(null != testCaseDtoExist){
+			if(null != testCaseDtoExist && testCaseDtoExist.size()>0 && testCaseDtoExist.get(0).getId() != testCaseDto.getId()){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("用例编号已存在，请保证用例编号的唯一性");
 				return result;

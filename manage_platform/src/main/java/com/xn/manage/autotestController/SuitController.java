@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.interfacetest.api.*;
+import com.xn.interfacetest.dto.*;
 import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -24,15 +26,6 @@ import com.xn.common.base.CommonResult;
 import com.xn.interfacetest.Enum.CaseTypeEnum;
 import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.InterfaceTypeEnum;
-import com.xn.interfacetest.api.RelationSuitCaseService;
-import com.xn.interfacetest.api.TestInterfaceService;
-import com.xn.interfacetest.api.TestServiceService;
-import com.xn.interfacetest.api.TestSuitService;
-import com.xn.interfacetest.api.TestSystemService;
-import com.xn.interfacetest.dto.RelationSuitCaseDto;
-import com.xn.interfacetest.dto.TestInterfaceDto;
-import com.xn.interfacetest.dto.TestSuitDto;
-import com.xn.interfacetest.dto.TestSystemDto;
 
 
 @Controller
@@ -48,6 +41,9 @@ public class SuitController {
 
 	@Autowired
 	private TestSuitService testSuitService;
+
+	@Autowired
+	private TestCaseService testCaseService;
 
 	@Autowired
 	private TestInterfaceService testInterfaceService;
@@ -98,9 +94,10 @@ public class SuitController {
 
 	@RequestMapping(value="/suit_item", method = RequestMethod.GET)
 	public String getSuitItem(HttpServletRequest request, ModelMap map) {
-		//查询接口信息
-		List<TestInterfaceDto> testInterfaceDtoList = testInterfaceService.listAll();
-		map.put("testInterfaceDtoList",testInterfaceDtoList);
+//		//查询接口信息
+//		List<TestInterfaceDto> testInterfaceDtoList = testInterfaceService.listAll();
+//		map.put("testInterfaceDtoList",testInterfaceDtoList);
+
 
 		//接口类型--http，dubbo
 		List<InterfaceTypeEnum> interfaceTypeEnumList=new ArrayList<InterfaceTypeEnum>();
@@ -113,7 +110,16 @@ public class SuitController {
 		if(StringUtils.isNotBlank(id) && !"null".equals(id)){
 			TestSuitDto testSuitDto = testSuitService.get(Long.parseLong(id));
 			map.put("testSuitDto", testSuitDto);
+
+			//查询用例信息，以接口id排序
+			List<TestCaseDto> testCaseDtoList = testCaseService.listBySuitIdOrderByInterfaceId(Long.parseLong(id));
+			map.put("testCaseDtoList", testCaseDtoList);
 		}
+
+		//查询所有接口的用例,以接口排序
+		//查询用例信息，以接口id排序
+		List<TestCaseDto>  caseList = testCaseService.listAllOrderByInterface();
+		map.put("caseList", caseList);
 
 		List<TestSystemDto> systemList = new ArrayList<TestSystemDto>();
 		TestSystemDto systemDto = new TestSystemDto();
