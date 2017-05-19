@@ -74,6 +74,7 @@
         FROM
             sys_role 
         <include refid="where"/>
+        ORDER BY create_time DESC
     </select>
         
     <select id="count" resultType="long">

@@ -53,21 +53,11 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"/>
-        <!--&lt;!&ndash; Mybatis_PageHelper 分页插件配置 &ndash;&gt;-->
-        <!--<property name="plugins">-->
-        <!--<array>-->
-        <!--<bean class="com.github.pagehelper.PageHelper">-->
-        <!--<property name="properties">-->
-        <!--<value>-->
-        <!--dialect=mysql-->
-        <!--offsetAsPageNum=true-->
-        <!--rowBoundsWithCount=true-->
-        <!--reasonable=true-->
-        <!--</value>-->
-        <!--</property>-->
-        <!--</bean>-->
-        <!--</array>-->
-        <!--</property>-->
+        <property name="plugins">
+            <list>
+                <bean class="com.xn.common.interceptor.PaginationInterceptor"></bean>
+            </list>
+        </property>
     </bean>
 
 

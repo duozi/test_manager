@@ -24,6 +24,7 @@ import java.util.*;
 
 
 /*
+ * 登录认证和授权
  * Created by chenhening on 2017/5/10.
  * */
 public class WebAuthorizingRealm extends AuthorizingRealm {
