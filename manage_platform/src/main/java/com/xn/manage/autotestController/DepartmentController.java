@@ -46,10 +46,10 @@ public class DepartmentController {
         CommonResult result = new CommonResult();
         try{
             //判断名称是否重复
-            DepartmentDto exist = departmentService.getByName(departmentDto.getName());
+            DepartmentDto exist = departmentService.getByNameAndCompanyId(departmentDto.getName(),departmentDto.getCompanyId());
             if(null != exist && departmentDto.getId() != exist.getId()){
                 result.setCode(CommonResultEnum.ERROR.getReturnCode());
-                result.setMessage("公司已存在");
+                result.setMessage("同一个公司下部门名称不能重复");
                 return  result;
             }
             departmentService.save(departmentDto);
