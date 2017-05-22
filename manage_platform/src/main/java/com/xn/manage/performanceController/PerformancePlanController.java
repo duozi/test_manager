@@ -335,6 +335,7 @@ public class PerformancePlanController {
                 performanceScenarioDto.setPsystem(psystem);
                 performanceMonitoredMachineDto.setPsystem(psystem);
             }
+
             List<PerformanceScriptDto> performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
             List<PerformanceScenarioDto> performanceScenarioDtoList = performanceScenarioService.list(performanceScenarioDto);
             List<PerformanceMonitoredMachineDto> performanceMonitoredMachineDtoList = performanceMonitoredMachineService.list(performanceMonitoredMachineDto);
