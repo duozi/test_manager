@@ -22,7 +22,7 @@
 <div class="panel-heading">
     <ol class="breadcrumb">
         <li><a href="#">接口自动化</a></li>
-        <li><a href="#">接口管理</a></li>
+        <li><a href="interface_list">接口管理</a></li>
         <li class="active">新增测试集</li>
     </ol>
 </div>
@@ -140,7 +140,18 @@
                     </div>
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">Content-Type</label>
-                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" <#if interfaceDto.status gt 0>readonly</#if>>
+                        <select class="form-control" id="contentType-select"
+                                name="" <#if interfaceDto.status gt 0>readonly</#if>>
+                            <#if contentTypeList ??>
+                                <#list contentTypeList as item>
+                                    <option value="${item.getName()}"
+                                    <#if interfaceDto.contentType = item.getName()>selected</#if>
+                                    >${item.getName()}
+                                    </option>
+                                </#list>
+                            </#if>f
+                        </select>
+                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" placeholder="填写被测接口的content-Type值，例如：application/json" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group ">
                         <label class="control-label">加密jar包</label>
@@ -178,10 +189,10 @@
                         <#if interfaceDto.status == 0 || interfaceDto == null>
                             <button type="submit" class="btn btn-primary interface-submit">保存</button>
                         </#if>
-                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare" onclick="showDataPrepare()">数据准备
-                        </button>
-                        <button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-warning interface-clear" onclick="showDataClear()">数据清除
-                        </button>
+                        <!--<button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-info interface-prepare" onclick="showDataPrepare()">数据准备-->
+                        <!--</button>-->
+                        <!--<button type="button" data-toggle="modal" data-target="#dataPrepare" class="btn btn-warning interface-clear" onclick="showDataClear()">数据清除-->
+                        <!--</button>-->
                         <button type="button" class="btn btn-success interface-reset">重置</button>
                     </div>
                 </div>
@@ -532,6 +543,16 @@
     });
 
     $(document).ready(function () {
+        $("#contentType-select").change(
+                function(){
+                    if($(this).val() == "自己填写"){
+                        $("input[name='contentType']").val("");
+                    } else {
+                        $("input[name='contentType']").val($(this).val());
+                    }
+                }
+        );
+
         //初始化接口表单--指定校验规则
         $("#interface-form").validate({
             submitHandler: function () {  //验证通过后的执行方法

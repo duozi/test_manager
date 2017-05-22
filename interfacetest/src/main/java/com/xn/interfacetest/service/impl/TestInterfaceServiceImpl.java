@@ -363,4 +363,11 @@ public class TestInterfaceServiceImpl implements TestInterfaceService {
         List<TestInterfaceDto> dtoList = CollectionUtils.transform(list, TestInterfaceDto.class);
         return dtoList;
     }
+
+    @Override
+    public TestInterfaceDto getByServiceIdAndInterfaceName(Long serviceId, String name) {
+        TestInterface testInterface = testInterfaceMapper.getByServiceIdAndInterfaceName(serviceId,name);
+        TestInterfaceDto testInterfaceDto = BeanUtils.toBean(testInterface,TestInterfaceDto.class);
+        return testInterfaceDto;
+    }
 }

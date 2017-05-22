@@ -19,7 +19,7 @@
 
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
-    public void jmeterLog(final JspWriter out,String ip,String username,String password,int port) throws Exception {
+    public void jmeterLog(final JspWriter out, String ip, String username, String password, int port) throws Exception {
 
 
         Session session = null;
@@ -54,7 +54,7 @@
                     try {
                         out.print("<div  style=\"height: 800px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;\">");
                         while ((buf[0] = reader.readLine()) != null) {
-                            out.println("<br>"+new String(buf[0].getBytes("UTF-8"), "UTF-8")+"</br>");
+                            out.println("<br>" + new String(buf[0].getBytes("UTF-8"), "UTF-8") + "</br>");
 
                         }
                         out.print("</div>");
@@ -88,35 +88,9 @@
 
     <script src="../../../js/common.js"></script>
     <script type="text/javascript">
-        //        $(document).ready(function(){
-        //            window.open("/performance/report/jmeter_log");
-        //        });
+
     </script>
-    <%--<script>--%>
-        <%--function getQueryStr(sArgName)--%>
-        <%--{--%>
-            <%--var args = LocString.split("?");--%>
-            <%--var retval = "";--%>
-            <%--if(args[0] == LocString)--%>
-            <%--{--%>
-                <%--return retval;--%>
-            <%--}--%>
-            <%--var str = args[1];--%>
-            <%--args = str.split("&");--%>
-            <%--for(var i = 0; i < args.length; i ++)--%>
-            <%--{--%>
-                <%--str = args[i];--%>
-                <%--var arg = str.split("=");--%>
-                <%--if(arg.length <= 1) continue;--%>
-                <%--if(arg[0] == sArgName) retval = arg[1];--%>
-            <%--}--%>
-            <%--return retval;--%>
-        <%--}--%>
-        <%--var ip=getQueryStr("ip");--%>
-        <%--var username=getQueryStr("username");--%>
-        <%--var password=getQueryStr("password");--%>
-        <%--var port=getQueryStr("port");--%>
-    <%--</script>--%>
+    <%--每秒钟刷新--%>
     <meta http-equiv="refresh" content="1">
 </head>
 <body></body>
@@ -131,8 +105,7 @@
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     int port = Integer.valueOf(request.getParameter("port"));
-    jmeterLog(out,ip,username,password,port);
-
+    jmeterLog(out, ip, username, password, port);
 
 
 %>

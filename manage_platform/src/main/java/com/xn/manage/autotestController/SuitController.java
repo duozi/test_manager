@@ -161,13 +161,19 @@ public class SuitController {
 	public CommonResult saveSuit(TestSuitDto testSuitDto,HttpServletRequest request) {
 		CommonResult result = new CommonResult();
 		try{
+			//判断名称是否重复
+			TestSuitDto exist = testSuitService.getByName(testSuitDto.getName());
+			if(null != exist && testSuitDto.getId() != exist.getId()){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("测试集名称已存在");
+				return  result;
+			}
+
 			testSuitDto = testSuitService.save(testSuitDto);
 			result.setData(testSuitDto);
 		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message =e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
 			logger.error("保存测试集异常｛｝",e);
 		}
 		return  result;

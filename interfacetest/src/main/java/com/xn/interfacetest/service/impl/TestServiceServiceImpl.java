@@ -149,4 +149,11 @@ public class TestServiceServiceImpl implements TestServiceService {
         return testServiceDto;
     }
 
+    @Override
+    public TestServiceDto getByName(String name) {
+        TestService testService = testServiceMapper.getByName(name);
+        TestServiceDto testServiceDto = BeanUtils.toBean(testService,TestServiceDto.class);
+        return testServiceDto;
+    }
+
 }

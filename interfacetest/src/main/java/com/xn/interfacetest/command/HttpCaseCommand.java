@@ -196,6 +196,7 @@ public class HttpCaseCommand implements CaseCommand {
         RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
         Date beginTime = new Date();
         try {
+            logger.info("执行测试用例发送请求");
             relationInterfaceResultDto.setExcuteTime(format.format(beginTime));
             if(contentType.contains("json")){
                 responseStr =  HttpClientUtil.sendHttpPostJson(url,params);

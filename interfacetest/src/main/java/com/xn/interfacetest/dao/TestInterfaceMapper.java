@@ -37,4 +37,6 @@ public interface TestInterfaceMapper extends BaseMapper<TestInterface, Long> {
     void changeStatusList(@Param("status")int status,@Param("ids")  List<TestInterfaceDto> interfaceIdList);
 
     List<TestInterface> listAllBySuitList(@Param("testSuitDtoList") List<TestSuitDto> testSuitDtoList);
+
+    TestInterface getByServiceIdAndInterfaceName(@Param("serviceId") Long serviceId, @Param("name") String name);
 }
