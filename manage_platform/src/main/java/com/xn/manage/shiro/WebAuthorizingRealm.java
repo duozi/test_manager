@@ -11,8 +11,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -20,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 
 
@@ -47,8 +50,8 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("account",username);
             params.put("status",RightConstants.RoleStatus.Y.name());
-            List<UserDto> userDtoList=userService.list(params);
-            if (userDtoList==null){
+            List<UserDto> userDtoList=userService.findByAccount(params);
+            if (userDtoList==null || userDtoList.size()<=0){
                 logger.info("账号：{}不存在", username);
                 return null;
             }else if (userDtoList!=null && userDtoList.size()>1){
@@ -65,7 +68,8 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
                     session.setAttribute("isSon", true);
                 }
                 session.setAttribute("USER", userDto);
-                return new SimpleAuthenticationInfo(username, password, getName());
+                getAuthorizationInfo(username);
+                return new SimpleAuthenticationInfo(username, userDto.getPassword(), getName());
             }
 
         }
@@ -103,10 +107,10 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
         // 获取当前登录的用户名
         String username = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-
-        Map<String, Set<String>> authorizationMap = getAuthorizationInfo(username);
-
-        authorizationInfo.setStringPermissions(authorizationMap.get("permissions")); // 设置权限
+        Session session = SecurityUtils.getSubject().getSession();
+        authorizationInfo.setStringPermissions((Set<String>)session.getAttribute("permissions"));
+//        Map<String, Set<String>> authorizationMap = getAuthorizationInfo(username);
+//        authorizationInfo.setStringPermissions(authorizationMap.get("permissions")); // 设置权限
         return authorizationInfo;
     }
 
@@ -146,7 +150,38 @@ public class WebAuthorizingRealm extends AuthorizingRealm {
             logger.error("授权出现异常", e);
         }
         authorizationMap.put("permissions", codeSet);
+        session.setAttribute("permissions",codeSet);
         logger.debug("当前登录账户：{}的权限集合：{}", username, codeSet);
         return authorizationMap;
+    }
+
+    /**
+     * 设定Password校验的Hash算法与迭代次数.
+     */
+    @PostConstruct
+    public void initCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher("MD5") {
+
+            @Override
+            public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+                Object credentials = token.getCredentials();
+                UsernamePasswordToken token1 = (UsernamePasswordToken) token;
+                if (credentials == null) {
+                    String msg = "Argument for byte conversion cannot be null.";
+                    throw new IllegalArgumentException(msg);
+                }
+                byte[] bytes = null;
+                if (credentials instanceof char[]) {
+                    bytes = CodecSupport.toBytes(new String((char[]) credentials), PREFERRED_ENCODING);
+                } else {
+                    bytes = objectToBytes(credentials);
+                }
+                String tokenHashedCredentials = MD5Util.MD5(token1.getUsername() + new String(bytes)).toLowerCase();
+                String accountCredentials = getCredentials(info).toString();
+                return tokenHashedCredentials.equals(accountCredentials);
+            }
+        };
+        matcher.setHashIterations(1);
+        setCredentialsMatcher(matcher);
     }
 }

@@ -15,6 +15,7 @@
 <body>
 <div class="panel-heading">
     <ol class="breadcrumb">
+        <li><a href="">系统管理</a></li>
         <li><a href="#">权限管理</a></li>
         <li><a href="">角色管理</a></li>
     </ol>
@@ -109,6 +110,7 @@
         var name = $("input[name='name']").val();
         var url = "${basePath}/role/role_list?"
         url += "&name=" + name;
+        url = encodeURI(url);
         window.location.href = url;
     }
 

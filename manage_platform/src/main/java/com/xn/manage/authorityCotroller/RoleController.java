@@ -76,9 +76,14 @@ public class RoleController  {
     @RequestMapping(value = "/role_list")
     public String roleList(HttpServletRequest request, ModelMap map, PageInfo pageInfo) {
         StringBuilder pageParams = new StringBuilder(); // 用于页面分页查询的的url参数
-
         Map<String, Object> params = new HashMap<String, Object>();
         String name = request.getParameter("name");
+//        try {
+//            name = new String(name.getBytes("ISO8859-1"), "UTF-8");
+//        }catch (Exception e){
+//
+//        }
+
         if (StringUtils.isNotBlank(name)) {
             params.put("name", name);
             pageParams.append("&name=").append(name);

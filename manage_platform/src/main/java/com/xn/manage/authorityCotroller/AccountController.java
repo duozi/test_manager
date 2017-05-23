@@ -20,6 +20,7 @@ import com.xn.common.utils.PageUtil;
 import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,7 +215,9 @@ public class AccountController  {
                     return result;
                 }
                 String account = dbUser.getAccount().trim();
-                dbUser.setPassword(MD5Util.MD5(account + user.getPassword()).toLowerCase());
+                String password = user.getPassword().trim();
+                dbUser.setAccount(account);
+                dbUser.setPassword(MD5Util.MD5(account + password).toLowerCase());
                 dbUser.setUpdateTime(new Date());
                 userService.update(dbUser);
                 result.setMessage("密码修改成功");

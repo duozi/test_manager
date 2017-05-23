@@ -13,9 +13,15 @@
 	<!-- <bean id="ehcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
 	</bean> -->
+	<!-- cache 单机实现 -->
+	<!--<import resource="classpath:shiro/shiro-ehcache.xml" />-->
 
 	<!-- 自定义的Realm -->
-	<bean id="authShiroRealm" class="com.xn.manage.shiro.WebAuthorizingRealm"></bean>
+	<bean id="authShiroRealm" class="com.xn.manage.shiro.WebAuthorizingRealm">
+		<!--<property name="credentialsMatcher" ref="credentialsMatcher" />-->
+		<property name="cachingEnabled" value="false" />
+		<property name="authorizationCachingEnabled" value="false"/>
+	</bean>
 
 	<!-- 基于Form表单的身份验证过滤器 -->
 	<bean id="formAuthenticationFilter"
@@ -40,7 +46,7 @@
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="authShiroRealm" />
-		<!-- <property name="cacheManager" ref="ehcacheManager"/> -->
+		<!--<property name="cacheManager" ref="cacheManager" />-->
 		<property name="sessionManager" ref="sessionManager"/>
 	</bean>
 
@@ -56,7 +62,7 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/autotest/interface/interface_list" />
+		<property name="successUrl" value="/index" />
 		<property name="unauthorizedUrl" value="/403"/>
 		<property name="filters">
 			<util:map>

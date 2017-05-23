@@ -95,6 +95,12 @@ public interface UserService {
     UserDto save(UserDto userDto);
 
     /**
+     * 根据名称查询用户
+     * @param condition
+     * @return
+     */
+    List<UserDto> findByAccount(Map<String, Object> condition);
+    /**
      * 批量保存用户表
      * 
      * @param users 用户表
@@ -105,7 +111,7 @@ public interface UserService {
     /**
      * 更新用户表
      * 
-     * @param user 用户表
+     * @param userDto 用户
      * @return 操作影响行数
      */
     int update(UserDto userDto);
@@ -121,7 +127,7 @@ public interface UserService {
     /**
      * 删除用户表
      * 
-     * @param id 主键
+     * @param userDto id 主键
      * @return 操作影响行数
      */
     int delete(UserDto userDto);
@@ -129,7 +135,7 @@ public interface UserService {
     /**
      * 根据主键删除用户表
      * 不建议，建议使用delete(UserDto user)
-     * @param id 主键
+     * @param ids 主键
      * @return 操作影响行数
      */
     public int deleteBatchByPK(List<Long> ids);

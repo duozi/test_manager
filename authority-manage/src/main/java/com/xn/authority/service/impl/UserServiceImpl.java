@@ -85,6 +85,14 @@ public class UserServiceImpl implements UserService {
         List<UserDto> dtoList = CollectionUtils.transform(list, UserDto.class);
         return dtoList;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<UserDto> findByAccount(Map<String, Object> condition){
+        List<User> list = userMapper.findByAccount(condition);
+        List<UserDto> dtoList = CollectionUtils.transform(list, UserDto.class);
+        return dtoList;
+    }
     
     @Override
     @Transactional(readOnly = true)

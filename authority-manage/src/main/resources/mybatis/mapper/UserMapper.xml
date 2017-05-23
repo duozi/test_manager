@@ -36,7 +36,7 @@
                 AND status = #{status}
             </if>
            <if test="@Ognl@isNotEmpty(primary)">
-                AND primary = #{primary}
+                AND `primary` = #{primary}
             </if>
            <if test="@Ognl@isNotEmpty(createTimeBegin)">
                 AND create_time >= #{createTimeBegin}
@@ -87,7 +87,24 @@
         </where>
         order by su.id desc , su.create_time desc
     </select>
-        
+
+    <select id="findByAccount" resultMap="UserMap">
+        SELECT <include refid="columns" />
+            FROM
+                sys_user
+        <where>
+            <if test="account != null">
+                AND account = #{account}
+            </if>
+            <if test="primary != null">
+                AND `primary` = #{primary}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
