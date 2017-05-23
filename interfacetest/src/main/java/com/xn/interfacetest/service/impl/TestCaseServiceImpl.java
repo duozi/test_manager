@@ -17,6 +17,7 @@ import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.singleton.InitThreadPool;
 import com.xn.interfacetest.util.CollectionUtils;
 import com.xn.interfacetest.util.DBUtil;
 import com.xn.interfacetest.util.JarUtil;
@@ -43,8 +44,6 @@ import java.util.concurrent.Executors;
 @Transactional
 public class TestCaseServiceImpl implements TestCaseService {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
-    //创建一个线程池
-    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     private static final String STRING_NAME = "java.lang.String";
 
@@ -394,6 +393,8 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
         logger.info("==========线程池执行测试用例========");
+        //创建一个线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);;
         //遍历执行测试用例
         for(int i = 0; i < testCaseDtoList.size(); i++){
             final int finalI = i;
@@ -410,6 +411,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 }
             });
         }
+
+
 
         try {
             logger.info("sleep-----"+1000);
