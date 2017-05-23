@@ -243,7 +243,16 @@
             rules: {
                 account: {
                     required: true,
-                    maxlength:10
+                    maxlength:10,
+                    remote:{
+                        type:"POST",
+                        url:"${basePath}/account/checkexist",
+                        data:{
+                            account:function() {return $.trim($("#addAccountform input[name='account']").val());}
+                        },
+                        cache:false,
+                        async:false
+                    }
 
                 },
                 fPassword: {
@@ -265,7 +274,8 @@
             messages: {
                 account: {
                     required:"请输入账号",
-                    maxlength:"请输入10位以下字符"
+                    maxlength:"请输入10位以下字符",
+                    remote: "已存在同名账号"
                 },
                 fPassword: {
                     required:"请输入密码",
