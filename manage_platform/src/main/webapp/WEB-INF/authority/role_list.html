@@ -34,7 +34,7 @@
                         <div class="form-group col-lg-3">
                             <button type="submit" class="btn btn-default" onclick="reload();">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <!--<button type="reset" class="btn btn-default">导出</button>-->
-                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addRode"><i class=" fa-plus-circle fa"></i>新增角色</a>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#addRode" onclick="clearError();"><i class=" fa-plus-circle fa"></i>新增角色</a>
                         </div>
                     </div>
                 </form>
@@ -79,7 +79,7 @@
     <!-- /.col-lg-12 -->
 
     <!-- 新增角色弹框 -->
-    <div class="modal fade" id="addRode" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <!--<div class="modal fade" id="addRode" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -97,6 +97,40 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
+            &lt;!&ndash; /.modal-content &ndash;&gt;
+        </div>
+        &lt;!&ndash; /.modal-dialog &ndash;&gt;
+    </div>-->
+
+    <div class="modal fade" id="addRode" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <form role="form " class="col-lg-12 edit-form" id="addRoleform">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" >新建角色</h4>
+                    </div>
+
+                    <div class="modal-body modal-add-company">
+
+                        <div class="col-lg-10 form-div">
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >角色名称：</label>
+                                <input type="text" class="form-control" name = "name" maxlength="9" placeholder="请输入角色名称">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="$('#addRoleform').submit();">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
@@ -114,14 +148,17 @@
         window.location.href = url;
     }
 
-
+    function clearError() {
+        $('#addRoleform')[0].reset();
+        $(".popover").remove();
+    }
     $(document).ready(function(){
         initForm();
-        $('#addRode').on('hide.bs.modal', function () {
-            // 弹框变比的时候reset校验.
-            validator.resetForm();
-            $('#addRoleform')[0].reset();
-        })
+//        $('#addRode').on('hide.bs.modal', function () {
+//            // 弹框变比的时候reset校验.
+//            validator.resetForm();
+//            $('#addRoleform')[0].reset();
+//        })
     });
 
     function deleteRole(id){
@@ -186,6 +223,25 @@
                     error: function(result) {
                         alert(eval("(" + result + ")").message);
                     }
+                });
+            },
+            focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+            errorElement : "span",
+            errorClass : "error_info",
+            showErrors: function(errorMap, errorList) {
+                $.each(this.successList, function(index, value) {
+                    return $(value).popover("hide");
+                });
+                return $.each(errorList, function(index, value) {
+                    var _popover;
+                    _popover = $(value.element).popover({
+                        trigger: "manual",
+                        placement: "top",
+                        content: value.message,
+                        template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                    });
+                    _popover.data("bs.popover").options.content = value.message;
+                    return _popover.popover("show");
                 });
             }
         });

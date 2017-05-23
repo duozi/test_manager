@@ -208,7 +208,6 @@
                                     </#if>
                                 </select>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -470,6 +469,24 @@
                         $.MsgBox.Alert("提示",result.message);
                     }
                 });
+            },
+            errorElement : "span",
+            errorClass : "error_info",
+            showErrors: function(errorMap, errorList) {
+                $.each(this.successList, function(index, value) {
+                    return $(value).popover("hide");
+                });
+                return $.each(errorList, function(index, value) {
+                    var _popover;
+                    _popover = $(value.element).popover({
+                        trigger: "manual",
+                        placement: "top",
+                        content: value.message,
+                        template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                    });
+                    _popover.data("bs.popover").options.content = value.message;
+                    return _popover.popover("show");
+                });
             }
         });
     }
@@ -485,6 +502,7 @@
     function setModifyUser(id,account) {
         $("#modifyRoleform input[name='userId']").val(id);
         $("#modifyRoleform input[name='account']").val(account);
+        $(".popover").remove();
     }
 </script>
 <!-- /.container-fluid -->
