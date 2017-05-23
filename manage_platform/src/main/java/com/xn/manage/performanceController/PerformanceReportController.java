@@ -7,25 +7,29 @@ import com.xn.common.api.DepartmentService;
 import com.xn.common.dto.CompanyDto;
 import com.xn.common.dto.DepartmentDto;
 import com.xn.common.utils.DateUtil;
+import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.api.TestSystemService;
 import com.xn.interfacetest.dto.TestSystemDto;
 import com.xn.manage.Enum.ExecuteStatusEnum;
 import com.xn.performance.api.*;
 import com.xn.performance.dto.*;
+import com.xn.performance.mybatis.CommonResult;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -54,6 +58,8 @@ public class PerformanceReportController {
     @Resource
     PerformancePlanShowService performancePlanShowService;
     @Resource
+    PerformanceReportService performanceReportService;
+    @Resource
     private CompanyService companyService;
     @Resource
     private TestSystemService testSystemService;
@@ -61,7 +67,7 @@ public class PerformanceReportController {
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
@@ -108,9 +114,21 @@ public class PerformanceReportController {
             Date end = DateUtil.getStandardStringDate(actualStartTimeEnd);
             performancePlanShowDto.setActualStartTimeEnd(end);
         }
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
 
-        List<PerformancePlanShowDto> performancePlanShowDtoList = performancePlanShowService.getResultList(performancePlanShowDto);
-        model.put("result_list", performancePlanShowDtoList);
+        PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
+        try {
+            performancePlanShowDtoList = performancePlanShowService.getResultListByPage(performancePlanShowDto,pageInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        model.put("page",performancePlanShowDtoList.getPage());
+        model.put("result_list", performancePlanShowDtoList.getList());
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
@@ -159,9 +177,13 @@ public class PerformanceReportController {
             performanceScriptDto = performanceScriptService.get(performanceScriptDto);
             //场景
             Integer scenarioId = performancePlanDto.getScenarioId();
-            PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
-            performanceScenarioDto.setId(scenarioId);
-            performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+            if (scenarioId != 0) {
+                //如果场景未修改，就不传入场景到后台
+                PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+                performanceScenarioDto.setId(scenarioId);
+                performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+                model.put("scenario_detail", performanceScenarioDto);
+            }
 
 
             //暂时修改对应报告的地址
@@ -171,15 +193,15 @@ public class PerformanceReportController {
                 resultPath = resultPath.substring(i);
                 performanceResultDto.setResultPath(resultPath);
             }
-            String localIp= getProperty("localIp");
+            String localIp = getProperty("localIp");
             model.put("result_detail", performanceResultDto);
             model.put("plan_detail", performancePlanDto);
             model.put("monitored_machine_detail_list", performanceMonitoredMachineResultDtoList);
             model.put("stress_machine_detail", performanceStressMachineDto);
             model.put("script_detail", performanceScriptDto);
-            model.put("scenario_detail", performanceScenarioDto);
-            model.put("localIp", localIp);
 
+
+            model.put("localIp", localIp);
 
 
         } catch (Exception e) {
@@ -192,9 +214,12 @@ public class PerformanceReportController {
 
     //获得机器实时数据
     @RequestMapping(value = "/grafana", method = RequestMethod.GET)
-    public String getGrafana(HttpServletRequest request, HttpServletResponse response) {
+    public String getGrafana(ModelMap model) {
         try {
+            String localIp = getProperty("localIp");
+            model.put("localIp", localIp);
         } catch (Exception e) {
+
         } finally {
             return "/performance/report/grafana";
         }
@@ -216,13 +241,123 @@ public class PerformanceReportController {
             performanceStressMachineDto.setId(stressMachineId);
             performanceStressMachineDto = performanceStressMachineService.get(performanceStressMachineDto);
             model.put("stress_machine_detail", performanceStressMachineDto);
-            } catch(Exception e){
-            }
-        finally {
+        } catch (Exception e) {
+        } finally {
             return "/performance/report/jmeter_log";
         }
+    }
+
+    //    新增计划，根据公司，部门，系统，展示可选的计划
+    @RequestMapping(value = "/report_statistic/show_plan", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult getPlan(HttpServletRequest request) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            PerformancePlanDto performancePlanDto=new PerformancePlanDto();
+
+            String company = request.getParameter("company");
+            String department = request.getParameter("department");
+            String psystem = request.getParameter("psystem");
+            performancePlanDto.setIsDelete("未删除");
+            if (isNotEmpty(company) && !company.equals("null")) {
+                performancePlanDto.setCompany(company);
+            }
+            if (isNotEmpty(department) && !department.equals("null")) {
+                performancePlanDto.setDepartment(department);
+            }
+            if (isNotEmpty(psystem) && !psystem.equals("null")) {
+                performancePlanDto.setPsystem(psystem);
+            }
+            List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
+            commonResult.setData(performancePlanDtoList);
+
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
         }
 
+    }
+
+    //    新增计划，根据公司，部门，系统，展示可选的计划
+    @RequestMapping(value = "/report_statistic/show_result", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult getResult(HttpServletRequest request) {
+        CommonResult commonResult = new CommonResult();
+        try {
+            PerformanceResultDto performanceResultDto=new PerformanceResultDto();
+
+            String planId = request.getParameter("planId");
+
+            if (isNotEmpty(planId) && !planId.equals("null")) {
+                performanceResultDto.setPlanId(Integer.valueOf(planId));
+            }
+
+            List<PerformanceResultDto> performanceResultDtoList = performanceResultService.list(performanceResultDto);
+
+            commonResult.setData(performanceResultDtoList);
+
+        } catch (Exception e) {
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            commonResult.setMessage(e.getMessage());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+
+    }
+    /**
+     *
+     *
+     *
+     * {"dbs": ["D:/jmeter-reports/10min-go.db","xxx/xxx.db"]}
+     * @return json格式对比数据
+     */
+    @RequestMapping(value = "/report_statistic/generate_report" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject generateReport(@RequestParam String planStr,@RequestParam String resultStr) {
+
+
+
+        Map<String,Object> map = new LinkedHashMap<String,Object>();
+
+//        if(dbs==null){
+//            String dbpath = "D:/LYWorks/neon_Java/testmanage/jmeterapp/target/jmeter-reports";
+//            dbs="{\"jmeterreport\":[{\"describe\":\"java controller:是演示对比1\",\"dbs\":[\""+dbpath+"/10min-go.db\",\""+dbpath+"/10min-go_20170508_110422.db\"]}"
+//                    + ",{\"describe\":\"java controller:演示对比2\",\"dbs\":[\""+dbpath+"/10min-go.db\",\""+dbpath+"/10min-go_20170508_110422.db\"]}]}";
+//        }
+
+        JSONObject planJson = new JSONObject(planStr);
+        JSONObject resultJson = new JSONObject(resultStr);
+
+        List<Object> report = new ArrayList<Object>();
+        for(int i = 0; i < planJson.getJSONArray("planStr").length(); i++){
+
+            Map<String,Object> scene = new LinkedHashMap<String,Object>();
+
+            String planName = planJson.getJSONArray("planStr").get(i).toString();
+            scene.put("describe",planName); //场景描述
+
+//            List<String> dbnames = new ArrayList<String>();
+            JSONArray jsonArray= (JSONArray) resultJson.getJSONArray("resultStr").get(i);
+            List<String> dbnames=JSONArray.toList(jsonArray,new String(),new JsonConfig());
+
+//            ArrayList dbnames= (ArrayList) resultJson.getJSONArray("resultStr").get(i);
+//            for(int j = 0; j < list.size(); j++) {
+//                String object = jsonObject.getJSONArray("dbs").get(j).toString();
+//                dbnames.add(object);
+//            }
+            scene.put("db",dbnames);
+            Map<String,Object> report1 = performanceReportService.generateReport(dbnames); //该场景的结果
+            scene.putAll(report1);
+            report.add(scene);
+        }
+        map.put("reports",report);
+
+        return (new JSONObject(map));
+    }
 
 }
 

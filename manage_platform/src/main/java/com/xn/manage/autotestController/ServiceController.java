@@ -124,12 +124,17 @@ public class ServiceController {
 		CommonResult result = new CommonResult();
 		try{
 			if(StringUtils.isNotBlank(testServiceDto.getName()) && !"null".equals(testServiceDto.getName())){
+				//判断名称是否重复
+				TestServiceDto exist = testServiceService.getByName(testServiceDto.getName());
+				if(null != exist && testServiceDto.getId() != exist.getId()){
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("服务名称已存在");
+					return  result;
+				}
 				testServiceService.save(testServiceDto);
 			} else {
-				int code = CommonResultEnum.ERROR.getReturnCode();
-				String message ="name不能为空！";
-				result.setCode(code);
-				result.setMessage(message);
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("name不能为空！");
 			}
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();

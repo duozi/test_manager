@@ -376,3 +376,12 @@ label.error
 .modal-dialog {
     display: grid;
 }
+
+.report_table {
+    table-layout:fixed;
+ }
+
+.report_table td{
+    word-wrap:break-word;
+    width:50px;
+}

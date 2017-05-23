@@ -14,8 +14,12 @@ import com.xn.performance.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
+
+import static com.xn.performance.util.BeanToMapUtil.convertBean;
 
 
 /**
@@ -51,6 +55,14 @@ public class PerformanceScenarioServiceImpl implements PerformanceScenarioServic
         List<PerformanceScenario> list = performanceScenarioMapper.list(condition);
         List<PerformanceScenarioDto> dtoList = CollectionUtils.transform(list, PerformanceScenarioDto.class);
         return dtoList;
+    }
+    @Override
+    public PageResult<PerformanceScenarioDto> listByPage(PerformanceScenarioDto condition,PageInfo pageInfo) throws IntrospectionException, InvocationTargetException, IllegalAccessException {
+        Map beanMap=convertBean(condition);
+        beanMap.put("page",pageInfo);
+        List<PerformanceScenario> list = performanceScenarioMapper.listByPage(beanMap);
+        List<PerformanceScenarioDto> dtoList = CollectionUtils.transform(list, PerformanceScenarioDto.class);
+        return PageResult.wrap(pageInfo, dtoList);
     }
 
     @Override

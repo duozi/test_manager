@@ -128,4 +128,6 @@ public interface TestServiceService {
      * @return
      */
     TestServiceDto getWithSystem(Long serviceId);
+
+    TestServiceDto getByName(String name);
 }

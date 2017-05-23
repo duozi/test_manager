@@ -115,4 +115,6 @@ public interface CompanyService {
      * @return 操作影响行数
      */
     int deleteBatch(List<CompanyDto> companys);
+
+    CompanyDto getByName(String name);
 }

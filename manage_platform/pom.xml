@@ -244,6 +244,7 @@
         <dependency>
             <groupId>net.sf.json</groupId>
             <artifactId>json-lib</artifactId>
+            <version>2.2.2-jdk15</version>
             <classifier>jdk15</classifier>
         </dependency>
         <dependency>
@@ -283,6 +284,11 @@
             <version>2.2.1-b03</version>
         </dependency>
         <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
@@ -297,6 +303,20 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
     </dependencies>
     <profiles>

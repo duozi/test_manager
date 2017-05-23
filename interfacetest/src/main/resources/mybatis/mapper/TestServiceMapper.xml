@@ -48,6 +48,16 @@
                 id = #{id} 
         ]]>
     </select>
+
+    <select id="getByName" resultMap="TestServiceMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_service
+            WHERE
+                name = #{name}
+        ]]>
+    </select>
     
     <select id="list" resultMap="TestServiceMap">
         SELECT

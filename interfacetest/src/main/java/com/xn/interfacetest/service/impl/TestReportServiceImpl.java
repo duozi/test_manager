@@ -6,6 +6,8 @@ package com.xn.interfacetest.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +38,7 @@ import com.xn.interfacetest.util.CollectionUtils;
 @Service
 @Transactional
 public class TestReportServiceImpl implements TestReportService {
-
+    private static final Logger logger = LoggerFactory.getLogger(TestReportServiceImpl.class);
     /**
      *  Dao
      */
@@ -142,6 +144,13 @@ public class TestReportServiceImpl implements TestReportService {
         List<TestReport> list = testReportMapper.selectWithOtherInfo(params);
         List<TestReportDto> dtoList = CollectionUtils.transform(list, TestReportDto.class);
         for(TestReportDto testReportDto:dtoList){
+            setReportDetail(testReportDto);
+        }
+        return PageResult.wrap((PageInfo) params.get("page"),dtoList);
+    }
+
+    private void setReportDetail(TestReportDto testReportDto) {
+        try {
             //查询测试计划详情
             TestPlanDto testPlanDto = testPlanService.get(testReportDto.getPlanId());
             if(null != testPlanDto){
@@ -157,8 +166,10 @@ public class TestReportServiceImpl implements TestReportService {
             if(null != testSuitDtoList && testSuitDtoList.size() > 0){
                 testReportDto.setSuitList(testSuitDtoList);
             }
+        }catch (Exception e) {
+            logger.error("查询报告详情异常：" ,e);
         }
-        return PageResult.wrap((PageInfo) params.get("page"),dtoList);
+
     }
 
     @Override

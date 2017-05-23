@@ -15,6 +15,8 @@ import com.xn.interfacetest.Enum.CommonResultEnum;
 import com.xn.interfacetest.Enum.PublishEnum;
 import com.xn.performance.api.PerformanceScriptService;
 import com.xn.performance.dto.PerformanceScriptDto;
+import com.xn.performance.mybatis.PageInfo;
+import com.xn.performance.mybatis.PageResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,12 +26,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.IntrospectionException;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -47,10 +49,11 @@ public class PerformanceScriptController {
     DepartmentService departmentService;
     @Resource
     TestSystemService testSystemService;
-    private ExecutorService threadPool = Executors.newFixedThreadPool(5);
+
+
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo)  {
         List<PerformanceScriptDto> performanceScriptDtoList = null;
         PerformanceScriptDto performanceScriptDto = new PerformanceScriptDto();
         performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
@@ -76,8 +79,21 @@ public class PerformanceScriptController {
         if (isNotEmpty(scriptStatus) && !scriptStatus.equals("null")) {
             performanceScriptDto.setScriptStatus(scriptStatus);
         }
-        performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
-        model.put("script_list", performanceScriptDtoList);
+        PageResult<PerformanceScriptDto> scriptList=null;
+        pageInfo.setPagination(true);
+        pageInfo.setPageSize(15);
+
+        try {
+            scriptList = performanceScriptService.listByPage(performanceScriptDto,pageInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        model.put("script_list", scriptList.getList());
+        model.put("page", scriptList.getPage());
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
         List<DepartmentDto> departmentDtoList = departmentService.list(new DepartmentDto());
         List<TestSystemDto> testSystemDtoList = testSystemService.list(new TestSystemDto());

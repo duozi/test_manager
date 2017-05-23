@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.xn.interfacetest.dto.TestSuitDto;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,12 +58,18 @@ public class ManageController {
 	public CommonResult saveCompany(CompanyDto companyDto) {
 		CommonResult result = new CommonResult();
 		try{
+			//判断名称是否重复
+			CompanyDto exist = companyService.getByName(companyDto.getName());
+			if(null != exist && companyDto.getId() != exist.getId()){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("公司已存在");
+				return  result;
+			}
+
 			companyService.save(companyDto);
 		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message =e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
+			result.setCode( CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
 			logger.error("保存公司异常｛｝",e);
 		}
 		return  result;

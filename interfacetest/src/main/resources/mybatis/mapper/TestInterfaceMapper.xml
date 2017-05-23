@@ -97,6 +97,22 @@
         </where>
     </sql>
 
+    <select id="getByServiceIdAndInterfaceName"  resultMap="TestInterfaceMap">
+        SELECT *
+        FROM
+        test_interface
+        <where>
+            <if test="serviceId != null">
+                service_id = #{serviceId}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+        </where>
+
+    </select>
+
+
     <select id="getParamsByInterfaceId" resultType="String">
         SELECT params
             FROM

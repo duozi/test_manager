@@ -7,6 +7,9 @@ import com.xn.performance.entity.PerformanceScript;
 import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * PerformanceScript Dao 接口
  * 
@@ -15,5 +18,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface PerformanceScriptMapper extends BaseMapper<PerformanceScript, Integer> {
+    List<PerformanceScript> listByPage(Map<String, Object> parameters);
 
 }

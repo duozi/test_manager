@@ -12,7 +12,7 @@
         <module>interfacetest</module>
         <module>common-test</module>
         <module>performance</module>
-        <module>performance_api</module>
+        <module>performance.api</module>
         <module>common-test-api</module>
         <module>interfacetest-api</module>
         <module>authority-manage</module>
@@ -459,6 +459,17 @@
                 <groupId>org.influxdb</groupId>
                 <artifactId>influxdb-java</artifactId>
                 <version>2.5</version>
+            </dependency>
+            <!-- 添加分布插件的包pagehelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20160810</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

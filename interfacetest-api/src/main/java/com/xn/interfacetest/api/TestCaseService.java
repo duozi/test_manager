@@ -178,4 +178,20 @@ public interface TestCaseService {
      * @return
      */
     List<TestCaseDto> getByCaseNum(String number);
+
+    /**
+     * 查询用例信息，以接口排序
+     * @param suitId
+     * @param isDelete
+     * @return
+     */
+    List<TestCaseDto> listBySuitIdOrderByInterfaceId(Long suitId);
+
+    /**
+     * 查询用例信息，以接口排序
+     * @param suitId
+     * @param isDelete
+     * @return
+     */
+    List<TestCaseDto> listAllOrderByInterface();
 }

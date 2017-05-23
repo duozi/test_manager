@@ -9,6 +9,7 @@ import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * PerformanceResult Dao 接口
@@ -22,7 +23,7 @@ public interface PerformanceResultMapper extends BaseMapper<PerformanceResult, I
 
     List<PerformancePlanShow> getScheduleTask(Object condition);
 
-    List<PerformancePlanShow> resultList(Object condition);
+    List<PerformancePlanShow> resultList(Map<String, Object> parameters);
 
     PerformancePlanShow getShow(Object condition);
 

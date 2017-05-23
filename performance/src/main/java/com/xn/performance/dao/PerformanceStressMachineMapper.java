@@ -7,6 +7,9 @@ import com.xn.performance.entity.PerformanceStressMachine;
 import com.xn.performance.mybatis.BaseMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * PerformanceStressMachine Dao 接口
  * 
@@ -15,5 +18,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface PerformanceStressMachineMapper extends BaseMapper<PerformanceStressMachine, Integer> {
+    List<PerformanceStressMachine> listByPage(Map<String, Object> parameters);
 
 }

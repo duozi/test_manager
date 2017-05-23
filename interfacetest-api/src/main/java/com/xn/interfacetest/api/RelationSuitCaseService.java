@@ -124,5 +124,5 @@ public interface RelationSuitCaseService {
      */
     List<TestInterfaceDto> listGroupByInterface(Map<String, Object> paramsMap);
 
-    void saveRelation(Long interfaceId, Long suitId, String caseIds);
+    void saveRelation(Long suitId, String caseIds);
 }

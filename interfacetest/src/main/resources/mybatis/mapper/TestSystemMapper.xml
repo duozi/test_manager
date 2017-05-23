@@ -43,7 +43,17 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByName" resultMap="TestSystemMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_system
+            WHERE
+                name = #{name}
+        ]]>
+    </select>
+
     <select id="listByCompany" resultMap="TestSystemMap">
         SELECT
             ts.*

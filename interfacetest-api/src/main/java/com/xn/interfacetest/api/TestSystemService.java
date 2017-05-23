@@ -132,4 +132,6 @@ public interface TestSystemService {
      * @return
      */
     List<TestSystemDto> getWithCompanyInfoBySystems(String systemIds);
+
+    TestSystemDto getByName(String name);
 }

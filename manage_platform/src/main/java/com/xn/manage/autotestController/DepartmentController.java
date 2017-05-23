@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.xn.common.dto.CompanyDto;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,12 +46,17 @@ public class DepartmentController {
     public CommonResult saveDepartment(DepartmentDto departmentDto) {
         CommonResult result = new CommonResult();
         try{
+            //判断名称是否重复
+            DepartmentDto exist = departmentService.getByNameAndCompanyId(departmentDto.getName(),departmentDto.getCompanyId());
+            if(null != exist && departmentDto.getId() != exist.getId()){
+                result.setCode(CommonResultEnum.ERROR.getReturnCode());
+                result.setMessage("同一个公司下部门名称不能重复");
+                return  result;
+            }
             departmentService.save(departmentDto);
         }catch (Exception e){
-            int code = CommonResultEnum.ERROR.getReturnCode();
-            String message =e.getMessage();
-            result.setCode(code);
-            result.setMessage(message);
+            result.setCode(CommonResultEnum.ERROR.getReturnCode());
+            result.setMessage(e.getMessage());
             logger.error("保存公司异常｛｝",e);
         }
         return  result;
@@ -72,10 +78,8 @@ public class DepartmentController {
         try{
             departmentService.deleteBatchByPK(idList);
         }catch (Exception e){
-            int code = CommonResultEnum.ERROR.getReturnCode();
-            String message = e.getMessage();
-            result.setCode(code);
-            result.setMessage(message);
+            result.setCode(CommonResultEnum.ERROR.getReturnCode());
+            result.setMessage(e.getMessage());
             logger.error("删除操作异常｛｝",e);
             e.printStackTrace();
         }

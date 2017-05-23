@@ -118,4 +118,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         return 0;
     }
 
+    @Override
+    public DepartmentDto getByNameAndCompanyId(String name,Long companyId) {
+        Department department = departmentMapper.getByNameAndCompanyId(name,companyId);
+        DepartmentDto departmentDto = BeanUtils.toBean(department,DepartmentDto.class);
+        return departmentDto;
+    }
+
 }

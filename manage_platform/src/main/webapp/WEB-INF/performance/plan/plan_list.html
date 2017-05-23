@@ -1,3 +1,4 @@
+<#include  "/decorators/common.html" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,7 +128,7 @@
             });
         }
         //        执行弹框根据公司部门系统查询可选压力机，然后弹出弹框
-        function execute( planId, company, department, psystem) {
+        function execute(planId, company, department, psystem) {
             $.post("/performance/plan/plan_list/show_stress_machine", {
                 company: company,
                 department: department,
@@ -158,12 +159,78 @@
                 }
             });
         }
+        function formatDateTime(inputTime) {
+            if (inputTime != null) {
+                var date = new Date(inputTime);
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? ('0' + m) : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                var h = date.getHours();
+                h = h < 10 ? ('0' + h) : h;
+                var minute = date.getMinutes();
+                var second = date.getSeconds();
+                minute = minute < 10 ? ('0' + minute) : minute;
+                second = second < 10 ? ('0' + second) : second;
+                return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+            } else {
+                return "";
+            }
 
+        }
+        ;
+
+        // 根据计划查询执行记录，然后弹出弹框
+        function detail(planId) {
+            $.post("/performance/plan/plan_list/show_plan_detail", {
+                planId: planId
+
+            }, function (data) {
+                if (data.code == 0) {
+                    var result_list = data.data;
+                    var result_detial = "";
+
+                    for (var i = 0; i < result_list.length; i++) {
+                        var datetime = result_list[i].actualStartTime;
+                        var time = formatDateTime(datetime);
+
+
+                        result_detial += "<tr> <td>" + result_list[i].id + "</td> <td>" + result_list[i].stressMachineName + "</td> <td>" + result_list[i].executeStatus + "</td> <td>" + time + " </td> <td>" + result_list[i].executePerson + "</td> <td> <a type='button' name='stop' class='btn btn-warning' "
+                        if (result_list[i].executeStatus == "执行中" || result_list[i].executeStatus == "等待中") {
+                            result_detial += "onclick='stop(" + result_list[i].id + "," + result_list[i].planId + ",\"" + result_list[i].executeStatus + "\")'";
+                        }
+                        else {
+                            result_detial += "disabled";
+                        }
+                        result_detial += ">停止执行</a><a type = 'button' class = 'btn btn-info'";
+                        if (result_list[i].executeStatus == "已执行" || result_list[i].executeStatus == "中断") {
+                            result_detial += "onclick = 'report(" + result_list[i].id + ")'";
+                        } else {
+                            result_detial += "disabled";
+                        }
+                        result_detial += ">测试报告</a></td></tr>";
+
+                    }
+                    $("#result_detail").empty();
+                    $("#result_detail").append(result_detial);
+
+
+                    $("#detail").modal('show')
+                } else if (data.code == 1) {
+                    alert("查询失败");
+                } else if (data.code == 2) {
+                    alert(data.message);
+                }
+
+
+            });
+        }
         function stop(id, planId, executeStatus) {
             $.post("/performance/plan/plan_list/stop", {
                 id: id,
                 planId: planId,
-                executeStatus: executeStatus
+                executeStatus:executeStatus
             }, function (data) {
                 if (data.code == 0) {
                     reload();
@@ -287,12 +354,8 @@
                             <th>系统</th>
                             <th>脚本</th>
                             <th>场景</th>
-                            <th>压力机</th>
                             <th>监控机</th>
-                            <th>执行状态</th>
-                            <th>开始时间</th>
                             <th>创建人</th>
-                            <th>执行</th>
                             <th>操作</th>
 
                         </tr>
@@ -310,39 +373,28 @@
                                     <td>${item.psystem}</td>
                                     <td>${item.scriptName}</td>
                                     <td>${item.scenarioName}</td>
-                                    <td>${item.stressMachineName}</td>
                                     <td>
                                         <#list item.performancePlanMonitoredDtoList as monitored_item>
                                             ${monitored_item.monitoredMachineName}
                                         </#list>
                                     </td>
-                                    <td>${item.executeStatus}</td>
-                                    <td>
-                                        <#if item.actualStartTime ??>
-                                            ${(item.actualStartTime)?datetime}
-                                        </#if>
 
-                                    </td>
                                     <td>${item.createPerson}</td>
-                                    <td><a type="button" name="execute" data-toggle="modal" class="btn btn-default"
-                                           onclick="execute(${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
-                                        <a type="button" name="stop" class="btn btn-warning"
-                                        <#if item.executeStatus=="执行中" || item.executeStatus=="等待中" >
-                                            onclick="stop(${item.id},${item.planId},'${item.executeStatus}')"
-                                            <#else> disabled
-                                        </#if>
-                                        >停止执行</a>
-                                    </td>
+
 
                                     <td>
+                                        <a type="button" name="execute" data-toggle="modal" class="btn btn-default"
+                                           onclick="execute(${item.planId},'${item.company}','${item.department}','${item.psystem}')">执行</a>
+
+
                                         <a type="button" id="deletePlan" class="btn btn-danger"
                                            onclick="deletePlan(${item.planId})">删除计划</a>
                                         <a type="button" class="btn btn-info"
-                                        <#if item.executeStatus=="已执行" || item.executeStatus=="中断">
-                                            onclick="report(${item.id})"
+                                        <#if item.planStatus=="已执行" || item.planStatus=="执行中">
+                                            onclick="detail(${item.planId})"
                                             <#else> disabled
                                         </#if>
-                                        >测试报告</a>
+                                        >执行详情</a>
                                     </td>
                                 </tr>
                                 <!--<option value="${item.id}">${item.name}</option>-->
@@ -350,6 +402,9 @@
                         </#if>
                         </tbody>
                     </table>
+                    <div class="row row-reset">
+                        <@pager pagination=page url="${basePath}/performance/plan/plan_list"/>
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>
@@ -358,6 +413,45 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
+
+
+    <!-- 计划执行详情 -->
+    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="timeListLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 50%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">计划执行列表</h4>
+                </div>
+                <div class="modal-body modal-add" style="min-height: 600px;overflow: scroll;">
+                    <div class="table-responsive col-lg-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>结果ID</th>
+                                <th>压力机</th>
+                                <th>执行状态</th>
+                                <th>开始时间</th>
+                                <th>执行人</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="result_detail">
+
+
+                            <!--<option value="${item.id}">${item.name}</option>-->
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 
     <!-- 执行配置 -->
@@ -539,7 +633,7 @@
                 $("select[name='scriptName']").empty();
                 $("select[name='scriptName']").append(script_choose);
 
-                var scenario_choose = "<option disabled selected>请选择场景</option>";
+                var scenario_choose = "<option disabled selected>请选择场景</option> <option value='0'>不修改场景</option>";
                 for (var i = 0; i < scenario_list.length; i++) {
                     scenario_choose += "<option value='" + scenario_list[i].id + "'>" + scenario_list[i].scenarioName + "</option>";
                 }

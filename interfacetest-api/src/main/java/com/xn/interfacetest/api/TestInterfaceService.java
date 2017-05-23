@@ -168,4 +168,6 @@ public interface TestInterfaceService {
 
     //通过测试集查询所有的接口信息
     List<TestInterfaceDto> listAllBySuitList(List<TestSuitDto> testSuitDtoList);
+
+    TestInterfaceDto getByServiceIdAndInterfaceName(Long serviceId, String name);
 }

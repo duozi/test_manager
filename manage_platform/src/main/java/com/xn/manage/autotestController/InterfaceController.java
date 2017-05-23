@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
 import com.xn.interfacetest.Enum.*;
+import com.xn.interfacetest.Enum.ContentTypeEnum;
 import com.xn.interfacetest.dto.*;
+import com.xn.manage.Enum.*;
 import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -106,6 +108,7 @@ public class InterfaceController {
 		map.put("redisOperationTypeEnumList",redisOperationTypeEnumList);
 		map.put("testRedisConfigDtoList", testRedisConfigDtoList);
 		map.put("databaseConfigDtoList", databaseConfigDtoList);
+		map.put("contentTypeList", ContentTypeEnum.values());
 
 		//接口类型--http，dubbo
 		List<InterfaceTypeEnum> interfaceTypeEnumList=new ArrayList<InterfaceTypeEnum>();
@@ -202,6 +205,23 @@ public class InterfaceController {
 				result.setMessage("请填写接口名称");
 				return result;
 			}
+
+			if(testInterfaceDto.getType() == InterfaceTypeEnum.HTTP.getId()){
+				if(StringUtils.isBlank(testInterfaceDto.getContentType()) || "null".equals(testInterfaceDto.getContentType())){
+					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+					result.setMessage("请填写ContentType名称");
+					return result;
+				}
+			}
+
+			//校验接口名称唯一，同一个服务的接口名称不能重复
+			TestInterfaceDto exist = testInterfaceService.getByServiceIdAndInterfaceName(testInterfaceDto.getServiceId(),testInterfaceDto.getName());
+			if(null != exist && exist.getId() != testInterfaceDto.getId()){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("同一个服务的接口名称不能重复");
+				return result;
+			}
+
 			testInterfaceDto = testInterfaceService.save(testInterfaceDto);
 			result.setData(testInterfaceDto);
 		}catch (Exception e){

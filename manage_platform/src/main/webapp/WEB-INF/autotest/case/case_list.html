@@ -174,6 +174,7 @@
                         <tr>
                             <th>用例编号</th>
                             <th>用例名称</th>
+                            <th>用例描述</th>
                             <th>接口</th>
                             <th>用例类型</th>
                             <th>创建人</th>
@@ -186,6 +187,7 @@
                                 <tr>
                                     <td>${item.number}</td>
                                     <td>${item.name}</td>
+                                    <td>${item.description}</td>
                                     <td>${item.interfaceDto.name}</td>
                                     <td>
                                         <#if caseTypes??>
@@ -279,7 +281,7 @@
             <input type="hidden" name="planId" value="">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="importCasesLabel">上传用例Excel文件</h4>
+                <h4 class="modal-title" id="importCasesLabel">上传用例Excel文件（开发中……）</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -288,7 +290,6 @@
                         <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
                         <input type="hidden" name="jarPath" value="" placeholder="">
                         <file href=""></file><a href="" style="width: 40%;top: 2em;margin-top: 0.5em;">点击此处下载用例模板</a>
-
                     </div>
                 </form>
 

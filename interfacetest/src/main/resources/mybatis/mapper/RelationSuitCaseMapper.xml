@@ -76,6 +76,13 @@
         group by interface_id
     </select>
 
+    <select id="getBySuitId" resultMap="RelationSuitCaseMap">
+        SELECT *
+        FROM
+        relation_suit_case
+        WHERE suit_id = #{suitId}
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT
@@ -151,13 +158,17 @@
     </delete>
 
     <delete id="deleteByInterfaceAndSuit">
-        <![CDATA[
             DELETE
             FROM
                 relation_suit_case
-            WHERE
-                interface_id = #{interfaceId} and suit_id = #{suitId}
-        ]]>
+            <where>
+               <if test="@Ognl@isNotEmpty(suitId)">
+                    AND suit_id = #{suitId}
+                </if>
+               <if test="@Ognl@isNotEmpty(interfaceId)">
+                    AND  interface_id = #{interfaceId}
+                </if>
+            </where>
     </delete>
 
     <delete id="delete">

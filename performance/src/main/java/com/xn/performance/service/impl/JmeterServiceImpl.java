@@ -24,9 +24,7 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.*;
 
 import static com.xn.performance.service.impl.SpringTask.*;
 import static com.xn.performance.util.DateUtil.lastSecond;
@@ -41,7 +39,7 @@ public class JmeterServiceImpl implements JmeterService {
     private static final Logger logger = LoggerFactory.getLogger(JmeterServiceImpl.class);
     public static ConcurrentMap<Integer, XNJmeterStartRemot> RUNNING_MAP = new ConcurrentHashMap<Integer, XNJmeterStartRemot>();
     public static ConcurrentMap<Integer, Scheduler> SCHEDULE_JOB_MAP = new ConcurrentHashMap<>();
-
+    public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     @Autowired
     PerformanceResultServiceImpl performanceResultService;
 
@@ -90,7 +88,6 @@ public class JmeterServiceImpl implements JmeterService {
             resultPath = xnJmeterStartRemot.rstart_csv(stressMachineIp, ip, jmeterScriptPath);
 
 
-
             return resultPath;
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,6 +107,11 @@ public class JmeterServiceImpl implements JmeterService {
             if (executeType.equals("now")) {
                 addToNowQueue(performancePlanShowDto);
 //                executeOnce(performancePlanShowDto);
+
+                //压力机空闲的时候，取消等待一分钟
+                Integer stressMachineId = performancePlanShowDto.getStressMachineId();
+                Integer resultId = performancePlanShowDto.getId();
+                doJobAsStressMachineId(stressMachineId, resultId);
             }
             //定时执行
             else {
@@ -162,7 +164,7 @@ public class JmeterServiceImpl implements JmeterService {
             //更新压力机的状态
             performanceResultDto = performanceResultService.get(performanceResultDto);
             Integer stressMachineId = performanceResultDto.getStressMachineId();
-            Date actualStartTime= performanceResultDto.getActualStartTime();
+            Date actualStartTime = performanceResultDto.getActualStartTime();
             PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
             performanceStressMachineDto.setId(stressMachineId);
             performanceStressMachineDto.setStressMachineStatus("未执行");
@@ -171,13 +173,13 @@ public class JmeterServiceImpl implements JmeterService {
 
             Date actualEndTime = new Date();
             performanceResultDto.setActualEndTime(actualEndTime);
-            String resultPath= getProperty("reports")+id;
+            String resultPath = getProperty("reports") + id;
             performanceResultDto.setResultPath(resultPath);
             performanceResultService.update(performanceResultDto);
             Integer executeTime = lastSecond(actualStartTime, actualEndTime);
             //时序数据保存到本地
-            influxdb_to_sqlite3("telegraf",executeTime,id);
-            influxdb_to_sqlite3("jmeter",executeTime,id);
+            influxdb_to_sqlite3("telegraf", executeTime, id);
+            influxdb_to_sqlite3("jmeter", executeTime, id);
 
             //更新压力机map
             STRESS_MACHINE_STATUS.put(stressMachineId, 0);
@@ -231,10 +233,9 @@ public class JmeterServiceImpl implements JmeterService {
             PERFORMANCE_NOW_MAP.put(stressMachineId, queue);
 
         }
-
-
     }
 
+    //废弃了
     public void addToScheduleQueue(List<PerformancePlanShowDto> list) {
         for (PerformancePlanShowDto performancePlanShowDto : list) {
             String status = performancePlanShowDto.getExecuteStatus();
@@ -249,7 +250,7 @@ public class JmeterServiceImpl implements JmeterService {
         }
     }
 
-
+    //废弃了
     public void addToScheduleQueue(PerformancePlanShowDto performancePlanShowDto) {
         Integer stressMachineId = performancePlanShowDto.getStressMachineId();
         if (PERFORMANCE_SCHEDULE_MAP.containsKey(stressMachineId)) {
@@ -303,17 +304,6 @@ public class JmeterServiceImpl implements JmeterService {
             performanceScriptDto.setScriptStatus("已发布");
             performanceScriptService.update(performanceScriptDto);
         }
-        //获得场景，为了更新状态
-        Integer scenarioId = performancePlanShowDto.getScenarioId();
-        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
-        performanceScenarioDto.setId(scenarioId);
-
-        performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
-        String scenarioStatus = performanceScenarioDto.getScenarioStatus();
-        if (scenarioStatus.equals("未发布")) {
-            performanceScenarioDto.setScenarioStatus("已发布");
-            performanceScenarioService.update(performanceScenarioDto);
-        }
 
 
         //更新压力机的状态为执行中
@@ -327,7 +317,20 @@ public class JmeterServiceImpl implements JmeterService {
         String stressMachineIp = performanceStressMachineDto.getIp();
         //获得结果的id用来标识jemeter脚本
 
+        //获得场景，为了更新状态
+        Integer scenarioId = performancePlanShowDto.getScenarioId();
+        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+        performanceScenarioDto.setId(scenarioId);
+        if (scenarioId != 0) {
 
+
+            performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+            String scenarioStatus = performanceScenarioDto.getScenarioStatus();
+            if (scenarioStatus.equals("未发布")) {
+                performanceScenarioDto.setScenarioStatus("已发布");
+                performanceScenarioService.update(performanceScenarioDto);
+            }
+        }
         String jmeterScriptPath = generateJmeterScript(scriptPath, performanceScenarioDto, id);
 
         logger.info(Thread.currentThread().getName() + "==========jmeterScriptPath:" + jmeterScriptPath);
@@ -336,7 +339,7 @@ public class JmeterServiceImpl implements JmeterService {
 
         String resultPath = null;
         try {
-            resultPath = execute(stressMachineIp, jmeterScriptPath, dependenceFile, scriptId,id);
+            resultPath = execute(stressMachineIp, jmeterScriptPath, dependenceFile, scriptId, id);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info(new Date() + Thread.currentThread().getName() + "结束了===========" + id);
@@ -350,9 +353,18 @@ public class JmeterServiceImpl implements JmeterService {
             //更新压力机
             performanceStressMachineDto.setStressMachineStatus("未执行");
             performanceStressMachineService.update(performanceStressMachineDto);
-
+            //更新计划，如果是第一次执行的计划，但是失败了，就还原为未执行，这样还可以修改
+            PerformancePlanDto performancePlanDto2 = new PerformancePlanDto();
+            performancePlanDto2.setId(performancePlanShowDto.getPlanId());
+            performancePlanDto2 = performancePlanService.get(performancePlanDto);
+            planStatus = performancePlanDto2.getPlanStatus();
+            if (planStatus.equals("执行中")) {
+                performancePlanDto2.setPlanStatus("未执行");
+                performancePlanService.update(performancePlanDto2);
+            }
             //更新压力机map
             STRESS_MACHINE_STATUS.put(stressMachineId, 0);
+
             return;
 
         }
@@ -371,8 +383,8 @@ public class JmeterServiceImpl implements JmeterService {
             performanceResultDto.setActualEndTime(actualEndTime);
             Integer executeTime = lastSecond(actualStartTime, actualEndTime);
             //时序数据保存到本地
-            influxdb_to_sqlite3("telegraf",executeTime,id);
-            influxdb_to_sqlite3("jmeter",executeTime,id);
+            influxdb_to_sqlite3("telegraf", executeTime, id);
+            influxdb_to_sqlite3("jmeter", executeTime, id);
             performanceResultDto.setExecuteTime(executeTime);
 
             performanceResultDto.setExecuteStatus("已执行");
@@ -391,13 +403,68 @@ public class JmeterServiceImpl implements JmeterService {
 
     }
 
+
+    public void doJob() {
+        logger.info(new Date() + Thread.currentThread().getName() + "============execute schedule task");
+        for (Integer stressMachineId : PERFORMANCE_NOW_MAP.keySet()) {
+            doJobAsStressMachineId(stressMachineId,null);
+        }
+    }
+
+
+    public void doJobAsStressMachineId(Integer stressMachineId, Integer id) {
+        ConcurrentLinkedQueue queue = PERFORMANCE_NOW_MAP.get(stressMachineId);
+        final Integer resultId = (Integer) queue.peek();
+        if (queue.isEmpty()) {
+            PERFORMANCE_NOW_MAP.remove(stressMachineId);
+        }
+        //id==null 为了给所有的立即执行的任务使用， id != null && id == resultId给节省一分钟使用，就是对特定的压力机而言，下次要执行的任务正好就是当前的任务
+        if (id == null || (id != null && id == resultId)) {
+            Integer nextTask = STRESS_MACHINE_WAITING_MAP.get(stressMachineId);
+            if (resultId != null) {
+                if (nextTask == null || nextTask == 1) {
+                    Integer stressMachineStatus = STRESS_MACHINE_STATUS.get(stressMachineId);
+
+                    if ((stressMachineStatus == null || stressMachineStatus == 0)) {
+
+                        STRESS_MACHINE_STATUS.put(stressMachineId, 1);
+                        //移除当前需要执行的任务
+                        queue.poll();
+
+                        threadPool.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                logger.info(new Date() + Thread.currentThread().getName() + "执行任务============ resultId:" + resultId);
+                                PerformanceResultDto performanceResultDto = new PerformanceResultDto(resultId);
+                                PerformancePlanShowDto performancePlanShowDto = performanceResultService.getShow(performanceResultDto);
+                                executeOnce(performancePlanShowDto);
+                            }
+                        });
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
     public String generateJmeterScript(String scriptPath, PerformanceScenarioDto performanceScenarioDto, Integer id) {
 
         logger.info(Thread.currentThread().getName() + "=============generateJmeterScript " + " id:" + id + " scriptPath:" + scriptPath + " performanceScenarioDto:" + performanceScenarioDto.toString());
         String jmeterScriptPath = "";
+        File script = new File(scriptPath);
+        //上传脚本名称
+        String fileName = script.getName();
+        //除名称之外的路径
+        String path = scriptPath.split(fileName)[0];
+        //jmeter脚本的名称
+        String jmeterScriptFileName = "jmeter_script_" + id + "_" + fileName;
+        jmeterScriptPath = path + jmeterScriptFileName;
+        Integer scenarioId = performanceScenarioDto.getId();
+
         try {
 
-            File script = new File(scriptPath);
             SAXReader saxReader = new SAXReader();
 
             //读取脚本
@@ -408,93 +475,91 @@ public class JmeterServiceImpl implements JmeterService {
             } catch (DocumentException e) {
                 e.printStackTrace();
             }
+            //不修该场景
+            if (scenarioId != 0) {
 
+                Element scenario = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup");
+                // 获取所有子元素
+                List<Element> list = scenario.elements();
+                for (Element element : list) {
+                    String name = element.attribute("name").getValue();
+                    //线程数
+                    if (name.equals("ThreadGroup.num_threads")) {
+                        element.setText(String.valueOf(performanceScenarioDto.getConcurrency()));
+                    }
+                    //所有线程在多少时间内启动完毕
+                    else if (name.equals("ThreadGroup.ramp_time")) {
 
-            Element scenario = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup");
-            // 获取所有子元素
-            List<Element> list = scenario.elements();
-            for (Element element : list) {
-                String name = element.attribute("name").getValue();
-                //线程数
-                if (name.equals("ThreadGroup.num_threads")) {
-                    element.setText(String.valueOf(performanceScenarioDto.getConcurrency()));
-                }
-                //所有线程在多少时间内启动完毕
-                else if (name.equals("ThreadGroup.ramp_time")) {
-
-                    element.setText(String.valueOf(performanceScenarioDto.getStartup()));
-                }
-
-                //是否调用执行器
-                else if (name.equals("ThreadGroup.scheduler")) {
-                    String scheduler = String.valueOf(performanceScenarioDto.getScheduler());
-                    element.setText(scheduler);
-                }
-
-                //开始时间
-                else if (name.equals("ThreadGroup.start_time")) {
-                    Date startTime = performanceScenarioDto.getSetStartTime();
-                    if (startTime != null) {
-                        String setStartTime = String.valueOf(startTime.getTime());
-                        element.setText(setStartTime);
+                        element.setText(String.valueOf(performanceScenarioDto.getStartup()));
                     }
 
-                }
-                //结束时间
-                else if (name.equals("ThreadGroup.end_time")) {
-                    Date endTime = performanceScenarioDto.getSetEndTime();
-                    if (endTime != null) {
-                        String setEndTime = String.valueOf(endTime.getTime());
-                        element.setText(setEndTime);
+                    //是否调用执行器
+                    else if (name.equals("ThreadGroup.scheduler")) {
+                        String scheduler = String.valueOf(performanceScenarioDto.getScheduler());
+                        element.setText(scheduler);
                     }
 
-                }
-                //持续时间
-                else if (name.equals("ThreadGroup.duration")) {
-                    String executeTime = String.valueOf(performanceScenarioDto.getExecuteTime());
-                    if (!executeTime.equals("null")) {
-                        element.setText(executeTime);
+                    //开始时间
+                    else if (name.equals("ThreadGroup.start_time")) {
+                        Date startTime = performanceScenarioDto.getSetStartTime();
+                        if (startTime != null) {
+                            String setStartTime = String.valueOf(startTime.getTime());
+                            element.setText(setStartTime);
+                        }
+
+                    }
+                    //结束时间
+                    else if (name.equals("ThreadGroup.end_time")) {
+                        Date endTime = performanceScenarioDto.getSetEndTime();
+                        if (endTime != null) {
+                            String setEndTime = String.valueOf(endTime.getTime());
+                            element.setText(setEndTime);
+                        }
+
+                    }
+                    //持续时间
+                    else if (name.equals("ThreadGroup.duration")) {
+                        String executeTime = String.valueOf(performanceScenarioDto.getExecuteTime());
+                        if (!executeTime.equals("null")) {
+                            element.setText(executeTime);
+                        }
+
+                    }
+                    //延迟时间
+                    else if (name.equals("ThreadGroup.delay")) {
+                        String delayTime = String.valueOf(performanceScenarioDto.getDelayTime());
+                        if (!delayTime.equals("null")) {
+                            element.setText(delayTime);
+                        }
+
                     }
 
+
                 }
-                //延迟时间
-                else if (name.equals("ThreadGroup.delay")) {
-                    String delayTime = String.valueOf(performanceScenarioDto.getDelayTime());
-                    if (!delayTime.equals("null")) {
-                        element.setText(delayTime);
+
+                //循环数
+                String cycleString = String.valueOf(performanceScenarioDto.getCycle());
+                if (!cycleString.equals("null")) {
+                    Element cycle = null;
+                    try {
+                        cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/stringProp");
+                    } catch (Exception e) {
+                        cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
                     }
-
+                    cycle.setText(cycleString);
                 }
-
-
-            }
-
-            //循环数
-            String cycleString = String.valueOf(performanceScenarioDto.getCycle());
-            if (!cycleString.equals("null")) {
-                Element cycle = null;
-                try {
-                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/stringProp");
-                } catch (Exception e) {
-                    cycle = (Element) document.selectSingleNode("jmeterTestPlan/hashTree/hashTree/ThreadGroup/elementProp/intProp");
-                }
-                cycle.setText(cycleString);
             }
             // 输出格式
             OutputFormat outformat = new OutputFormat();
             // 指定XML编码
             outformat.setEncoding("UTF-8");
-            outformat.setNewlines(true);
-            outformat.setIndent(true);
-            outformat.setTrimText(true);
 
-            //上传脚本名称
-            String fileName = script.getName();
-            //除名称之外的路径
-            String path = scriptPath.split(fileName)[0];
-            //jmeter脚本的名称
-            String jmeterScriptFileName = "jmeter_script_" + id + "_" + fileName;
-            jmeterScriptPath = path + jmeterScriptFileName;
+            outformat.setNewLineAfterDeclaration(false);
+            outformat.setNewlines(false);
+
+            outformat.setIndent(true);
+            //不替换文件中的空行和空格
+            outformat.setTrimText(false);
 
             OutputStream out = new FileOutputStream(jmeterScriptPath);
             XMLWriter xmlwriter = new XMLWriter(out, outformat);
@@ -508,8 +573,16 @@ public class JmeterServiceImpl implements JmeterService {
         } finally {
             return jmeterScriptPath;
         }
-
     }
 
+    public static void main(String[] args) {
+        JmeterServiceImpl jmeterService = new JmeterServiceImpl();
+        PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
+        performanceScenarioDto.setCycle(1);
+        performanceScenarioDto.setScheduler("false");
+        performanceScenarioDto.setStartup(5);
+        performanceScenarioDto.setConcurrency(5);
+        jmeterService.generateJmeterScript("D:\\origin.jmx", performanceScenarioDto, 5);
+    }
 
 }

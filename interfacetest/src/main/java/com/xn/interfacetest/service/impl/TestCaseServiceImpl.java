@@ -17,6 +17,7 @@ import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
+import com.xn.interfacetest.singleton.InitThreadPool;
 import com.xn.interfacetest.util.CollectionUtils;
 import com.xn.interfacetest.util.DBUtil;
 import com.xn.interfacetest.util.JarUtil;
@@ -43,8 +44,6 @@ import java.util.concurrent.Executors;
 @Transactional
 public class TestCaseServiceImpl implements TestCaseService {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
-    //创建一个线程池
-    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     private static final String STRING_NAME = "java.lang.String";
 
@@ -233,6 +232,7 @@ public class TestCaseServiceImpl implements TestCaseService {
         //复制基础信息
        TestCase testCase = this.copyBaseInfo(caseId,(String) params.get("caseNum"));
 
+        //被选择了要复制的部门的标志才会置为1
         testCase.setParamsAssert(0);
         logger.info("是否复制响应参数的断言" + params.get("dataAssert"));
         if("1".equals(params.get("dataAssert"))&& testCase.getParamsAssert() == 1){
@@ -269,6 +269,32 @@ public class TestCaseServiceImpl implements TestCaseService {
     public List<TestCaseDto> getByCaseNum(String number) {
         List<TestCase> testCaseList = testCaseMapper.getByCaseNum(number);
         List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        return dtoList;
+    }
+
+    @Override
+    public List<TestCaseDto> listBySuitIdOrderByInterfaceId(Long suitId) {
+        List<TestCase> testCaseList = testCaseMapper.listBySuitIdOrderByInterfaceId( suitId);
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        if(null != dtoList && dtoList.size() > 0){
+            for(TestCaseDto caseDto: dtoList){
+                //查询接口信息
+                caseDto.setInterfaceDto(testInterfaceService.get(caseDto.getInterfaceId()));
+            }
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<TestCaseDto> listAllOrderByInterface() {
+        List<TestCase> testCaseList = testCaseMapper.listAllOrderByInterface();
+        List<TestCaseDto> dtoList = CollectionUtils.transform(testCaseList, TestCaseDto.class);
+        if(null != dtoList && dtoList.size() > 0){
+            for(TestCaseDto caseDto: dtoList){
+                //查询接口信息
+                caseDto.setInterfaceDto(testInterfaceService.get(caseDto.getInterfaceId()));
+            }
+        }
         return dtoList;
     }
 
@@ -367,6 +393,8 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
         logger.info("==========线程池执行测试用例========");
+        //创建一个线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);;
         //遍历执行测试用例
         for(int i = 0; i < testCaseDtoList.size(); i++){
             final int finalI = i;
@@ -383,6 +411,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 }
             });
         }
+
+
 
         try {
             logger.info("sleep-----"+1000);
