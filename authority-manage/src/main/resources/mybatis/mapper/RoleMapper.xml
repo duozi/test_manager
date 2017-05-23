@@ -73,7 +73,32 @@
             <include refid="columns" />
         FROM
             sys_role 
-        <include refid="where"/>
+        <where>
+            <if test="@Ognl@isNotEmpty(id)">
+                AND id = #{id}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="@Ognl@isNotEmpty(status)">
+                AND status = #{status}
+            </if>
+            <if test="@Ognl@isNotEmpty(remark)">
+                AND remark = like CONCAT('%',#{remark},'%')
+            </if>
+            <if test="@Ognl@isNotEmpty(createTimeBegin)">
+                AND create_time >= #{createTimeBegin}
+            </if>
+            <if test="@Ognl@isNotEmpty(createTimeEnd)">
+                AND create_time &lt;= #{createTimeEnd}
+            </if>
+            <if test="@Ognl@isNotEmpty(updateTimeBegin)">
+                AND update_time >= #{updateTimeBegin}
+            </if>
+            <if test="@Ognl@isNotEmpty(updateTimeEnd)">
+                AND update_time &lt;= #{updateTimeEnd}
+            </if>
+        </where>
         ORDER BY create_time DESC
     </select>
         

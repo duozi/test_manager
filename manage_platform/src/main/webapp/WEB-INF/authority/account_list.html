@@ -37,11 +37,11 @@
                             <input placeholder="请输入账号" class="form-control" name="account" <#if account??>value="${account}"</#if>/>
                         </div>
                         <div class="form-group col-lg-2">
-                            <input placeholder="请输入角色名称" class="form-control" name="roleName" <#if roleName??>value="${roleName}"</#if>/>
+                            <input placeholder="请输入角色名称" class="form-control" name="roleName" <#if name??>value="${name}"</#if>/>
                         </div>
                         <div class="form-group col-lg-3">
                             <a type="submit" class="btn btn-default" onclick="reloadData()">查询</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#createAccount"><i class=" fa-plus-circle fa"></i>新增账号</a>
+                            <a class="btn btn-outline btn-success" data-toggle="modal" data-target="#createAccount" onclick="clearAccountData();"><i class=" fa-plus-circle fa"></i>新增账号</a>
                         </div>
                     </div>
                 </form>
@@ -87,122 +87,142 @@
     <!-- /.col-lg-12 -->
 
     <!-- 创建账号 -->
-    <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >创建账号</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="addAccountform" method="post">
-                        <div class="form-group col-lg-11">
-                            <span>登录账号:</span>
-                            <input type="text" class="form-control"  name = "account" value=""/>
+    <div class="modal fade" id="createAccount" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <form role="form " class="col-lg-12 edit-form" id="addAccountform">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" >创建账号</h4>
+                    </div>
+
+                    <div class="modal-body modal-add-service">
+
+                        <div class="col-lg-10 form-div">
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >登录账号：</label>
+                                <input type="text" class="form-control"  name = "account" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >登录密码:</label>
+                                <input type="password" class="form-control" id="fPassword" name = "fPassword" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >确认密码：</label>
+                                <input type="password" class="form-control"  name = "password" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >分配角色:</label>
+                                <select class="form-control" name="role">
+                                    <option value=""  >选择角色</option>
+                                    <#if allroles ??>
+                                        <#list allroles as item>
+                                            <option value="${item.getId()}" >${item.getName()}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-11">
-                            <span>登录密码:</span>
-                            <input type="password" class="form-control" id="fPassword" name = "fPassword" value=""/>
-                        </div>
-                        <div class="form-group col-lg-11">
-                            <span>确认密码:</span>
-                            <input type="password" class="form-control"  name = "password" value=""/>
-                        </div>
-                        <div class="form-group col-lg-11">
-                            <span>分配角色:</span>
-                            <select class="form-control" name="role">
-                                <option value=""  >选择角色</option>
-                                <#if allroles ??>
-                                    <#list allroles as item>
-                                        <option value="${item.getId()}" >${item.getName()}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
-                    </form>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary"  onclick="$('#addAccountform').submit();">保存</button>
+                        <button type="submit" class="btn btn-primary" onclick="$('#addAccountform').submit();">保存</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
+
                 </div>
-            </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
 
     <!-- 修改密码 -->
-    <div class="modal fade" id="modifyPassword" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >修改密码</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="addRoleform" method="post">
-                        <input type="hidden" id="id" name="id" value="">
-                        <div class="form-group col-lg-11">
-                            <span>登录账号</span>
-                            <input type="text" class="form-control" readonly="readonly" name = "account" value="">
+    <div class="modal fade" id="modifyPassword" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <form role="form " class="col-lg-12 edit-form" id="addRoleform">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" >修改密码</h4>
+                    </div>
+
+                    <div class="modal-body modal-add-department">
+
+                        <div class="col-lg-10 form-div">
+                            <input type="hidden" id="id" name="id" value="">
+                            <div class="form-group">
+                                <label class="control-label" >登录账号：</label>
+                                <input type="text" class="form-control" readonly="readonly" name = "account" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >新密码：</label>
+                                <input type="password" class="form-control" id="newPassword" name = "newPassword" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >确认密码：</label>
+                                <input type="password" class="form-control" id="password" name = "password" value="">
+                            </div>
                         </div>
-                        <div class="form-group col-lg-11">
-                            <span>新密码</span>
-                            <input type="password" class="form-control" id="newPassword" name = "newPassword" value="">
-                        </div>
-                        <div class="form-group col-lg-11">
-                            <span>确认密码</span>
-                            <input type="password" class="form-control" id="password" name = "password" value="">
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="$('#addRoleform').submit();">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id = "" onclick="$('#addRoleform').submit();">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
 
     <!-- 修改角色 -->
-    <div class="modal fade" id="modifyRole" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" >修改角色</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="modifyRoleform" method="post">
-                        <input type="hidden" id="userId" name="userId" value="">
-                        <div class="form-group  col-lg-11">
-                            <span>登录账号</span>
-                            <input type="text" class="form-control" readonly="readonly" name = "account" value="">
+    <div class="modal fade" id="modifyRole" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <form role="form " class="col-lg-12 edit-form" id="modifyRoleform">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" >修改角色</h4>
+                    </div>
+
+                    <div class="modal-body modal-add-company">
+
+                        <div class="col-lg-10 form-div">
+                            <input type="hidden" id="userId" name="userId" value="">
+                            <div class="form-group">
+                                <label class="control-label" >登录账号：</label>
+                                <input type="text" class="form-control" readonly="readonly" name = "account" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" >分配角色：</label>
+                                <select class="form-control"  name="role">
+                                    <option value=""  >选择角色</option>
+                                    <#if allroles ??>
+                                        <#list allroles as item>
+                                            <option value="${item.getId()}">${item.getName()}</option>
+                                        </#list>
+                                    </#if>
+                                </select>
+                            </div>
+
                         </div>
-                        <div class="form-group col-lg-11">
-                            <span>分配角色:</span>
-                            <select class="form-control" name="role">
-                                <option value=""  >选择角色</option>
-                                <#if allroles ??>
-                                    <#list allroles as item>
-                                        <option value="${item.getId()}">${item.getName()}</option>
-                                    </#list>
-                                </#if>
-                            </select>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="$('#modifyRoleform').submit();">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"  onclick="$('#modifyRoleform').submit();">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
+            </form>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
+
 </div>
 <!-- /.row -->
 <script  type="text/javascript">
@@ -224,6 +244,12 @@
 
         window.location.href = url;
     }
+    function clearAccountData() {
+        $('#addAccountform')[0].reset();
+        $(".popover").remove();
+        //$('#addAccountform').find("label").remove();
+    }
+
     //删除账号
     function deleteAccount(id){
         $.MsgBox.Confirm("删除提示","确定要删除该用户吗",function(){
@@ -312,6 +338,25 @@
                         $.MsgBox.Alert("提示",result.message);
                     }
                 });
+            },
+            focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+            errorElement : "span",
+            errorClass : "error_info",
+            showErrors: function(errorMap, errorList) {
+                $.each(this.successList, function(index, value) {
+                    return $(value).popover("hide");
+                });
+                return $.each(errorList, function(index, value) {
+                    var _popover;
+                    _popover = $(value.element).popover({
+                        trigger: "manual",
+                        placement: "top",
+                        content: value.message,
+                        template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                    });
+                    _popover.data("bs.popover").options.content = value.message;
+                    return _popover.popover("show");
+                });
             }
         });
     }
@@ -366,7 +411,26 @@
                         alert(eval("(" + result + ")").message);
                     }
                 });
-            }
+            },
+             focusInvalid : true,   //验证提示时，鼠标光标指向提示的input
+             errorElement : "span",
+             errorClass : "error_info",
+             showErrors: function(errorMap, errorList) {
+                 $.each(this.successList, function(index, value) {
+                     return $(value).popover("hide");
+                 });
+                 return $.each(errorList, function(index, value) {
+                     var _popover;
+                     _popover = $(value.element).popover({
+                         trigger: "manual",
+                         placement: "top",
+                         content: value.message,
+                         template: "<div class=\"popover\"> <div class=\"arrow\"></div> <div class=\"popover-inner\"> <div class=\"popover-content\"><p></p></div> </div></div>"
+                     });
+                     _popover.data("bs.popover").options.content = value.message;
+                     return _popover.popover("show");
+                 });
+             }
         });
     }
 
@@ -411,8 +475,11 @@
     }
 
     function setUserId(id,account) {
+        $('#addRoleform')[0].reset();
         $("#addRoleform input[name='id']").val(id);
         $("#addRoleform input[name='account']").val(account);
+        $(".popover").remove();
+
     }
 
     function setModifyUser(id,account) {
