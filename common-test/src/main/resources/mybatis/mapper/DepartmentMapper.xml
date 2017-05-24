@@ -40,13 +40,13 @@
         ]]>
     </select>
 
-    <select id="getByName" resultMap="DepartmentMap">
+    <select id="getByNameAndCompanyId" resultMap="DepartmentMap">
         SELECT <include refid="columns" />
         <![CDATA[
             FROM
                 department
             WHERE
-                name = #{name}
+                name = #{name} and  company_id = #{companyId}
         ]]>
     </select>
 

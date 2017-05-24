@@ -119,8 +119,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DepartmentDto getByName(String name) {
-        Department department = departmentMapper.getByName(name);
+    public DepartmentDto getByNameAndCompanyId(String name,Long companyId) {
+        Department department = departmentMapper.getByNameAndCompanyId(name,companyId);
         DepartmentDto departmentDto = BeanUtils.toBean(department,DepartmentDto.class);
         return departmentDto;
     }

@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" >保存</button>
+                            <a type="submit" class="btn btn-primary" onclick="saveCompany();">保存</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -133,7 +133,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">保存</button>
+                            <a type="submit" class="btn btn-primary" onclick="saveDepartment()">保存</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
                     </form>
@@ -175,28 +175,26 @@
     }
 
     //ajax提交form表单的方式
-    $('#add-company').submit(function() {
-                var AjaxURL= "${basePath}/autotest/manage/saveCompany";
-                $.ajax({
-                    type: "POST",
-                    dataType: "html",
-                    url: AjaxURL,
-                    data: $('#add-company').serialize(),
-                    success: function (result) {
-                        data = eval("(" + result + ")");
-                        if (data.code == 0) {
-                            $("#addCompany").modal("hide");
-                            window.location.href="${basePath}/autotest/manage/company_manage";
-                        } else {
-                            $.MsgBox.Alert("保存失败："+data.message);
-                        }
-                    },
-                    error: function(result) {
-                        $.MsgBox.Alert(eval("(" + result + ")").message);
-                    }
-                });
+    function saveCompany() {
+        var AjaxURL= "${basePath}/autotest/manage/saveCompany";
+        $.ajax({
+            type: "POST",
+            url: AjaxURL,
+            data: $('#add-company').serialize(),
+            success: function (result) {
+                if (result.code == 0) {
+                    $("#addCompany").modal("hide");
+                    window.location.href="${basePath}/autotest/manage/company_manage";
+                } else {
+                    alert("保存失败："+result.message);
+                }
+            },
+            error: function(result) {
+                alert(result.message);
             }
-    );
+        });
+    }
+
 
     function deleteCompany(){
         $.MsgBox.Confirm("删除提示", "确定要删除该部门吗", function (){
@@ -208,7 +206,7 @@
 
             $.post("${basePath}/autotest/manage/deleteCompany",{ids:companyids},function(data,status){
                 if(0!=data.code){
-                    $.MsgBox.Alert(data.message);
+                    alert(data.message);
                 } else {
                     reload();
                 }
@@ -217,28 +215,25 @@
     }
 
     //ajax提交部门表单
-    $('#add-department').submit(function() {
-                var AjaxURL= "${basePath}/autotest/manage/department/saveDepartment";
-                $.ajax({
-                    type: "POST",
-                    dataType: "html",
-                    url: AjaxURL,
-                    data: $('#add-department').serialize(),
-                    success: function (result) {
-                        data = eval("(" + result + ")");
-                        if (data.code == 0) {
-                            $("#addDepartment").modal("hide");
-                            window.location.href="${basePath}/autotest/manage/company_manage";
-                        } else {
-                            $.MsgBox.Alert("保存失败："+data.message);
-                        }
-                    },
-                    error: function(result) {
-                        $.MsgBox.Alert(eval("(" + result + ")").message);
-                    }
-                });
+    function saveDepartment() {
+        var AjaxURL= "${basePath}/autotest/manage/department/saveDepartment";
+        $.ajax({
+            type: "POST",
+            url: AjaxURL,
+            data: $('#add-department').serialize(),
+            success: function (result) {
+                if (result.code == 0) {
+                    $("#addDepartment").modal("hide");
+                    window.location.href="${basePath}/autotest/manage/company_manage";
+                } else {
+                    alert("保存失败："+result.message);
+                }
+            },
+            error: function(result) {
+                alert(result.message);
             }
-    );
+        });
+    }
 
     function deleteDepartment(){
         $.MsgBox.Confirm("删除提示", "确定要删除该部门吗", function (){
@@ -252,7 +247,7 @@
                 if(0!=data.code){
                     alert(data.message);
                 } else {
-                    $.MsgBox.Alert(data.message);
+                    alert(data.message);
                     reload();
                 }
             });

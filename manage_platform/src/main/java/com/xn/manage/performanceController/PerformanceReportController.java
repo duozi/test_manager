@@ -223,7 +223,18 @@ public class PerformanceReportController {
             return "/performance/report/grafana";
         }
     }
+    //获得机器实时数据
+    @RequestMapping(value = "/jmeter", method = RequestMethod.GET)
+    public String getJmeter(ModelMap model) {
+        try {
+            String localIp = getProperty("localIp");
+            model.put("localIp", localIp);
+        } catch (Exception e) {
 
+        } finally {
+            return "/performance/report/jmeter";
+        }
+    }
     //查看jmeter日志
     @RequestMapping(value = "/jmeter_log", method = RequestMethod.GET)
     public String getJmeterLog(HttpServletRequest request, ModelMap model) {

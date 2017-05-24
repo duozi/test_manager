@@ -121,10 +121,10 @@
                 AND environment_id = #{environmentId}
             </if>
             <if test="@Ognl@isNotEmpty(beginTime)">
-                <![CDATA[ AND begin_time >= date_format(#{beginTime}, '%YY-%mm-%dd HH:MM:DD') ]]>
+                <![CDATA[ AND begin_time >= #{beginTime} ]]>
             </if>
             <if test="@Ognl@isNotEmpty(toTime)">
-                <![CDATA[   AND begin_time <=  date_format(#{toTime}, '%YY-%mm-%dd HH:MM:DD') ]]>
+                <![CDATA[   AND begin_time <= #{toTime} ]]>
             </if>
         </where>
         ORDER BY begin_time DESC

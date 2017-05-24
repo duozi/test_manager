@@ -2,7 +2,7 @@ package com.xn.interfacetest.Enum;
 
 
 public enum AppendParamEnum {
-	JSON("JSON", 0),XML("XML", 1);
+	JSON("JSON", 0),XML("XML", 1),HTML("&", 3);
 //    ,FILE("上传文件", 1);
     // 成员变量
     private String name;

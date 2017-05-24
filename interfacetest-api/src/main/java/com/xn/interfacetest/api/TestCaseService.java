@@ -3,6 +3,7 @@
  */
 package com.xn.interfacetest.api;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.xn.interfacetest.dto.TestCaseDto;
 import com.xn.interfacetest.dto.TestEnvironmentDto;
 import com.xn.interfacetest.dto.TestReportDto;
 import com.xn.interfacetest.dto.TestSuitDto;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -194,4 +196,6 @@ public interface TestCaseService {
      * @return
      */
     List<TestCaseDto> listAllOrderByInterface();
+
+    StringBuffer dealWithExcelFile(String path) throws Exception;
 }

@@ -4,9 +4,9 @@
 package com.xn.interfacetest.service.impl;
 
 import com.xn.common.base.CommonResult;
-import com.xn.common.utils.BeanUtils;
-import com.xn.common.utils.PageInfo;
-import com.xn.common.utils.PageResult;
+import com.xn.common.utils.*;
+import com.xn.common.utils.DateUtil;
+import com.xn.common.utils.FileUtil;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.api.*;
 import com.xn.interfacetest.command.*;
@@ -15,20 +15,26 @@ import com.xn.interfacetest.dto.*;
 import com.xn.interfacetest.entity.RelationCaseDatabase;
 import com.xn.interfacetest.entity.TestCase;
 import com.xn.interfacetest.model.AssertKeyValueVo;
+import com.xn.interfacetest.model.KeyValueStore;
 import com.xn.interfacetest.response.Assert;
 import com.xn.interfacetest.result.ReportResult;
-import com.xn.interfacetest.util.CollectionUtils;
-import com.xn.interfacetest.util.DBUtil;
-import com.xn.interfacetest.util.JarUtil;
-import com.xn.interfacetest.util.RedisUtil;
+import com.xn.interfacetest.singleton.InitThreadPool;
+import com.xn.interfacetest.util.*;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.util.CellReference;
+import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,8 +49,6 @@ import java.util.concurrent.Executors;
 @Transactional
 public class TestCaseServiceImpl implements TestCaseService {
     private static final Logger logger = LoggerFactory.getLogger(TestCaseServiceImpl.class);
-    //创建一个线程池
-    private static  ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     private static final String STRING_NAME = "java.lang.String";
 
@@ -299,6 +303,168 @@ public class TestCaseServiceImpl implements TestCaseService {
         return dtoList;
     }
 
+    @Override
+    public StringBuffer dealWithExcelFile( String path) throws Exception {
+        //解析文件
+        return readExcel(path);
+    }
+
+    private StringBuffer readExcel(String path) throws Exception{
+        // 对读取Excel表格标题测试
+        InputStream excelFile = new FileInputStream(path);
+
+        //定义一个字符串保存没有保存成功的用例，用以提示
+        StringBuffer failCaseNumbers = new StringBuffer("");
+        try {
+            Workbook  wb = WorkbookFactory.create(new File(path));
+            Sheet sheet = wb.getSheetAt(0);
+            // 得到总行数
+            int rowNum = sheet.getLastRowNum();
+            logger.info("共计行数rowNum：" + rowNum);
+
+            //取第二行
+            Row row = sheet.getRow(1);
+            int colNum = row.getPhysicalNumberOfCells(); //取第一行的列数作为列数
+            logger.info("共计列数colNum：" + colNum);
+
+            // 正文内容应该从第三行开始,第一行为描述第二行为表头的标题
+            for (int i = 2; i <= rowNum; i++) {
+              saveCaseRow(row,i,sheet,failCaseNumbers);
+            }
+        } catch (FileNotFoundException e) {
+            logger.error("用例excel文件未找到：" + e);
+            throw e;
+        } catch (IOException e) {
+            logger.error("解析用例excel文件异常：" + e);
+            throw e;
+        }finally {
+            return failCaseNumbers;
+        }
+    }
+
+    private void saveCaseRow(Row row,int i,Sheet sheet,StringBuffer failCaseNumbers) throws Exception {
+        try{
+            TestCaseDto caseDto = new TestCaseDto();
+            row = sheet.getRow(i);
+            //取每一个格子的值
+            //第一个格子---用例编号
+            String number = row.getCell(0).getStringCellValue();
+            //校验用例编号
+            if(!checkCaseNumberUnique(number)){
+                failCaseNumbers.append(number).append(",");
+                return;
+            }
+            caseDto.setNumber(number);
+
+            //第二个格子---用例名称
+            caseDto.setName(row.getCell(1).getStringCellValue());
+
+            //第三个格子---用例描述
+            caseDto.setDescription(row.getCell(2).getStringCellValue());
+
+            //第四个格子---接口id,接口id为空或者接口id不存在的时候直接返回
+            if(StringUtils.isBlank(row.getCell(3).getStringCellValue()) || !checkInterfaceIdExist(Long.parseLong(row.getCell(3).getStringCellValue()))){
+                failCaseNumbers.append(number).append(",");
+                return;
+            }
+            caseDto.setInterfaceId(Long.parseLong(row.getCell(3).getStringCellValue()));
+
+            //第5个格子---自定义参数
+            caseDto.setCustomParams(row.getCell(4).getStringCellValue());
+
+            //第6个格子---自定义参数类型
+            caseDto.setCustomParamsType(StringUtils.isNotBlank(row.getCell(5).getStringCellValue())?Integer.parseInt(row.getCell(3).getStringCellValue()):null);
+
+            caseDto  = this.save(caseDto);
+            logger.info("保存用例：" + caseDto.toString());
+            //第7个格子---参数断言
+            String assertJson = row.getCell(6).getStringCellValue();
+            //保存参数断言
+            saveParamsAsserts(assertJson,caseDto);
+
+        }catch (Exception e) {
+            logger.error("保存用例出现异常：" + e);
+            throw e;
+        }
+    }
+
+    private boolean checkInterfaceIdExist(Long interfaceId) {
+        TestInterfaceDto testInterfaceDto = testInterfaceService.get(interfaceId);
+        if(null != testInterfaceDto){
+            return true;
+        }
+        return false;
+    }
+
+    private void saveParamsAsserts(String assertJson, TestCaseDto caseDto) throws Exception{
+        try {
+            //判断是否为空
+            if (StringUtils.isNotBlank(assertJson)) {
+                JSONObject jsonObject = JSONObject.fromObject(assertJson);
+                Set<KeyValueStore> keyValueSet = jsonObject.entrySet();
+                //遍历保存参数断言
+                for (KeyValueStore keyValue : keyValueSet) {
+                    ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
+                    paramsAssertDto.setCaseId(caseDto.getId());
+                    paramsAssertDto.setAssertParam(keyValue.getName());
+                    paramsAssertDto.setRightValue((String) keyValue.getValue());
+                    paramsAssertService.save(paramsAssertDto);
+                }
+
+            }
+        }catch (Exception e){
+            logger.error("保存字段断言出现异常：" + e);
+            throw e;
+        }
+    }
+
+    private boolean checkCaseNumberUnique(String number) {
+        List<TestCaseDto> testCaseList = this.getByCaseNum(number);
+        if(null != testCaseList && testCaseList.size()>0){
+            return false;
+        }
+        return true;
+    }
+
+//    /**
+//     * 根据HSSFCell类型设置数据
+//     * @param cell
+//     * @return
+//     */
+//    private String getCellFormatValue(Cell cell) {
+//        CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
+//        DataFormatter formatter = new DataFormatter();
+//        // get the text that appears in the cell by getting the cell value and applying any data formats (Date, 0.00, 1.23e9, $1.23, etc)
+//        String text = formatter.formatCellValue(cell);
+//        System.out.println(text);
+//
+//        // Alternatively, get the value and format it yourself
+//        switch (cell.getCellType()) {
+//            case CellType.STRING:
+//                System.out.println(cell.getRichStringCellValue().getString());
+//                break;
+//            case CellType.NUMERIC:
+//                if (DateUtil.isCellDateFormatted(cell)) {
+//                    System.out.println(cell.getDateCellValue());
+//                } else {
+//                    System.out.println(cell.getNumericCellValue());
+//                }
+//                break;
+//            case CellType.BOOLEAN:
+//                System.out.println(cell.getBooleanCellValue());
+//                break;
+//            case CellType.FORMULA:
+//                System.out.println(cell.getCellFormula());
+//                break;
+//            case CellType.BLANK:
+//                System.out.println();
+//                break;
+//            default:
+//                System.out.println();
+//        }
+//
+//    }
+
     private void copyDataParams(TestCase testCase, Long caseId, Long newCaseId) {
         //判断是自定义参数还是配置的参数
         if(testCase.getParamsType() == ParamsGroupTypeEnum.KEY.getId()){
@@ -394,6 +560,8 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     private void excute(final List<TestCaseDto> testCaseDtoList, final TestEnvironmentDto testEnvironmentDto, final Long planId, final TestReportDto testReportDto, final TestSuitDto suitDto){
         logger.info("==========线程池执行测试用例========");
+        //创建一个线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);;
         //遍历执行测试用例
         for(int i = 0; i < testCaseDtoList.size(); i++){
             final int finalI = i;
@@ -410,6 +578,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 }
             });
         }
+
+
 
         try {
             logger.info("sleep-----"+1000);

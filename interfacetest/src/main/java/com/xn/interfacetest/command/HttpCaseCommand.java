@@ -13,6 +13,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.xn.interfacetest.Enum.HttpTypeEnum;
+import com.xn.interfacetest.Enum.RequestTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -192,55 +194,7 @@ public class HttpCaseCommand implements CaseCommand {
 
     //发送请求
     public void httpRequest(){
-        String responseStr = "";
-        RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
-        Date beginTime = new Date();
-        try {
-            logger.info("执行测试用例发送请求");
-            relationInterfaceResultDto.setExcuteTime(format.format(beginTime));
-            if(contentType.contains("json")){
-                responseStr =  HttpClientUtil.sendHttpPostJson(url,params);
-            } else if(contentType.contains("form")){
-                responseStr =  HttpClientUtil.sendHttpPost(url,params);
-            } else if(contentType.contains("xml")){
-                responseStr = HttpClientUtil.sendHttpPostXml(url,params);
-            }
-            result = "success";
-        }catch (Exception e){
-            ReportResult.errorPlus();
-            logger.info("执行测试用例发送请求异常的时候reportResult的值：" +  ReportResult.getReportResult().toString());
-            logger.error("请求异常{}:",e);
-            response.setException(e);
-            result = "error";
-        } finally {
-            //保存请求结果
-            response.setBody(responseStr);
-            relationInterfaceResultDto.setPlanId(planId);
-            if(null != suitDto){
-                relationInterfaceResultDto.setSuitId(suitDto.getId());
-            }
-            if(null != suitDto){
-                relationInterfaceResultDto.setSuitName(suitDto.getName());
-            }
-            if(null != caseDto){
-                relationInterfaceResultDto.setCaseId(caseDto.getId());
-            }
-            if(null != caseDto){
-                relationInterfaceResultDto.setCaseName(caseDto.getName());
-            }
-            if(null != interfaceDto){
-                relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
-            }
-            if(null != interfaceDto){
-                relationInterfaceResultDto.setInterfaceName(interfaceDto.getName());
-            }
-            relationInterfaceResultDto.setRequestData(params);
-            relationInterfaceResultDto.setResponseData(responseStr);
-            relationInterfaceResultDto.setResult(result);
-            relationInterfaceResultDto.setReportId(reportId);
-            relationInterfaceResultDto.setCostTime((Long)new Date().getTime() - (Long)beginTime.getTime());
-            relationInterfaceResultService.save(relationInterfaceResultDto);
-        }
+
     }
 
     //发送https请求
@@ -369,7 +323,114 @@ public class HttpCaseCommand implements CaseCommand {
 
     @Override
     public void execute() {
-        httpRequest();
+        if(interfaceDto.getRequestType() == RequestTypeEnum.GET.getId()){
+            sendGetRequest();
+        } else if(interfaceDto.getRequestType() == RequestTypeEnum.POST.getId()){
+            sendPostRequest();
+        }
+
+    }
+
+    private void sendGetRequest() {
+        String responseStr = "";
+        RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
+        Date beginTime = new Date();
+        try {
+            logger.info("执行测试用例发送get请求");
+            relationInterfaceResultDto.setExcuteTime(format.format(beginTime));
+            responseStr =  HttpClientUtil.sendHttpGet(url + "?" + params);
+            result = "success";
+        }catch (Exception e){
+            ReportResult.errorPlus();
+            logger.info("执行测试用例发送请求异常的时候reportResult的值：" +  ReportResult.getReportResult().toString());
+            logger.error("请求异常{}:",e);
+            response.setException(e);
+            responseStr = "请求异常{}:" + e.getMessage();
+            result = "error";
+        } finally {
+            //保存请求结果
+            logger.info("response:{}" +  responseStr);
+            response.setBody(responseStr);
+            relationInterfaceResultDto.setPlanId(planId);
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitId(suitDto.getId());
+            }
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitName(suitDto.getName());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseId(caseDto.getId());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseName(caseDto.getName());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceName(interfaceDto.getName());
+            }
+            relationInterfaceResultDto.setRequestData(params);
+            relationInterfaceResultDto.setResponseData(responseStr);
+            relationInterfaceResultDto.setResult(result);
+            relationInterfaceResultDto.setReportId(reportId);
+            relationInterfaceResultDto.setCostTime((Long)new Date().getTime() - (Long)beginTime.getTime());
+            relationInterfaceResultService.save(relationInterfaceResultDto);
+        }
+    }
+
+    private void sendPostRequest() {
+        String responseStr = "";
+        RelationInterfaceResultDto relationInterfaceResultDto = new RelationInterfaceResultDto();
+        Date beginTime = new Date();
+        try {
+            logger.info("执行测试用例发送post请求");
+            relationInterfaceResultDto.setExcuteTime(format.format(beginTime));
+            if(contentType.contains("json")){
+                responseStr =  HttpClientUtil.sendHttpPostJson(url,params);
+            } else if(contentType.contains("form")){
+                responseStr =  HttpClientUtil.sendHttpPost(url,params);
+            } else if(contentType.contains("xml")){
+                responseStr = HttpClientUtil.sendHttpPostXml(url,params);
+            }
+            result = "success";
+        }catch (Exception e){
+            ReportResult.errorPlus();
+            logger.info("执行测试用例发送请求异常的时候reportResult的值：" +  ReportResult.getReportResult().toString());
+            logger.error("请求异常{}:",e);
+            response.setException(e);
+            responseStr = "请求异常{}:" + e.getMessage();
+            result = "error";
+        } finally {
+            //保存请求结果
+            logger.info("response:{}" +  responseStr);
+            response.setBody(responseStr);
+            relationInterfaceResultDto.setPlanId(planId);
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitId(suitDto.getId());
+            }
+            if(null != suitDto){
+                relationInterfaceResultDto.setSuitName(suitDto.getName());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseId(caseDto.getId());
+            }
+            if(null != caseDto){
+                relationInterfaceResultDto.setCaseName(caseDto.getName());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceId(interfaceDto.getId());
+            }
+            if(null != interfaceDto){
+                relationInterfaceResultDto.setInterfaceName(interfaceDto.getName());
+            }
+            relationInterfaceResultDto.setRequestData(params);
+            relationInterfaceResultDto.setResponseData(responseStr);
+            relationInterfaceResultDto.setResult(result);
+            relationInterfaceResultDto.setReportId(reportId);
+            relationInterfaceResultDto.setCostTime((Long)new Date().getTime() - (Long)beginTime.getTime());
+            relationInterfaceResultService.save(relationInterfaceResultDto);
+        }
     }
 
     @Override

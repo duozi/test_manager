@@ -140,8 +140,9 @@
                     </div>
                     <div class="form-group http-interface  <#if interfaceDto.type=2>hidden</#if>">
                         <label class="control-label">Content-Type</label>
-                        <select class="form-control" id="contentType-select"
+                        <select class="form-control" style="margin-left: 6%;" id="contentType-select"
                                 name="" <#if interfaceDto.status gt 0>readonly</#if>>
+                            <option value="" <#if contentType = null>disabled selected</#if> >选择contentType</option>
                             <#if contentTypeList ??>
                                 <#list contentTypeList as item>
                                     <option value="${item.getName()}"
@@ -149,9 +150,9 @@
                                     >${item.getName()}
                                     </option>
                                 </#list>
-                            </#if>f
+                            </#if>
                         </select>
-                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" placeholder="填写被测接口的content-Type值，例如：application/json" <#if interfaceDto.status gt 0>readonly</#if>>
+                        <input type="text" class="form-control" name="contentType" value="${interfaceDto.contentType}" placeholder="填写content-Type值，例如：application/json" <#if interfaceDto.status gt 0>readonly</#if>>
                     </div>
                     <div class="form-group ">
                         <label class="control-label">加密jar包</label>

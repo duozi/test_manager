@@ -215,27 +215,6 @@
 			});
 		}
 
-
-
-//		function showCaseList(_interfaceId,caseType,suitCaseList,caseList) {
-//            var suitId = $("#suit-form input[name='id']").val();
-//
-//
-//		}
-
-		//获取该接口所有用例
-		function setSuitCaseList(_interfaceId,caseType,suitCaseList){
-            $.post("${basePath}/autotest/case/getCaseByInterfaceId",{"interfaceId":_interfaceId,"caseType":caseType},function(data,status){
-                if("undefined"!=data){
-                    //查询该测试集含有该接口的用例列表
-                    var caseList = data;
-                    //显示该接口下所有的用例
-
-                }
-            });
-
-        }
-
 		function saveRelationSuitCase(){
 			//获取被选中的测试用例id
 			var caseId = "";
@@ -245,6 +224,10 @@
 				}
 			});
 			var suitId = $("#suit-form input[name='id']").val();
+			if(null == suitId || undefined == suitId || "" == suitId){
+				//说明还没有保存测试集，则保存测试集
+				alert("请先点击保存按钮，保存测试集基础信息");
+			}
 
 			//发送请求保存测试用例和测试集的关系
 			submitRelationSuitCase(caseId,suitId);

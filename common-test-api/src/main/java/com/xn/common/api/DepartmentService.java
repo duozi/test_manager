@@ -114,5 +114,5 @@ public interface DepartmentService {
      */
     int deleteBatch(List<DepartmentDto> departments);
 
-    DepartmentDto getByName(String name);
+    DepartmentDto getByNameAndCompanyId(String name,Long companyId);
 }

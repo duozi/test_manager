@@ -113,12 +113,22 @@ public class PerformancePlanShow {
 
 
     private Date actualEndTime;
+
+
+
     private String executeStatus;
     private Date setStartTime;
     private String resultPath;
     private String executePerson;
     private Date actualStartTimeBegin;
     private Date actualStartTimeEnd;
+    public Date getActualEndTime() {
+        return actualEndTime;
+    }
+
+    public void setActualEndTime(Date actualEndTime) {
+        this.actualEndTime = actualEndTime;
+    }
     public Date getActualStartTimeEnd() {
         return actualStartTimeEnd;
     }

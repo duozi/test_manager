@@ -26,13 +26,11 @@ public class WebController {
 	 * 上传图片
 	 *
 	 * @param files
-	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/autotest/{folderName}/uploadJar")
 	@ResponseBody
-	public CommonResult filesUpload(@RequestParam("file") MultipartFile[] files, @PathVariable String  folderName,
-									HttpServletRequest request) {
-		return FileUpload.upload(files,folderName,request);
+	public CommonResult filesUpload(@RequestParam("file") MultipartFile[] files, @PathVariable String  folderName) {
+		return FileUpload.upload(files,folderName);
 	}
 }
