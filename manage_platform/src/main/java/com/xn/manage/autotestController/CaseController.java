@@ -3,12 +3,15 @@ package com.xn.manage.autotestController;
 
 import com.xn.common.api.CompanyService;
 import com.xn.common.base.CommonResult;
+import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
+import com.xn.common.utils.PropertyUtil;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.api.*;
 import com.xn.interfacetest.dto.*;
 import com.xn.manage.Enum.ParamTypeEnum;
+import com.xn.manage.utils.FileUpload;
 import com.xn.manage.utils.JsonValidator;
 import com.xn.manage.utils.ModelUtils;
 import org.apache.commons.lang.StringUtils;
@@ -19,9 +22,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -821,5 +827,27 @@ public class CaseController {
 
 		return result;
 	}
+
+	@RequestMapping(value="/importCases", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult importCases(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		CommonResult result = new CommonResult();
+		try{
+			String fileName = file.getOriginalFilename();
+			String path = PropertyUtil.getProperty("upload_path") + "excelCases" + File.separator  + fileName;
+			//先上传到服务器
+			FileUtil.saveFile(file,path);
+			//处理excel
+			StringBuffer failCaseIds = testCaseService.dealWithExcelFile(path);
+		}catch (Exception e){
+			int code = CommonResultEnum.ERROR.getReturnCode();
+			String message =e.getMessage();
+			result.setCode(code);
+			result.setMessage(message);
+			logger.error("批量导入用例出现异常｛｝",e);
+		}
+		return  result;
+	}
+
 
 }

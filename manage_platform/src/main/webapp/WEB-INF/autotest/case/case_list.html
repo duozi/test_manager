@@ -79,32 +79,6 @@
             });
         }
 
-        //初始化fileinput控件（第一次初始化）
-        $("#file-1").fileinput({
-            showUpload: false,
-            uploadAsync:true,
-//        dropZoneEnabled:false,
-            uploadUrl: '${basePath}/autotest/case/uploadCases', // you must set a valid URL here else you will get an error
-            allowedFileExtensions : ['xlsx',"xls"],
-            overwriteInitial: false,
-            language: 'zh', //设置语言
-            maxFileSize: 200000,
-            maxFilesNum: 1,
-            showPreview:true,
-            previewFileIcon: "",
-            slugCallback: function(filename) {
-                return filename.replace('(', '_').replace(']', '_');
-            }
-        }).on("filebatchselected", function(event, files) {
-//            $(this).fileinput("upload").on("fileuploaded", function(event, data) {
-//                if(data.response.code==0){
-//                    $("input[name='jarPath']").val(data.response.data);
-//                } else {
-//                    alert("上传失败，请查看日志！");
-//                }
-//
-//            });
-        });
     </script>
 </head>
 
@@ -287,14 +261,14 @@
                 <form>
                     <div class="form-group">
                         <label class="control-label" >上传用例文件</label>
-                        <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
-                        <input type="hidden" name="jarPath" value="" placeholder="">
-                        <file href=""></file><a href="" style="width: 40%;top: 2em;margin-top: 0.5em;">点击此处下载用例模板</a>
+                        <input id="file-case" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1" name="file">
+                        <input type="hidden" name="excelPath" value="" placeholder="">
+                        <file href=""></file><a href="../../../file/导入测试用例模板.xlsx" style="width: 40%;top: 2em;margin-top: 0.5em;">点击此处下载用例模板</a>
                     </div>
                 </form>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="">保存</button>
+                    <!--<button type="button" class="btn btn-primary" onclick="uploadExcel(this)">保存</button>-->
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -304,5 +278,31 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.container-fluid -->
+<script type="text/javascript">
+        //初始化fileinput控件（第一次初始化）
+    $("#file-case").fileinput({
+        showUpload:false,
+        showCaption: false,
+        uploadAsync:true,
+        uploadUrl: '${basePath}/autotest/case/importCases', // you must set a valid URL here else you will get an error
+        allowedFileExtensions : ['xlsx',"xls"],
+        overwriteInitial: false,
+        language: 'zh', //设置语言
+        showPreview:true,
+        maxFileSize: 200000,
+        maxFilesNum: 1,
+        slugCallback: function(filename) {
+        return filename.replace('(', '_').replace(']', '_');
+        }
+        }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload").on("fileuploaded", function(event, data) {
+        if(data.response.code==0){
+        $("input[name='excelPath']").val(data.response.data);
+        } else {
+        alert("上传失败，请查看日志！");
+        }
+        });
+     });
+</script>
 </body>
 </html>

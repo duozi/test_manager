@@ -89,7 +89,7 @@ public class FileUtil {
      * @param filePath
      * @return
      */
-    public static boolean saveFile(HttpServletRequest request, MultipartFile file, String filePath) {
+    public static boolean saveFile(MultipartFile file, String filePath) {
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {

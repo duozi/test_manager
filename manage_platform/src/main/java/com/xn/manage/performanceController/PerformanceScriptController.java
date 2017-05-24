@@ -214,7 +214,7 @@ public class PerformanceScriptController {
                     // 保存文件
                     String name = file.getOriginalFilename();
                     path = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + name;
-                    FileUtil.saveFile(request, file, path);
+                    FileUtil.saveFile(file, path);
                     fileName += " " + file.getOriginalFilename();
                 }
                 result.setData(fileName.trim());
@@ -246,7 +246,7 @@ public class PerformanceScriptController {
                     // 保存文件
                     String name = file.getOriginalFilename();
                     path = PropertyUtil.getProperty("upload_path") + "temp" + File.separator + name;
-                    FileUtil.saveFile(request, file, path);
+                    FileUtil.saveFile(file, path);
                     fileName += " " + file.getOriginalFilename();
                 }
                 result.setData(fileName.trim());

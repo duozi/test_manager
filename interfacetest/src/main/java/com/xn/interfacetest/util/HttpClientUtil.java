@@ -183,7 +183,7 @@ public class HttpClientUtil {
      * @param httpGet
      * @return
      */
-    private static String sendHttpGet(HttpGet httpGet) {
+    private static String sendHttpGet(HttpGet httpGet) throws Exception{
 
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
@@ -210,6 +210,7 @@ public class HttpClientUtil {
 
             // 判断响应状态
             if (response.getStatusLine().getStatusCode() >= 300) {
+                responseContent =  "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode();
                 throw new Exception(
                         "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
             }
@@ -220,7 +221,8 @@ public class HttpClientUtil {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("get请求异常{}：" ,e );
+            throw e;
         } finally {
             try {
                 // 释放资源
@@ -228,7 +230,8 @@ public class HttpClientUtil {
                     response.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("get请求异常{}：" ,e );
+                throw e;
             }
         }
         return responseContent;
@@ -253,7 +256,7 @@ public class HttpClientUtil {
      *
      * @param httpUrl
      */
-    public static String sendHttpGet(String httpUrl) {
+    public static String sendHttpGet(String httpUrl) throws Exception{
         // 创建get请求
         HttpGet httpGet = new HttpGet(httpUrl);
         return sendHttpGet(httpGet);
