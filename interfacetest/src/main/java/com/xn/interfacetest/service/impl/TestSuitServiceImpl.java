@@ -309,6 +309,13 @@ public class TestSuitServiceImpl implements TestSuitService {
         }
     }
 
+    @Override
+    public TestSuitDto getByName(String name) {
+        TestSuit testSuit = testSuitMapper.getByName(name);
+        TestSuitDto testSuitDto = BeanUtils.toBean(testSuit,TestSuitDto.class);
+        return testSuitDto;
+    }
+
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     private void excute(List<TestSuitDto> testSuitDtoList, TestEnvironmentDto testEnvironmentDto, Long planId,TestReportDto testReportDto) throws Exception{
         String systemIds = "";

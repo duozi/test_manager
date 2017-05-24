@@ -118,4 +118,11 @@ public class CompanyServiceImpl implements CompanyService {
         return 0;
     }
 
+    @Override
+    public CompanyDto getByName(String name) {
+        Company company = companyMapper.getByName(name);
+        CompanyDto companyDto = BeanUtils.toBean(company,CompanyDto.class);
+        return companyDto;
+    }
+
 }

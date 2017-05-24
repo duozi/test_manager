@@ -153,4 +153,6 @@ public interface TestSuitService {
      * @param testSuitDtoList
      */
     void changeStatus(int status, List<TestSuitDto> testSuitDtoList);
+
+    TestSuitDto getByName(String name);
 }

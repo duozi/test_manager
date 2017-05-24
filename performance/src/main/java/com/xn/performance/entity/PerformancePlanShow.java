@@ -109,13 +109,23 @@ public class PerformancePlanShow {
      * 实际开始时间
      */
     private Date actualStartTime;
+
+
+
+    private Date actualEndTime;
     private String executeStatus;
     private Date setStartTime;
     private String resultPath;
     private String executePerson;
     private Date actualStartTimeBegin;
     private Date actualStartTimeEnd;
+    public Date getActualStartTimeEnd() {
+        return actualStartTimeEnd;
+    }
 
+    public void setActualStartTimeEnd(Date actualStartTimeEnd) {
+        this.actualStartTimeEnd = actualStartTimeEnd;
+    }
     public Date getActualStartTimeBegin() {
         return actualStartTimeBegin;
     }

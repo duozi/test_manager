@@ -36,6 +36,7 @@
         <result property="stressMachineId" column="stress_machine_id"/>
         <result property="stressMachineName" column="stress_machine_name"/>
         <result property="actualStartTime" column="actual_start_time"/>
+        <result property="actualEndTime" column="actual_end_time"/>
         <result property="executeStatus" column="execute_status"/>
         <result property="setStartTime" column="set_start_time"/>
         <result property="resultPath" column="result_path"/>
@@ -285,7 +286,7 @@
         R.id, P.id as planId,P.plan_name, P.remark, P.company, P.department, P.psystem, P.script_id,P.script_name,
         P.scenario_id,
         P.scenario_name,P.plan_status,
-        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
+        P.create_person,P.is_delete,R.stress_machine_id,R.stress_machine_name,R.actual_start_time,R.actual_end_time,R.execute_status,R.set_start_time,R.result_path,R.execute_person
         FROM
         performance_result R LEFT JOIN performance_plan P ON P.id=R.plan_id
         WHERE R.id is not NULL

@@ -24,4 +24,6 @@ public interface TestSystemMapper extends BaseMapper<TestSystem, Long> {
     List<TestSystem> listByCompany(Map<String, Object> parameters);
 
     List<TestSystem> getWithCompanyInfoBySystems(String[] ids);
+
+    TestSystem getByName(String name);
 }

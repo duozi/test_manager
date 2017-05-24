@@ -113,4 +113,6 @@ public interface DepartmentService {
      * @return 操作影响行数
      */
     int deleteBatch(List<DepartmentDto> departments);
+
+    DepartmentDto getByName(String name);
 }

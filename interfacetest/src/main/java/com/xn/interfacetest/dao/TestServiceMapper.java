@@ -21,4 +21,6 @@ import org.springframework.stereotype.Service;
 public interface TestServiceMapper extends BaseMapper<TestService, Long> {
 
     List<TestService> listByParams(Map<String, Object> params);
+
+    TestService getByName(String name);
 }

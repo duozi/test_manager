@@ -20,4 +20,6 @@ import java.util.List;
 
 public interface DepartmentMapper extends BaseMapper<Department, Long> {
     int deleteBatchByPK(List<Long> list);
+
+    Department getByName(String name);
 }

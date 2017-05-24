@@ -102,6 +102,24 @@
         ]]>
     </select>
 
+    <select id="listBySuitIdOrderByInterfaceId" resultMap="TestCaseMap">
+        SELECT  c.*
+        from test_case c
+        left join relation_suit_case sc on sc.case_id = c.id
+        <where>
+            <if test="suitId != null">
+                AND sc.suit_id = #{suitId}
+            </if>
+        </where>
+        order by sc.interface_id desc
+    </select>
+
+    <select id="listAllOrderByInterface" resultMap="TestCaseMap">
+        SELECT *
+        from test_case
+        order by interface_id desc
+    </select>
+
     <select id="list" resultMap="TestCaseMap">
         SELECT
         <include refid="columns" />

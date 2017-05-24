@@ -110,13 +110,25 @@ public class SystemController {
 	public CommonResult saveSystem(TestSystemDto systemDto) {
 		CommonResult result = new CommonResult();
 		try{
+			if(StringUtils.isBlank(systemDto.getName()) || "null".equals(systemDto.getName())){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("系统名称不能为空");
+				return result;
+			}
+
+			//校验系统名是否重复
+			TestSystemDto  exist = testSystemService.getByName(systemDto.getName());
+			if(null != exist && exist.getId() != systemDto.getId()){
+				result.setCode(CommonResultEnum.ERROR.getReturnCode());
+				result.setMessage("系统名称已存在");
+				return result;
+			}
+
 			TestSystemDto testSystemDto = testSystemService.save(systemDto);
 			result.setData(testSystemDto);
 		}catch (Exception e){
-			int code = CommonResultEnum.ERROR.getReturnCode();
-			String message =e.getMessage();
-			result.setCode(code);
-			result.setMessage(message);
+			result.setCode(CommonResultEnum.ERROR.getReturnCode());
+			result.setMessage(e.getMessage());
 			logger.error("保存公司异常｛｝",e);
 		}
 		return  result;

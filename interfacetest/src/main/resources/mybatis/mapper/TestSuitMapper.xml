@@ -48,7 +48,17 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByName" resultMap="TestSuitMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                test_suit
+            WHERE
+                name = #{name}
+        ]]>
+    </select>
+
     <select id="list" resultMap="TestSuitMap">
         SELECT
             <include refid="columns" />

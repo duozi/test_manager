@@ -39,7 +39,17 @@
                 id = #{id} 
         ]]>
     </select>
-    
+
+    <select id="getByName" resultMap="DepartmentMap">
+        SELECT <include refid="columns" />
+        <![CDATA[
+            FROM
+                department
+            WHERE
+                name = #{name}
+        ]]>
+    </select>
+
     <select id="list" resultMap="DepartmentMap">
         SELECT
             <include refid="columns" />

@@ -19,4 +19,5 @@ public interface CompanyMapper extends BaseMapper<Company, Long> {
     /** 批量删除对象 返回删除的数量 **/
     int deleteBatchByPK(List<Long> list);
 
+    Company getByName(String name);
 }

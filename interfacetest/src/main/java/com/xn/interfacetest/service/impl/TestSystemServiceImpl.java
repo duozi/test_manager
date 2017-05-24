@@ -158,6 +158,13 @@ public class TestSystemServiceImpl implements TestSystemService {
         return dtoList;
     }
 
+    @Override
+    public TestSystemDto getByName(String name) {
+        TestSystem testSystem = testSystemMapper.getByName(name);
+        TestSystemDto testSystemDto = BeanUtils.toBean(testSystem,TestSystemDto.class);
+        return testSystemDto;
+    }
+
     private void selectFromCompany( TestSystemDto testSystemDto){
         //查询部门
         DepartmentDto departmentDto = departmentService.get(testSystemDto.getDepartmentId());

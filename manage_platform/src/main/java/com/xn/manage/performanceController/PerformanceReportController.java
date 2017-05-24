@@ -16,8 +16,6 @@ import com.xn.performance.dto.*;
 import com.xn.performance.mybatis.CommonResult;
 import com.xn.performance.mybatis.PageInfo;
 import com.xn.performance.mybatis.PageResult;
-import net.sf.json.JSONArray;
-import net.sf.json.JsonConfig;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,11 +65,12 @@ public class PerformanceReportController {
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
-    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
+    public String common(@PathVariable String path, ModelMap model, HttpServletRequest request, PageInfo pageInfo) {
 
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
         model.put("plan_list_all", performancePlanDtoList);
+
 
 
         PerformanceScriptDto performanceScriptDto = new PerformanceScriptDto();
@@ -119,7 +118,7 @@ public class PerformanceReportController {
 
         PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
         try {
-            performancePlanShowDtoList = performancePlanShowService.getResultListByPage(performancePlanShowDto,pageInfo);
+            performancePlanShowDtoList = performancePlanShowService.getResultListByPage(performancePlanShowDto, pageInfo);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (IntrospectionException e) {
@@ -127,7 +126,7 @@ public class PerformanceReportController {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        model.put("page",performancePlanShowDtoList.getPage());
+        model.put("page", performancePlanShowDtoList.getPage());
         model.put("result_list", performancePlanShowDtoList.getList());
 
         List<CompanyDto> companyDtoList = companyService.list(new CompanyDto());
@@ -253,7 +252,7 @@ public class PerformanceReportController {
     public CommonResult getPlan(HttpServletRequest request) {
         CommonResult commonResult = new CommonResult();
         try {
-            PerformancePlanDto performancePlanDto=new PerformancePlanDto();
+            PerformancePlanDto performancePlanDto = new PerformancePlanDto();
 
             String company = request.getParameter("company");
             String department = request.getParameter("department");
@@ -287,7 +286,7 @@ public class PerformanceReportController {
     public CommonResult getResult(HttpServletRequest request) {
         CommonResult commonResult = new CommonResult();
         try {
-            PerformanceResultDto performanceResultDto=new PerformanceResultDto();
+            PerformanceResultDto performanceResultDto = new PerformanceResultDto();
 
             String planId = request.getParameter("planId");
 
@@ -308,55 +307,60 @@ public class PerformanceReportController {
         }
 
     }
+
     /**
-     *
-     *
-     *
      * {"dbs": ["D:/jmeter-reports/10min-go.db","xxx/xxx.db"]}
+     *
      * @return json格式对比数据
      */
-    @RequestMapping(value = "/report_statistic/generate_report" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/report_statistic/generate_report", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject generateReport(@RequestParam String planStr,@RequestParam String resultStr) {
+    public CommonResult generateReport(@RequestParam String planStr, @RequestParam String resultStr) {
+
+        CommonResult commonResult = new CommonResult();
+        try {
+            JSONObject planJson = new JSONObject(planStr);
+            JSONObject resultJson = new JSONObject(resultStr);
+            org.json.JSONArray jsonArray = resultJson.getJSONArray("resultStr");
+            List<Object> report = new ArrayList<>();
+            for (int i = 0; i < planJson.getJSONArray("planStr").length(); i++) {
+
+                Map<String, Object> scene = new LinkedHashMap<String, Object>();
+
+                String planIdStr = planJson.getJSONArray("planStr").get(i).toString();
+                PerformancePlanDto performancePlanDto=new PerformancePlanDto();
+                performancePlanDto.setId(Integer.parseInt(planIdStr));
+                performancePlanDto=performancePlanService.get(performancePlanDto);
+                String planName=performancePlanDto.getPlanName();
+                Integer scenarioId=performancePlanDto.getScenarioId();
+                PerformanceScenarioDto performanceScenarioDto=new PerformanceScenarioDto();
+                performanceScenarioDto.setId(scenarioId);
+                performanceScenarioDto=performanceScenarioService.get(performanceScenarioDto);
+                String scenarioName=performanceScenarioDto.getScenarioName();
+                Integer concurrency=performanceScenarioDto.getConcurrency();
+                scene.put("describe", planName); //计划描述
+                scene.put("scenarioName",scenarioName);
+                scene.put("concurrency",concurrency);
+                org.json.JSONArray resultArray = jsonArray.getJSONArray(i);
+                List resultList = resultArray.toList();
+
+                scene.put("db", resultList);
+                Map<String, Object> report1 = performanceReportService.generateReport(resultList); //该场景的结果
+                scene.putAll(report1);
+                report.add(scene);
+            }
 
 
-
-        Map<String,Object> map = new LinkedHashMap<String,Object>();
-
-//        if(dbs==null){
-//            String dbpath = "D:/LYWorks/neon_Java/testmanage/jmeterapp/target/jmeter-reports";
-//            dbs="{\"jmeterreport\":[{\"describe\":\"java controller:是演示对比1\",\"dbs\":[\""+dbpath+"/10min-go.db\",\""+dbpath+"/10min-go_20170508_110422.db\"]}"
-//                    + ",{\"describe\":\"java controller:演示对比2\",\"dbs\":[\""+dbpath+"/10min-go.db\",\""+dbpath+"/10min-go_20170508_110422.db\"]}]}";
-//        }
-
-        JSONObject planJson = new JSONObject(planStr);
-        JSONObject resultJson = new JSONObject(resultStr);
-
-        List<Object> report = new ArrayList<Object>();
-        for(int i = 0; i < planJson.getJSONArray("planStr").length(); i++){
-
-            Map<String,Object> scene = new LinkedHashMap<String,Object>();
-
-            String planName = planJson.getJSONArray("planStr").get(i).toString();
-            scene.put("describe",planName); //场景描述
-
-//            List<String> dbnames = new ArrayList<String>();
-            JSONArray jsonArray= (JSONArray) resultJson.getJSONArray("resultStr").get(i);
-            List<String> dbnames=JSONArray.toList(jsonArray,new String(),new JsonConfig());
-
-//            ArrayList dbnames= (ArrayList) resultJson.getJSONArray("resultStr").get(i);
-//            for(int j = 0; j < list.size(); j++) {
-//                String object = jsonObject.getJSONArray("dbs").get(j).toString();
-//                dbnames.add(object);
-//            }
-            scene.put("db",dbnames);
-            Map<String,Object> report1 = performanceReportService.generateReport(dbnames); //该场景的结果
-            scene.putAll(report1);
-            report.add(scene);
+            commonResult.setData(report);
+        } catch (Exception e) {
+            commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
         }
-        map.put("reports",report);
 
-        return (new JSONObject(map));
+
     }
 
 }

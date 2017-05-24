@@ -149,8 +149,10 @@ public class HttpClientUtil {
 
             // 判断响应状态
             if (response.getStatusLine().getStatusCode() >= 300) {
+                responseContent =  "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode();
                 throw new Exception(
                         "HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
+
             }
 
             if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {

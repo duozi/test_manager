@@ -2,7 +2,7 @@ package com.xn.interfacetest.Enum;
 
 
 public enum ContentTypeEnum {
-	TEXT("text/xml", 0),APPLICATION("application/json", 1);
+    FORM("application/x-www-form-urlencoded", 0),TEXTXML("text/xml", 1),JSON("application/json", 2),MULTIPART("multipart/form-data",3),OTHER("自己填写",4);
     // 成员变量
     private String name;
     private int id;

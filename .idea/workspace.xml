@@ -2,34 +2,193 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="849b9839-e6d4-4458-ac2c-5a6f9267c476" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceReportService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/controller/WebController.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/AppendParamEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/CaseTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/CommonResultEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ContentTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/DatabaseTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ExcuteTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ExecuteStatusEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/HttpTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/InterfaceTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/OperationTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ParamFormatTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ParamTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/ParamsGroupTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/PerformancePlanStatusEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/PlanStatusEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/PublishEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/RedisAssertTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/RedisOperationTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/Enum/RequestTypeEnum.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/DataAssertService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/ParamsAssertService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RedisAssertService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationAssertResultService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationCaseDatabaseService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationCaseParamsService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationCaseRedisService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationDatabaseEnvironmentService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationInterfaceResultService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationPlanEnvironmentService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationPlanResultService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationPlanSuitService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationPlanTimeService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationServiceEnvironmentService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/RelationSuitCaseService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestCaseService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestDatabaseConfigService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestEnvironmentService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestInterfaceService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestJarMethodService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestParamsService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestPlanService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestRedisConfigService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestReportService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestServiceService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestSuitService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TestSystemService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/api/TimeConfigService.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/base/BaseDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/base/BaseEntity.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/base/BaseMapper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/base/CommonResult.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/DataAssertDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/ParamDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/ParamsAssertDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RedisAssertDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationAssertResultDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationCaseDatabaseDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationCaseParamsDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationCaseRedisDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationDatabaseEnvironmentDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationInterfaceResultDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationPlanEnvironmentDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationPlanResultDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationPlanSuitDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationPlanTimeDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationServiceEnvironmentDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/RelationSuitCaseDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestCaseDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestDatabaseConfigDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestEnvironmentDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestInterfaceDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestJarMethodDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestParamsDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestPlanDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestRedisConfigDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestReportDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestServiceDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestSuitDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TestSystemDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/dto/TimeConfigDto.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/model/AssertKeyValueVo.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/model/KeyValueStore.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/ArrayFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/BeanUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/BigDecimalFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/BigIntegerFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/BooleanFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/CharFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/DateTimeFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/DoubleFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/EnumFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/FloatFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/InstanceFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/IntFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/ListFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/LongFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/MapFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/ObjectFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/StreamFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/objectfactory/StringFactory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/response/AssertItem.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/CollectionUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/ConnectionPool.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/EncryptUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/ExtClasspathLoader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/FileUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/MapUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/Other.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/ReflectionUtils.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/SignUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/SpringContextUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/src/main/java/com/xn/interfacetest/util/StringUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/picture/description.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/picture/step.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common-test-api/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common-test/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest-api/bin/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interfacetest/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/help_info.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/caselist.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/planitem.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/planlist.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/case/systemlist.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/intf_report.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test-api/common-test-api.iml" afterPath="$PROJECT_DIR$/common-test-api/common-test-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/common-test.iml" afterPath="$PROJECT_DIR$/common-test/common-test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties" afterPath="$PROJECT_DIR$/common-test/src/main/resources/beta/properties/common.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" afterPath="$PROJECT_DIR$/interfacetest-api/interfacetest-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/pom.xml" afterPath="$PROJECT_DIR$/interfacetest-api/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test-api/src/main/java/com/xn/common/api/CompanyService.java" afterPath="$PROJECT_DIR$/common-test-api/src/main/java/com/xn/common/api/CompanyService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test-api/src/main/java/com/xn/common/api/DepartmentService.java" afterPath="$PROJECT_DIR$/common-test-api/src/main/java/com/xn/common/api/DepartmentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/CompanyMapper.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/CompanyMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/DepartmentMapper.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/dao/DepartmentMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/impl/CompanyServiceImpl.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/impl/CompanyServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/impl/DepartmentServiceImpl.java" afterPath="$PROJECT_DIR$/common-test/src/main/java/com/xn/common/company/service/impl/DepartmentServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/mybatis/mapper/CompanyMapper.xml" afterPath="$PROJECT_DIR$/common-test/src/main/resources/mybatis/mapper/CompanyMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common-test/src/main/resources/mybatis/mapper/DepartmentMapper.xml" afterPath="$PROJECT_DIR$/common-test/src/main/resources/mybatis/mapper/DepartmentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/Enum/ContentTypeEnum.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/Enum/ContentTypeEnum.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationSuitCaseService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/RelationSuitCaseService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestCaseService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestInterfaceService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestServiceService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestServiceService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSuitService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSuitService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSystemService.java" afterPath="$PROJECT_DIR$/interfacetest-api/src/main/java/com/xn/interfacetest/api/TestSystemService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/interfacetest.iml" afterPath="$PROJECT_DIR$/interfacetest/interfacetest.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestReportServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/beta/properties/common.properties" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/beta/properties/common.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/dubbo/dubbo-provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/pom.xml" afterPath="$PROJECT_DIR$/manage_platform/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/pom.xml" afterPath="$PROJECT_DIR$/interfacetest/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/command/HttpCaseCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationSuitCaseMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/RelationSuitCaseMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestCaseMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestInterfaceMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestInterfaceMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestServiceMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestServiceMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSuitMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSuitMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/dao/TestSystemMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationSuitCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/RelationSuitCaseServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestCaseServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestInterfaceServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestServiceServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestServiceServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSuitServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/service/impl/TestSystemServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/HttpClientUtil.java" afterPath="$PROJECT_DIR$/interfacetest/src/main/java/com/xn/interfacetest/util/HttpClientUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationSuitCaseMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/RelationSuitCaseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestCaseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestInterfaceMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestInterfaceMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestServiceMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestServiceMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSuitMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSuitMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSystemMapper.xml" afterPath="$PROJECT_DIR$/interfacetest/src/main/resources/mybatis/mapper/TestSystemMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/DepartmentController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/DepartmentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/InterfaceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ManageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ServiceController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ServiceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SuitController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SuitController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/SystemController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" afterPath="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/dev/properties/common.properties" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/dev/properties/common.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" afterPath="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/jmeter_log.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/jmeter_log.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/case/case_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/environment/environment_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/environment/environment_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/interface/interface_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/manage/system_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/suit/suit_item.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/autotest/suit/suit_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/decorators/right_bar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/performance.iml" afterPath="$PROJECT_DIR$/performance/performance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/pom.xml" afterPath="$PROJECT_DIR$/performance/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/SQLite_Act.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/jmeter/SQLite_Act.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/spring/dubbo-provider.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_manager.iml" afterPath="$PROJECT_DIR$/test_manager.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" afterPath="$PROJECT_DIR$/manage_platform/src/main/webapp/css/case.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" afterPath="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java" afterPath="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties" afterPath="$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" afterPath="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
     </list>
     <ignored path="test_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,114 +220,189 @@
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+            <file leaf-file-name="JmeterCompareReport(1).java" pinned="false" current-in-tab="false">
+              <entry file="file://$USER_HOME$/Documents/WeChat Files/zhouxitiancai/Files/JmeterCompareReport(1).java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="3058">
+                    <caret line="147" column="23" selection-start-line="24" selection-start-column="8" selection-end-line="147" selection-end-column="23" />
+                    <folding>
+                      <element signature="imports" expanded="false" />
+                      <element signature="e#692#707#0" expanded="false" />
+                      <element signature="e#885#900#0" expanded="false" />
+                      <element signature="e#1417#1432#0" expanded="false" />
+                      <element signature="e#1916#1931#0" expanded="false" />
+                      <element signature="e#2264#2279#0" expanded="false" />
+                      <element signature="e#3312#3327#0" expanded="false" />
+                      <element signature="e#5394#5402#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+              <entry file="file://$USER_HOME$/Desktop/index.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="616">
+                    <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="autotable_sqlite.js" pinned="false" current-in-tab="false">
+              <entry file="file://$USER_HOME$/Desktop/autotable_sqlite.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="2574">
+                    <caret line="117" column="44" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="44" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="plan_list.html" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="22">
+                    <caret line="437" column="45" selection-start-line="437" selection-start-column="45" selection-end-line="437" selection-end-column="45" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="test_manager" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="PerformanceReportController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PerformanceReportController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-21">
-              <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+            <state relative-caret-position="119">
+              <caret line="119" column="13" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#14103#14118#0" expanded="true" />
-                <element signature="e#14728#14736#0" expanded="true" />
-                <element signature="e#14873#14888#0" expanded="true" />
-                <marker date="1495420907542" expanded="false" signature="15077:15085" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HandlerMethodInvoker.class" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/workspace/mvn-repository/org/springframework/spring-web/4.1.4.RELEASE/spring-web-4.1.4.RELEASE.jar!/org/springframework/web/bind/annotation/support/HandlerMethodInvoker.class">
+      <file leaf-file-name="PerformancePlanShowDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-76">
-              <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+            <state relative-caret-position="130">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PerformanceReportServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java">
+      <file leaf-file-name="PerformancePlanShowService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+            <state relative-caret-position="331">
+              <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JmeterServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java">
+      <file leaf-file-name="PerformancePlanShowServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanShowServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2574">
-              <caret line="175" column="36" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
+            <state relative-caret-position="198">
+              <caret line="138" column="93" selection-start-line="138" selection-start-column="93" selection-end-line="138" selection-end-column="93" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PropertyUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/PropertyUtil.java">
+      <file leaf-file-name="PerformancePlanServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <caret line="50" column="65" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/beta/properties/common.properties">
+      <file leaf-file-name="report_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="-1870">
+              <caret line="107" column="70" selection-start-line="107" selection-start-column="66" selection-end-line="107" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
+      <file leaf-file-name="PerformanceResultMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="220" column="21" selection-start-line="220" selection-start-column="21" selection-end-line="220" selection-end-column="21" />
+            <state relative-caret-position="265">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="PerformanceResultMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="230" column="25" selection-start-line="230" selection-start-column="25" selection-end-line="230" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="578">
+              <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
+              <folding>
+                <marker date="1495597439800" expanded="true" signature="4699:4856" ph="SELECT FROM performance_result" />
+                <marker date="1495597439800" expanded="true" signature="4949:5088" ph="SELECT FROM performance_result" />
+                <marker date="1495597439800" expanded="true" signature="11846:13803" ph="SELECT R.id,... performance_result" />
+                <marker date="1495597439800" expanded="true" signature="13890:13973" ph="SELECT count... performance_result" />
+                <marker date="1495597439800" expanded="true" signature="14130:14895" ph="INSERT INTO performance_result... " />
+                <marker date="1495597439800" expanded="true" signature="15771:17146" ph="UPDATE perfo... " />
+                <marker date="1495597439800" expanded="true" signature="17223:17326" ph="DELETE FROM " />
+                <marker date="1495597439800" expanded="true" signature="17412:17470" ph="DELETE FROM " />
+                <marker date="1495597439800" expanded="true" signature="17595:17806" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interfacetest-api/pom.xml">
+      <file leaf-file-name="PerformancePlanShowDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
+              <folding>
+                <element signature="e#1978#1979#0" expanded="true" />
+                <element signature="e#2014#2015#0" expanded="true" />
+                <element signature="e#2070#2071#0" expanded="true" />
+                <element signature="e#2120#2121#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmeter.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/performance/src/main/resources/beta/properties/jmeter.properties">
+      <file leaf-file-name="PerformancePlanShow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="7" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="165">
+              <caret line="117" column="30" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+              <folding>
+                <element signature="e#1909#1910#0" expanded="true" />
+                <element signature="e#1950#1951#0" expanded="true" />
+                <element signature="e#2016#2017#0" expanded="true" />
+                <element signature="e#2076#2077#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,18 +434,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScenarioController.java" />
-        <option value="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceScriptService.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceScriptController.java" />
-        <option value="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceStressMachineService.java" />
-        <option value="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceMonitoredMachineService.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceMachineController.java" />
-        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceMonitoredMachieMapper.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScriptMapper.xml" />
         <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceScenarioMapper.xml" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/monitored_machine_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/machine/stress_machine_list.html" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/scenario/scenario_list.html" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/script/script_list.html" />
         <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanServiceImpl.java" />
@@ -245,12 +471,20 @@
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/dev/properties/common.properties" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java" />
         <option value="$PROJECT_DIR$/manage_platform/src/main/resources/dubbo/dubbo-consumer.xml" />
-        <option value="$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html" />
-        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java" />
-        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" />
         <option value="$PROJECT_DIR$/manage_platform/pom.xml" />
         <option value="$PROJECT_DIR$/interfacetest-api/pom.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html" />
+        <option value="$PROJECT_DIR$/performance/target/classes/properties/common.properties" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java" />
+        <option value="$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html" />
+        <option value="$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
+        <option value="$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java" />
+        <option value="$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java" />
       </list>
     </option>
   </component>
@@ -345,6 +579,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -373,15 +610,190 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="performance.api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="performance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="performance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="performance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manage_platform" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1309,6 +1721,8 @@
       <workItem from="1495158883126" duration="22061000" />
       <workItem from="1495249441308" duration="18919000" />
       <workItem from="1495416351067" duration="4158000" />
+      <workItem from="1495422163474" duration="28079000" />
+      <workItem from="1495591274859" duration="7174000" />
     </task>
     <task id="LOCAL-00001" summary="分页">
       <created>1494570200053</created>
@@ -1321,7 +1735,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169281000" />
+    <option name="totallyTimeSpent" value="204534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1334,37 +1748,37 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873562" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32771084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32678133" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45885006" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11363637" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31686747" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5674699" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837528" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18554217" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29638556" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2159091" sideWeight="0.49209931" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2608225" sideWeight="0.49209931" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21861471" sideWeight="0.50790066" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819277" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36144578" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4939759" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819277" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1676,145 +2090,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java</url>
-          <line>323</line>
+          <line>321</line>
           <properties />
-          <option name="timeStamp" value="156" />
+          <option name="timeStamp" value="172" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java</url>
+          <line>286</line>
+          <properties />
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java</url>
+          <line>129</line>
+          <properties />
+          <option name="timeStamp" value="174" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="157" />
+      <option name="time" value="175" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="countSql" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/JmeterService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.git/info/exclude">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/ReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/autotestController/CaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8206">
-          <caret line="397" column="13" selection-start-line="397" selection-start-column="13" selection-end-line="397" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/beta/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/target/classes/dubbo/dubbo-consumer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="56" column="109" selection-start-line="56" selection-start-column="109" selection-end-line="56" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/resources/prod/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/target/classes/properties/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/workspace/mvn-repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/javassist/JavassistProxyFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/workspace/mvn-repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/AbstractProxyInvoker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/workspace/mvn-repository/org/springframework/spring-context/4.1.4.RELEASE/spring-context-4.1.4.RELEASE.jar!/org/springframework/scheduling/support/ScheduledMethodRunnable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/target/classes/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/SpringTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceResultServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/intf_report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1672">
-          <caret line="76" column="28" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/report/intf_report.html" />
     <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/jmeter_log.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -1864,20 +2166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/autotable_sqlite.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Documents/WeChat Files/zhouxitiancai/Files/SQLite_Act(2).java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1889,21 +2177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-646">
           <caret line="213" column="14" selection-start-line="213" selection-start-column="14" selection-end-line="213" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1925,14 +2198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1940,25 +2205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1078">
           <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7216">
-          <caret line="360" column="48" selection-start-line="360" selection-start-column="34" selection-end-line="360" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="102" column="40" selection-start-line="102" selection-start-column="40" selection-end-line="102" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1970,26 +2216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="304" column="50" selection-start-line="304" selection-start-column="50" selection-end-line="304" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1495274654181" expanded="true" signature="5077:5087" ph="..." />
-            <marker date="1495274654181" expanded="true" signature="5617:5627" ph="..." />
-            <marker date="1495274654181" expanded="true" signature="6166:6176" ph="..." />
-            <marker date="1495274654181" expanded="true" signature="6706:6716" ph="..." />
-            <marker date="1495274654181" expanded="true" signature="7001:7011" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformanceReportService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1997,7 +2227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2005,45 +2234,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/util/PropertyUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="418">
           <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/JmeterServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2574">
+        <state relative-caret-position="3234">
           <caret line="175" column="36" selection-start-line="175" selection-start-column="36" selection-end-line="175" selection-end-column="36" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21">
-          <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#14103#14118#0" expanded="true" />
-            <element signature="e#14728#14736#0" expanded="true" />
-            <element signature="e#14873#14888#0" expanded="true" />
-            <marker date="1495420907542" expanded="false" signature="15077:15085" ph="&lt;~&gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2051,21 +2256,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="473" column="0" selection-start-line="473" selection-start-column="0" selection-end-line="473" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/workspace/mvn-repository/org/springframework/spring-web/4.1.4.RELEASE/spring-web-4.1.4.RELEASE.jar!/org/springframework/web/bind/annotation/support/HandlerMethodInvoker.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
+        <state relative-caret-position="5060">
           <caret line="230" column="25" selection-start-line="230" selection-start-column="25" selection-end-line="230" selection-end-column="25" />
           <folding />
         </state>
@@ -2073,7 +2269,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interfacetest-api/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="726">
           <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
           <folding />
         </state>
@@ -2081,9 +2277,276 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_platform/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="220" column="21" selection-start-line="220" selection-start-column="21" selection-end-line="220" selection-end-column="21" />
+        <state relative-caret-position="194">
+          <caret line="218" column="42" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/json-lib-2.2.2-jdk15-jdk15.jar!/net/sf/json/JSONArray.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/workspace/mvn-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="291" column="13" selection-start-line="291" selection-start-column="13" selection-end-line="291" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/workspace/mvn-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONArray.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/workspace/mvn-repository/com/alibaba/dubbo/2.5.3/dubbo-2.5.3-sources.jar!/com/alibaba/dubbo/rpc/proxy/InvokerInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/WeChat Files/zhouxitiancai/Files/JmeterCompareReport(1).java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3058">
+          <caret line="147" column="23" selection-start-line="24" selection-start-column="8" selection-end-line="147" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#692#707#0" expanded="false" />
+            <element signature="e#885#900#0" expanded="false" />
+            <element signature="e#1417#1432#0" expanded="false" />
+            <element signature="e#1916#1931#0" expanded="false" />
+            <element signature="e#2264#2279#0" expanded="false" />
+            <element signature="e#3312#3327#0" expanded="false" />
+            <element signature="e#5394#5402#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/target/classes/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/dev/properties/common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/workspace/mvn-repository/org/springframework/spring-web/4.1.4.RELEASE/spring-web-4.1.4.RELEASE.jar!/org/springframework/web/bind/annotation/support/HandlerMethodInvoker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/dev/properties/jmeter.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/autotable_sqlite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2574">
+          <caret line="117" column="44" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformancePlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7524">
+          <caret line="374" column="9" selection-start-line="368" selection-start-column="10" selection-end-line="374" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformanceReportServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_statistic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="148" column="71" selection-start-line="148" selection-start-column="71" selection-end-line="148" selection-end-column="71" />
+          <folding>
+            <element signature="e#5199#5302#0" expanded="false" />
+            <element signature="e#8250#8295#0" expanded="false" />
+            <element signature="e#8534#9816#0" expanded="false" />
+            <element signature="e#9893#10992#0" expanded="false" />
+            <element signature="e#11070#11338#0" expanded="false" />
+            <element signature="e#11460#12654#0" expanded="false" />
+            <element signature="e#12711#13732#0" expanded="false" />
+            <marker date="1495594604006" expanded="true" signature="5461:5471" ph="..." />
+            <marker date="1495594604006" expanded="true" signature="6001:6011" ph="..." />
+            <marker date="1495594604006" expanded="true" signature="6550:6560" ph="..." />
+            <marker date="1495594604006" expanded="true" signature="7090:7100" ph="..." />
+            <marker date="1495594604006" expanded="true" signature="7638:7648" ph="..." />
+            <marker date="1495594604006" expanded="true" signature="15723:15757" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/grafana.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/api/PerformancePlanShowService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanShowServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="138" column="93" selection-start-line="138" selection-start-column="93" selection-end-line="138" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/service/impl/PerformancePlanServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="50" column="65" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dao/PerformanceResultMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformancePlanMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2046">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+          <folding>
+            <marker date="1494653782706" expanded="true" signature="4563:5715" ph="SELECT id as... performance_plan" />
+            <marker date="1494653782706" expanded="true" signature="5794:5949" ph="SELECT FROM performance_plan" />
+            <marker date="1494653782706" expanded="true" signature="6040:6119" ph="SELECT FROM performance_plan" />
+            <marker date="1494653782706" expanded="true" signature="6240:6321" ph="SELECT count... performance_plan" />
+            <marker date="1494653782706" expanded="true" signature="6477:7277" ph="INSERT INTO performance_plan... " />
+            <marker date="1494653782706" expanded="true" signature="8167:9658" ph="UPDATE perfo... " />
+            <marker date="1494653782706" expanded="true" signature="9733:9834" ph="DELETE FROM " />
+            <marker date="1494653782706" expanded="true" signature="9919:9975" ph="DELETE FROM " />
+            <marker date="1494653782706" expanded="true" signature="10100:10309" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="122" column="30" selection-start-line="122" selection-start-column="30" selection-end-line="122" selection-end-column="30" />
+          <folding>
+            <element signature="e#1978#1979#0" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="true" />
+            <element signature="e#2070#2071#0" expanded="true" />
+            <element signature="e#2120#2121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/plan/plan_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="437" column="45" selection-start-line="437" selection-start-column="45" selection-end-line="437" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/java/com/xn/performance/entity/PerformancePlanShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="117" column="30" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+          <folding>
+            <element signature="e#1909#1910#0" expanded="true" />
+            <element signature="e#1950#1951#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2076#2077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance/src/main/resources/mybatis/mapper/PerformanceResultMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
+          <folding>
+            <marker date="1495597439800" expanded="true" signature="4699:4856" ph="SELECT FROM performance_result" />
+            <marker date="1495597439800" expanded="true" signature="4949:5088" ph="SELECT FROM performance_result" />
+            <marker date="1495597439800" expanded="true" signature="11846:13803" ph="SELECT R.id,... performance_result" />
+            <marker date="1495597439800" expanded="true" signature="13890:13973" ph="SELECT count... performance_result" />
+            <marker date="1495597439800" expanded="true" signature="14130:14895" ph="INSERT INTO performance_result... " />
+            <marker date="1495597439800" expanded="true" signature="15771:17146" ph="UPDATE perfo... " />
+            <marker date="1495597439800" expanded="true" signature="17223:17326" ph="DELETE FROM " />
+            <marker date="1495597439800" expanded="true" signature="17412:17470" ph="DELETE FROM " />
+            <marker date="1495597439800" expanded="true" signature="17595:17806" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/webapp/WEB-INF/performance/report/report_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1870">
+          <caret line="107" column="70" selection-start-line="107" selection-start-column="66" selection-end-line="107" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/performance.api/src/main/java/com/xn/performance/dto/PerformancePlanShowDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage_platform/src/main/java/com/xn/manage/performanceController/PerformanceReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="119" column="13" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
