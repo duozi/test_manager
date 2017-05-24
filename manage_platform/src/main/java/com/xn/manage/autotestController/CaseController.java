@@ -28,10 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/autotest/case")
@@ -834,11 +831,13 @@ public class CaseController {
 		CommonResult result = new CommonResult();
 		try{
 			String fileName = file.getOriginalFilename();
-			String path = PropertyUtil.getProperty("upload_path") + "excelCases" + File.separator  + fileName;
+			Date now = new Date();
+			String path = PropertyUtil.getProperty("upload_path") + "excelCases" + File.separator  + fileName + now.getTime();
 			//先上传到服务器
 			FileUtil.saveFile(file,path);
 			//处理excel
 			StringBuffer failCaseIds = testCaseService.dealWithExcelFile(path);
+			result.setData(failCaseIds);
 		}catch (Exception e){
 			int code = CommonResultEnum.ERROR.getReturnCode();
 			String message =e.getMessage();
