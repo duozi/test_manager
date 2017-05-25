@@ -2,7 +2,6 @@ package com.xn.manage.performanceController;/**
  * Created by xn056839 on 2017/2/9.
  */
 
-
 import com.google.common.collect.Lists;
 import com.xn.common.api.CompanyService;
 import com.xn.common.api.DepartmentService;

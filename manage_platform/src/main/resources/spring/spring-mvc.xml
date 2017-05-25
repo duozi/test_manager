@@ -33,7 +33,23 @@
         </property>
     </bean>
 
+    <!--<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/xml;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringHttpMessageConverter"/>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>-->
 
     <mvc:interceptors>
         <mvc:interceptor>

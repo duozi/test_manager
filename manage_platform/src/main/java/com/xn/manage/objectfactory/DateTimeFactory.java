@@ -1,5 +1,6 @@
 package com.xn.manage.objectfactory;
 
+
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 import java.lang.reflect.Type;

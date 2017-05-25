@@ -1,5 +1,10 @@
 package com.xn.interfacetest.util;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
@@ -7,11 +12,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 
 
 /**
@@ -41,17 +41,17 @@ public class FileUtil {
         }
     }
 
-//    public static List fileReadeForList(File file) {
-//
-//        List<String> lines = null;
-//
-//        try {
-//            lines = Files.readLines(file, Charsets.UTF_8);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return lines;
-//    }
+    public static List fileReadeForList(File file) {
+
+        List<String> lines = null;
+
+        try {
+            lines = Files.readLines(file, Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
 
     public static String fileReadeForStr(File file) {
 

@@ -1,6 +1,7 @@
 package com.xn.manage.objectfactory;
 
 
+
 import com.xn.common.utils.StringUtil;
 
 import java.lang.reflect.Type;

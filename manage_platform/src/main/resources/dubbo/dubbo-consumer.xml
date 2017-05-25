@@ -59,5 +59,12 @@
     <dubbo:reference id="performanceReportService" interface="com.xn.performance.api.PerformanceReportService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
+    <!--authority的服务-->
+    <dubbo:reference id="userRoleService" interface="com.xn.authority.api.UserRoleService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false" />
+    <dubbo:reference id="roleService" interface="com.xn.authority.api.RoleService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="roleResourcesService" interface="com.xn.authority.api.RoleResourcesService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="userService" interface="com.xn.authority.api.UserService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="resourcesService" interface="com.xn.authority.api.ResourcesService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
     <dubbo:monitor protocol="registry" />
 </beans>
