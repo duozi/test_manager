@@ -176,10 +176,10 @@ public class JmeterServiceImpl implements JmeterService {
             String resultPath = getProperty("reports") + id;
             performanceResultDto.setResultPath(resultPath);
             performanceResultService.update(performanceResultDto);
-            Integer executeTime = lastSecond(actualStartTime, actualEndTime);
-            //时序数据保存到本地
-            influxdb_to_sqlite3("telegraf", executeTime, id);
-            influxdb_to_sqlite3("jmeter", executeTime, id);
+//            Integer executeTime = lastSecond(actualStartTime, actualEndTime);
+//            //时序数据保存到本地
+//            influxdb_to_sqlite3("telegraf", executeTime, id);
+//            influxdb_to_sqlite3("jmeter", executeTime, id);
 
             //更新压力机map
             STRESS_MACHINE_STATUS.put(stressMachineId, 0);
