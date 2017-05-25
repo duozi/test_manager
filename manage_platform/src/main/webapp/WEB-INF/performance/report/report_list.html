@@ -161,6 +161,7 @@
                             <th >监控机</th>
                             <th >执行状态</th>
                             <th >开始时间</th>
+                            <th >结束时间</th>
                             <th >执行人</th>
                             <th >操作</th>
                         </tr>
@@ -187,6 +188,12 @@
                                     <td>
                                         <#if item.actualStartTime ??>
                                             ${(item.actualStartTime)?datetime}
+                                        </#if>
+
+                                    </td>
+                                    <td>
+                                        <#if item.actualEndTime ??>
+                                            ${(item.actualEndTime)?datetime}
                                         </#if>
 
                                     </td>

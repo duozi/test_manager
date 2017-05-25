@@ -319,7 +319,7 @@ public class TestCaseServiceImpl implements TestCaseService {
             Workbook  wb = WorkbookFactory.create(new File(path));
             Sheet sheet = wb.getSheetAt(0);
             // 得到总行数
-            int rowNum = sheet.getLastRowNum();
+            int rowNum = sheet.getLastRowNum() + 1;
             logger.info("共计行数rowNum：" + rowNum);
 
             //取第1行

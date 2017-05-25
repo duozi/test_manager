@@ -94,13 +94,21 @@ public class PerformancePlanShowDto extends BaseDto {
      * 实际开始时间
      */
     private Date actualStartTime;
+
+    private Date actualEndTime;
     private String executeStatus;
     private Date setStartTime;
     private String resultPath;
     private String executePerson;
     private Date actualStartTimeBegin;
     private Date actualStartTimeEnd;
+    public Date getActualEndTime() {
+        return actualEndTime;
+    }
 
+    public void setActualEndTime(Date actualEndTime) {
+        this.actualEndTime = actualEndTime;
+    }
     public Integer getPlanId() {
         return planId;
     }

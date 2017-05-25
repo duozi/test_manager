@@ -17,6 +17,7 @@ import static com.xn.performance.util.PropertyUtil.getProperty;
 public class PerformanceReportServiceImpl implements PerformanceReportService {
     public static String BEFORE=getProperty("reports");
     public static String AFTER=".db";
+
     @Override
     public Map<String,Object> generateReport(List<String> dbnames) {
 
@@ -29,30 +30,32 @@ public class PerformanceReportServiceImpl implements PerformanceReportService {
         Map<String,String> avgmap = new LinkedHashMap<String,String>();
         avgmap.put("title", "avg");
         for(int i=0;i<dbnames.size();i++){
-
+            //SQLite_Act.gettablename(dbnames[i]);
             List<List<String>> tv = SQLite_Act.selectData(BEFORE+dbnames.get(i)+AFTER, "select avg(value) as avg from \"jmeter.all.ok.avg\"");
             String avg = tv.get(1).get(0);
             if (avg.indexOf('.')>0){
-                avg = avg.substring(0, avg.indexOf('.')+4);
+                if(avg.substring(avg.indexOf('.')).length()>4)
+                    avg = avg.substring(0, avg.indexOf('.')+4);
             }
             avgmap.put("db"+(i+1), avg);
         }
         jsonObjects.add(avgmap);
 
         Map<String,String> tpsmap = new LinkedHashMap<String,String>();
-        tpsmap.put("title", "tps(ok)");
+        tpsmap.put("title", "tps");
         for(int i=0;i<dbnames.size();i++){
             //获取tps
             List<List<String>> tv = SQLite_Act.selectData(BEFORE+dbnames.get(i)+AFTER, "select avg(value) from \"jmeter.all.ok.count\"");
             String tps = tv.get(1).get(0);
             if (tps.indexOf('.')>0){
-                tps = tps.substring(0, tps.indexOf('.')+4);
+                if(tps.substring(tps.indexOf('.')).length()>4)
+                    tps = tps.substring(0, tps.indexOf('.')+4);
             }
             tpsmap.put("db"+(i+1), tps);
         }
         jsonObjects.add(tpsmap);
 
-        Map<String,String> allcount = new LinkedHashMap<String,String>();
+        Map<String,String> allcount = new LinkedHashMap<>();
         allcount.put("title", "allcount");
         for(int i=0;i<dbnames.size();i++){
             //获取请求总数
@@ -70,11 +73,13 @@ public class PerformanceReportServiceImpl implements PerformanceReportService {
             for(int j=1;j<tv.size();j++){
                 String us = tv.get(j).get(2);
                 if(us.indexOf('.')>0){
-                    us = us.substring(0,us.indexOf('.')+4);
+                    if(us.substring(us.indexOf('.')).length()>4)
+                        us = us.substring(0, us.indexOf('.')+4);
                 }
                 String sy = tv.get(j).get(1);
                 if(sy.indexOf('.')>0){
-                    sy = sy.substring(0,sy.indexOf('.')+4);
+                    if(sy.substring(sy.indexOf('.')).length()>4)
+                        sy = sy.substring(0, sy.indexOf('.')+4);
                 }
                 if (cpuvalue.equals("")){
                     cpuvalue = tv.get(j).get(0)+":"+us+"%us"+"|"+sy+"%sy";
@@ -106,7 +111,8 @@ public class PerformanceReportServiceImpl implements PerformanceReportService {
                     danwei = "M(r)";
                 }
                 if(read.indexOf('.')>0){
-                    read = read.substring(0,read.indexOf('.')+4);
+                    if(read.substring(read.indexOf('.')).length()>4)
+                        read = read.substring(0, read.indexOf('.')+4);
                 }
                 read = read + danwei;
 
@@ -121,7 +127,8 @@ public class PerformanceReportServiceImpl implements PerformanceReportService {
                     danwei = "M(w)";
                 }
                 if(write.indexOf('.')>0){
-                    write = write.substring(0,write.indexOf('.')+4);
+                    if(write.substring(write.indexOf('.')).length()>4)
+                        write = read.substring(0, write.indexOf('.')+4);
                 }
                 write = write + danwei;
 

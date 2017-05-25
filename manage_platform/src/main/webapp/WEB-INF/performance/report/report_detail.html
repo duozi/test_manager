@@ -92,7 +92,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <#if scenario_detail ?? && script_detail ?? && stress_machine_detail ??>
+                                    <#if script_detail ?? && stress_machine_detail ??>
                                         <td>${stress_machine_detail.stressMachineName}</td>
                                         <td>${stress_machine_detail.ip}</td>
                                         <td>${script_detail.scriptName}</td>
@@ -138,46 +138,46 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <table class="table table-striped table-bordered table-hover report_detail_table">
-                                <thead>
-                                <tr class="alert-success">
-                                    <th>监控机名</th>
-                                    <th>监控机ip</th>
-                                    <th>请求数</th>
-                                    <th>平均响应时间(ms)</th>
-                                    <th>最大响应时间(ms)</th>
-                                    <th>最小响应时间(ms)</th>
-                                    <th>失败请求数</th>
-                                    <th>失败请求数</th>
-                                    <th>kb/sec</th>
-                                    <th>负载</th>
-                                    <th>kps</th>
-                                    <th>内存</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <!--<table class="table table-striped table-bordered table-hover report_detail_table">-->
+                                <!--<thead>-->
+                                <!--<tr class="alert-success">-->
+                                    <!--<th>监控机名</th>-->
+                                    <!--<th>监控机ip</th>-->
+                                    <!--<th>请求数</th>-->
+                                    <!--<th>平均响应时间(ms)</th>-->
+                                    <!--<th>最大响应时间(ms)</th>-->
+                                    <!--<th>最小响应时间(ms)</th>-->
+                                    <!--<th>失败请求数</th>-->
+                                    <!--<th>失败请求数</th>-->
+                                    <!--<th>kb/sec</th>-->
+                                    <!--<th>负载</th>-->
+                                    <!--<th>kps</th>-->
+                                    <!--<th>内存</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--<tbody>-->
 
-                                <#if monitored_machine_detail_list ??>
-                                    <#list  monitored_machine_detail_list as item>
-                                        <tr>
-                                            <td>${item.monitoredMachineName}</td>
-                                            <td>${item.monitoredMachineIp}</td>
-                                            <td>${item.samples}</td>
-                                            <td>${item.average}</td>
-                                            <td>${item.minTime}</td>
-                                            <td>${item.maxTime}</td>
-                                            <td>${item.error}</td>
-                                            <td>${item.throughput}</td>
-                                            <td>${item.kbsec}</td>
-                                            <td>${item.machineLoad}</td>
-                                            <td>${item.qps}</td>
-                                            <td>${item.memory}</td>
-                                        </tr>
-                                    </#list>
-                                </#if>
+                                <!--<#if monitored_machine_detail_list ??>-->
+                                    <!--<#list  monitored_machine_detail_list as item>-->
+                                        <!--<tr>-->
+                                            <!--<td>${item.monitoredMachineName}</td>-->
+                                            <!--<td>${item.monitoredMachineIp}</td>-->
+                                            <!--<td>${item.samples}</td>-->
+                                            <!--<td>${item.average}</td>-->
+                                            <!--<td>${item.minTime}</td>-->
+                                            <!--<td>${item.maxTime}</td>-->
+                                            <!--<td>${item.error}</td>-->
+                                            <!--<td>${item.throughput}</td>-->
+                                            <!--<td>${item.kbsec}</td>-->
+                                            <!--<td>${item.machineLoad}</td>-->
+                                            <!--<td>${item.qps}</td>-->
+                                            <!--<td>${item.memory}</td>-->
+                                        <!--</tr>-->
+                                    <!--</#list>-->
+                                <!--</#if>-->
 
-                                </tbody>
-                            </table>
+                                <!--</tbody>-->
+                            <!--</table>-->
                             <iframe style="width: 100%;height: 800px" frameborder="0" scrolling="auto"
                                     src="http://${localIp}${result_detail.resultPath}">
 

@@ -301,7 +301,7 @@
         $(this).fileinput("upload").on("fileuploaded", function(event, data) {
             if(data.response.code==0){
                 $("input[name='excelPath']").val(data.response.data);
-                if("" != data.response.data || undefined != data.response.data || null != data.response.data){
+                if("" != data.response.data && undefined != data.response.data && null != data.response.data){
                     alert("编号为：" + data.response.data + "的用例上传失败");
                 }
                 reloadCase();
