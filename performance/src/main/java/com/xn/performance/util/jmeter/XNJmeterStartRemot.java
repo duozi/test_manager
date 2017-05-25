@@ -1,6 +1,7 @@
 package com.xn.performance.util.jmeter;
 
 
+import com.xn.performance.util.GetTime;
 import com.xn.performance.util.PropertyUtil;
 import org.apache.jmeter.JMeter;
 import org.apache.jmeter.config.Arguments;
@@ -629,9 +630,22 @@ public class XNJmeterStartRemot {
 
     public String rstart_csv(String remote_hosts_string, String rmi_server, String jmxfile) throws Exception {
         logger.info(Thread.currentThread().getName() + "===========rstart_csv remote_hosts_string:" + remote_hosts_string + " rmi_server:" + rmi_server + " jmxfile:" + jmxfile);
+        long startTestInfluxdbTime = GetTime.getUTCTimeLong19(0);
+        logger.info("启动测试时间：" + GetTime.getUTCTimeStr(0) + " | " + startTestInfluxdbTime);
         setjmeterpros.put("setAsXml", false);
         remoteStart(remote_hosts_string, rmi_server, jmxfile);
+        long endTestInfluxdbTime = GetTime.getUTCTimeLong19(0);
+        logger.info("结束测试时间：" + GetTime.getUTCTimeStr(0) + " | " + endTestInfluxdbTime);
         generateReportCSVToHtml();
+        logger.info("查询 influxdb 数据，转存到本地 sqlite， 起止时间"+startTestInfluxdbTime+" -- "+endTestInfluxdbTime);
+        String sqlitedbfile = getProperty("reports")+id+".db";
+
+
+        InfluxDB_Act inftosqlite = new InfluxDB_Act();
+        logger.info("   获取 telegraf 数据库数据。");
+        inftosqlite.influxdb_to_sqlite3("telegraf",sqlitedbfile,startTestInfluxdbTime,endTestInfluxdbTime);
+        logger.info("   获取 jmeter 数据库数据。");
+        inftosqlite.influxdb_to_sqlite3("jmeter",sqlitedbfile,startTestInfluxdbTime,endTestInfluxdbTime,String.valueOf(id)+".");
         return outputFile;
     }
 

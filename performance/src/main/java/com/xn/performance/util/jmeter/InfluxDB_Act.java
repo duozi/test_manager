@@ -1,5 +1,6 @@
 package com.xn.performance.util.jmeter;
 
+import com.xn.performance.util.GetTime;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDB.ConsistencyLevel;
 import org.influxdb.InfluxDBFactory;
@@ -175,7 +176,134 @@ public class InfluxDB_Act {
 		System.out.println(tablist); // 表中的数据
 		//influxDB.deleteDatabase(dbName);
 	}
+	/**
+	 * 获取一段时间内的 influxdb 数据
+	 * @param infdbName  influxdb的数据库名称
+	 * @param sqlitedbName sqlite3的数据库 路径+数据库名称
+	 * @param starttime long类型起始时间戳
+	 * @param endtime  long类型结束时间戳
+	 */
+	public void influxdb_to_sqlite3(String infdbName, String sqlitedbName, long starttime, long endtime){
+		InfluxDB influxDB = null;
+		List<List<Object>> tablist;
 
+		//将时间戳修改为 influxdb 使用的 19 位时间戳
+		int timenum = GetTime.getLongnum(starttime);
+		if (timenum<19){
+			starttime = starttime * (long)Math.pow(10,(19-timenum));
+		}
+		timenum = GetTime.getLongnum(endtime);
+		if (timenum<19){
+			endtime = endtime * (long)Math.pow(10,(19-timenum));
+		}
+
+		try{
+			influxDB = InfluxDBFactory.connect(connstr, influxdb_user, influxdb_pwd);
+			Query query = new Query("show measurements", infdbName);
+			QueryResult rult = influxDB.query(query);
+			tablist = rult.getResults().get(0).getSeries().get(0).getValues();
+			System.out.println(infdbName+" tabs is:"+tablist);
+
+			// 遍历表名，查询数据
+			for (List<Object> tabname : tablist){
+				String selstr = String.format("SELECT * FROM \"%s\" Where time >= %d and time <= %d", tabname.get(0), starttime,endtime);
+				System.out.println(selstr);
+				Query query_tab = new Query(selstr, infdbName);
+				QueryResult rult_tab = influxDB.query(query_tab); //查询为空时这里会报错
+				//if (rult_tab)
+				System.out.println(rult_tab.getResults().get(0));
+				if(rult_tab.getResults().get(0).getSeries()==null){
+					System.out.println("Table "+tabname+" 查询结果为 null.");
+					continue;
+				}
+				List<String> colnames = rult_tab.getResults().get(0).getSeries().get(0).getColumns();
+				// 列名增加 [] 包裹，避免某些关键字列名如 in 无法再sqlite中创建表
+				for(int i=0;i<colnames.size();i++){
+					colnames.set(i, "["+colnames.get(i)+"]");
+				}
+				ArrayList<List<Object>> colvalues = new ArrayList<List<Object>>();
+				for(List<Object> tabvalue : rult_tab.getResults().get(0).getSeries().get(0).getValues()){
+					colvalues.add(tabvalue); // 将表中每行数据添加到 list
+				}
+				// 将数据转存到sqlite3数据库中
+				SQLite_Act.sqlite3_from_influxdb(sqlitedbName, tabname.toString(), colnames, colvalues);
+			}
+			System.out.println("******* influxdb data to sqlite3 end! *******");
+
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			influxDB.close();
+		}
+	}
+
+	/**
+	 * 获取一段时间内的 influxdb 数据，对于多个性能测试并发的处理，按照不同的前缀获取表数据
+	 * @param infdbName  influxdb的数据库名称
+	 * @param sqlitedbName sqlite3的数据库 路径+数据库名称
+	 * @param starttime long类型起始时间戳
+	 * @param endtime  long类型结束时间戳
+	 * @param rootMetricsPrefix jmeter运行写入influxdb的表的前缀，用来排除同时进行的多个性能测试，避免写到同一个表污染了数据
+	 */
+	public void influxdb_to_sqlite3(String infdbName, String sqlitedbName, long starttime, long endtime, String rootMetricsPrefix){
+		InfluxDB influxDB = null;
+		List<List<Object>> tablist;
+
+		//将时间戳修改为 influxdb 使用的 19 位时间戳
+		int timenum = GetTime.getLongnum(starttime);
+		if (timenum<19){
+			starttime = starttime * (long)Math.pow(10,(19-timenum));
+		}
+		timenum = GetTime.getLongnum(endtime);
+		if (timenum<19){
+			endtime = endtime * (long)Math.pow(10,(19-timenum));
+		}
+
+		try{
+			influxDB = InfluxDBFactory.connect(connstr, influxdb_user, influxdb_pwd);
+			Query query = new Query("show measurements", infdbName);
+			QueryResult rult = influxDB.query(query);
+			tablist = rult.getResults().get(0).getSeries().get(0).getValues();
+			System.out.println(infdbName+" tabs is:"+tablist);
+
+			// 遍历表名，查询数据
+			for (List<Object> tabname : tablist){
+				String[] tabn = tabname.get(0).toString().split("\\.");
+				if (tabn.length>1){
+					if (!tabn[0].equals(rootMetricsPrefix.substring(0, rootMetricsPrefix.length()-1)))
+						continue;
+				}
+
+				String selstr = String.format("SELECT * FROM \"%s\" Where time >= %d and time <= %d", tabname.get(0), starttime,endtime);
+				System.out.println(selstr);
+				Query query_tab = new Query(selstr, infdbName);
+				QueryResult rult_tab = influxDB.query(query_tab); //查询为空时这里会报错
+				//if (rult_tab)
+				System.out.println(rult_tab.getResults().get(0));
+				if(rult_tab.getResults().get(0).getSeries()==null){
+					System.out.println("Table "+tabname+" 查询结果为 null.");
+					continue;
+				}
+				List<String> colnames = rult_tab.getResults().get(0).getSeries().get(0).getColumns();
+				// 列名增加 [] 包裹，避免某些关键字列名如 in 无法再sqlite中创建表
+				for(int i=0;i<colnames.size();i++){
+					colnames.set(i, "["+colnames.get(i)+"]");
+				}
+				ArrayList<List<Object>> colvalues = new ArrayList<List<Object>>();
+				for(List<Object> tabvalue : rult_tab.getResults().get(0).getSeries().get(0).getValues()){
+					colvalues.add(tabvalue); // 将表中每行数据添加到 list
+				}
+				// 将数据转存到sqlite3数据库中
+				SQLite_Act.sqlite3_from_influxdb(sqlitedbName, tabname.toString(), colnames, colvalues);
+			}
+			System.out.println("******* influxdb data to sqlite3 end! *******");
+
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			influxDB.close();
+		}
+	}
 	public static void main( String[] args )
     {
 //		influxdb_to_sqlite3("telegraf",1);

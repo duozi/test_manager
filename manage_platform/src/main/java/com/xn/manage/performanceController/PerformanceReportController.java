@@ -373,6 +373,20 @@ public class PerformanceReportController {
 
 
     }
+    /**
+     * 返回绘制图表的json数据
+     * @param dbfile sqlite数据的路径+文件名称
+     * @param jmeterPrefix jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染
+     * @return json格式的绘制图表数据
+     */
+    @RequestMapping(value = "/report_statistic/jmter_char" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject jmeterChar(@RequestParam Integer id) {
+        System.out.println("Spring Controller: from ajax dbfile is:"+id);
+        Map<String,Object> map  = JmeterChartSqlite.ChartDataAll(id);
+        System.out.println(map);
+        return (new JSONObject(map));
+    }
 
 }
 
