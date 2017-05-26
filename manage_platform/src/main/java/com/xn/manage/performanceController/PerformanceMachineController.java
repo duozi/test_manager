@@ -55,8 +55,12 @@ public class PerformanceMachineController {
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
+        StringBuffer pageParams = new StringBuffer(); // 用于页面分页查询的的url参数
         pageInfo.setPagination(true);
         pageInfo.setPageSize(15);
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
+        }
         if (path.equals("stress_machine_list")) {
             List<PerformanceStressMachineDto> performanceStressMachineDtoList = null;
             PerformanceStressMachineDto performanceStressMachineDto = new PerformanceStressMachineDto();
@@ -69,17 +73,26 @@ public class PerformanceMachineController {
 
             if (isNotEmpty(company) && !company.equals("null")) {
                 performanceStressMachineDto.setCompany(company);
+                pageParams.append("&company=").append(company);
+                model.put("company", company);
             }
             if (isNotEmpty(department) && !department.equals("null")) {
                 performanceStressMachineDto.setDepartment(department);
+                pageParams.append("&department=").append(department);
+                model.put("department", department);
             }
             if (isNotEmpty(psystem) && !psystem.equals("null")) {
                 performanceStressMachineDto.setPsystem(psystem);
+                pageParams.append("&psystem=").append(psystem);
+                model.put("psystem", psystem);
             }
             if (isNotEmpty(stressMachineName) && !stressMachineName.equals("null")) {
                 performanceStressMachineDto.setStressMachineName(stressMachineName);
+                pageParams.append("&stressMachineName=").append(stressMachineName);
+                model.put("stressMachineName", stressMachineName);
             }
             PageResult<PerformanceStressMachineDto> stressMachineList=null;
+            pageInfo.setParams(pageParams.toString());
             try {
                 stressMachineList = performanceStressMachineService.listByPage(performanceStressMachineDto,pageInfo);
             } catch (IllegalAccessException e) {
@@ -104,17 +117,26 @@ public class PerformanceMachineController {
 
             if (isNotEmpty(company) && !company.equals("null")) {
                 performanceMonitoredMachineDto.setCompany(company);
+                pageParams.append("&company=").append(company);
+                model.put("company", company);
             }
             if (isNotEmpty(department) && !department.equals("null")) {
                 performanceMonitoredMachineDto.setDepartment(department);
+                pageParams.append("&department=").append(department);
+                model.put("department", department);
             }
             if (isNotEmpty(psystem) && !psystem.equals("null")) {
                 performanceMonitoredMachineDto.setPsystem(psystem);
+                pageParams.append("&psystem=").append(psystem);
+                model.put("psystem", psystem);
             }
             if (isNotEmpty(stressMachineName) && !stressMachineName.equals("null")) {
                 performanceMonitoredMachineDto.setMonitoredMachineName(stressMachineName);
+                pageParams.append("&stressMachineName=").append(stressMachineName);
+                model.put("stressMachineName", stressMachineName);
             }
             PageResult<PerformanceMonitoredMachineDto> monitoredMachineList=null;
+            pageInfo.setParams(pageParams.toString());
             try {
                 monitoredMachineList = performanceMonitoredMachineService.listByPage(performanceMonitoredMachineDto,pageInfo);
             } catch (IllegalAccessException e) {

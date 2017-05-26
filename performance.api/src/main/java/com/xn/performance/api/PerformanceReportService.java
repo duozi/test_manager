@@ -7,5 +7,7 @@ import java.util.Map;
  * Created by xn056839 on 2017/5/17.
  */
 public interface PerformanceReportService {
-    Map<String,Object> generateReport(List<String> dbnames);
+    Map<String, Object> generateReport(List<String> dbnames);
+
+    Map<String, Object> chartDataAll(Integer id);
 }

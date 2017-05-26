@@ -48,7 +48,7 @@
     <dubbo:reference id="testJarMethodService" interface="com.xn.interfacetest.api.TestJarMethodService" timeout="${dubbo_timeout}"  group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--performance的服务-->
-    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performanceMonitoredMachineService" interface="com.xn.performance.api.PerformanceMonitoredMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performanceScenarioService" interface="com.xn.performance.api.PerformanceScenarioService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performanceScriptService" interface="com.xn.performance.api.PerformanceScriptService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>

@@ -54,6 +54,7 @@ public class PerformanceScriptController {
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo)  {
+        StringBuffer pageParams = new StringBuffer(); // 用于页面分页查询的的url参数
         List<PerformanceScriptDto> performanceScriptDtoList = null;
         PerformanceScriptDto performanceScriptDto = new PerformanceScriptDto();
         performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
@@ -66,22 +67,36 @@ public class PerformanceScriptController {
 
         if (isNotEmpty(company) && !company.equals("null")) {
             performanceScriptDto.setCompany(company);
+            pageParams.append("&company=").append(company);
+            model.put("company", company);
         }
         if (isNotEmpty(department) && !department.equals("null")) {
             performanceScriptDto.setDepartment(department);
+            pageParams.append("&department=").append(department);
+            model.put("department", department);
         }
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
             performanceScriptDto.setPsystem(psystem);
+            pageParams.append("&psystem=").append(psystem);
+            model.put("psystem", psystem);
         }
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performanceScriptDto.setScriptName(scriptName);
+            pageParams.append("&scriptName=").append(scriptName);
+            model.put("scriptName", scriptName);
         }
         if (isNotEmpty(scriptStatus) && !scriptStatus.equals("null")) {
             performanceScriptDto.setScriptStatus(scriptStatus);
+            pageParams.append("&scriptStatus=").append(scriptStatus);
+            model.put("scriptStatus", scriptStatus);
+        }
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
         }
         PageResult<PerformanceScriptDto> scriptList=null;
         pageInfo.setPagination(true);
         pageInfo.setPageSize(15);
+        pageInfo.setParams(pageParams.toString());
 
         try {
             scriptList = performanceScriptService.listByPage(performanceScriptDto,pageInfo);

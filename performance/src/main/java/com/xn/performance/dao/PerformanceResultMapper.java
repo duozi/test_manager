@@ -27,5 +27,7 @@ public interface PerformanceResultMapper extends BaseMapper<PerformanceResult, I
 
     PerformancePlanShow getShow(Object condition);
 
+    List<String> getExecutePerson();
+
 
 }

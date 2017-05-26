@@ -66,17 +66,18 @@ public class PerformanceReportController {
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request, PageInfo pageInfo) {
-
+        StringBuffer pageParams = new StringBuffer(); // 用于页面分页查询的的url参数
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
         model.put("plan_list_all", performancePlanDtoList);
-
 
 
         PerformanceScriptDto performanceScriptDto = new PerformanceScriptDto();
         List<PerformanceScriptDto> performanceScriptDtoList = performanceScriptService.list(performanceScriptDto);
         model.put("script_list_all", performanceScriptDtoList);
 
+        List<String> executePersonList = performanceResultService.listExecutePerson();
+        model.put("execute_person_list", executePersonList);
 
         String company = request.getParameter("company");
         String department = request.getParameter("department");
@@ -84,38 +85,64 @@ public class PerformanceReportController {
         String planName = request.getParameter("planName");
         String executeStatus = request.getParameter("executeStatus");
         String scriptName = request.getParameter("scriptName");
+        String executePerson = request.getParameter("executePerson");
         String actualStartTimeBegin = request.getParameter("actualStartTimeBegin");
         String actualStartTimeEnd = request.getParameter("actualStartTimeEnd");
         PerformancePlanShowDto performancePlanShowDto = new PerformancePlanShowDto();
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
+            pageParams.append("&company=").append(company);
+            model.put("company", company);
         }
         if (isNotEmpty(department) && !department.equals("null")) {
             performancePlanShowDto.setDepartment(department);
+            pageParams.append("&department=").append(department);
+            model.put("department", department);
         }
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
             performancePlanShowDto.setPsystem(psystem);
+            pageParams.append("&psystem=").append(psystem);
+            model.put("psystem", psystem);
         }
         if (isNotEmpty(planName) && !planName.equals("null")) {
             performancePlanShowDto.setPlanName(planName);
+            pageParams.append("&planName=").append(planName);
+            model.put("planName", planName);
+
         }
         if (isNotEmpty(executeStatus) && !executeStatus.equals("null")) {
             performancePlanShowDto.setExecuteStatus(executeStatus);
+            pageParams.append("&executeStatus=").append(executeStatus);
+            model.put("executeStatus", executeStatus);
         }
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performancePlanShowDto.setScriptName(scriptName);
+            pageParams.append("&scriptName=").append(scriptName);
+            model.put("scriptName", scriptName);
+        }
+        if (isNotEmpty(executePerson) && !executePerson.equals("null")) {
+            performancePlanShowDto.setExecutePerson(executePerson);
+            pageParams.append("&executePerson=").append(executePerson);
+            model.put("executePerson", executePerson);
         }
         if (isNotEmpty(actualStartTimeBegin) && !actualStartTimeBegin.equals("null")) {
             Date begin = DateUtil.getStandardStringDate(actualStartTimeBegin);
             performancePlanShowDto.setActualStartTimeBegin(begin);
+            pageParams.append("&actualStartTimeBegin=").append(actualStartTimeBegin);
+            model.put("actualStartTimeBegin", actualStartTimeBegin);
         }
         if (isNotEmpty(actualStartTimeEnd) && !actualStartTimeEnd.equals("null")) {
             Date end = DateUtil.getStandardStringDate(actualStartTimeEnd);
             performancePlanShowDto.setActualStartTimeEnd(end);
+            pageParams.append("&actualStartTimeEnd=").append(actualStartTimeEnd);
+            model.put("actualStartTimeEnd", actualStartTimeEnd);
+        }
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
         }
         pageInfo.setPagination(true);
         pageInfo.setPageSize(15);
-
+        pageInfo.setParams(pageParams.toString());
         PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
         try {
             performancePlanShowDtoList = performancePlanShowService.getResultListByPage(performancePlanShowDto, pageInfo);
@@ -223,6 +250,7 @@ public class PerformanceReportController {
             return "/performance/report/grafana";
         }
     }
+
     //获得机器实时数据
     @RequestMapping(value = "/jmeter", method = RequestMethod.GET)
     public String getJmeter(ModelMap model) {
@@ -235,6 +263,7 @@ public class PerformanceReportController {
             return "/performance/report/jmeter";
         }
     }
+
     //查看jmeter日志
     @RequestMapping(value = "/jmeter_log", method = RequestMethod.GET)
     public String getJmeterLog(HttpServletRequest request, ModelMap model) {
@@ -339,19 +368,19 @@ public class PerformanceReportController {
                 Map<String, Object> scene = new LinkedHashMap<String, Object>();
 
                 String planIdStr = planJson.getJSONArray("planStr").get(i).toString();
-                PerformancePlanDto performancePlanDto=new PerformancePlanDto();
+                PerformancePlanDto performancePlanDto = new PerformancePlanDto();
                 performancePlanDto.setId(Integer.parseInt(planIdStr));
-                performancePlanDto=performancePlanService.get(performancePlanDto);
-                String planName=performancePlanDto.getPlanName();
-                Integer scenarioId=performancePlanDto.getScenarioId();
-                PerformanceScenarioDto performanceScenarioDto=new PerformanceScenarioDto();
+                performancePlanDto = performancePlanService.get(performancePlanDto);
+                String planName = performancePlanDto.getPlanName();
+                Integer scenarioId = performancePlanDto.getScenarioId();
+                PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
                 performanceScenarioDto.setId(scenarioId);
-                performanceScenarioDto=performanceScenarioService.get(performanceScenarioDto);
-                String scenarioName=performanceScenarioDto.getScenarioName();
-                Integer concurrency=performanceScenarioDto.getConcurrency();
+                performanceScenarioDto = performanceScenarioService.get(performanceScenarioDto);
+                String scenarioName = performanceScenarioDto.getScenarioName();
+                Integer concurrency = performanceScenarioDto.getConcurrency();
                 scene.put("describe", planName); //计划描述
-                scene.put("scenarioName",scenarioName);
-                scene.put("concurrency",concurrency);
+                scene.put("scenarioName", scenarioName);
+                scene.put("concurrency", concurrency);
                 org.json.JSONArray resultArray = jsonArray.getJSONArray(i);
                 List resultList = resultArray.toList();
 
@@ -373,13 +402,68 @@ public class PerformanceReportController {
 
 
     }
+
+
+    @RequestMapping(value = "/chart", method = RequestMethod.GET)
+    public String jmeterChar(HttpServletRequest request, ModelMap model) {
+
+        try {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            model.put("id", id);
+        } catch (Exception e) {
+
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return "/performance/report/jmeter_chart";
+        }
+
+    }
+
     /**
      * 返回绘制图表的json数据
-     * @param dbfile sqlite数据的路径+文件名称
-     * @param jmeterPrefix jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染
+     *
+     * @param id jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染,sqlite数据的路径+文件名称根据id获得
      * @return json格式的绘制图表数据
      */
+    @RequestMapping(value = "/get_chart", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult getChar(@RequestParam Integer id) {
+        CommonResult commonResult = new CommonResult();
+        try {
 
+            System.out.println("Spring Controller: from ajax dbfile is:" + id);
+            Map<String, Object> map = performanceReportService.chartDataAll(id);
+            JSONObject jsonObject = new JSONObject(map);
+            commonResult.setData(jsonObject.toString());
+        } catch (Exception e) {
+            commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+
+    }
+//    /**
+//     * 返回绘制图表的json数据
+//     *
+//     * @param id jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染,sqlite数据的路径+文件名称根据id获得
+//     * @return json格式的绘制图表数据
+//     */
+//    @RequestMapping(value = "/get_chart", method = RequestMethod.POST)
+//    @ResponseBody
+//    public JSONObject getChar(@RequestParam Integer id) {
+//        Map<String, Object> map = new LinkedHashMap<>();
+//        try {
+//            System.out.println("Spring Controller: from ajax dbfile is:" + id);
+//            map = performanceReportService.chartDataAll(id);
+//        } catch (Exception e) {
+//
+//        } finally {
+//            return (new JSONObject(map));
+//        }
+//
+//    }
 
 }
 
