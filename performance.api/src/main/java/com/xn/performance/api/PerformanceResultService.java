@@ -132,4 +132,6 @@ public interface PerformanceResultService {
     List<PerformancePlanShowDto> getScheduleTask(PerformanceResultDto performanceResultDto);
 
     PerformancePlanShowDto getShow(PerformanceResultDto performanceResultDto);
+
+    List<String> listExecutePerson();
 }

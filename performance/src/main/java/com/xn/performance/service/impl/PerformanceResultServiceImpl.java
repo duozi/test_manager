@@ -139,4 +139,10 @@ public class PerformanceResultServiceImpl implements PerformanceResultService {
         return performancePlanShowDto;
     }
 
+    @Override
+    public List<String> listExecutePerson() {
+        List<String> executePerson=performanceResultMapper.getExecutePerson();
+        return executePerson;
+    }
+
 }

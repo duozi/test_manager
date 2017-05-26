@@ -5,7 +5,6 @@ package com.xn.interfacetest.service.impl;
 
 import com.xn.common.base.CommonResult;
 import com.xn.common.utils.*;
-import com.xn.common.utils.DateUtil;
 import com.xn.common.utils.FileUtil;
 import com.xn.interfacetest.Enum.*;
 import com.xn.interfacetest.api.*;
@@ -22,9 +21,8 @@ import com.xn.interfacetest.singleton.InitThreadPool;
 import com.xn.interfacetest.util.*;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.CellReference;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static org.apache.poi.ss.usermodel.CellType.*;
 
 /**
  * TestCase Service实现
@@ -319,72 +319,63 @@ public class TestCaseServiceImpl implements TestCaseService {
             Workbook  wb = WorkbookFactory.create(new File(path));
             Sheet sheet = wb.getSheetAt(0);
             // 得到总行数
-            int rowNum = sheet.getLastRowNum();
+            int rowNum = sheet.getLastRowNum() + 1;
             logger.info("共计行数rowNum：" + rowNum);
 
-            //取第二行
-            Row row = sheet.getRow(1);
+            //取第1行
+            Row row = sheet.getRow(0);
             int colNum = row.getPhysicalNumberOfCells(); //取第一行的列数作为列数
             logger.info("共计列数colNum：" + colNum);
 
-            // 正文内容应该从第三行开始,第一行为描述第二行为表头的标题
-            for (int i = 2; i <= rowNum; i++) {
-              saveCaseRow(row,i,sheet,failCaseNumbers);
+            // 正文内容应该从第2行开始,第一行为表头的标题
+            for (int i = 1; i < rowNum; i++) {
+                TestCaseDto caseDto = new TestCaseDto();
+                row = sheet.getRow(i);
+                //取每一个格子的值
+                //第一个格子---用例编号
+                String number = getCellFormatValue(row.getCell(0)) + "";
+                //校验用例编号
+                if(!checkCaseNumberUnique(number)){
+                    failCaseNumbers.append(number).append("（用例编号与系统中已存在的用例重复）,");
+                    continue;
+                }
+                caseDto.setNumber(number);
+
+                //第二个格子---用例名称
+                caseDto.setName(getCellFormatValue(row.getCell(1)) + "");
+
+                //第三个格子---用例描述
+                caseDto.setDescription(getCellFormatValue(row.getCell(2)) + "");
+
+                //第四个格子---接口id,接口id为空或者接口id不存在的时候直接返回
+                if(StringUtils.isBlank(getCellFormatValue(row.getCell(3)) + "") || !checkInterfaceIdExist(Long.parseLong(getCellFormatValue(row.getCell(3)) + ""))){
+                    failCaseNumbers.append(number).append("（系统中不存在当前接口id）,");
+                    continue;
+                }
+                caseDto.setInterfaceId(Long.parseLong(getCellFormatValue(row.getCell(3)) + ""));
+
+                //第5个格子---自定义参数
+                caseDto.setCustomParams(getCellFormatValue(row.getCell(4)) + "");
+
+                //第6个格子---自定义参数类型
+                caseDto.setCustomParamsType(AppendParamEnum.getIdByName(getCellFormatValue(row.getCell(5)) + ""));
+
+                caseDto  = this.save(caseDto);
+                logger.info("保存用例：" + caseDto.toString());
+                //第7个格子---参数断言
+                String assertJson = getCellFormatValue(row.getCell(6)) + "";
+                //保存参数断言
+                saveParamsAsserts(assertJson,caseDto);
+
             }
         } catch (FileNotFoundException e) {
-            logger.error("用例excel文件未找到：" + e);
+            logger.error("用例excel文件未找到：" , e);
             throw e;
         } catch (IOException e) {
-            logger.error("解析用例excel文件异常：" + e);
+            logger.error("解析用例excel文件异常："  ,e);
             throw e;
         }finally {
             return failCaseNumbers;
-        }
-    }
-
-    private void saveCaseRow(Row row,int i,Sheet sheet,StringBuffer failCaseNumbers) throws Exception {
-        try{
-            TestCaseDto caseDto = new TestCaseDto();
-            row = sheet.getRow(i);
-            //取每一个格子的值
-            //第一个格子---用例编号
-            String number = row.getCell(0).getStringCellValue();
-            //校验用例编号
-            if(!checkCaseNumberUnique(number)){
-                failCaseNumbers.append(number).append(",");
-                return;
-            }
-            caseDto.setNumber(number);
-
-            //第二个格子---用例名称
-            caseDto.setName(row.getCell(1).getStringCellValue());
-
-            //第三个格子---用例描述
-            caseDto.setDescription(row.getCell(2).getStringCellValue());
-
-            //第四个格子---接口id,接口id为空或者接口id不存在的时候直接返回
-            if(StringUtils.isBlank(row.getCell(3).getStringCellValue()) || !checkInterfaceIdExist(Long.parseLong(row.getCell(3).getStringCellValue()))){
-                failCaseNumbers.append(number).append(",");
-                return;
-            }
-            caseDto.setInterfaceId(Long.parseLong(row.getCell(3).getStringCellValue()));
-
-            //第5个格子---自定义参数
-            caseDto.setCustomParams(row.getCell(4).getStringCellValue());
-
-            //第6个格子---自定义参数类型
-            caseDto.setCustomParamsType(StringUtils.isNotBlank(row.getCell(5).getStringCellValue())?Integer.parseInt(row.getCell(3).getStringCellValue()):null);
-
-            caseDto  = this.save(caseDto);
-            logger.info("保存用例：" + caseDto.toString());
-            //第7个格子---参数断言
-            String assertJson = row.getCell(6).getStringCellValue();
-            //保存参数断言
-            saveParamsAsserts(assertJson,caseDto);
-
-        }catch (Exception e) {
-            logger.error("保存用例出现异常：" + e);
-            throw e;
         }
     }
 
@@ -401,16 +392,15 @@ public class TestCaseServiceImpl implements TestCaseService {
             //判断是否为空
             if (StringUtils.isNotBlank(assertJson)) {
                 JSONObject jsonObject = JSONObject.fromObject(assertJson);
-                Set<KeyValueStore> keyValueSet = jsonObject.entrySet();
-                //遍历保存参数断言
-                for (KeyValueStore keyValue : keyValueSet) {
+                Set set = jsonObject.entrySet();
+                Iterator i = set.iterator();
+                while (i.hasNext()){
                     ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
                     paramsAssertDto.setCaseId(caseDto.getId());
-                    paramsAssertDto.setAssertParam(keyValue.getName());
-                    paramsAssertDto.setRightValue((String) keyValue.getValue());
+                    paramsAssertDto.setAssertParam(i.next().toString().split("=")[0]);
+                    paramsAssertDto.setRightValue(i.next().toString().split("=")[1]);
                     paramsAssertService.save(paramsAssertDto);
                 }
-
             }
         }catch (Exception e){
             logger.error("保存字段断言出现异常：" + e);
@@ -426,44 +416,33 @@ public class TestCaseServiceImpl implements TestCaseService {
         return true;
     }
 
-//    /**
-//     * 根据HSSFCell类型设置数据
-//     * @param cell
-//     * @return
-//     */
-//    private String getCellFormatValue(Cell cell) {
-//        CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
-//        DataFormatter formatter = new DataFormatter();
-//        // get the text that appears in the cell by getting the cell value and applying any data formats (Date, 0.00, 1.23e9, $1.23, etc)
-//        String text = formatter.formatCellValue(cell);
-//        System.out.println(text);
-//
-//        // Alternatively, get the value and format it yourself
-//        switch (cell.getCellType()) {
-//            case CellType.STRING:
-//                System.out.println(cell.getRichStringCellValue().getString());
-//                break;
-//            case CellType.NUMERIC:
-//                if (DateUtil.isCellDateFormatted(cell)) {
-//                    System.out.println(cell.getDateCellValue());
-//                } else {
-//                    System.out.println(cell.getNumericCellValue());
-//                }
-//                break;
-//            case CellType.BOOLEAN:
-//                System.out.println(cell.getBooleanCellValue());
-//                break;
-//            case CellType.FORMULA:
-//                System.out.println(cell.getCellFormula());
-//                break;
-//            case CellType.BLANK:
-//                System.out.println();
-//                break;
-//            default:
-//                System.out.println();
-//        }
-//
-//    }
+    /**
+     * 根据Cell类型设置数据
+     * @param cell
+     * @return
+     */
+    private Object getCellFormatValue(Cell cell) {
+        DataFormatter formatter = new DataFormatter();
+        switch (cell.getCellTypeEnum()) {
+            case STRING:
+                return cell.getRichStringCellValue().getString();
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return cell.getDateCellValue();
+                } else {
+                    return Math.round(cell.getNumericCellValue());
+                }
+            case BOOLEAN:
+                return cell.getBooleanCellValue();
+            case FORMULA:
+                return cell.getCellFormula();
+            case BLANK:
+                return "";
+            default:
+                return "";
+        }
+
+    }
 
     private void copyDataParams(TestCase testCase, Long caseId, Long newCaseId) {
         //判断是自定义参数还是配置的参数
@@ -1053,10 +1032,12 @@ public class TestCaseServiceImpl implements TestCaseService {
 
 
     public static void main(String[] s) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        String ss = "s";
-        params.put("id",ss);
-
-       System.out.println("s"==params.get("id"));
+        JSONObject jsonObject = JSONObject.fromObject("{\"userName\":\"test\",\"password\":\"123456\"}");
+        Set set = jsonObject.entrySet();
+        Iterator i = set.iterator();
+        while (i.hasNext()){
+            System.out.println(i.next().toString().split("=")[0]);
+        }
+        System.out.println(set.size());
     }
 }

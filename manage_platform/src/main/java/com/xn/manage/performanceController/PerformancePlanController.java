@@ -76,7 +76,7 @@ public class PerformancePlanController {
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
-
+        StringBuffer pageParams = new StringBuffer(); // 用于页面分页查询的的url参数
         PerformancePlanDto performancePlanDto = new PerformancePlanDto();
         performancePlanDto.setIsDelete("未删除");
         List<PerformancePlanDto> performancePlanDtoList = performancePlanService.list(performancePlanDto);
@@ -98,28 +98,41 @@ public class PerformancePlanController {
         performancePlanShowDto.setIsDelete("未删除");
         if (isNotEmpty(company) && !company.equals("null")) {
             performancePlanShowDto.setCompany(company);
+            pageParams.append("&company=").append(company);
+            model.put("company", company);
         }
         if (isNotEmpty(department) && !department.equals("null")) {
             performancePlanShowDto.setDepartment(department);
+            pageParams.append("&department=").append(department);
+            model.put("department", department);
         }
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
             performancePlanShowDto.setPsystem(psystem);
+            pageParams.append("&psystem=").append(psystem);
+            model.put("psystem", psystem);
         }
         if (isNotEmpty(planName) && !planName.equals("null")) {
             performancePlanShowDto.setPlanName(planName);
+            pageParams.append("&planName=").append(planName);
+            model.put("planName", planName);
+
         }
         if (isNotEmpty(planStatus) && !planStatus.equals("null")) {
             performancePlanShowDto.setPlanStatus(planStatus);
+            pageParams.append("&planStatus=").append(planStatus);
+            model.put("planStatus", planStatus);
         }
         if (isNotEmpty(scriptName) && !scriptName.equals("null")) {
             performancePlanShowDto.setScriptName(scriptName);
+            pageParams.append("&scriptName=").append(scriptName);
+            model.put("scriptName", scriptName);
         }
         if (pageInfo.getCurrentPage() < 1) {
             pageInfo.setCurrentPage(1);
         }
         pageInfo.setPagination(true);
         pageInfo.setPageSize(15);
-
+        pageInfo.setParams(pageParams.toString());
 
         PageResult<PerformancePlanShowDto> performancePlanShowDtoList = null;
         try {

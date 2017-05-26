@@ -125,40 +125,40 @@
                     <div class="col-lg-12">
                         <div class="form-group col-xs-2">
                             <select class="form-control" name="search-company">
-                                <option value="" disabled selected>选择公司</option>
+                                <option value="" <#if company = null>disabled selected</#if>>选择公司</option>
                                 <#if companyList ??>
                                     <#list companyList as item>
-                                        <option>${item.name}</option>
+                                        <option  <#if company = item.name>selected</#if>>${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
                         <div class="form-group col-xs-2">
                             <select class="form-control" name="search-department">
-                                <option value="" disabled selected>选择部门</option>
+                                <option value="" <#if department = null>disabled selected</#if>>选择部门</option>
                                 <#if departmentList ??>
                                     <#list departmentList as item>
-                                        <option>${item.name}</option>
+                                        <option  <#if department = item.name>selected</#if>>${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
                         <div class="form-group col-xs-2">
                             <select class="form-control" name="search-psystem">
-                                <option value="" disabled selected>选择系统</option>
+                                <option value="" <#if psystem = null>disabled selected</#if>>选择系统</option>
                                 <#if psystemList ??>
                                     <#list psystemList as item>
-                                        <option>${item.name}</option>
+                                        <option <#if psystem = item.name>selected</#if>>${item.name}</option>
                                     </#list>
                                 </#if>
                             </select>
                         </div>
                         <div class="form-group col-lg-2">
                             <select class="form-control" name="search-stressMachineName">
-                                <option value="" disabled selected>选择压力机名称</option>
+                                <option value=""<#if stressMachineName = null>disabled selected</#if>>选择压力机名称</option>
                                 <#if stress_machine_list_all ??>
                                     <#list stress_machine_list_all as item>
-                                        <option>${item.stressMachineName}</option>
+                                        <option <#if stressMachineName = item.stressMachineName>selected</#if>>${item.stressMachineName}</option>
                                     </#list>
                                 </#if>
                             </select>

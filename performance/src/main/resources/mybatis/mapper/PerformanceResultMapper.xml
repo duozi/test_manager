@@ -112,6 +112,10 @@
         ]]>
     </select>
 
+    <select id="getExecutePerson" resultType="String">
+        SELECT   distinct(execute_person) from performance_result
+    </select>
+
     <select id="list" resultMap="PerformanceResultMap">
         SELECT
         <include refid="columns"/>

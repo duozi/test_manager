@@ -3,15 +3,15 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-$(function() {
+$(function () {
     $('#side-menu').metisMenu();
 });
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
-$(function() {
-    $(window).bind("load resize", function() {
+$(function () {
+    $(window).bind("load resize", function () {
         var topOffset = 50;
         var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
         if (width < 768) {
@@ -36,25 +36,28 @@ $(function() {
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
-    var element = $('ul.nav a').filter(function() {
+    var element = $('ul.nav a').filter(function () {
         var herfurl = this.href;
-        if(path=="/autotest/report/report_detail" && herfurl==originurl +"/autotest/report/report_list"){
-                return true;
-        }
-        if(path=="/performance/report/report_detail" && herfurl==originurl +"/performance/report/report_list"){
+        if (path == "/autotest/report/report_detail" && herfurl == originurl + "/autotest/report/report_list") {
             return true;
         }
-        if(path=="/performance/report/jmeter_log" && herfurl==originurl +"/performance/report/report_list"){
+        if (path == "/performance/report/report_detail" && herfurl == originurl + "/performance/report/report_list") {
+            return true;
+        }
+        if (path == "/performance/report/jmeter_log" && herfurl == originurl + "/performance/report/report_list") {
+            return true;
+        }
+        if (path == "/performance/report/chart" && herfurl == originurl + "/performance/report/report_list") {
             return true;
         }
 
-        if(path=="/autotest/case/case_item_single" && herfurl==originurl +"/autotest/case/case_item"){
+        if (path == "/autotest/case/case_item_single" && herfurl == originurl + "/autotest/case/case_item") {
             return true;
         }
-        if(path=="/autotest/case/case_item_multiple" && herfurl==originurl +"/autotest/case/case_item"){
+        if (path == "/autotest/case/case_item_multiple" && herfurl == originurl + "/autotest/case/case_item") {
             return true;
         }
-         return herfurl == pathurl;
+        return herfurl == pathurl;
 
     }).addClass('active').parent();
 

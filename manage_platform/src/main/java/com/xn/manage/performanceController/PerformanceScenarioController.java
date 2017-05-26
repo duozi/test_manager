@@ -49,6 +49,7 @@ public class PerformanceScenarioController {
 
     @RequestMapping(value = "/{path}", method = RequestMethod.GET)
     public String common(@PathVariable String path, ModelMap model, HttpServletRequest request,PageInfo pageInfo) {
+        StringBuffer pageParams = new StringBuffer(); // 用于页面分页查询的的url参数
         List<PerformanceScenarioDto> performanceScenarioDtoList = null;
         PerformanceScenarioDto performanceScenarioDto = new PerformanceScenarioDto();
         performanceScenarioDtoList = performanceScenarioService.list(performanceScenarioDto);
@@ -61,21 +62,35 @@ public class PerformanceScenarioController {
 
         if (isNotEmpty(company) && !company.equals("null")) {
             performanceScenarioDto.setCompany(company);
+            pageParams.append("&company=").append(company);
+            model.put("company", company);
         }
         if (isNotEmpty(department) && !department.equals("null")) {
             performanceScenarioDto.setDepartment(department);
+            pageParams.append("&department=").append(department);
+            model.put("department", department);
         }
         if (isNotEmpty(psystem) && !psystem.equals("null")) {
             performanceScenarioDto.setPsystem(psystem);
+            pageParams.append("&psystem=").append(psystem);
+            model.put("psystem", psystem);
         }
         if (isNotEmpty(scenarioName) && !scenarioName.equals("null")) {
             performanceScenarioDto.setScenarioName(scenarioName);
+            pageParams.append("&scenarioName=").append(scenarioName);
+            model.put("scenarioName", scenarioName);
         }
         if (isNotEmpty(scenarioStatus) && !scenarioStatus.equals("null")) {
             performanceScenarioDto.setScenarioStatus(scenarioStatus);
+            pageParams.append("&scenarioStatus=").append(scenarioStatus);
+            model.put("scenarioStatus", scenarioStatus);
+        }
+        if (pageInfo.getCurrentPage() < 1) {
+            pageInfo.setCurrentPage(1);
         }
         pageInfo.setPagination(true);
         pageInfo.setPageSize(15);
+        pageInfo.setParams(pageParams.toString());
         PageResult<PerformanceScenarioDto> scenarioList=null;
         try {
             scenarioList = performanceScenarioService.listByPage(performanceScenarioDto,pageInfo);

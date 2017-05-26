@@ -40,4 +40,13 @@ public enum AppendParamEnum {
     public void setId(int id) {
         this.id = id;
     }
+
+    public static int getIdByName(String name){
+        for (AppendParamEnum c : AppendParamEnum.values()) {
+            if (c.getName().equals(name.trim())) {
+                return c.id;
+            }
+        }
+        return 0;
+    }
 }
