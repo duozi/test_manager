@@ -8,6 +8,7 @@
         <result property="id" column="id"/>
         <result property="paramsId" column="params_id"/>
         <result property="value" column="value"/>
+        <result property="methodName" column="method_name"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="caseId" column="case_id"/>
         <result property="isDelete" column="is_delete"/>
@@ -15,7 +16,7 @@
     
     <sql id="columns">
         <![CDATA[
-        id, params_id, value, interface_id, case_id
+        id, params_id, value, interface_id, case_id,method_name
         ]]>
     </sql>
     
@@ -29,6 +30,9 @@
             </if>
            <if test="@Ognl@isNotEmpty(value)">
                 AND value = #{value}
+            </if>
+            <if test="@Ognl@isNotEmpty(methodName)">
+                AND method_name = #{methodName}
             </if>
            <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
@@ -50,14 +54,21 @@
     </select>
 
     <select id="getByCaseIdAndParamName" resultMap="RelationCaseParamsMap">
-        SELECT tp.*
-        <![CDATA[
+        SELECT tcp.*
             FROM
                 relation_case_params tcp
                 left join test_params tp on tp.id = tcp.params_id
-            WHERE
-                case_id = #{caseId} and  tp.name = #{name} and tcp.is_delete = 0
-        ]]>
+            <where>
+            <if test="isDelete != null">
+                AND tcp.is_delete = #{isDelete}
+            </if>
+            <if test="caseId != null">
+                AND tcp.case_id = #{caseId}
+            </if>
+            <if test="@Ognl@isNotEmpty(name)">
+                AND tp.name = #{name}
+            </if>
+        </where>
     </select>
     
     <select id="list" resultMap="RelationCaseParamsMap">
@@ -77,6 +88,9 @@
             </if>
             <if test="@Ognl@isNotEmpty(value)">
                 AND value = #{value}
+            </if>
+            <if test="@Ognl@isNotEmpty(methodName)">
+                AND method_name = #{methodName}
             </if>
             <if test="@Ognl@isNotEmpty(interfaceId)">
                 AND interface_id = #{interfaceId}
@@ -103,12 +117,14 @@
                 id,
                 params_id,
                 value,
+                method_name,
                 interface_id,
                 case_id
             ) VALUES (
                 #{id},
                 #{paramsId},
                 #{value},
+                #{methodName},
                 #{interfaceId},
                 #{caseId}
             )
@@ -121,12 +137,13 @@
                 id,
                 params_id,
                 value,
+                method_name,
                 interface_id,
                 case_id
             ) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.paramsId},#{item.value},#{item.interfaceId},#{item.caseId})
+            (#{item.id},#{item.paramsId},#{item.value},#{item.methodName},#{item.interfaceId},#{item.caseId})
         </foreach>
     </insert>
     
@@ -139,6 +156,9 @@
                 </if>
                 <if test="value != null">
                 	<![CDATA[ value = #{value} ]]>,
+                </if>
+                <if test="methodName != null">
+                    <![CDATA[ method_name = #{methodName} ]]>,
                 </if>
                 <if test="interfaceId != null">
                 	<![CDATA[ interface_id = #{interfaceId} ]]>,

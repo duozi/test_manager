@@ -3,6 +3,7 @@ package com.xn.manage.autotestController;
 
 import com.xn.common.api.CompanyService;
 import com.xn.common.base.CommonResult;
+import com.xn.common.utils.FileUtil;
 import com.xn.common.utils.PageInfo;
 import com.xn.common.utils.PageResult;
 import com.xn.common.utils.PropertyUtil;
@@ -54,6 +55,9 @@ public class CaseController {
 
 	@Autowired
 	TestParamsService testParamsService;
+
+	@Autowired
+	TestJarMethodService testJarMethodService;
 
 	@Autowired
 	RelationCaseParamsService relationCaseParamsService;
@@ -138,6 +142,10 @@ public class CaseController {
 		TestRedisConfigDto redisConfigDto = new TestRedisConfigDto();
 		List<TestRedisConfigDto> testRedisConfigDtoList = testRedisConfigService.list(redisConfigDto);
 
+		//加密方法
+		List<TestJarMethodDto> testJarMethodDtoList = testJarMethodService.getByInterfaceId(testCaseDto.getInterfaceId());
+		map.put("testJarMethodDtoList",testJarMethodDtoList);
+
 		//查询联调的时候的环境信息
 		List<TestEnvironmentDto> testEnvironmentDtoList = testEnvironmentService.list(new TestEnvironmentDto());
 
@@ -169,6 +177,7 @@ public class CaseController {
 		//查询已添加的参数值
 		RelationCaseParamsDto relationCaseParamsDto = new RelationCaseParamsDto();
 		relationCaseParamsDto.setCaseId(testCaseDto.getId());
+        relationCaseParamsDto.setIsDelete(0);
 		List<RelationCaseParamsDto> paramsDtoList = relationCaseParamsService.list(relationCaseParamsDto);
 		map.put("paramsDtoList",paramsDtoList);
 
@@ -472,7 +481,7 @@ public class CaseController {
 
 			//校验用例编号的唯一性
 			List<TestCaseDto> testCaseDtoExist = testCaseService.getByCaseNum(testCaseDto.getNumber());
-			if(null != testCaseDtoExist){
+			if(null != testCaseDtoExist && testCaseDtoExist.size() > 0 && testCaseDto.getId() != testCaseDtoExist.get(0).getId()){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());
 				result.setMessage("用例编号已存在，请保证用例编号的唯一性");
 				return result;
@@ -790,11 +799,6 @@ public class CaseController {
 			result.setMessage("用例编号已存在，请保证用例nida编号的唯一性");
 			return result;
 		}
-
-//		String baseInfo = request.getParameter("baseInfo");
-//		if(StringUtils.isNotBlank(baseInfo) && !"null".equals(baseInfo)){
-//			params.put("baseInfo",baseInfo);
-//		}
 
 		String dataClear = request.getParameter("dataClear");
 		if(StringUtils.isNotBlank(dataClear) && !"null".equals(dataClear)){

@@ -130,4 +130,12 @@ public class TestJarMethodServiceImpl implements TestJarMethodService {
         return testJarMethodDto;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<TestJarMethodDto> getByInterfaceId(Long interfaceId) {
+        List<TestJarMethod> list = testJarMethodMapper.getByInterfaceId(interfaceId);
+        List<TestJarMethodDto> dtoList = CollectionUtils.transform(list, TestJarMethodDto.class);
+        return dtoList;
+    }
+
 }

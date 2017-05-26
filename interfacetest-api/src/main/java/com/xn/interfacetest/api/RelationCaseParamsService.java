@@ -121,5 +121,5 @@ public interface RelationCaseParamsService {
      * @param caseId
      * @return
      */
-    RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId);
+    RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId,Integer isDelete);
 }

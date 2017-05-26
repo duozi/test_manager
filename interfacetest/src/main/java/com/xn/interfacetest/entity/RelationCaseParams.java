@@ -37,6 +37,12 @@ public class RelationCaseParams extends BaseEntity {
     private String value;
 
     /**
+     *加密函数名
+     *
+     */
+    private String methodName;
+
+    /**
      * 
      * interfaceId 
      */
@@ -107,5 +113,13 @@ public class RelationCaseParams extends BaseEntity {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 }

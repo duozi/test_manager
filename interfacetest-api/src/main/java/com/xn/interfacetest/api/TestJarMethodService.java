@@ -117,4 +117,6 @@ public interface TestJarMethodService {
     int deleteBatch(List<TestJarMethodDto> testJarMethods);
 
     TestJarMethodDto getByMethodNameAndInterfaceId(String methodName,Long intefaceId);
+
+    List<TestJarMethodDto> getByInterfaceId(Long interfaceId);
 }

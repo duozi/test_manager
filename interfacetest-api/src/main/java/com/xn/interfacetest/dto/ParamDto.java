@@ -16,6 +16,12 @@ public class ParamDto  extends BaseDto {
 
     private String value;
 
+    /**
+     *加密函数名
+     *
+     */
+    private String methodName;
+
     private Integer formatType;
 
     private Long interfaceId;
@@ -52,11 +58,20 @@ public class ParamDto  extends BaseDto {
         this.interfaceId = interfaceId;
     }
 
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
     @Override
     public String toString() {
         return "ParamDto{" +
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
+                ", methodName='" + methodName + '\'' +
                 ", formatType=" + formatType +
                 ", interfaceId=" + interfaceId +
                 '}';

@@ -44,7 +44,8 @@
     <dubbo:reference id="relationPlanSuitService" interface="com.xn.interfacetest.api.RelationPlanSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="relationPlanTimeService" interface="com.xn.interfacetest.api.RelationPlanTimeService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="timeConfigService" interface="com.xn.interfacetest.api.TimeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="testReportService" interface="com.xn.interfacetest.api.TestReportService" timeout="60000" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testReportService" interface="com.xn.interfacetest.api.TestReportService" timeout="${dubbo_timeout}"  group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testJarMethodService" interface="com.xn.interfacetest.api.TestJarMethodService" timeout="${dubbo_timeout}"  group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--performance的服务-->
     <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
