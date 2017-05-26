@@ -1,8 +1,5 @@
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/PropertyUtil.java
-package com.xn.manage.utils;
-=======
 package com.xn.performance.util;
->>>>>>> hezhouxiyiyangde:performance/src/main/java/com/xn/performance/util/PropertyUtil.java
+
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -34,11 +31,9 @@ public class PropertyUtil extends PropertyPlaceholderConfigurer {
 		}
         return obj.toString(); 
     }
-<<<<<<< HEAD:manage_platform/src/main/java/com/xn/manage/utils/PropertyUtil.java
-=======
 
     public static void setProperty(String name,Object value) {
        ctxPropertiesMap.put(name,value);
     }
->>>>>>> hezhouxiyiyangde:performance/src/main/java/com/xn/performance/util/PropertyUtil.java
+
 }
