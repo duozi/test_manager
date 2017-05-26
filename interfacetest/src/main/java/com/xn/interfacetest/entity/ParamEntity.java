@@ -8,6 +8,11 @@ public class ParamEntity {
     private String name;
 
     private String value;
+    /**
+     *加密函数名
+     *
+     */
+    private String methodName;
 
     private Integer formatType;
 
@@ -43,5 +48,13 @@ public class ParamEntity {
 
     public void setInterfaceId(Long interfaceId) {
         this.interfaceId = interfaceId;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 }

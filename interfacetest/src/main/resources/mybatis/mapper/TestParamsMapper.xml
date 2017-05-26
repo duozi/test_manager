@@ -13,6 +13,7 @@
 
     <resultMap id="ParamsMap" type="com.xn.interfacetest.entity.ParamEntity">
         <result property="name" column="name"/>
+        <result property="methodName" column="method_name"/>
         <result property="formatType" column="format_type"/>
         <result property="interfaceId" column="interface_id"/>
         <result property="value" column="value"/>
@@ -90,7 +91,7 @@
     </select>
 
     <select id="listByCaseIdFromRelation" resultMap="ParamsMap">
-        select tp.name ,rcp.`value` value,tp.format_type,tp.interface_id
+        select tp.name ,rcp.`value` value,rcp.method_name,tp.format_type,tp.interface_id
         from test_params tp
         LEFT JOIN relation_case_params rcp on rcp.params_id = tp.id
         where rcp.case_id = #{caseId} and rcp.is_delete = 0

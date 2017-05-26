@@ -37,6 +37,7 @@ import com.xn.interfacetest.api.TestSystemService;
 @Controller
 @RequestMapping("/autotest/interface")
 public class InterfaceController {
+
 	private static final Logger logger = LoggerFactory.getLogger(InterfaceController.class);
 	@Autowired
 	private TestSystemService systemService;

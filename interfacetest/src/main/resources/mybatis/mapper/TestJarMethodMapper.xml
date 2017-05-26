@@ -69,7 +69,15 @@
             test_jar_method 
         <include refid="where"/>
     </select>
-        
+
+    <select id="getByInterfaceId" resultMap="TestJarMethodMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        test_jar_method
+       where interface_id=#{interfaceId}
+    </select>
+
     <select id="count" resultType="long">
         <![CDATA[
             SELECT

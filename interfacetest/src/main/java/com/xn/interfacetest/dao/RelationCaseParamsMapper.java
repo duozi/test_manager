@@ -18,5 +18,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RelationCaseParamsMapper extends BaseMapper<RelationCaseParams, Long> {
 
-    RelationCaseParams getByCaseIdAndParamName(@Param("name") String valueName,@Param("caseId") Long caseId);
+    RelationCaseParams getByCaseIdAndParamName(@Param("name") String valueName,@Param("caseId") Long caseId,@Param("isDelete") Integer isDelete);
 }

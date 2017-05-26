@@ -33,6 +33,7 @@ import com.xn.interfacetest.dto.TestSystemDto;
 @Controller
 @RequestMapping("/autotest/manage")
 public class SystemController {
+
 	private static final Logger logger = LoggerFactory.getLogger(SystemController.class);
 	@Resource
 	private CompanyService companyService;

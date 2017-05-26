@@ -330,6 +330,7 @@ public class TestCaseServiceImpl implements TestCaseService {
             // 正文内容应该从第2行开始,第一行为表头的标题
             for (int i = 1; i < rowNum; i++) {
                 TestCaseDto caseDto = new TestCaseDto();
+                logger.info("开始插入第｛｝行用例" + i);
                 row = sheet.getRow(i);
                 //取每一个格子的值
                 //第一个格子---用例编号
@@ -360,12 +361,53 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //第6个格子---自定义参数类型
                 caseDto.setCustomParamsType(AppendParamEnum.getIdByName(getCellFormatValue(row.getCell(5)) + ""));
 
+                //10-用例类型
+                if("SINGLE".equals(getCellFormatValue(row.getCell(9))) || "MUTIPLE".equals(getCellFormatValue(row.getCell(9)))){
+                    caseDto.setType(getCellFormatValue(row.getCell(9)) + "");
+                } else {
+                    failCaseNumbers.append(number).append("（用例类型不合法，只能为\"MUTIPLE\"或者\"SINGLE\"）,");
+                    continue;
+                }
+
+
                 caseDto  = this.save(caseDto);
                 logger.info("保存用例：" + caseDto.toString());
                 //第7个格子---参数断言
                 String assertJson = getCellFormatValue(row.getCell(6)) + "";
-                //保存参数断言
-                saveParamsAsserts(assertJson,caseDto);
+                try {
+                    //保存参数断言
+                    saveParamsAsserts(assertJson,caseDto);
+                }catch (Exception e){
+                    logger.error("保存断言出现异常：" , e);
+                    failCaseNumbers.append(number).append("(用例保存成功，但是断言保存异常,请进入用例详情重新配置),");
+                }
+                //8-数据准备
+                String prepareStr = getCellFormatValue(row.getCell(7)) + "";
+                if(StringUtils.isNotBlank(prepareStr)){
+                    try {
+                        saveDataOperate(prepareStr,caseDto.getId(),OperationTypeEnum.PREPARE.getId());
+                        caseDto.setDataPrepare(1);
+                        //更新用例
+                        update(caseDto);
+                    }catch (Exception e){
+                        logger.error("保存sql出现异常：" , e);
+                        failCaseNumbers.append(number).append("(用例保存成功，但是数据准备保存异常,请进入用例详情重新配置),");
+                    }
+                }
+
+                //9-数据清除
+                String clearStr = getCellFormatValue(row.getCell(8)) + "";
+                if(StringUtils.isNotBlank(prepareStr)){
+                    try {
+                        saveDataOperate(clearStr,caseDto.getId(),OperationTypeEnum.CLEAR.getId());
+                        caseDto.setDataClear(1);
+                        //更新用例
+                        update(caseDto);
+                    }catch (Exception e){
+                        logger.error("保存sql出现异常：" , e);
+                        failCaseNumbers.append(number).append("(用例保存成功，但是数据清除保存异常,请进入用例详情重新配置),");
+                    }
+                }
 
             }
         } catch (FileNotFoundException e) {
@@ -379,6 +421,24 @@ public class TestCaseServiceImpl implements TestCaseService {
         }
     }
 
+    //保存用例的数据处理信息
+    private void saveDataOperate(String operationStr, Long caseId, int operateType) throws Exception{
+        logger.info("数据处理的类型是：" + OperationTypeEnum.getName(operateType) + ",读取到的值是：" + operationStr);
+        //operationStr = "车行易数据库配置:select * from test_case;车行易数据库配置:select * from test_case;"
+        String[] sqlStrArray = operationStr.split(";|；");
+        for(String sqlStr : sqlStrArray){
+            String[] sqlArray = sqlStr.split(":|：");
+            RelationCaseDatabaseDto relationCaseDataBase = new RelationCaseDatabaseDto();
+            relationCaseDataBase.setCaseId(caseId);
+            relationCaseDataBase.setOperateType(operateType);
+            relationCaseDataBase.setDatabaseName(sqlArray[0]);
+            relationCaseDataBase.setSqlStr(sqlArray[1]);
+            relationCaseDataBase.setType(2);//用例数据处理
+            relationCaseDatabaseService.save(relationCaseDataBase);
+        }
+
+    }
+
     private boolean checkInterfaceIdExist(Long interfaceId) {
         TestInterfaceDto testInterfaceDto = testInterfaceService.get(interfaceId);
         if(null != testInterfaceDto){
@@ -388,23 +448,19 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     private void saveParamsAsserts(String assertJson, TestCaseDto caseDto) throws Exception{
-        try {
-            //判断是否为空
-            if (StringUtils.isNotBlank(assertJson)) {
-                JSONObject jsonObject = JSONObject.fromObject(assertJson);
-                Set set = jsonObject.entrySet();
-                Iterator i = set.iterator();
-                while (i.hasNext()){
-                    ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
-                    paramsAssertDto.setCaseId(caseDto.getId());
-                    paramsAssertDto.setAssertParam(i.next().toString().split("=")[0]);
-                    paramsAssertDto.setRightValue(i.next().toString().split("=")[1]);
-                    paramsAssertService.save(paramsAssertDto);
-                }
+        logger.info("读取到的断言json是：" + assertJson);
+        //判断是否为空
+        if (StringUtils.isNotBlank(assertJson)) {
+            JSONObject jsonObject = JSONObject.fromObject(assertJson);
+            Set set = jsonObject.entrySet();
+            Iterator i = set.iterator();
+            while (i.hasNext()){
+                ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
+                paramsAssertDto.setCaseId(caseDto.getId());
+                paramsAssertDto.setAssertParam(i.next().toString().split("=")[0]);
+                paramsAssertDto.setRightValue(i.next().toString().split("=")[1]);
+                paramsAssertService.save(paramsAssertDto);
             }
-        }catch (Exception e){
-            logger.error("保存字段断言出现异常：" + e);
-            throw e;
         }
     }
 
@@ -874,7 +930,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                         //如果是需要加密的参数就调用
                         if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
                             //是加密的参数就先进行加密,加密的参数的值是加密的方法名
-                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getMethodName(),date);
                             logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
                         } else if(value.equals("timestamp")){
                             //时间戳类型则转化为时间戳
@@ -899,7 +955,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                         //如果是需要加密的参数就调用
                         if(param.getFormatType() == ParamFormatTypeEnum.ENCRYPT.getId()){
                             //是加密的参数就先进行加密,加密的参数的值是加密的方法名
-                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getValue(),date);
+                            value = encrypt(interfaceDto.getJarPath(),interfaceDto,caseDto.getId(),param.getMethodName(),date);
                             logger.info("加密参数是：｛｝加密之后的值是：｛｝" + param.getName() + "," + value);
                         }else if(value.equals("timestamp")){
                             //时间戳类型则转化为时间戳
@@ -945,6 +1001,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 types[i] = Class.forName(type);
             }
 
+            StringBuffer paramsValuesNew = new StringBuffer("");
             logger.info("开始加密的方法中初始化参数值------，将问号参数值指定具体的值");
             String[] values = paramsValues.split(",|，");
             for(String oValue : values){
@@ -953,7 +1010,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 //多个参数和值的组合组成一个jar包的参数---appid=?{appid}&req=123
                 if(oValue.contains("&")){
                     String[] valueItemArray = oValue.split("&");
-                    for(String itemValue : valueItemArray){
+                    for(int i =0;i<valueItemArray.length;i++ ){
+                        String itemValue = valueItemArray[i];
                         logger.info("目前处理的参数和值：" + itemValue);
                         //处理不指明参数值的参数
                         if(itemValue.contains("?")){
@@ -961,31 +1019,45 @@ public class TestCaseServiceImpl implements TestCaseService {
                             //对valueItem[1] = "?{appid}"解析出参数名称
                             String valueName = valueItem[1].substring(2,valueItem[1].length()-1);
                             //拿到用例中的该参数的值
-                            RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                            RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId,0);
                             if(null != relationCaseParams){
-                                paramsValues = paramsValues.replace(itemValue,valueItem[0] + "=" + relationCaseParams.getValue());
+                                //paramsValues = paramsValues.replace(itemValue,valueItem[0] + "=" + relationCaseParams.getValue());
+                                paramsValuesNew.append(valueItem[0]).append("=").append(relationCaseParams.getValue());
                             }
+                        }else {
+                            paramsValuesNew.append(itemValue);
                         }
-
+                        //如果是最后一个参数，那么就不加“&”
+                        if(i < valueItemArray.length-1){
+                            paramsValuesNew.append("&");
+                        }
                     }
-
                 } else if(oValue.contains("?")){
                     //单个参数，并且取当前用例中的值做jar包的参数----例如：?{appid}
                     //参数名称
                     String valueName = oValue.substring(2,oValue.length()-1);;
 
                     //拿到用例中的该参数的值
-                    RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId);
+                    RelationCaseParamsDto relationCaseParams = relationCaseParamsService.getByCaseIdAndParamName(valueName,caseId,0);
                     if(null != relationCaseParams){
-                        paramsValues = paramsValues.replace(oValue, relationCaseParams.getValue());
+                        //paramsValues = paramsValues.replace(oValue, relationCaseParams.getValue());
+                        paramsValuesNew.append(relationCaseParams.getValue());
+                    } else {
+                        //为空说明，这个参数没有值，那么传空
+                        //paramsValues = paramsValues.replace(oValue, "");
+                        paramsValuesNew.append("");
                     }
+                } else {
+                    paramsValuesNew.append(oValue);
                 }
+                paramsValuesNew.append(",");
             }
 
+            logger.info("新的参数串为：" + paramsValuesNew.toString());
             //将参数中的时间戳替换为真的时间戳
             String timestamp = "=" + date.getTime();
             //替换了不固定值的参数值之后再对参数进行转换
-            Object[] valusObject = paramsValues.replaceAll("=timestamp",timestamp).split(",|，");
+            Object[] valusObject = paramsValuesNew.toString().replaceAll("=timestamp",timestamp).split(",|，");
             //调用jar包进行加密
             value = JarUtil.signature (path, className, methodName,types, valusObject);
         } catch (Exception e) {

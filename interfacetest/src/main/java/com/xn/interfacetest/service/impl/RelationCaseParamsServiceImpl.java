@@ -139,8 +139,8 @@ public class RelationCaseParamsServiceImpl implements RelationCaseParamsService 
     }
 
     @Override
-    public RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId) {
-        RelationCaseParams relationCaseParams = relationCaseParamsMapper.getByCaseIdAndParamName( valueName,caseId);
+    public RelationCaseParamsDto getByCaseIdAndParamName(String valueName, Long caseId,Integer isDelete) {
+        RelationCaseParams relationCaseParams = relationCaseParamsMapper.getByCaseIdAndParamName( valueName,caseId, isDelete);
         RelationCaseParamsDto relationCaseParamsDto = BeanUtils.toBean(relationCaseParams,RelationCaseParamsDto.class);
         return relationCaseParamsDto;
     }

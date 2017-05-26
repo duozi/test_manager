@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util 
+   		http://www.springframework.org/schema/util/spring-util-3.1.xsd"
+	default-lazy-init="true">
+	
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<!-- <bean id="ehcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+	</bean> -->
+	<!-- cache 单机实现 -->
+	<!--<import resource="classpath:shiro/shiro-ehcache.xml" />-->
+
+	<!-- 自定义的Realm -->
+	<bean id="authShiroRealm" class="com.xn.manage.shiro.WebAuthorizingRealm">
+		<!--<property name="credentialsMatcher" ref="credentialsMatcher" />-->
+		<property name="cachingEnabled" value="false" />
+		<property name="authorizationCachingEnabled" value="false"/>
+	</bean>
+
+	<!-- 基于Form表单的身份验证过滤器 -->
+	<bean id="formAuthenticationFilter"
+		  class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+		<property name="usernameParam" value="username"/>
+		<property name="passwordParam" value="password" />
+		<property name="rememberMeParam" value="rememberMe" />
+		<property name="loginUrl" value="/login"/>
+	</bean>
+
+	<!-- 会话ID生成器 -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator" />
+
+	<!-- 指定本系统SESSIONID, 默认为: JSESSIONID 问题: 与SERVLET容器名冲突, 如JETTY, TOMCAT 等默认JSESSIONID,
+        当跳出SHIRO SERVLET时如ERROR-PAGE容器会为JSESSIONID重新分配值导致登录会话丢失! -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="-1" />
+		<property name="name" value="sid" />
+	</bean>
+
+	<!-- Shiro's main business-tier object for web-enabled applications -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authShiroRealm" />
+		<!--<property name="cacheManager" ref="cacheManager" />-->
+		<property name="sessionManager" ref="sessionManager"/>
+	</bean>
+
+	<!-- session管理 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- session超时时间设置为8小时 -->
+		<property name="globalSessionTimeout" value="28800000"></property>
+		<property name="sessionIdCookie" ref="sessionIdCookie" />
+		<property name="sessionIdCookieEnabled" value="true" />
+	</bean>
+
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/index" />
+		<property name="unauthorizedUrl" value="/403"/>
+		<property name="filters">
+			<util:map>
+				<entry key="authc">
+					<bean class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"/>
+				</entry>
+			</util:map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/login = anon
+				/sure_login = anon
+				/logout = logout
+				/picture/** = anon
+				/vendor/** = anon
+				/js/** = anon
+				/css/** = anon
+				/decorators/** = anon
+				/common/** = anon
+				/dist/** = anon
+				/** = user
+			</value>
+		</property>
+	</bean>
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+</beans>

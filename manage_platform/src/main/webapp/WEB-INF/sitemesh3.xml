@@ -24,6 +24,18 @@
         <path>/performance/*</path>
         <decorator>/decorators/right_bar.ftl</decorator>
     </mapping>
+    <mapping>
+        <path>/role/*</path>
+        <decorator>/decorators/right_bar.ftl</decorator>
+    </mapping>
+    <mapping>
+        <path>/account/*</path>
+        <decorator>/decorators/right_bar.ftl</decorator>
+    </mapping>
+    <mapping>
+        <path>/index</path>
+        <decorator>/decorators/right_bar.ftl</decorator>
+    </mapping>
 
     <!-- 排除，不进行装饰的路径 -->
     <mapping path="/decorators/*" exclue="true"/>

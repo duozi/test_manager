@@ -7,6 +7,8 @@ import com.xn.common.base.BaseMapper;
 import com.xn.interfacetest.entity.TestJarMethod;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * TestJarMethod Dao 接口
  * 
@@ -16,4 +18,6 @@ import org.apache.ibatis.annotations.Param;
 public interface TestJarMethodMapper extends BaseMapper<TestJarMethod, Long> {
 
     TestJarMethod getByMethodNameAndInterfaceId(@Param("methodName") String methodName,@Param("interfaceId") Long interfaceId );
+
+    List<TestJarMethod> getByInterfaceId(Long interfaceId);
 }

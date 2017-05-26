@@ -44,7 +44,8 @@
     <dubbo:reference id="relationPlanSuitService" interface="com.xn.interfacetest.api.RelationPlanSuitService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="relationPlanTimeService" interface="com.xn.interfacetest.api.RelationPlanTimeService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="timeConfigService" interface="com.xn.interfacetest.api.TimeConfigService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
-    <dubbo:reference id="testReportService" interface="com.xn.interfacetest.api.TestReportService" timeout="60000" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testReportService" interface="com.xn.interfacetest.api.TestReportService" timeout="${dubbo_timeout}"  group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="testJarMethodService" interface="com.xn.interfacetest.api.TestJarMethodService" timeout="${dubbo_timeout}"  group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <!--performance的服务-->
     <dubbo:reference id="performanceStressMachineService" interface="com.xn.performance.api.PerformanceStressMachineService" timeout="${dubbo_timeout}" group="" version="${dubbo_version}" check="false"/>
@@ -58,6 +59,13 @@
     <dubbo:reference id="performancePlanShowService" interface="com.xn.performance.api.PerformancePlanShowService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="performanceReportService" interface="com.xn.performance.api.PerformanceReportService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
     <dubbo:reference id="jmeterService" interface="com.xn.performance.api.JmeterService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+
+    <!--authority的服务-->
+    <dubbo:reference id="userRoleService" interface="com.xn.authority.api.UserRoleService" timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false" />
+    <dubbo:reference id="roleService" interface="com.xn.authority.api.RoleService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="roleResourcesService" interface="com.xn.authority.api.RoleResourcesService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="userService" interface="com.xn.authority.api.UserService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
+    <dubbo:reference id="resourcesService" interface="com.xn.authority.api.ResourcesService"  timeout="${dubbo_timeout}" group="${dubbo_group}" version="${dubbo_version}" check="false"/>
 
     <dubbo:monitor protocol="registry" />
 </beans>

@@ -22,6 +22,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="authority-manage" />
+        <module name="authority-manage-api" />
         <module name="common-test" />
         <module name="common-test-api" />
         <module name="interfacetest" />
@@ -32,6 +34,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="authority-manage" target="1.6" />
+      <module name="authority-manage-api" target="1.7" />
       <module name="common-test" target="1.7" />
       <module name="common-test-api" target="1.7" />
       <module name="interfacetest" target="1.6" />

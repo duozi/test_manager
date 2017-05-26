@@ -106,4 +106,5 @@ public class TestParams extends BaseEntity {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
 }

@@ -11,6 +11,7 @@ import com.xn.common.dto.CompanyDto;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,7 @@ import com.xn.interfacetest.Enum.CommonResultEnum;
 public class DepartmentController {
     private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
-    @Resource
+    @Autowired
     private DepartmentService departmentService;
 
     @RequestMapping(value = "/getDepartment")

@@ -171,6 +171,8 @@ public class ReportController {
 	public String getInterfaceCaseResultDetail(HttpServletRequest request, ModelMap model) {
 		Map<String,Object> params = new HashMap<String,Object>();
 
+
+
 		String id = request.getParameter("id");
 		if(StringUtils.isNotBlank(id)) {
 			params.put("reportId",id);
@@ -191,6 +193,12 @@ public class ReportController {
 				}
 
 			}
+		}
+
+		//判断是否是通过查询方法访问，如果不是就不进行数据查询，防止页面加载过慢
+		String flag = request.getParameter("flag");
+		if(StringUtils.isBlank(flag) || !flag.equals("reload")){
+			return "autotest/report/interface_case_result";
 		}
 
 		String suitId = request.getParameter("suitId");

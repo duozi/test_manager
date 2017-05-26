@@ -54,6 +54,7 @@
                                             <tr>
                                                 <th style="width:30%">参数名</th>
                                                 <!--<th style="width:10%">参数类型</th>-->
+                                                <th style="width:30%">加密方法</th>
                                                 <th style="width:40%">参数值</th>
                                                 <#if testCaseDto.status == 0 || testCaseDto == null>
                                                     <th>操作</th>
@@ -72,6 +73,20 @@
                                                                     <#list testParamsDtoList as paramsItem>
                                                                         <option value="${paramsItem.id}" <#if item.paramsId == paramsItem.id>selected</#if>>
                                                                             ${paramsItem.name}
+                                                                        </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="methodName">
+                                                                <option value="不加密" <#if item.methodName == "不加密">selected</#if>>
+                                                                    ${methodItem.name}
+                                                                </option>
+                                                                <#if testJarMethodDtoList ??>
+                                                                    <#list testJarMethodDtoList as methodItem>
+                                                                        <option value="${methodItem.methodName}" <#if item.methodName == methodItem.methodName>selected</#if>>
+                                                                             ${methodItem.methodName}
                                                                         </option>
                                                                     </#list>
                                                                 </#if>
@@ -881,7 +896,16 @@
     paramAddHtml += '</#if>';
     paramAddHtml += '</select>';
     paramAddHtml += '</td>';
-    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue" placeholder="加密则填加密方法名称"></td>';
+    paramAddHtml += '<td>  <select class="form-control" name="methodName">';
+    paramAddHtml += '<option value="不加密" selected>不加密</option>';
+    paramAddHtml += '<#if testJarMethodDtoList ??>';
+    paramAddHtml += '<#list testJarMethodDtoList as methodItem>';
+    paramAddHtml += '<option value="${methodItem.methodName}" >${methodItem.methodName}</option>';
+    paramAddHtml += '</#list>';
+    paramAddHtml += '</#if>';
+    paramAddHtml += '</select>';
+    paramAddHtml += '</td>';
+    paramAddHtml += '<td><input type="text" class="form-control" name="paramValue" ></td>';
     paramAddHtml += '<td>';
     paramAddHtml += '<a type="button" class="btn btn-info" onclick="saveParams(this)">保存</a><button type="button" name="delete" class="btn btn-info" onclick="deleteParams(this)">删除</button>  ';
     paramAddHtml += '</td>';
@@ -910,9 +934,10 @@
         var id = $(_this).parent().parent().find("input[name='id']").val();
         var paramsId = $(_this).parent().parent().find("select[name='paramsId']").val();
         var paramValue = $(_this).parent().parent().find("input[name='paramValue']").val();
+        var methodName = $(_this).parent().parent().find("select[name='methodName']").val();
         var type = $(_this).parent().parent().parent().find("input[name='type']").val();
         var urlParamStr =  "id="+ id  + "&paramsId="+ paramsId  + "&type=" + type;
-        urlParamStr += "&value=" + paramValue +"&caseId=${caseId}&interfaceId=${interfaceId}";
+        urlParamStr += "&value=" + paramValue +"&caseId=${caseId}&interfaceId=${interfaceId}&methodName=" + methodName;
         savePost("${basePath}/autotest/case/saveParams",urlParamStr,_this);
     }
 
