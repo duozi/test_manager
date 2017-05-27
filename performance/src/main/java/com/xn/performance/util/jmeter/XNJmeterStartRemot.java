@@ -411,6 +411,7 @@ public class XNJmeterStartRemot {
             arguments.addArgument("samplersList", ".*");
             arguments.addArgument("useRegexpForSamplersList", "false");
             arguments.addArgument("percentiles", "90;95;99");
+            arguments.addArgument("rootMetricsPrefix",String.valueOf(id)+".");//修改jmeter表的前缀，默认是jmeter.,不能区分
             //arguments.addArgument("TestPlan.comments", "=");
 
             BackendListener backendListener = new BackendListener();
@@ -632,6 +633,7 @@ public class XNJmeterStartRemot {
         logger.info(Thread.currentThread().getName() + "===========rstart_csv remote_hosts_string:" + remote_hosts_string + " rmi_server:" + rmi_server + " jmxfile:" + jmxfile);
         long startTestInfluxdbTime = GetTime.getUTCTimeLong19(0);
         logger.info("启动测试时间：" + GetTime.getUTCTimeStr(0) + " | " + startTestInfluxdbTime);
+
         setjmeterpros.put("setAsXml", false);
         remoteStart(remote_hosts_string, rmi_server, jmxfile);
         long endTestInfluxdbTime = GetTime.getUTCTimeLong19(0);
