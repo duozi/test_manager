@@ -357,6 +357,7 @@ public class TestCaseServiceImpl implements TestCaseService {
 
                 //第5个格子---自定义参数
                 caseDto.setCustomParams(getCellFormatValue(row.getCell(4)) + "");
+                caseDto.setCustomParamsType(ParamsGroupTypeEnum.CUSTOM.getId());
 
                 //第6个格子---自定义参数类型
                 caseDto.setCustomParamsType(AppendParamEnum.getIdByName(getCellFormatValue(row.getCell(5)) + ""));
