@@ -374,12 +374,14 @@ public class TestCaseServiceImpl implements TestCaseService {
                 logger.info("保存用例：" + caseDto.toString());
                 //第7个格子---参数断言
                 String assertJson = getCellFormatValue(row.getCell(6)) + "";
-                try {
-                    //保存参数断言
-                    saveParamsAsserts(assertJson,caseDto);
-                }catch (Exception e){
-                    logger.error("保存断言出现异常：" , e);
-                    failCaseNumbers.append(number).append("(用例保存成功，但是断言保存异常,请进入用例详情重新配置),");
+                if(StringUtils.isNotBlank(assertJson)) {
+                    try {
+                        //保存参数断言
+                        saveParamsAsserts(assertJson, caseDto);
+                    } catch (Exception e) {
+                        logger.error("保存断言出现异常：", e);
+                        failCaseNumbers.append(number).append("(用例保存成功，但是断言保存异常,请进入用例详情重新配置),");
+                    }
                 }
                 //8-数据准备
                 String prepareStr = getCellFormatValue(row.getCell(7)) + "";
@@ -397,7 +399,7 @@ public class TestCaseServiceImpl implements TestCaseService {
 
                 //9-数据清除
                 String clearStr = getCellFormatValue(row.getCell(8)) + "";
-                if(StringUtils.isNotBlank(prepareStr)){
+                if(StringUtils.isNotBlank(clearStr)){
                     try {
                         saveDataOperate(clearStr,caseDto.getId(),OperationTypeEnum.CLEAR.getId());
                         caseDto.setDataClear(1);
@@ -407,6 +409,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                         logger.error("保存sql出现异常：" , e);
                         failCaseNumbers.append(number).append("(用例保存成功，但是数据清除保存异常,请进入用例详情重新配置),");
                     }
+                } else {
+                    continue;
                 }
 
             }
@@ -453,12 +457,12 @@ public class TestCaseServiceImpl implements TestCaseService {
         if (StringUtils.isNotBlank(assertJson)) {
             JSONObject jsonObject = JSONObject.fromObject(assertJson);
             Set set = jsonObject.entrySet();
-            Iterator i = set.iterator();
-            while (i.hasNext()){
+            Iterator iterator = set.iterator();
+            while (iterator.hasNext()){
                 ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
                 paramsAssertDto.setCaseId(caseDto.getId());
-                paramsAssertDto.setAssertParam(i.next().toString().split("=")[0]);
-                paramsAssertDto.setRightValue(i.next().toString().split("=")[1]);
+                paramsAssertDto.setAssertParam(iterator.next().toString().split("=")[0]);
+                paramsAssertDto.setRightValue(iterator.next().toString().split("=")[1]);
                 paramsAssertService.save(paramsAssertDto);
             }
         }
@@ -478,6 +482,9 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @return
      */
     private Object getCellFormatValue(Cell cell) {
+        if(null == cell){
+            return "";
+        }
         DataFormatter formatter = new DataFormatter();
         switch (cell.getCellTypeEnum()) {
             case STRING:
