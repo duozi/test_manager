@@ -46,8 +46,8 @@
         function report(id) {
             window.location.href = "/performance/report/report_detail?id=" + id
         }
-        function grafana() {
-            window.location.href = "/performance/report/grafana"
+        function influxdb(id) {
+            window.location.href = "/performance/report/influxdb_chart?id="+id
         }
         function jmeterLog(id) {
             window.location.href = "/performance/report/jmeter_log?id=" + id
@@ -216,7 +216,7 @@
 
 
                                     <td>
-                                        <a type="button" class="btn btn-warning" onclick="grafana()">实时数据</a>
+                                        <a type="button" class="btn btn-warning" onclick="influxdb(${item.id})">实时数据</a>
                                         <a type="button" class="btn btn-success"
                                         <#if item.executeStatus=="执行中" >
                                             onclick="jmeterLog(${item.id})"

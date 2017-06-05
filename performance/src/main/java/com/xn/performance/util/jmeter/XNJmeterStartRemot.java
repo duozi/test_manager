@@ -406,7 +406,6 @@ public class XNJmeterStartRemot {
             arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");
             arguments.addArgument("graphiteHost", PropertyUtil.getProperty("loacalIp"));
             arguments.addArgument("graphitePort", "2003");
-            arguments.addArgument("rootMetricsPrefix", "jmeter.");
             arguments.addArgument("summaryOnly", "true");
             arguments.addArgument("samplersList", ".*");
             arguments.addArgument("useRegexpForSamplersList", "false");

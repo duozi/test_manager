@@ -444,7 +444,8 @@ public class PerformanceReportController {
         }
 
     }
-//    /**
+
+    //    /**
 //     * 返回绘制图表的json数据
 //     *
 //     * @param id jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染,sqlite数据的路径+文件名称根据id获得
@@ -464,6 +465,50 @@ public class PerformanceReportController {
 //        }
 //
 //    }
+    @RequestMapping(value = "/influxdb", method = RequestMethod.GET)
+    public String influxdb(HttpServletRequest request, ModelMap model) {
+
+        try {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            model.put("id", id);
+        } catch (Exception e) {
+
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return "/performance/report/influxdb_chart";
+        }
+
+    }
+
+    /**
+     * @param id jmeter数据库性能测试表前缀
+     * @return
+     */
+    @RequestMapping(value = "/influxdbchart")
+    @ResponseBody
+    public CommonResult jmeterinfluxdbchart(@RequestParam Integer id) {
+        CommonResult commonResult = new CommonResult();
+        try {
+        PerformanceResultDto performanceResultDto = new PerformanceResultDto(id);
+        performanceResultDto = performanceResultService.get(performanceResultDto);
+        Date starttime = performanceResultDto.getActualStartTime();
+        long starttime_long  = starttime.getTime();
+        long endtime_long = (new Date()).getTime();
+
+
+        //GetTime.getUTCTimeLong19(2) 2分钟前  GetTime.getUTCTimeLong19(0) 当前时间
+        Map<String, Object> alldata = performanceReportService.ChartInfluxdbData_start_end(id+".", starttime_long, endtime_long);
+
+            commonResult.setData(new JSONObject(alldata));
+
+        } catch (Exception e) {
+            commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());
+            commonResult.setCode(CommonResultEnum.ERROR.getReturnCode());
+            logger.error("查询操作异常｛｝", e);
+        } finally {
+            return commonResult;
+        }
+    }
 
 }
 

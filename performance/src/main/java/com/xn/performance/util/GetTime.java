@@ -1,6 +1,10 @@
 package com.xn.performance.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class GetTime {
 
@@ -79,7 +83,32 @@ public class GetTime {
         }
 		return size;
 	}
-	
+	/**
+	 * UTC时间转本地（北京）时间
+	 * @param s UTC时间格式  "2017-05-26T05:33:54Z" or "2017-05-26 05:33:54"
+	 * @return 本地（北京）时间 “2017-05-26 13:33:54”
+	 */
+	public static String datauctTolocal(String s){
+		String res="";//=s.replace("T", " ").replaceAll("Z", "");
+		SimpleDateFormat simpleDateFormat;
+		if(s.indexOf("T")>0 && s.indexOf("Z")>0){
+			simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		}else{
+			simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		}
+		simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));//时区定义并进行时间获取
+		Date utcdate=null;
+		try {
+			utcdate = simpleDateFormat.parse(s);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		SimpleDateFormat localFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		localFormater.setTimeZone(TimeZone.getDefault()); // 设置按本地时间显示
+		String localTime = localFormater.format(utcdate.getTime());
+		return localTime;
+	}
 	public static void main( String[] args ){
 		System.out.println(getLongnum(1493863971973L));
 	}

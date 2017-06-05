@@ -1,4 +1,4 @@
-var jmeterChart = new Object();
+var jmeterChart = jmeterChart || {};
 
 jmeterChart.chartColors = [
     'rgb(255,192,203)',  //pink（粉红）
@@ -168,9 +168,9 @@ jmeterChart.newChartLine = function (chartid, charttitle, data_x_list, line_name
         line_name_list = ["My Line 1", "My Line 2", "My Line 3"];
     }
 
-    var lineChartData = {};
-    lineChartData.labels = data_x_list; // X 轴横坐标
-    lineChartData.datasets = [];
+    jmeterChart.lineChartData = {};
+    jmeterChart.lineChartData.labels = data_x_list; // X 轴横坐标
+    jmeterChart.lineChartData.datasets = [];
     for (var i = 0; i < data_y_list_list.length; i++) {
         var linetmp = {};
         linetmp.label = line_name_list[i];

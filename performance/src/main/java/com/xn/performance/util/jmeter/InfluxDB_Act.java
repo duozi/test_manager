@@ -20,11 +20,31 @@ import static com.xn.performance.util.PropertyUtil.getProperty;
 
 public class InfluxDB_Act {
 	static String dbName = "telegraf";
-	static String connstr = "http://10.17.2.137:8086";
-	static String influxdb_user = "userjmeter";
-	static String influxdb_pwd = "111111";
+	static String connstr = "";
+	static String influxdb_user = "";
+	static String influxdb_pwd = "";
 	static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
-	
+	/**
+	 * 使用默认的 influxdb 地址
+	 * http://10.17.2.239:8086
+	 * userjmeter/111111
+	 */
+	public InfluxDB_Act(){
+		connstr = getProperty("influx_db_connstar");
+		influxdb_user = getProperty("influxdb_user");
+		influxdb_pwd = getProperty("influxdb_pwd");
+	}
+	/**
+	 * 使用传入的 influxdb 地址
+	 * @param infConnStr influxdb 地址 ,例如:http://10.17.2.239:8086
+	 * @param infuser  访问数据库的 用户
+	 * @param infpwd   访问数据库的用户对应的密码
+	 */
+	public InfluxDB_Act(String infConnStr, String infuser, String infpwd){
+		connstr = infConnStr;
+		influxdb_user = infuser;
+		influxdb_pwd = infpwd;
+	}
 	public static List<List<Object>> telegraf_getTabName(String dbName){
 		InfluxDB influxDB = null;
 		List<List<Object>> tablist;
@@ -303,6 +323,51 @@ public class InfluxDB_Act {
 		}finally{
 			influxDB.close();
 		}
+	}
+	/**
+	 * 查询influxdb数据
+	 * @param infdbName 数据库名称，例如jmeter
+	 * @param starttime 时序数据库，查询起止时间
+	 * @param endtime  同上
+	 * @param selstr  查询sql语句
+	 */
+	public List<List<Object>> influxdb_get_data(String infdbName, String selstr){
+		InfluxDB influxDB = null;
+		List<List<Object>> tabvalue = new ArrayList<List<Object>>();
+
+		try{
+			influxDB = InfluxDBFactory.connect(connstr, influxdb_user, influxdb_pwd);
+			//System.out.println(selstr);
+			Query query = new Query(selstr, infdbName);
+			QueryResult rult = influxDB.query(query);
+			//System.out.println(rult.getResults().get(0));
+			//System.out.println(rult.getResults().get(0).getSeries().size());
+			if(rult.getResults().get(0).getSeries()==null){
+				System.out.println("查询结果为 null.");
+				return tabvalue;
+			}
+			List<String> colnames = rult.getResults().get(0).getSeries().get(0).getColumns();
+			//System.out.println(colnames);
+			List<Object> titles = new ArrayList<Object>();
+			for(Object colv : colnames){
+				titles.add(colv);
+			}
+			tabvalue.add(titles);
+			// 使用 group by会查询出多组数据，下面for循环读出数据
+			for(int i=0;i<rult.getResults().get(0).getSeries().size();i++){
+				List<Object> colvalues = new ArrayList<Object>();
+				for(List<Object> tabvalue1 : rult.getResults().get(0).getSeries().get(i).getValues()){
+					colvalues.add(tabvalue1); // 将表中每行数据添加到 list
+				}
+				tabvalue.add(colvalues); // 将表中每行数据添加到 list
+			}
+
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			influxDB.close();
+		}
+		return tabvalue;
 	}
 	public static void main( String[] args )
     {

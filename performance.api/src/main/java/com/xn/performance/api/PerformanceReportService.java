@@ -10,4 +10,6 @@ public interface PerformanceReportService {
     Map<String, Object> generateReport(List<String> dbnames);
 
     Map<String, Object> chartDataAll(Integer id);
+    public  Map<String,Object> chartInfluxdbData_start_end(String jmeterPrefix,long starttime,long endtime);
+
 }

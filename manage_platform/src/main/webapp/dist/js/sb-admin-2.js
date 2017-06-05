@@ -47,6 +47,9 @@ $(function () {
         if (path == "/performance/report/jmeter_log" && herfurl == originurl + "/performance/report/report_list") {
             return true;
         }
+        if (path == "/performance/report/influxdb_chart" && herfurl == originurl + "/performance/report/report_list") {
+            return true;
+        }
         if (path == "/performance/report/chart" && herfurl == originurl + "/performance/report/report_list") {
             return true;
         }
