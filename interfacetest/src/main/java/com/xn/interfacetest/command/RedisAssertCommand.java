@@ -26,7 +26,7 @@ import net.sf.json.JSONObject;
 public class RedisAssertCommand implements Command {
     private static final Logger logger = LoggerFactory.getLogger(RedisAssertCommand.class);
     private final static String separator = System.getProperty("line.separator", "\r\n");
-    RedisUtil redisUtil = new RedisUtil(null,null);
+    RedisUtil redisUtil = new RedisUtil();
     private List<KeyValueStore> redisParams;
     private Assert assertItem;
     private String key;

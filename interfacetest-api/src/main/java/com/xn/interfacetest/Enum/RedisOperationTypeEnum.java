@@ -39,4 +39,13 @@ public enum RedisOperationTypeEnum {
     public void setId(int id) {
         this.id = id;
     }
+
+    public static Integer getIdByName(String redisName) {
+        for (RedisOperationTypeEnum c : RedisOperationTypeEnum.values()) {
+            if (c.getName().equalsIgnoreCase(redisName)) {
+                return c.getId();
+            }
+        }
+        return null;
+    }
 }

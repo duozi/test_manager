@@ -312,15 +312,15 @@ public class InterfaceController {
 				return  result;
 			}
 
-			if(null != relationCaseRedisDto.getInterfaceId()) {
-				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(relationCaseRedisDto.getInterfaceId());
-				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
-					//该状态不支持修改
-					result.setCode(CommonResultEnum.ERROR.getReturnCode());
-					result.setMessage("该接口状态不支持修改！");
-					return result;
-				}
-			}
+//			if(null != relationCaseRedisDto.getInterfaceId()) {
+//				TestInterfaceDto testInterfaceDtoNew = testInterfaceService.get(relationCaseRedisDto.getInterfaceId());
+//				if(null != testInterfaceDtoNew && testInterfaceDtoNew.getStatus() > PlanStatusEnum.UNPUBLISHED.getId()){
+//					//该状态不支持修改
+//					result.setCode(CommonResultEnum.ERROR.getReturnCode());
+//					result.setMessage("该接口状态不支持修改！");
+//					return result;
+//				}
+//			}
 
 			if(StringUtils.isBlank(relationCaseRedisDto.getKey()) || "null".equals(relationCaseRedisDto.getKey())){
 				result.setCode(CommonResultEnum.ERROR.getReturnCode());

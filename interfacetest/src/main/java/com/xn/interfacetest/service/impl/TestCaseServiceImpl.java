@@ -30,6 +30,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -109,6 +111,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Autowired
     private TestJarMethodService testJarMethodService;
+
+    @Autowired
+    private TestRedisConfigService testRedisConfigService;
 
     @Override
     @Transactional(readOnly = true)
@@ -337,7 +342,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 String number = getCellFormatValue(row.getCell(0)) + "";
                 //校验用例编号
                 if(!checkCaseNumberUnique(number)){
-                    failCaseNumbers.append(number).append("（用例编号与系统中已存在的用例重复）,");
+                    failCaseNumbers.append("用例编号").append(number).append("与系统中已存在的用例重复；");
                     continue;
                 }
                 caseDto.setNumber(number);
@@ -350,13 +355,14 @@ public class TestCaseServiceImpl implements TestCaseService {
 
                 //第四个格子---接口id,接口id为空或者接口id不存在的时候直接返回
                 if(StringUtils.isBlank(getCellFormatValue(row.getCell(3)) + "") || !checkInterfaceIdExist(Long.parseLong(getCellFormatValue(row.getCell(3)) + ""))){
-                    failCaseNumbers.append(number).append("（系统中不存在当前接口id）,");
+                    failCaseNumbers.append("用例编号为").append(number).append("的用例导入失败，系统中不存在当前接口id").append(row.getCell(3)).append("；");
                     continue;
                 }
                 caseDto.setInterfaceId(Long.parseLong(getCellFormatValue(row.getCell(3)) + ""));
 
                 //第5个格子---自定义参数
                 caseDto.setCustomParams(getCellFormatValue(row.getCell(4)) + "");
+                caseDto.setCustomParamsType(ParamsGroupTypeEnum.CUSTOM.getId());
 
                 //第6个格子---自定义参数类型
                 caseDto.setCustomParamsType(AppendParamEnum.getIdByName(getCellFormatValue(row.getCell(5)) + ""));
@@ -365,7 +371,7 @@ public class TestCaseServiceImpl implements TestCaseService {
                 if("SINGLE".equals(getCellFormatValue(row.getCell(9))) || "MUTIPLE".equals(getCellFormatValue(row.getCell(9)))){
                     caseDto.setType(getCellFormatValue(row.getCell(9)) + "");
                 } else {
-                    failCaseNumbers.append(number).append("（用例类型不合法，只能为\"MUTIPLE\"或者\"SINGLE\"）,");
+                    failCaseNumbers.append("用例编号为").append(number).append("的用例类型不合法，只能为\"MUTIPLE\"或者\"SINGLE\"；");
                     continue;
                 }
 
@@ -374,39 +380,44 @@ public class TestCaseServiceImpl implements TestCaseService {
                 logger.info("保存用例：" + caseDto.toString());
                 //第7个格子---参数断言
                 String assertJson = getCellFormatValue(row.getCell(6)) + "";
-                try {
-                    //保存参数断言
-                    saveParamsAsserts(assertJson,caseDto);
-                }catch (Exception e){
-                    logger.error("保存断言出现异常：" , e);
-                    failCaseNumbers.append(number).append("(用例保存成功，但是断言保存异常,请进入用例详情重新配置),");
+                if(StringUtils.isNotBlank(assertJson)) {
+                    try {
+                        //保存参数断言
+                        saveParamsAsserts(assertJson, caseDto);
+                    } catch (Exception e) {
+                        logger.error("保存断言出现异常：", e);
+                        failCaseNumbers.append("用例编号为").append(number).append("的用例保存成功，但是断言保存异常,请进入用例详情重新配置；");
+                    }
                 }
                 //8-数据准备
                 String prepareStr = getCellFormatValue(row.getCell(7)) + "";
                 if(StringUtils.isNotBlank(prepareStr)){
                     try {
-                        saveDataOperate(prepareStr,caseDto.getId(),OperationTypeEnum.PREPARE.getId());
+                        saveDataOperate(prepareStr,caseDto.getId(),OperationTypeEnum.PREPARE.getId(),failCaseNumbers);
                         caseDto.setDataPrepare(1);
                         //更新用例
                         update(caseDto);
                     }catch (Exception e){
                         logger.error("保存sql出现异常：" , e);
-                        failCaseNumbers.append(number).append("(用例保存成功，但是数据准备保存异常,请进入用例详情重新配置),");
+                        failCaseNumbers.append("用例编号为").append(number).append("的用例保存成功，但是数据准备保存异常,请进入用例详情重新配置：" + e.getMessage() + "；");
                     }
                 }
 
                 //9-数据清除
                 String clearStr = getCellFormatValue(row.getCell(8)) + "";
-                if(StringUtils.isNotBlank(prepareStr)){
+                if(StringUtils.isNotBlank(clearStr)){
                     try {
-                        saveDataOperate(clearStr,caseDto.getId(),OperationTypeEnum.CLEAR.getId());
+                        saveDataOperate(clearStr,caseDto.getId(),OperationTypeEnum.CLEAR.getId(),failCaseNumbers);
                         caseDto.setDataClear(1);
                         //更新用例
                         update(caseDto);
+
                     }catch (Exception e){
                         logger.error("保存sql出现异常：" , e);
-                        failCaseNumbers.append(number).append("(用例保存成功，但是数据清除保存异常,请进入用例详情重新配置),");
+                        failCaseNumbers.append("用例编号为").append(number).append("的用例保存成功，但是数据清除保存异常,请进入用例详情重新配置" + e.getMessage() + "；");
                     }
+                } else {
+                    continue;
                 }
 
             }
@@ -422,21 +433,64 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     //保存用例的数据处理信息
-    private void saveDataOperate(String operationStr, Long caseId, int operateType) throws Exception{
+    private void saveDataOperate(String operationStr, Long caseId, int operateType,StringBuffer failCaseNumbers) {
         logger.info("数据处理的类型是：" + OperationTypeEnum.getName(operateType) + ",读取到的值是：" + operationStr);
         //operationStr = "车行易数据库配置:select * from test_case;车行易数据库配置:select * from test_case;"
-        String[] sqlStrArray = operationStr.split(";|；");
-        for(String sqlStr : sqlStrArray){
-            String[] sqlArray = sqlStr.split(":|：");
-            RelationCaseDatabaseDto relationCaseDataBase = new RelationCaseDatabaseDto();
-            relationCaseDataBase.setCaseId(caseId);
-            relationCaseDataBase.setOperateType(operateType);
-            relationCaseDataBase.setDatabaseName(sqlArray[0]);
-            relationCaseDataBase.setSqlStr(sqlArray[1]);
-            relationCaseDataBase.setType(2);//用例数据处理
-            relationCaseDatabaseService.save(relationCaseDataBase);
+        String[] strArray = operationStr.split(";|；");
+        for(String str : strArray){
+            str = str.trim();
+            //判断是数据库操作还是redis操作
+            if(str.startsWith("db_") || str.startsWith("DB_")){
+                saveDataBaseOperate(str,operateType,caseId,failCaseNumbers);
+            } else if(str.startsWith("redis_") || str.startsWith("REDIS_")){
+                saveRedisOperate(str,operateType,caseId,failCaseNumbers);
+            } else {
+                failCaseNumbers.append("用例保存成功，数据库处理保存失败，").append(str.trim() + "格式不正确");
+            }
         }
 
+    }
+
+    private void saveRedisOperate(String redisStr, int operateType, Long caseId,StringBuffer failCaseNumbers) {
+        //redis操作的语句格式为----redis配置名：操作名 key value time，如：redis_redisname:set key-name-huhu 123455;
+
+        String[] redisArray = redisStr.split(":|：");
+        if(null == redisArray || redisArray.length<= 1){
+            failCaseNumbers.append("用例保存成功，redis处理保存失败，").append(redisStr.trim() + "格式不正确");
+        }
+        String[] redis = redisArray[1].split(" ");
+        if(null == redis || StringUtils.isBlank(redis[0])){
+            return;
+        }
+        RelationCaseRedisDto relationCaseRedisDto = new RelationCaseRedisDto();
+        relationCaseRedisDto.setCaseId(caseId);
+        relationCaseRedisDto.setOperateType(operateType);
+        relationCaseRedisDto.setType(2);//用例的数据处理type为2
+        relationCaseRedisDto.setRedisName(redisArray[0].replaceFirst("redis_|REDIS_","").trim());
+        relationCaseRedisDto.setRedisOperateType(RedisOperationTypeEnum.getIdByName(redis[0]));
+        relationCaseRedisDto.setKey(redis[1]);
+        if(redis.length > 2){
+            relationCaseRedisDto.setValue(redis[2]);
+        }
+        if(redis.length > 3){
+            relationCaseRedisDto.setTime(Integer.parseInt(redis[3]));
+        }
+        relationCaseRedisService.save(relationCaseRedisDto);
+
+    }
+
+    private void saveDataBaseOperate(String sqlStr, int operateType,Long caseId,StringBuffer failCaseNumbers){
+        String[] sqlArray = sqlStr.split(":|：");
+        if(null == sqlArray || sqlArray.length<= 1){
+            failCaseNumbers.append(sqlStr.trim() + "格式不正确");
+        }
+        RelationCaseDatabaseDto relationCaseDataBase = new RelationCaseDatabaseDto();
+        relationCaseDataBase.setCaseId(caseId);
+        relationCaseDataBase.setOperateType(operateType);
+        relationCaseDataBase.setDatabaseName(sqlArray[0].replaceFirst("db_|DB_",""));//去除前缀db_或者DB_
+        relationCaseDataBase.setSqlStr(sqlArray[1]);
+        relationCaseDataBase.setType(2);//用例数据处理
+        relationCaseDatabaseService.save(relationCaseDataBase);
     }
 
     private boolean checkInterfaceIdExist(Long interfaceId) {
@@ -453,12 +507,12 @@ public class TestCaseServiceImpl implements TestCaseService {
         if (StringUtils.isNotBlank(assertJson)) {
             JSONObject jsonObject = JSONObject.fromObject(assertJson);
             Set set = jsonObject.entrySet();
-            Iterator i = set.iterator();
-            while (i.hasNext()){
+            Iterator iterator = set.iterator();
+            while (iterator.hasNext()){
                 ParamsAssertDto paramsAssertDto = new ParamsAssertDto();
                 paramsAssertDto.setCaseId(caseDto.getId());
-                paramsAssertDto.setAssertParam(i.next().toString().split("=")[0]);
-                paramsAssertDto.setRightValue(i.next().toString().split("=")[1]);
+                paramsAssertDto.setAssertParam(iterator.next().toString().split("=")[0]);
+                paramsAssertDto.setRightValue(iterator.next().toString().split("=")[1]);
                 paramsAssertService.save(paramsAssertDto);
             }
         }
@@ -478,6 +532,9 @@ public class TestCaseServiceImpl implements TestCaseService {
      * @return
      */
     private Object getCellFormatValue(Cell cell) {
+        if(null == cell){
+            return "";
+        }
         DataFormatter formatter = new DataFormatter();
         switch (cell.getCellTypeEnum()) {
             case STRING:
@@ -831,9 +888,6 @@ public class TestCaseServiceImpl implements TestCaseService {
         Long caseId = testcaseDto.getId(); //用例id
         Long environmentId = testEnvironmentDto.getId();//环境id
 
-        //初始化redis
-        RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
-
         //数据准备
         if(null != testcaseDto.getDataClear() && testcaseDto.getDataClear() > 0) {
             //数据准备---查询数据库准备
@@ -855,10 +909,20 @@ public class TestCaseServiceImpl implements TestCaseService {
             if(null != relationCaseRedisDtoList && relationCaseRedisDtoList.size() > 0 ){
                 for(RelationCaseRedisDto relationCaseRedisDto : relationCaseRedisDtoList){
                     RedisCommand redisCommand = new RedisCommand();
+                    redisCommand.setCaseId(caseId);
+                    redisCommand.setEnvironmentId(environmentId);
                     redisCommand.setKey(relationCaseRedisDto.getKey());
                     redisCommand.setMethodName(RedisOperationTypeEnum.getName(relationCaseRedisDto.getRedisOperateType()));
-                    redisCommand.setTime(relationCaseRedisDto.getTime());
-                    redisCommand.setValue(relationCaseRedisDto.getValue());
+                    if(null != relationCaseRedisDto.getTime()){
+                        redisCommand.setTime(relationCaseRedisDto.getTime());
+                    }
+                    if(null != relationCaseRedisDto.getValue()){
+                        redisCommand.setValue(relationCaseRedisDto.getValue());
+                    }
+                    //设置初始化redis连接
+                    RedisUtil redisUtil = new RedisUtil();
+                    setRedisConnect(relationCaseRedisDto.getRedisName(),environmentId,redisUtil);
+                    redisCommand.setRedisUtil(redisUtil);
                     list.add(redisCommand);
                 }
             }
@@ -867,14 +931,11 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     //初始化执行用例之前要做的事情
-    private List<Command> getBeforeCommand(TestEnvironmentDto testEnvironmentDto,TestCaseDto testcaseDto) {
+    private List<Command> getBeforeCommand(TestEnvironmentDto testEnvironmentDto, TestCaseDto testcaseDto) {
         List<Command> list = new ArrayList();
 
         Long caseId = testcaseDto.getId(); //用例id
         Long environmentId = testEnvironmentDto.getId();//环境id
-
-        //初始化redis
-        RedisUtil redisUtil = new RedisUtil(caseId,environmentId);
 
         //数据准备
         if(null != testcaseDto.getDataPrepare() && testcaseDto.getDataPrepare() > 0) {
@@ -896,18 +957,47 @@ public class TestCaseServiceImpl implements TestCaseService {
             if(null != relationCaseRedisDtoList && relationCaseRedisDtoList.size() > 0 ){
                 for(RelationCaseRedisDto relationCaseRedisDto : relationCaseRedisDtoList){
                     RedisCommand redisCommand = new RedisCommand();
+                    redisCommand.setCaseId(caseId);
+                    redisCommand.setEnvironmentId(environmentId);
                     redisCommand.setKey(relationCaseRedisDto.getKey());
                     redisCommand.setMethodName(RedisOperationTypeEnum.getName(relationCaseRedisDto.getRedisOperateType()));
-                    redisCommand.setTime(relationCaseRedisDto.getTime());
-                    redisCommand.setValue(relationCaseRedisDto.getValue());
+                    if(null != relationCaseRedisDto.getTime()){
+                        redisCommand.setTime(relationCaseRedisDto.getTime());
+                    }
+                    if(null != relationCaseRedisDto.getValue()){
+                        redisCommand.setValue(relationCaseRedisDto.getValue());
+                    }
+
+                    //设置初始化redis连接
+                    RedisUtil redisUtil = new RedisUtil();
+                    setRedisConnect(relationCaseRedisDto.getRedisName(),environmentId,redisUtil);
+                    redisCommand.setRedisUtil(redisUtil);
                     list.add(redisCommand);
                 }
             }
         }
-
       return list;
     }
 
+    private void setRedisConnect(String redisName, Long environmentId,RedisUtil redisUtil) {
+        HashSet<HostAndPort> nodes = new HashSet();
+        TestRedisConfigDto redisConfigDto = testRedisConfigService.getByRedisNameAndEnvironmentId( redisName,environmentId);
+        if(null != redisConfigDto) {
+            String ips = redisConfigDto.getIpAddress();
+            if(StringUtils.isNotBlank(ips)){
+                String[] ipAndPorts = ips.split(";|；");
+                for(String ipAndPort:ipAndPorts){
+                    String ip = ipAndPort.split(":|：")[0].trim();
+                    int port = Integer.parseInt(ipAndPort.split(":|：")[1].trim());
+                    HostAndPort hostAndPort = new HostAndPort(ip, port);
+                    nodes.add(hostAndPort);
+                }
+            }
+        }
+        redisUtil.setJedisCluster(new JedisCluster(nodes, 3000, 30));
+    }
+
+    //处理参数
     private String formatParams(TestCaseDto caseDto, String contentType,TestInterfaceDto interfaceDto) {
         //参数,如果没有配置自定义类型就说明是配置了参数,如果配置了就取自定义参数
         StringBuffer paramsStr = new StringBuffer("");
@@ -1098,18 +1188,28 @@ public class TestCaseServiceImpl implements TestCaseService {
     private void excuteDubbo(TestCaseDto caseDto, TestInterfaceDto interfaceDto, TestEnvironmentDto testEnvironmentDto, Long planId, TestReportDto testReportDto) {
         logger.info("==========dubbo接口用例执行:用例id｛｝接口id｛｝环境id｛｝========" + caseDto.getId() + "," + interfaceDto.getId() + "," + testEnvironmentDto.getId());
 
-
-
     }
 
 
     public static void main(String[] s) {
-        JSONObject jsonObject = JSONObject.fromObject("{\"userName\":\"test\",\"password\":\"123456\"}");
-        Set set = jsonObject.entrySet();
-        Iterator i = set.iterator();
-        while (i.hasNext()){
-            System.out.println(i.next().toString().split("=")[0]);
+    String redisStr = "redis_redisname:set key-name-huhu 123455";
+        String[] redisArray = redisStr.split(":|：");
+
+        String[] redis = redisArray[1].split(" ");
+        if(null == redis || StringUtils.isBlank(redis[0])){
+            return;
         }
-        System.out.println(set.size());
+        RelationCaseRedisDto relationCaseRedisDto = new RelationCaseRedisDto();
+
+        relationCaseRedisDto.setRedisName(redisArray[0].replaceFirst("redis_|REDIS_","").trim());
+        relationCaseRedisDto.setRedisOperateType(RedisOperationTypeEnum.getIdByName(redis[0]));
+        relationCaseRedisDto.setKey(redis[1]);
+        if(redis.length > 2){
+            relationCaseRedisDto.setValue(redis[2]);
+        }
+        if(redis.length > 3){
+            relationCaseRedisDto.setTime(Integer.parseInt(redis[3]));
+        }
+        System.out.println(relationCaseRedisDto.toString());
     }
 }

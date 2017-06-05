@@ -40,7 +40,7 @@ public class RedisUtil {
 
     static TestRedisConfigService testRedisConfigService = (TestRedisConfigService) SpringContextUtil.getBean("testRedisConfigService");
 
-    private static JedisCluster jedisCluster;
+    private JedisCluster jedisCluster;
     /**
      * 登录token保存时间
      */
@@ -53,7 +53,16 @@ public class RedisUtil {
      * 支付密码失败次数保存时间
      */
     private static int payPwdErrorExpire;
-//
+
+    public JedisCluster getJedisCluster() {
+        return jedisCluster;
+    }
+
+    public void setJedisCluster(JedisCluster jedisCluster) {
+        this.jedisCluster = jedisCluster;
+    }
+
+    //
 //    static {
 //        String obj = StringUtil.getPro("redis.login.expire", "2");
 //        loginExpire = null == obj ? LOGIN_EXPIRE : Integer.parseInt(obj);
@@ -63,92 +72,11 @@ public class RedisUtil {
 //        payPwdErrorExpire = null == obj ? PWD_EXPIRE : Integer.parseInt(obj);
 //    }
 //
-    public RedisUtil() {
-////        GetPara getPara=new GetPara();
-////        File file = new File(getPara.getPath()+ "suite/redis.properties");
-////
-////        String host1 = StringUtil.getConfig(file, "redis.slaver.host1", "");
-////        String host2 = StringUtil.getConfig(file, "redis.slaver.host2", "");
-////        String host3 = StringUtil.getConfig(file, "redis.slaver.host3", "");
-////        String host4 = StringUtil.getConfig(file, "redis.slaver.host4", "");
-////
-////        int port1 = Integer.parseInt(StringUtil.getConfig(file, "redis.slaver.port1", "0"));
-////        int port2 = Integer.parseInt(StringUtil.getConfig(file, "redis.slaver.port2", "0"));
-////        int port3 = Integer.parseInt(StringUtil.getConfig(file, "redis.slaver.port3", "0"));
-////        int port4 = Integer.parseInt(StringUtil.getConfig(file, "redis.slaver.port4", "0"));
-////        if (!host1.equals("") && !host2.equals("") && !host3.equals("") && port1 != 0 && port2 != 0 && port3 != 0) {
-////            HostAndPort hostAndPort1 = new HostAndPort(host1, port1);
-////            HostAndPort hostAndPort2 = new HostAndPort(host2, port2);
-////            HostAndPort hostAndPort3 = new HostAndPort(host3, port3);
-////            HostAndPort hostAndPort4 = new HostAndPort(host4, port4);
-////            HashSet<HostAndPort> nodes = new HashSet();
-////            nodes.add(hostAndPort1);
-////            nodes.add(hostAndPort2);
-////            nodes.add(hostAndPort3);
-////            if(!host4.equals("") && port4 != 0){
-////            nodes.add(hostAndPort4);}
-////
-////            this.jedisCluster = new JedisCluster(nodes, 3000, 30);
-////        }
-    }
 
 
     //初始化redis
-    public RedisUtil(Long caseId,Long environmentId) {
-        //redis配置名称的集合，稍后通过名称遍历查询ip
-        HashSet<String> redisNames=new HashSet<String>();
-        //查询redis操作---redis断言
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("caseId",caseId);
-        List<RedisAssertDto> redisAssertDtoList = redisAssertService.list(params);
-        if(null != redisAssertDtoList && redisAssertDtoList.size() > 0){
-            for(RedisAssertDto redisAssertDto:redisAssertDtoList){
-                if(!redisNames.contains(redisAssertDto.getRedisName())){
-                    redisNames.add(redisAssertDto.getRedisName());
-                }
-            }
-        }
+    public RedisUtil() {
 
-        //查询redis操作---redis数据准备
-        List<RelationCaseRedisDto> prepareCaseRedisList = relationCaseRedisService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.PREPARE.getId());
-        if(null != prepareCaseRedisList && prepareCaseRedisList.size() > 0){
-            for(RelationCaseRedisDto redisAssertDto:prepareCaseRedisList){
-                if(!redisNames.contains(redisAssertDto.getRedisName())){
-                    redisNames.add(redisAssertDto.getRedisName());
-                }
-            }
-        }
-
-        //查询redis操作---redis数据清除
-        List<RelationCaseRedisDto> clearCaseRedisList = relationCaseRedisService.getByCaseIdAndOperateType(caseId, OperationTypeEnum.CLEAR.getId());
-        if(null != clearCaseRedisList && clearCaseRedisList.size() > 0){
-            for(RelationCaseRedisDto redisAssertDto:clearCaseRedisList){
-                if(!redisNames.contains(redisAssertDto.getRedisName())){
-                    redisNames.add(redisAssertDto.getRedisName());
-                }
-            }
-        }
-
-        HashSet<HostAndPort> nodes = new HashSet();
-        if(null != redisNames && redisNames.size() > 0){
-            for(String redisName : redisNames){
-                TestRedisConfigDto redisConfigDto = testRedisConfigService.getByRedisNameAndEnvironmentId(redisName,environmentId);
-                if(null != redisConfigDto) {
-                    String ips = redisConfigDto.getIpAddress();
-                    if(StringUtils.isNotBlank(ips)){
-                        String[] ipAndPorts = ips.split(";|；");
-                        for(String ipAndPort:ipAndPorts){
-                            String ip = ipAndPort.split(":|：")[0];
-                            int port = Integer.parseInt(ipAndPort.split(":|：")[1]);
-                            HostAndPort hostAndPort = new HostAndPort(ip, port);
-                            nodes.add(hostAndPort);
-                        }
-                    }
-
-                }
-            }
-        }
-        this.jedisCluster = new JedisCluster(nodes, 3000, 30);
     }
 
 //    /**
@@ -316,36 +244,35 @@ public class RedisUtil {
 //        return sb.toString();
 //    }
 
-    public static void set(String key, String value, int time) {
+    public  void set(String key, String value, Integer time) {
 
         jedisCluster.set(key, value);
-        if (time != 0) {
+        if (null != time && time != 0) {
             jedisCluster.expire(key, time);
             logger.info("set to redis key:{} value:{},limit time is " + time + " seconds", key, value);
         } else {
-
             logger.info("set to redis key:{} value:{},limit time is forever", key, value);
             return;
         }
     }
 
-    public static void del(String key) {
+    public void del(String key) {
         jedisCluster.del(key);
         logger.info("del from redis key:{}", key);
     }
 
-    public static String get(String key) {
+    public  String get(String key) {
         String value = jedisCluster.get(key);
         logger.info("get value from redis,key:{},value:{}", key, value);
         return value;
     }
 
-    public static void setTime(String key, int expire) {
+    public  void setTime(String key, int expire) {
         jedisCluster.expire(key, expire);
         logger.info("set expire ,key:{},exprie:{}second", key, expire);
     }
 
-    public static boolean isExit(String key) {
+    public  boolean isExit(String key) {
         Boolean isExit = jedisCluster.exists(key);
         if (isExit) {
             logger.info("key:{} is exit in redis", key);
@@ -355,7 +282,7 @@ public class RedisUtil {
         return isExit;
     }
 
-    public static Long getTime(String key) {
+    public  Long getTime(String key) {
         Long time = jedisCluster.ttl(key);
         logger.info("key:{} expire time is {}", key, time);
         return time;
@@ -363,12 +290,10 @@ public class RedisUtil {
 
 
     public static void main(String[] args) {
-//        RedisUtil redisUtil = new RedisUtil();
-//        redisUtil.set("interaction", "{\"data\":\"111\"}", 0);
-////        redisUtil.expire("interaction",200);
-//        redisUtil.isExit("UNIUSER-login-QGZ-00683f51-da44-4f2d-8120-e009ef3bf351");
-//        System.out.println(redisUtil.isExit("UNIUSER-login-QGZ-00683f51-da44-4f2d-8120-e009ef3bf351"));
+        RedisUtil redisUtil = new RedisUtil();
+       // del("huazhengcredit-service-inclusivefinancial_571256199458673437_\\xe5\\xba\\x93\\xe9\\x87\\x8e__queryCrimeInfo");
+//        redisUtil.expire("interaction",200);
+       // System.out.println(get("UNIUSER-login-QGZ-00683f51-da44-4f2d-8120-e009ef3bf351"));
 
-//        System.out.println(new Date().getTime());
     }
 }

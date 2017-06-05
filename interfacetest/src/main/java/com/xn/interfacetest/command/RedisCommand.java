@@ -18,9 +18,10 @@ public class RedisCommand implements Command {
     private String methodName;
     private String key;
     private String value;
-    private int time;
+    private Integer time;
     private Long caseId;
     private Long environmentId;
+    private RedisUtil redisUtil;
 
 //    public static void main(String[] args) {
 //        GetPara getPara = new GetPara();
@@ -76,10 +77,17 @@ public class RedisCommand implements Command {
 //        System.out.println("--------"+this.value);
     }
 
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 
+    public RedisUtil getRedisUtil() {
+        return redisUtil;
+    }
+
+    public void setRedisUtil(RedisUtil redisUtil) {
+        this.redisUtil = redisUtil;
+    }
 //    /**
 //     * 从redis中获取登录错误次数
 //     */
@@ -122,26 +130,26 @@ public class RedisCommand implements Command {
 //        redisUtil.saveToken2Redis(systemType, sourceType, loginName, tokenId, memberNo);
 //    }
 
-    public void setTime(int time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 
-    private void set(String key, String value, int time) {
+    private void set(String key, String value, Integer time) {
         if (StringUtils.isEmpty(key) || StringUtils.isEmpty(value)) {
             return;
         }
-        RedisUtil.set(key, value, time);
+        redisUtil.set(key, value, time);
     }
 
     private String get(String key) {
         if (StringUtils.isEmpty(key)) {
             return null;
         }
-        return RedisUtil.get(key);
+        return redisUtil.get(key);
     }
 
     private void del(String key) {
-        RedisUtil.del(key);
+        redisUtil.del(key);
     }
 
     @Override
