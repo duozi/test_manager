@@ -30,7 +30,7 @@
             <div id="case-form-div">
                 <!--单接口用例-->
                 <!--header-->
-                <div class="form-group" id='single-header' style="width: 140%">
+                <div class="form-group" id='single-header' style="width: 180%">
                     <label style="margin-top:1%">请求参数</label>
                     <div class="panel panel-default" style="width: 125%">
                         <!-- /.panel-heading -->
@@ -146,7 +146,7 @@
                 <!--返回参数校验-->
                 <#if testCaseDto.paramsAssert==1>
 
-                    <div class="form-group" style="width: 140%">
+                    <div class="form-group" style="width: 180%">
                         <label style="margin-top:1%">返回参数校验</label>
                         <!--<textarea class=" form-control  text-control "></textarea>-->
                         <div class="panel panel-default" style="width: 125%">
@@ -325,7 +325,7 @@
                 <!--</#if>-->
                 <!--数据准备-->
                 <#if testCaseDto.dataPrepare==1>
-                    <div class="form-group" style="width: 140%">
+                    <div class="form-group" style="width: 180%">
                         <label style="margin-top:1%">数据准备</label>
                         <!--<textarea class=" form-control  text-control "></textarea>-->
                         <div class="prepare-data"  style="width: 125%">
@@ -389,71 +389,79 @@
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
-                            <!--<div class="panel panel-default operation" >-->
-                                <!--<div class="panel-heading">-->
-                                    <!--redis操作-->
-                                <!--</div>-->
-                                <!--<div class="panel-body">-->
-                                    <!--<div class="table-responsive">-->
-                                        <!--<table class="table case-table">-->
-                                            <!--<thead>-->
-                                            <!--<tr>-->
-                                                <!--<th style="">redis名</th>-->
-                                                <!--<th style="">redis操作类型</th>-->
-                                                <!--<th style="">key</th>-->
-                                                <!--<th style="">value</th>-->
-                                                <!--<th style="width:10%;">time</th>-->
-                                                <!--<th>操作</th>-->
-                                                <!--<th></th>-->
-                                            <!--</tr>-->
-                                            <!--</thead>-->
-                                            <!--<tbody class="redis-body">-->
-                                            <!--<input type="hidden" name="operateType" value="1">-->
-                                                <!--<#if prepareRedisDtoList??>-->
-                                                    <!--<#list prepareRedisDtoList as redisItem>-->
-                                                        <!--<tr>-->
-                                                            <!--<td>-->
-                                                                <!--<input type="hidden" name="id" value="${redisItem.id}">-->
-                                                                <!--<input type="text" name="redisName" value="${redisItem.redisName}">-->
-                                                                <!--<input type="hidden" name="operateType" value="${redisItem.operateType}">-->
-                                                            <!--</td>-->
-                                                            <!--<td>-->
-                                                                <!--<select class="form-control case-select" id="redisOperateType" name="redisOperateType">-->
-                                                                    <!--<#if  redisOperationTypeEnumList??>-->
-                                                                        <!--<#list redisOperationTypeEnumList as item>-->
-                                                                            <!--<option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>-->
-                                                                        <!--</#list>-->
-                                                                    <!--</#if>-->
-                                                                <!--</select>-->
-                                                            <!--</td>-->
-                                                            <!--<td>-->
-                                                                <!--<input type="text" class="form-control" name="key" value="${redisItem.key}">-->
-                                                            <!--</td>-->
-                                                            <!--<td>-->
-                                                                <!--<input type="text" class="form-control" name="value" value="${redisItem.value}">-->
-                                                            <!--</td>-->
-                                                            <!--<td>-->
-                                                                <!--<input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">-->
-                                                            <!--</td>-->
-                                                            <!--<td>-->
-                                                                <!--<a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>-->
-                                                                <!--<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>-->
-                                                            <!--</td>-->
-                                                        <!--</tr>-->
-                                                    <!--</#list>-->
-                                                <!--</#if>-->
-                                            <!--<tr class="add-tr">-->
-                                                <!--<td style=" border: none"><span id="prepareAddRedisOperation"-->
-                                                                                <!--class="btn btn-info"><i-->
-                                                        <!--class="icon icon-plus-sign"></i>添加redis操作</span></td>-->
-                                            <!--</tr>-->
-                                            <!--</tbody>-->
-                                        <!--</table>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; /.table-responsive &ndash;&gt;-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
-                            <!--</div>-->
+                            <div class="panel panel-default operation" >
+                                <div class="panel-heading">
+                                    redis操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">redis名</th>
+                                                <th style="">redis操作类型</th>
+                                                <th style="">key</th>
+                                                <th style="">value</th>
+                                                <th style="width:10%;">time</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="redis-body">
+                                            <input type="hidden" name="operateType" value="1">
+                                                <#if prepareRedisDtoList??>
+                                                    <#list prepareRedisDtoList as redisItem>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="hidden" name="id" value="${redisItem.id}">
+                                                                <select class="form-control case-select" name="redisName">
+                                                                    <#if testRedisConfigDtoList??>
+                                                                         <#list testRedisConfigDtoList as redisconfig>
+                                                                             <option value="${redisconfig.name}" <#if redisItem.redisName == redisconfig.name>selected</#if> >${redisconfig.name}</option>
+                                                                         </#list>
+                                                                   </#if>
+                                                                 </select>
+                                                                <input type="hidden" name="operateType" value="${redisItem.operateType}">
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control case-select" id="redisOperateType" name="redisOperateType">
+                                                                    <#if  redisOperationTypeEnumList??>
+                                                                        <#list redisOperationTypeEnumList as item>
+                                                                            <option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>
+                                                                        </#list>
+                                                                    </#if>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="key" value="${redisItem.key}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="value" value="${redisItem.value}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">
+                                                            </td>
+                                                            <td>
+                                                                <a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>
+                                                                <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>
+                                                            </td>
+                                                        </tr>
+                                                    </#list>
+                                                </#if>
+                                            <tr class="add-tr">
+                                                <#if testCaseDto.status == 0 || testCaseDto == null>
+                                                <td style=" border: none"><span id="prepareAddRedisOperation"
+                                                                                class="btn btn-info"><i
+                                                        class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                                </#if>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
                         </div>
 
                     </div>
@@ -461,7 +469,7 @@
                 <!--数据清除-->
                 <#if testCaseDto.dataClear==1>
 
-                    <div class="form-group" style="width: 140%">
+                    <div class="form-group" style="width: 180%">
                         <label style="margin-top:1%">数据清除</label>
                         <div class="clear-data" style="width: 125%">
                             <input type="hidden" name="operateType" value="2">
@@ -523,70 +531,74 @@
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
-                            <!--<div class="panel panel-default operation">-->
-                                <!--<div class="panel-heading">-->
-                                    <!--redis操作-->
-                                <!--</div>-->
-                                <!--<div class="panel-body">-->
-                                    <!--<div class="table-responsive">-->
-                                        <!--<table class="table case-table">-->
-                                            <!--<thead>-->
-                                            <!--<tr>-->
-                                                <!--<th style="">redis名</th>-->
-                                                <!--<th style="">redis操作类型</th>-->
-                                                <!--<th style="">key</th>-->
-                                                <!--<th style="">value</th>-->
-                                                <!--<th style="width:10%;">time</th>-->
-                                                <!--<th>操作</th>-->
-                                                <!--<th></th>-->
-                                            <!--</tr>-->
-                                            <!--</thead>-->
-                                            <!--<tbody class="redis-body">-->
-                                            <!--<input type="hidden" name="operateType" value="2">-->
-                                            <!--<#if clearRedisDtoList??>-->
-                                                <!--<#list clearRedisDtoList as redisItem>-->
-                                                    <!--<tr>-->
-                                                        <!--<td>-->
-                                                            <!--<input type="hidden" name="id" value="${redisItem.id}">-->
-                                                            <!--<input type="text" name="redisName" value="${redisItem.redisName}">-->
-                                                        <!--</td>-->
-                                                        <!--<td>-->
-                                                            <!--<select class="form-control case-select"  name="redisOperateType">-->
-                                                                <!--<#if  redisOperationTypeEnumList??>-->
-                                                                    <!--<#list redisOperationTypeEnumList as item>-->
-                                                                        <!--<option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>-->
-                                                                    <!--</#list>-->
-                                                                <!--</#if>-->
-                                                            <!--</select>-->
-                                                        <!--</td>-->
-                                                        <!--<td>-->
-                                                            <!--<input type="text" class="form-control" name="key" value="${redisItem.key}">-->
-                                                        <!--</td>-->
-                                                        <!--<td>-->
-                                                            <!--<input type="text" class="form-control" name="value" value="${redisItem.value}">-->
-                                                        <!--</td>-->
-                                                        <!--<td>-->
-                                                            <!--<input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">-->
-                                                        <!--</td>-->
-                                                        <!--<td>-->
-                                                            <!--<a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>-->
-                                                            <!--<button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>-->
-                                                        <!--</td>-->
-                                                    <!--</tr>-->
-                                                <!--</#list>-->
-                                            <!--</#if>-->
-                                            <!--<tr class ="add-tr">-->
-                                                <!--<td style=" border: none"><span id="clearAddRedisOperation"-->
-                                                                                <!--class="btn btn-info"><i-->
-                                                        <!--class="icon icon-plus-sign"></i>添加redis操作</span></td>-->
-                                            <!--</tr>-->
-                                            <!--</tbody>-->
-                                        <!--</table>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; /.table-responsive &ndash;&gt;-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
-                            <!--</div>-->
+                            <div class="panel panel-default operation">
+                                <div class="panel-heading">
+                                    redis操作
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table case-table">
+                                            <thead>
+                                            <tr>
+                                                <th style="">redis名</th>
+                                                <th style="">redis操作类型</th>
+                                                <th style="">key</th>
+                                                <th style="">value</th>
+                                                <th style="width:10%;">time</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="redis-body">
+                                            <input type="hidden" name="operateType" value="2">
+                                            <#if clearRedisDtoList??>
+                                                <#list clearRedisDtoList as redisItem>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="id" value="${redisItem.id}">
+                                                            <input type="text" name="redisName" value="${redisItem.redisName}">
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control case-select"  name="redisOperateType">
+                                                                <#if  redisOperationTypeEnumList??>
+                                                                    <#list redisOperationTypeEnumList as item>
+                                                                        <option value="${item.getId()}" <#if item.getId() == redisItem.redisOperateType>selected</#if>>${item.getName()} </option>
+                                                                    </#list>
+                                                                </#if>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="key" value="${redisItem.key}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="value" value="${redisItem.value}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="time" placeholder="ms数" value="${redisItem.time}">
+                                                        </td>
+                                                        <td>
+                                                            <#if testCaseDto.status == 0 || testCaseDto == null>
+                                                            <a type="button" class="btn btn-info" onclick="addRedisOperation(this)">保存</a>
+                                                            <button type="button" name="delete" class="btn btn-info" onclick="deleteRedisData(this)">删除</button>
+                                                            </#if>
+                                                        </td>
+                                                    </tr>
+                                                </#list>
+                                            </#if>
+                                            <#if testCaseDto.status == 0 || testCaseDto == null>
+                                                <tr class ="add-tr">
+                                                    <td style=" border: none"><span id="clearAddRedisOperation"
+                                                                                    class="btn btn-info"><i
+                                                            class="icon icon-plus-sign"></i>添加redis操作</span></td>
+                                                </tr>
+                                            </#if>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
                         </div>
                     </div>
                 </#if>
@@ -705,7 +717,13 @@
     dbhtml += '</tr>';
 
     var redishtml = '<tr><div class="row"><td><input type="hidden" name="id">';
-    redishtml += '  <input type="text" name="redisName" value="">';
+    redishtml += '<select class="form-control case-select" name="redisName">';
+    redishtml += '<#if testRedisConfigDtoList??>';
+    redishtml += '<#list testRedisConfigDtoList as redisconfig>';
+    redishtml += '<option value="${redisconfig.name}"  >${redisconfig.name}</option>';
+    redishtml += '</#list>';
+    redishtml += '</#if>';
+    redishtml += ' </select>';
     redishtml += '</td>';
     redishtml += '<td>';
     redishtml += '<select class="form-control case-select"  name="redisOperateType">';
@@ -975,7 +993,7 @@
     }
 
     function addRedisOperation(_this){
-        var redisName = $(_this).parent().parent().find("input[name='redisName']").val();
+        var redisName = $(_this).parent().parent().find("select[name='redisName']").val();
         var redisOperateType = $(_this).parent().parent().find("select[name='redisOperateType']").val();
         var id  = $(_this).parent().parent().find("input[name='id']").val();
         var operateType =  $(_this).parent().parent().parent().find("input[name='operateType']").val();

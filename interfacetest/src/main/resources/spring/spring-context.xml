@@ -101,6 +101,13 @@
     <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
     <bean id="SpringContextUtil" class="com.xn.interfacetest.util.SpringContextUtil"  scope="singleton"/>
 
+    <bean name="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig" >
+        <property name="maxWaitMillis" value="-1" />
+        <property name="maxTotal" value="1000" />
+        <property name="minIdle" value="8" />
+        <property name="maxIdle" value="100" />
+    </bean>
+
     <import resource="classpath:dubbo/dubbo-provider.xml"/>
 </beans>
 
