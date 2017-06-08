@@ -29,7 +29,6 @@ import java.util.concurrent.*;
 import static com.xn.performance.service.impl.SpringTask.*;
 import static com.xn.performance.util.DateUtil.lastSecond;
 import static com.xn.performance.util.PropertyUtil.getProperty;
-import static com.xn.performance.util.jmeter.InfluxDB_Act.influxdb_to_sqlite3;
 import static com.xn.performance.util.jmeter.StartJMeterAgent_SSH.upload;
 import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
@@ -383,8 +382,8 @@ public class JmeterServiceImpl implements JmeterService {
             performanceResultDto.setActualEndTime(actualEndTime);
             Integer executeTime = lastSecond(actualStartTime, actualEndTime);
             //时序数据保存到本地
-            influxdb_to_sqlite3("telegraf", executeTime, id);
-            influxdb_to_sqlite3("jmeter", executeTime, id);
+//            influxdb_to_sqlite3("telegraf", executeTime, id);
+//            influxdb_to_sqlite3("jmeter", executeTime, id);
             performanceResultDto.setExecuteTime(executeTime);
 
             performanceResultDto.setExecuteStatus("已执行");

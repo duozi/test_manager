@@ -445,26 +445,6 @@ public class PerformanceReportController {
 
     }
 
-    //    /**
-//     * 返回绘制图表的json数据
-//     *
-//     * @param id jmeter性能测试数据表前缀，用于区分不同的tps表，避免数据污染,sqlite数据的路径+文件名称根据id获得
-//     * @return json格式的绘制图表数据
-//     */
-//    @RequestMapping(value = "/get_chart", method = RequestMethod.POST)
-//    @ResponseBody
-//    public JSONObject getChar(@RequestParam Integer id) {
-//        Map<String, Object> map = new LinkedHashMap<>();
-//        try {
-//            System.out.println("Spring Controller: from ajax dbfile is:" + id);
-//            map = performanceReportService.chartDataAll(id);
-//        } catch (Exception e) {
-//
-//        } finally {
-//            return (new JSONObject(map));
-//        }
-//
-//    }
     @RequestMapping(value = "/influxdb", method = RequestMethod.GET)
     public String influxdb(HttpServletRequest request, ModelMap model) {
 
@@ -497,9 +477,9 @@ public class PerformanceReportController {
 
 
         //GetTime.getUTCTimeLong19(2) 2分钟前  GetTime.getUTCTimeLong19(0) 当前时间
-        Map<String, Object> alldata = performanceReportService.ChartInfluxdbData_start_end(id+".", starttime_long, endtime_long);
-
-            commonResult.setData(new JSONObject(alldata));
+        Map<String, Object> alldata = performanceReportService.chartInfluxdbData_start_end(id+".", starttime_long, endtime_long);
+            JSONObject jsonObject = new JSONObject(alldata);
+            commonResult.setData(jsonObject.toString());
 
         } catch (Exception e) {
             commonResult.setMessage(CommonResultEnum.ERROR.getReturnMsg());

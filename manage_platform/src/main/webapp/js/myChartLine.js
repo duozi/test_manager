@@ -104,20 +104,20 @@ jmeterChart.requestSqliteChartData1 = function (id) {
 jmeterChart.createCanvas = function (chardatajson) {
     //var chardatajson = jmeterChart.requestSqliteChartData1(sqlitdb);
     chardatajson = eval("(" + chardatajson + ")");
-    jmeterChart.generateCanvas(chardatajson,"users","#chart-1");
-    jmeterChart.generateCanvas(chardatajson,"pct90","#chart-2");
-    jmeterChart.generateCanvas(chardatajson,"tps_ok","#chart-1");
-    jmeterChart.generateCanvas(chardatajson,"avg","#chart-2");
-    jmeterChart.generateCanvas(chardatajson,"tps_all","#chart-1");
-    jmeterChart.generateCanvas(chardatajson,"swap/G","#chart-2");
-    jmeterChart.generateCanvas(chardatajson,"cpu-total","#chart-1");
-    jmeterChart.generateCanvas(chardatajson,"mem/G","#chart-2");
-    jmeterChart.generateCanvas(chardatajson,"load","#chart-1");
-    jmeterChart.generateCanvas(chardatajson,"diskio","#chart-2");
+    jmeterChart.generateCanvas(chardatajson, "users", "#chart-1");
+    jmeterChart.generateCanvas(chardatajson, "pct90", "#chart-2");
+    jmeterChart.generateCanvas(chardatajson, "tps_ok", "#chart-1");
+    jmeterChart.generateCanvas(chardatajson, "avg", "#chart-2");
+    jmeterChart.generateCanvas(chardatajson, "tps_all", "#chart-1");
+    jmeterChart.generateCanvas(chardatajson, "swap/G", "#chart-2");
+    jmeterChart.generateCanvas(chardatajson, "cpu-total", "#chart-1");
+    jmeterChart.generateCanvas(chardatajson, "mem/G", "#chart-2");
+    jmeterChart.generateCanvas(chardatajson, "load", "#chart-1");
+    jmeterChart.generateCanvas(chardatajson, "diskio", "#chart-2");
 
 
 }
-jmeterChart.generateCanvas = function (chardatajson,key ,id) {
+jmeterChart.generateCanvas = function (chardatajson, key, id) {
     var canvas = document.createElement('canvas');
     canvas.id = "JmeterSqliteChart" + key;
     // canvas.width = 200;
@@ -125,7 +125,7 @@ jmeterChart.generateCanvas = function (chardatajson,key ,id) {
     canvas.style.zIndex = 8;
     //canvas.style.position = "absolute";
     // canvas.style.border   = "1px solid";//边框
-    var div=document.createElement("div");
+    var div = document.createElement("div");
     // div.setAttribute("class","form-group");
     div.appendChild(canvas);
     $(id).append(div);
@@ -179,12 +179,12 @@ jmeterChart.newChartLine = function (chartid, charttitle, data_x_list, line_name
         linetmp.fill = false;
         linetmp.yAxisID = "y-axis-1";
         linetmp.data = data_y_list_list[i];
-        lineChartData.datasets.push(linetmp);
+        jmeterChart.lineChartData.datasets.push(linetmp);
     }
-
-    var ctx = document.getElementById(chartid).getContext("2d");
+    var chart = document.getElementById(chartid);
+    var ctx = chart.getContext("2d");
     window.myLine = Chart.Line(ctx, {
-        data: lineChartData,
+        data: jmeterChart.lineChartData,
         options: {
             responsive: true,
             hoverMode: 'index',

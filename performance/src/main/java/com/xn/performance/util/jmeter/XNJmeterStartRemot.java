@@ -2,7 +2,6 @@ package com.xn.performance.util.jmeter;
 
 
 import com.xn.performance.util.GetTime;
-import com.xn.performance.util.PropertyUtil;
 import org.apache.jmeter.JMeter;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.engine.ClientJMeterEngine;
@@ -404,13 +403,15 @@ public class XNJmeterStartRemot {
             }
             Arguments arguments = new Arguments();
             arguments.addArgument("graphiteMetricsSender", "org.apache.jmeter.visualizers.backend.graphite.TextGraphiteMetricsSender");
-            arguments.addArgument("graphiteHost", PropertyUtil.getProperty("loacalIp"));
+
+            arguments.addArgument("graphiteHost", rmi_server);
             arguments.addArgument("graphitePort", "2003");
             arguments.addArgument("summaryOnly", "true");
             arguments.addArgument("samplersList", ".*");
             arguments.addArgument("useRegexpForSamplersList", "false");
             arguments.addArgument("percentiles", "90;95;99");
-            arguments.addArgument("rootMetricsPrefix",String.valueOf(id)+".");//修改jmeter表的前缀，默认是jmeter.,不能区分
+            String prefix=String.valueOf(id)+".";
+            arguments.addArgument("rootMetricsPrefix",prefix);//修改jmeter表的前缀，默认是jmeter.,不能区分
             //arguments.addArgument("TestPlan.comments", "=");
 
             BackendListener backendListener = new BackendListener();
