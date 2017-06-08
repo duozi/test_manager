@@ -125,11 +125,14 @@ jmeterChart2.paintingInfluxdbIO = function(chardatajson){
 			host_key = hostkey;
 	    }
 		canvas.id = "DiskIO_"+host_key; 
-		canvas.width  = 400; 
-		canvas.height = 230; 
+		// canvas.width  = 400;
+		// canvas.height = 230;
 		canvas.style.zIndex   = 8; 
 		canvas.style.border   = "1px solid";
-		document.body.appendChild(canvas);
+		var div=document.createElement("div");
+		div.appendChild(canvas);
+		$("#chart").append(div);
+
 		charttitle = "DiskIO_"+host_key;
 		data_x_list = chardatajson['diskio'][i][host_key].time;
 		line_name_list = ["write_Kb/s","read_Kb/s"];
